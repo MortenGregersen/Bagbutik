@@ -1,0 +1,61 @@
+public extension Request {
+    enum GetAppScreenshotSet {
+        /**
+         Fields to return for included related types.
+         */
+        public enum Field: FieldParameter {
+            /// The fields to include for returned resources of type appScreenshotSets
+            case appScreenshotSets([AppScreenshotSets])
+            /// The fields to include for returned resources of type appScreenshots
+            case appScreenshots([AppScreenshots])
+
+            public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
+                case appScreenshots
+                case appStoreVersionLocalization
+                case screenshotDisplayType
+            }
+
+            public enum AppScreenshots: String, ParameterValue, CaseIterable {
+                case appScreenshotSet
+                case assetDeliveryState
+                case assetToken
+                case assetType
+                case fileName
+                case fileSize
+                case imageAsset
+                case sourceFileChecksum
+                case uploadOperations
+                case uploaded
+            }
+        }
+
+        /**
+         Relationship data to include in the response.
+         */
+        public enum Include: String, IncludeParameter {
+            case appScreenshots, appStoreVersionLocalization
+        }
+    }
+
+    /**
+      # Read App Screenshot Set Information
+      Get an app screenshot set including its display target, language, and the screenshot it contains.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_screenshot_set_information>
+
+      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
+      - Returns: A `Request` with to send to an instance of `BagbutikService`
+     */
+    static func getAppScreenshotSet(id: String,
+                                    fields: [GetAppScreenshotSet.Field]? = nil,
+                                    includes: [GetAppScreenshotSet.Include]? = nil,
+                                    limit: Int? = nil) -> Request<AppScreenshotSetResponse, ErrorResponse>
+    {
+        return .init(path: "/v1/appScreenshotSets/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                          includes: includes,
+                                                                                          limit: limit))
+    }
+}

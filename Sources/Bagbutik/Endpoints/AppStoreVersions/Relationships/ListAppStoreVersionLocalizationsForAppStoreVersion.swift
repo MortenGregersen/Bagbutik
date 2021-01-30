@@ -1,0 +1,43 @@
+public extension Request {
+    enum ListAppStoreVersionLocalizationsForAppStoreVersion {
+        /**
+         Fields to return for included related types.
+         */
+        public enum Field: FieldParameter {
+            /// The fields to include for returned resources of type appStoreVersionLocalizations
+            case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+
+            public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+                case appPreviewSets
+                case appScreenshotSets
+                case appStoreVersion
+                case description
+                case keywords
+                case locale
+                case marketingUrl
+                case promotionalText
+                case supportUrl
+                case whatsNew
+            }
+        }
+    }
+
+    /**
+      # List All App Store Version Localizations for an App Store Version
+      Get a list of localized, version-level information about an app, for all locales.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_store_version_localizations_for_an_app_store_version>
+
+      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter fields: Fields to return for included related types
+      - Returns: A `Request` with to send to an instance of `BagbutikService`
+     */
+    static func listAppStoreVersionLocalizationsForAppStoreVersion(id: String,
+                                                                   fields: [ListAppStoreVersionLocalizationsForAppStoreVersion.Field]? = nil,
+                                                                   limit: Int? = nil) -> Request<AppStoreVersionLocalizationsResponse, ErrorResponse>
+    {
+        return .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionLocalizations", method: .get, parameters: .init(fields: fields,
+                                                                                                                      limit: limit))
+    }
+}
