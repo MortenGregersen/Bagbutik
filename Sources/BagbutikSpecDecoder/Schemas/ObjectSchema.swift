@@ -4,7 +4,6 @@ public struct ObjectSchema: Decodable {
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
     public let name: String
-    public let attributes: AttributesSchema?
     public let subSchemas: [SubSchema]
 
     enum CodingKeys: String, CodingKey {
@@ -16,11 +15,10 @@ public struct ObjectSchema: Decodable {
         case relationships
     }
 
-    init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, attributes: AttributesSchema? = nil, subSchemas: [SubSchema] = []) {
+    init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, subSchemas: [SubSchema] = []) {
         self.properties = properties
         self.requiredProperties = requiredProperties
         self.name = name
-        self.attributes = attributes
         self.subSchemas = subSchemas
     }
 
@@ -60,6 +58,6 @@ public struct ObjectSchema: Decodable {
         {
             subSchemas.append(.relationships(relationships))
         }
-        self.init(properties: properties, requiredProperties: requiredProperties, name: name, attributes: attributes, subSchemas: subSchemas)
+        self.init(properties: properties, requiredProperties: requiredProperties, name: name, subSchemas: subSchemas)
     }
 }
