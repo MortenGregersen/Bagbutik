@@ -2,11 +2,13 @@ import BagbutikSpecDecoder
 import Foundation
 import Stencil
 import StencilSwiftKit
+import SwiftFormat
 
 class OneOfSchemaRenderer {
     func render(name: String, oneOfSchema: OneOfSchema, includesFixUps: [String] = []) throws -> String {
         let context = oneOfContext(for: oneOfSchema, named: name, in: environment, includesFixUps: includesFixUps)
-        return try environment.renderTemplate(name: "oneOfTemplate", context: context)
+        let rendered = try environment.renderTemplate(name: "oneOfTemplate", context: context)
+        return try SwiftFormat.format(rendered)
     }
 
     private let environment = Environment(loader: DictionaryLoader(templates: ["oneOfTemplate":
@@ -22,8 +24,7 @@ class OneOfSchemaRenderer {
                         {{ subSchema|indent }}
                     {% endfor %}
                 {% endif %}
-                
-                {% if (name == "Included") or (name == "Source") %}
+
                 public init(from decoder: Decoder) throws {
                     {% for option in options %}
                         {% if forloop.first %}
@@ -38,7 +39,7 @@ class OneOfSchemaRenderer {
                                                                                             debugDescription: "Unknown {{ name  }}"))
                     }
                 }
-                
+
                 public func encode(to encoder: Encoder) throws {
                     switch self {
                     {% for option in options %}
@@ -57,7 +58,6 @@ class OneOfSchemaRenderer {
                     case {{ option.id }}{%
                     endfor %}
                 }
-                {% endif %}
             }
             """]), extensions: StencilSwiftKit.stencilSwiftEnvironment().extensions)
 
@@ -84,6 +84,7 @@ class OneOfSchemaRenderer {
                 }
             }.flatMap { $0 }
         } else if oneOfSchema.options.count == 2, oneOfSchema.options[0].schemaName == "AppScreenshotSet", oneOfSchema.options[1].schemaName == "AppPreviewSet" {
+            // AppStoreVersionLocalizationsResponse doesn't have any fixUps, but they should just be the types with 's' appended
             optionCases = oneOfSchema.options.map { option in
                 EnumCase(id: "\(option.schemaName.lowercasedFirstLetter())s", value: option.schemaName)
             }
@@ -96,7 +97,7 @@ class OneOfSchemaRenderer {
             }
             return nil
         }
-        return ["name": name, "options": optionCases, "subSchemas": subSchemas]
+        return ["name": name, "options": optionCases.sorted { $0.id < $1.id }, "subSchemas": subSchemas]
     }
 
     private func mapOptionCases(for options: [OneOfOption], includesFixUps: [String] = []) -> [EnumCase] {
@@ -114,6 +115,5 @@ class OneOfSchemaRenderer {
             }
             return EnumCase(id: optionName, value: option.schemaName)
         }
-        .sorted { $0.id < $1.id }
     }
 }

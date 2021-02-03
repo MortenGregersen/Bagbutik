@@ -1,7 +1,6 @@
 import Foundation
 
 public struct ObjectSchema: Decodable {
-    public let type: String
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
     public let name: String
@@ -17,15 +16,22 @@ public struct ObjectSchema: Decodable {
         case relationships
     }
 
+    init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, attributes: AttributesSchema? = nil, subSchemas: [SubSchema] = []) {
+        self.properties = properties
+        self.requiredProperties = requiredProperties
+        self.name = name
+        self.attributes = attributes
+        self.subSchemas = subSchemas
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        type = try container.decode(String.self, forKey: .type)
-        requiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
+        let requiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
         let propertiesContainer = try container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
         var subSchemas = [SubSchema]()
-        properties = try propertiesContainer.allKeys.reduce(into: [String: PropertyType]()) { properties, key in
+        let properties = try propertiesContainer.allKeys.reduce(into: [String: PropertyType]()) { properties, key in
             guard key.stringValue != CodingKeys.attributes.stringValue,
-                key.stringValue != CodingKeys.relationships.stringValue else { return }
+                  key.stringValue != CodingKeys.relationships.stringValue else { return }
             guard let propertyType = try? propertiesContainer.decode(PropertyType.self, forKey: key) else {
                 throw DecodingError.dataCorruptedError(forKey: key, in: propertiesContainer, debugDescription: "Property type not known")
             }
@@ -44,15 +50,16 @@ public struct ObjectSchema: Decodable {
             }
             properties[key.stringValue] = propertyType
         }
-        name = try container.decodeIfPresent(String.self, forKey: .title) ?? container.codingPath.last { $0.stringValue != "items" }!.stringValue
-        attributes = try propertiesContainer.decodeIfPresent(AttributesSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
+        let name = try container.decodeIfPresent(String.self, forKey: .title) ?? container.codingPath.last { $0.stringValue != "items" }!.stringValue
+        let attributes = try propertiesContainer.decodeIfPresent(AttributesSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
             subSchemas.append(.attributes(attributes))
         }
         if let relationships = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "relationships")!),
-            relationships.properties.count > 0 {
+           relationships.properties.count > 0
+        {
             subSchemas.append(.relationships(relationships))
         }
-        self.subSchemas = subSchemas
+        self.init(properties: properties, requiredProperties: requiredProperties, name: name, attributes: attributes, subSchemas: subSchemas)
     }
 }
