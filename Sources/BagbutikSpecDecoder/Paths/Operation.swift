@@ -5,7 +5,7 @@ public struct Operation: Decodable {
     public let documentation: Documentation
     public let method: HTTPMethod
     public let parameters: [Parameter]?
-    public let requestBody: String?
+    public let requestBody: RequestBody?
     public let successResponseType: String
     public let errorResponseType: String
     
@@ -28,30 +28,44 @@ public struct Operation: Decodable {
     }
     
     enum RequestBodyCodingKeys: String, CodingKey {
-        case content, applicationJson = "application/json", schema, ref = "$ref"
+        case content, applicationJson = "application/json", schema, ref = "$ref", description
+    }
+    
+    public init(name: String, documentation: Documentation, method: HTTPMethod, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
+        self.name = name
+        self.documentation = documentation
+        self.method = method
+        self.parameters = parameters
+        self.requestBody = requestBody
+        self.successResponseType = successResponseType
+        self.errorResponseType = errorResponseType
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let operationId = try container.decode(String.self, forKey: .operationId)
-        name = Self.name(forId: operationId)
-        documentation = Self.documentation(forId: operationId)
-        method = HTTPMethod(rawValue: container.codingPath.last!.stringValue)!
-        parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
+        let name = Self.name(forId: operationId)
+        let documentation = Self.documentation(forId: operationId)
+        let method = HTTPMethod(rawValue: container.codingPath.last!.stringValue)!
+        let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
+        let requestBody: RequestBody?
         if let requestBodyContainter = try? container.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .requestBody),
            let contentContainter = try? requestBodyContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .content),
            let applicationJsonContainter = try? contentContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .applicationJson),
-           let schemaContainer = try? applicationJsonContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .schema)
+           let schemaContainer = try? applicationJsonContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .schema),
+           let requestBodyName = try? schemaContainer.decode(String.self, forKey: .ref).components(separatedBy: "/").last,
+           let requestBodyDescription = try? requestBodyContainter.decode(String.self, forKey: .description)
         {
-            requestBody = try schemaContainer.decodeIfPresent(String.self, forKey: .ref)?.components(separatedBy: "/").last
+            requestBody = .init(name: requestBodyName, description: requestBodyDescription)
         } else {
             requestBody = nil
         }
         let responsesContainer = try container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .responses)
         let successCode = responsesContainer.allKeys.first { $0.stringValue.hasPrefix("2") }!.stringValue
-        successResponseType = try Self.responseType(forCode: successCode, in: responsesContainer)
+        let successResponseType = try Self.responseType(forCode: successCode, in: responsesContainer)
         let errorCode = responsesContainer.allKeys.first { $0.stringValue.hasPrefix("4") }!.stringValue
-        errorResponseType = try Self.responseType(forCode: errorCode, in: responsesContainer)
+        let errorResponseType = try Self.responseType(forCode: errorCode, in: responsesContainer)
+        self.init(name: name, documentation: documentation, method: method, parameters: parameters, requestBody: requestBody, successResponseType: successResponseType, errorResponseType: errorResponseType)
     }
     
     private static func name(forId operationId: String) -> String {

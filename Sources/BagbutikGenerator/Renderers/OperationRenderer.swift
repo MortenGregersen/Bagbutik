@@ -104,12 +104,10 @@ public class OperationRenderer: Renderer {
          Full documentation:
          <{{ documentation.url }}>
 
-        {% if hasIdParameter %}
-         - Parameter id: An opaque resource ID that uniquely identifies the resource
-        {% endif %}
-        {% if hasRequestBodyParameter %}
-         - Parameter requestBody: The data for the request
-        {% endif %}
+        {% for parametersDocumentation in parametersDocumentations %}
+        {{ parametersDocumentation }}{%
+        endfor %}
+        {{ parametersDocumentation }}
         {% if fields.count > 0 %}
          - Parameter fields: Fields to return for included related types
         {% endif %}
@@ -125,6 +123,9 @@ public class OperationRenderer: Renderer {
         {% if sorts.count > 0 %}
          - Parameter sorts: Attributes by which to sort
         {% endif %}
+        {% if limits.count == 1 %}
+         - Parameter limit: {{ limits[0].description }} - maximum {{ limits[0].maximum }}
+        {% endif %}
         {% if limits.count > 1 %}
          - Parameter limits: Number of resources to return
         {% endif %}
@@ -132,7 +133,7 @@ public class OperationRenderer: Renderer {
         */
         public static func {{ name|lowerFirstLetter }}({{ parameters }}) -> Request<{{ successResponseType }}, {{ errorResponseType }}> {
             return .init(path: "{{ path }}", method: .{{ method }}{%
-                         if hasRequestBody %}, requestBody: requestBody{% endif %}{%
+                         if hasRequestBodyParameter %}, requestBody: requestBody{% endif %}{%
                          if hasParameters %}, parameters: .init({{ parametersInit }}){% endif %}
             )
         }
@@ -158,7 +159,7 @@ public class OperationRenderer: Renderer {
             case .fields(let name, let type, let description):
                 switch type {
                 case .simple(let type):
-                    fields.append(EnumCase(id: name, value: type.description))
+                    fields.append(EnumCase(id: name, value: type.description, description: description))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(type: type, values: values, name: enumName)
@@ -208,7 +209,7 @@ public class OperationRenderer: Renderer {
                             id = "\(sort)Ascending"
                         }
                         return EnumCase(id: id, value: sort, description: description)
-                    }
+                    }.sorted(by: { $0.id < $1.id })
                 default:
                     fatalError("Unknown type of sort")
                 }
@@ -219,11 +220,14 @@ public class OperationRenderer: Renderer {
 
         var parameters = [String]()
         var parametersInit = [String]()
+        var parametersDocumentations = [String]()
         path.parameters?.forEach { pathParameter in
             parameters.append("\(pathParameter.name): String")
+            parametersDocumentations.append(" - Parameter \(pathParameter.name): \(pathParameter.description)")
         }
         if let requestBody = operation.requestBody {
-            parameters.append("requestBody: \(requestBody)")
+            parameters.append("requestBody: \(requestBody.name)")
+            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.description)")
         }
         if fields.count > 0 {
             parameters.append("fields: [\(name).Field]? = nil")
@@ -274,12 +278,11 @@ public class OperationRenderer: Renderer {
                 "includes": includes.joined(separator: ", "),
                 "sorts": sorts,
                 "limits": limits,
-                "hasIdParameter": path.parameters?.count ?? 0 > 0,
                 "hasRequestBodyParameter": operation.requestBody != nil,
                 "hasParameters": parametersInit.count > 0,
                 "parameters": parameters.joined(separator: ",\n"),
                 "parametersInit": parametersInit.joined(separator: ",\n"),
-                "hasRequestBody": operation.requestBody != nil]
+                "parametersDocumentations": parametersDocumentations]
     }
 
     private struct LimitCase {
