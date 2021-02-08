@@ -6,8 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/replace_all_app_previews_for_an_app_preview_set>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
-      - Parameter requestBody: The data for the request
+      - Parameter id: The id of the requested resource
+      - Parameter requestBody: List of related linkages
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func replaceAppPreviewsForAppPreviewSet(id: String,

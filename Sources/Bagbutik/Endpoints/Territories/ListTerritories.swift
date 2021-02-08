@@ -21,6 +21,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/list_territories>
 
       - Parameter fields: Fields to return for included related types
+      - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listTerritories(fields: [ListTerritories.Field]? = nil,

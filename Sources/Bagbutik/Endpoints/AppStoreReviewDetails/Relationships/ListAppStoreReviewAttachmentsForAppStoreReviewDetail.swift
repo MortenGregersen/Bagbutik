@@ -48,9 +48,10 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_review_attachments_for_an_app_store_review_detail>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
+      - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppStoreReviewAttachmentsForAppStoreReviewDetail(id: String,

@@ -95,7 +95,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_bundle_id_information>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return

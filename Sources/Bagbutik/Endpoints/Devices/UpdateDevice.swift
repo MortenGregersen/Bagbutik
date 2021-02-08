@@ -6,8 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_registered_device>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
-      - Parameter requestBody: The data for the request
+      - Parameter id: The id of the requested resource
+      - Parameter requestBody: Device representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func updateDevice(id: String,

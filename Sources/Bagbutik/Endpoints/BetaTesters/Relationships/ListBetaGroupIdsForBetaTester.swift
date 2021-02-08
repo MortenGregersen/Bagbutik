@@ -6,7 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_all_beta_group_ids_of_a_beta_tester_s_groups>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
+      - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listBetaGroupIdsForBetaTester(id: String,

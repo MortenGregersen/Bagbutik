@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/enable_a_capability>
 
-      - Parameter requestBody: The data for the request
+      - Parameter requestBody: BundleIdCapability representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createBundleIdCapability(requestBody: BundleIdCapabilityCreateRequest) -> Request<BundleIdCapabilityResponse, ErrorResponse> {

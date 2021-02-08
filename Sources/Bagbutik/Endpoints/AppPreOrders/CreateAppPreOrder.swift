@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_pre-order>
 
-      - Parameter requestBody: The data for the request
+      - Parameter requestBody: AppPreOrder representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createAppPreOrder(requestBody: AppPreOrderCreateRequest) -> Request<AppPreOrderResponse, ErrorResponse> {

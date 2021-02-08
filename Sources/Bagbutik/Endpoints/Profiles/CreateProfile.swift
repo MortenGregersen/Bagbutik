@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_profile>
 
-      - Parameter requestBody: The data for the request
+      - Parameter requestBody: Profile representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createProfile(requestBody: ProfileCreateRequest) -> Request<ProfileResponse, ErrorResponse> {
