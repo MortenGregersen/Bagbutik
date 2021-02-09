@@ -1,7 +1,7 @@
 import Foundation
 
 public struct Spec: Decodable {
-    public let paths: [String: BagbutikSpecDecoder.Path]
+    public let paths: [String: Path]
     public let components: Components
     public var includesFixUps: [String: [String]] {
         paths.values.reduce(into: [:]) { result, path in

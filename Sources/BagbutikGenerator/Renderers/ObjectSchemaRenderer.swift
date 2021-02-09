@@ -127,7 +127,7 @@ public class ObjectSchemaRenderer {
                 "publicInit": publicInit,
                 "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
                 "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" }),
-                "codingKeys": codingKeys.filter { $0 != "type" },
+                "codingKeys": codingKeys,
                 "codableProperties": codableProperties,
                 "hasAttributes": hasAttributes,
                 "attributesOptional": attributesOptional,

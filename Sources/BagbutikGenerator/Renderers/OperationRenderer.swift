@@ -223,11 +223,11 @@ public class OperationRenderer: Renderer {
         var parametersDocumentations = [String]()
         path.parameters?.forEach { pathParameter in
             parameters.append("\(pathParameter.name): String")
-            parametersDocumentations.append(" - Parameter \(pathParameter.name): \(pathParameter.description)")
+            parametersDocumentations.append(" - Parameter \(pathParameter.name): \(pathParameter.description.capitalizingFirstLetter())")
         }
         if let requestBody = operation.requestBody {
             parameters.append("requestBody: \(requestBody.name)")
-            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.description)")
+            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.description.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
             parameters.append("fields: [\(name).Field]? = nil")

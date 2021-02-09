@@ -268,6 +268,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             private enum CodingKeys: String, CodingKey {
                 case age
                 case name
+                case type
                 case attributes
                 case relationships
             }
