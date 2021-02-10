@@ -52,10 +52,3 @@ final class EnumSchemaTests: XCTestCase {
         XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
     }
 }
-
-extension EnumCase: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.id == rhs.id &&
-            lhs.value == rhs.value
-    }
-}

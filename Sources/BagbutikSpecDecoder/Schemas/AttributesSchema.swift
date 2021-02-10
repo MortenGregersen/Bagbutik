@@ -1,5 +1,5 @@
 import Foundation
 
-public struct AttributesSchema: Decodable {
+public struct AttributesSchema: Decodable, Equatable {
     public let properties: [String: PropertyType]
 }

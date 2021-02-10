@@ -1,6 +1,6 @@
 import Foundation
 
-public enum SubSchema {
+public enum SubSchema: Equatable {
     case objectSchema(ObjectSchema)
     case enumSchema(EnumSchema)
     case oneOf(name: String, schema: OneOfSchema)

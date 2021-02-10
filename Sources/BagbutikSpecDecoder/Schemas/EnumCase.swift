@@ -1,4 +1,4 @@
-public struct EnumCase {
+public struct EnumCase: Equatable {
     public let id: String
     public let value: String
     public let description: String?

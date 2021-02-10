@@ -1,6 +1,6 @@
 import Foundation
 
-public struct EnumSchema: Decodable {
+public struct EnumSchema: Decodable, Equatable {
     public let type: String
     public let cases: [EnumCase]
     public let name: String

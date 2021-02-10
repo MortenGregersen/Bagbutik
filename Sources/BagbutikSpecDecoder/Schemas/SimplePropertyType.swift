@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SimplePropertyType: Decodable, CustomStringConvertible {
+public struct SimplePropertyType: Decodable, Equatable, CustomStringConvertible {
     public var description: String {
         switch self.type {
         case "boolean":

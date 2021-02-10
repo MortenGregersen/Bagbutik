@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ObjectSchema: Decodable {
+public struct ObjectSchema: Decodable, Equatable {
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
     public let name: String
