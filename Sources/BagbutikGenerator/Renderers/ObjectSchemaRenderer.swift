@@ -133,7 +133,7 @@ public class ObjectSchemaRenderer {
                 "attributesOptional": attributesOptional,
                 "hasRelationships": hasRelationships,
                 "relationshipsOptional": relationshipsOptional,
-                "subSchemas": objectSchema.subSchemas.sorted(by: { $0.name < $1.name }).map { subSchema -> String in
+                "subSchemas": objectSchema.subSchemas.map { subSchema -> String in
                     switch subSchema {
                     case .objectSchema(let objectSchema):
                         return try! render(objectSchema: objectSchema)

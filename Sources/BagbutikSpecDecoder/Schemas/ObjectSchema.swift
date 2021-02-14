@@ -15,11 +15,11 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, subSchemas: [SubSchema] = []) {
+    internal init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, subSchemas: [SubSchema] = []) {
         self.properties = properties
         self.requiredProperties = requiredProperties
         self.name = name
-        self.subSchemas = subSchemas
+        self.subSchemas = subSchemas.sorted(by: { $0.name < $1.name })
     }
 
     public init(from decoder: Decoder) throws {
@@ -34,21 +34,22 @@ public struct ObjectSchema: Decodable, Equatable {
                 throw DecodingError.dataCorruptedError(forKey: key, in: propertiesContainer, debugDescription: "Property type not known")
             }
             switch propertyType {
-            case .arrayOfSubSchema(let schema):
+            case .arrayOfSubSchema(let schema), .schema(let schema):
                 subSchemas.append(.objectSchema(schema))
-            case .oneOf(let name, let schema):
+            case .arrayOfOneOf(let name, let schema), .oneOf(let name, let schema):
                 subSchemas.append(.oneOf(name: name, schema: schema))
-            case .arrayOfOneOf(let name, let schema):
-                subSchemas.append(.oneOf(name: name, schema: schema))
-            case .schema(let schema):
-                subSchemas.append(.objectSchema(schema))
             case .enumSchema(let schema):
                 subSchemas.append(.enumSchema(schema))
             default: break
             }
             properties[key.stringValue] = propertyType
         }
-        let name = try container.decodeIfPresent(String.self, forKey: .title) ?? container.codingPath.last { $0.stringValue != "items" }!.stringValue
+        let name: String
+        if let title = try container.decodeIfPresent(String.self, forKey: .title) {
+            name = title
+        } else {
+            name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
+        }
         let attributes = try propertiesContainer.decodeIfPresent(AttributesSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
             subSchemas.append(.attributes(attributes))

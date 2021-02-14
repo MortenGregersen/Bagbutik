@@ -56,11 +56,11 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = URL(string: "https://developer.apple.com")!
         let outputDirURL = validOutputDirURL
-        // Then
         var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
             thrownError = $0
         }
+        // Then
         XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.specFileURL))
     }
     
@@ -70,11 +70,11 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = validSpecFileURL
         let outputDirURL = URL(string: "https://developer.apple.com")!
-        // Then
         var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
             thrownError = $0
         }
+        // Then
         XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
     }
     
@@ -84,11 +84,11 @@ final class GeneratorTests: XCTestCase {
         fileManager.fileNameToFailCreating = "ListUsers.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
-        // Then
         var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
             thrownError = $0
         }
+        // Then
         XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsers.swift"))
     }
     
@@ -98,11 +98,11 @@ final class GeneratorTests: XCTestCase {
         fileManager.fileNameToFailCreating = "UsersResponse.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
-        // Then
         var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
             thrownError = $0
         }
+        // Then
         XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.couldNotCreateFile("UsersResponse.swift"))
     }
     

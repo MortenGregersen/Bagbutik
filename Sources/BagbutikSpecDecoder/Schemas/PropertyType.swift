@@ -59,7 +59,7 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
                             uniqueOptions.append(option)
                         }
                     }),
-                    let oneOfName = container.codingPath.last?.stringValue.capitalized
+                    let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
                 {
                     self = .arrayOfOneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
                 } else {
@@ -87,7 +87,7 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
         {
             self = .schemaRef(schemaName)
         } else if let oneOfOptions = try container.decodeIfPresent([OneOfOption].self, forKey: .oneOf),
-                  let oneOfName = container.codingPath.last?.stringValue.capitalized
+                  let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
         {
             self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
         } else {
