@@ -131,9 +131,7 @@ final class ObjectSchemaTests: XCTestCase {
               case let .relationships(relationshipsSchema) = objectSchema.subSchemas[4],
               case let .oneOf(singleOfOneOfSchemaName, _) = objectSchema.subSchemas[5],
               case let .objectSchema(singleObjectSchema) = objectSchema.subSchemas[6]
-        else {
-            return XCTFail("Wrong ordering of sub schemas")
-        }
+        else { return XCTFail("Wrong ordering of sub schemas") }
         XCTAssertEqual(arrayOfOneOfSchemasName, "ArrayOfOneOfSchemas")
         XCTAssertEqual(arrayOfObjectSchema.name, "ArrayOfSubSchemas")
         XCTAssertEqual(attributesSchema.properties.count, 1)
