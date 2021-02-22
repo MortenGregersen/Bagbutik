@@ -4,7 +4,7 @@ public struct Path: Decodable {
     public let path: String
     public let info: Info
     public let operations: [Operation]
-    public let parameters: [PathParameter]?
+    public let parameters: [Parameter]?
     private static let methodKeys: [CodingKeys] = [.get, .patch, .post, .delete]
 
     private enum CodingKeys: String, CodingKey {
@@ -15,7 +15,7 @@ public struct Path: Decodable {
         case parameters
     }
 
-    public init(path: String, info: Info, operations: [Operation], parameters: [PathParameter]? = nil) {
+    public init(path: String, info: Info, operations: [Operation], parameters: [Parameter]? = nil) {
         self.path = path
         self.info = info
         self.operations = operations
@@ -26,7 +26,7 @@ public struct Path: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let path = container.codingPath.last!.stringValue
         let operations = try Self.methodKeys.compactMap { try container.decodeIfPresent(Operation.self, forKey: $0) }
-        let parameters = try container.decodeIfPresent([PathParameter].self, forKey: .parameters)
+        let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
 
         let pathComponents = path.components(separatedBy: "/")
         let mainType = pathComponents.first { $0 != "v1" && $0 != "" }!.capitalizingFirstLetter()
@@ -38,5 +38,10 @@ public struct Path: Decodable {
     public struct Info {
         public let mainType: String
         public let isRelationship: Bool
+    }
+
+    public struct Parameter: Decodable {
+        public let name: String
+        public let description: String
     }
 }

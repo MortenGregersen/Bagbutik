@@ -1,5 +1,10 @@
 import Foundation
 
+public enum OperationError: Error {
+    case missingDocumentation(operationId: String)
+    case unknownOperationIdPattern(operationId: String)
+}
+
 public struct Operation: Decodable {
     public let name: String
     public let documentation: Documentation
@@ -44,8 +49,8 @@ public struct Operation: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let operationId = try container.decode(String.self, forKey: .operationId)
-        let name = Self.name(forId: operationId)
-        let documentation = Self.documentation(forId: operationId)
+        let name = try Self.getName(forId: operationId)
+        let documentation = try Self.getDocumentation(forId: operationId)
         let method = HTTPMethod(rawValue: container.codingPath.last!.stringValue)!
         let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
         let requestBody: RequestBody?
@@ -68,7 +73,7 @@ public struct Operation: Decodable {
         self.init(name: name, documentation: documentation, method: method, parameters: parameters, requestBody: requestBody, successResponseType: successResponseType, errorResponseType: errorResponseType)
     }
     
-    private static func name(forId operationId: String) -> String {
+    internal static func getName(forId operationId: String) throws -> String {
         let range = NSRange(location: 0, length: operationId.utf16.count)
         if let result = getInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
@@ -121,126 +126,35 @@ public struct Operation: Decodable {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
             return "delete\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
         }
-        fatalError("Can't find name for operation: \(operationId)")
+        throw OperationError.unknownOperationIdPattern(operationId: operationId)
     }
     
-    private static func documentation(forId operationId: String) -> Documentation {
+    internal static func getDocumentation(forId operationId: String) throws -> Documentation {
         guard let documentation = Documentation.allDocumentation[operationId] else {
-            fatalError("Can't find name for operation: \(operationId)")
+            throw OperationError.missingDocumentation(operationId: operationId)
         }
         return documentation
     }
     
-    private static func singularize(_ word: String) -> String {
+    internal static func singularize(_ word: String) -> String {
         guard word.hasSuffix("s") else { return word }
         if word.hasSuffix("ies") { return word.dropLast(3).appending("y") }
         return String(word.prefix(upTo: word.index(before: word.endIndex)))
     }
     
     private static func responseType(forCode statusCode: String, in responsesContainer: KeyedDecodingContainer<DynamicCodingKeys>) throws -> String {
-        if let contentContainer = try? responsesContainer
+        let contentContainer = try? responsesContainer
             .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: statusCode)!)
             .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "content")!)
-        {
-            if let jsonContainer = try? contentContainer
-                .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "application/json")!)
-            {
-                return try jsonContainer
-                    .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "schema")!)
-                    .decode(String.self, forKey: DynamicCodingKeys(stringValue: "$ref")!)
-                    .components(separatedBy: "/")
-                    .last!
-            } else if let _ = try? contentContainer
-                .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "gzip")!)
-            {
-                return "GzipResponse"
-            }
+        if let jsonContainer = try? contentContainer?.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "application/json")!) {
+            return try jsonContainer
+                .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "schema")!)
+                .decode(String.self, forKey: DynamicCodingKeys(stringValue: "$ref")!)
+                .components(separatedBy: "/")
+                .last!
+        } else if let _ = try? contentContainer?.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "gzip")!) {
+            return "GzipResponse"
         }
         return "EmptyResponse"
-    }
-    
-    public enum Parameter: Decodable {
-        case filter(name: String, type: ParameterValueType, required: Bool, description: String)
-        case exists(name: String, type: ParameterValueType, description: String)
-        case fields(name: String, type: ParameterValueType, description: String)
-        case sort(type: ParameterValueType, description: String)
-        case limit(name: String, description: String, maximum: Int)
-        case include(type: ParameterValueType)
-        
-        private enum CodingKeys: String, CodingKey {
-            case name, description, required, schema
-        }
-        
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            let name = try container.decode(String.self, forKey: .name)
-            let description = try container.decode(String.self, forKey: .description)
-            if name.starts(with: "filter") {
-                let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                let required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
-                self = .filter(name: Self.attribute(forName: name), type: type, required: required, description: description)
-            } else if name.starts(with: "exists") {
-                let type = ParameterValueType.simple(type: .init(type: "Bool"))
-                self = .exists(name: Self.attribute(forName: name), type: type, description: description)
-            } else if name.starts(with: "fields") {
-                let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                self = .fields(name: Self.attribute(forName: name), type: type, description: description)
-            } else if name.starts(with: "sort") {
-                let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                self = .sort(type: type, description: description)
-            } else if name.starts(with: "limit") {
-                let limitParameter = try container.decode(LimitParameter.self, forKey: .schema)
-                self = .limit(name: Self.attribute(forName: name), description: description, maximum: limitParameter.maximum)
-            } else if name.starts(with: "include") {
-                let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                self = .include(type: type)
-            } else {
-                throw DecodingError.dataCorruptedError(forKey: .name, in: container, debugDescription: "Parameter type not known")
-            }
-        }
-        
-        private static func attribute(forName name: String) -> String {
-            let components = name.components(separatedBy: "[")
-            guard components.count == 2 else { return name }
-            return components[1].replacingOccurrences(of: "]", with: "")
-        }
-        
-        private struct LimitParameter: Decodable {
-            let maximum: Int
-            
-            enum CodingKeys: String, CodingKey {
-                case maximum
-            }
-            
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                maximum = try container.decode(Int.self, forKey: .maximum)
-            }
-        }
-        
-        public enum ParameterValueType: Decodable {
-            case simple(type: SimplePropertyType)
-            case `enum`(type: String, values: [String])
-            
-            enum CodingKeys: String, CodingKey {
-                case items, type, `enum`
-            }
-            
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                let type = try container.decode(String.self, forKey: .type)
-                if type == "array" {
-                    let itemsContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .items)
-                    let itemType = try itemsContainer.decode(String.self, forKey: .type)
-                    if let values = try itemsContainer.decodeIfPresent([String].self, forKey: .enum) {
-                        self = .enum(type: itemType.capitalizingFirstLetter(), values: values)
-                    } else {
-                        self = .simple(type: .init(type: itemType))
-                    }
-                } else {
-                    self = .simple(type: .init(type: type))
-                }
-            }
-        }
     }
 }

@@ -186,7 +186,7 @@ final class OperationRendererTests: XCTestCase {
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let requestBody = RequestBody(name: "UserUpdateRequest", description: "User representation")
         let operation = Operation(name: "updateUser", documentation: documentation, method: .patch, requestBody: requestBody, successResponseType: "UpdateUserResponse", errorResponseType: "ErrorResponse")
-        let parameters: [PathParameter] = [.init(name: "id", description: "Id of the user to update")]
+        let parameters: [Path.Parameter] = [.init(name: "id", description: "Id of the user to update")]
         let path = Path(path: "/users/{id}", info: .init(mainType: "User", isRelationship: false), operations: [operation], parameters: parameters)
         // When
         let rendered = try renderer.render(operation: operation, in: path)
