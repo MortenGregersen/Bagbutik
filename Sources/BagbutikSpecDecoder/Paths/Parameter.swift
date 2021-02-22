@@ -22,7 +22,7 @@ extension Operation {
                 let required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
                 self = .filter(name: Self.getAttribute(forName: name), type: type, required: required, description: description)
             } else if name.starts(with: "exists") {
-                let type = ParameterValueType.simple(type: .init(type: "Bool"))
+                let type = ParameterValueType.simple(type: .boolean)
                 self = .exists(name: Self.getAttribute(forName: name), type: type, description: description)
             } else if name.starts(with: "fields") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
