@@ -35,12 +35,12 @@ public struct Path: Decodable {
         self.init(path: path, info: info, operations: operations, parameters: parameters)
     }
 
-    public struct Info {
+    public struct Info: Equatable {
         public let mainType: String
         public let isRelationship: Bool
     }
 
-    public struct Parameter: Decodable {
+    public struct Parameter: Decodable, Equatable {
         public let name: String
         public let description: String
     }
