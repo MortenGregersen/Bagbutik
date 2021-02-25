@@ -17,16 +17,16 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
             return simplePropertyType.description
         case .constant(let constant):
             return constant
+        case .schemaRef(let schemaName):
+            return schemaName
         case .schema(let schema):
             return schema.name
         case .enumSchema(let schema):
             return schema.name
-        case .schemaRef(let schemaName):
-            return schemaName
         case .arrayOfSchemaRef(let schemaName):
             return "[\(schemaName)]"
         case .arrayOfSubSchema(let schema):
-            return "[\(schema.name.capitalizingFirstLetter())]"
+            return "[\(schema.name)]"
         case .oneOf(let name, _):
             return name
         case .arrayOfOneOf(let name, _):
