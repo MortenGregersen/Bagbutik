@@ -6,8 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/add_beta_testers_to_a_beta_group>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
-      - Parameter requestBody: The data for the request
+      - Parameter id: The id of the requested resource
+      - Parameter requestBody: List of related linkages
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createBetaTestersForBetaGroup(id: String,

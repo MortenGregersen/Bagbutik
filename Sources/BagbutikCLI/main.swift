@@ -1,5 +1,6 @@
 import ArgumentParser
 import BagbutikGenerator
+import Foundation
 
 struct Generate: ParsableCommand {
     @Option(name: .shortAndLong, help: "The output folder for the generated files.")
@@ -9,7 +10,9 @@ struct Generate: ParsableCommand {
     var specPath = "./app-store-connect-openapi-spec.json"
 
     func run() throws {
-        try Generator.generateAll(specPath: specPath, outputPath: outputPath)
+        let specFileURL = URL(fileURLWithPath: specPath)
+        let outputDirURL = URL(fileURLWithPath: outputPath)
+        try Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
     }
 }
 

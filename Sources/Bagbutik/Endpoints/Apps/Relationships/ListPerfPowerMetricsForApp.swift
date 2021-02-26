@@ -33,7 +33,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_an_app>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */

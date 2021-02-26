@@ -21,15 +21,15 @@ public class ObjectSchemaRenderer {
         {% for property in properties %}
         {{ property }}{%
         endfor %}{%
-        if attributes.count > 0 %}
+        if hasAttributes %}
         public let attributes: Attributes{% if attributesOptional %}?{% endif %}{% endif %}{%
         if hasRelationships %}
         public let relationships: Relationships{% if relationshipsOptional %}?{% endif %}{% endif %}
 
         public init({{ publicInit }}) {
-            {% for propertyName in propertyNames %}{% if propertyName.idealName != "type" %}
+            {% for propertyName in propertyNames %}
             self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
-            endif %}{% endfor %}
+            endfor %}
         }
         {% if needsCustomCoding %}
         public init(from decoder: Decoder) throws {
@@ -76,7 +76,7 @@ public class ObjectSchemaRenderer {
 
     private func objectContext(for objectSchema: ObjectSchema, in environment: Environment, includesFixUps: [String] = []) -> [String: Any] {
         let sortedProperties = objectSchema.properties.sorted { $0.key < $1.key }
-        let hasAttributes = objectSchema.attributes?.properties != nil
+        let hasAttributes = objectSchema.subSchemas.contains(where: { if case .attributes = $0 { return true } else { return false } })
         let hasRelationships = objectSchema.subSchemas.contains(where: { if case .relationships = $0 { return true } else { return false } })
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
@@ -84,7 +84,7 @@ public class ObjectSchemaRenderer {
         var codingKeys = sortedProperties.map(\.key)
         var codableProperties = initParameters.map { property in CodableProperty(name: property.key,
                                                                                  type: property.value.description,
-                                                                                 optional: false) }
+                                                                                 optional: !objectSchema.requiredProperties.contains(property.key)) }
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
@@ -125,19 +125,15 @@ public class ObjectSchemaRenderer {
                     }
                 },
                 "publicInit": publicInit,
-                "propertyNames": initParameters.map { PropertyName(idealName: $0.key) },
+                "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
                 "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" }),
                 "codingKeys": codingKeys,
                 "codableProperties": codableProperties,
-                "attributes": objectSchema.attributes?.properties.sorted(by: { $0.key < $1.key }).map { property in
-                    try! PropertyRenderer().render(id: property.key,
-                                                   type: property.value.description,
-                                                   optional: !objectSchema.requiredProperties.contains(property.key))
-                } ?? [],
+                "hasAttributes": hasAttributes,
                 "attributesOptional": attributesOptional,
                 "hasRelationships": hasRelationships,
                 "relationshipsOptional": relationshipsOptional,
-                "subSchemas": objectSchema.subSchemas.sorted(by: { $0.name < $1.name }).map { subSchema -> String in
+                "subSchemas": objectSchema.subSchemas.map { subSchema -> String in
                     switch subSchema {
                     case .objectSchema(let objectSchema):
                         return try! render(objectSchema: objectSchema)
@@ -151,7 +147,7 @@ public class ObjectSchemaRenderer {
                         return try! render(objectSchema: objectSchema)
                     }
 
-        }]
+                }]
     }
 
     private struct PropertyName {
@@ -164,7 +160,7 @@ public class ObjectSchemaRenderer {
             self.safeName = idealName == "self" ? "aSelf" : idealName
         }
     }
-    
+
     private struct CodableProperty {
         let name: String
         let type: String

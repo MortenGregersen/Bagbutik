@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_beta_group>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func deleteBetaGroup(id: String) -> Request<EmptyResponse, ErrorResponse> {

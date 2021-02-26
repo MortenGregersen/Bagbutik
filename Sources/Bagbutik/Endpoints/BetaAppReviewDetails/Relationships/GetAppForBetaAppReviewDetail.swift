@@ -42,7 +42,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_beta_app_review_detail>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */

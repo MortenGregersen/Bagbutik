@@ -1,12 +1,12 @@
 import Foundation
 
 public struct Spec: Decodable {
-    public let paths: [String: BagbutikSpecDecoder.Path]
+    public let paths: [String: Path]
     public let components: Components
     public var includesFixUps: [String: [String]] {
-        paths.values.reduce(into: [:], { result, path in
+        paths.values.reduce(into: [:]) { result, path in
             path.operations.forEach { operation in
-                let fields = operation.parameters?.compactMap { (parameter) -> String? in
+                let fields = operation.parameters?.compactMap { parameter -> String? in
                     guard case .fields(let name, _, _) = parameter else { return nil }
                     return name
                 } ?? []
@@ -20,9 +20,9 @@ public struct Spec: Decodable {
                 let currentFixUps = result[operation.successResponseType] ?? []
                 result[operation.successResponseType] = currentFixUps + allFixUps
             }
-        })
+        }
     }
-    
+
     public struct Components: Decodable {
         public let schemas: [String: Schema]
     }

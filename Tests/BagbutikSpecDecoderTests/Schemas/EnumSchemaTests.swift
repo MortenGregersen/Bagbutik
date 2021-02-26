@@ -1,7 +1,7 @@
 import BagbutikSpecDecoder
 import XCTest
 
-class EnumSchemaTests: XCTestCase {
+final class EnumSchemaTests: XCTestCase {
     func testPlainInit() {
         let type = "type"
         let values = ["IOS", "MAC_OS"]
@@ -18,7 +18,7 @@ class EnumSchemaTests: XCTestCase {
     func testDecodableInit() throws {
         let jsonString = """
         {
-            "BundleIdPlatform" : {
+            "Platform" : {
                 "type" : "string",
                 "enum" : [ "IOS", "MAC_OS" ]
             }
@@ -30,13 +30,25 @@ class EnumSchemaTests: XCTestCase {
             EnumCase(id: "iOS", value: "IOS"),
             EnumCase(id: "macOS", value: "MAC_OS")
         ])
-        XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
+        XCTAssertEqual(enumSchema.name, "Platform")
     }
-}
-
-extension EnumCase: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.id == rhs.id &&
-            lhs.value == rhs.value
+    
+    func testDecodableInitFB8977648() throws {
+        let jsonString = """
+        {
+            "BundleIdPlatform" : {
+                "type" : "string",
+                "enum" : [ "IOS", "MAC_OS" ]
+            }
+        }
+        """
+        let enumSchema = try JSONDecoder().decode([String: EnumSchema].self, from: jsonString.data(using: .utf8)!).values.first!
+        XCTAssertEqual(enumSchema.type, "string")
+        XCTAssertEqual(enumSchema.cases, [
+            EnumCase(id: "iOS", value: "IOS"),
+            EnumCase(id: "macOS", value: "MAC_OS"),
+            EnumCase(id: "universal", value: "UNIVERSAL")
+        ])
+        XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
     }
 }

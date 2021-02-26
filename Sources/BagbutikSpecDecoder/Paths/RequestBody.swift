@@ -1,6 +1,6 @@
 import Foundation
 
-public struct PathParameter: Decodable {
+public struct RequestBody: Decodable, Equatable {
     public let name: String
     public let description: String
 }

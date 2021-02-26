@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_screenshot>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func deleteAppScreenshot(id: String) -> Request<EmptyResponse, ErrorResponse> {

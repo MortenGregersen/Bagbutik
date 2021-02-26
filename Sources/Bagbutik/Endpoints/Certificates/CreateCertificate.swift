@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_certificate>
 
-      - Parameter requestBody: The data for the request
+      - Parameter requestBody: Certificate representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createCertificate(requestBody: CertificateCreateRequest) -> Request<CertificateResponse, ErrorResponse> {

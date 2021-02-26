@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/submit_an_app_for_beta_review>
 
-      - Parameter requestBody: The data for the request
+      - Parameter requestBody: BetaAppReviewSubmission representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createBetaAppReviewSubmission(requestBody: BetaAppReviewSubmissionCreateRequest) -> Request<BetaAppReviewSubmissionResponse, ErrorResponse> {

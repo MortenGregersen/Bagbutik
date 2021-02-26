@@ -19,16 +19,9 @@ public class EnumSchemaRenderer: Renderer {
     """
 
     private func enumContext(for enumSchema: EnumSchema, additionalProtocol: String) -> [String: Any] {
-        let cases: [EnumCase]
-        if enumSchema.name == "BundleIdPlatform" {
-            // HACK: Apple's spec doesn't include 'Universal' App IDs. Reported to Apple 21/1/21 as FB8977648.
-            cases = enumSchema.cases + [EnumCase(id: "universal", value: "UNIVERSAL")]
-        } else {
-            cases = enumSchema.cases
-        }
         return ["name": enumSchema.name,
                 "rawType": enumSchema.type.capitalized,
                 "additionalProtocol": additionalProtocol,
-                "cases": cases]
+                "cases": enumSchema.cases]
     }
 }

@@ -6,7 +6,7 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_routing_app_coverage>
 
-      - Parameter requestBody: The data for the request
+      - Parameter requestBody: RoutingAppCoverage representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func createRoutingAppCoverage(requestBody: RoutingAppCoverageCreateRequest) -> Request<RoutingAppCoverageResponse, ErrorResponse> {

@@ -44,9 +44,10 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_app_screenshot_set_information>
 
-      - Parameter id: An opaque resource ID that uniquely identifies the resource
+      - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
+      - Parameter limit: Maximum number of related appScreenshots returned (when they are included) - maximum 50
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func getAppScreenshotSet(id: String,

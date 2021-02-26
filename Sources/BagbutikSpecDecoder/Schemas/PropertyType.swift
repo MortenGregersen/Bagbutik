@@ -1,6 +1,6 @@
 import Foundation
 
-public enum PropertyType: Decodable, CustomStringConvertible {
+public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
     case simple(SimplePropertyType)
     case constant(String)
     case schemaRef(String)
@@ -17,16 +17,16 @@ public enum PropertyType: Decodable, CustomStringConvertible {
             return simplePropertyType.description
         case .constant(let constant):
             return constant
+        case .schemaRef(let schemaName):
+            return schemaName
         case .schema(let schema):
             return schema.name
         case .enumSchema(let schema):
             return schema.name
-        case .schemaRef(let schemaName):
-            return schemaName
         case .arrayOfSchemaRef(let schemaName):
             return "[\(schemaName)]"
         case .arrayOfSubSchema(let schema):
-            return "[\(schema.name.capitalizingFirstLetter())]"
+            return "[\(schema.name)]"
         case .oneOf(let name, _):
             return name
         case .arrayOfOneOf(let name, _):
@@ -59,7 +59,8 @@ public enum PropertyType: Decodable, CustomStringConvertible {
                             uniqueOptions.append(option)
                         }
                     }),
-                    let oneOfName = container.codingPath.last?.stringValue.capitalized {
+                    let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
+                {
                     self = .arrayOfOneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
                 } else {
                     self = try container.decode(PropertyType.self, forKey: .items)
@@ -82,10 +83,12 @@ public enum PropertyType: Decodable, CustomStringConvertible {
                 }
             }
         } else if let schemaPath = try container.decodeIfPresent(String.self, forKey: .ref),
-            let schemaName = schemaPath.components(separatedBy: "/").last {
+                  let schemaName = schemaPath.components(separatedBy: "/").last
+        {
             self = .schemaRef(schemaName)
         } else if let oneOfOptions = try container.decodeIfPresent([OneOfOption].self, forKey: .oneOf),
-            let oneOfName = container.codingPath.last?.stringValue.capitalized {
+                  let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
+        {
             self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Schema type not known")
