@@ -287,4 +287,33 @@ final class OneOfSchemaRendererTests: XCTestCase {
 
         """#)
     }
+    
+    func testUnknownTypeForOption() throws {
+        // Given
+        let oneOfSchema = OneOfSchema(options: [
+            .objectSchema(.init(properties: [:], name: "AppCategory")),
+            .objectSchema(.init(properties: [:], name: "SomeUnknownSchema"))
+        ])
+        // When
+        var thrownError: Error?
+        XCTAssertThrowsError(try OneOfSchemaRenderer.oneOfContext(for: oneOfSchema, named: "Something", includesFixUps: [])) {
+            thrownError = $0
+        }
+        // Then
+        XCTAssertEqual(thrownError as? OneOfSchemaRendererError, OneOfSchemaRendererError.unknownTypeForOption(schemaName: "SomeUnknownSchema"))
+    }
+    
+    func testNoMatchingFixUp() throws {
+        // Given
+        let oneOfSchema = OneOfSchema(options: [
+            .objectSchema(.init(properties: [:], name: "SomeUnknownSchema"))
+        ])
+        // When
+        var thrownError: Error?
+        XCTAssertThrowsError(try OneOfSchemaRenderer.oneOfContext(for: oneOfSchema, named: "Something", includesFixUps: [])) {
+            thrownError = $0
+        }
+        // Then
+        XCTAssertEqual(thrownError as? OneOfSchemaRendererError, OneOfSchemaRendererError.noMatchingFixUp(optionName: "someUnknownSchemas"))
+    }
 }
