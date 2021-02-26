@@ -4,11 +4,20 @@ import Stencil
 import StencilSwiftKit
 import SwiftFormat
 
+public enum OperationRendererError: Error {
+    case unknownTypeOfExists(name: String)
+    case unknownTypeOfInclude
+    case unknownTypeOfSort
+}
+
+extension OperationRendererError: Equatable {}
+
 public class OperationRenderer: Renderer {
     override public init() {}
 
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
-        let rendered = try environment.renderTemplate(string: template, context: operationContext(for: operation, in: path))
+        let context = try Self.operationContext(for: operation, in: path)
+        let rendered = try environment.renderTemplate(string: template, context: context)
         return try SwiftFormat.format(rendered)
     }
 
@@ -140,7 +149,7 @@ public class OperationRenderer: Renderer {
     }
     """
 
-    private func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) -> [String: Any] {
+    internal static func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {
         let name = operation.name.capitalizingFirstLetter()
         let pathRange = NSRange(location: 0, length: path.path.utf16.count)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(in: path.path, options: [], range: pathRange, withTemplate: #"\\($1)"#)
@@ -154,7 +163,7 @@ public class OperationRenderer: Renderer {
         var includes = [String]()
         var sorts = [EnumCase]()
         var limits = [LimitCase]()
-        operation.parameters?.forEach { parameter in
+        try operation.parameters?.forEach { parameter in
             switch parameter {
             case .fields(let name, let type, let description):
                 switch type {
@@ -188,14 +197,14 @@ public class OperationRenderer: Renderer {
                 case .simple(let type):
                     exists.append(EnumCase(id: name, value: type.description, description: description))
                 default:
-                    fatalError("Unknown type of exists")
+                    throw OperationRendererError.unknownTypeOfExists(name: name)
                 }
             case .include(let type):
                 switch type {
                 case .enum(_, let values):
                     includes = values
                 default:
-                    fatalError("Unknown type of include")
+                    throw OperationRendererError.unknownTypeOfInclude
                 }
             case .sort(let type, let description):
                 switch type {
@@ -211,7 +220,7 @@ public class OperationRenderer: Renderer {
                         return EnumCase(id: id, value: sort, description: description)
                     }.sorted(by: { $0.id < $1.id })
                 default:
-                    fatalError("Unknown type of sort")
+                    throw OperationRendererError.unknownTypeOfSort
                 }
             case .limit(let name, let description, let maximum):
                 limits.append(LimitCase(name: name, description: description, maximum: maximum))

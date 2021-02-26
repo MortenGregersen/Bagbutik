@@ -10,7 +10,8 @@ final class OperationRendererTests: XCTestCase {
         let renderer = OperationRenderer()
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .limit(name: "limit", description: "maximum resources per page", maximum: 200)]
+            .limit(name: "limit", description: "maximum resources per page", maximum: 200)
+        ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
         // When
@@ -179,7 +180,7 @@ final class OperationRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderRequest() throws {
         // Given
         let renderer = OperationRenderer()
@@ -212,5 +213,56 @@ final class OperationRendererTests: XCTestCase {
         }
 
         """#)
+    }
+
+    func testUnknownTypeOfExists() throws {
+        // Given
+        let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
+        let parameters: [Parameter] = [
+            .exists(name: "hair", type: .enum(type: "length", values: ["SHORT", "LONG"]), description: "description for hair")
+        ]
+        let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        // When
+        var thrownError: Error?
+        XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
+            thrownError = $0
+        }
+        // Then
+        XCTAssertEqual(thrownError as? OperationRendererError, OperationRendererError.unknownTypeOfExists(name: "hair"))
+    }
+
+    func testUnknownTypeOfInclude() throws {
+        // Given
+        let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
+        let parameters: [Parameter] = [
+            .include(type: .simple(type: .string))
+        ]
+        let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        // When
+        var thrownError: Error?
+        XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
+            thrownError = $0
+        }
+        // Then
+        XCTAssertEqual(thrownError as? OperationRendererError, OperationRendererError.unknownTypeOfInclude)
+    }
+
+    func testUnknownTypeOfSort() throws {
+        // Given
+        let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
+        let parameters: [Parameter] = [
+            .sort(type: .simple(type: .string), description: "sorting")
+        ]
+        let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        // When
+        var thrownError: Error?
+        XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
+            thrownError = $0
+        }
+        // Then
+        XCTAssertEqual(thrownError as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
     }
 }
