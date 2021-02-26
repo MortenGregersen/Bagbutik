@@ -22,7 +22,7 @@ jobs:
     - name: Test
       run: swift test -v --enable-code-coverage
     - name: Export coverage
-      run: xcrun llvm-cov export -format="lcov" -instr-profile=.build/x86_64-apple-macosx/debug/codecov/default.profdata -ignore-filename-regex=".build|Tests" .build/x86_64-apple-macosx/debug/FluxorPackageTests.xctest/Contents/MacOS/FluxorPackageTests > coverage.lcov
+      run: xcrun llvm-cov export -format="lcov" -instr-profile=.build/x86_64-apple-macosx/debug/codecov/default.profdata -ignore-filename-regex=".build|Tests" .build/x86_64-apple-macosx/debug/BagbutikPackageTests.xctest/Contents/MacOS/BagbutikPackageTests > coverage.lcov
     - name: Upload coverage
       uses: paambaati/codeclimate-action@v2
       env:
