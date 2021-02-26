@@ -1,0 +1,33 @@
+
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: macos-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: swift build -v
+    - name: Test
+      run: swift test -v --enable-code-coverage
+    - name: Export coverage
+      run: xcrun llvm-cov export -format="lcov" -instr-profile=.build/x86_64-apple-macosx/debug/codecov/default.profdata -ignore-filename-regex=".build|Tests" .build/x86_64-apple-macosx/debug/FluxorPackageTests.xctest/Contents/MacOS/FluxorPackageTests > coverage.lcov
+    - name: Upload coverage
+      uses: paambaati/codeclimate-action@v2
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: ls
+        coverageLocations: coverage.lcov:lcov
+        debug: true
