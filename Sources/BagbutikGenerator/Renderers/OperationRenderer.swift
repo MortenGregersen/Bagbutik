@@ -171,7 +171,7 @@ public class OperationRenderer: Renderer {
                     fields.append(EnumCase(id: name, value: type.description, description: description))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                    let enumSchema = EnumSchema(type: type, values: values, name: enumName)
+                    let enumSchema = EnumSchema(name: enumName, type: type, values: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     fieldSubSchemas[name] = rendered
@@ -183,7 +183,7 @@ public class OperationRenderer: Renderer {
                     filters.append(EnumCase(id: name, value: type.description, description: description))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                    let enumSchema = EnumSchema(type: type, values: values, name: enumName)
+                    let enumSchema = EnumSchema(name: enumName, type: type, values: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     filterSubSchemas[name] = rendered

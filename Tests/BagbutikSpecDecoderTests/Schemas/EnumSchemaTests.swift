@@ -6,7 +6,7 @@ final class EnumSchemaTests: XCTestCase {
         let type = "type"
         let values = ["IOS", "MAC_OS"]
         let name = "name"
-        let enumSchema = EnumSchema(type: type, values: values, name: name)
+        let enumSchema = EnumSchema(name: name, type: type, values: values)
         XCTAssertEqual(enumSchema.type, type)
         XCTAssertEqual(enumSchema.cases, [
             EnumCase(id: "iOS", value: "IOS"),
@@ -14,7 +14,7 @@ final class EnumSchemaTests: XCTestCase {
         ])
         XCTAssertEqual(enumSchema.name, name)
     }
-    
+
     func testDecodableInit() throws {
         let jsonString = """
         {
@@ -32,7 +32,7 @@ final class EnumSchemaTests: XCTestCase {
         ])
         XCTAssertEqual(enumSchema.name, "Platform")
     }
-    
+
     func testDecodableInitFB8977648() throws {
         let jsonString = """
         {

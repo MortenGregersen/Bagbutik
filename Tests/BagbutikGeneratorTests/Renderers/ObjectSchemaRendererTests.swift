@@ -145,7 +145,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "connection": .schemaRef("Connection")],
                                   subSchemas: [
                                       .objectSchema(.init(name: "Pet", properties: ["name": .simple(.init(type: "string"))])),
-                                      .enumSchema(.init(type: "string", values: ["TABS", "SPACES"], name: "Preference")),
+                                      .enumSchema(.init(name: "Preference", type: "string", values: ["TABS", "SPACES"])),
                                       .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])),
                                   ])
         // When

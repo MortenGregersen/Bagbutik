@@ -8,12 +8,12 @@ final class AttributesSchemaRendererTests: XCTestCase {
         let renderer = AttributesSchemaRenderer()
         let schema = AttributesSchema(properties: ["name": .simple(.init(type: "string")),
                                                    "age": .simple(.init(type: "integer")),
-                                                   "indentation": .enumSchema(.init(type: "String",
-                                                                                    values: ["TABS", "SPACES"],
-                                                                                    name: "Indentation")),
-                                                   "darkMode": .enumSchema(.init(type: "String",
-                                                                                 values: ["ON", "OFF"],
-                                                                                 name: "DarkMode"))])
+                                                   "indentation": .enumSchema(.init(name: "Indentation",
+                                                                                    type: "String",
+                                                                                    values: ["TABS", "SPACES"])),
+                                                   "darkMode": .enumSchema(.init(name: "DarkMode",
+                                                                                 type: "String",
+                                                                                 values: ["ON", "OFF"]))])
         // When
         let rendered = try renderer.render(attributesSchema: schema)
         // Then

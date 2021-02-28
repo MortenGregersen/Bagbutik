@@ -1,16 +1,16 @@
 import Foundation
 
 public struct EnumSchema: Decodable, Equatable {
+    public let name: String
     public let type: String
     public let cases: [EnumCase]
-    public let name: String
 
     enum CodingKeys: String, CodingKey {
         case type
         case `enum`
     }
 
-    public init(type: String, values: [String], name: String) {
+    public init(name: String, type: String, values: [String]) {
         self.type = type
         self.name = name
         let cases = values.map { EnumCase(id: $0.camelCased(with: "_"), value: $0) }
@@ -24,8 +24,8 @@ public struct EnumSchema: Decodable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.init(type: try container.decode(String.self, forKey: .type),
-                  values: try container.decode([String].self, forKey: .enum),
-                  name: container.codingPath.last!.stringValue.capitalizingFirstLetter())
+        self.init(name: container.codingPath.last!.stringValue.capitalizingFirstLetter(),
+                  type: try container.decode(String.self, forKey: .type),
+                  values: try container.decode([String].self, forKey: .enum))
     }
 }

@@ -23,7 +23,7 @@ final class GeneratorTests: XCTestCase {
     ],
     components: .init(schemas: [
         "UsersResponse": .object(.init(name: "UsersResponse", properties: ["users": .arrayOfSchemaRef("User")])),
-        "ReplaceUsersResponse": .enum(.init(type: "String", values: ["none", "some"], name: "ReplaceUsersResponse")),
+        "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", values: ["none", "some"])),
     ]))
     
     func testGenerateAllSimple() throws {

@@ -6,7 +6,7 @@ final class EnumSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
         let renderer = EnumSchemaRenderer()
-        let schema = EnumSchema(type: "string", values: ["MAC_OS", "IOS", "TV_OS", "WATCH_OS"], name: "Platform")
+        let schema = EnumSchema(name: "Platform", type: "string", values: ["MAC_OS", "IOS", "TV_OS", "WATCH_OS"])
         // When
         let rendered = try renderer.render(enumSchema: schema)
         // Then
@@ -24,7 +24,7 @@ final class EnumSchemaRendererTests: XCTestCase {
     func testRenderWithAdditionalProtocol() throws {
         // Given
         let renderer = EnumSchemaRenderer()
-        let schema = EnumSchema(type: "string", values: ["parent", "platforms", "subcategories"], name: "AppCategories")
+        let schema = EnumSchema(name: "AppCategories", type: "string", values: ["parent", "platforms", "subcategories"])
         // When
         let rendered = try renderer.render(enumSchema: schema, additionalProtocol: "ParameterValue")
         // Then
