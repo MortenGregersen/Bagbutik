@@ -17,6 +17,7 @@ public class ObjectSchemaRenderer {
     public var {{ id|escapeReservedKeywords }}: String { "{{ value }}" }
     """
     private static let objectTemplate = #"""
+    {% if documentation %}/// {{ documentation.summary }}{% endif %}
     public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
         {% for property in properties %}
         {{ property }}{%
@@ -112,6 +113,7 @@ public class ObjectSchemaRenderer {
             }
             .joined(separator: ", ")
         return ["name": objectSchema.name,
+                "documentation": objectSchema.documentation,
                 "isRequest": objectSchema.name.hasSuffix("Request"),
                 "sortedProperties": sortedProperties,
                 "properties": sortedProperties.map { property -> String in

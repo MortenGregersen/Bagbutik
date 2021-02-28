@@ -2,6 +2,7 @@ import Foundation
 
 public struct ObjectSchema: Decodable, Equatable {
     public let name: String
+    public let documentation: Schema.Documentation?
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
     public let subSchemas: [SubSchema]
@@ -15,8 +16,9 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    internal init(name: String, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+    internal init(name: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
         self.name = name
+        self.documentation = documentation
         self.properties = properties
         self.requiredProperties = requiredProperties
         self.subSchemas = subSchemas.sorted(by: { $0.name < $1.name })
