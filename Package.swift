@@ -47,5 +47,4 @@ let package = Package(
         .testTarget(
             name: "BagbutikSpecDecoderTests",
             dependencies: ["BagbutikSpecDecoder"])
-
     ])
