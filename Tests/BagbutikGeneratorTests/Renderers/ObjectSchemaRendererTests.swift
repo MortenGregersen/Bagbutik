@@ -6,7 +6,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))], name: "Person")
+        let schema = ObjectSchema(name: "Person", properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -21,11 +21,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderRequest() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))], name: "PersonCreateRequest")
+        let schema = ObjectSchema(name: "PersonCreateRequest", properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -44,12 +44,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderSpecialPropertyTypes() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["firstName": .simple(.init(type: "string")),
+        let schema = ObjectSchema(name: "Person",
+                                  properties: ["firstName": .simple(.init(type: "string")),
                                                "lastName": .simple(.init(type: "string")),
                                                "self": .schemaRef("string"),
                                                "id": .constant("person")],
-                                  requiredProperties: ["firstName"],
-                                  name: "Person")
+                                  requiredProperties: ["firstName"])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -75,8 +75,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let attributesSchema = AttributesSchema(properties: ["age": .simple(.init(type: "integer"))])
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))],
-                                  name: "Person",
+        let schema = ObjectSchema(name: "Person",
+                                  properties: ["name": .simple(.init(type: "string"))],
                                   subSchemas: [.attributes(attributesSchema)])
         // When
         let rendered = try renderer.render(objectSchema: schema)
@@ -106,9 +106,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderWithRelationships() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let relationshipsSchema = ObjectSchema(properties: ["children": .arrayOfSchemaRef("Child")], name: "Relationships")
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))],
-                                  name: "Person",
+        let relationshipsSchema = ObjectSchema(name: "Relationships", properties: ["children": .arrayOfSchemaRef("Child")])
+        let schema = ObjectSchema(name: "Person",
+                                  properties: ["name": .simple(.init(type: "string"))],
                                   subSchemas: [.relationships(relationshipsSchema)])
         // When
         let rendered = try renderer.render(objectSchema: schema)
@@ -138,13 +138,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderSubSchemas() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string")),
+        let schema = ObjectSchema(name: "Person",
+                                  properties: ["name": .simple(.init(type: "string")),
                                                "pet": .schemaRef("Pet"),
                                                "preference": .schemaRef("Preference"),
                                                "connection": .schemaRef("Connection")],
-                                  name: "Person",
                                   subSchemas: [
-                                      .objectSchema(.init(properties: ["name": .simple(.init(type: "string"))], name: "Pet")),
+                                      .objectSchema(.init(name: "Pet", properties: ["name": .simple(.init(type: "string"))])),
                                       .enumSchema(.init(type: "string", values: ["TABS", "SPACES"], name: "Preference")),
                                       .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])),
                                   ])
@@ -220,12 +220,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let attributesSchema = AttributesSchema(properties: ["age": .simple(.init(type: "integer"))])
-        let relationshipsSchema = ObjectSchema(properties: ["children": .arrayOfSchemaRef("Child")], name: "Relationships")
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string")),
+        let relationshipsSchema = ObjectSchema(name: "Relationships", properties: ["children": .arrayOfSchemaRef("Child")])
+        let schema = ObjectSchema(name: "Person",
+                                  properties: ["name": .simple(.init(type: "string")),
                                                "age": .simple(.init(type: "integer")),
                                                "type": .constant("person")],
                                   requiredProperties: ["name", "attributes"],
-                                  name: "Person",
                                   subSchemas: [.attributes(attributesSchema),
                                                .relationships(relationshipsSchema)])
         // When

@@ -58,10 +58,8 @@ final class OneOfOptionTests: XCTestCase {
         // Given
         let refOption1 = OneOfOption.schemaRef("SomeModel")
         let refOption2 = OneOfOption.schemaRef("AnotherModel")
-        let schemaOption1 = OneOfOption.objectSchema(ObjectSchema(properties: ["name": .simple(.string)],
-                                                                  name: "SomeModel"))
-        let schemaOption2 = OneOfOption.objectSchema(ObjectSchema(properties: ["name": .simple(.string)],
-                                                                  name: "AnotherModel"))
+        let schemaOption1 = OneOfOption.objectSchema(ObjectSchema(name: "SomeModel", properties: ["name": .simple(.string)]))
+        let schemaOption2 = OneOfOption.objectSchema(ObjectSchema(name: "AnotherModel", properties: ["name": .simple(.string)]))
         // Then
         XCTAssertTrue(refOption1 == refOption1)
         XCTAssertTrue(refOption2 == refOption2)

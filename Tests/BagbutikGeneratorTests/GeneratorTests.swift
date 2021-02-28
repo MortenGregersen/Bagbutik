@@ -22,7 +22,7 @@ final class GeneratorTests: XCTestCase {
         ]),
     ],
     components: .init(schemas: [
-        "UsersResponse": .object(.init(properties: ["users": .arrayOfSchemaRef("User")], name: "UsersResponse")),
+        "UsersResponse": .object(.init(name: "UsersResponse", properties: ["users": .arrayOfSchemaRef("User")])),
         "ReplaceUsersResponse": .enum(.init(type: "String", values: ["none", "some"], name: "ReplaceUsersResponse")),
     ]))
     

@@ -1,9 +1,9 @@
 import Foundation
 
 public struct ObjectSchema: Decodable, Equatable {
+    public let name: String
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
-    public let name: String
     public let subSchemas: [SubSchema]
 
     enum CodingKeys: String, CodingKey {
@@ -15,10 +15,10 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    internal init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, subSchemas: [SubSchema] = []) {
+    internal init(name: String, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+        self.name = name
         self.properties = properties
         self.requiredProperties = requiredProperties
-        self.name = name
         self.subSchemas = subSchemas.sorted(by: { $0.name < $1.name })
     }
 
@@ -59,6 +59,6 @@ public struct ObjectSchema: Decodable, Equatable {
         {
             subSchemas.append(.relationships(relationships))
         }
-        self.init(properties: properties, requiredProperties: requiredProperties, name: name, subSchemas: subSchemas)
+        self.init(name: name, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
     }
 }
