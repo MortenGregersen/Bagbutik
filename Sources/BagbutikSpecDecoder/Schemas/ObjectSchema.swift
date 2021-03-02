@@ -53,7 +53,7 @@ public struct ObjectSchema: Decodable, Equatable {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
         let documentation = Schema.Documentation.allDocumentation[name]
-        let attributes = try propertiesContainer.decodeIfPresent(AttributesSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
+        let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
             subSchemas.append(.attributes(attributes))
         }

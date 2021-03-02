@@ -4,7 +4,7 @@ public enum SubSchema: Equatable {
     case objectSchema(ObjectSchema)
     case enumSchema(EnumSchema)
     case oneOf(name: String, schema: OneOfSchema)
-    case attributes(AttributesSchema)
+    case attributes(ObjectSchema)
     case relationships(ObjectSchema)
     
     public var name: String {

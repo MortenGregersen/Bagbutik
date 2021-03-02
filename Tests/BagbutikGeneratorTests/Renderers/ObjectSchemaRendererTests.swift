@@ -94,7 +94,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderWithAttributes() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let attributesSchema = AttributesSchema(properties: ["age": .simple(.init(type: "integer"))])
+        let attributesSchema = ObjectSchema(name: "Attributes", properties: ["age": .simple(.init(type: "integer"))])
         let schema = ObjectSchema(name: "Person",
                                   documentation: .init(summary: "A person with a name."),
                                   properties: ["name": .simple(.init(type: "string"))],
@@ -106,6 +106,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         /// A person with a name.
         public struct Person: Codable {
             public let name: String?
+            /// The resource's attributes.
             public let attributes: Attributes?
 
             public init(name: String? = nil, attributes: Attributes? = nil) {
@@ -142,6 +143,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         /// A person with a name.
         public struct Person: Codable {
             public let name: String?
+            /// Navigational links to related data and included resource types and IDs.
             public let relationships: Relationships?
 
             public init(name: String? = nil, relationships: Relationships? = nil) {
@@ -256,7 +258,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderCustomCoding() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let attributesSchema = AttributesSchema(properties: ["age": .simple(.init(type: "integer"))])
+        let attributesSchema = ObjectSchema(name: "Attributes", properties: ["age": .simple(.init(type: "integer"))])
         let relationshipsSchema = ObjectSchema(name: "Relationships",
                                                documentation: .init(summary: "The person's relationships."),
                                                properties: ["children": .arrayOfSchemaRef("Child")])
@@ -277,7 +279,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public let age: Int?
             public let name: String
             public var type: String { "person" }
+            /// The resource's attributes.
             public let attributes: Attributes
+            /// Navigational links to related data and included resource types and IDs.
             public let relationships: Relationships?
 
             public init(age: Int? = nil, name: String, attributes: Attributes, relationships: Relationships? = nil) {

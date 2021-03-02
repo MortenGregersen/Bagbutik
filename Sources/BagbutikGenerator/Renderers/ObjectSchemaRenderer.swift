@@ -150,7 +150,7 @@ public class ObjectSchemaRenderer {
                     case .oneOf(let name, let oneOfSchema):
                         return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema, includesFixUps: includesFixUps)
                     case .attributes(let attributesSchema):
-                        return try! AttributesSchemaRenderer().render(attributesSchema: attributesSchema)
+                        return try! render(objectSchema: attributesSchema)
                     case .relationships(let objectSchema):
                         return try! render(objectSchema: objectSchema)
                     }
