@@ -20,11 +20,15 @@ public class ObjectSchemaRenderer {
     {% if documentation %}/// {{ documentation.summary }}{% endif %}
     public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
         {% for property in properties %}
-        {{ property }}{%
+        {% if property.documentation %}/// {{ property.documentation }}
+        {% else %}{%
+        endif %}{{ property.rendered }}{%
         endfor %}{%
         if hasAttributes %}
+        /// The resource's attributes.
         public let attributes: Attributes{% if attributesOptional %}?{% endif %}{% endif %}{%
         if hasRelationships %}
+        /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships{% if relationshipsOptional %}?{% endif %}{% endif %}
 
         public init({{ publicInit }}) {
@@ -116,15 +120,17 @@ public class ObjectSchemaRenderer {
                 "documentation": objectSchema.documentation,
                 "isRequest": objectSchema.name.hasSuffix("Request"),
                 "sortedProperties": sortedProperties,
-                "properties": sortedProperties.map { property -> String in
+                "properties": sortedProperties.map { property -> Property in
+                    let rendered: String
                     switch property.value {
                     case .constant(let value):
-                        return try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
+                        rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
                     default:
-                        return try! PropertyRenderer().render(id: property.key,
-                                                              type: property.value.description,
-                                                              optional: !objectSchema.requiredProperties.contains(property.key))
+                        rendered = try! PropertyRenderer().render(id: property.key,
+                                                                  type: property.value.description,
+                                                                  optional: !objectSchema.requiredProperties.contains(property.key))
                     }
+                    return Property(rendered: rendered, documentation: objectSchema.documentation?.properties?[property.key])
                 },
                 "publicInit": publicInit,
                 "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
@@ -150,6 +156,11 @@ public class ObjectSchemaRenderer {
                     }
 
                 }]
+    }
+
+    private struct Property {
+        let rendered: String
+        let documentation: String?
     }
 
     private struct PropertyName {

@@ -6,13 +6,17 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(name: "Person", documentation: .init(summary: "A person with a name."), properties: ["name": .simple(.init(type: "string"))])
+        let schema = ObjectSchema(name: "Person",
+                                  documentation: .init(summary: "A person with a name.",
+                                                       properties: ["name": "The person's name"]),
+                                  properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         /// A person with a name.
         public struct Person: Codable {
+            /// The person's name
             public let name: String?
 
             public init(name: String? = nil) {
@@ -26,13 +30,17 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderRequest() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(name: "PersonCreateRequest", documentation: .init(summary: "The data for a request to create a person."), properties: ["name": .simple(.init(type: "string"))])
+        let schema = ObjectSchema(name: "PersonCreateRequest",
+                                  documentation: .init(summary: "The data for a request to create a person.",
+                                                       properties: ["name": "The person's name"]),
+                                  properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         /// The data for a request to create a person.
         public struct PersonCreateRequest: Codable, RequestBody {
+            /// The person's name
             public let name: String?
 
             public init(name: String? = nil) {
@@ -47,7 +55,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "Person",
-                                  documentation: .init(summary: "A person with a name."),
+                                  documentation: .init(summary: "A person with a name.",
+                                                       properties: ["firstName": "The firstname of the person",
+                                                                    "lastName": "The lastname of the person",
+                                                                    "self": "A reference to the person",
+                                                                    "id": "The unique id for the person"]),
                                   properties: ["firstName": .simple(.init(type: "string")),
                                                "lastName": .simple(.init(type: "string")),
                                                "self": .schemaRef("string"),
@@ -59,9 +71,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         /// A person with a name.
         public struct Person: Codable {
+            /// The firstname of the person
             public let firstName: String
+            /// The unique id for the person
             public var id: String { "person" }
+            /// The lastname of the person
             public let lastName: String?
+            /// A reference to the person
             public let `self`: String?
 
             public init(firstName: String, id: Person? = nil, lastName: String? = nil, self aSelf: String? = nil) {
@@ -150,7 +166,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "Person",
-                                  documentation: .init(summary: "A person with a name."),
+                                  documentation: .init(summary: "A person with a name.",
+                                                       properties: ["name": "The person's name",
+                                                                    "pet": "The person's pet",
+                                                                    "preference": "The person's indentation preference",
+                                                                    "connection": "The person's connection"]),
                                   properties: ["name": .simple(.init(type: "string")),
                                                "pet": .schemaRef("Pet"),
                                                "preference": .schemaRef("Preference"),
@@ -166,9 +186,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         /// A person with a name.
         public struct Person: Codable {
+            /// The person's connection
             public let connection: Connection?
+            /// The person's name
             public let name: String?
+            /// The person's pet
             public let pet: Pet?
+            /// The person's indentation preference
             public let preference: Preference?
 
             public init(connection: Connection? = nil, name: String? = nil, pet: Pet? = nil, preference: Preference? = nil) {
