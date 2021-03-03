@@ -2,7 +2,7 @@ import Foundation
 
 public struct ObjectSchema: Decodable, Equatable {
     public let name: String
-    public let documentation: Schema.Documentation?
+    public let documentation: SchemaDocumentation?
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
     public let subSchemas: [SubSchema]
@@ -16,7 +16,7 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    internal init(name: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+    internal init(name: String, documentation: SchemaDocumentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
         self.name = name
         self.documentation = documentation
         self.properties = properties
@@ -52,7 +52,20 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
-        let documentation = Schema.Documentation.allDocumentation[name]
+        var documentation: SchemaDocumentation?
+        let codingPathComponents = container.codingPath.drop { $0.stringValue == "components" || $0.stringValue == "schemas" }
+        if let mainSchemaName = codingPathComponents.first?.stringValue,
+           let objectDocumentation = Schema.ObjectDocumentation.allDocumentation[mainSchemaName]
+        {
+            if name == "Attributes" {
+                documentation = objectDocumentation.attributes
+            } else if codingPathComponents.count > 2, codingPathComponents[1].stringValue == "relationships" {
+                let schemaName = codingPathComponents[2].stringValue
+                documentation = objectDocumentation.relationships?[schemaName]
+            } else {
+                documentation = objectDocumentation
+            }
+        }
         let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
             subSchemas.append(.attributes(attributes))
@@ -63,5 +76,12 @@ public struct ObjectSchema: Decodable, Equatable {
             subSchemas.append(.relationships(relationships))
         }
         self.init(name: name, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
+    }
+
+    public static func == (lhs: ObjectSchema, rhs: ObjectSchema) -> Bool {
+        return lhs.name == rhs.name
+            && lhs.properties == rhs.properties
+            && lhs.requiredProperties == rhs.requiredProperties
+            && lhs.subSchemas == rhs.subSchemas
     }
 }
