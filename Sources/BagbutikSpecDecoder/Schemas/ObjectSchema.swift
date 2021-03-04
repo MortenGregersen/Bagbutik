@@ -2,11 +2,11 @@ import Foundation
 
 public struct ObjectSchema: Decodable, Equatable {
     public let name: String
-    public let documentation: SchemaDocumentation?
+    public let documentation: Schema.Documentation?
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
     public let subSchemas: [SubSchema]
-    public let isRelationshipSubSchema: Bool
+    public let kind: Kind
 
     enum CodingKeys: String, CodingKey {
         case type
@@ -17,13 +17,19 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    internal init(name: String, documentation: SchemaDocumentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = [], isRelationshipSubSchema: Bool = false) {
+    public enum Kind: Equatable {
+        case plain
+        case relationshipSubSchema
+        case updateRequestData
+    }
+
+    internal init(name: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = [], kind: Kind = .plain) {
         self.name = name
         self.documentation = documentation
         self.properties = properties
         self.requiredProperties = requiredProperties
         self.subSchemas = subSchemas.sorted(by: { $0.name < $1.name })
-        self.isRelationshipSubSchema = isRelationshipSubSchema
+        self.kind = kind
     }
 
     public init(from decoder: Decoder) throws {
@@ -54,20 +60,31 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
-        var documentation: SchemaDocumentation?
         let codingPathComponents = Array(container.codingPath
-            .drop { $0.stringValue == "components" || $0.stringValue == "schemas" }
-            .map(\.stringValue))
-        if codingPathComponents.count < 3,
-           let mainSchemaName = codingPathComponents.first,
-           let objectDocumentation = Schema.ObjectDocumentation.allDocumentation[mainSchemaName]
-        {
-            if name == "Attributes" {
-                documentation = objectDocumentation.attributes
-            } else if name == "Relationships" {
-                documentation = Schema.RelationshipDocumentation()
-            } else {
-                documentation = objectDocumentation
+            .map(\.stringValue)
+            .drop { $0 == "components" || $0 == "schemas" }
+        )
+        let documentation: Schema.Documentation?
+        if name == "Relationships" {
+            documentation = Schema.Documentation.relationships
+        } else {
+            documentation = codingPathComponents.reduce(nil) { parent, schemaName -> Schema.Documentation? in
+                if parent == nil {
+                    return Schema.Documentation.allDocumentation[schemaName]
+                } else {
+                    guard case .object(_, _, let children) = parent else { return nil }
+                    if name == "Attributes" {
+                        return children?.first {
+                            guard case .attributes = $0 else { return false }
+                            return true
+                        }
+                    } else {
+                        return children?.first {
+                            guard case .subObject(let name, _, _, _) = $0 else { return false }
+                            return name == schemaName
+                        }
+                    }
+                }
             }
         }
         let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
@@ -79,8 +96,15 @@ public struct ObjectSchema: Decodable, Equatable {
         {
             subSchemas.append(.relationships(relationships))
         }
-        let isRelationshipSubSchema = codingPathComponents.contains("relationships")
-        self.init(name: name, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas, isRelationshipSubSchema: isRelationshipSubSchema)
+        let kind: Kind
+        if name == "Data", codingPathComponents.contains(where: { $0.hasSuffix("UpdateRequest") }) {
+            kind = .updateRequestData
+        } else if codingPathComponents.contains("relationships") {
+            kind = .relationshipSubSchema
+        } else {
+            kind = .plain
+        }
+        self.init(name: name, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas, kind: kind)
     }
 
     public static func == (lhs: ObjectSchema, rhs: ObjectSchema) -> Bool {

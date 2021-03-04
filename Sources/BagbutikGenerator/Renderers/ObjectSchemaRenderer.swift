@@ -17,8 +17,8 @@ public class ObjectSchemaRenderer {
     public var {{ id|escapeReservedKeywords }}: String { "{{ value }}" }
     """
     private static let objectTemplate = #"""
-    {% if documentation %}/// {{ documentation.summary }}{% endif %}
-    public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
+    {% if documentation %}/// {{ documentation }}
+    {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
         {% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
         {% else %}{%
@@ -28,7 +28,7 @@ public class ObjectSchemaRenderer {
         /// The resource's attributes.
         public let attributes: Attributes{% if attributesOptional %}?{% endif %}{% endif %}{%
         if hasRelationships %}
-        /// Navigational links to related data and included resource types and IDs.
+        /// {{ relationshipsDocumentation }}
         public let relationships: Relationships{% if relationshipsOptional %}?{% endif %}{% endif %}
 
         public init({{ publicInit }}) {
@@ -104,6 +104,9 @@ public class ObjectSchemaRenderer {
             codingKeys.append(name)
             codableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
+        let relationshipsDocumentation = objectSchema.kind == .updateRequestData
+            ? "The types and IDs of the related data to update."
+            : "Navigational links to related data and included resource types and IDs."
         let publicInit = initParameters
             .map {
                 let propertyName = PropertyName(idealName: $0.key)
@@ -117,7 +120,7 @@ public class ObjectSchemaRenderer {
             }
             .joined(separator: ", ")
         return ["name": objectSchema.name,
-                "documentation": objectSchema.documentation ?? "",
+                "documentation": objectSchema.documentation?.summary ?? "",
                 "isRequest": objectSchema.name.hasSuffix("Request"),
                 "sortedProperties": sortedProperties,
                 "properties": sortedProperties.map { property -> Property in
@@ -130,12 +133,19 @@ public class ObjectSchemaRenderer {
                                                                   type: property.value.description,
                                                                   optional: !objectSchema.requiredProperties.contains(property.key))
                     }
-                    var propertyDocumentation = objectSchema.documentation?.properties?[property.key]
+                    var propertyDocumentation: String?
+                    if case .object(_, let properties, _) = objectSchema.documentation {
+                        propertyDocumentation = properties?[property.key]
+                    } else if case .subObject(_, _, let properties, _) = objectSchema.documentation {
+                        propertyDocumentation = properties?[property.key]
+                    } else if case .attributes(_, let properties) = objectSchema.documentation {
+                        propertyDocumentation = properties?[property.key]
+                    }
                     if propertyDocumentation == nil {
-                        if objectSchema.isRelationshipSubSchema {
-                            propertyDocumentation = Schema.ObjectDocumentation.relationshipsPropetyDocumentation[property.key]
+                        if objectSchema.kind == .relationshipSubSchema {
+                            propertyDocumentation = Schema.Documentation.relationshipsPropetyDocumentation[property.key]
                         } else {
-                            propertyDocumentation = Schema.ObjectDocumentation.commonPropertyDocumentation[property.key]
+                            propertyDocumentation = Schema.Documentation.commonPropertyDocumentation[property.key]
                         }
                     }
                     return Property(rendered: rendered, documentation: propertyDocumentation)
@@ -148,6 +158,7 @@ public class ObjectSchemaRenderer {
                 "hasAttributes": hasAttributes,
                 "attributesOptional": attributesOptional,
                 "hasRelationships": hasRelationships,
+                "relationshipsDocumentation": relationshipsDocumentation,
                 "relationshipsOptional": relationshipsOptional,
                 "subSchemas": objectSchema.subSchemas.map { subSchema -> String in
                     switch subSchema {
@@ -157,8 +168,8 @@ public class ObjectSchemaRenderer {
                         return try! EnumSchemaRenderer().render(enumSchema: enumSchema)
                     case .oneOf(let name, let oneOfSchema):
                         return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema, includesFixUps: includesFixUps)
-                    case .attributes(let attributesSchema):
-                        return try! render(objectSchema: attributesSchema)
+                    case .attributes(let objectSchema):
+                        return try! render(objectSchema: objectSchema)
                     case .relationships(let objectSchema):
                         return try! render(objectSchema: objectSchema)
                     }
