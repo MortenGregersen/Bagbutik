@@ -117,7 +117,7 @@ public class ObjectSchemaRenderer {
             }
             .joined(separator: ", ")
         return ["name": objectSchema.name,
-                "documentation": objectSchema.documentation,
+                "documentation": objectSchema.documentation ?? "",
                 "isRequest": objectSchema.name.hasSuffix("Request"),
                 "sortedProperties": sortedProperties,
                 "properties": sortedProperties.map { property -> Property in
@@ -130,7 +130,15 @@ public class ObjectSchemaRenderer {
                                                                   type: property.value.description,
                                                                   optional: !objectSchema.requiredProperties.contains(property.key))
                     }
-                    return Property(rendered: rendered, documentation: objectSchema.documentation?.properties?[property.key])
+                    var propertyDocumentation = objectSchema.documentation?.properties?[property.key]
+                    if propertyDocumentation == nil {
+                        if objectSchema.isRelationshipSubSchema {
+                            propertyDocumentation = Schema.ObjectDocumentation.relationshipsPropetyDocumentation[property.key]
+                        } else {
+                            propertyDocumentation = Schema.ObjectDocumentation.commonPropertyDocumentation[property.key]
+                        }
+                    }
+                    return Property(rendered: rendered, documentation: propertyDocumentation)
                 },
                 "publicInit": publicInit,
                 "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },

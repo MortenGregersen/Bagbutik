@@ -13,27 +13,21 @@ public extension Schema {
 
     struct RelationshipDocumentation: SchemaDocumentation {
         public let summary = "The relationships you included in the request and those on which you can operate."
-        public let properties: [String: String]?
+        public let properties: [String: String]? = nil
     }
 
     struct ObjectDocumentation: SchemaDocumentation {
         public let summary: String
         public let properties: [String: String]?
         public let attributes: AttributesDocumentation?
-        public let relationships: [String: RelationshipDocumentation]?
 
-        public init(summary: String,
-                    properties: [String: String]? = nil,
-                    attributes: AttributesDocumentation? = nil,
-                    relationships: [String: RelationshipDocumentation]? = nil)
-        {
+        public init(summary: String, properties: [String: String]? = nil, attributes: AttributesDocumentation? = nil) {
             self.summary = summary
             self.properties = properties
             self.attributes = attributes
-            self.relationships = relationships
         }
 
-        static let commonPropertyDocumentation: [String: String] = [
+        public static let commonPropertyDocumentation: [String: String] = [
             "data": "The resource data.",
             "id": "The opaque resource ID that uniquely identifies the resource.",
             "links": "Navigational links that include the self-link.",
@@ -41,12 +35,15 @@ public extension Schema {
             "meta": "Paging information.",
         ]
 
-        static let relationshipsPropetyDocumentation: [String: String] = [
+        public static let relationshipsPropetyDocumentation: [String: String] = [
             "data": "The type and ID of a related resource.",
             "links": "The links to the related data and the relationship's self-link.",
+            "meta": "Paging information for data responses.",
+            "related": "The link to the related data.",
+            "self": "The relationship's self-link",
         ]
 
-        static let requestPropertyDocumentation: [String: String] = [
+        public static let requestPropertyDocumentation: [String: String] = [
             "data": "The types and IDs of related resources.",
         ]
 
@@ -92,14 +89,9 @@ public extension Schema {
                                                 "lastName": "The user's last name.",
                                                 "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
                                                 "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                                                "allAppsVisi  ble": "A Boolean value that indicates whether a user has access to all apps available to the team.",
+                                                "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
                                                 "username": "The user's Apple ID.",
-                                            ]),
-                          relationships: [
-                              "VisibleApps": .init(properties: ["data": "The type and ID of a related resource.",
-                                                                "links": "The links to the related data and the relationship's self-link.",
-                                                                "meta": "Paging information for data responses."]),
-                          ]),
+                                            ])),
         ]
     }
 }

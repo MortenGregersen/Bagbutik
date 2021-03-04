@@ -130,9 +130,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let relationshipsSchema = ObjectSchema(name: "Relationships",
-                                               documentation: Schema.RelationshipDocumentation(properties: [
-                                                   "children": "The person's children",
-                                               ]),
+                                               documentation: Schema.RelationshipDocumentation(),
                                                properties: ["children": .arrayOfSchemaRef("Child")])
         let schema = ObjectSchema(name: "Person",
                                   documentation: Schema.ObjectDocumentation(summary: "A person with a name."),
@@ -155,7 +153,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
             /// The relationships you included in the request and those on which you can operate.
             public struct Relationships: Codable {
-                /// The person's children
                 public let children: [Child]?
 
                 public init(children: [Child]? = nil) {
@@ -266,9 +263,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                                                           properties: ["age": "The person's age"]),
                                             properties: ["age": .simple(.init(type: "integer"))])
         let relationshipsSchema = ObjectSchema(name: "Relationships",
-                                               documentation: Schema.RelationshipDocumentation(properties: [
-                                                   "children": "The person's children",
-                                               ]),
+                                               documentation: Schema.RelationshipDocumentation(),
                                                properties: ["children": .arrayOfSchemaRef("Child")])
         let schema = ObjectSchema(name: "Person",
                                   documentation: Schema.ObjectDocumentation(summary: "A person with a name."),
@@ -338,7 +333,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
             /// The relationships you included in the request and those on which you can operate.
             public struct Relationships: Codable {
-                /// The person's children
                 public let children: [Child]?
 
                 public init(children: [Child]? = nil) {
