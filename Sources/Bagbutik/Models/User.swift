@@ -95,7 +95,9 @@ public struct User: Codable {
             }
 
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {

@@ -142,8 +142,12 @@ public class ObjectSchemaRenderer {
                         propertyDocumentation = properties?[property.key]
                     }
                     if propertyDocumentation == nil {
-                        if objectSchema.kind == .relationshipSubSchema {
-                            propertyDocumentation = Schema.Documentation.relationshipsPropetyDocumentation[property.key]
+                        if objectSchema.kind == .relationshipSubSchema, let documentation = Schema.Documentation.relationshipsPropetyDocumentation[property.key] {
+                            propertyDocumentation = documentation
+                        } else if objectSchema.kind == .updateRequestData, let documentation = Schema.Documentation.requestPropertyDocumentation[property.key] {
+                            propertyDocumentation = documentation
+                        } else if objectSchema.kind == .updateResponseData, let documentation = Schema.Documentation.responsePropertyDocumentation[property.key] {
+                            propertyDocumentation = documentation
                         } else {
                             propertyDocumentation = Schema.Documentation.commonPropertyDocumentation[property.key]
                         }

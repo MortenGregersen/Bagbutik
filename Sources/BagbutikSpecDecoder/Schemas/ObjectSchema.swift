@@ -21,6 +21,7 @@ public struct ObjectSchema: Decodable, Equatable {
         case plain
         case relationshipSubSchema
         case updateRequestData
+        case updateResponseData
     }
 
     internal init(name: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = [], kind: Kind = .plain) {
@@ -66,24 +67,36 @@ public struct ObjectSchema: Decodable, Equatable {
         )
         let documentation: Schema.Documentation?
         if name == "Relationships" {
-            documentation = Schema.Documentation.relationships
+            if codingPathComponents[0].hasSuffix("UpdateRequest") {
+                documentation = .updateRequestRelationships
+            } else {
+                documentation = .relationships
+            }
         } else {
             documentation = codingPathComponents.reduce(nil) { parent, schemaName -> Schema.Documentation? in
                 if parent == nil {
                     return Schema.Documentation.allDocumentation[schemaName]
                 } else {
-                    guard case .object(_, _, let children) = parent else { return nil }
-                    if name == "Attributes" {
-                        return children?.first {
+                    let findDocumentationForChildren: ([Schema.Documentation]?) -> Schema.Documentation? = { children in
+                        if name == "Attributes", let attributesDocumentation = children?.first(where: {
                             guard case .attributes = $0 else { return false }
                             return true
-                        }
-                    } else {
-                        return children?.first {
-                            guard case .subObject(let name, _, _, _) = $0 else { return false }
-                            return name == schemaName
+                        }) {
+                            return attributesDocumentation
+                        } else {
+                            let childDocumentation = children?.first {
+                                guard case .subObject(let name, _, _, _) = $0 else { return false }
+                                return name == schemaName.capitalizingFirstLetter()
+                            }
+                            return childDocumentation
                         }
                     }
+                    if case .object(_, _, let possibleChildren) = parent, let children = possibleChildren {
+                        return findDocumentationForChildren(children)
+                    } else if case .subObject(_, _, _, let possibleChildren) = parent, let children = possibleChildren {
+                        return findDocumentationForChildren(children)
+                    }
+                    return parent
                 }
             }
         }
@@ -97,7 +110,7 @@ public struct ObjectSchema: Decodable, Equatable {
             subSchemas.append(.relationships(relationships))
         }
         let kind: Kind
-        if name == "Data", codingPathComponents.contains(where: { $0.hasSuffix("UpdateRequest") }) {
+        if name == "Data", codingPathComponents[0].hasSuffix("UpdateRequest") {
             kind = .updateRequestData
         } else if codingPathComponents.contains("relationships") {
             kind = .relationshipSubSchema

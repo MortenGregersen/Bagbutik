@@ -6,6 +6,8 @@ public extension Schema {
         case subObject(name: String, summary: String, properties: [String: String]? = nil, children: [Documentation]? = nil)
         case attributes(summary: String, properties: [String: String]? = nil)
         case relationships
+        case updateRequestRelationships
+        case enumObject(summary: String, cases: [String: String])
 
         public var summary: String {
             switch self {
@@ -17,6 +19,10 @@ public extension Schema {
                 return summary
             case .relationships:
                 return "The relationships you included in the request and those on which you can operate."
+            case .updateRequestRelationships:
+                return "The data and links that describe the relationship between the resources."
+            case .enumObject(let summary, _):
+                return summary
             }
         }
 
@@ -38,6 +44,10 @@ public extension Schema {
 
         public static let requestPropertyDocumentation: [String: String] = [
             "data": "The types and IDs of related resources.",
+        ]
+
+        public static let responsePropertyDocumentation: [String: String] = [
+            "data": "The object types and IDs of the related resources.",
         ]
 
         static let allDocumentation: [String: Documentation] = [
@@ -99,6 +109,43 @@ public extension Schema {
                             "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
                             "username": "The user's Apple ID.",
                         ]),
+                ]),
+            "UserUpdateRequest": .object(
+                summary: "The request body you use to update a User.",
+                children: [
+                    .subObject(
+                        name: "Data",
+                        summary: "The data element of the request body.",
+                        children: [
+                            .attributes(
+                                summary: "Attributes whose values you're changing as part of the update request.",
+                                properties: [
+                                    "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                                    "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                                    "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                                ]),
+                        ]),
+                ]),
+            "UserResponse": .object(summary: "A response that contains a single Users resource."),
+            "UsersResponse": .object(summary: "A response that contains a list of Users resources."),
+            "UserVisibleAppsLinkagesRequest": .object(
+                summary: "A request body you use to add or remove visible apps from a user.",
+                children: [.subObject(name: "Data", summary: "The data element of the request body.")]),
+            "UserVisibleAppsLinkagesResponse": .object(summary: "A response body that contains a list of related resource IDs."),
+            "UserRole": .enumObject(
+                summary: "Strings that represent user roles in App Store Connect.",
+                cases: [
+                    "ADMIN": "Serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.",
+                    "FINANCE": "Manages financial information, including reports and tax forms. A user assigned this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.",
+                    "TECHNICAL": "The Technical role is no longer assignable to new users in App Store Connect. Existing users with the Technical role can manage all the aspects of an app, such as pricing, App Store information, and app development and delivery. Techncial users have access to all apps.",
+                    "SALES": "Analyzes sales, downloads, and other analytics for the app.",
+                    "MARKETING": "Manages marketing materials and promotional artwork. A user assigned this role will be contacted by Apple if the app is in consideration to be featured on the App Store.",
+                    "DEVELOPER": "Manages development and delivery of an app.",
+                    "ACCOUNT_HOLDER": "Responsible for entering into legal agreements with Apple. The person who completes program enrollment is assigned the Account Holder role in both the Apple Developer account and App Store Connect.",
+                    "READ_ONLY": "",
+                    "APP_MANAGER": "Manages all aspects of an app, such as pricing, App Store information, and app development and delivery.",
+                    "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
+                    "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
                 ]),
         ]
     }
