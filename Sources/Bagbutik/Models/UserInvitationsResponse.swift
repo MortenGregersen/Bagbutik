@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of User Invitations resources.
 public struct UserInvitationsResponse: Codable {
+    /// The resource data.
     public let data: [UserInvitation]
     public let included: [App]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [UserInvitation], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

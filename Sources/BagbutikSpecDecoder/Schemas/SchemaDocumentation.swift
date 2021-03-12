@@ -8,6 +8,10 @@ public extension Schema {
         case relationship
         case relationshipData
         case relationshipLinks
+        case createRequestDataAttributes(properties: [String: String]? = nil)
+        case createRequestDataRelationships
+        case createRequestDataRelationship
+        case createRequestDataRelationshipData
         case updateRequestData
         case updateRequestDataAttributes(properties: [String: String]? = nil)
         case updateRequestDataRelationships
@@ -33,6 +37,14 @@ public extension Schema {
                 return "The type and ID of a related resource."
             case .relationshipLinks:
                 return "The links to the related data and the relationship's self-link."
+            case .createRequestDataAttributes:
+                return "Attributes that you set that describe the new resource."
+            case .createRequestDataRelationships:
+                return "The relationships to other resources that you can set with this request."
+            case .createRequestDataRelationship:
+                return nil
+            case .createRequestDataRelationshipData:
+                return "The type and ID of the resource that you're relating with the resource you're creating."
             case .updateRequestData:
                 return "The data element of the request body."
             case .updateRequestDataAttributes:
@@ -70,6 +82,13 @@ public extension Schema {
                 return Self.commonProperties
             case .relationship, .relationshipLinks:
                 return propertiesMergedWithCommonProperties(Self.relationshipProperties)
+            case .createRequestDataAttributes(let properties):
+                return propertiesMergedWithCommonProperties(properties)
+            case .createRequestDataRelationships,
+                 .createRequestDataRelationshipData:
+                return Self.commonProperties
+            case .createRequestDataRelationship:
+                return propertiesMergedWithCommonProperties(Self.updateRequestDataRelationshipProperties)
             case .updateRequestData:
                 return propertiesMergedWithCommonProperties(Self.updateRequestProperties)
             case .updateRequestDataAttributes(let properties):
@@ -108,6 +127,10 @@ public extension Schema {
 
         private static let updateRequestProperties: [String: String] = [
             "relationships": "The types and IDs of the related data to update.",
+        ]
+
+        private static let createRequestDataRelationshipProperties: [String: String] = [
+            "data": "The type and ID of the resource that you're relating with the resource you're creating.",
         ]
 
         private static let updateRequestDataRelationshipProperties: [String: String] = [
@@ -182,20 +205,35 @@ public extension Schema {
                             "username": "The user's Apple ID.",
                         ]),
                 ]),
-            "UserUpdateRequest": .rootSchema(
-                summary: "The request body you use to update a User.",
+            "UserInvitation": .rootSchema(
+                summary: "The data structure that represents a User Invitations resource.",
                 children: [
-                    .updateRequestDataAttributes(
-                        properties: [
-                            "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                            "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                            "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                        ]),
+                    .attributes(summary: "Attributes that describe a User Invitations resource.",
+                                properties: [
+                                    "email": "The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.",
+                                    "firstName": "The first name of the user with the pending user invitation.",
+                                    "lastName": "The last name of the user with the pending user invitation.",
+                                    "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                                    "expirationDate": "The expiration date of the pending invitation.",
+                                    "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                                    "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
+                                ]),
                 ]),
+            "UserInvitationCreateRequest": .rootSchema(
+                summary: "The request body you use to create a User Invitation.",
+                children: [
+                    .createRequestDataAttributes(properties: [
+                        "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
+                        "email": "The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.",
+                        "firstName": "The user invitation recipient's first name.",
+                        "lastName": "The user invitation recipient's last name.",
+                        "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                        "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                    ]),
+                ]),
+            "UserInvitationResponse": .rootSchema(summary: "A response that contains a single User Invitations resource."),
+            "UserInvitationsResponse": .rootSchema(summary: "A response that contains a list of User Invitations resources."),
             "UserResponse": .rootSchema(summary: "A response that contains a single Users resource."),
-            "UsersResponse": .rootSchema(summary: "A response that contains a list of Users resources."),
-            "UserVisibleAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove visible apps from a user."),
-            "UserVisibleAppsLinkagesResponse": .linkagesResponse,
             "UserRole": .enumObject(
                 summary: "Strings that represent user roles in App Store Connect.",
                 cases: [
@@ -211,6 +249,19 @@ public extension Schema {
                     "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
                     "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
                 ]),
+            "UsersResponse": .rootSchema(summary: "A response that contains a list of Users resources."),
+            "UserUpdateRequest": .rootSchema(
+                summary: "The request body you use to update a User.",
+                children: [
+                    .updateRequestDataAttributes(
+                        properties: [
+                            "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                            "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                            "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                        ]),
+                ]),
+            "UserVisibleAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove visible apps from a user."),
+            "UserVisibleAppsLinkagesResponse": .linkagesResponse,
         ]
     }
 }
