@@ -1,7 +1,7 @@
 import Foundation
 
 public extension Schema {
-    enum Documentation {
+    enum Documentation: Equatable {
         case rootSchema(summary: String, properties: [String: String]? = nil, children: [Documentation]? = nil)
         case attributes(summary: String, properties: [String: String]? = nil)
         case relationships
@@ -17,7 +17,7 @@ public extension Schema {
         case linkagesRequestData
         case linkagesResponse
         case linkagesResponseData
-//        case enumObject(summary: String, cases: [String: String])
+        case enumObject(summary: String, cases: [String: String])
 
         public var summary: String? {
             switch self {
@@ -51,6 +51,8 @@ public extension Schema {
                 return "A response body that contains a list of related resource IDs."
             case .linkagesResponseData:
                 return "The data element of the response body."
+            case .enumObject(let summary, _):
+                return summary
             }
         }
 
@@ -81,6 +83,8 @@ public extension Schema {
                 return propertiesMergedWithCommonProperties(Self.linkagesRequestProperties)
             case .linkagesRequestData, .linkagesResponse, .linkagesResponseData:
                 return Self.commonProperties
+            case .enumObject(_, let cases):
+                return cases
             }
         }
 
@@ -192,21 +196,21 @@ public extension Schema {
             "UsersResponse": .rootSchema(summary: "A response that contains a list of Users resources."),
             "UserVisibleAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove visible apps from a user."),
             "UserVisibleAppsLinkagesResponse": .linkagesResponse,
-//            "UserRole": .enumObject(
-//                summary: "Strings that represent user roles in App Store Connect.",
-//                cases: [
-//                    "ADMIN": "Serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.",
-//                    "FINANCE": "Manages financial information, including reports and tax forms. A user assigned this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.",
-//                    "TECHNICAL": "The Technical role is no longer assignable to new users in App Store Connect. Existing users with the Technical role can manage all the aspects of an app, such as pricing, App Store information, and app development and delivery. Techncial users have access to all apps.",
-//                    "SALES": "Analyzes sales, downloads, and other analytics for the app.",
-//                    "MARKETING": "Manages marketing materials and promotional artwork. A user assigned this role will be contacted by Apple if the app is in consideration to be featured on the App Store.",
-//                    "DEVELOPER": "Manages development and delivery of an app.",
-//                    "ACCOUNT_HOLDER": "Responsible for entering into legal agreements with Apple. The person who completes program enrollment is assigned the Account Holder role in both the Apple Developer account and App Store Connect.",
-//                    "READ_ONLY": "",
-//                    "APP_MANAGER": "Manages all aspects of an app, such as pricing, App Store information, and app development and delivery.",
-//                    "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
-//                    "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
-//                ]),
+            "UserRole": .enumObject(
+                summary: "Strings that represent user roles in App Store Connect.",
+                cases: [
+                    "ADMIN": "Serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.",
+                    "FINANCE": "Manages financial information, including reports and tax forms. A user assigned this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.",
+                    "TECHNICAL": "The Technical role is no longer assignable to new users in App Store Connect. Existing users with the Technical role can manage all the aspects of an app, such as pricing, App Store information, and app development and delivery. Techncial users have access to all apps.",
+                    "SALES": "Analyzes sales, downloads, and other analytics for the app.",
+                    "MARKETING": "Manages marketing materials and promotional artwork. A user assigned this role will be contacted by Apple if the app is in consideration to be featured on the App Store.",
+                    "DEVELOPER": "Manages development and delivery of an app.",
+                    "ACCOUNT_HOLDER": "Responsible for entering into legal agreements with Apple. The person who completes program enrollment is assigned the Account Holder role in both the Apple Developer account and App Store Connect.",
+                    "READ_ONLY": "",
+                    "APP_MANAGER": "Manages all aspects of an app, such as pricing, App Store information, and app development and delivery.",
+                    "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
+                    "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
+                ]),
         ]
     }
 }

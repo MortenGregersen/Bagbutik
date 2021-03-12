@@ -3,6 +3,7 @@ import Foundation
 public struct EnumSchema: Decodable, Equatable {
     public let name: String
     public let type: String
+    public let documentation: Schema.Documentation?
     public let cases: [EnumCase]
 
     enum CodingKeys: String, CodingKey {
@@ -13,10 +14,16 @@ public struct EnumSchema: Decodable, Equatable {
     public init(name: String, type: String, values: [String]) {
         self.type = type
         self.name = name
-        let cases = values.map { EnumCase(id: $0.camelCased(with: "_"), value: $0) }
+        let documentation = Schema.Documentation.allDocumentation[name]
+        self.documentation = documentation
+        let cases = values.map {
+            EnumCase(id: $0.camelCased(with: "_"), value: $0, documentation: documentation?.properties[$0])
+        }
         if name == "BundleIdPlatform" {
-            // HACK: Apple's spec doesn't include 'Universal' App IDs. Reported to Apple 21/1/21 as FB8977648.
-            self.cases = cases + [EnumCase(id: "universal", value: "UNIVERSAL")]
+            // HACK: Apple's OpenAPI spec doesn't include 'Universal' App IDs. Reported to Apple 21/1/21 as FB8977648.
+            self.cases = cases + [
+                EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."),
+            ]
         } else {
             self.cases = cases
         }

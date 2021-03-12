@@ -117,11 +117,4 @@ public struct ObjectSchema: Decodable, Equatable {
         }
         return nil
     }
-
-    public static func == (lhs: ObjectSchema, rhs: ObjectSchema) -> Bool {
-        return lhs.name == rhs.name
-            && lhs.properties == rhs.properties
-            && lhs.requiredProperties == rhs.requiredProperties
-            && lhs.subSchemas == rhs.subSchemas
-    }
 }

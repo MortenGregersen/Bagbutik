@@ -168,26 +168,26 @@ public class OperationRenderer: Renderer {
             case .fields(let name, let type, let description):
                 switch type {
                 case .simple(let type):
-                    fields.append(EnumCase(id: name, value: type.description, description: description))
+                    fields.append(EnumCase(id: name, value: type.description, documentation: description))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, values: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     fieldSubSchemas[name] = rendered
-                    fields.append(EnumCase(id: name, value: enumName, description: description))
+                    fields.append(EnumCase(id: name, value: enumName, documentation: description))
                 }
             case .filter(let name, let type, let required, let description):
                 switch type {
                 case .simple(let type):
-                    filters.append(EnumCase(id: name, value: type.description, description: description))
+                    filters.append(EnumCase(id: name, value: type.description, documentation: description))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, values: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     filterSubSchemas[name] = rendered
-                    filters.append(EnumCase(id: name, value: enumName, description: description))
+                    filters.append(EnumCase(id: name, value: enumName, documentation: description))
                 }
                 if required {
                     filtersRequired.append(name)
@@ -195,7 +195,7 @@ public class OperationRenderer: Renderer {
             case .exists(let name, let type, let description):
                 switch type {
                 case .simple(let type):
-                    exists.append(EnumCase(id: name, value: type.description, description: description))
+                    exists.append(EnumCase(id: name, value: type.description, documentation: description))
                 default:
                     throw OperationRendererError.unknownTypeOfExists(name: name)
                 }
@@ -217,7 +217,7 @@ public class OperationRenderer: Renderer {
                         else {
                             id = "\(sort)Ascending"
                         }
-                        return EnumCase(id: id, value: sort, description: description)
+                        return EnumCase(id: id, value: sort, documentation: description)
                     }.sorted(by: { $0.id < $1.id })
                 default:
                     throw OperationRendererError.unknownTypeOfSort
