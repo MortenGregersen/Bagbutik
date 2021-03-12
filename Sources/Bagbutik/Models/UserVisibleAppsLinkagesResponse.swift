@@ -15,7 +15,7 @@ public struct UserVisibleAppsLinkagesResponse: Codable {
         self.meta = meta
     }
 
-    /// A response body that contains a list of related resource IDs.
+    /// The data element of the response body.
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String

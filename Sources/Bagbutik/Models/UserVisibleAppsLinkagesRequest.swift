@@ -2,7 +2,7 @@ import Foundation
 
 /// A request body you use to add or remove visible apps from a user.
 public struct UserVisibleAppsLinkagesRequest: Codable, RequestBody {
-    /// The resource data.
+    /// The object types and IDs of the related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

@@ -75,13 +75,14 @@ public struct UserUpdateRequest: Codable, RequestBody {
             }
 
             public struct VisibleApps: Codable {
-                /// The type and ID of a related resource.
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

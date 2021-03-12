@@ -2,31 +2,91 @@ import Foundation
 
 public extension Schema {
     enum Documentation {
-        case object(summary: String, properties: [String: String]? = nil, children: [Documentation]? = nil)
-        case subObject(name: String, summary: String, properties: [String: String]? = nil, children: [Documentation]? = nil)
+        case rootSchema(summary: String, properties: [String: String]? = nil, children: [Documentation]? = nil)
         case attributes(summary: String, properties: [String: String]? = nil)
         case relationships
-        case updateRequestRelationships
-        case enumObject(summary: String, cases: [String: String])
+        case relationship
+        case relationshipData
+        case relationshipLinks
+        case updateRequestData
+        case updateRequestDataAttributes(properties: [String: String]? = nil)
+        case updateRequestDataRelationships
+        case updateRequestDataRelationship
+        case updateRequestDataRelationshipData
+        case linkagesRequest(summary: String)
+        case linkagesRequestData
+        case linkagesResponse
+        case linkagesResponseData
+//        case enumObject(summary: String, cases: [String: String])
 
-        public var summary: String {
+        public var summary: String? {
             switch self {
-            case .object(let summary, _, _):
-                return summary
-            case .subObject(_, let summary, _, _):
+            case .rootSchema(let summary, _, _):
                 return summary
             case .attributes(let summary, _):
                 return summary
             case .relationships:
                 return "The relationships you included in the request and those on which you can operate."
-            case .updateRequestRelationships:
+            case .relationship:
                 return "The data and links that describe the relationship between the resources."
-            case .enumObject(let summary, _):
+            case .relationshipData:
+                return "The type and ID of a related resource."
+            case .relationshipLinks:
+                return "The links to the related data and the relationship's self-link."
+            case .updateRequestData:
+                return "The data element of the request body."
+            case .updateRequestDataAttributes:
+                return "Attributes whose values you're changing as part of the update request."
+            case .updateRequestDataRelationships:
+                return "The data and links that describe the relationship between the resources."
+            case .updateRequestDataRelationship:
+                return nil
+            case .updateRequestDataRelationshipData:
+                return "The type and ID of a resource that you're relating with the resource you're updating."
+            case .linkagesRequest(let summary):
                 return summary
+            case .linkagesRequestData:
+                return "The data element of the request body."
+            case .linkagesResponse:
+                return "A response body that contains a list of related resource IDs."
+            case .linkagesResponseData:
+                return "The data element of the response body."
             }
         }
 
-        public static let commonPropertyDocumentation: [String: String] = [
+        public var properties: [String: String] {
+            let propertiesMergedWithCommonProperties = { (properties: [String: String]?) -> [String: String] in
+                Self.commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
+            }
+            switch self {
+            case .rootSchema(_, let properties, _):
+                return propertiesMergedWithCommonProperties(properties)
+            case .attributes(_, let properties):
+                return propertiesMergedWithCommonProperties(properties)
+            case .relationships,
+                 .relationshipData:
+                return Self.commonProperties
+            case .relationship, .relationshipLinks:
+                return propertiesMergedWithCommonProperties(Self.relationshipProperties)
+            case .updateRequestData:
+                return propertiesMergedWithCommonProperties(Self.updateRequestProperties)
+            case .updateRequestDataAttributes(let properties):
+                return propertiesMergedWithCommonProperties(properties)
+            case .updateRequestDataRelationships,
+                 .updateRequestDataRelationshipData:
+                return Self.commonProperties
+            case .updateRequestDataRelationship:
+                return propertiesMergedWithCommonProperties(Self.updateRequestDataRelationshipProperties)
+            case .linkagesRequest:
+                return propertiesMergedWithCommonProperties(Self.linkagesRequestProperties)
+            case .linkagesRequestData, .linkagesResponse, .linkagesResponseData:
+                return Self.commonProperties
+            }
+        }
+
+        private static let commonProperties: [String: String] = [
+            "attributes": "The resource's attributes.",
+            "relationships": "Navigational links to related data and included resource types and IDs.",
             "data": "The resource data.",
             "id": "The opaque resource ID that uniquely identifies the resource.",
             "links": "Navigational links that include the self-link.",
@@ -34,7 +94,7 @@ public extension Schema {
             "meta": "Paging information.",
         ]
 
-        public static let relationshipsPropetyDocumentation: [String: String] = [
+        private static let relationshipProperties: [String: String] = [
             "data": "The type and ID of a related resource.",
             "links": "The links to the related data and the relationship's self-link.",
             "meta": "Paging information for data responses.",
@@ -42,16 +102,24 @@ public extension Schema {
             "self": "The relationship's self-link",
         ]
 
-        public static let requestPropertyDocumentation: [String: String] = [
-            "data": "The types and IDs of related resources.",
+        private static let updateRequestProperties: [String: String] = [
+            "relationships": "The types and IDs of the related data to update.",
         ]
 
-        public static let responsePropertyDocumentation: [String: String] = [
+        private static let updateRequestDataRelationshipProperties: [String: String] = [
+            "data": "The type and ID of a resource that you're relating with the resource you're updating.",
+        ]
+
+        private static let linkagesRequestProperties: [String: String] = [
             "data": "The object types and IDs of the related resources.",
         ]
 
+        private static let responseProperties: [String: String] = [
+            "links": "Navigational links including the self-link and links to the related data.",
+        ]
+
         static let allDocumentation: [String: Documentation] = [
-            "App": .object(
+            "App": .rootSchema(
                 summary: "The data structure that represents an Apps resource.",
                 children: [
                     .attributes(
@@ -66,10 +134,10 @@ public extension Schema {
                             "isOrEverWasMadeForKids": "",
                         ]),
                 ]),
-            "AppBetaTestersLinkagesRequest": .object(summary: "A request body you use to remove beta testers from an app."),
-            "AppResponse": .object(summary: "A response that contains a single Apps resource."),
-            "AppsResponse": .object(summary: "A response that contains a list of Apps resources."),
-            "AppUpdateRequest": .object(
+            "AppBetaTestersLinkagesRequest": .rootSchema(summary: "A request body you use to remove beta testers from an app."),
+            "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
+            "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
+            "AppUpdateRequest": .rootSchema(
                 summary: "The data element of the request body.",
                 children: [
                     .attributes(
@@ -81,7 +149,7 @@ public extension Schema {
                             "primaryLocale": "",
                         ]),
                 ]),
-            "InAppPurchase": .object(
+            "InAppPurchase": .rootSchema(
                 summary: "The data structure that represents the In-App Purchases resource.",
                 children: [
                     .attributes(
@@ -93,10 +161,10 @@ public extension Schema {
                             "state": "Possible values: CREATED, DEVELOPER_SIGNED_OFF, DEVELOPER_ACTION_NEEDED, DELETION_IN_PROGRESS, APPROVED, DELETED, REMOVED_FROM_SALE, DEVELOPER_REMOVED_FROM_SALE, WAITING_FOR_UPLOAD, PROCESSING_CONTENT, REPLACED, REJECTED, WAITING_FOR_SCREENSHOT, PREPARE_FOR_SUBMISSION, MISSING_METADATA, READY_TO_SUBMIT, WAITING_FOR_REVIEW, IN_REVIEW, PENDING_DEVELOPER_RELEASE",
                         ]),
                 ]),
-            "InAppPurchaseResponse": .object(summary: "A response that contains a single In-App Purchases resource."),
-            "InAppPurchasesResponse": .object(summary: "A response that contains a list of In-App Purchase resources."),
-            "Platform": .object(summary: "Strings that represent Apple operating systems."),
-            "User": .object(
+            "InAppPurchaseResponse": .rootSchema(summary: "A response that contains a single In-App Purchases resource."),
+            "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
+            "Platform": .rootSchema(summary: "Strings that represent Apple operating systems."),
+            "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
                 children: [
                     .attributes(
@@ -110,43 +178,35 @@ public extension Schema {
                             "username": "The user's Apple ID.",
                         ]),
                 ]),
-            "UserUpdateRequest": .object(
+            "UserUpdateRequest": .rootSchema(
                 summary: "The request body you use to update a User.",
                 children: [
-                    .subObject(
-                        name: "Data",
-                        summary: "The data element of the request body.",
-                        children: [
-                            .attributes(
-                                summary: "Attributes whose values you're changing as part of the update request.",
-                                properties: [
-                                    "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                                    "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                                    "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                                ]),
+                    .updateRequestDataAttributes(
+                        properties: [
+                            "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                            "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                            "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
                         ]),
                 ]),
-            "UserResponse": .object(summary: "A response that contains a single Users resource."),
-            "UsersResponse": .object(summary: "A response that contains a list of Users resources."),
-            "UserVisibleAppsLinkagesRequest": .object(
-                summary: "A request body you use to add or remove visible apps from a user.",
-                children: [.subObject(name: "Data", summary: "The data element of the request body.")]),
-            "UserVisibleAppsLinkagesResponse": .object(summary: "A response body that contains a list of related resource IDs."),
-            "UserRole": .enumObject(
-                summary: "Strings that represent user roles in App Store Connect.",
-                cases: [
-                    "ADMIN": "Serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.",
-                    "FINANCE": "Manages financial information, including reports and tax forms. A user assigned this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.",
-                    "TECHNICAL": "The Technical role is no longer assignable to new users in App Store Connect. Existing users with the Technical role can manage all the aspects of an app, such as pricing, App Store information, and app development and delivery. Techncial users have access to all apps.",
-                    "SALES": "Analyzes sales, downloads, and other analytics for the app.",
-                    "MARKETING": "Manages marketing materials and promotional artwork. A user assigned this role will be contacted by Apple if the app is in consideration to be featured on the App Store.",
-                    "DEVELOPER": "Manages development and delivery of an app.",
-                    "ACCOUNT_HOLDER": "Responsible for entering into legal agreements with Apple. The person who completes program enrollment is assigned the Account Holder role in both the Apple Developer account and App Store Connect.",
-                    "READ_ONLY": "",
-                    "APP_MANAGER": "Manages all aspects of an app, such as pricing, App Store information, and app development and delivery.",
-                    "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
-                    "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
-                ]),
+            "UserResponse": .rootSchema(summary: "A response that contains a single Users resource."),
+            "UsersResponse": .rootSchema(summary: "A response that contains a list of Users resources."),
+            "UserVisibleAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove visible apps from a user."),
+            "UserVisibleAppsLinkagesResponse": .linkagesResponse,
+//            "UserRole": .enumObject(
+//                summary: "Strings that represent user roles in App Store Connect.",
+//                cases: [
+//                    "ADMIN": "Serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.",
+//                    "FINANCE": "Manages financial information, including reports and tax forms. A user assigned this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.",
+//                    "TECHNICAL": "The Technical role is no longer assignable to new users in App Store Connect. Existing users with the Technical role can manage all the aspects of an app, such as pricing, App Store information, and app development and delivery. Techncial users have access to all apps.",
+//                    "SALES": "Analyzes sales, downloads, and other analytics for the app.",
+//                    "MARKETING": "Manages marketing materials and promotional artwork. A user assigned this role will be contacted by Apple if the app is in consideration to be featured on the App Store.",
+//                    "DEVELOPER": "Manages development and delivery of an app.",
+//                    "ACCOUNT_HOLDER": "Responsible for entering into legal agreements with Apple. The person who completes program enrollment is assigned the Account Holder role in both the Apple Developer account and App Store Connect.",
+//                    "READ_ONLY": "",
+//                    "APP_MANAGER": "Manages all aspects of an app, such as pricing, App Store information, and app development and delivery.",
+//                    "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
+//                    "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
+//                ]),
         ]
     }
 }

@@ -25,7 +25,7 @@ public class ObjectSchemaRenderer {
         endif %}{{ property.rendered }}{%
         endfor %}{%
         if hasAttributes %}
-        /// The resource's attributes.
+        /// {{ attributesDocumentation }}
         public let attributes: Attributes{% if attributesOptional %}?{% endif %}{% endif %}{%
         if hasRelationships %}
         /// {{ relationshipsDocumentation }}
@@ -104,9 +104,8 @@ public class ObjectSchemaRenderer {
             codingKeys.append(name)
             codableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
-        let relationshipsDocumentation = objectSchema.kind == .updateRequestData
-            ? "The types and IDs of the related data to update."
-            : "Navigational links to related data and included resource types and IDs."
+        let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
+        let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         let publicInit = initParameters
             .map {
                 let propertyName = PropertyName(idealName: $0.key)
@@ -133,25 +132,7 @@ public class ObjectSchemaRenderer {
                                                                   type: property.value.description,
                                                                   optional: !objectSchema.requiredProperties.contains(property.key))
                     }
-                    var propertyDocumentation: String?
-                    if case .object(_, let properties, _) = objectSchema.documentation {
-                        propertyDocumentation = properties?[property.key]
-                    } else if case .subObject(_, _, let properties, _) = objectSchema.documentation {
-                        propertyDocumentation = properties?[property.key]
-                    } else if case .attributes(_, let properties) = objectSchema.documentation {
-                        propertyDocumentation = properties?[property.key]
-                    }
-                    if propertyDocumentation == nil {
-                        if objectSchema.kind == .relationshipSubSchema, let documentation = Schema.Documentation.relationshipsPropetyDocumentation[property.key] {
-                            propertyDocumentation = documentation
-                        } else if objectSchema.kind == .updateRequestData, let documentation = Schema.Documentation.requestPropertyDocumentation[property.key] {
-                            propertyDocumentation = documentation
-                        } else if objectSchema.kind == .updateResponseData, let documentation = Schema.Documentation.responsePropertyDocumentation[property.key] {
-                            propertyDocumentation = documentation
-                        } else {
-                            propertyDocumentation = Schema.Documentation.commonPropertyDocumentation[property.key]
-                        }
-                    }
+                    let propertyDocumentation = objectSchema.documentation?.properties[property.key]
                     return Property(rendered: rendered, documentation: propertyDocumentation)
                 },
                 "publicInit": publicInit,
@@ -160,6 +141,7 @@ public class ObjectSchemaRenderer {
                 "codingKeys": codingKeys,
                 "codableProperties": codableProperties,
                 "hasAttributes": hasAttributes,
+                "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,
                 "hasRelationships": hasRelationships,
                 "relationshipsDocumentation": relationshipsDocumentation,

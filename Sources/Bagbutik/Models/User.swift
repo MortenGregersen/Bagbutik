@@ -80,6 +80,7 @@ public struct User: Codable {
             self.visibleApps = visibleApps
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct VisibleApps: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -94,6 +95,7 @@ public struct User: Codable {
                 self.meta = meta
             }
 
+            /// The type and ID of a related resource.
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -123,6 +125,7 @@ public struct User: Codable {
                 }
             }
 
+            /// The links to the related data and the relationship's self-link.
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
