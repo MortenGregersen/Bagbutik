@@ -146,36 +146,39 @@ public extension Schema {
         ]
 
         static let allDocumentation: [String: Documentation] = [
-            "App": .rootSchema(
-                summary: "The data structure that represents an Apps resource.",
+            "BundleId": .rootSchema(
+                summary: "The data structure that represents a Bundle IDs resource.",
                 children: [
                     .attributes(
-                        summary: "Attributes that describe an Apps resource.",
+                        summary: "Attributes that describe a Bundle IDs resource.",
                         properties: [
-                            "bundleId": "The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.",
-                            "name": "The name of your app as it will appear in the App Store. The maximum length is 30 characters.",
-                            "primaryLocale": "The primary locale for your app. If localized app information isn’t available in an App Store territory, the information from your primary language is used instead.",
-                            "sku": "A unique ID for your app that is not visible on the App Store.",
-                            "availableInNewTerritories": "",
-                            "contentRightsDeclaration": "Possible values: DOES_NOT_USE_THIRD_PARTY_CONTENT, USES_THIRD_PARTY_CONTENT",
-                            "isOrEverWasMadeForKids": "",
+                            "identifier": "",
+                            "name": "",
+                            "platform": "",
+                            "seedId": "",
                         ]),
                 ]),
-            "AppBetaTestersLinkagesRequest": .rootSchema(summary: "A request body you use to remove beta testers from an app."),
-            "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
-            "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
-            "AppUpdateRequest": .rootSchema(
-                summary: "The data element of the request body.",
+            "BundleIdCreateRequest": .rootSchema(
+                summary: "The request body you use to create a Bundle ID.",
                 children: [
-                    .attributes(
-                        summary: "Attributes whose values you're changing as part of the update request.",
-                        properties: [
-                            "availableInNewTerritories": "",
-                            "bundleId": "",
-                            "contentRightsDeclaration": "Possible values: DOES_NOT_USE_THIRD_PARTY_CONTENT, USES_THIRD_PARTY_CONTENT",
-                            "primaryLocale": "",
-                        ]),
+                    .createRequestDataAttributes(properties: [
+                        "identifier": "",
+                        "name": "",
+                        "platform": "",
+                        "seedId": "",
+                    ]),
                 ]),
+            "BundleIdUpdateRequest": .rootSchema(
+                summary: "The request body you use to update a Bundle ID.",
+                children: [.updateRequestDataAttributes(properties: ["name": ""])]),
+            "BundleIdPlatform": .enumObject(
+                summary: "Strings that represent the operating system intended for the bundle.",
+                cases: [
+                    "IOS": "A string that represents iOS.",
+                    "MAC_OS": "A string that represents macOS.",
+                ]),
+            "BundleIdResponse": .rootSchema(summary: "A response that contains a single Bundle IDs resource."),
+            "BundleIdsResponse": .rootSchema(summary: "A response that contains a list of Bundle ID resources."),
             "InAppPurchase": .rootSchema(
                 summary: "The data structure that represents the In-App Purchases resource.",
                 children: [
