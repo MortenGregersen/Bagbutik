@@ -1,14 +1,19 @@
 import Foundation
 
+/// The request body you use to create a Certificate.
 public struct CertificateCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "certificates" }
+        /// The resource's attributes.
         public let attributes: Attributes
 
         public init(attributes: Attributes) {
@@ -34,10 +39,10 @@ public struct CertificateCreateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            public let certificateType: CertificateType?
-            public let csrContent: String?
+            public let certificateType: CertificateType
+            public let csrContent: String
 
-            public init(certificateType: CertificateType? = nil, csrContent: String? = nil) {
+            public init(certificateType: CertificateType, csrContent: String) {
                 self.certificateType = certificateType
                 self.csrContent = csrContent
             }

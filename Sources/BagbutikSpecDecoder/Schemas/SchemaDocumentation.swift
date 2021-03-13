@@ -265,6 +265,42 @@ public extension Schema {
                     "USER_MANAGEMENT": "",
                     "APPLE_ID_AUTH": "",
                 ]),
+            "Certificate": .rootSchema(
+                summary: "The data structure that represents a Certificates resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe a Certificates resource.",
+                        properties: [
+                            "certificateContent": "",
+                            "displayName": "",
+                            "expirationDate": "",
+                            "name": "",
+                            "platform": "",
+                            "serialNumber": "",
+                            "certificateType": "",
+                        ]),
+                ]),
+            "CertificateCreateRequest": .rootSchema(
+                summary: "The request body you use to create a Certificate.",
+                children: [.createRequestDataAttributes(properties: [
+                    "certificateType": "",
+                    "csrContent": "",
+                ])]),
+            "CertificateResponse": .rootSchema(summary: "A response that contains a single Certificates resource."),
+            "CertificatesResponse": .rootSchema(summary: "A response that contains a list of Certificates resources."),
+            "CertificateType": .enumObject(
+                summary: "Literal values that represent types of signing certificates.",
+                cases: [
+                    "IOS_DEVELOPMENT": "",
+                    "IOS_DISTRIBUTION": "",
+                    "MAC_APP_DISTRIBUTION": "",
+                    "MAC_INSTALLER_DISTRIBUTION": "",
+                    "MAC_APP_DEVELOPMENT": "",
+                    "DEVELOPER_ID_KEXT": "",
+                    "DEVELOPER_ID_APPLICATION": "",
+                    "DEVELOPMENT": "",
+                    "DISTRIBUTION": "",
+                ]),
             "Platform": .rootSchema(summary: "Strings that represent Apple operating systems."),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
