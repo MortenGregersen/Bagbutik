@@ -1,9 +1,14 @@
 import Foundation
 
+/// The data structure that represents a Devices resource.
 public struct Device: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "devices" }
+    /// The resource's attributes.
     public let attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
@@ -36,6 +41,7 @@ public struct Device: Codable {
         case attributes
     }
 
+    /// Attributes that describe a Devices resource.
     public struct Attributes: Codable {
         public let addedDate: Date?
         public let deviceClass: DeviceClass?

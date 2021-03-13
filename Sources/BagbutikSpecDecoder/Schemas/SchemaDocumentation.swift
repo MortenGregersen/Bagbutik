@@ -301,6 +301,40 @@ public extension Schema {
                     "DEVELOPMENT": "",
                     "DISTRIBUTION": "",
                 ]),
+            "Device": .rootSchema(
+                summary: "The data structure that represents a Devices resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe a Devices resource.",
+                        properties: [
+                            "deviceClass": "",
+                            "model": "",
+                            "name": "",
+                            "platform": "",
+                            "status": "",
+                            "udid": "",
+                            "addedDate": "",
+                        ]),
+                ]),
+            "DeviceCreateRequest": .rootSchema(
+                summary: "The request body you use to create a Device.",
+                children: [
+                    .createRequestDataAttributes(properties: [
+                        "name": "",
+                        "platform": "",
+                        "udid": "",
+                    ]),
+                ]),
+            "DeviceResponse": .rootSchema(summary: "A response that contains a single Devices resource."),
+            "DevicesResponse": .rootSchema(summary: "A response that contains a list of Devices resources."),
+            "DeviceUpdateRequest": .rootSchema(
+                summary: "The request body you use to update a Device.",
+                children: [
+                    .updateRequestDataAttributes(properties: [
+                        "name": "",
+                        "status": "",
+                    ]),
+                ]),
             "Platform": .rootSchema(summary: "Strings that represent Apple operating systems."),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
