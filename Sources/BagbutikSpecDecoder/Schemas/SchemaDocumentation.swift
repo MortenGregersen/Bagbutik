@@ -158,6 +158,38 @@ public extension Schema {
                             "seedId": "",
                         ]),
                 ]),
+            "BundleIdCapabilitiesResponse": .rootSchema(
+                summary: "A response that contains a list of Bundle ID Capability resources."
+            ),
+            "BundleIdCapability": .rootSchema(
+                summary: "The data structure that represents a Bundle ID Capabilities resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe a Bundle ID Capabilities resource.",
+                        properties: [
+                            "capabilityType": "",
+                            "settings": "",
+                        ]),
+                ]),
+            "BundleIdCapabilityCreateRequest": .rootSchema(
+                summary: "The request body you use to create a Bundle ID Capability.",
+                children: [
+                    .createRequestDataAttributes(properties: [
+                        "capabilityType": "",
+                        "settings": "",
+                    ]),
+                ]),
+            "BundleIdCapabilityResponse": .rootSchema(
+                summary: "A response that contains a single Bundle ID Capabilities resource."
+            ),
+            "BundleIdCapabilityUpdateRequest": .rootSchema(
+                summary: "The request body you use to update a Bundle ID Capability.",
+                children: [
+                    .updateRequestDataAttributes(properties: [
+                        "capabilityType": "",
+                        "settings": "",
+                    ]),
+                ]),
             "BundleIdCreateRequest": .rootSchema(
                 summary: "The request body you use to create a Bundle ID.",
                 children: [
@@ -179,20 +211,60 @@ public extension Schema {
                 ]),
             "BundleIdResponse": .rootSchema(summary: "A response that contains a single Bundle IDs resource."),
             "BundleIdsResponse": .rootSchema(summary: "A response that contains a list of Bundle ID resources."),
-            "InAppPurchase": .rootSchema(
-                summary: "The data structure that represents the In-App Purchases resource.",
-                children: [
-                    .attributes(
-                        summary: "",
-                        properties: [
-                            "inAppPurchaseType": "Possible values: AUTOMATICALLY_RENEWABLE_SUBSCRIPTION, NON_CONSUMABLE, CONSUMABLE, NON_RENEWING_SUBSCRIPTION, FREE_SUBSCRIPTION",
-                            "productId": "",
-                            "referenceName": "",
-                            "state": "Possible values: CREATED, DEVELOPER_SIGNED_OFF, DEVELOPER_ACTION_NEEDED, DELETION_IN_PROGRESS, APPROVED, DELETED, REMOVED_FROM_SALE, DEVELOPER_REMOVED_FROM_SALE, WAITING_FOR_UPLOAD, PROCESSING_CONTENT, REPLACED, REJECTED, WAITING_FOR_SCREENSHOT, PREPARE_FOR_SUBMISSION, MISSING_METADATA, READY_TO_SUBMIT, WAITING_FOR_REVIEW, IN_REVIEW, PENDING_DEVELOPER_RELEASE",
-                        ]),
+            "CapabilityOption": .rootSchema(
+                summary: "An option within a capability setting.",
+                properties: [
+                    "description": "",
+                    "enabled": "",
+                    "enabledByDefault": "",
+                    "key": "",
+                    "name": "",
+                    "supportsWildcard": "",
                 ]),
-            "InAppPurchaseResponse": .rootSchema(summary: "A response that contains a single In-App Purchases resource."),
-            "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
+            "CapabilitySetting": .rootSchema(
+                summary: "An object that represents a capability setting for an app.",
+                properties: [
+                    "allowedInstances": "",
+                    "description": "",
+                    "enabledByDefault": "",
+                    "key": "",
+                    "name": "",
+                    "options": "",
+                    "visible": "",
+                    "minInstances": "",
+                ]),
+            "CapabilityType": .enumObject(
+                summary: "String that represents an app's capability type.",
+                cases: [
+                    "ICLOUD": "",
+                    "IN_APP_PURCHASE": "",
+                    "GAME_CENTER": "",
+                    "PUSH_NOTIFICATIONS": "",
+                    "WALLET": "",
+                    "INTER_APP_AUDIO": "",
+                    "MAPS": "",
+                    "ASSOCIATED_DOMAINS": "",
+                    "PERSONAL_VPN": "",
+                    "APP_GROUPS": "",
+                    "HEALTHKIT": "",
+                    "HOMEKIT": "",
+                    "WIRELESS_ACCESSORY_CONFIGURATION": "",
+                    "APPLE_PAY": "",
+                    "DATA_PROTECTION": "",
+                    "SIRIKIT": "",
+                    "NETWORK_EXTENSIONS": "",
+                    "MULTIPATH": "",
+                    "HOT_SPOT": "",
+                    "NFC_TAG_READING": "",
+                    "CLASSKIT": "",
+                    "AUTOFILL_CREDENTIAL_PROVIDER": "",
+                    "ACCESS_WIFI_INFORMATION": "",
+                    "NETWORK_CUSTOM_PROTOCOL": "",
+                    "COREMEDIA_HLS_LOW_LATENCY": "",
+                    "SYSTEM_EXTENSION_INSTALL": "",
+                    "USER_MANAGEMENT": "",
+                    "APPLE_ID_AUTH": "",
+                ]),
             "Platform": .rootSchema(summary: "Strings that represent Apple operating systems."),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",

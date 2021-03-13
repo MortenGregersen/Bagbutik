@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create a Bundle ID Capability.
 public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "bundleIdCapabilities" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -39,15 +45,16 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            public let capabilityType: CapabilityType?
+            public let capabilityType: CapabilityType
             public let settings: [CapabilitySetting]?
 
-            public init(capabilityType: CapabilityType? = nil, settings: [CapabilitySetting]? = nil) {
+            public init(capabilityType: CapabilityType, settings: [CapabilitySetting]? = nil) {
                 self.capabilityType = capabilityType
                 self.settings = settings
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let bundleId: BundleId
 
@@ -56,14 +63,18 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             }
 
             public struct BundleId: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "bundleIds" }
 
                     public init(id: String) {

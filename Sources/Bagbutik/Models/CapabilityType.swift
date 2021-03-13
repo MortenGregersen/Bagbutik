@@ -1,5 +1,6 @@
 import Foundation
 
+/// String that represents an app's capability type.
 public enum CapabilityType: String, Codable, CaseIterable {
     case iCloud = "ICLOUD"
     case inAppPurchase = "IN_APP_PURCHASE"

@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to update a Bundle ID Capability.
 public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "bundleIdCapabilities" }
+        /// The resource's attributes.
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -38,6 +44,7 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /// Attributes whose values you're changing as part of the update request.
         public struct Attributes: Codable {
             public let capabilityType: CapabilityType?
             public let settings: [CapabilitySetting]?

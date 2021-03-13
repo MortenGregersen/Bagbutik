@@ -1,5 +1,6 @@
 import Foundation
 
+/// An option within a capability setting.
 public struct CapabilityOption: Codable {
     public let description: String?
     public let enabled: Bool?

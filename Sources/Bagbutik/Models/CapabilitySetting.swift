@@ -1,5 +1,6 @@
 import Foundation
 
+/// An object that represents a capability setting for an app.
 public struct CapabilitySetting: Codable {
     public let allowedInstances: AllowedInstances?
     public let description: String?
