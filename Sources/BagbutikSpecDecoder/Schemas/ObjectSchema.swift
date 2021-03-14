@@ -78,11 +78,11 @@ public struct ObjectSchema: Decodable, Equatable {
         let rootSchemaDocumentation = Schema.Documentation.allDocumentation[codingPathComponents[0]]
         if codingPathComponents.count == 1 {
             return rootSchemaDocumentation
-        } else if case .rootSchema(_, _, let children) = rootSchemaDocumentation, codingPathComponents.count == 2, name == attributesName {
-            return children?.first {
-                guard case .attributes = $0 else { return false }
-                return true
-            }
+        } else if case .rootSchema(_, _, let possibleAttributes) = rootSchemaDocumentation,
+                  let attributes = possibleAttributes,
+                  codingPathComponents.count == 2, name == attributesName
+        {
+            return .attributes(attributes)
         } else if codingPathComponents.count >= 2, codingPathComponents[1] == relationshipsName {
             if codingPathComponents.count == 2 {
                 return .relationships
@@ -96,21 +96,25 @@ public struct ObjectSchema: Decodable, Equatable {
                 }
             }
         } else if codingPathComponents[0].hasSuffix("Request") {
+            let isUpdateRequest = codingPathComponents[0].hasSuffix("UpdateRequest")
             if codingPathComponents[0].hasSuffix("LinkagesRequest"), name == dataName {
                 return .linkagesRequestData
             } else if codingPathComponents.count == 2, name == dataName {
-                return .updateRequestData
-            } else if case .rootSchema(_, _, let children) = rootSchemaDocumentation, codingPathComponents.count == 3, name == attributesName {
-                return children?.first {
-                    guard case .updateRequestDataAttributes = $0 else { return false }
-                    return true
-                }
+                return isUpdateRequest ? .updateRequestData : .createRequestData
+            } else if case .createRequest(_, let attributes) = rootSchemaDocumentation,
+                      codingPathComponents.count == 3, name == attributesName
+            {
+                return .createRequestDataAttributes(attributes)
+            } else if case .updateRequest(_, let attributes) = rootSchemaDocumentation,
+                      codingPathComponents.count == 3, name == attributesName
+            {
+                return .updateRequestDataAttributes(attributes)
             } else if name == relationshipsName {
-                return .updateRequestDataRelationships
+                return isUpdateRequest ? .updateRequestDataRelationships : .updateRequestDataRelationships
             } else if codingPathComponents.count >= 4, codingPathComponents[3] == name {
-                return .updateRequestDataRelationship
+                return isUpdateRequest ? .updateRequestDataRelationship : .createRequestDataRelationship
             } else if codingPathComponents.count >= 5, name == dataName {
-                return .updateRequestDataRelationshipData
+                return isUpdateRequest ? .updateRequestDataRelationshipData : .createRequestDataRelationshipData
             }
         } else if codingPathComponents[0].hasSuffix("LinkagesResponse"), name == dataName {
             return .linkagesResponseData

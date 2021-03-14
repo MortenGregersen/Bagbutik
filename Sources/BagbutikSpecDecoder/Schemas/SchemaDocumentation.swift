@@ -1,19 +1,40 @@
 import Foundation
 
 public extension Schema {
+    struct AttributesDocumentation: Equatable {
+        let summary: String
+        let properties: [String: String]?
+
+        init(summary: String, properties: [String: String]? = nil) {
+            self.summary = summary
+            self.properties = properties
+        }
+    }
+
+    struct RequestDataAttributesDocumentaion: Equatable {
+        let properties: [String: String]?
+
+        init(properties: [String: String]? = nil) {
+            self.properties = properties
+        }
+    }
+
     enum Documentation: Equatable {
-        case rootSchema(summary: String, properties: [String: String]? = nil, children: [Documentation]? = nil)
-        case attributes(summary: String, properties: [String: String]? = nil)
+        case rootSchema(summary: String, properties: [String: String]? = nil, attributes: AttributesDocumentation? = nil)
+        case attributes(AttributesDocumentation)
         case relationships
         case relationship
         case relationshipData
         case relationshipLinks
-        case createRequestDataAttributes(properties: [String: String]? = nil)
+        case createRequest(summary: String, attributes: RequestDataAttributesDocumentaion)
+        case createRequestData
+        case createRequestDataAttributes(RequestDataAttributesDocumentaion)
         case createRequestDataRelationships
         case createRequestDataRelationship
         case createRequestDataRelationshipData
+        case updateRequest(summary: String, attributes: RequestDataAttributesDocumentaion)
         case updateRequestData
-        case updateRequestDataAttributes(properties: [String: String]? = nil)
+        case updateRequestDataAttributes(RequestDataAttributesDocumentaion)
         case updateRequestDataRelationships
         case updateRequestDataRelationship
         case updateRequestDataRelationshipData
@@ -27,8 +48,8 @@ public extension Schema {
             switch self {
             case .rootSchema(let summary, _, _):
                 return summary
-            case .attributes(let summary, _):
-                return summary
+            case .attributes(let documentation):
+                return documentation.summary
             case .relationships:
                 return "The relationships you included in the request and those on which you can operate."
             case .relationship:
@@ -37,6 +58,10 @@ public extension Schema {
                 return "The type and ID of a related resource."
             case .relationshipLinks:
                 return "The links to the related data and the relationship's self-link."
+            case .createRequest(let summary, _):
+                return summary
+            case .createRequestData:
+                return "The data element of the request body."
             case .createRequestDataAttributes:
                 return "Attributes that you set that describe the new resource."
             case .createRequestDataRelationships:
@@ -45,6 +70,8 @@ public extension Schema {
                 return nil
             case .createRequestDataRelationshipData:
                 return "The type and ID of the resource that you're relating with the resource you're creating."
+            case .updateRequest(let summary, _):
+                return summary
             case .updateRequestData:
                 return "The data element of the request body."
             case .updateRequestDataAttributes:
@@ -75,25 +102,28 @@ public extension Schema {
             switch self {
             case .rootSchema(_, let properties, _):
                 return propertiesMergedWithCommonProperties(properties)
-            case .attributes(_, let properties):
-                return propertiesMergedWithCommonProperties(properties)
+            case .attributes(let attributes):
+                return propertiesMergedWithCommonProperties(attributes.properties)
             case .relationships,
                  .relationshipData:
                 return Self.commonProperties
             case .relationship, .relationshipLinks:
                 return propertiesMergedWithCommonProperties(Self.relationshipProperties)
-            case .createRequestDataAttributes(let properties):
-                return propertiesMergedWithCommonProperties(properties)
-            case .createRequestDataRelationships,
+            case .createRequestDataAttributes(let attributes):
+                return propertiesMergedWithCommonProperties(attributes.properties)
+            case .createRequest(_, _),
+                 .createRequestData,
+                 .createRequestDataRelationships,
                  .createRequestDataRelationshipData:
                 return Self.commonProperties
             case .createRequestDataRelationship:
                 return propertiesMergedWithCommonProperties(Self.updateRequestDataRelationshipProperties)
             case .updateRequestData:
                 return propertiesMergedWithCommonProperties(Self.updateRequestProperties)
-            case .updateRequestDataAttributes(let properties):
-                return propertiesMergedWithCommonProperties(properties)
-            case .updateRequestDataRelationships,
+            case .updateRequestDataAttributes(let attributes):
+                return propertiesMergedWithCommonProperties(attributes.properties)
+            case .updateRequest(_, _),
+                 .updateRequestDataRelationships,
                  .updateRequestDataRelationshipData:
                 return Self.commonProperties
             case .updateRequestDataRelationship:
@@ -148,90 +178,88 @@ public extension Schema {
         static let allDocumentation: [String: Documentation] = [
             "AgeRatingDeclaration": .rootSchema(
                 summary: "The data structure that represents an Age Rating Declarations resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe an Age Rating Declarations resource.",
-                        properties: [
-                            "alcoholTobaccoOrDrugUseOrReferences": "",
-                            "gamblingAndContests": "",
-                            "kidsAgeBand": "",
-                            "medicalOrTreatmentInformation": "",
-                            "profanityOrCrudeHumor": "",
-                            "sexualContentOrNudity": "",
-                            "unrestrictedWebAccess": "",
-                            "gamblingSimulated": "",
-                            "horrorOrFearThemes": "",
-                            "matureOrSuggestiveThemes": "",
-                            "sexualContentGraphicAndNudity": "",
-                            "violenceCartoonOrFantasy": "",
-                            "violenceRealistic": "",
-                            "violenceRealisticProlongedGraphicOrSadistic": "",
-                        ]),
-                ]),
+                attributes: .init(
+                    summary: "Attributes that describe an Age Rating Declarations resource.",
+                    properties: [
+                        "alcoholTobaccoOrDrugUseOrReferences": "",
+                        "gamblingAndContests": "",
+                        "kidsAgeBand": "",
+                        "medicalOrTreatmentInformation": "",
+                        "profanityOrCrudeHumor": "",
+                        "sexualContentOrNudity": "",
+                        "unrestrictedWebAccess": "",
+                        "gamblingSimulated": "",
+                        "horrorOrFearThemes": "",
+                        "matureOrSuggestiveThemes": "",
+                        "sexualContentGraphicAndNudity": "",
+                        "violenceCartoonOrFantasy": "",
+                        "violenceRealistic": "",
+                        "violenceRealisticProlongedGraphicOrSadistic": "",
+                    ]
+                )
+            ),
             "App": .rootSchema(
                 summary: "The data structure that represents an Apps resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe an Apps resource.",
-                        properties: [
-                            "bundleId": "The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.",
-                            "name": "The name of your app as it will appear in the App Store. The maximum length is 30 characters.",
-                            "primaryLocale": "The primary locale for your app. If localized app information isn’t available in an App Store territory, the information from your primary language is used instead.",
-                            "sku": "A unique ID for your app that is not visible on the App Store.",
-                            "availableInNewTerritories": "",
-                            "contentRightsDeclaration": "",
-                            "isOrEverWasMadeForKids": "",
-                        ]),
-                ]),
+                attributes: .init(
+                    summary: "Attributes that describe an Apps resource.",
+                    properties: [
+                        "bundleId": "The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.",
+                        "name": "The name of your app as it will appear in the App Store. The maximum length is 30 characters.",
+                        "primaryLocale": "The primary locale for your app. If localized app information isn’t available in an App Store territory, the information from your primary language is used instead.",
+                        "sku": "A unique ID for your app that is not visible on the App Store.",
+                        "availableInNewTerritories": "",
+                        "contentRightsDeclaration": "",
+                        "isOrEverWasMadeForKids": "",
+                    ]
+                )
+            ),
             "AppBetaTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to remove beta testers from an app."),
             "AppInfo": .rootSchema(
                 summary: "The data structure that represent an App Infos resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe an App Infos resource.",
-                        properties: [
-                            "appStoreAgeRating": "",
-                            "appStoreState": "",
-                            "brazilAgeRating": "",
-                            "kidsAgeBand": "",
-                        ]),
-                ]),
+                attributes: .init(
+                    summary: "Attributes that describe an App Infos resource.",
+                    properties: [
+                        "appStoreAgeRating": "",
+                        "appStoreState": "",
+                        "brazilAgeRating": "",
+                        "kidsAgeBand": "",
+                    ]
+                )
+            ),
             "AppInfoLocalization": .rootSchema(
                 summary: "The data structure that represent an App Info Localizations resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe an App Info Localizations resource.",
-                        properties: [
-                            "locale": "",
-                            "name": "",
-                            "privacyPolicyText": "",
-                            "privacyPolicyUrl": "",
-                            "subtitle": "",
-                        ]),
-                ]),
-            "AppInfoLocalizationCreateRequest": .rootSchema(
-                summary: "The request body you use to create an App Info Localization.",
-                children: [
-                    .createRequestDataAttributes(properties: [
+                attributes: .init(
+                    summary: "Attributes that describe an App Info Localizations resource.",
+                    properties: [
                         "locale": "",
                         "name": "",
                         "privacyPolicyText": "",
                         "privacyPolicyUrl": "",
                         "subtitle": "",
-                    ]),
-                ]),
+                    ]
+                )
+            ),
+            "AppInfoLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Info Localization.",
+                attributes: .init(properties: [
+                    "locale": "",
+                    "name": "",
+                    "privacyPolicyText": "",
+                    "privacyPolicyUrl": "",
+                    "subtitle": "",
+                ])
+            ),
             "AppInfoLocalizationResponse": .rootSchema(summary: "A response that contains a single App Info Localizations resource."),
             "AppInfoLocalizationsResponse": .rootSchema(summary: "A response that contains a list of AppInfoLocalizations resources."),
-            "AppInfoLocalizationUpdateRequest": .rootSchema(
+            "AppInfoLocalizationUpdateRequest": .updateRequest(
                 summary: "The request body you use to update an App Info Localization.",
-                children: [
-                    .updateRequestDataAttributes(properties: [
-                        "name": "",
-                        "privacyPolicyText": "",
-                        "privacyPolicyUrl": "",
-                        "subtitle": "",
-                    ]),
-                ]),
+                attributes: .init(properties: [
+                    "name": "",
+                    "privacyPolicyText": "",
+                    "privacyPolicyUrl": "",
+                    "subtitle": "",
+                ])
+            ),
             "AppInfoResponse": .rootSchema(summary: "A response that contains a single App Infos resource."),
             "AppInfosResponse": .rootSchema(summary: "A response that contains a list of App Info resources."),
             "AppInfoUpdateRequest": .rootSchema(summary: "The request body you use to update an App Info."),
@@ -239,35 +267,34 @@ public extension Schema {
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
             "AppStoreVersion": .rootSchema(
                 summary: "The data structure that represent an App Store Versions resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe an App Store Versions resource.",
-                        properties: [
-                            "platform": "",
-                            "appStoreState": "",
-                            "copyright": "",
-                            "earliestReleaseDate": "",
-                            "releaseType": "",
-                            "usesIdfa": "",
-                            "versionString": "",
-                            "createdDate": "",
-                            "downloadable": "",
-                        ]),
-                ]),
-            "AppStoreVersionBuildLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a build to an App Store version."),
-            "AppStoreVersionBuildLinkageResponse": .linkagesResponse,
-            "AppStoreVersionCreateRequest": .rootSchema(
-                summary: "The request body you use to create an App Store Version.",
-                children: [
-                    .createRequestDataAttributes(properties: [
+                attributes: .init(
+                    summary: "Attributes that describe an App Store Versions resource.",
+                    properties: [
+                        "platform": "",
+                        "appStoreState": "",
                         "copyright": "",
                         "earliestReleaseDate": "",
-                        "platform": "",
                         "releaseType": "",
                         "usesIdfa": "",
                         "versionString": "",
-                    ]),
-                ]),
+                        "createdDate": "",
+                        "downloadable": "",
+                    ]
+                )
+            ),
+            "AppStoreVersionBuildLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a build to an App Store version."),
+            "AppStoreVersionBuildLinkageResponse": .linkagesResponse,
+            "AppStoreVersionCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Store Version.",
+                attributes: .init(properties: [
+                    "copyright": "",
+                    "earliestReleaseDate": "",
+                    "platform": "",
+                    "releaseType": "",
+                    "usesIdfa": "",
+                    "versionString": "",
+                ])
+            ),
             "AppStoreVersionResponse": .rootSchema(summary: "A response that contains a single App Store Versions resource."),
             "AppStoreVersionsResponse": .rootSchema(summary: "A response that contains a list of App Store Version resources."),
             "AppStoreVersionState": .enumObject(
@@ -290,92 +317,92 @@ public extension Schema {
                     "WAITING_FOR_EXPORT_COMPLIANCE": "",
                     "WAITING_FOR_REVIEW": "",
                     "REPLACED_WITH_NEW_VERSION": "",
-                ]),
-            "AppStoreVersionUpdateRequest": .rootSchema(
+                ]
+            ),
+            "AppStoreVersionUpdateRequest": .updateRequest(
                 summary: "The request body you use to update an App Store Version.",
-                children: [
-                    .updateRequestDataAttributes(properties: [
-                        "copyright": "",
-                        "earliestReleaseDate": "",
-                        "releaseType": "",
-                        "usesIdfa": "",
-                        "versionString": "",
-                        "downloadable": "",
-                    ]),
-                ]),
-            "AppUpdateRequest": .rootSchema(
+                attributes: .init(properties: [
+                    "copyright": "",
+                    "earliestReleaseDate": "",
+                    "releaseType": "",
+                    "usesIdfa": "",
+                    "versionString": "",
+                    "downloadable": "",
+                ])
+            ),
+            "AppUpdateRequest": .updateRequest(
                 summary: "The request body you use to update an App Update.",
-                children: [
-                    .updateRequestDataAttributes(properties: [
-                        "availableInNewTerritories": "",
-                        "bundleId": "",
-                        "contentRightsDeclaration": "",
-                        "primaryLocale": "",
-                    ]),
-                ]),
+                attributes: .init(properties: [
+                    "availableInNewTerritories": "",
+                    "bundleId": "",
+                    "contentRightsDeclaration": "",
+                    "primaryLocale": "",
+                ])
+            ),
             "BundleId": .rootSchema(
                 summary: "The data structure that represents a Bundle IDs resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe a Bundle IDs resource.",
-                        properties: [
-                            "identifier": "",
-                            "name": "",
-                            "platform": "",
-                            "seedId": "",
-                        ]),
-                ]),
+                attributes: .init(
+                    summary: "Attributes that describe a Bundle IDs resource.",
+                    properties: [
+                        "identifier": "",
+                        "name": "",
+                        "platform": "",
+                        "seedId": "",
+                    ]
+                )
+            ),
             "BundleIdCapabilitiesResponse": .rootSchema(
                 summary: "A response that contains a list of Bundle ID Capability resources."
             ),
             "BundleIdCapability": .rootSchema(
                 summary: "The data structure that represents a Bundle ID Capabilities resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe a Bundle ID Capabilities resource.",
-                        properties: [
-                            "capabilityType": "",
-                            "settings": "",
-                        ]),
-                ]),
-            "BundleIdCapabilityCreateRequest": .rootSchema(
-                summary: "The request body you use to create a Bundle ID Capability.",
-                children: [
-                    .createRequestDataAttributes(properties: [
+                attributes: .init(
+                    summary: "Attributes that describe a Bundle ID Capabilities resource.",
+                    properties: [
                         "capabilityType": "",
                         "settings": "",
-                    ]),
-                ]),
+                    ]
+                )
+            ),
+            "BundleIdCapabilityCreateRequest": .createRequest(
+                summary: "The request body you use to create a Bundle ID Capability.",
+                attributes: .init(properties: [
+                    "capabilityType": "",
+                    "settings": "",
+                ])
+            ),
             "BundleIdCapabilityResponse": .rootSchema(
                 summary: "A response that contains a single Bundle ID Capabilities resource."
             ),
-            "BundleIdCapabilityUpdateRequest": .rootSchema(
+            "BundleIdCapabilityUpdateRequest": .updateRequest(
                 summary: "The request body you use to update a Bundle ID Capability.",
-                children: [
-                    .updateRequestDataAttributes(properties: [
-                        "capabilityType": "",
-                        "settings": "",
-                    ]),
-                ]),
-            "BundleIdCreateRequest": .rootSchema(
+                attributes: .init(properties: [
+                    "capabilityType": "",
+                    "settings": "",
+                ])
+            ),
+            "BundleIdCreateRequest": .createRequest(
                 summary: "The request body you use to create a Bundle ID.",
-                children: [
-                    .createRequestDataAttributes(properties: [
-                        "identifier": "",
-                        "name": "",
-                        "platform": "",
-                        "seedId": "",
-                    ]),
-                ]),
-            "BundleIdUpdateRequest": .rootSchema(
+                attributes: .init(properties: [
+                    "identifier": "",
+                    "name": "",
+                    "platform": "",
+                    "seedId": "",
+                ])
+            ),
+            "BundleIdUpdateRequest": .updateRequest(
                 summary: "The request body you use to update a Bundle ID.",
-                children: [.updateRequestDataAttributes(properties: ["name": ""])]),
+                attributes: .init(properties: [
+                    "name": "",
+                ])
+            ),
             "BundleIdPlatform": .enumObject(
                 summary: "Strings that represent the operating system intended for the bundle.",
                 cases: [
                     "IOS": "A string that represents iOS.",
                     "MAC_OS": "A string that represents macOS.",
-                ]),
+                ]
+            ),
             "BundleIdResponse": .rootSchema(summary: "A response that contains a single Bundle IDs resource."),
             "BundleIdsResponse": .rootSchema(summary: "A response that contains a list of Bundle ID resources."),
             "CapabilityOption": .rootSchema(
@@ -387,7 +414,8 @@ public extension Schema {
                     "key": "",
                     "name": "",
                     "supportsWildcard": "",
-                ]),
+                ]
+            ),
             "CapabilitySetting": .rootSchema(
                 summary: "An object that represents a capability setting for an app.",
                 properties: [
@@ -399,7 +427,8 @@ public extension Schema {
                     "options": "",
                     "visible": "",
                     "minInstances": "",
-                ]),
+                ]
+            ),
             "CapabilityType": .enumObject(
                 summary: "String that represents an app's capability type.",
                 cases: [
@@ -431,28 +460,30 @@ public extension Schema {
                     "SYSTEM_EXTENSION_INSTALL": "",
                     "USER_MANAGEMENT": "",
                     "APPLE_ID_AUTH": "",
-                ]),
+                ]
+            ),
             "Certificate": .rootSchema(
                 summary: "The data structure that represents a Certificates resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe a Certificates resource.",
-                        properties: [
-                            "certificateContent": "",
-                            "displayName": "",
-                            "expirationDate": "",
-                            "name": "",
-                            "platform": "",
-                            "serialNumber": "",
-                            "certificateType": "",
-                        ]),
-                ]),
-            "CertificateCreateRequest": .rootSchema(
+                attributes: .init(
+                    summary: "Attributes that describe a Certificates resource.",
+                    properties: [
+                        "certificateContent": "",
+                        "displayName": "",
+                        "expirationDate": "",
+                        "name": "",
+                        "platform": "",
+                        "serialNumber": "",
+                        "certificateType": "",
+                    ]
+                )
+            ),
+            "CertificateCreateRequest": .createRequest(
                 summary: "The request body you use to create a Certificate.",
-                children: [.createRequestDataAttributes(properties: [
+                attributes: .init(properties: [
                     "certificateType": "",
                     "csrContent": "",
-                ])]),
+                ])
+            ),
             "CertificateResponse": .rootSchema(summary: "A response that contains a single Certificates resource."),
             "CertificatesResponse": .rootSchema(summary: "A response that contains a list of Certificates resources."),
             "CertificateType": .enumObject(
@@ -467,53 +498,52 @@ public extension Schema {
                     "DEVELOPER_ID_APPLICATION": "",
                     "DEVELOPMENT": "",
                     "DISTRIBUTION": "",
-                ]),
+                ]
+            ),
             "Device": .rootSchema(
                 summary: "The data structure that represents a Devices resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe a Devices resource.",
-                        properties: [
-                            "deviceClass": "",
-                            "model": "",
-                            "name": "",
-                            "platform": "",
-                            "status": "",
-                            "udid": "",
-                            "addedDate": "",
-                        ]),
-                ]),
-            "DeviceCreateRequest": .rootSchema(
-                summary: "The request body you use to create a Device.",
-                children: [
-                    .createRequestDataAttributes(properties: [
+                attributes: .init(
+                    summary: "Attributes that describe a Devices resource.",
+                    properties: [
+                        "deviceClass": "",
+                        "model": "",
                         "name": "",
                         "platform": "",
+                        "status": "",
                         "udid": "",
-                    ]),
-                ]),
+                        "addedDate": "",
+                    ]
+                )
+            ),
+            "DeviceCreateRequest": .createRequest(
+                summary: "The request body you use to create a Device.",
+                attributes: .init(properties: [
+                    "name": "",
+                    "platform": "",
+                    "udid": "",
+                ])
+            ),
             "DeviceResponse": .rootSchema(summary: "A response that contains a single Devices resource."),
             "DevicesResponse": .rootSchema(summary: "A response that contains a list of Devices resources."),
-            "DeviceUpdateRequest": .rootSchema(
+            "DeviceUpdateRequest": .updateRequest(
                 summary: "The request body you use to update a Device.",
-                children: [
-                    .updateRequestDataAttributes(properties: [
-                        "name": "",
-                        "status": "",
-                    ]),
-                ]),
+                attributes: .init(properties: [
+                    "name": "",
+                    "status": "",
+                ])
+            ),
             "InAppPurchase": .rootSchema(
                 summary: "The data structure that represents the In-App Purchases resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe an In-App Purchases resource.",
-                        properties: [
-                            "inAppPurchaseType": "",
-                            "productId": "",
-                            "referenceName": "",
-                            "state": "",
-                        ]),
-                ]),
+                attributes: .init(
+                    summary: "Attributes that describe an In-App Purchases resource.",
+                    properties: [
+                        "inAppPurchaseType": "",
+                        "productId": "",
+                        "referenceName": "",
+                        "state": "",
+                    ]
+                )
+            ),
             "InAppPurchaseResponse": .rootSchema(summary: "A response that contains a single In-App Purchases resource."),
             "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
             "Platform": .enumObject(
@@ -522,73 +552,71 @@ public extension Schema {
                     "IOS": "A string that represents iOS.",
                     "MAC_OS": "A string that represents macOS.",
                     "TV_OS": "A string that represents tvOS.",
-                ]),
+                ]
+            ),
             "Profile": .rootSchema(
                 summary: "The data structure that represents a Profiles resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe a Profiles resource.",
-                        properties: [
-                            "name": "",
-                            "platform": "",
-                            "profileContent": "",
-                            "uuid": "",
-                            "createdDate": "",
-                            "profileState": "",
-                            "profileType": "",
-                            "expirationDate": "",
-                        ]),
-                ]),
-            "ProfileCreateRequest": .rootSchema(
-                summary: "The request body you use to create a Profile.",
-                children: [
-                    .createRequestDataAttributes(properties: [
+                attributes: .init(
+                    summary: "Attributes that describe a Profiles resource.",
+                    properties: [
                         "name": "",
+                        "platform": "",
+                        "profileContent": "",
+                        "uuid": "",
+                        "createdDate": "",
+                        "profileState": "",
                         "profileType": "",
-                    ]),
-                ]),
+                        "expirationDate": "",
+                    ]
+                )
+            ),
+            "ProfileCreateRequest": .createRequest(
+                summary: "The request body you use to create a Profile.",
+                attributes: .init(properties: [
+                    "name": "",
+                    "profileType": "",
+                ])
+            ),
             "ProfileResponse": .rootSchema(summary: "A response that contains a single Profiles resource."),
             "ProfilesResponse": .rootSchema(summary: "A response that contains a list of Profiles resources."),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
-                children: [
-                    .attributes(
-                        summary: "Attributes that describe a Users resource.",
-                        properties: [
-                            "firstName": "The user's first name.",
-                            "lastName": "The user's last name.",
-                            "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                            "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                            "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
-                            "username": "The user's Apple ID.",
-                        ]),
-                ]),
+                attributes: .init(
+                    summary: "Attributes that describe a Users resource.",
+                    properties: [
+                        "firstName": "The user's first name.",
+                        "lastName": "The user's last name.",
+                        "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                        "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                        "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
+                        "username": "The user's Apple ID.",
+                    ]
+                )
+            ),
             "UserInvitation": .rootSchema(
                 summary: "The data structure that represents a User Invitations resource.",
-                children: [
-                    .attributes(summary: "Attributes that describe a User Invitations resource.",
-                                properties: [
-                                    "email": "The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.",
-                                    "firstName": "The first name of the user with the pending user invitation.",
-                                    "lastName": "The last name of the user with the pending user invitation.",
-                                    "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                                    "expirationDate": "The expiration date of the pending invitation.",
-                                    "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                                    "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
-                                ]),
-                ]),
-            "UserInvitationCreateRequest": .rootSchema(
+                attributes: .init(summary: "Attributes that describe a User Invitations resource.",
+                                  properties: [
+                                      "email": "The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.",
+                                      "firstName": "The first name of the user with the pending user invitation.",
+                                      "lastName": "The last name of the user with the pending user invitation.",
+                                      "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                                      "expirationDate": "The expiration date of the pending invitation.",
+                                      "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                                      "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
+                                  ])
+            ),
+            "UserInvitationCreateRequest": .createRequest(
                 summary: "The request body you use to create a User Invitation.",
-                children: [
-                    .createRequestDataAttributes(properties: [
-                        "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
-                        "email": "The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.",
-                        "firstName": "The user invitation recipient's first name.",
-                        "lastName": "The user invitation recipient's last name.",
-                        "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                        "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                    ]),
-                ]),
+                attributes: .init(properties: [
+                    "allAppsVisible": "A Boolean value that indicates whether a user has access to all apps available to the team.",
+                    "email": "The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.",
+                    "firstName": "The user invitation recipient's first name.",
+                    "lastName": "The user invitation recipient's last name.",
+                    "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                    "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                ])
+            ),
             "UserInvitationResponse": .rootSchema(summary: "A response that contains a single User Invitations resource."),
             "UserInvitationsResponse": .rootSchema(summary: "A response that contains a list of User Invitations resources."),
             "UserResponse": .rootSchema(summary: "A response that contains a single Users resource."),
@@ -606,18 +634,18 @@ public extension Schema {
                     "APP_MANAGER": "Manages all aspects of an app, such as pricing, App Store information, and app development and delivery.",
                     "ACCESS_TO_REPORTS": "Downloads reports associated with a role. The Access To Reports role is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If this permission is added, the user has access to all of your apps.",
                     "CUSTOMER_SUPPORT": "Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.",
-                ]),
+                ]
+            ),
             "UsersResponse": .rootSchema(summary: "A response that contains a list of Users resources."),
-            "UserUpdateRequest": .rootSchema(
+            "UserUpdateRequest": .updateRequest(
                 summary: "The request body you use to update a User.",
-                children: [
-                    .updateRequestDataAttributes(
-                        properties: [
-                            "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                            "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
-                            "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
-                        ]),
-                ]),
+                attributes: .init(
+                    properties: [
+                        "allAppsVisible": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                        "provisioningAllowed": "A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.",
+                        "roles": "Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.",
+                    ])
+            ),
             "UserVisibleAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove visible apps from a user."),
             "UserVisibleAppsLinkagesResponse": .linkagesResponse,
         ]
