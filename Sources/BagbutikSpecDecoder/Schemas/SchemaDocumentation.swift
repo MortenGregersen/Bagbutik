@@ -162,6 +162,21 @@ public extension Schema {
                         ]),
                 ]),
             "AppBetaTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to remove beta testers from an app."),
+            "AppInfo": .rootSchema(
+                summary: "The data structure that represent an App Infos resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe an App Infos resource.",
+                        properties: [
+                            "appStoreAgeRating": "",
+                            "appStoreState": "",
+                            "brazilAgeRating": "",
+                            "kidsAgeBand": "",
+                        ]),
+                ]),
+            "AppInfoResponse": .rootSchema(summary: "A response that contains a single App Infos resource."),
+            "AppInfosResponse": .rootSchema(summary: "A response that contains a list of App Info resources."),
+            "AppInfoUpdateRequest": .rootSchema(summary: "The request body you use to update an App Info."),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
             "AppUpdateRequest": .rootSchema(

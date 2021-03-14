@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to update an App Info.
 public struct AppInfoUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appInfos" }
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, relationships: Relationships? = nil) {
@@ -38,6 +44,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let primaryCategory: PrimaryCategory?
             public let primarySubcategoryOne: PrimarySubcategoryOne?
@@ -56,14 +63,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct PrimaryCategory: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appCategories" }
 
                     public init(id: String) {
@@ -91,14 +102,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct PrimarySubcategoryOne: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appCategories" }
 
                     public init(id: String) {
@@ -126,14 +141,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct PrimarySubcategoryTwo: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appCategories" }
 
                     public init(id: String) {
@@ -161,14 +180,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct SecondaryCategory: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appCategories" }
 
                     public init(id: String) {
@@ -196,14 +219,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct SecondarySubcategoryOne: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appCategories" }
 
                     public init(id: String) {
@@ -231,14 +258,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct SecondarySubcategoryTwo: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appCategories" }
 
                     public init(id: String) {
