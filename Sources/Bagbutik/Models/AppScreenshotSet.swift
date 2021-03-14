@@ -1,10 +1,16 @@
 import Foundation
 
+/// The data structure that represent an App Screenshot Sets resource.
 public struct AppScreenshotSet: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appScreenshotSets" }
+    /// The resource's attributes.
     public let attributes: Attributes?
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -41,6 +47,7 @@ public struct AppScreenshotSet: Codable {
         case relationships
     }
 
+    /// Attributes that describe an App Screenshot Sets resource.
     public struct Attributes: Codable {
         public let screenshotDisplayType: ScreenshotDisplayType?
 
@@ -49,6 +56,7 @@ public struct AppScreenshotSet: Codable {
         }
     }
 
+    /// The relationships you included in the request and those on which you can operate.
     public struct Relationships: Codable {
         public let appScreenshots: AppScreenshots?
         public let appStoreVersionLocalization: AppStoreVersionLocalization?
@@ -58,9 +66,13 @@ public struct AppScreenshotSet: Codable {
             self.appStoreVersionLocalization = appStoreVersionLocalization
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct AppScreenshots: Codable {
+            /// The type and ID of a related resource.
             public let data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public let links: Links?
+            /// Paging information for data responses.
             public let meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -69,8 +81,11 @@ public struct AppScreenshotSet: Codable {
                 self.meta = meta
             }
 
+            /// The type and ID of a related resource.
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appScreenshots" }
 
                 public init(id: String) {
@@ -96,8 +111,11 @@ public struct AppScreenshotSet: Codable {
                 }
             }
 
+            /// The links to the related data and the relationship's self-link.
             public struct Links: Codable {
+                /// The link to the related data.
                 public let related: String?
+                /// The relationship's self-link
                 public let `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
@@ -107,8 +125,11 @@ public struct AppScreenshotSet: Codable {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct AppStoreVersionLocalization: Codable {
+            /// The type and ID of a related resource.
             public let data: Data?
+            /// The links to the related data and the relationship's self-link.
             public let links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -116,8 +137,11 @@ public struct AppScreenshotSet: Codable {
                 self.links = links
             }
 
+            /// The type and ID of a related resource.
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appStoreVersionLocalizations" }
 
                 public init(id: String) {
@@ -143,8 +167,11 @@ public struct AppScreenshotSet: Codable {
                 }
             }
 
+            /// The links to the related data and the relationship's self-link.
             public struct Links: Codable {
+                /// The link to the related data.
                 public let related: String?
+                /// The relationship's self-link
                 public let `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {

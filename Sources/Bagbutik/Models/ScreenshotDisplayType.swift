@@ -1,5 +1,6 @@
 import Foundation
 
+/// String that represents the display type of an app screenshot.
 public enum ScreenshotDisplayType: String, Codable, CaseIterable {
     case appIphone65 = "APP_IPHONE_65"
     case appIphone58 = "APP_IPHONE_58"

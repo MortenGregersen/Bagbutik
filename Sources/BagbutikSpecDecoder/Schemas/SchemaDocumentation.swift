@@ -285,6 +285,21 @@ public extension Schema {
             ),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
+            "AppScreenshotSet": .rootSchema(
+                summary: "The data structure that represent an App Screenshot Sets resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Screenshot Sets resource.",
+                    properties: ["screenshotDisplayType": ""]
+                )
+            ),
+            "AppScreenshotSetAppScreenshotsLinkagesRequest": .linkagesRequest(summary: "A request body you use to reorder the screenshots in a screenshot set."),
+            "AppScreenshotSetAppScreenshotsLinkagesResponse": .linkagesResponse,
+            "AppScreenshotSetCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Screenshot Set.",
+                attributes: .init(properties: ["screenshotDisplayType": ""])
+            ),
+            "AppScreenshotSetResponse": .rootSchema(summary: "A response that contains a single App Screenshot Sets resource."),
+            "AppScreenshotSetsResponse": .rootSchema(summary: "A response that contains a list of App Screenshot Set resources."),
             "AppStoreVersion": .rootSchema(
                 summary: "The data structure that represent an App Store Versions resource.",
                 attributes: .init(
@@ -667,6 +682,36 @@ public extension Schema {
                     "sourceFileChecksum": "",
 
                 ])
+            ),
+            "ScreenshotDisplayType": .enumObject(
+                summary: "String that represents the display type of an app screenshot.",
+                cases: [
+                    "APP_IPHONE_65": "",
+                    "APP_IPHONE_58": "",
+                    "APP_IPHONE_55": "",
+                    "APP_IPHONE_47": "",
+                    "APP_IPHONE_40": "",
+                    "APP_IPHONE_35": "",
+                    "APP_IPAD_PRO_3GEN_129": "",
+                    "APP_IPAD_PRO_3GEN_11": "",
+                    "APP_IPAD_PRO_129": "",
+                    "APP_IPAD_105": "",
+                    "APP_IPAD_97": "",
+                    "APP_DESKTOP": "",
+                    "APP_WATCH_SERIES_4": "",
+                    "APP_WATCH_SERIES_3": "",
+                    "APP_APPLE_TV": "",
+                    "IMESSAGE_APP_IPHONE_65": "",
+                    "IMESSAGE_APP_IPHONE_58": "",
+                    "IMESSAGE_APP_IPHONE_55": "",
+                    "IMESSAGE_APP_IPHONE_47": "",
+                    "IMESSAGE_APP_IPHONE_40": "",
+                    "IMESSAGE_APP_IPAD_PRO_3GEN_129": "",
+                    "IMESSAGE_APP_IPAD_PRO_3GEN_11": "",
+                    "IMESSAGE_APP_IPAD_PRO_129": "",
+                    "IMESSAGE_APP_IPAD_105": "",
+                    "IMESSAGE_APP_IPAD_97": "",
+                ]
             ),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
