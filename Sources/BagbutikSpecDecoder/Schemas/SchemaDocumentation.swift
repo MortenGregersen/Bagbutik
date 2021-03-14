@@ -285,6 +285,38 @@ public extension Schema {
             ),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
+            "AppScreenshot": .rootSchema(
+                summary: "The data structure that represent an App Screenshots resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Screenshots resource.",
+                    properties: [
+                        "assetDeliveryState": "",
+                        "assetToken": "",
+                        "assetType": "",
+                        "fileName": "",
+                        "fileSize": "",
+                        "imageAsset": "",
+                        "sourceFileChecksum": "",
+                        "uploadOperations": "",
+                    ]
+                )
+            ),
+            "AppScreenshotCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Screenshot.",
+                attributes: .init(properties: [
+                    "fileName": "",
+                    "fileSize": "",
+                ])
+            ),
+            "AppScreenshotResponse": .rootSchema(summary: "A response that contains a single App Screenshots resource."),
+            "AppScreenshotsResponse": .rootSchema(summary: "A response that contains a list of App Screenshots resources."),
+            "AppScreenshotUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Screenshot.",
+                attributes: .init(properties: [
+                    "uploaded": "",
+                    "sourceFileChecksum": "",
+                ])
+            ),
             "AppScreenshotSet": .rootSchema(
                 summary: "The data structure that represent an App Screenshot Sets resource.",
                 attributes: .init(
@@ -711,6 +743,23 @@ public extension Schema {
                     "IMESSAGE_APP_IPAD_PRO_129": "",
                     "IMESSAGE_APP_IPAD_105": "",
                     "IMESSAGE_APP_IPAD_97": "",
+                ]
+            ),
+            "UploadOperation": .rootSchema(
+                summary: "Upload instructions for assets such as app previews and app screenshots.",
+                properties: [
+                    "length": "",
+                    "method": "",
+                    "offset": "",
+                    "requestHeaders": "",
+                    "url": "",
+                ]
+            ),
+            "UploadOperationHeader": .rootSchema(
+                summary: "A request header that is part of an upload operation.",
+                properties: [
+                    "name": "",
+                    "value": "",
                 ]
             ),
             "User": .rootSchema(

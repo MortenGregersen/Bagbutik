@@ -1,5 +1,6 @@
 import Foundation
 
+/// Upload instructions for assets such as app previews and app screenshots.
 public struct UploadOperation: Codable {
     public let length: Int?
     public let method: String?
