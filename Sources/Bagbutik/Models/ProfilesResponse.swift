@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of Profiles resources.
 public struct ProfilesResponse: Codable {
+    /// The resource data.
     public let data: [Profile]
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [Profile], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

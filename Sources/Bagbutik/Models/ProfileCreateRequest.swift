@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create a Profile.
 public struct ProfileCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "profiles" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -39,10 +45,10 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            public let name: String?
-            public let profileType: ProfileType?
+            public let name: String
+            public let profileType: ProfileType
 
-            public init(name: String? = nil, profileType: ProfileType? = nil) {
+            public init(name: String, profileType: ProfileType) {
                 self.name = name
                 self.profileType = profileType
             }
@@ -55,16 +61,17 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 case macAppDevelopment = "MAC_APP_DEVELOPMENT"
                 case macAppStore = "MAC_APP_STORE"
                 case macAppDirect = "MAC_APP_DIRECT"
-                case tvosAppDevelopment = "TVOS_APP_DEVELOPMENT"
-                case tvosAppStore = "TVOS_APP_STORE"
-                case tvosAppAdhoc = "TVOS_APP_ADHOC"
-                case tvosAppInhouse = "TVOS_APP_INHOUSE"
+                case tvOSAppDevelopment = "TVOS_APP_DEVELOPMENT"
+                case tvOSAppStore = "TVOS_APP_STORE"
+                case tvOSAppAdhoc = "TVOS_APP_ADHOC"
+                case tvOSAppInhouse = "TVOS_APP_INHOUSE"
                 case macCatalystAppDevelopment = "MAC_CATALYST_APP_DEVELOPMENT"
                 case macCatalystAppStore = "MAC_CATALYST_APP_STORE"
                 case macCatalystAppDirect = "MAC_CATALYST_APP_DIRECT"
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let bundleId: BundleId
             public let certificates: Certificates
@@ -77,14 +84,18 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             public struct BundleId: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "bundleIds" }
 
                     public init(id: String) {
@@ -112,14 +123,18 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             public struct Certificates: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "certificates" }
 
                     public init(id: String) {
@@ -147,14 +162,18 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             public struct Devices: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "devices" }
 
                     public init(id: String) {

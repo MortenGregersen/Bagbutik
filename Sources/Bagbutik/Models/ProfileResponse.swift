@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single Profiles resource.
 public struct ProfileResponse: Codable {
+    /// The resource data.
     public let data: Profile
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Profile, included: [Included]? = nil, links: DocumentLinks) {

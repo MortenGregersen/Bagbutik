@@ -382,8 +382,34 @@ public extension Schema {
                 cases: [
                     "IOS": "A string that represents iOS.",
                     "MAC_OS": "A string that represents macOS.",
-                    "TV_OS": "A string that represents tvOS."
+                    "TV_OS": "A string that represents tvOS.",
                 ]),
+            "Profile": .rootSchema(
+                summary: "The data structure that represents a Profiles resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe a Profiles resource.",
+                        properties: [
+                            "name": "",
+                            "platform": "",
+                            "profileContent": "",
+                            "uuid": "",
+                            "createdDate": "",
+                            "profileState": "",
+                            "profileType": "",
+                            "expirationDate": "",
+                        ]),
+                ]),
+            "ProfileCreateRequest": .rootSchema(
+                summary: "The request body you use to create a Profile.",
+                children: [
+                    .createRequestDataAttributes(properties: [
+                        "name": "",
+                        "profileType": "",
+                    ]),
+                ]),
+            "ProfileResponse": .rootSchema(summary: "A response that contains a single Profiles resource."),
+            "ProfilesResponse": .rootSchema(summary: "A response that contains a list of Profiles resources."),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
                 children: [
