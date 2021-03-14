@@ -1,5 +1,6 @@
 import Foundation
 
+/// An error code and description.
 public struct AppMediaStateError: Codable {
     public let code: String?
     public let description: String?

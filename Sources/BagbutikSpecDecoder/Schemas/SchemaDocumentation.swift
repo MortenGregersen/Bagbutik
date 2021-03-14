@@ -268,6 +268,21 @@ public extension Schema {
             "AppInfoResponse": .rootSchema(summary: "A response that contains a single App Infos resource."),
             "AppInfosResponse": .rootSchema(summary: "A response that contains a list of App Info resources."),
             "AppInfoUpdateRequest": .rootSchema(summary: "The request body you use to update an App Info."),
+            "AppMediaAssetState": .rootSchema(
+                summary: "The state of an app or media upload, including any errors and warnings.",
+                properties: [
+                    "errors": "",
+                    "state": "",
+                    "warnings": "",
+                ]
+            ),
+            "AppMediaStateError": .rootSchema(
+                summary: "An error code and description.",
+                properties: [
+                    "code": "",
+                    "description": "",
+                ]
+            ),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
             "AppStoreVersion": .rootSchema(
@@ -624,6 +639,35 @@ public extension Schema {
             ),
             "ProfileResponse": .rootSchema(summary: "A response that contains a single Profiles resource."),
             "ProfilesResponse": .rootSchema(summary: "A response that contains a list of Profiles resources."),
+            "RoutingAppCoverage": .rootSchema(
+                summary: "The data structure that represents the Routing App Coverages resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Routing App Coverages resource.",
+                    properties: [
+                        "assetDeliveryState": "",
+                        "fileName": "",
+                        "fileSize": "",
+                        "sourceFileChecksum": "",
+                        "uploadOperations": "",
+                    ]
+                )
+            ),
+            "RoutingAppCoverageCreateRequest": .createRequest(
+                summary: "The request body you use to create a Routing App Coverage.",
+                attributes: .init(properties: [
+                    "fileName": "",
+                    "fileSize": "",
+                ])
+            ),
+            "RoutingAppCoverageResponse": .rootSchema(summary: "A response that contains a single Routing App Coverages resource."),
+            "RoutingAppCoverageUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Routing App Coverage.",
+                attributes: .init(properties: [
+                    "uploaded": "",
+                    "sourceFileChecksum": "",
+
+                ])
+            ),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
                 attributes: .init(

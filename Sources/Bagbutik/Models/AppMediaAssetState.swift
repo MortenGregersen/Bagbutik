@@ -1,5 +1,6 @@
 import Foundation
 
+/// The state of an app or media upload, including any errors and warnings.
 public struct AppMediaAssetState: Codable {
     public let errors: [AppMediaStateError]?
     public let state: State?
