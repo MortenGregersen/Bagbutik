@@ -109,15 +109,16 @@ public extension Schema {
                 return Self.commonProperties
             case .relationship, .relationshipLinks:
                 return propertiesMergedWithCommonProperties(Self.relationshipProperties)
+            case .createRequestData:
+                return propertiesMergedWithCommonProperties(Self.createRequestProperties)
             case .createRequestDataAttributes(let attributes):
                 return propertiesMergedWithCommonProperties(attributes.properties)
             case .createRequest(_, _),
-                 .createRequestData,
                  .createRequestDataRelationships,
                  .createRequestDataRelationshipData:
                 return Self.commonProperties
             case .createRequestDataRelationship:
-                return propertiesMergedWithCommonProperties(Self.updateRequestDataRelationshipProperties)
+                return propertiesMergedWithCommonProperties(Self.createRequestDataRelationshipProperties)
             case .updateRequestData:
                 return propertiesMergedWithCommonProperties(Self.updateRequestProperties)
             case .updateRequestDataAttributes(let attributes):
@@ -153,6 +154,10 @@ public extension Schema {
             "meta": "Paging information for data responses.",
             "related": "The link to the related data.",
             "self": "The relationship's self-link",
+        ]
+
+        private static let createRequestProperties: [String: String] = [
+            "relationships": "The relationships to other resources that you can set with this request.",
         ]
 
         private static let updateRequestProperties: [String: String] = [
