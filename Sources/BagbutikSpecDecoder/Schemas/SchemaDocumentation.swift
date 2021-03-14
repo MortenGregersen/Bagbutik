@@ -300,6 +300,46 @@ public extension Schema {
                     "versionString": "",
                 ])
             ),
+            "AppStoreVersionLocalization": .rootSchema(
+                summary: "The data structure that represent an App Store Version Localizations resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Store Version Localizations resource.",
+                    properties: [
+                        "description": "",
+                        "keywords": "",
+                        "locale": "",
+                        "marketingUrl": "",
+                        "promotionalText": "",
+                        "supportUrl": "",
+                        "whatsNew": "",
+                    ]
+                )
+            ),
+            "AppStoreVersionLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Store Version Localization.",
+                attributes: .init(properties: [
+                    "description": "",
+                    "keywords": "",
+                    "locale": "",
+                    "marketingUrl": "",
+                    "promotionalText": "",
+                    "supportUrl": "",
+                    "whatsNew": "",
+                ])
+            ),
+            "AppStoreVersionLocalizationResponse": .rootSchema(summary: "A response that contains a single App Store Version Localizations resource."),
+            "AppStoreVersionLocalizationsResponse": .rootSchema(summary: "A response that contains a list of App Store Version Localization resources."),
+            "AppStoreVersionLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Store Version Localization",
+                attributes: .init(properties: [
+                    "description": "",
+                    "keywords": "",
+                    "marketingUrl": "",
+                    "promotionalText": "",
+                    "supportUrl": "",
+                    "whatsNew": "",
+                ])
+            ),
             "AppStoreVersionResponse": .rootSchema(summary: "A response that contains a single App Store Versions resource."),
             "AppStoreVersionsResponse": .rootSchema(summary: "A response that contains a list of App Store Version resources."),
             "AppStoreVersionState": .enumObject(

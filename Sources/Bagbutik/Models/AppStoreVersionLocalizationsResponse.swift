@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of App Store Version Localization resources.
 public struct AppStoreVersionLocalizationsResponse: Codable {
+    /// The resource data.
     public let data: [AppStoreVersionLocalization]
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppStoreVersionLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
