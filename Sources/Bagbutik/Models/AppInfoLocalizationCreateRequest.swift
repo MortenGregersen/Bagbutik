@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create an App Info Localization.
 public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appInfoLocalizations" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -39,13 +45,13 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            public let locale: String?
+            public let locale: String
             public let name: String?
             public let privacyPolicyText: String?
             public let privacyPolicyUrl: String?
             public let subtitle: String?
 
-            public init(locale: String? = nil, name: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
+            public init(locale: String, name: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
                 self.locale = locale
                 self.name = name
                 self.privacyPolicyText = privacyPolicyText
@@ -54,6 +60,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let appInfo: AppInfo
 
@@ -62,14 +69,18 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
             }
 
             public struct AppInfo: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appInfos" }
 
                     public init(id: String) {

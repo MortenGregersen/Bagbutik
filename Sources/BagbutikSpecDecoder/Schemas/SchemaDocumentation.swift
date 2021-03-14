@@ -174,6 +174,42 @@ public extension Schema {
                             "kidsAgeBand": "",
                         ]),
                 ]),
+            "AppInfoLocalization": .rootSchema(
+                summary: "The data structure that represent an App Info Localizations resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe an App Info Localizations resource.",
+                        properties: [
+                            "locale": "",
+                            "name": "",
+                            "privacyPolicyText": "",
+                            "privacyPolicyUrl": "",
+                            "subtitle": "",
+                        ]),
+                ]),
+            "AppInfoLocalizationCreateRequest": .rootSchema(
+                summary: "The request body you use to create an App Info Localization.",
+                children: [
+                    .createRequestDataAttributes(properties: [
+                        "locale": "",
+                        "name": "",
+                        "privacyPolicyText": "",
+                        "privacyPolicyUrl": "",
+                        "subtitle": "",
+                    ]),
+                ]),
+            "AppInfoLocalizationResponse": .rootSchema(summary: "A response that contains a single App Info Localizations resource."),
+            "AppInfoLocalizationsResponse": .rootSchema(summary: "A response that contains a list of AppInfoLocalizations resources."),
+            "AppInfoLocalizationUpdateRequest": .rootSchema(
+                summary: "The request body you use to update an App Info Localization.",
+                children: [
+                    .updateRequestDataAttributes(properties: [
+                        "name": "",
+                        "privacyPolicyText": "",
+                        "privacyPolicyUrl": "",
+                        "subtitle": "",
+                    ]),
+                ]),
             "AppInfoResponse": .rootSchema(summary: "A response that contains a single App Infos resource."),
             "AppInfosResponse": .rootSchema(summary: "A response that contains a list of App Info resources."),
             "AppInfoUpdateRequest": .rootSchema(summary: "The request body you use to update an App Info."),
