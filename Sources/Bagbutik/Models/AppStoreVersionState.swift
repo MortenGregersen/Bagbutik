@@ -1,5 +1,6 @@
 import Foundation
 
+/// String that represents the state of an app version in the App Store.
 public enum AppStoreVersionState: String, Codable, CaseIterable {
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
     case developerRejected = "DEVELOPER_REJECTED"

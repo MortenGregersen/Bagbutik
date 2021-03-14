@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single App Store Versions resource.
 public struct AppStoreVersionResponse: Codable {
+    /// The resource data.
     public let data: AppStoreVersion
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppStoreVersion, included: [Included]? = nil, links: DocumentLinks) {

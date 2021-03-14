@@ -1,9 +1,14 @@
 import Foundation
 
+/// The data structure that represents an Age Rating Declarations resource.
 public struct AgeRatingDeclaration: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "ageRatingDeclarations" }
+    /// The resource's attributes.
     public let attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
@@ -36,6 +41,7 @@ public struct AgeRatingDeclaration: Codable {
         case attributes
     }
 
+    /// Attributes that describe an Age Rating Declarations resource.
     public struct Attributes: Codable {
         public let alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
         public let gamblingAndContests: Bool?

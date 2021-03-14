@@ -146,6 +146,28 @@ public extension Schema {
         ]
 
         static let allDocumentation: [String: Documentation] = [
+            "AgeRatingDeclaration": .rootSchema(
+                summary: "The data structure that represents an Age Rating Declarations resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe an Age Rating Declarations resource.",
+                        properties: [
+                            "alcoholTobaccoOrDrugUseOrReferences": "",
+                            "gamblingAndContests": "",
+                            "kidsAgeBand": "",
+                            "medicalOrTreatmentInformation": "",
+                            "profanityOrCrudeHumor": "",
+                            "sexualContentOrNudity": "",
+                            "unrestrictedWebAccess": "",
+                            "gamblingSimulated": "",
+                            "horrorOrFearThemes": "",
+                            "matureOrSuggestiveThemes": "",
+                            "sexualContentGraphicAndNudity": "",
+                            "violenceCartoonOrFantasy": "",
+                            "violenceRealistic": "",
+                            "violenceRealisticProlongedGraphicOrSadistic": "",
+                        ]),
+                ]),
             "App": .rootSchema(
                 summary: "The data structure that represents an Apps resource.",
                 children: [
@@ -215,6 +237,72 @@ public extension Schema {
             "AppInfoUpdateRequest": .rootSchema(summary: "The request body you use to update an App Info."),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
+            "AppStoreVersion": .rootSchema(
+                summary: "The data structure that represent an App Store Versions resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe an App Store Versions resource.",
+                        properties: [
+                            "platform": "",
+                            "appStoreState": "",
+                            "copyright": "",
+                            "earliestReleaseDate": "",
+                            "releaseType": "",
+                            "usesIdfa": "",
+                            "versionString": "",
+                            "createdDate": "",
+                            "downloadable": "",
+                        ]),
+                ]),
+            "AppStoreVersionBuildLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a build to an App Store version."),
+            "AppStoreVersionBuildLinkageResponse": .linkagesResponse,
+            "AppStoreVersionCreateRequest": .rootSchema(
+                summary: "The request body you use to create an App Store Version.",
+                children: [
+                    .createRequestDataAttributes(properties: [
+                        "copyright": "",
+                        "earliestReleaseDate": "",
+                        "platform": "",
+                        "releaseType": "",
+                        "usesIdfa": "",
+                        "versionString": "",
+                    ]),
+                ]),
+            "AppStoreVersionResponse": .rootSchema(summary: "A response that contains a single App Store Versions resource."),
+            "AppStoreVersionsResponse": .rootSchema(summary: "A response that contains a list of App Store Version resources."),
+            "AppStoreVersionState": .enumObject(
+                summary: "String that represents the state of an app version in the App Store.",
+                cases: [
+                    "DEVELOPER_REMOVED_FROM_SALE": "",
+                    "DEVELOPER_REJECTED": "",
+                    "IN_REVIEW": "",
+                    "INVALID_BINARY": "",
+                    "METADATA_REJECTED": "",
+                    "PENDING_APPLE_RELEASE": "",
+                    "PENDING_CONTRACT": "",
+                    "PENDING_DEVELOPER_RELEASE": "",
+                    "PREPARE_FOR_SUBMISSION": "",
+                    "PREORDER_READY_FOR_SALE": "",
+                    "PROCESSING_FOR_APP_STORE": "",
+                    "READY_FOR_SALE": "",
+                    "REJECTED": "",
+                    "REMOVED_FROM_SALE": "",
+                    "WAITING_FOR_EXPORT_COMPLIANCE": "",
+                    "WAITING_FOR_REVIEW": "",
+                    "REPLACED_WITH_NEW_VERSION": "",
+                ]),
+            "AppStoreVersionUpdateRequest": .rootSchema(
+                summary: "The request body you use to update an App Store Version.",
+                children: [
+                    .updateRequestDataAttributes(properties: [
+                        "copyright": "",
+                        "earliestReleaseDate": "",
+                        "releaseType": "",
+                        "usesIdfa": "",
+                        "versionString": "",
+                        "downloadable": "",
+                    ]),
+                ]),
             "AppUpdateRequest": .rootSchema(
                 summary: "The request body you use to update an App Update.",
                 children: [

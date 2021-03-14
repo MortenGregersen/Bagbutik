@@ -1,16 +1,23 @@
 import Foundation
 
+/// The request body you use to update an App Store Version.
 public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appStoreVersions" }
+        /// The resource's attributes.
         public let attributes: Attributes?
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -43,6 +50,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes whose values you're changing as part of the update request.
         public struct Attributes: Codable {
             public let copyright: String?
             public let downloadable: Bool?
@@ -67,6 +75,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let build: Build?
 
@@ -75,14 +84,18 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {

@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create an App Store Version.
 public struct AppStoreVersionCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appStoreVersions" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -41,12 +47,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
         public struct Attributes: Codable {
             public let copyright: String?
             public let earliestReleaseDate: Date?
-            public let platform: Platform?
+            public let platform: Platform
             public let releaseType: ReleaseType?
             public let usesIdfa: Bool?
-            public let versionString: String?
+            public let versionString: String
 
-            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform? = nil, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String? = nil) {
+            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String) {
                 self.copyright = copyright
                 self.earliestReleaseDate = earliestReleaseDate
                 self.platform = platform
@@ -62,6 +68,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let app: App
             public let build: Build?
@@ -72,14 +79,18 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct App: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "apps" }
 
                     public init(id: String) {
@@ -107,14 +118,18 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {
