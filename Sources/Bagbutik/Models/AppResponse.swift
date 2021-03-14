@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single Apps resource.
 public struct AppResponse: Codable {
+    /// The resource data.
     public let data: App
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: App, included: [Included]? = nil, links: DocumentLinks) {

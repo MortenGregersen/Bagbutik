@@ -146,6 +146,34 @@ public extension Schema {
         ]
 
         static let allDocumentation: [String: Documentation] = [
+            "App": .rootSchema(
+                summary: "The data structure that represents an Apps resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe an Apps resource.",
+                        properties: [
+                            "bundleId": "The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.",
+                            "name": "The name of your app as it will appear in the App Store. The maximum length is 30 characters.",
+                            "primaryLocale": "The primary locale for your app. If localized app information isn’t available in an App Store territory, the information from your primary language is used instead.",
+                            "sku": "A unique ID for your app that is not visible on the App Store.",
+                            "availableInNewTerritories": "",
+                            "contentRightsDeclaration": "",
+                            "isOrEverWasMadeForKids": "",
+                        ]),
+                ]),
+            "AppBetaTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to remove beta testers from an app."),
+            "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
+            "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
+            "AppUpdateRequest": .rootSchema(
+                summary: "The request body you use to update an App Update.",
+                children: [
+                    .updateRequestDataAttributes(properties: [
+                        "availableInNewTerritories": "",
+                        "bundleId": "",
+                        "contentRightsDeclaration": "",
+                        "primaryLocale": "",
+                    ]),
+                ]),
             "BundleId": .rootSchema(
                 summary: "The data structure that represents a Bundle IDs resource.",
                 children: [
@@ -335,7 +363,27 @@ public extension Schema {
                         "status": "",
                     ]),
                 ]),
-            "Platform": .rootSchema(summary: "Strings that represent Apple operating systems."),
+            "InAppPurchase": .rootSchema(
+                summary: "The data structure that represents the In-App Purchases resource.",
+                children: [
+                    .attributes(
+                        summary: "Attributes that describe an In-App Purchases resource.",
+                        properties: [
+                            "inAppPurchaseType": "",
+                            "productId": "",
+                            "referenceName": "",
+                            "state": "",
+                        ]),
+                ]),
+            "InAppPurchaseResponse": .rootSchema(summary: "A response that contains a single In-App Purchases resource."),
+            "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
+            "Platform": .enumObject(
+                summary: "Strings that represent Apple operating systems.",
+                cases: [
+                    "IOS": "A string that represents iOS.",
+                    "MAC_OS": "A string that represents macOS.",
+                    "TV_OS": "A string that represents tvOS."
+                ]),
             "User": .rootSchema(
                 summary: "The data structure that represents a Users resource.",
                 children: [
