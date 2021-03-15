@@ -960,6 +960,18 @@ public extension Schema {
                     "TV_OS": "A string that represents tvOS.",
                 ]
             ),
+            "PrereleaseVersion": .rootSchema(
+                summary: "The data structure that represents a Prerelease Versions resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Prerelease Versions resource.",
+                    properties: [
+                        "platform": "The platform of the prerelease version of your app.",
+                        "version": "The version number of the prerelease version of your app.",
+                    ]
+                )
+            ),
+            "PrereleaseVersionResponse": .rootSchema(summary: "A response that contains a single Prerelease Versions resource."),
+            "PreReleaseVersionsResponse": .rootSchema(summary: "A response that contains a list of Pre-Release Version resources."),
             "PreviewType": .enumObject(
                 summary: "String that represents the display type of an app preview.",
                 cases: [

@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single Prerelease Versions resource.
 public struct PrereleaseVersionResponse: Codable {
+    /// The resource data.
     public let data: PrereleaseVersion
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: PrereleaseVersion, included: [Included]? = nil, links: DocumentLinks) {

@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of Pre-Release Version resources.
 public struct PreReleaseVersionsResponse: Codable {
+    /// The resource data.
     public let data: [PrereleaseVersion]
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [PrereleaseVersion], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
