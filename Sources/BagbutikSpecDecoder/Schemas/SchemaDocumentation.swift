@@ -283,6 +283,21 @@ public extension Schema {
                     "description": "",
                 ]
             ),
+            "AppPreviewSet": .rootSchema(
+                summary: "The data structure that represent an App Preview Sets resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Preview Sets resource.",
+                    properties: ["previewType": ""]
+                )
+            ),
+            "AppPreviewSetAppPreviewsLinkagesRequest": .linkagesRequest(summary: "A request body you use to reorder the app previews in a preview set."),
+            "AppPreviewSetAppPreviewsLinkagesResponse": .linkagesResponse,
+            "AppPreviewSetCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Preview Set.",
+                attributes: .init(properties: ["previewType": ""])
+            ),
+            "AppPreviewSetResponse": .rootSchema(summary: "A response that contains a single App Preview Sets resource."),
+            "AppPreviewSetsResponse": .rootSchema(summary: "A response that contains a list of App Preview Set resources."),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
             "AppScreenshot": .rootSchema(

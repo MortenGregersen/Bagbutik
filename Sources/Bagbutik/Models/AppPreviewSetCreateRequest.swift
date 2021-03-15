@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create an App Preview Set.
 public struct AppPreviewSetCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appPreviewSets" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -38,14 +44,16 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
-            public let previewType: PreviewType?
+            public let previewType: PreviewType
 
-            public init(previewType: PreviewType? = nil) {
+            public init(previewType: PreviewType) {
                 self.previewType = previewType
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let appStoreVersionLocalization: AppStoreVersionLocalization
 
@@ -54,14 +62,18 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersionLocalization: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appStoreVersionLocalizations" }
 
                     public init(id: String) {

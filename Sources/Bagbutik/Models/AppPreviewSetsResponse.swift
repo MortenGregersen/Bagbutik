@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of App Preview Set resources.
 public struct AppPreviewSetsResponse: Codable {
+    /// The resource data.
     public let data: [AppPreviewSet]
     public let included: [AppPreview]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppPreviewSet], included: [AppPreview]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
