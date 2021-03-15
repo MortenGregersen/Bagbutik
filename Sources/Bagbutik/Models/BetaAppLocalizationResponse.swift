@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single Beta App Localizations resource.
 public struct BetaAppLocalizationResponse: Codable {
+    /// The resource data.
     public let data: BetaAppLocalization
     public let included: [App]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppLocalization, included: [App]? = nil, links: DocumentLinks) {

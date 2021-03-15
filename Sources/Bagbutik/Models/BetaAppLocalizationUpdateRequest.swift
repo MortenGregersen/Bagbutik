@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to update a Beta App Localization.
 public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "betaAppLocalizations" }
+        /// The resource's attributes.
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -38,11 +44,17 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /// Attributes whose values you're changing as part of the update request.
         public struct Attributes: Codable {
+            /// A description of your app that highlights features and functionality.
             public let description: String?
+            /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
             public let feedbackEmail: String?
+            /// A URL with information about your app. This URL is visible to testers in the TestFlight app
             public let marketingUrl: String?
+            /// A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.
             public let privacyPolicyUrl: String?
+            /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
             public let tvOsPrivacyPolicy: String?
 
             public init(description: String? = nil, feedbackEmail: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {

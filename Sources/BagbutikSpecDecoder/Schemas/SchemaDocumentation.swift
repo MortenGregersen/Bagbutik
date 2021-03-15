@@ -570,6 +570,43 @@ public extension Schema {
                     "primaryLocale": "",
                 ])
             ),
+            "BetaAppLocalization": .rootSchema(
+                summary: "The data structure that represents a Beta App Localizations resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta App Localizations resource.",
+                    properties: [
+                        "description": "A description of your app that highlights features and functionality.",
+                        "feedbackEmail": "An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.",
+                        "locale": "The specified locale. Refer to Table 1 for possible values.",
+                        "marketingUrl": "A URL with information about your app. This URL is visible to testers in the TestFlight app.",
+                        "privacyPolicyUrl": "A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.",
+                        "tvOsPrivacyPolicy": "Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.",
+                    ]
+                )
+            ),
+            "BetaAppLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create a Beta App Localization.",
+                attributes: .init(properties: [
+                    "description": "A description of your app that highlights features and functionality.",
+                    "feedbackEmail": "An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.",
+                    "locale": "The specified locale. Refer to Table 1 for possible values.",
+                    "marketingUrl": "A URL with information about your app. This URL is visible to testers in the TestFlight app.",
+                    "privacyPolicyUrl": "A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.",
+                    "tvOsPrivacyPolicy": "Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.",
+                ])
+            ),
+            "BetaAppLocalizationResponse": .rootSchema(summary: "A response that contains a single Beta App Localizations resource."),
+            "BetaAppLocalizationsResponse": .rootSchema(summary: "A response that contains a list of Beta App Localization resources."),
+            "BetaAppLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta App Localization.",
+                attributes: .init(properties: [
+                    "description": "A description of your app that highlights features and functionality.",
+                    "feedbackEmail": "An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.",
+                    "marketingUrl": "A URL with information about your app. This URL is visible to testers in the TestFlight app",
+                    "privacyPolicyUrl": "A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.",
+                    "tvOsPrivacyPolicy": "Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.",
+                ])
+            ),
             "BetaGroup": .rootSchema(
                 summary: "The data structure that represents a Beta Groups resource.",
                 attributes: .init(
