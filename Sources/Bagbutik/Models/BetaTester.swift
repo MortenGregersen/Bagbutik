@@ -1,10 +1,16 @@
 import Foundation
 
+/// The data structure that represents a Beta Testers resource.
 public struct BetaTester: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "betaTesters" }
+    /// The resource's attributes.
     public let attributes: Attributes?
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -41,10 +47,15 @@ public struct BetaTester: Codable {
         case relationships
     }
 
+    /// Attributes that describe a Beta Testers resource.
     public struct Attributes: Codable {
+        /// The beta tester's email address, used for sending beta testing invitations.
         public let email: String?
+        /// The beta tester's first name.
         public let firstName: String?
+        /// An invite type that indicates if a beta tester was invited by an email invite or used a TestFlight public link to join a beta test.
         public let inviteType: BetaInviteType?
+        /// The beta tester's last name.
         public let lastName: String?
 
         public init(email: String? = nil, firstName: String? = nil, inviteType: BetaInviteType? = nil, lastName: String? = nil) {
@@ -55,6 +66,7 @@ public struct BetaTester: Codable {
         }
     }
 
+    /// The relationships you included in the request and those on which you can operate.
     public struct Relationships: Codable {
         public let apps: Apps?
         public let betaGroups: BetaGroups?
@@ -66,9 +78,13 @@ public struct BetaTester: Codable {
             self.builds = builds
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Apps: Codable {
+            /// The type and ID of a related resource.
             public let data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public let links: Links?
+            /// Paging information for data responses.
             public let meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -77,8 +93,11 @@ public struct BetaTester: Codable {
                 self.meta = meta
             }
 
+            /// The type and ID of a related resource.
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -104,8 +123,11 @@ public struct BetaTester: Codable {
                 }
             }
 
+            /// The links to the related data and the relationship's self-link.
             public struct Links: Codable {
+                /// The link to the related data.
                 public let related: String?
+                /// The relationship's self-link
                 public let `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
@@ -115,9 +137,13 @@ public struct BetaTester: Codable {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct BetaGroups: Codable {
+            /// The type and ID of a related resource.
             public let data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public let links: Links?
+            /// Paging information for data responses.
             public let meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -126,8 +152,11 @@ public struct BetaTester: Codable {
                 self.meta = meta
             }
 
+            /// The type and ID of a related resource.
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "betaGroups" }
 
                 public init(id: String) {
@@ -153,8 +182,11 @@ public struct BetaTester: Codable {
                 }
             }
 
+            /// The links to the related data and the relationship's self-link.
             public struct Links: Codable {
+                /// The link to the related data.
                 public let related: String?
+                /// The relationship's self-link
                 public let `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
@@ -164,9 +196,13 @@ public struct BetaTester: Codable {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Builds: Codable {
+            /// The type and ID of a related resource.
             public let data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public let links: Links?
+            /// Paging information for data responses.
             public let meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -175,8 +211,11 @@ public struct BetaTester: Codable {
                 self.meta = meta
             }
 
+            /// The type and ID of a related resource.
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -202,8 +241,11 @@ public struct BetaTester: Codable {
                 }
             }
 
+            /// The links to the related data and the relationship's self-link.
             public struct Links: Codable {
+                /// The link to the related data.
                 public let related: String?
+                /// The relationship's self-link
                 public let `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {

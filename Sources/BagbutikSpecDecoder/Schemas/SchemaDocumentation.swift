@@ -570,6 +570,34 @@ public extension Schema {
                     "primaryLocale": "",
                 ])
             ),
+            "BetaTester": .rootSchema(
+                summary: "The data structure that represents a Beta Testers resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta Testers resource.",
+                    properties: [
+                        "email": "The beta tester's email address, used for sending beta testing invitations.",
+                        "firstName": "The beta tester's first name.",
+                        "inviteType": "An invite type that indicates if a beta tester was invited by an email invite or used a TestFlight public link to join a beta test.",
+                        "lastName": "The beta tester's last name.",
+                    ]
+                )
+            ),
+            "BetaTesterAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to remove an app from a beta tester."),
+            "BetaTesterAppsLinkagesResponse": .linkagesResponse,
+            "BetaTesterBetaGroupsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove beta groups from a beta tester."),
+            "BetaTesterBetaGroupsLinkagesResponse": .linkagesResponse,
+            "BetaTesterBuildsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove builds from a beta tester."),
+            "BetaTesterBuildsLinkagesResponse": .linkagesResponse,
+            "BetaTesterCreateRequest": .createRequest(
+                summary: "The request body you use to create a BetaTester.",
+                attributes: .init(properties: [
+                    "email": "The beta tester's email address, used for sending beta testing invitations.",
+                    "firstName": "The beta tester's first name.",
+                    "lastName": "The beta tester's last name.",
+                ])
+            ),
+            "BetaTesterResponse": .rootSchema(summary: "A response that contains a single Beta Testers resource."),
+            "BetaTestersResponse": .rootSchema(summary: "A response that contains a list of Beta Tester resources."),
             "Build": .rootSchema(
                 summary: "The data structure that represents a Builds resource.",
                 attributes: .init(

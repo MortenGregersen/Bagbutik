@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of Beta Tester resources.
 public struct BetaTestersResponse: Codable {
+    /// The resource data.
     public let data: [BetaTester]
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [BetaTester], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
