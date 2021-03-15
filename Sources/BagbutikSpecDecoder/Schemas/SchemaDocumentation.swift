@@ -570,6 +570,49 @@ public extension Schema {
                     "primaryLocale": "",
                 ])
             ),
+            "BetaGroup": .rootSchema(
+                summary: "The data structure that represents a Beta Groups resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta Groups resource.",
+                    properties: [
+                        "isInternalGroup": "A Boolean value that indicates whether the group is internal. Only existing users of App Store Connect may be added for internal beta testing.",
+                        "name": "The name for the beta group.",
+                        "publicLink": "The URL of the public link provided to your app's beta testers.",
+                        "publicLinkEnabled": "A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.",
+                        "publicLinkId": "The ID as part of the URL of the public link.",
+                        "publicLinkLimit": "The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.",
+                        "publicLinkLimitEnabled": "A Boolean value that limits the number of testers who can join the beta group using the public link.",
+                        "createdDate": "The creation date of the beta group.",
+                        "feedbackEnabled": "",
+                    ]
+                )
+            ),
+            "BetaGroupBetaTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove beta testers from a beta group."),
+            "BetaGroupBetaTestersLinkagesResponse": .linkagesResponse,
+            "BetaGroupBuildsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove builds from a beta group."),
+            "BetaGroupBuildsLinkagesResponse": .linkagesResponse,
+            "BetaGroupResponse": .rootSchema(summary: "A response that contains a single Beta Groups resource."),
+            "BetaGroupCreateRequest": .createRequest(
+                summary: "The request body you use to create a Beta Group.",
+                attributes: .init(properties: [
+                    "name": "The name for the beta group.",
+                    "publicLinkEnabled": "A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.",
+                    "publicLinkLimit": "The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.",
+                    "publicLinkLimitEnabled": "A Boolean value that limits the number of testers who can join the beta group using the public link.",
+                    "feedbackEnabled": "",
+                ])
+            ),
+            "BetaGroupsResponse": .rootSchema(summary: "A response that contains a list of Beta Group resources."),
+            "BetaGroupUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta Group.",
+                attributes: .init(properties: [
+                    "name": "The name for the beta group.",
+                    "publicLinkEnabled": "A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.",
+                    "publicLinkLimit": "The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.",
+                    "publicLinkLimitEnabled": "A Boolean value that limits the number of testers who can join the beta group using the public link.",
+                    "feedbackEnabled": "",
+                ])
+            ),
             "BetaTester": .rootSchema(
                 summary: "The data structure that represents a Beta Testers resource.",
                 attributes: .init(

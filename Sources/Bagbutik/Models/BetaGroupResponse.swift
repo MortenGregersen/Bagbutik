@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single Beta Groups resource.
 public struct BetaGroupResponse: Codable {
+    /// The resource data.
     public let data: BetaGroup
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaGroup, included: [Included]? = nil, links: DocumentLinks) {

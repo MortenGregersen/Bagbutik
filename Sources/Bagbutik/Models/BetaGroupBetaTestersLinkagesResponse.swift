@@ -1,8 +1,12 @@
 import Foundation
 
+/// A response body that contains a list of related resource IDs.
 public struct BetaGroupBetaTestersLinkagesResponse: Codable {
+    /// The resource data.
     public let data: [Data]
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [Data], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
@@ -11,8 +15,11 @@ public struct BetaGroupBetaTestersLinkagesResponse: Codable {
         self.meta = meta
     }
 
+    /// The data element of the response body.
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "betaTesters" }
 
         public init(id: String) {
