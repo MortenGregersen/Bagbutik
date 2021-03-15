@@ -248,6 +248,39 @@ public extension Schema {
                 )
             ),
             "AppCategoryResponse": .rootSchema(summary: "A response that contains a single App Categories resource."),
+            "AppEncryptionDeclaration": .rootSchema(
+                summary: "The data structure that represents an App Encryption Declarations resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Encryption Declarations resource.",
+                    properties: [
+                        "availableOnFrenchStore": "A Boolean value that indicates the intent to distribute your app on the French App Store.",
+                        "codeValue": "A unique identifier that can be added to your app to associate it with a given declaration.",
+                        "containsProprietaryCryptography": "A Boolean value that indicates your app implements any proprietary encryption algorithms.",
+                        "containsThirdPartyCryptography": "A Boolean value that indicates your app implements any standard encryption algorithms instead of, or in addition to, using or accessing the encryption in Apple’s operating systems.",
+                        "documentName": "The document name of your submitted export compliance documentation.",
+                        "documentType": "The file type of your submitted export compliance documentation.",
+                        "documentUrl": "The URL to the file of your submitted export compliance documentation.",
+                        "exempt": "A Boolean value that indicates your app is exempt based on your use of encryption and the app's availability.",
+                        "platform": "The platform of the declaration.",
+                        "usesEncryption": "A Boolean value that indicates whether your app uses, contains, or incorporates cryptography.",
+                        "appEncryptionDeclarationState": "The approval state of your export compliance documentation.",
+                        "uploadedDate": "The date and time you submitted your declaration.",
+                    ]
+                )
+            ),
+            "AppEncryptionDeclarationBuildsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add builds to an app encryption declaration."),
+            "AppEncryptionDeclarationResponse": .rootSchema(summary: "A response that contains a single App Encryption Declarations resource."),
+            "AppEncryptionDeclarationsResponse": .rootSchema(summary: "A response that contains a list of App Encryption Declaration resources."),
+            "AppEncryptionDeclarationState": .enumObject(
+                summary: "Strings that represent the review or acceptance status of an app encryption declaration submitted to Apple.",
+                cases: [
+                    "APPROVED": "",
+                    "INVALID": "",
+                    "EXPIRED": "",
+                    "IN_REVIEW": "",
+                    "REJECTED": "",
+                ]
+            ),
             "AppInfo": .rootSchema(
                 summary: "The data structure that represent an App Infos resource.",
                 attributes: .init(
