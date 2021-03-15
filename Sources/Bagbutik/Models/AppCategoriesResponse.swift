@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of App Category resources.
 public struct AppCategoriesResponse: Codable {
+    /// The resource data.
     public let data: [AppCategory]
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppCategory], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

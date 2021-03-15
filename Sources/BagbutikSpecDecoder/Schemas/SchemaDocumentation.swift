@@ -239,6 +239,15 @@ public extension Schema {
                 )
             ),
             "AppBetaTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to remove beta testers from an app."),
+            "AppCategoriesResponse": .rootSchema(summary: "A response that contains a list of App Category resources."),
+            "AppCategory": .rootSchema(
+                summary: "The data structure that represent an App Categories resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Categories resource.",
+                    properties: ["platforms": ""]
+                )
+            ),
+            "AppCategoryResponse": .rootSchema(summary: "A response that contains a single App Categories resource."),
             "AppInfo": .rootSchema(
                 summary: "The data structure that represent an App Infos resource.",
                 attributes: .init(

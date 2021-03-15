@@ -1,8 +1,11 @@
 import Foundation
 
+/// A response that contains a single App Categories resource.
 public struct AppCategoryResponse: Codable {
+    /// The resource data.
     public let data: AppCategory
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppCategory, included: [Included]? = nil, links: DocumentLinks) {
