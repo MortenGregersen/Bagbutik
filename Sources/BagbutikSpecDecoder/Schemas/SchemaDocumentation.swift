@@ -650,6 +650,23 @@ public extension Schema {
                     "feedbackEnabled": "",
                 ])
             ),
+            "BetaLicenseAgreement": .rootSchema(
+                summary: "The data structure that represents a Beta License Agreements resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta License Agreements resource.",
+                    properties: [
+                        "agreementText": "The license agreement text for your beta app that displays to users.",
+                    ]
+                )
+            ),
+            "BetaLicenseAgreementResponse": .rootSchema(summary: "A response that contains a single Beta License Agreements resource."),
+            "BetaLicenseAgreementsResponse": .rootSchema(summary: "A response that contains a list of Beta License Agreement resources."),
+            "BetaLicenseAgreementUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta License Agreement.",
+                attributes: .init(properties: [
+                    "agreementText": "The license agreement text for your beta app that displays to users.",
+                ])
+            ),
             "BetaTester": .rootSchema(
                 summary: "The data structure that represents a Beta Testers resource.",
                 attributes: .init(

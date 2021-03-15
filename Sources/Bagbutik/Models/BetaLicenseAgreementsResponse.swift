@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of Beta License Agreement resources.
 public struct BetaLicenseAgreementsResponse: Codable {
+    /// The resource data.
     public let data: [BetaLicenseAgreement]
     public let included: [App]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [BetaLicenseAgreement], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
