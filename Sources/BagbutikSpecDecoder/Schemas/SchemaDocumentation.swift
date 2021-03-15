@@ -736,10 +736,23 @@ public extension Schema {
             "DevicesResponse": .rootSchema(summary: "A response that contains a list of Devices resources."),
             "DeviceUpdateRequest": .updateRequest(
                 summary: "The request body you use to update a Device.",
-                attributes: .init(properties: [
-                    "name": "",
-                    "status": "",
-                ])
+                attributes: .init(properties: ["name": "", "status": ""])
+            ),
+            "EndUserLicenseAgreement": .rootSchema(
+                summary: "The data structure that represents the End User License Agreement resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an End User License Agreements resource.",
+                    properties: ["agreementText": ""]
+                )
+            ),
+            "EndUserLicenseAgreementCreateRequest": .createRequest(
+                summary: "The request body you use to create an End User License Agreement.",
+                attributes: .init(properties: ["agreementText": ""])
+            ),
+            "EndUserLicenseAgreementResponse": .rootSchema(summary: "A response that contains a single End User License Agreements resource."),
+            "EndUserLicenseAgreementUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an End User License Agreement.",
+                attributes: .init(properties: ["agreementText": ""])
             ),
             "InAppPurchase": .rootSchema(
                 summary: "The data structure that represents the In-App Purchases resource.",
@@ -757,11 +770,7 @@ public extension Schema {
             "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
             "KidsAgeBand": .enumObject(
                 summary: "String that represents a Made for Kids app's age band.",
-                cases: [
-                    "FIVE_AND_UNDER": "",
-                    "SIX_TO_EIGHT": "",
-                    "NINE_TO_ELEVEN": "",
-                ]
+                cases: ["FIVE_AND_UNDER": "", "SIX_TO_EIGHT": "", "NINE_TO_ELEVEN": ""]
             ),
             "Platform": .enumObject(
                 summary: "Strings that represent Apple operating systems.",
