@@ -1,9 +1,13 @@
 import Foundation
 
+/// A response that contains a list of Builds resources.
 public struct BuildsResponse: Codable {
+    /// The resource data.
     public let data: [Build]
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [Build], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

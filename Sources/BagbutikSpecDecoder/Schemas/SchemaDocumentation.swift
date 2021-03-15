@@ -537,6 +537,36 @@ public extension Schema {
                     "primaryLocale": "",
                 ])
             ),
+            "Build": .rootSchema(
+                summary: "The data structure that represents a Builds resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Builds resource.",
+                    properties: [
+                        "expired": "A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.",
+                        "iconAssetToken": "The icon of the uploaded build.",
+                        "minOsVersion": "The minimum operating system version needed to test a build.",
+                        "processingState": "The processing state of the build indicating that it is not yet available for testing.",
+                        "version": "The version number of the uploaded build.",
+                        "usesNonExemptEncryption": "A Boolean value that indicates whether the build uses non-exempt encryption.",
+                        "uploadedDate": "The date and time the build was uploaded to App Store Connect.",
+                        "expirationDate": "The date and time the build will auto-expire and no longer be available for testing.",
+                    ]
+                )
+            ),
+            "BuildAppEncryptionDeclarationLinkageRequest": .linkagesRequest(summary: "The request body you use to attach an app encryption declaration to a build."),
+            "BuildAppEncryptionDeclarationLinkageResponse": .linkagesResponse,
+            "BuildBetaGroupsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove beta groups from a build."),
+            "BuildIndividualTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove a build from multiple beta groups."),
+            "BuildIndividualTestersLinkagesResponse": .linkagesResponse,
+            "BuildResponse": .rootSchema(summary: "A response that contains a single Builds resource."),
+            "BuildsResponse": .rootSchema(summary: "A response that contains a list of Builds resources."),
+            "BuildUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Build.",
+                attributes: .init(properties: [
+                    "expired": "A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.",
+                    "usesNonExemptEncryption": "A Boolean value that indicates whether the build uses non-exempt encryption.",
+                ])
+            ),
             "BrazilAgeRating": .enumObject(
                 summary: "String that represents the app's age rating as it will appear on the App Store in Brazil for all platforms.",
                 cases: [
@@ -768,6 +798,14 @@ public extension Schema {
             "GameCenterEnabledVersionCompatibleVersionsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove compatible versions from a Game Center-enabled version."),
             "GameCenterEnabledVersionCompatibleVersionsLinkagesResponse": .linkagesResponse,
             "GameCenterEnabledVersionsResponse": .rootSchema(summary: "A response that contains a list of Game Center Enabled Version resources."),
+            "ImageAsset": .rootSchema(
+                summary: "An image asset, including its height, width, and template URL.",
+                properties: [
+                    "templateUrl": "",
+                    "height": "",
+                    "width": "",
+                ]
+            ),
             "InAppPurchase": .rootSchema(
                 summary: "The data structure that represents the In-App Purchases resource.",
                 attributes: .init(
