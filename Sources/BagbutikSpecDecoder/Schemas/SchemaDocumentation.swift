@@ -283,6 +283,44 @@ public extension Schema {
                     "description": "",
                 ]
             ),
+            "AppPreview": .rootSchema(
+                summary: "The data structure that represent an App Previews resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Previews resource.",
+                    properties: [
+                        "assetDeliveryState": "",
+                        "fileName": "",
+                        "fileSize": "",
+                        "mimeType": "",
+                        "previewFrameTimeCode": "",
+                        "previewImage": "",
+                        "sourceFileChecksum": "",
+                        "uploadOperations": "",
+                        "videoUrl": "",
+                    ]
+                )
+            ),
+            "AppPreviewCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Preview.",
+                attributes: .init(
+                    properties: [
+                        "fileName": "",
+                        "fileSize": "",
+                        "mimeType": "",
+                        "previewFrameTimeCode": "",
+                    ]
+                )
+            ),
+            "AppPreviewResponse": .rootSchema(summary: "A response that contains a single App Previews resource."),
+            "AppPreviewsResponse": .rootSchema(summary: "A response that contains a list of App Preview resources."),
+            "AppPreviewUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Preview.",
+                attributes: .init(properties: [
+                    "previewFrameTimeCode": "",
+                    "uploaded": "",
+                    "sourceFileChecksum": "",
+                ])
+            ),
             "AppPreviewSet": .rootSchema(
                 summary: "The data structure that represent an App Preview Sets resource.",
                 attributes: .init(
@@ -674,6 +712,26 @@ public extension Schema {
                     "IOS": "A string that represents iOS.",
                     "MAC_OS": "A string that represents macOS.",
                     "TV_OS": "A string that represents tvOS.",
+                ]
+            ),
+            "PreviewType": .enumObject(
+                summary: "String that represents the display type of an app preview.",
+                cases: [
+                    "IPHONE_65": "",
+                    "IPHONE_58": "",
+                    "IPHONE_55": "",
+                    "IPHONE_47": "",
+                    "IPHONE_40": "",
+                    "IPHONE_35": "",
+                    "IPAD_PRO_3GEN_129": "",
+                    "IPAD_PRO_3GEN_11": "",
+                    "IPAD_PRO_129": "",
+                    "IPAD_105": "",
+                    "IPAD_97": "",
+                    "DESKTOP": "",
+                    "WATCH_SERIES_4": "",
+                    "WATCH_SERIES_3": "",
+                    "APPLE_TV": "",
                 ]
             ),
             "Profile": .rootSchema(
