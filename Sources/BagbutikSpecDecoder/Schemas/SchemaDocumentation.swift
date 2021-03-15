@@ -26,13 +26,13 @@ public extension Schema {
         case relationship
         case relationshipData
         case relationshipLinks
-        case createRequest(summary: String, attributes: RequestDataAttributesDocumentaion)
+        case createRequest(summary: String, attributes: RequestDataAttributesDocumentaion? = nil)
         case createRequestData
         case createRequestDataAttributes(RequestDataAttributesDocumentaion)
         case createRequestDataRelationships
         case createRequestDataRelationship
         case createRequestDataRelationshipData
-        case updateRequest(summary: String, attributes: RequestDataAttributesDocumentaion)
+        case updateRequest(summary: String, attributes: RequestDataAttributesDocumentaion? = nil)
         case updateRequestData
         case updateRequestDataAttributes(RequestDataAttributesDocumentaion)
         case updateRequestDataRelationships
@@ -596,6 +596,9 @@ public extension Schema {
                     "lastName": "The beta tester's last name.",
                 ])
             ),
+            "BetaTesterInvitation": .rootSchema(summary: "The data structure that represents a Beta Tester Invitations resource."),
+            "BetaTesterInvitationCreateRequest": .createRequest(summary: "The request body you use to create a Beta Tester Invitation."),
+            "BetaTesterInvitationResponse": .rootSchema(summary: "A response that contains a single Beta Tester Invitations resource."),
             "BetaTesterResponse": .rootSchema(summary: "A response that contains a single Beta Testers resource."),
             "BetaTestersResponse": .rootSchema(summary: "A response that contains a list of Beta Tester resources."),
             "Build": .rootSchema(

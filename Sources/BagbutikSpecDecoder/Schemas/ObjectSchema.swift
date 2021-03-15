@@ -101,11 +101,13 @@ public struct ObjectSchema: Decodable, Equatable {
                 return .linkagesRequestData
             } else if codingPathComponents.count == 2, name == dataName {
                 return isUpdateRequest ? .updateRequestData : .createRequestData
-            } else if case .createRequest(_, let attributes) = rootSchemaDocumentation,
+            } else if case .createRequest(_, let possibleAttributes) = rootSchemaDocumentation,
+                      let attributes = possibleAttributes,
                       codingPathComponents.count == 3, name == attributesName
             {
                 return .createRequestDataAttributes(attributes)
-            } else if case .updateRequest(_, let attributes) = rootSchemaDocumentation,
+            } else if case .updateRequest(_, let possibleAttributes) = rootSchemaDocumentation,
+                      let attributes = possibleAttributes,
                       codingPathComponents.count == 3, name == attributesName
             {
                 return .updateRequestDataAttributes(attributes)
