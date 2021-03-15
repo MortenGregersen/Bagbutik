@@ -716,6 +716,25 @@ public extension Schema {
             ),
             "BuildAppEncryptionDeclarationLinkageRequest": .linkagesRequest(summary: "The request body you use to attach an app encryption declaration to a build."),
             "BuildAppEncryptionDeclarationLinkageResponse": .linkagesResponse,
+            "BuildBetaDetail": .rootSchema(
+                summary: "The data structure that represents a Build Beta Details resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Build Beta Details resource.",
+                    properties: [
+                        "autoNotifyEnabled": "A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.",
+                        "externalBuildState": "A state that indicates if the build is available for external testing.",
+                        "internalBuildState": "A state that indicates if the build is available for internal testing.",
+                    ]
+                )
+            ),
+            "BuildBetaDetailResponse": .rootSchema(summary: "A response that contains a single Build Beta Details resource."),
+            "BuildBetaDetailsResponse": .rootSchema(summary: "A response that contains a list of Build Beta Detail resources."),
+            "BuildBetaDetailUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Build Data Detail.",
+                attributes: .init(properties: [
+                    "autoNotifyEnabled": "A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.",
+                ])
+            ),
             "BuildBetaGroupsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove beta groups from a build."),
             "BuildIcon": .rootSchema(
                 summary: "The data structure that represents the Build Icons resource.",
@@ -956,6 +975,23 @@ public extension Schema {
                 summary: "The request body you use to update an End User License Agreement.",
                 attributes: .init(properties: ["agreementText": ""])
             ),
+            "ExternalBetaState": .enumObject(
+                summary: "String that represents a build's availability for external testing.",
+                cases: [
+                    "PROCESSING": "",
+                    "PROCESSING_EXCEPTION": "",
+                    "MISSING_EXPORT_COMPLIANCE": "",
+                    "READY_FOR_BETA_TESTING": "",
+                    "IN_BETA_TESTING": "",
+                    "EXPIRED": "",
+                    "READY_FOR_BETA_SUBMISSION": "",
+                    "IN_EXPORT_COMPLIANCE_REVIEW": "",
+                    "WAITING_FOR_BETA_REVIEW": "",
+                    "IN_BETA_REVIEW": "",
+                    "BETA_REJECTED": "",
+                    "BETA_APPROVED": "",
+                ]
+            ),
             "GameCenterEnabledVersion": .rootSchema(
                 summary: "The data structure that represents the Game Center Enabled Versions resource.",
                 attributes: .init(
@@ -1002,6 +1038,18 @@ public extension Schema {
             ),
             "InAppPurchaseResponse": .rootSchema(summary: "A response that contains a single In-App Purchases resource."),
             "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
+            "InternalBetaState": .enumObject(
+                summary: "String that represents a build's availability for internal testing.",
+                cases: [
+                    "PROCESSING": "",
+                    "PROCESSING_EXCEPTION": "",
+                    "MISSING_EXPORT_COMPLIANCE": "",
+                    "READY_FOR_BETA_TESTING": "",
+                    "IN_BETA_TESTING": "",
+                    "EXPIRED": "",
+                    "IN_EXPORT_COMPLIANCE_REVIEW": "",
+                ]
+            ),
             "KidsAgeBand": .enumObject(
                 summary: "String that represents a Made for Kids app's age band.",
                 cases: ["FIVE_AND_UNDER": "", "SIX_TO_EIGHT": "", "NINE_TO_ELEVEN": ""]

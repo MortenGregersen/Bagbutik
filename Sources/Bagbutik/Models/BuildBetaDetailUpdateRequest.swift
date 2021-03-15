@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to update a Build Data Detail.
 public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "buildBetaDetails" }
+        /// The resource's attributes.
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -38,7 +44,9 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /// Attributes whose values you're changing as part of the update request.
         public struct Attributes: Codable {
+            /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
             public let autoNotifyEnabled: Bool?
 
             public init(autoNotifyEnabled: Bool? = nil) {
