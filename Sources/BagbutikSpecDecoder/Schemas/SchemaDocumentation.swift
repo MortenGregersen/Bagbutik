@@ -754,6 +754,20 @@ public extension Schema {
                 summary: "The request body you use to update an End User License Agreement.",
                 attributes: .init(properties: ["agreementText": ""])
             ),
+            "GameCenterEnabledVersion": .rootSchema(
+                summary: "The data structure that represents the Game Center Enabled Versions resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Game Center Enabled Versions resource.",
+                    properties: [
+                        "iconAsset": "",
+                        "platform": "",
+                        "versionString": "",
+                    ]
+                )
+            ),
+            "GameCenterEnabledVersionCompatibleVersionsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove compatible versions from a Game Center-enabled version."),
+            "GameCenterEnabledVersionCompatibleVersionsLinkagesResponse": .linkagesResponse,
+            "GameCenterEnabledVersionsResponse": .rootSchema(summary: "A response that contains a list of Game Center Enabled Version resources."),
             "InAppPurchase": .rootSchema(
                 summary: "The data structure that represents the In-App Purchases resource.",
                 attributes: .init(
