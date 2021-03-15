@@ -203,6 +203,26 @@ public extension Schema {
                     ]
                 )
             ),
+            "AgeRatingDeclarationResponse": .rootSchema(summary: "A response that contains a single Age Rating Declarations resource."),
+            "AgeRatingDeclarationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an Age Rating Declaration.",
+                attributes: .init(properties: [
+                    "alcoholTobaccoOrDrugUseOrReferences": "",
+                    "gamblingAndContests": "",
+                    "kidsAgeBand": "",
+                    "medicalOrTreatmentInformation": "",
+                    "profanityOrCrudeHumor": "",
+                    "sexualContentOrNudity": "",
+                    "unrestrictedWebAccess": "",
+                    "gamblingSimulated": "",
+                    "horrorOrFearThemes": "",
+                    "matureOrSuggestiveThemes": "",
+                    "sexualContentGraphicAndNudity": "",
+                    "violenceCartoonOrFantasy": "",
+                    "violenceRealistic": "",
+                    "violenceRealisticProlongedGraphicOrSadistic": "",
+                ])
+            ),
             "App": .rootSchema(
                 summary: "The data structure that represents an Apps resource.",
                 attributes: .init(
@@ -385,6 +405,15 @@ public extension Schema {
             ),
             "AppScreenshotSetResponse": .rootSchema(summary: "A response that contains a single App Screenshot Sets resource."),
             "AppScreenshotSetsResponse": .rootSchema(summary: "A response that contains a list of App Screenshot Set resources."),
+            "AppStoreAgeRating": .enumObject(
+                summary: "String that represents the app’s age rating as it will appear on the App Store for all platforms.",
+                cases: [
+                    "FOUR_PLUS": "",
+                    "NINE_PLUS": "",
+                    "TWELVE_PLUS": "",
+                    "SEVENTEEN_PLUS": "",
+                ]
+            ),
             "AppStoreVersion": .rootSchema(
                 summary: "The data structure that represent an App Store Versions resource.",
                 attributes: .init(
@@ -498,6 +527,17 @@ public extension Schema {
                     "contentRightsDeclaration": "",
                     "primaryLocale": "",
                 ])
+            ),
+            "BrazilAgeRating": .enumObject(
+                summary: "String that represents the app's age rating as it will appear on the App Store in Brazil for all platforms.",
+                cases: [
+                    "L": "",
+                    "TEN": "",
+                    "TWELVE": "",
+                    "FOURTEEN": "",
+                    "SIXTEEN": "",
+                    "EIGHTEEN": "",
+                ]
             ),
             "BundleId": .rootSchema(
                 summary: "The data structure that represents a Bundle IDs resource.",
@@ -706,6 +746,14 @@ public extension Schema {
             ),
             "InAppPurchaseResponse": .rootSchema(summary: "A response that contains a single In-App Purchases resource."),
             "InAppPurchasesResponse": .rootSchema(summary: "A response that contains a list of In-App Purchase resources."),
+            "KidsAgeBand": .enumObject(
+                summary: "String that represents a Made for Kids app's age band.",
+                cases: [
+                    "FIVE_AND_UNDER": "",
+                    "SIX_TO_EIGHT": "",
+                    "NINE_TO_ELEVEN": "",
+                ]
+            ),
             "Platform": .enumObject(
                 summary: "Strings that represent Apple operating systems.",
                 cases: [
