@@ -1,5 +1,6 @@
 import Foundation
 
+/// String that represents the type of icon contained in the build.
 public enum IconAssetType: String, Codable, CaseIterable {
     case appStore = "APP_STORE"
     case messagesAppStore = "MESSAGES_APP_STORE"

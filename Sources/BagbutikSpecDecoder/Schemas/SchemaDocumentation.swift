@@ -556,6 +556,17 @@ public extension Schema {
             "BuildAppEncryptionDeclarationLinkageRequest": .linkagesRequest(summary: "The request body you use to attach an app encryption declaration to a build."),
             "BuildAppEncryptionDeclarationLinkageResponse": .linkagesResponse,
             "BuildBetaGroupsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove beta groups from a build."),
+            "BuildIcon": .rootSchema(
+                summary: "The data structure that represents the Build Icons resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Build Icons resource.",
+                    properties: [
+                        "iconAsset": "",
+                        "iconType": "",
+                    ]
+                )
+            ),
+            "BuildIconsResponse": .rootSchema(summary: "A response that contains a list of Build Icon resources."),
             "BuildIndividualTestersLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove a build from multiple beta groups."),
             "BuildIndividualTestersLinkagesResponse": .linkagesResponse,
             "BuildResponse": .rootSchema(summary: "A response that contains a single Builds resource."),
@@ -798,6 +809,16 @@ public extension Schema {
             "GameCenterEnabledVersionCompatibleVersionsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove compatible versions from a Game Center-enabled version."),
             "GameCenterEnabledVersionCompatibleVersionsLinkagesResponse": .linkagesResponse,
             "GameCenterEnabledVersionsResponse": .rootSchema(summary: "A response that contains a list of Game Center Enabled Version resources."),
+            "IconAssetType": .enumObject(
+                summary: "String that represents the type of icon contained in the build.",
+                cases: [
+                    "APP_STORE": "",
+                    "MESSAGES_APP_STORE": "",
+                    "WATCH_APP_STORE": "",
+                    "TV_OS_HOME_SCREEN": "",
+                    "TV_OS_TOP_SHELF": "",
+                ]
+            ),
             "ImageAsset": .rootSchema(
                 summary: "An image asset, including its height, width, and template URL.",
                 properties: [
