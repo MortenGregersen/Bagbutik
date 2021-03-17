@@ -1,7 +1,10 @@
 import Foundation
 
+/// A response that contains a single IDFA Declarations resource.
 public struct IdfaDeclarationResponse: Codable {
+    /// The resource data.
     public let data: IdfaDeclaration
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: IdfaDeclaration, links: DocumentLinks) {

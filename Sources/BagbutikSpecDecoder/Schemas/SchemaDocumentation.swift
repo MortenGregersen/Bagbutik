@@ -1114,6 +1114,37 @@ public extension Schema {
                     "TV_OS_TOP_SHELF": "",
                 ]
             ),
+            "IdfaDeclaration": .rootSchema(
+                summary: "The data structure that represents the IDFA Declarations resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an IDFA Declarations resource.",
+                    properties: [
+                        "attributesActionWithPreviousAd": "",
+                        "attributesAppInstallationToPreviousAd": "",
+                        "honorsLimitedAdTracking": "",
+                        "servesAds": "",
+                    ]
+                )
+            ),
+            "IdfaDeclarationCreateRequest": .createRequest(
+                summary: "The request body you use to create an IDFA Declaration.",
+                attributes: .init(properties: [
+                    "attributesActionWithPreviousAd": "",
+                    "attributesAppInstallationToPreviousAd": "",
+                    "honorsLimitedAdTracking": "",
+                    "servesAds": "",
+                ])
+            ),
+            "IdfaDeclarationResponse": .rootSchema(summary: "A response that contains a single IDFA Declarations resource."),
+            "IdfaDeclarationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an IDFA Declaration.",
+                attributes: .init(properties: [
+                    "attributesActionWithPreviousAd": "",
+                    "attributesAppInstallationToPreviousAd": "",
+                    "honorsLimitedAdTracking": "",
+                    "servesAds": "",
+                ])
+            ),
             "ImageAsset": .rootSchema(
                 summary: "An image asset, including its height, width, and template URL.",
                 properties: [
