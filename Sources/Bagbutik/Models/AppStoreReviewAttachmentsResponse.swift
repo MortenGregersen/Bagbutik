@@ -1,8 +1,12 @@
 import Foundation
 
+/// A response that contains a list of App Store Review Attachment resources.
 public struct AppStoreReviewAttachmentsResponse: Codable {
+    /// The resource data.
     public let data: [AppStoreReviewAttachment]
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppStoreReviewAttachment], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

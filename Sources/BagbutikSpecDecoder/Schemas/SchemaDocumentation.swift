@@ -474,6 +474,35 @@ public extension Schema {
                     "SEVENTEEN_PLUS": "",
                 ]
             ),
+            "AppStoreReviewAttachment": .rootSchema(
+                summary: "The data structure that represent an App Store Review Attachments resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Store Review Attachments resource.",
+                    properties: [
+                        "assetDeliveryState": "",
+                        "fileName": "",
+                        "fileSize": "",
+                        "sourceFileChecksum": "",
+                        "uploadOperations": "",
+                    ]
+                )
+            ),
+            "AppStoreReviewAttachmentCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Store Review Attachment.",
+                attributes: .init(properties: [
+                    "fileName": "",
+                    "fileSize": "",
+                ])
+            ),
+            "AppStoreReviewAttachmentResponse": .rootSchema(summary: "A response that contains a single App Store Review Attachments resource."),
+            "AppStoreReviewAttachmentsResponse": .rootSchema(summary: "A response that contains a list of App Store Review Attachment resources."),
+            "AppStoreReviewAttachmentUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Store Review Attachment.",
+                attributes: .init(properties: [
+                    "sourceFileChecksum": "",
+                    "uploaded": "",
+                ])
+            ),
             "AppStoreReviewDetail": .rootSchema(
                 summary: "The data structure that represent an App Store Review Details resource.",
                 attributes: .init(
