@@ -616,6 +616,27 @@ public extension Schema {
                     "whatsNew": "",
                 ])
             ),
+            "AppStoreVersionPhasedRelease": .rootSchema(
+                summary: "The data structure that represent an App Store Version Phased Releases resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Store Version Phased Releases resource.",
+                    properties: [
+                        "currentDayNumber": "",
+                        "phasedReleaseState": "",
+                        "startDate": "",
+                        "totalPauseDuration": "",
+                    ]
+                )
+            ),
+            "AppStoreVersionPhasedReleaseCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Store Version Phased Release.",
+                attributes: .init(properties: ["phasedReleaseState": ""])
+            ),
+            "AppStoreVersionPhasedReleaseResponse": .rootSchema(summary: "A response that contains a single App Store Version Phased Releases resource."),
+            "AppStoreVersionPhasedReleaseUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Store Version Phased Release.",
+                attributes: .init(properties: ["phasedReleaseState": ""])
+            ),
             "AppStoreVersionResponse": .rootSchema(summary: "A response that contains a single App Store Versions resource."),
             "AppStoreVersionsResponse": .rootSchema(summary: "A response that contains a list of App Store Version resources."),
             "AppStoreVersionState": .enumObject(
@@ -1257,6 +1278,15 @@ public extension Schema {
             "KidsAgeBand": .enumObject(
                 summary: "String that represents a Made for Kids app's age band.",
                 cases: ["FIVE_AND_UNDER": "", "SIX_TO_EIGHT": "", "NINE_TO_ELEVEN": ""]
+            ),
+            "PhasedReleaseState": .enumObject(
+                summary: "String that represents the progress of a phased release for an app version.",
+                cases: [
+                    "INACTIVE": "",
+                    "ACTIVE": "",
+                    "PAUSED": "",
+                    "COMPLETE": "",
+                ]
             ),
             "Platform": .enumObject(
                 summary: "Strings that represent Apple operating systems.",

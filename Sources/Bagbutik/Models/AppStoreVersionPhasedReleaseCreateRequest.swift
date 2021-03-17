@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create an App Store Version Phased Release.
 public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appStoreVersionPhasedReleases" }
+        /// The resource's attributes.
         public let attributes: Attributes?
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes? = nil, relationships: Relationships) {
@@ -38,6 +44,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let phasedReleaseState: PhasedReleaseState?
 
@@ -46,6 +53,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
 
@@ -54,14 +62,18 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersion: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appStoreVersions" }
 
                     public init(id: String) {

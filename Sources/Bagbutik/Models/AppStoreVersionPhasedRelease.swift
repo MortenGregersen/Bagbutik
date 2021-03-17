@@ -1,9 +1,14 @@
 import Foundation
 
+/// The data structure that represent an App Store Version Phased Releases resource.
 public struct AppStoreVersionPhasedRelease: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appStoreVersionPhasedReleases" }
+    /// The resource's attributes.
     public let attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
@@ -36,6 +41,7 @@ public struct AppStoreVersionPhasedRelease: Codable {
         case attributes
     }
 
+    /// Attributes that describe an App Store Version Phased Releases resource.
     public struct Attributes: Codable {
         public let currentDayNumber: Int?
         public let phasedReleaseState: PhasedReleaseState?
