@@ -761,6 +761,9 @@ public extension Schema {
                 ])
             ),
             "BuildBetaGroupsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove beta groups from a build."),
+            "BuildBetaNotification": .rootSchema(summary: "The data structure that represents a Build Beta Notifications resource."),
+            "BuildBetaNotificationCreateRequest": .createRequest(summary: "The request body you use to create a Build Beta Notification."),
+            "BuildBetaNotificationResponse": .rootSchema(summary: "A response that contains a single Build Beta Notifications resource."),
             "BuildIcon": .rootSchema(
                 summary: "The data structure that represents the Build Icons resource.",
                 attributes: .init(
