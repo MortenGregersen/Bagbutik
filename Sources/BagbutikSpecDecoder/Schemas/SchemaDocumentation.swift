@@ -474,6 +474,49 @@ public extension Schema {
                     "SEVENTEEN_PLUS": "",
                 ]
             ),
+            "AppStoreReviewDetail": .rootSchema(
+                summary: "The data structure that represent an App Store Review Details resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Store Review Details resource.",
+                    properties: [
+                        "contactEmail": "",
+                        "contactFirstName": "",
+                        "contactLastName": "",
+                        "contactPhone": "",
+                        "demoAccountName": "",
+                        "demoAccountPassword": "",
+                        "demoAccountRequired": "",
+                        "notes": "",
+                    ]
+                )
+            ),
+            "AppStoreReviewDetailCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Store Review Detail.",
+                attributes: .init(properties: [
+                    "contactEmail": "",
+                    "contactFirstName": "",
+                    "contactLastName": "",
+                    "contactPhone": "",
+                    "demoAccountName": "",
+                    "demoAccountPassword": "",
+                    "demoAccountRequired": "",
+                    "notes": "",
+                ])
+            ),
+            "AppStoreReviewDetailResponse": .rootSchema(summary: "A response that contains a single App Store Review Details resource."),
+            "AppStoreReviewDetailUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Store Review Detail.",
+                attributes: .init(properties: [
+                    "contactEmail": "",
+                    "contactFirstName": "",
+                    "contactLastName": "",
+                    "contactPhone": "",
+                    "demoAccountName": "",
+                    "demoAccountPassword": "",
+                    "demoAccountRequired": "",
+                    "notes": "",
+                ])
+            ),
             "AppStoreVersion": .rootSchema(
                 summary: "The data structure that represent an App Store Versions resource.",
                 attributes: .init(
