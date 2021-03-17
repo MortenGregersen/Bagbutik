@@ -1172,6 +1172,20 @@ public extension Schema {
                 summary: "The request body you use to update a Device.",
                 attributes: .init(properties: ["name": "", "status": ""])
             ),
+            "DiagnosticLog": .rootSchema(summary: "The data structure that represents the Diagnostic Logs resource."),
+            "DiagnosticLogsResponse": .rootSchema(summary: "A response that contains a list of Diagnostic Logs resources."),
+            "DiagnosticSignature": .rootSchema(
+                summary: "The data structure that represents the Diagnostic Signatures resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Diagnostic Signatures resource.",
+                    properties: [
+                        "diagnosticType": "",
+                        "signature": "",
+                        "weight": "",
+                    ]
+                )
+            ),
+            "DiagnosticSignaturesResponse": .rootSchema(summary: "A response that contains a list of Diagnostic Signature resources."),
             "EndUserLicenseAgreement": .rootSchema(
                 summary: "The data structure that represents the End User License Agreement resource.",
                 attributes: .init(
@@ -1298,6 +1312,18 @@ public extension Schema {
                 summary: "String that represents a Made for Kids app's age band.",
                 cases: ["FIVE_AND_UNDER": "", "SIX_TO_EIGHT": "", "NINE_TO_ELEVEN": ""]
             ),
+            "PerfPowerMetric": .rootSchema(
+                summary: "The data structure that represents the Power and Performance Metrics resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Power and Performance Metrics resource.",
+                    properties: [
+                        "deviceType": "",
+                        "metricType": "",
+                        "platform": "",
+                    ]
+                )
+            ),
+            "PerfPowerMetricsResponse": .rootSchema(summary: "A response that contains a list of Power and Performance Metrics resources."),
             "PhasedReleaseState": .enumObject(
                 summary: "String that represents the progress of a phased release for an app version.",
                 cases: [
