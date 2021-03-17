@@ -1,9 +1,14 @@
 import Foundation
 
+/// The data structure that represents a Territories resource.
 public struct Territory: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "territories" }
+    /// The resource's attributes.
     public let attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
@@ -36,6 +41,7 @@ public struct Territory: Codable {
         case attributes
     }
 
+    /// Attributes that describe a Territories resource.
     public struct Attributes: Codable {
         public let currency: String?
 

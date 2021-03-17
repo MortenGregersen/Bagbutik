@@ -398,6 +398,24 @@ public extension Schema {
             ),
             "AppPreviewSetResponse": .rootSchema(summary: "A response that contains a single App Preview Sets resource."),
             "AppPreviewSetsResponse": .rootSchema(summary: "A response that contains a list of App Preview Set resources."),
+            "AppPrice": .rootSchema(summary: "The data structure that represent an App Prices resource."),
+            "AppPricePoint": .rootSchema(
+                summary: "The data structure that represent an App Price Points resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Price Points resource.",
+                    properties: [
+                        "customerPrice": "",
+                        "proceeds": "",
+                    ]
+                )
+            ),
+            "AppPricePointResponse": .rootSchema(summary: "A response that contains a single App Price Points resource."),
+            "AppPricePointsResponse": .rootSchema(summary: "A response that contains a list of App Price Point resources."),
+            "AppPriceResponse": .rootSchema(summary: "A response that contains a single App Prices resource."),
+            "AppPricesResponse": .rootSchema(summary: "A response that contains a list of App Prices resources."),
+            "AppPriceTier": .rootSchema(summary: "The data structure that represent an App Price Tiers resource."),
+            "AppPriceTierResponse": .rootSchema(summary: "A response that contains a single App Price Tiers resource."),
+            "AppPriceTiersResponse": .rootSchema(summary: "A response that contains a list of App Price Tier resources."),
             "AppResponse": .rootSchema(summary: "A response that contains a single Apps resource."),
             "AppsResponse": .rootSchema(summary: "A response that contains a list of Apps resources."),
             "AppScreenshot": .rootSchema(
@@ -1258,6 +1276,15 @@ public extension Schema {
                     "IMESSAGE_APP_IPAD_97": "",
                 ]
             ),
+            "TerritoriesResponse": .rootSchema(summary: "A response that contains a list of Territory resources."),
+            "Territory": .rootSchema(
+                summary: "The data structure that represents a Territories resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Territories resource.",
+                    properties: ["currency": ""]
+                )
+            ),
+            "TerritoryResponse": .rootSchema(summary: "A response that contains a single Territories resource."),
             "UploadOperation": .rootSchema(
                 summary: "Upload instructions for assets such as app previews and app screenshots.",
                 properties: [
