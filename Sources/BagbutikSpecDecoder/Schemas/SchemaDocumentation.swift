@@ -607,6 +607,49 @@ public extension Schema {
                     "tvOsPrivacyPolicy": "Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.",
                 ])
             ),
+            "BetaAppReviewDetail": .rootSchema(
+                summary: "The data structure that represents a Beta App Review Details resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta App Review Details resource.",
+                    properties: [
+                        "contactEmail": "Email address of contact in case communication is needed with the beta app review.",
+                        "contactFirstName": "First name of contact in case communication is needed with the beta app review.",
+                        "contactLastName": "Last name of contact in case communication is needed with the beta app review.",
+                        "contactPhone": "Phone number of contact in case communication is needed with the beta app review.",
+                        "demoAccountName": "The user name to sign in to your app to review its features.",
+                        "demoAccountPassword": "The password to sign in to your app to review its features.",
+                        "demoAccountRequired": "A Boolean value that indicates if sign-in information is required to review all the features of your app. If users sign in using social media, provide information for an account for review. Credentials must be valid and active for duration of review.",
+                        "notes": "Additional information about your app that can help during the review process. Do not include demo account details. Review notes have a maximum of 4,000 characters.",
+                    ]
+                )
+            ),
+            "BetaAppReviewDetailResponse": .rootSchema(summary: "A response that contains a single Beta App Review Details resource."),
+            "BetaAppReviewDetailsResponse": .rootSchema(summary: "A response that contains a list of Beta App Review Detail resources."),
+            "BetaAppReviewDetailUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta App Review Detail.",
+                attributes: .init(properties: [
+                    "contactEmail": "Email address of contact in case communication is needed with the beta app review.",
+                    "contactFirstName": "First name of contact in case communication is needed with the beta app review.",
+                    "contactLastName": "Last name of contact in case communication is needed with the beta app review.",
+                    "contactPhone": "Phone number of contact in case communication is needed with the beta app review.",
+                    "demoAccountName": "The user name to sign in to your app to review its features.",
+                    "demoAccountPassword": "The password to sign in to your app to review its features.",
+                    "demoAccountRequired": "A Boolean value that indicates if sign-in information is required to review all the features of your app. If users sign in using social media, provide information for an account for review. Credentials must be valid and active for duration of review.",
+                    "notes": "Additional information about your app that can help during the review process. Do not include demo account details. Review notes have a maximum of 4,000 characters.",
+                ])
+            ),
+            "BetaAppReviewSubmission": .rootSchema(
+                summary: "The data structure that represents a Beta App Review Submissions resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta App Review Submissions resource.",
+                    properties: [
+                        "betaReviewState": "A state that indicates the current status of the beta app review submission.",
+                    ]
+                )
+            ),
+            "BetaAppReviewSubmissionCreateRequest": .createRequest(summary: "The request body you use to create a Beta App Review Submission."),
+            "BetaAppReviewSubmissionResponse": .rootSchema(summary: "A response that contains a single Beta App Review Submissions resource."),
+            "BetaAppReviewSubmissionsResponse": .rootSchema(summary: "A response that contains a list of Beta App Review Submission resources."),
             "BetaBuildLocalization": .rootSchema(
                 summary: "The data structure that represents a Beta Build Localizations resource.",
                 attributes: .init(
@@ -691,6 +734,15 @@ public extension Schema {
                 attributes: .init(properties: [
                     "agreementText": "The license agreement text for your beta app that displays to users.",
                 ])
+            ),
+            "BetaReviewState": .enumObject(
+                summary: "String that indicates the review state of a beta app.",
+                cases: [
+                    "WAITING_FOR_REVIEW": "",
+                    "IN_REVIEW": "",
+                    "REJECTED": "",
+                    "APPROVED": "",
+                ]
             ),
             "BetaTester": .rootSchema(
                 summary: "The data structure that represents a Beta Testers resource.",

@@ -1,14 +1,19 @@
 import Foundation
 
+/// The request body you use to create a Beta App Review Submission.
 public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "betaAppReviewSubmissions" }
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -33,6 +38,7 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let build: Build
 
@@ -41,14 +47,18 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {
