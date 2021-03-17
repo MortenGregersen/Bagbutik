@@ -607,6 +607,31 @@ public extension Schema {
                     "tvOsPrivacyPolicy": "Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.",
                 ])
             ),
+            "BetaBuildLocalization": .rootSchema(
+                summary: "The data structure that represents a Beta Build Localizations resource.",
+                attributes: .init(
+                    summary: "Attributes that describe a Beta Build Localizations resource.",
+                    properties: [
+                        "locale": "The specified locale. Refer to Table 1 for possible values.",
+                        "whatsNew": "A field that describes changes and additions to a build and indicates features you would like your users to test.",
+                    ]
+                )
+            ),
+            "BetaBuildLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create a Beta Build Localization.",
+                attributes: .init(properties: [
+                    "locale": "The specified locale. Refer to Table 1 for possible values.",
+                    "whatsNew": "A field that describes changes and additions to a build and indicates features you would like your users to test.",
+                ])
+            ),
+            "BetaBuildLocalizationResponse": .rootSchema(summary: "A response that contains a single Beta Build Localizations resource."),
+            "BetaBuildLocalizationsResponse": .rootSchema(summary: "A response that contains a list of Beta Build Localization resources."),
+            "BetaBuildLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta Build Localization.",
+                attributes: .init(properties: [
+                    "whatsNew": "A field that describes changes and additions to a build and indicates features you would like your users to test.",
+                ])
+            ),
             "BetaGroup": .rootSchema(
                 summary: "The data structure that represents a Beta Groups resource.",
                 attributes: .init(
