@@ -20,7 +20,7 @@ public extension Schema {
     }
 
     enum Documentation: Equatable {
-        case rootSchema(summary: String, properties: [String: String]? = nil, attributes: AttributesDocumentation? = nil)
+        case rootSchema(summary: String, discussion: String? = nil, properties: [String: String]? = nil, attributes: AttributesDocumentation? = nil)
         case attributes(AttributesDocumentation)
         case relationships
         case relationship
@@ -46,7 +46,7 @@ public extension Schema {
 
         public var summary: String? {
             switch self {
-            case .rootSchema(let summary, _, _):
+            case .rootSchema(let summary, _, _, _):
                 return summary
             case .attributes(let documentation):
                 return documentation.summary
@@ -100,7 +100,7 @@ public extension Schema {
                 Self.commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
             }
             switch self {
-            case .rootSchema(_, let properties, _):
+            case .rootSchema(_, _, let properties, _):
                 return propertiesMergedWithCommonProperties(properties)
             case .attributes(let attributes):
                 return propertiesMergedWithCommonProperties(attributes.properties)
@@ -1143,6 +1143,31 @@ public extension Schema {
                     "DISTRIBUTION": "",
                 ]
             ),
+            "ErrorResponse": .rootSchema(
+                summary: "Information with error details that an API returns in the response body whenever the API request is not successful.",
+                properties: ["errors": "An array of one or more errors."]
+            ),
+            "ErrorResponse.Errors": .rootSchema(
+                summary: "The details about one error that is returned when an API request is not successful.",
+                discussion: "Use the code parameter for programmatic error handling. See [Parsing the Error Response Code](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/parsing_the_error_response_code) for more information. For more information about using the source parameter, see [Pinpointing the Location of Errors](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/pinpointing_the_location_of_errors).",
+                properties: [
+                    "code": "A machine-readable code indicating the type of error. The code is a hierarchical value with levels of specificity separated by the '.' character. This value is parseable for programmatic error handling in code.",
+                    "status": "The HTTP status code of the error. This status code usually matches the response's status code; however, if the request produces multiple errors, these two codes may differ.",
+                    "id": "The unique ID of a specific instance of an error, request, and response. Use this ID when providing feedback to or debugging issues with Apple.",
+                    "title": "A summary of the error. Do not use this field for programmatic error handling.",
+                    "detail": "A detailed explanation of the error. Do not use this field for programmatic error handling.",
+                    "source": "One of two possible types of values: source.parameter, provided when a query parameter produced the error, or source.JsonPointer, provided when a problem with the entity produced the error.",
+                ]
+            ),
+            "ErrorResponse.Errors.JsonPointer": .rootSchema(
+                summary: "An object that contains the JSON pointer that indicates the location of the error.",
+                discussion: "In some cases, the JSON pointer may indicate an element that isn't in the request entity, but should be. For more information about JSON pointers, see the [RFC 6901](https://tools.ietf.org/html/rfc6901) proposed standards document.",
+                properties: ["pointer": "A JSON pointer that indicates the location in the request entity where the error originates."]
+            ),
+            "ErrorResponse.Errors.Parameter": .rootSchema(
+                summary: "An object that contains the query parameter that produced the error.",
+                properties: ["parameter": "The query parameter that produced the error."]
+            ),
             "Device": .rootSchema(
                 summary: "The data structure that represents a Devices resource.",
                 attributes: .init(
@@ -1186,6 +1211,11 @@ public extension Schema {
                 )
             ),
             "DiagnosticSignaturesResponse": .rootSchema(summary: "A response that contains a list of Diagnostic Signature resources."),
+            "DocumentLinks": .rootSchema(
+                summary: "Self-links to documents that can contain information for one or more resources.",
+                discussion: "All the response data constitutes a document.",
+                properties: ["self": "The link that produced the current document."]
+            ),
             "EndUserLicenseAgreement": .rootSchema(
                 summary: "The data structure that represents the End User License Agreement resource.",
                 attributes: .init(
@@ -1312,6 +1342,32 @@ public extension Schema {
                 summary: "String that represents a Made for Kids app's age band.",
                 cases: ["FIVE_AND_UNDER": "", "SIX_TO_EIGHT": "", "NINE_TO_ELEVEN": ""]
             ),
+            "PagedDocumentLinks": .rootSchema(
+                summary: "Links related to the response document, including paging links.",
+                discussion: "All the response data constitutes a document.",
+                properties: [
+                    "first": "The link to the first page of documents.",
+                    "next": "The link to the next page of documents.",
+                    "self": "The link that produced the current document.",
+                ]
+            ),
+            "PagingInformation": .rootSchema(
+                summary: "Paging information for data responses.",
+                properties: ["paging": "The paging information details."]
+            ),
+            "PagingInformation.Paging": .rootSchema(
+                summary: "Paging details such as the total number of resources and the per-page limit.",
+                discussion: """
+                Adjust the number of resources returned per page by using the limit query parameter in your request. For example, the following request returns the first 10 testers:
+                ```
+                GET /v1/betaTesters?limit=10
+                ```
+                """,
+                properties: [
+                    "total": "The total number of resources matching your request.",
+                    "limit": "The maximum number of resources to return per page, from 0 to 200.",
+                ]
+            ),
             "PerfPowerMetric": .rootSchema(
                 summary: "The data structure that represents the Power and Performance Metrics resource.",
                 attributes: .init(
@@ -1398,6 +1454,10 @@ public extension Schema {
             ),
             "ProfileResponse": .rootSchema(summary: "A response that contains a single Profiles resource."),
             "ProfilesResponse": .rootSchema(summary: "A response that contains a list of Profiles resources."),
+            "ResourceLinks": .rootSchema(
+                summary: "Self-links to requested resources.",
+                properties: ["self": "The link to the resource."]
+            ),
             "RoutingAppCoverage": .rootSchema(
                 summary: "The data structure that represents the Routing App Coverages resource.",
                 attributes: .init(

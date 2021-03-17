@@ -78,7 +78,7 @@ public struct ObjectSchema: Decodable, Equatable {
         let rootSchemaDocumentation = Schema.Documentation.allDocumentation[codingPathComponents[0]]
         if codingPathComponents.count == 1 {
             return rootSchemaDocumentation
-        } else if case .rootSchema(_, _, let possibleAttributes) = rootSchemaDocumentation,
+        } else if case .rootSchema(_, _, _, let possibleAttributes) = rootSchemaDocumentation,
                   let attributes = possibleAttributes,
                   codingPathComponents.count == 2, name == attributesName
         {
@@ -120,6 +120,19 @@ public struct ObjectSchema: Decodable, Equatable {
             }
         } else if codingPathComponents[0].hasSuffix("LinkagesResponse"), name == dataName {
             return .linkagesResponseData
+        } else if codingPathComponents[0] == "ErrorResponse" {
+            var pathComponents = codingPathComponents
+                .filter { $0 != "Items" &&
+                    $0 != "Source" &&
+                    $0 != "OneOf" &&
+                    !$0.hasPrefix("Index ")
+                }
+            if pathComponents.last != name {
+                pathComponents.append(name)
+            }
+            return Schema.Documentation.allDocumentation[pathComponents.joined(separator: ".")]
+        } else if codingPathComponents[0] == "PagingInformation" {
+            return Schema.Documentation.allDocumentation[codingPathComponents.joined(separator: ".")]
         }
         return nil
     }
