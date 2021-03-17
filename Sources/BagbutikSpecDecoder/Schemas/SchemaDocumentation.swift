@@ -345,6 +345,25 @@ public extension Schema {
                     "description": "",
                 ]
             ),
+            "AppPreOrder": .rootSchema(
+                summary: "The data structure that represent an App Pre Orders resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Pre Orders resource.",
+                    properties: [
+                        "appReleaseDate": "",
+                        "preOrderAvailableDate": "",
+                    ]
+                )
+            ),
+            "AppPreOrderCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Pre-Order.",
+                attributes: .init(properties: ["appReleaseDate": ""])
+            ),
+            "AppPreOrderResponse": .rootSchema(summary: "A response that contains a single App Pre-Orders resource."),
+            "AppPreOrderUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an App Pre-Order.",
+                attributes: .init(properties: ["appReleaseDate": ""])
+            ),
             "AppPreview": .rootSchema(
                 summary: "The data structure that represent an App Previews resource.",
                 attributes: .init(

@@ -1,15 +1,21 @@
 import Foundation
 
+/// The request body you use to create an App Pre-Order.
 public struct AppPreOrderCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /// The data element of the request body.
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appPreOrders" }
+        /// The resource's attributes.
         public let attributes: Attributes?
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes? = nil, relationships: Relationships) {
@@ -38,6 +44,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let appReleaseDate: String?
 
@@ -46,6 +53,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
             }
         }
 
+        /// The data and links that describe the relationship between the resources.
         public struct Relationships: Codable {
             public let app: App
 
@@ -54,14 +62,18 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
             }
 
             public struct App: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "apps" }
 
                     public init(id: String) {
