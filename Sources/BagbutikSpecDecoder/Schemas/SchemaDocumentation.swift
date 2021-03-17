@@ -640,6 +640,9 @@ public extension Schema {
                     "REPLACED_WITH_NEW_VERSION": "",
                 ]
             ),
+            "AppStoreVersionSubmission": .rootSchema(summary: "The data structure that represents an App Store Version Submissions resource."),
+            "AppStoreVersionSubmissionCreateRequest": .createRequest(summary: "The request body you use to create an App Store Version Submission."),
+            "AppStoreVersionSubmissionResponse": .rootSchema(summary: "A response that contains a single App Store Version Submissions resource."),
             "AppStoreVersionUpdateRequest": .updateRequest(
                 summary: "The request body you use to update an App Store Version.",
                 attributes: .init(properties: [
