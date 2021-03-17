@@ -38,6 +38,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let identifier: String
             public let name: String

@@ -15,7 +15,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
         public var type: String { "bundleIdCapabilities" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The types and IDs of the related data to update.
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -44,6 +44,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let capabilityType: CapabilityType
             public let settings: [CapabilitySetting]?
@@ -63,14 +64,14 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             }
 
             public struct BundleId: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

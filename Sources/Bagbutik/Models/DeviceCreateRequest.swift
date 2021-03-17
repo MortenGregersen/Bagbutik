@@ -38,6 +38,7 @@ public struct DeviceCreateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let name: String
             public let platform: BundleIdPlatform

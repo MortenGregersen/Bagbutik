@@ -15,7 +15,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
         public var type: String { "userInvitations" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The types and IDs of the related data to update.
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships?
 
         public init(attributes: Attributes, relationships: Relationships? = nil) {
@@ -44,12 +44,19 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
+            /// A Boolean value that indicates whether a user has access to all apps available to the team.
             public let allAppsVisible: Bool?
+            /// The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.
             public let email: String
+            /// The user invitation recipient's first name.
             public let firstName: String
+            /// The user invitation recipient's last name.
             public let lastName: String
+            /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
             public let provisioningAllowed: Bool?
+            /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
             public let roles: [UserRole]
 
             public init(allAppsVisible: Bool? = nil, email: String, firstName: String, lastName: String, provisioningAllowed: Bool? = nil, roles: [UserRole]) {
@@ -71,14 +78,14 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
             }
 
             public struct VisibleApps: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

@@ -38,6 +38,7 @@ public struct CertificateCreateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let certificateType: CertificateType
             public let csrContent: String

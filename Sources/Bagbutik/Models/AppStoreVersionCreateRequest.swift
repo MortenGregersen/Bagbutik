@@ -15,7 +15,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
         public var type: String { "appStoreVersions" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The types and IDs of the related data to update.
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -44,6 +44,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /// Attributes that you set that describe the new resource.
         public struct Attributes: Codable {
             public let copyright: String?
             public let earliestReleaseDate: Date?
@@ -79,14 +80,14 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct App: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
@@ -118,14 +119,14 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
