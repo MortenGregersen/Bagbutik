@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of App Info resources.
+/**
+ A response that contains a list of App Info resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>
+ */
 public struct AppInfosResponse: Codable {
     /// The resource data.
     public let data: [AppInfo]

@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response body that contains a list of related resource IDs.
+/**
+ A response body that contains a list of related resource IDs.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse>
+ */
 public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
     /// The resource data.
     public let data: Data

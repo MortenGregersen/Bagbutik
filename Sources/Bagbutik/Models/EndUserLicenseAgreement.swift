@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents the End User License Agreement resource.
+/**
+ The data structure that represents the End User License Agreement resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement>
+ */
 public struct EndUserLicenseAgreement: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct EndUserLicenseAgreement: Codable {
         case relationships
     }
 
-    /// Attributes that describe an End User License Agreements resource.
+    /**
+     Attributes that describe an End User License Agreements resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/attributes>
+     */
     public struct Attributes: Codable {
         public let agreementText: String?
 
@@ -56,7 +66,12 @@ public struct EndUserLicenseAgreement: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships>
+     */
     public struct Relationships: Codable {
         public let app: App?
         public let territories: Territories?
@@ -66,7 +81,12 @@ public struct EndUserLicenseAgreement: Codable {
             self.territories = territories
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app>
+         */
         public struct App: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -78,7 +98,12 @@ public struct EndUserLicenseAgreement: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -108,7 +133,12 @@ public struct EndUserLicenseAgreement: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -122,7 +152,12 @@ public struct EndUserLicenseAgreement: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories>
+         */
         public struct Territories: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -137,7 +172,12 @@ public struct EndUserLicenseAgreement: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -167,7 +207,12 @@ public struct EndUserLicenseAgreement: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

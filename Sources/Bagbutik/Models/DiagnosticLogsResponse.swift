@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Diagnostic Logs resources.
+/**
+ A response that contains a list of Diagnostic Logs resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogsresponse>
+ */
 public struct DiagnosticLogsResponse: Codable {
     /// The resource data.
     public let data: [DiagnosticLog]

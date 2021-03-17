@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Bundle ID Capability resources.
+/**
+ A response that contains a list of Bundle ID Capability resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitiesresponse>
+ */
 public struct BundleIdCapabilitiesResponse: Codable {
     /// The resource data.
     public let data: [BundleIdCapability]

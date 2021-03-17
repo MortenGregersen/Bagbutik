@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Infos resource.
+/**
+ A response that contains a single App Infos resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinforesponse>
+ */
 public struct AppInfoResponse: Codable {
     /// The resource data.
     public let data: AppInfo

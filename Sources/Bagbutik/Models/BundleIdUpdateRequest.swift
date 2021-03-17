@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update a Bundle ID.
+/**
+ The request body you use to update a Bundle ID.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest>
+ */
 public struct BundleIdUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct BundleIdUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -44,7 +54,12 @@ public struct BundleIdUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let name: String?
 

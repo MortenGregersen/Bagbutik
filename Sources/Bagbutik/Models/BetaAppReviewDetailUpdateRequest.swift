@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update a Beta App Review Detail.
+/**
+ The request body you use to update a Beta App Review Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest>
+ */
 public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -44,7 +54,12 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             /// Email address of contact in case communication is needed with the beta app review.
             public let contactEmail: String?

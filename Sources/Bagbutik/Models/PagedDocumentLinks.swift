@@ -3,6 +3,9 @@ import Foundation
 /**
  Links related to the response document, including paging links.
 
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/pageddocumentlinks>
+
  All the response data constitutes a document.
  */
 public struct PagedDocumentLinks: Codable {

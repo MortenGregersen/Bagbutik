@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Apps resources.
+/**
+ A response that contains a list of Apps resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appsresponse>
+ */
 public struct AppsResponse: Codable {
     /// The resource data.
     public let data: [App]

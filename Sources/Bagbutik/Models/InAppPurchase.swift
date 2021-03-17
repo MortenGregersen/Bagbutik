@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents the In-App Purchases resource.
+/**
+ The data structure that represents the In-App Purchases resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>
+ */
 public struct InAppPurchase: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct InAppPurchase: Codable {
         case relationships
     }
 
-    /// Attributes that describe an In-App Purchases resource.
+    /**
+     Attributes that describe an In-App Purchases resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/attributes>
+     */
     public struct Attributes: Codable {
         public let inAppPurchaseType: InAppPurchaseType?
         public let productId: String?
@@ -92,7 +102,12 @@ public struct InAppPurchase: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships>
+     */
     public struct Relationships: Codable {
         public let apps: Apps?
 
@@ -100,7 +115,12 @@ public struct InAppPurchase: Codable {
             self.apps = apps
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps>
+         */
         public struct Apps: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -115,7 +135,12 @@ public struct InAppPurchase: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -145,7 +170,12 @@ public struct InAppPurchase: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

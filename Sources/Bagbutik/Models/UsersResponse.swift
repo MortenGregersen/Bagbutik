@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Users resources.
+/**
+ A response that contains a list of Users resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/usersresponse>
+ */
 public struct UsersResponse: Codable {
     /// The resource data.
     public let data: [User]

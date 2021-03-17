@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single In-App Purchases resource.
+/**
+ A response that contains a single In-App Purchases resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseresponse>
+ */
 public struct InAppPurchaseResponse: Codable {
     /// The resource data.
     public let data: InAppPurchase

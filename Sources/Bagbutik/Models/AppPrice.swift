@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represent an App Prices resource.
+/**
+ The data structure that represent an App Prices resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appprice>
+ */
 public struct AppPrice: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -41,7 +46,12 @@ public struct AppPrice: Codable {
         case relationships
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships>
+     */
     public struct Relationships: Codable {
         public let app: App?
         public let priceTier: PriceTier?
@@ -51,7 +61,12 @@ public struct AppPrice: Codable {
             self.priceTier = priceTier
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app>
+         */
         public struct App: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -63,7 +78,12 @@ public struct AppPrice: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -93,7 +113,12 @@ public struct AppPrice: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -107,7 +132,12 @@ public struct AppPrice: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier>
+         */
         public struct PriceTier: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -119,7 +149,12 @@ public struct AppPrice: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -149,7 +184,12 @@ public struct AppPrice: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

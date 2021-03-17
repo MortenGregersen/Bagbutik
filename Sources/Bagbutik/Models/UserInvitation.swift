@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a User Invitations resource.
+/**
+ The data structure that represents a User Invitations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation>
+ */
 public struct UserInvitation: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct UserInvitation: Codable {
         case relationships
     }
 
-    /// Attributes that describe a User Invitations resource.
+    /**
+     Attributes that describe a User Invitations resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/attributes>
+     */
     public struct Attributes: Codable {
         /// A Boolean value that indicates whether a user has access to all apps available to the team.
         public let allAppsVisible: Bool?
@@ -75,7 +85,12 @@ public struct UserInvitation: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/relationships>
+     */
     public struct Relationships: Codable {
         public let visibleApps: VisibleApps?
 
@@ -83,7 +98,12 @@ public struct UserInvitation: Codable {
             self.visibleApps = visibleApps
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/relationships/visibleapps>
+         */
         public struct VisibleApps: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -98,7 +118,12 @@ public struct UserInvitation: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/relationships/visibleapps/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -128,7 +153,12 @@ public struct UserInvitation: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/relationships/visibleapps/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

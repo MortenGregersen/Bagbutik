@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single User Invitations resource.
+/**
+ A response that contains a single User Invitations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationresponse>
+ */
 public struct UserInvitationResponse: Codable {
     /// The resource data.
     public let data: UserInvitation

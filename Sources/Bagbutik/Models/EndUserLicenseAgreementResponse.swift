@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single End User License Agreements resource.
+/**
+ A response that contains a single End User License Agreements resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>
+ */
 public struct EndUserLicenseAgreementResponse: Codable {
     /// The resource data.
     public let data: EndUserLicenseAgreement

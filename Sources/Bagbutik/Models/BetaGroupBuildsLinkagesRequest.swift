@@ -1,6 +1,11 @@
 import Foundation
 
-/// A request body you use to add or remove builds from a beta group.
+/**
+ A request body you use to add or remove builds from a beta group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesrequest>
+ */
 public struct BetaGroupBuildsLinkagesRequest: Codable, RequestBody {
     /// The object types and IDs of the related resources.
     public let data: [Data]
@@ -9,7 +14,12 @@ public struct BetaGroupBuildsLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesrequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String

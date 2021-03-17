@@ -1,6 +1,11 @@
 import Foundation
 
-/// A request body you use to add or remove compatible versions from a Game Center-enabled version.
+/**
+ A request body you use to add or remove compatible versions from a Game Center-enabled version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest>
+ */
 public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable, RequestBody {
     /// The object types and IDs of the related resources.
     public let data: [Data]
@@ -9,7 +14,12 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String

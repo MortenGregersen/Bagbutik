@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Territory resources.
+/**
+ A response that contains a list of Territory resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territoriesresponse>
+ */
 public struct TerritoriesResponse: Codable {
     /// The resource data.
     public let data: [Territory]

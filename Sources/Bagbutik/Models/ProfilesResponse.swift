@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Profiles resources.
+/**
+ A response that contains a list of Profiles resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/profilesresponse>
+ */
 public struct ProfilesResponse: Codable {
     /// The resource data.
     public let data: [Profile]

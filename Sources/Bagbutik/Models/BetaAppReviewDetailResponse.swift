@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Beta App Review Details resource.
+/**
+ A response that contains a single Beta App Review Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailresponse>
+ */
 public struct BetaAppReviewDetailResponse: Codable {
     /// The resource data.
     public let data: BetaAppReviewDetail

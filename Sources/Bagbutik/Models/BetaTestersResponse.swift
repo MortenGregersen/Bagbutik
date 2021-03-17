@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Beta Tester resources.
+/**
+ A response that contains a list of Beta Tester resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatestersresponse>
+ */
 public struct BetaTestersResponse: Codable {
     /// The resource data.
     public let data: [BetaTester]

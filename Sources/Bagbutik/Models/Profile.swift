@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Profiles resource.
+/**
+ The data structure that represents a Profiles resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/profile>
+ */
 public struct Profile: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct Profile: Codable {
         case relationships
     }
 
-    /// Attributes that describe a Profiles resource.
+    /**
+     Attributes that describe a Profiles resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/profile/attributes>
+     */
     public struct Attributes: Codable {
         public let createdDate: Date?
         public let expirationDate: Date?
@@ -92,7 +102,12 @@ public struct Profile: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships>
+     */
     public struct Relationships: Codable {
         public let bundleId: BundleId?
         public let certificates: Certificates?
@@ -104,7 +119,12 @@ public struct Profile: Codable {
             self.devices = devices
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid>
+         */
         public struct BundleId: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -116,7 +136,12 @@ public struct Profile: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -146,7 +171,12 @@ public struct Profile: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -160,7 +190,12 @@ public struct Profile: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates>
+         */
         public struct Certificates: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -175,7 +210,12 @@ public struct Profile: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -205,7 +245,12 @@ public struct Profile: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -219,7 +264,12 @@ public struct Profile: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices>
+         */
         public struct Devices: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -234,7 +284,12 @@ public struct Profile: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -264,7 +319,12 @@ public struct Profile: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

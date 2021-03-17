@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Certificates resource.
+/**
+ The data structure that represents a Certificates resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/certificate>
+ */
 public struct Certificate: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -41,7 +46,12 @@ public struct Certificate: Codable {
         case attributes
     }
 
-    /// Attributes that describe a Certificates resource.
+    /**
+     Attributes that describe a Certificates resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/certificate/attributes>
+     */
     public struct Attributes: Codable {
         public let certificateContent: String?
         public let certificateType: CertificateType?

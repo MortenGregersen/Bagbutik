@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of App Price Tier resources.
+/**
+ A response that contains a list of App Price Tier resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricetiersresponse>
+ */
 public struct AppPriceTiersResponse: Codable {
     /// The resource data.
     public let data: [AppPriceTier]

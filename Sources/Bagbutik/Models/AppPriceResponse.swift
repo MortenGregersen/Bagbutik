@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Prices resource.
+/**
+ A response that contains a single App Prices resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppriceresponse>
+ */
 public struct AppPriceResponse: Codable {
     /// The resource data.
     public let data: AppPrice

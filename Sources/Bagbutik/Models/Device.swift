@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Devices resource.
+/**
+ The data structure that represents a Devices resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/device>
+ */
 public struct Device: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -41,7 +46,12 @@ public struct Device: Codable {
         case attributes
     }
 
-    /// Attributes that describe a Devices resource.
+    /**
+     Attributes that describe a Devices resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/device/attributes>
+     */
     public struct Attributes: Codable {
         public let addedDate: Date?
         public let deviceClass: DeviceClass?

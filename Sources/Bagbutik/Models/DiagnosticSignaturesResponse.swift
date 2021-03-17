@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Diagnostic Signature resources.
+/**
+ A response that contains a list of Diagnostic Signature resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignaturesresponse>
+ */
 public struct DiagnosticSignaturesResponse: Codable {
     /// The resource data.
     public let data: [DiagnosticSignature]

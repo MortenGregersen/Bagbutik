@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update an App Store Review Attachment.
+/**
+ The request body you use to update an App Store Review Attachment.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest>
+ */
 public struct AppStoreReviewAttachmentUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct AppStoreReviewAttachmentUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -44,7 +54,12 @@ public struct AppStoreReviewAttachmentUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let sourceFileChecksum: String?
             public let uploaded: Bool?

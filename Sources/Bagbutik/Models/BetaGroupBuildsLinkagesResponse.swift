@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response body that contains a list of related resource IDs.
+/**
+ A response body that contains a list of related resource IDs.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesresponse>
+ */
 public struct BetaGroupBuildsLinkagesResponse: Codable {
     /// The resource data.
     public let data: [Data]
@@ -15,7 +20,12 @@ public struct BetaGroupBuildsLinkagesResponse: Codable {
         self.meta = meta
     }
 
-    /// The data element of the response body.
+    /**
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesresponse/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String

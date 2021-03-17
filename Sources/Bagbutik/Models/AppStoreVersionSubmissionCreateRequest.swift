@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to create an App Store Version Submission.
+/**
+ The request body you use to create an App Store Version Submission.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissioncreaterequest>
+ */
 public struct AppStoreVersionSubmissionCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct AppStoreVersionSubmissionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissioncreaterequest/data>
+     */
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "appStoreVersionSubmissions" }
@@ -38,7 +48,12 @@ public struct AppStoreVersionSubmissionCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissioncreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
 
@@ -54,7 +69,12 @@ public struct AppStoreVersionSubmissionCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissioncreaterequest/data/relationships/appstoreversion/data>
+                 */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

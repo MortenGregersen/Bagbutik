@@ -2,6 +2,7 @@ import Foundation
 
 public struct ObjectSchema: Decodable, Equatable {
     public let name: String
+    public let url: String
     public let documentation: Schema.Documentation?
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
@@ -16,8 +17,9 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    internal init(name: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
         self.name = name
+        self.url = url
         self.documentation = documentation
         self.properties = properties
         self.requiredProperties = requiredProperties
@@ -57,6 +59,20 @@ public struct ObjectSchema: Decodable, Equatable {
             .drop { $0 == "components" || $0 == "schemas" }
             .map { $0.capitalizingFirstLetter() }
         )
+        var urlPathComponents = codingPathComponents
+            .filter { $0 != "Items" &&
+                $0 != "Source" &&
+                $0 != "OneOf" &&
+                !$0.hasPrefix("Index ")
+            }
+
+        if urlPathComponents.last != name {
+            urlPathComponents.append(name.lowercased())
+        }
+        let uri = urlPathComponents
+            .map { $0.lowercased() }
+            .joined(separator: "/")
+        let url = "https://developer.apple.com/documentation/appstoreconnectapi/\(uri)"
         let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
         let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
@@ -67,7 +83,7 @@ public struct ObjectSchema: Decodable, Equatable {
         {
             subSchemas.append(.relationships(relationships))
         }
-        self.init(name: name, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
+        self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
     }
 
     private static func getDocumentation(forSchemaNamed name: String, codingPathComponents: [String]) -> Schema.Documentation? {

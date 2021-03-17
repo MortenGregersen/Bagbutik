@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Certificates resources.
+/**
+ A response that contains a list of Certificates resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/certificatesresponse>
+ */
 public struct CertificatesResponse: Codable {
     /// The resource data.
     public let data: [Certificate]

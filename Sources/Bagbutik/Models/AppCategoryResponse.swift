@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Categories resource.
+/**
+ A response that contains a single App Categories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategoryresponse>
+ */
 public struct AppCategoryResponse: Codable {
     /// The resource data.
     public let data: AppCategory

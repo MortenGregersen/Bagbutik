@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Store Version Localizations resource.
+/**
+ A response that contains a single App Store Version Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationresponse>
+ */
 public struct AppStoreVersionLocalizationResponse: Codable {
     /// The resource data.
     public let data: AppStoreVersionLocalization

@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Users resource.
+/**
+ A response that contains a single Users resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/userresponse>
+ */
 public struct UserResponse: Codable {
     /// The resource data.
     public let data: User

@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update an App Preview.
+/**
+ The request body you use to update an App Preview.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest>
+ */
 public struct AppPreviewUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -44,7 +54,12 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let previewFrameTimeCode: String?
             public let sourceFileChecksum: String?

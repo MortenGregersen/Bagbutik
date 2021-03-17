@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to create a Bundle ID.
+/**
+ The request body you use to create a Bundle ID.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest>
+ */
 public struct BundleIdCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data>
+     */
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "bundleIds" }
@@ -38,7 +48,12 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes that you set that describe the new resource.
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let identifier: String
             public let name: String

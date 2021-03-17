@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represent an App Categories resource.
+/**
+ The data structure that represent an App Categories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategory>
+ */
 public struct AppCategory: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct AppCategory: Codable {
         case relationships
     }
 
-    /// Attributes that describe an App Categories resource.
+    /**
+     Attributes that describe an App Categories resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/attributes>
+     */
     public struct Attributes: Codable {
         public let platforms: [Platform]?
 
@@ -56,7 +66,12 @@ public struct AppCategory: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships>
+     */
     public struct Relationships: Codable {
         public let parent: Parent?
         public let subcategories: Subcategories?
@@ -66,7 +81,12 @@ public struct AppCategory: Codable {
             self.subcategories = subcategories
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent>
+         */
         public struct Parent: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -78,7 +98,12 @@ public struct AppCategory: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -108,7 +133,12 @@ public struct AppCategory: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -122,7 +152,12 @@ public struct AppCategory: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories>
+         */
         public struct Subcategories: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -137,7 +172,12 @@ public struct AppCategory: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -167,7 +207,12 @@ public struct AppCategory: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

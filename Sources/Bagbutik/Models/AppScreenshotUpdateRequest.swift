@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update an App Screenshot.
+/**
+ The request body you use to update an App Screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest>
+ */
 public struct AppScreenshotUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct AppScreenshotUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -44,7 +54,12 @@ public struct AppScreenshotUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let sourceFileChecksum: String?
             public let uploaded: Bool?

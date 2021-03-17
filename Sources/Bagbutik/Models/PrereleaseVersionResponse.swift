@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Prerelease Versions resource.
+/**
+ A response that contains a single Prerelease Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionresponse>
+ */
 public struct PrereleaseVersionResponse: Codable {
     /// The resource data.
     public let data: PrereleaseVersion

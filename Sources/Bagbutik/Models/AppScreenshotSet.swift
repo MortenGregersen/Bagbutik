@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represent an App Screenshot Sets resource.
+/**
+ The data structure that represent an App Screenshot Sets resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset>
+ */
 public struct AppScreenshotSet: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct AppScreenshotSet: Codable {
         case relationships
     }
 
-    /// Attributes that describe an App Screenshot Sets resource.
+    /**
+     Attributes that describe an App Screenshot Sets resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/attributes>
+     */
     public struct Attributes: Codable {
         public let screenshotDisplayType: ScreenshotDisplayType?
 
@@ -56,7 +66,12 @@ public struct AppScreenshotSet: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships>
+     */
     public struct Relationships: Codable {
         public let appScreenshots: AppScreenshots?
         public let appStoreVersionLocalization: AppStoreVersionLocalization?
@@ -66,7 +81,12 @@ public struct AppScreenshotSet: Codable {
             self.appStoreVersionLocalization = appStoreVersionLocalization
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots>
+         */
         public struct AppScreenshots: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -81,7 +101,12 @@ public struct AppScreenshotSet: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -111,7 +136,12 @@ public struct AppScreenshotSet: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -125,7 +155,12 @@ public struct AppScreenshotSet: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization>
+         */
         public struct AppStoreVersionLocalization: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -137,7 +172,12 @@ public struct AppScreenshotSet: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -167,7 +207,12 @@ public struct AppScreenshotSet: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

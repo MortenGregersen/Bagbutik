@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Previews resource.
+/**
+ A response that contains a single App Previews resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewresponse>
+ */
 public struct AppPreviewResponse: Codable {
     /// The resource data.
     public let data: AppPreview

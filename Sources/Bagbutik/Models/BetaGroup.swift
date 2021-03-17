@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Beta Groups resource.
+/**
+ The data structure that represents a Beta Groups resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroup>
+ */
 public struct BetaGroup: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct BetaGroup: Codable {
         case relationships
     }
 
-    /// Attributes that describe a Beta Groups resource.
+    /**
+     Attributes that describe a Beta Groups resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/attributes>
+     */
     public struct Attributes: Codable {
         /// The creation date of the beta group.
         public let createdDate: Date?
@@ -80,7 +90,12 @@ public struct BetaGroup: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships>
+     */
     public struct Relationships: Codable {
         public let app: App?
         public let betaTesters: BetaTesters?
@@ -92,7 +107,12 @@ public struct BetaGroup: Codable {
             self.builds = builds
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/app>
+         */
         public struct App: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -104,7 +124,12 @@ public struct BetaGroup: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/app/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -134,7 +159,12 @@ public struct BetaGroup: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/app/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -148,7 +178,12 @@ public struct BetaGroup: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/betatesters>
+         */
         public struct BetaTesters: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -163,7 +198,12 @@ public struct BetaGroup: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/betatesters/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -193,7 +233,12 @@ public struct BetaGroup: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/betatesters/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -207,7 +252,12 @@ public struct BetaGroup: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/builds>
+         */
         public struct Builds: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -222,7 +272,12 @@ public struct BetaGroup: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/builds/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -252,7 +307,12 @@ public struct BetaGroup: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/builds/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

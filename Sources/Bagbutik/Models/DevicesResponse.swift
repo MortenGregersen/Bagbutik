@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Devices resources.
+/**
+ A response that contains a list of Devices resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/devicesresponse>
+ */
 public struct DevicesResponse: Codable {
     /// The resource data.
     public let data: [Device]

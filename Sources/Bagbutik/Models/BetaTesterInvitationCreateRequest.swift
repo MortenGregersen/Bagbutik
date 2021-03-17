@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to create a Beta Tester Invitation.
+/**
+ The request body you use to create a Beta Tester Invitation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest>
+ */
 public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data>
+     */
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "betaTesterInvitations" }
@@ -38,7 +48,12 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let app: App
             public let betaTester: BetaTester
@@ -56,7 +71,12 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/app/data>
+                 */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
@@ -95,7 +115,12 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/betatester/data>
+                 */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

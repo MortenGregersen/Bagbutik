@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Pre-Release Version resources.
+/**
+ A response that contains a list of Pre-Release Version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
+ */
 public struct PreReleaseVersionsResponse: Codable {
     /// The resource data.
     public let data: [PrereleaseVersion]

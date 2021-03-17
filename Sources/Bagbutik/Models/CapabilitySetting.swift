@@ -1,6 +1,11 @@
 import Foundation
 
-/// An object that represents a capability setting for an app.
+/**
+ An object that represents a capability setting for an app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/capabilitysetting>
+ */
 public struct CapabilitySetting: Codable {
     public let allowedInstances: AllowedInstances?
     public let description: String?

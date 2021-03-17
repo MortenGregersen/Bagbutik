@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Devices resource.
+/**
+ A response that contains a single Devices resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/deviceresponse>
+ */
 public struct DeviceResponse: Codable {
     /// The resource data.
     public let data: Device

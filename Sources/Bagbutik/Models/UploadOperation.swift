@@ -1,6 +1,11 @@
 import Foundation
 
-/// Upload instructions for assets such as app previews and app screenshots.
+/**
+ Upload instructions for assets such as app previews and app screenshots.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/uploadoperation>
+ */
 public struct UploadOperation: Codable {
     public let length: Int?
     public let method: String?

@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Beta Tester Invitations resource.
+/**
+ A response that contains a single Beta Tester Invitations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationresponse>
+ */
 public struct BetaTesterInvitationResponse: Codable {
     /// The resource data.
     public let data: BetaTesterInvitation

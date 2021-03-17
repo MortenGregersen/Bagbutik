@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Age Rating Declarations resource.
+/**
+ A response that contains a single Age Rating Declarations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationresponse>
+ */
 public struct AgeRatingDeclarationResponse: Codable {
     /// The resource data.
     public let data: AgeRatingDeclaration

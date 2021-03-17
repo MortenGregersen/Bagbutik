@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Prerelease Versions resource.
+/**
+ The data structure that represents a Prerelease Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion>
+ */
 public struct PrereleaseVersion: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct PrereleaseVersion: Codable {
         case relationships
     }
 
-    /// Attributes that describe a Prerelease Versions resource.
+    /**
+     Attributes that describe a Prerelease Versions resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/attributes>
+     */
     public struct Attributes: Codable {
         /// The platform of the prerelease version of your app.
         public let platform: Platform?
@@ -60,7 +70,12 @@ public struct PrereleaseVersion: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships>
+     */
     public struct Relationships: Codable {
         public let app: App?
         public let builds: Builds?
@@ -70,7 +85,12 @@ public struct PrereleaseVersion: Codable {
             self.builds = builds
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/app>
+         */
         public struct App: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -82,7 +102,12 @@ public struct PrereleaseVersion: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/app/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -112,7 +137,12 @@ public struct PrereleaseVersion: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/app/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -126,7 +156,12 @@ public struct PrereleaseVersion: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/builds>
+         */
         public struct Builds: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -141,7 +176,12 @@ public struct PrereleaseVersion: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/builds/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -171,7 +211,12 @@ public struct PrereleaseVersion: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/builds/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

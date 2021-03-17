@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Bundle ID Capabilities resource.
+/**
+ The data structure that represents a Bundle ID Capabilities resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability>
+ */
 public struct BundleIdCapability: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -41,7 +46,12 @@ public struct BundleIdCapability: Codable {
         case attributes
     }
 
-    /// Attributes that describe a Bundle ID Capabilities resource.
+    /**
+     Attributes that describe a Bundle ID Capabilities resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability/attributes>
+     */
     public struct Attributes: Codable {
         public let capabilityType: CapabilityType?
         public let settings: [CapabilitySetting]?

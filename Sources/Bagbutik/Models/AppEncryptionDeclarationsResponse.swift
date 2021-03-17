@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of App Encryption Declaration resources.
+/**
+ A response that contains a list of App Encryption Declaration resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationsresponse>
+ */
 public struct AppEncryptionDeclarationsResponse: Codable {
     /// The resource data.
     public let data: [AppEncryptionDeclaration]

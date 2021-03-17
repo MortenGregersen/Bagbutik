@@ -7,6 +7,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
@@ -27,6 +28,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name.",
                                                              properties: ["name": "The person's name"]),
                                   properties: ["name": .simple(.init(type: "string"))])
@@ -51,6 +53,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "PersonCreateRequest",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "The data for a request to create a person.",
                                                              properties: ["name": "The person's name"]),
                                   properties: ["name": .simple(.init(type: "string"))])
@@ -75,6 +78,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name.",
                                                              properties: ["firstName": "The firstname of the person",
                                                                           "lastName": "The lastname of the person",
@@ -114,8 +118,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderWithAttributes() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let attributesSchema = ObjectSchema(name: "Attributes", properties: ["age": .simple(.init(type: "integer"))])
+        let attributesSchema = ObjectSchema(name: "Attributes", url: "some://url", properties: ["age": .simple(.init(type: "integer"))])
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name."),
                                   properties: ["name": .simple(.init(type: "string"))],
                                   subSchemas: [.attributes(attributesSchema)])
@@ -150,9 +155,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url",
                                                documentation: .relationships,
                                                properties: ["children": .arrayOfSchemaRef("Child")])
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name."),
                                   properties: ["name": .simple(.init(type: "string"))],
                                   subSchemas: [.relationships(relationshipsSchema)])
@@ -188,6 +195,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name.",
                                                              properties: ["name": "The person's name",
                                                                           "pet": "The person's pet",
@@ -198,7 +206,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "preference": .schemaRef("Preference"),
                                                "connection": .schemaRef("Connection")],
                                   subSchemas: [
-                                      .objectSchema(.init(name: "Pet", properties: ["name": .simple(.init(type: "string"))])),
+                                      .objectSchema(.init(name: "Pet", url: "some://url", properties: ["name": .simple(.init(type: "string"))])),
                                       .enumSchema(.init(name: "Preference", type: "string", values: ["TABS", "SPACES"])),
                                       .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])),
                                   ])
@@ -279,13 +287,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let renderer = ObjectSchemaRenderer()
         let attributesSchema = ObjectSchema(name: "Attributes",
+                                            url: "some://url",
                                             documentation: .attributes(.init(summary: "Attributes for a Person",
                                                                              properties: ["age": "The person's age"])),
                                             properties: ["age": .simple(.init(type: "integer"))])
         let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url",
                                                documentation: .relationships,
                                                properties: ["children": .arrayOfSchemaRef("Child")])
         let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name."),
                                   properties: ["name": .simple(.init(type: "string")),
                                                "age": .simple(.init(type: "integer")),

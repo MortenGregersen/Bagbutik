@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Game Center Enabled Version resources.
+/**
+ A response that contains a list of Game Center Enabled Version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversionsresponse>
+ */
 public struct GameCenterEnabledVersionsResponse: Codable {
     /// The resource data.
     public let data: [GameCenterEnabledVersion]

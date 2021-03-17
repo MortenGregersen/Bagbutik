@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents the Power and Performance Metrics resource.
+/**
+ The data structure that represents the Power and Performance Metrics resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric>
+ */
 public struct PerfPowerMetric: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -41,7 +46,12 @@ public struct PerfPowerMetric: Codable {
         case attributes
     }
 
-    /// Attributes that describe a Power and Performance Metrics resource.
+    /**
+     Attributes that describe a Power and Performance Metrics resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric/attributes>
+     */
     public struct Attributes: Codable {
         public let deviceType: String?
         public let metricType: MetricType?

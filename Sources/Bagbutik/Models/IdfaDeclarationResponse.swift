@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single IDFA Declarations resource.
+/**
+ A response that contains a single IDFA Declarations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationresponse>
+ */
 public struct IdfaDeclarationResponse: Codable {
     /// The resource data.
     public let data: IdfaDeclaration

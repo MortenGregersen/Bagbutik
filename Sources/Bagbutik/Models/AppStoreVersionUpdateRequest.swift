@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update an App Store Version.
+/**
+ The request body you use to update an App Store Version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest>
+ */
 public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -50,7 +60,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let copyright: String?
             public let downloadable: Bool?
@@ -75,7 +90,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let build: Build?
 
@@ -91,7 +111,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /**
+                 The type and ID of a resource that you're relating with the resource you're updating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
+                 */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

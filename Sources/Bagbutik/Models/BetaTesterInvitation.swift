@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Beta Tester Invitations resource.
+/**
+ The data structure that represents a Beta Tester Invitations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitation>
+ */
 public struct BetaTesterInvitation: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String

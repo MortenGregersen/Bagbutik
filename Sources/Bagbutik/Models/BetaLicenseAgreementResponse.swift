@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Beta License Agreements resource.
+/**
+ A response that contains a single Beta License Agreements resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementresponse>
+ */
 public struct BetaLicenseAgreementResponse: Codable {
     /// The resource data.
     public let data: BetaLicenseAgreement

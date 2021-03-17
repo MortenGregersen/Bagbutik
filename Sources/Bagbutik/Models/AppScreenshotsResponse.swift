@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of App Screenshots resources.
+/**
+ A response that contains a list of App Screenshots resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsresponse>
+ */
 public struct AppScreenshotsResponse: Codable {
     /// The resource data.
     public let data: [AppScreenshot]

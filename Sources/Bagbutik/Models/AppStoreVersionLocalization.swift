@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represent an App Store Version Localizations resource.
+/**
+ The data structure that represent an App Store Version Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization>
+ */
 public struct AppStoreVersionLocalization: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct AppStoreVersionLocalization: Codable {
         case relationships
     }
 
-    /// Attributes that describe an App Store Version Localizations resource.
+    /**
+     Attributes that describe an App Store Version Localizations resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/attributes>
+     */
     public struct Attributes: Codable {
         public let description: String?
         public let keywords: String?
@@ -68,7 +78,12 @@ public struct AppStoreVersionLocalization: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships>
+     */
     public struct Relationships: Codable {
         public let appPreviewSets: AppPreviewSets?
         public let appScreenshotSets: AppScreenshotSets?
@@ -80,7 +95,12 @@ public struct AppStoreVersionLocalization: Codable {
             self.appStoreVersion = appStoreVersion
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets>
+         */
         public struct AppPreviewSets: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -95,7 +115,12 @@ public struct AppStoreVersionLocalization: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -125,7 +150,12 @@ public struct AppStoreVersionLocalization: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -139,7 +169,12 @@ public struct AppStoreVersionLocalization: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets>
+         */
         public struct AppScreenshotSets: Codable {
             /// The type and ID of a related resource.
             public let data: [Data]?
@@ -154,7 +189,12 @@ public struct AppStoreVersionLocalization: Codable {
                 self.meta = meta
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -184,7 +224,12 @@ public struct AppStoreVersionLocalization: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?
@@ -198,7 +243,12 @@ public struct AppStoreVersionLocalization: Codable {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion>
+         */
         public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -210,7 +260,12 @@ public struct AppStoreVersionLocalization: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -240,7 +295,12 @@ public struct AppStoreVersionLocalization: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

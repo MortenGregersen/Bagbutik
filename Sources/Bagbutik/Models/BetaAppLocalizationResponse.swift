@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Beta App Localizations resource.
+/**
+ A response that contains a single Beta App Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationresponse>
+ */
 public struct BetaAppLocalizationResponse: Codable {
     /// The resource data.
     public let data: BetaAppLocalization

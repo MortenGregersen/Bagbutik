@@ -1,6 +1,11 @@
 import Foundation
 
-/// Paging information for data responses.
+/**
+ Paging information for data responses.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/paginginformation>
+ */
 public struct PagingInformation: Codable {
     /// The paging information details.
     public let paging: Paging
@@ -11,6 +16,9 @@ public struct PagingInformation: Codable {
 
     /**
        Paging details such as the total number of resources and the per-page limit.
+
+       Full documentation:
+       <https://developer.apple.com/documentation/appstoreconnectapi/paginginformation/paging>
 
        Adjust the number of resources returned per page by using the limit query parameter in your request. For example, the following request returns the first 10 testers:
      ```

@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Store Version Phased Releases resource.
+/**
+ A response that contains a single App Store Version Phased Releases resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseresponse>
+ */
 public struct AppStoreVersionPhasedReleaseResponse: Codable {
     /// The resource data.
     public let data: AppStoreVersionPhasedRelease

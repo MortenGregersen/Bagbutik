@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Territories resource.
+/**
+ The data structure that represents a Territories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territory>
+ */
 public struct Territory: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -41,7 +46,12 @@ public struct Territory: Codable {
         case attributes
     }
 
-    /// Attributes that describe a Territories resource.
+    /**
+     Attributes that describe a Territories resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/territory/attributes>
+     */
     public struct Attributes: Codable {
         public let currency: String?
 

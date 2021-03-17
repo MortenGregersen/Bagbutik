@@ -1,6 +1,11 @@
 import Foundation
 
-/// A request body you use to add or remove builds from a beta tester.
+/**
+ A request body you use to add or remove builds from a beta tester.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesrequest>
+ */
 public struct BetaTesterBuildsLinkagesRequest: Codable, RequestBody {
     /// The object types and IDs of the related resources.
     public let data: [Data]
@@ -9,7 +14,12 @@ public struct BetaTesterBuildsLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesrequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String

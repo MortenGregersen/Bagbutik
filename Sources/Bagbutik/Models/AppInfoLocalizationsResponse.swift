@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of AppInfoLocalizations resources.
+/**
+ A response that contains a list of AppInfoLocalizations resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationsresponse>
+ */
 public struct AppInfoLocalizationsResponse: Codable {
     /// The resource data.
     public let data: [AppInfoLocalization]

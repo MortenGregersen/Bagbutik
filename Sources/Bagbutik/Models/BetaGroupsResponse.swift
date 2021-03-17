@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Beta Group resources.
+/**
+ A response that contains a list of Beta Group resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupsresponse>
+ */
 public struct BetaGroupsResponse: Codable {
     /// The resource data.
     public let data: [BetaGroup]

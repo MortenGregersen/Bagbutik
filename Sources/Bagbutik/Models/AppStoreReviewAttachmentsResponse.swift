@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of App Store Review Attachment resources.
+/**
+ A response that contains a list of App Store Review Attachment resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentsresponse>
+ */
 public struct AppStoreReviewAttachmentsResponse: Codable {
     /// The resource data.
     public let data: [AppStoreReviewAttachment]

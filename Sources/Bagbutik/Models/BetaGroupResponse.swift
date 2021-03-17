@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Beta Groups resource.
+/**
+ A response that contains a single Beta Groups resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupresponse>
+ */
 public struct BetaGroupResponse: Codable {
     /// The resource data.
     public let data: BetaGroup

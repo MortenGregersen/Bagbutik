@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Build Beta Details resource.
+/**
+ A response that contains a single Build Beta Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailresponse>
+ */
 public struct BuildBetaDetailResponse: Codable {
     /// The resource data.
     public let data: BuildBetaDetail

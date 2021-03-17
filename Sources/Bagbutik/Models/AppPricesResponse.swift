@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of App Prices resources.
+/**
+ A response that contains a list of App Prices resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricesresponse>
+ */
 public struct AppPricesResponse: Codable {
     /// The resource data.
     public let data: [AppPrice]

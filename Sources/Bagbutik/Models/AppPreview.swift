@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represent an App Previews resource.
+/**
+ The data structure that represent an App Previews resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreview>
+ */
 public struct AppPreview: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
@@ -47,7 +52,12 @@ public struct AppPreview: Codable {
         case relationships
     }
 
-    /// Attributes that describe an App Previews resource.
+    /**
+     Attributes that describe an App Previews resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/attributes>
+     */
     public struct Attributes: Codable {
         public let assetDeliveryState: AppMediaAssetState?
         public let fileName: String?
@@ -72,7 +82,12 @@ public struct AppPreview: Codable {
         }
     }
 
-    /// The relationships you included in the request and those on which you can operate.
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships>
+     */
     public struct Relationships: Codable {
         public let appPreviewSet: AppPreviewSet?
 
@@ -80,7 +95,12 @@ public struct AppPreview: Codable {
             self.appPreviewSet = appPreviewSet
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset>
+         */
         public struct AppPreviewSet: Codable {
             /// The type and ID of a related resource.
             public let data: Data?
@@ -92,7 +112,12 @@ public struct AppPreview: Codable {
                 self.links = links
             }
 
-            /// The type and ID of a related resource.
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/data>
+             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -122,7 +147,12 @@ public struct AppPreview: Codable {
                 }
             }
 
-            /// The links to the related data and the relationship's self-link.
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/links>
+             */
             public struct Links: Codable {
                 /// The link to the related data.
                 public let related: String?

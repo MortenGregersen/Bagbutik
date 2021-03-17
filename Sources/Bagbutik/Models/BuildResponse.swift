@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Builds resource.
+/**
+ A response that contains a single Builds resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildresponse>
+ */
 public struct BuildResponse: Codable {
     /// The resource data.
     public let data: Build

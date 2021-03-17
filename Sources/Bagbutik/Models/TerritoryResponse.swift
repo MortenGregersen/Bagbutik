@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single Territories resource.
+/**
+ A response that contains a single Territories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territoryresponse>
+ */
 public struct TerritoryResponse: Codable {
     /// The resource data.
     public let data: Territory

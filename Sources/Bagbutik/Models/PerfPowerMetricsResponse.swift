@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a list of Power and Performance Metrics resources.
+/**
+ A response that contains a list of Power and Performance Metrics resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetricsresponse>
+ */
 public struct PerfPowerMetricsResponse: Codable {
     /// The resource data.
     public let data: [PerfPowerMetric]

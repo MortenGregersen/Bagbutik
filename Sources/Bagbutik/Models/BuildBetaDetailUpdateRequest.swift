@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to update a Build Data Detail.
+/**
+ The request body you use to update a Build Data Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailupdaterequest>
+ */
 public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailupdaterequest/data>
+     */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
@@ -44,7 +54,12 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /// Attributes whose values you're changing as part of the update request.
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
             public let autoNotifyEnabled: Bool?

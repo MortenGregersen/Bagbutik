@@ -1,6 +1,11 @@
 import Foundation
 
-/// The request body you use to create an App Preview Set.
+/**
+ The request body you use to create an App Preview Set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest>
+ */
 public struct AppPreviewSetCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
@@ -9,7 +14,12 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /// The data element of the request body.
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data>
+     */
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "appPreviewSets" }
@@ -44,7 +54,12 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /// Attributes that you set that describe the new resource.
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let previewType: PreviewType
 
@@ -53,7 +68,12 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
             }
         }
 
-        /// The data and links that describe the relationship between the resources.
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let appStoreVersionLocalization: AppStoreVersionLocalization
 
@@ -69,7 +89,12 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships/appstoreversionlocalization/data>
+                 */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String

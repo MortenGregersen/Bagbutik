@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Store Versions resource.
+/**
+ A response that contains a single App Store Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>
+ */
 public struct AppStoreVersionResponse: Codable {
     /// The resource data.
     public let data: AppStoreVersion

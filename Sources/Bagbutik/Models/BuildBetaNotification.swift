@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents a Build Beta Notifications resource.
+/**
+ The data structure that represents a Build Beta Notifications resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotification>
+ */
 public struct BuildBetaNotification: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String

@@ -1,6 +1,11 @@
 import Foundation
 
-/// A response that contains a single App Store Review Details resource.
+/**
+ A response that contains a single App Store Review Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailresponse>
+ */
 public struct AppStoreReviewDetailResponse: Codable {
     /// The resource data.
     public let data: AppStoreReviewDetail
