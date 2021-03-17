@@ -17,7 +17,12 @@ public class ObjectSchemaRenderer {
     public var {{ id|escapeReservedKeywords }}: String { "{{ value }}" }
     """
     private static let objectTemplate = #"""
-    {% if documentation %}/// {{ documentation }}
+    {% if summary and discussion %}/**
+      {{ summary }}
+
+      {{ discussion }}
+    */
+    {% elif summary %}/// {{ summary }}
     {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
         {% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
@@ -119,7 +124,8 @@ public class ObjectSchemaRenderer {
             }
             .joined(separator: ", ")
         return ["name": objectSchema.name,
-                "documentation": objectSchema.documentation?.summary ?? "",
+                "summary": objectSchema.documentation?.summary ?? "",
+                "discussion": objectSchema.documentation?.discussion ?? "",
                 "isRequest": objectSchema.name.hasSuffix("Request"),
                 "sortedProperties": sortedProperties,
                 "properties": sortedProperties.map { property -> Property in

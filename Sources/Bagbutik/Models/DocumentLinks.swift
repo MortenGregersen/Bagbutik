@@ -1,6 +1,10 @@
 import Foundation
 
-/// Self-links to documents that can contain information for one or more resources.
+/**
+ Self-links to documents that can contain information for one or more resources.
+
+ All the response data constitutes a document.
+ */
 public struct DocumentLinks: Codable {
     /// The link that produced the current document.
     public let `self`: String

@@ -95,6 +95,15 @@ public extension Schema {
             }
         }
 
+        public var discussion: String? {
+            switch self {
+            case .rootSchema(_, let discussion, _, _):
+                return discussion
+            default:
+                return nil
+            }
+        }
+
         public var properties: [String: String] {
             let propertiesMergedWithCommonProperties = { (properties: [String: String]?) -> [String: String] in
                 Self.commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })

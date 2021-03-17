@@ -1,6 +1,10 @@
 import Foundation
 
-/// Links related to the response document, including paging links.
+/**
+ Links related to the response document, including paging links.
+
+ All the response data constitutes a document.
+ */
 public struct PagedDocumentLinks: Codable {
     /// The link to the first page of documents.
     public let first: String?

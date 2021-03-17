@@ -9,7 +9,11 @@ public struct ErrorResponse: Codable {
         self.errors = errors
     }
 
-    /// The details about one error that is returned when an API request is not successful.
+    /**
+     The details about one error that is returned when an API request is not successful.
+
+     Use the code parameter for programmatic error handling. See [Parsing the Error Response Code](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/parsing_the_error_response_code) for more information. For more information about using the source parameter, see [Pinpointing the Location of Errors](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/pinpointing_the_location_of_errors).
+     */
     public struct Errors: Codable {
         /// A machine-readable code indicating the type of error. The code is a hierarchical value with levels of specificity separated by the '.' character. This value is parseable for programmatic error handling in code.
         public let code: String
@@ -37,7 +41,11 @@ public struct ErrorResponse: Codable {
             case jsonPointer(JsonPointer)
             case parameter(Parameter)
 
-            /// An object that contains the JSON pointer that indicates the location of the error.
+            /**
+             An object that contains the JSON pointer that indicates the location of the error.
+
+             In some cases, the JSON pointer may indicate an element that isn't in the request entity, but should be. For more information about JSON pointers, see the [RFC 6901](https://tools.ietf.org/html/rfc6901) proposed standards document.
+             */
             public struct JsonPointer: Codable {
                 /// A JSON pointer that indicates the location in the request entity where the error originates.
                 public let pointer: String?
