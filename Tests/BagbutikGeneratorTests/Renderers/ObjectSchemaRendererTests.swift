@@ -36,7 +36,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// A person with a name.
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             /// The person's name
             public let name: String?
@@ -61,7 +66,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// The data for a request to create a person.
+        /**
+         The data for a request to create a person.
+
+         Full documentation:
+         <some://url>
+         */
         public struct PersonCreateRequest: Codable, RequestBody {
             /// The person's name
             public let name: String?
@@ -93,7 +103,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// A person with a name.
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             /// The firstname of the person
             public let firstName: String
@@ -128,7 +143,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// A person with a name.
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             public let name: String?
             /// The resource's attributes.
@@ -167,7 +187,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// A person with a name.
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             public let name: String?
             /// Navigational links to related data and included resource types and IDs.
@@ -178,7 +203,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.relationships = relationships
             }
 
-            /// The relationships you included in the request and those on which you can operate.
+            /**
+             The relationships you included in the request and those on which you can operate.
+
+             Full documentation:
+             <some://url>
+             */
             public struct Relationships: Codable {
                 public let children: [Child]?
 
@@ -214,7 +244,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema, includesFixUps: ["computers", "phones"])
         // Then
         XCTAssertEqual(rendered, #"""
-        /// A person with a name.
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             /// The person's connection
             public let connection: Connection?
@@ -308,7 +343,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        /// A person with a name.
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             public let age: Int?
             public let name: String
@@ -353,7 +393,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 case relationships
             }
 
-            /// Attributes for a Person
+            /**
+             Attributes for a Person
+
+             Full documentation:
+             <some://url>
+             */
             public struct Attributes: Codable {
                 /// The person's age
                 public let age: Int?
@@ -363,7 +408,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
 
-            /// The relationships you included in the request and those on which you can operate.
+            /**
+             The relationships you included in the request and those on which you can operate.
+
+             Full documentation:
+             <some://url>
+             */
             public struct Relationships: Codable {
                 public let children: [Child]?
 

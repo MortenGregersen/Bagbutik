@@ -10,7 +10,7 @@ final class OperationRendererTests: XCTestCase {
         let renderer = OperationRenderer()
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .limit(name: "limit", description: "maximum resources per page", maximum: 200)
+            .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
@@ -42,18 +42,18 @@ final class OperationRendererTests: XCTestCase {
         let renderer = OperationRenderer()
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .fields(name: "name", type: .simple(type: .init(type: "string")), description: "The name of the user"),
-            .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), description: "Fields for included vehicles"),
-            .fields(name: "devices", type: .enum(type: "string", values: ["model", "os"]), description: "Fields for included devices"),
-            .filter(name: "name", type: .simple(type: .init(type: "string")), required: false, description: "Filter by name"),
-            .filter(name: "vehicles.properties", type: .enum(type: "string", values: ["car", "bicycle"]), required: false, description: "Filter by vehicles properties"),
-            .filter(name: "devices.properties", type: .enum(type: "string", values: ["model", "os"]), required: true, description: "Filter by device properties"),
-            .exists(name: "vehicle", type: .simple(type: .init(type: "boolean")), description: "Check for existance of a vehicle"),
-            .exists(name: "device", type: .simple(type: .init(type: "boolean")), description: "Check for existance of a device"),
+            .fields(name: "name", type: .simple(type: .init(type: "string")), documentation: "The name of the user"),
+            .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), documentation: "Fields for included vehicles"),
+            .fields(name: "devices", type: .enum(type: "string", values: ["model", "os"]), documentation: "Fields for included devices"),
+            .filter(name: "name", type: .simple(type: .init(type: "string")), required: false, documentation: "Filter by name"),
+            .filter(name: "vehicles.properties", type: .enum(type: "string", values: ["car", "bicycle"]), required: false, documentation: "Filter by vehicles properties"),
+            .filter(name: "devices.properties", type: .enum(type: "string", values: ["model", "os"]), required: true, documentation: "Filter by device properties"),
+            .exists(name: "vehicle", type: .simple(type: .init(type: "boolean")), documentation: "Check for existance of a vehicle"),
+            .exists(name: "device", type: .simple(type: .init(type: "boolean")), documentation: "Check for existance of a device"),
             .include(type: .enum(type: "string", values: ["devices", "glasses"])),
-            .sort(type: .enum(type: "string", values: ["-name", "name", "-devicesCount", "devicesCount"]), description: "How to sort the users"),
-            .limit(name: "limit", description: "Maximum of users", maximum: 200),
-            .limit(name: "devices", description: "Maximum of included devices", maximum: 10)
+            .sort(type: .enum(type: "string", values: ["-name", "name", "-devicesCount", "devicesCount"]), documentation: "How to sort the users"),
+            .limit(name: "limit", documentation: "Maximum of users", maximum: 200),
+            .limit(name: "devices", documentation: "Maximum of included devices", maximum: 10)
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
@@ -219,7 +219,7 @@ final class OperationRendererTests: XCTestCase {
         // Given
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .exists(name: "hair", type: .enum(type: "length", values: ["SHORT", "LONG"]), description: "description for hair")
+            .exists(name: "hair", type: .enum(type: "length", values: ["SHORT", "LONG"]), documentation: "description for hair")
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
@@ -253,7 +253,7 @@ final class OperationRendererTests: XCTestCase {
         // Given
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .sort(type: .simple(type: .string), description: "sorting")
+            .sort(type: .simple(type: .string), documentation: "sorting")
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])

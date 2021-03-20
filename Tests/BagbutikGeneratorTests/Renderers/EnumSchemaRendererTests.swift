@@ -6,16 +6,19 @@ final class EnumSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
         let renderer = EnumSchemaRenderer()
-        let schema = EnumSchema(name: "Platform", type: "string", values: ["MAC_OS", "IOS", "TV_OS", "WATCH_OS"])
+        let schema = EnumSchema(name: "Platform", type: "string", values: ["MAC_OS", "IOS", "TV_OS"])
         // When
         let rendered = try renderer.render(enumSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
+        /// Strings that represent Apple operating systems.
         public enum Platform: String, Codable, CaseIterable {
+            /// A string that represents macOS.
             case macOS = "MAC_OS"
+            /// A string that represents iOS.
             case iOS = "IOS"
+            /// A string that represents tvOS.
             case tvOS = "TV_OS"
-            case watchOS = "WATCH_OS"
         }
 
         """#)
