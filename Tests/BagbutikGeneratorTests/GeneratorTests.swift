@@ -78,6 +78,21 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
     }
     
+    func testUnloadableSpecFileURL() throws {
+        // Given
+        let generator = Generator()
+        // When
+        let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
+        let outputDirURL = validOutputDirURL
+        var thrownError: Error?
+        XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
+            thrownError = $0
+        }
+        // Then
+        let nsError = try XCTUnwrap(thrownError as NSError?)
+        XCTAssertEqual(nsError.code, 260)
+    }
+    
     func testFailedCreatingEndpoint() throws {
         // Given
         let fileManager = MockFileManager()

@@ -43,6 +43,10 @@ public extension Schema {
         case linkagesResponse
         case linkagesResponseData
         case enumObject(summary: String, cases: [String: String])
+        
+        static internal func lookupDocumentation(forSchemaNamed name: String) -> Documentation? {
+            return allDocumentation[name]
+        }
 
         public var summary: String? {
             switch self {
@@ -105,49 +109,39 @@ public extension Schema {
         }
 
         public var properties: [String: String] {
-            let propertiesMergedWithCommonProperties = { (properties: [String: String]?) -> [String: String] in
-                Self.commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
-            }
             switch self {
             case .rootSchema(_, _, let properties, _):
-                return propertiesMergedWithCommonProperties(properties)
+                return Self.propertiesMergedWithCommonProperties(properties)
             case .attributes(let attributes):
-                return propertiesMergedWithCommonProperties(attributes.properties)
-            case .relationships,
-                 .relationshipData:
-                return Self.commonProperties
+                return Self.propertiesMergedWithCommonProperties(attributes.properties)
             case .relationship, .relationshipLinks:
-                return propertiesMergedWithCommonProperties(Self.relationshipProperties)
+                return Self.propertiesMergedWithCommonProperties(Self.relationshipProperties)
             case .createRequestData:
-                return propertiesMergedWithCommonProperties(Self.createRequestProperties)
+                return Self.propertiesMergedWithCommonProperties(Self.createRequestProperties)
             case .createRequestDataAttributes(let attributes):
-                return propertiesMergedWithCommonProperties(attributes.properties)
-            case .createRequest(_, _),
-                 .createRequestDataRelationships,
-                 .createRequestDataRelationshipData:
-                return Self.commonProperties
+                return Self.propertiesMergedWithCommonProperties(attributes.properties)
             case .createRequestDataRelationship:
-                return propertiesMergedWithCommonProperties(Self.createRequestDataRelationshipProperties)
+                return Self.propertiesMergedWithCommonProperties(Self.createRequestDataRelationshipProperties)
             case .updateRequestData:
-                return propertiesMergedWithCommonProperties(Self.updateRequestProperties)
+                return Self.propertiesMergedWithCommonProperties(Self.updateRequestProperties)
             case .updateRequestDataAttributes(let attributes):
-                return propertiesMergedWithCommonProperties(attributes.properties)
-            case .updateRequest(_, _),
-                 .updateRequestDataRelationships,
-                 .updateRequestDataRelationshipData:
-                return Self.commonProperties
+                return Self.propertiesMergedWithCommonProperties(attributes.properties)
             case .updateRequestDataRelationship:
-                return propertiesMergedWithCommonProperties(Self.updateRequestDataRelationshipProperties)
+                return Self.propertiesMergedWithCommonProperties(Self.updateRequestDataRelationshipProperties)
             case .linkagesRequest:
-                return propertiesMergedWithCommonProperties(Self.linkagesRequestProperties)
-            case .linkagesRequestData, .linkagesResponse, .linkagesResponseData:
-                return Self.commonProperties
+                return Self.propertiesMergedWithCommonProperties(Self.linkagesRequestProperties)
             case .enumObject(_, let cases):
                 return cases
+            default:
+                return Self.commonProperties
             }
         }
+        
+        internal static func propertiesMergedWithCommonProperties(_ properties: [String: String]?) -> [String: String] {
+            return commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
+        }
 
-        private static let commonProperties: [String: String] = [
+        internal static let commonProperties: [String: String] = [
             "attributes": "The resource's attributes.",
             "relationships": "Navigational links to related data and included resource types and IDs.",
             "data": "The resource data.",
@@ -157,7 +151,7 @@ public extension Schema {
             "meta": "Paging information.",
         ]
 
-        private static let relationshipProperties: [String: String] = [
+        internal static let relationshipProperties: [String: String] = [
             "data": "The type and ID of a related resource.",
             "links": "The links to the related data and the relationship's self-link.",
             "meta": "Paging information for data responses.",
@@ -165,31 +159,31 @@ public extension Schema {
             "self": "The relationship's self-link",
         ]
 
-        private static let createRequestProperties: [String: String] = [
+        internal static let createRequestProperties: [String: String] = [
             "relationships": "The relationships to other resources that you can set with this request.",
         ]
 
-        private static let updateRequestProperties: [String: String] = [
+        internal static let updateRequestProperties: [String: String] = [
             "relationships": "The types and IDs of the related data to update.",
         ]
 
-        private static let createRequestDataRelationshipProperties: [String: String] = [
+        internal static let createRequestDataRelationshipProperties: [String: String] = [
             "data": "The type and ID of the resource that you're relating with the resource you're creating.",
         ]
 
-        private static let updateRequestDataRelationshipProperties: [String: String] = [
+        internal static let updateRequestDataRelationshipProperties: [String: String] = [
             "data": "The type and ID of a resource that you're relating with the resource you're updating.",
         ]
 
-        private static let linkagesRequestProperties: [String: String] = [
+        internal static let linkagesRequestProperties: [String: String] = [
             "data": "The object types and IDs of the related resources.",
         ]
 
-        private static let responseProperties: [String: String] = [
+        internal static let responseProperties: [String: String] = [
             "links": "Navigational links including the self-link and links to the related data.",
         ]
 
-        static let allDocumentation: [String: Documentation] = [
+        private static let allDocumentation: [String: Documentation] = [
             "AgeRatingDeclaration": .rootSchema(
                 summary: "The data structure that represents an Age Rating Declarations resource.",
                 attributes: .init(

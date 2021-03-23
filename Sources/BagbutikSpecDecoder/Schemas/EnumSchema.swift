@@ -12,9 +12,13 @@ public struct EnumSchema: Decodable, Equatable {
     }
 
     public init(name: String, type: String, values: [String]) {
+        self.init(name: name, type: type, values: values, lookupDocumentation: Schema.Documentation.lookupDocumentation)
+    }
+    
+    internal init(name: String, type: String, values: [String], lookupDocumentation: (String) -> Schema.Documentation?) {
         self.type = type
         self.name = name
-        let documentation = Schema.Documentation.allDocumentation[name]
+        let documentation = lookupDocumentation(name)
         self.documentation = documentation
         let cases = values.map {
             EnumCase(id: $0.camelCased(with: "_"), value: $0, documentation: documentation?.properties[$0])

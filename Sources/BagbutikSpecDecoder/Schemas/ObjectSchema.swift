@@ -86,12 +86,17 @@ public struct ObjectSchema: Decodable, Equatable {
         self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
     }
 
-    private static func getDocumentation(forSchemaNamed name: String, codingPathComponents: [String]) -> Schema.Documentation? {
+    internal static func getDocumentation(forSchemaNamed name: String,
+                                          codingPathComponents: [String],
+                                          lookupDocumentation: (String) -> Schema.Documentation?
+                                              = Schema.Documentation.lookupDocumentation(forSchemaNamed:))
+        -> Schema.Documentation?
+    {
         let relationshipsName = "Relationships"
         let attributesName = "Attributes"
         let dataName = "Data"
         let linksName = "Links"
-        let rootSchemaDocumentation = Schema.Documentation.allDocumentation[codingPathComponents[0]]
+        let rootSchemaDocumentation = lookupDocumentation(codingPathComponents[0])
         if codingPathComponents.count == 1 {
             return rootSchemaDocumentation
         } else if case .rootSchema(_, _, _, let possibleAttributes) = rootSchemaDocumentation,
@@ -104,13 +109,14 @@ public struct ObjectSchema: Decodable, Equatable {
                 return .relationships
             } else if codingPathComponents.count == 3 {
                 return .relationship
-            } else if codingPathComponents.count >= 4 {
+            } else {
                 if name == dataName {
                     return .relationshipData
                 } else if name == linksName {
                     return .relationshipLinks
                 }
             }
+            return nil
         } else if codingPathComponents[0].hasSuffix("Request") {
             let isUpdateRequest = codingPathComponents[0].hasSuffix("UpdateRequest")
             if codingPathComponents[0].hasSuffix("LinkagesRequest"), name == dataName {
@@ -128,12 +134,13 @@ public struct ObjectSchema: Decodable, Equatable {
             {
                 return .updateRequestDataAttributes(attributes)
             } else if name == relationshipsName {
-                return isUpdateRequest ? .updateRequestDataRelationships : .updateRequestDataRelationships
+                return isUpdateRequest ? .updateRequestDataRelationships : .createRequestDataRelationships
             } else if codingPathComponents.count >= 4, codingPathComponents[3] == name {
                 return isUpdateRequest ? .updateRequestDataRelationship : .createRequestDataRelationship
             } else if codingPathComponents.count >= 5, name == dataName {
                 return isUpdateRequest ? .updateRequestDataRelationshipData : .createRequestDataRelationshipData
             }
+            return nil
         } else if codingPathComponents[0].hasSuffix("LinkagesResponse"), name == dataName {
             return .linkagesResponseData
         } else if codingPathComponents[0] == "ErrorResponse" {
@@ -146,9 +153,9 @@ public struct ObjectSchema: Decodable, Equatable {
             if pathComponents.last != name {
                 pathComponents.append(name)
             }
-            return Schema.Documentation.allDocumentation[pathComponents.joined(separator: ".")]
+            return lookupDocumentation(pathComponents.joined(separator: "."))
         } else if codingPathComponents[0] == "PagingInformation" {
-            return Schema.Documentation.allDocumentation[codingPathComponents.joined(separator: ".")]
+            return lookupDocumentation(codingPathComponents.joined(separator: "."))
         }
         return nil
     }
