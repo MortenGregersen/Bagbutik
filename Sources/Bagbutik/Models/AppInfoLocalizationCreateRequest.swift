@@ -77,7 +77,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The relationships to other resources that you can set with this request.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/relationships>

@@ -20,7 +20,9 @@ public extension Request {
                 case animation = "ANIMATION"
             }
 
+            /// Strings that represent Apple operating systems.
             public enum Platform: String, ParameterValue, CaseIterable {
+                /// A string that represents iOS.
                 case iOS = "IOS"
             }
         }
