@@ -9,6 +9,7 @@ import Foundation
 public struct BetaBuildLocalizationResponse: Codable {
     /// The resource data.
     public let data: BetaBuildLocalization
+    /// The included related resources.
     public let included: [Build]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

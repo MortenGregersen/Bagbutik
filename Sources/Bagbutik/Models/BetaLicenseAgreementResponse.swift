@@ -9,6 +9,7 @@ import Foundation
 public struct BetaLicenseAgreementResponse: Codable {
     /// The resource data.
     public let data: BetaLicenseAgreement
+    /// The included related resources.
     public let included: [App]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

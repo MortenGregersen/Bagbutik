@@ -9,6 +9,7 @@ import Foundation
 public struct BetaTestersResponse: Codable {
     /// The resource data.
     public let data: [BetaTester]
+    /// The included related resources.
     public let included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

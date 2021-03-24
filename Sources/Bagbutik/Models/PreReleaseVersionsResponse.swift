@@ -9,6 +9,7 @@ import Foundation
 public struct PreReleaseVersionsResponse: Codable {
     /// The resource data.
     public let data: [PrereleaseVersion]
+    /// The included related resources.
     public let included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

@@ -149,6 +149,7 @@ public extension Schema {
             "links": "Navigational links that include the self-link.",
             "type": "The resource type.",
             "meta": "Paging information.",
+            "included": "The included related resources." // Unofficial documentation
         ]
 
         internal static let relationshipProperties: [String: String] = [

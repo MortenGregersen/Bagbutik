@@ -9,6 +9,7 @@ import Foundation
 public struct ProfilesResponse: Codable {
     /// The resource data.
     public let data: [Profile]
+    /// The included related resources.
     public let included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

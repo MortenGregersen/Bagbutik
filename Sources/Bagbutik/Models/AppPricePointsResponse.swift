@@ -9,6 +9,7 @@ import Foundation
 public struct AppPricePointsResponse: Codable {
     /// The resource data.
     public let data: [AppPricePoint]
+    /// The included related resources.
     public let included: [Territory]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

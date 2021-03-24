@@ -9,6 +9,7 @@ import Foundation
 public struct AppStoreReviewDetailResponse: Codable {
     /// The resource data.
     public let data: AppStoreReviewDetail
+    /// The included related resources.
     public let included: [AppStoreReviewAttachment]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

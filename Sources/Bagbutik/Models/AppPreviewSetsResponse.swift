@@ -9,6 +9,7 @@ import Foundation
 public struct AppPreviewSetsResponse: Codable {
     /// The resource data.
     public let data: [AppPreviewSet]
+    /// The included related resources.
     public let included: [AppPreview]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

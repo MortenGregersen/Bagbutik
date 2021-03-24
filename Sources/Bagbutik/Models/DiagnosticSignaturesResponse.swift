@@ -9,6 +9,7 @@ import Foundation
 public struct DiagnosticSignaturesResponse: Codable {
     /// The resource data.
     public let data: [DiagnosticSignature]
+    /// The included related resources.
     public let included: [DiagnosticLog]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

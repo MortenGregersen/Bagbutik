@@ -9,6 +9,7 @@ import Foundation
 public struct GameCenterEnabledVersionsResponse: Codable {
     /// The resource data.
     public let data: [GameCenterEnabledVersion]
+    /// The included related resources.
     public let included: [GameCenterEnabledVersion]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
