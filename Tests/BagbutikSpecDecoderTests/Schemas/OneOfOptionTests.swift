@@ -53,33 +53,4 @@ final class OneOfOptionTests: XCTestCase {
         XCTAssertEqual(context.codingPath.last?.stringValue, "type")
         XCTAssertEqual(context.debugDescription, "OneOf option not known")
     }
-    
-    func testEquatable() {
-        // Given
-        let refOption1 = OneOfOption.schemaRef("SomeModel")
-        let refOption2 = OneOfOption.schemaRef("AnotherModel")
-        let schemaOption1 = OneOfOption.objectSchema(ObjectSchema(name: "SomeModel", url: "some://url", properties: ["name": .simple(.string)]))
-        let schemaOption2 = OneOfOption.objectSchema(ObjectSchema(name: "AnotherModel", url: "some://other-url", properties: ["name": .simple(.string)]))
-        // Then
-        XCTAssertTrue(refOption1 == refOption1)
-        XCTAssertTrue(refOption2 == refOption2)
-        XCTAssertTrue(schemaOption1 == schemaOption1)
-        XCTAssertTrue(schemaOption2 == schemaOption2)
-        
-        XCTAssertFalse(refOption1 == refOption2)
-        XCTAssertFalse(refOption1 == schemaOption1)
-        XCTAssertFalse(refOption1 == schemaOption2)
-        
-        XCTAssertFalse(refOption2 == refOption1)
-        XCTAssertFalse(refOption2 == schemaOption1)
-        XCTAssertFalse(refOption2 == schemaOption2)
-        
-        XCTAssertFalse(schemaOption1 == refOption1)
-        XCTAssertFalse(schemaOption1 == refOption2)
-        XCTAssertFalse(schemaOption1 == schemaOption2)
-        
-        XCTAssertFalse(schemaOption2 == refOption1)
-        XCTAssertFalse(schemaOption2 == refOption2)
-        XCTAssertFalse(schemaOption2 == schemaOption1)
-    }
 }

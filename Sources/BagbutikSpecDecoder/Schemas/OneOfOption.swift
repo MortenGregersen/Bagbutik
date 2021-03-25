@@ -1,9 +1,13 @@
 import Foundation
 
+/// A reprensetation of an enum case with an associated value
 public enum OneOfOption: Decodable, Equatable {
+    /// An object schema
     case objectSchema(ObjectSchema)
+    /// A name of a schema
     case schemaRef(String)
     
+    /// The name of the associated schema
     public var schemaName: String {
         switch self {
         case .objectSchema(let objectSchema):
@@ -28,21 +32,6 @@ public enum OneOfOption: Decodable, Equatable {
             self = .objectSchema(try ObjectSchema(from: decoder))
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "OneOf option not known")
-        }
-    }
-    
-    public static func == (lhs: OneOfOption, rhs: OneOfOption) -> Bool {
-        switch lhs {
-        case .schemaRef(let schemaName):
-            if case .schemaRef(let otherSchemaName) = rhs {
-                return schemaName == otherSchemaName
-            }
-            return false
-        case .objectSchema(let objectSchema):
-            if case .objectSchema(let otherObjectSchema) = rhs {
-                return objectSchema.name == otherObjectSchema.name
-            }
-            return false
         }
     }
 }
