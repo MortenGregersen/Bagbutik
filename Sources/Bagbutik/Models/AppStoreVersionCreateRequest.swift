@@ -1,15 +1,31 @@
 import Foundation
 
+/**
+ The request body you use to create an App Store Version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest>
+ */
 public struct AppStoreVersionCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appStoreVersions" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -38,15 +54,21 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let copyright: String?
             public let earliestReleaseDate: Date?
-            public let platform: Platform?
+            public let platform: Platform
             public let releaseType: ReleaseType?
             public let usesIdfa: Bool?
-            public let versionString: String?
+            public let versionString: String
 
-            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform? = nil, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String? = nil) {
+            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String) {
                 self.copyright = copyright
                 self.earliestReleaseDate = earliestReleaseDate
                 self.platform = platform
@@ -62,6 +84,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
         }
 
+        /**
+         The relationships to other resources that you can set with this request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let app: App
             public let build: Build?
@@ -72,14 +100,23 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct App: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app/data>
+                 */
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "apps" }
 
                     public init(id: String) {
@@ -107,14 +144,23 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build/data>
+                 */
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {

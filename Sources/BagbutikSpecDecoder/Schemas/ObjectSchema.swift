@@ -1,9 +1,11 @@
 import Foundation
 
 public struct ObjectSchema: Decodable, Equatable {
+    public let name: String
+    public let url: String
+    public let documentation: Schema.Documentation?
     public let properties: [String: PropertyType]
     public let requiredProperties: [String]
-    public let name: String
     public let subSchemas: [SubSchema]
 
     enum CodingKeys: String, CodingKey {
@@ -15,10 +17,12 @@ public struct ObjectSchema: Decodable, Equatable {
         case relationships
     }
 
-    internal init(properties: [String: PropertyType], requiredProperties: [String] = [], name: String, subSchemas: [SubSchema] = []) {
+    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+        self.name = name
+        self.url = url
+        self.documentation = documentation
         self.properties = properties
         self.requiredProperties = requiredProperties
-        self.name = name
         self.subSchemas = subSchemas.sorted(by: { $0.name < $1.name })
     }
 
@@ -50,7 +54,27 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
-        let attributes = try propertiesContainer.decodeIfPresent(AttributesSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
+        let codingPathComponents = Array(container.codingPath
+            .map(\.stringValue)
+            .drop { $0 == "components" || $0 == "schemas" }
+            .map { $0.capitalizingFirstLetter() }
+        )
+        var urlPathComponents = codingPathComponents
+            .filter { $0 != "Items" &&
+                $0 != "Source" &&
+                $0 != "OneOf" &&
+                !$0.hasPrefix("Index ")
+            }
+
+        if urlPathComponents.last != name {
+            urlPathComponents.append(name.lowercased())
+        }
+        let uri = urlPathComponents
+            .map { $0.lowercased() }
+            .joined(separator: "/")
+        let url = "https://developer.apple.com/documentation/appstoreconnectapi/\(uri)"
+        let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
+        let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
             subSchemas.append(.attributes(attributes))
         }
@@ -59,6 +83,80 @@ public struct ObjectSchema: Decodable, Equatable {
         {
             subSchemas.append(.relationships(relationships))
         }
-        self.init(properties: properties, requiredProperties: requiredProperties, name: name, subSchemas: subSchemas)
+        self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
+    }
+
+    internal static func getDocumentation(forSchemaNamed name: String,
+                                          codingPathComponents: [String],
+                                          lookupDocumentation: (String) -> Schema.Documentation?
+                                              = Schema.Documentation.lookupDocumentation(forSchemaNamed:))
+        -> Schema.Documentation?
+    {
+        let relationshipsName = "Relationships"
+        let attributesName = "Attributes"
+        let dataName = "Data"
+        let linksName = "Links"
+        let rootSchemaDocumentation = lookupDocumentation(codingPathComponents[0])
+        if codingPathComponents.count == 1 {
+            return rootSchemaDocumentation
+        } else if case .rootSchema(_, _, _, let possibleAttributes) = rootSchemaDocumentation,
+                  let attributes = possibleAttributes,
+                  codingPathComponents.count == 2, name == attributesName
+        {
+            return .attributes(attributes)
+        } else if codingPathComponents.count >= 2, codingPathComponents[1] == relationshipsName {
+            if codingPathComponents.count == 2 {
+                return .relationships
+            } else if codingPathComponents.count == 3 {
+                return .relationship
+            } else {
+                if name == dataName {
+                    return .relationshipData
+                } else if name == linksName {
+                    return .relationshipLinks
+                }
+            }
+            return nil
+        } else if codingPathComponents[0].hasSuffix("Request") {
+            let isUpdateRequest = codingPathComponents[0].hasSuffix("UpdateRequest")
+            if codingPathComponents[0].hasSuffix("LinkagesRequest"), name == dataName {
+                return .linkagesRequestData
+            } else if codingPathComponents.count == 2, name == dataName {
+                return isUpdateRequest ? .updateRequestData : .createRequestData
+            } else if case .createRequest(_, let possibleAttributes) = rootSchemaDocumentation,
+                      let attributes = possibleAttributes,
+                      codingPathComponents.count == 3, name == attributesName
+            {
+                return .createRequestDataAttributes(attributes)
+            } else if case .updateRequest(_, let possibleAttributes) = rootSchemaDocumentation,
+                      let attributes = possibleAttributes,
+                      codingPathComponents.count == 3, name == attributesName
+            {
+                return .updateRequestDataAttributes(attributes)
+            } else if name == relationshipsName {
+                return isUpdateRequest ? .updateRequestDataRelationships : .createRequestDataRelationships
+            } else if codingPathComponents.count >= 4, codingPathComponents[3] == name {
+                return isUpdateRequest ? .updateRequestDataRelationship : .createRequestDataRelationship
+            } else if codingPathComponents.count >= 5, name == dataName {
+                return isUpdateRequest ? .updateRequestDataRelationshipData : .createRequestDataRelationshipData
+            }
+            return nil
+        } else if codingPathComponents[0].hasSuffix("LinkagesResponse"), name == dataName {
+            return .linkagesResponseData
+        } else if codingPathComponents[0] == "ErrorResponse" {
+            var pathComponents = codingPathComponents
+                .filter { $0 != "Items" &&
+                    $0 != "Source" &&
+                    $0 != "OneOf" &&
+                    !$0.hasPrefix("Index ")
+                }
+            if pathComponents.last != name {
+                pathComponents.append(name)
+            }
+            return lookupDocumentation(pathComponents.joined(separator: "."))
+        } else if codingPathComponents[0] == "PagingInformation" {
+            return lookupDocumentation(codingPathComponents.joined(separator: "."))
+        }
+        return nil
     }
 }

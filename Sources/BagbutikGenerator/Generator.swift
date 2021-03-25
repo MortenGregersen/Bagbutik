@@ -44,6 +44,7 @@ public class Generator {
     public func generateAll(specFileURL: URL, outputDirURL: URL) throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
+        print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")

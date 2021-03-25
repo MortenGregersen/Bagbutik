@@ -17,13 +17,26 @@ public class ObjectSchemaRenderer {
     public var {{ id|escapeReservedKeywords }}: String { "{{ value }}" }
     """
     private static let objectTemplate = #"""
-    public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
+    {% if summary %}/**
+      {{ summary }}
+    
+      Full documentation:
+      <{{ url }}>{% if discussion %}
+      
+      {{ discussion }}{% endif %}
+    */
+    {% elif summary %}/// {{ summary }}
+    {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
         {% for property in properties %}
-        {{ property }}{%
+        {% if property.documentation %}/// {{ property.documentation }}
+        {% else %}{%
+        endif %}{{ property.rendered }}{%
         endfor %}{%
         if hasAttributes %}
+        /// {{ attributesDocumentation }}
         public let attributes: Attributes{% if attributesOptional %}?{% endif %}{% endif %}{%
         if hasRelationships %}
+        /// {{ relationshipsDocumentation }}
         public let relationships: Relationships{% if relationshipsOptional %}?{% endif %}{% endif %}
 
         public init({{ publicInit }}) {
@@ -99,6 +112,8 @@ public class ObjectSchemaRenderer {
             codingKeys.append(name)
             codableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
+        let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
+        let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         let publicInit = initParameters
             .map {
                 let propertyName = PropertyName(idealName: $0.key)
@@ -112,17 +127,23 @@ public class ObjectSchemaRenderer {
             }
             .joined(separator: ", ")
         return ["name": objectSchema.name,
+                "summary": objectSchema.documentation?.summary ?? "",
+                "url": objectSchema.url,
+                "discussion": objectSchema.documentation?.discussion ?? "",
                 "isRequest": objectSchema.name.hasSuffix("Request"),
                 "sortedProperties": sortedProperties,
-                "properties": sortedProperties.map { property -> String in
+                "properties": sortedProperties.map { property -> Property in
+                    let rendered: String
                     switch property.value {
                     case .constant(let value):
-                        return try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
+                        rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
                     default:
-                        return try! PropertyRenderer().render(id: property.key,
-                                                              type: property.value.description,
-                                                              optional: !objectSchema.requiredProperties.contains(property.key))
+                        rendered = try! PropertyRenderer().render(id: property.key,
+                                                                  type: property.value.description,
+                                                                  optional: !objectSchema.requiredProperties.contains(property.key))
                     }
+                    let propertyDocumentation = objectSchema.documentation?.properties[property.key]
+                    return Property(rendered: rendered, documentation: propertyDocumentation)
                 },
                 "publicInit": publicInit,
                 "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
@@ -130,8 +151,10 @@ public class ObjectSchemaRenderer {
                 "codingKeys": codingKeys,
                 "codableProperties": codableProperties,
                 "hasAttributes": hasAttributes,
+                "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,
                 "hasRelationships": hasRelationships,
+                "relationshipsDocumentation": relationshipsDocumentation,
                 "relationshipsOptional": relationshipsOptional,
                 "subSchemas": objectSchema.subSchemas.map { subSchema -> String in
                     switch subSchema {
@@ -141,13 +164,18 @@ public class ObjectSchemaRenderer {
                         return try! EnumSchemaRenderer().render(enumSchema: enumSchema)
                     case .oneOf(let name, let oneOfSchema):
                         return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema, includesFixUps: includesFixUps)
-                    case .attributes(let attributesSchema):
-                        return try! AttributesSchemaRenderer().render(attributesSchema: attributesSchema)
+                    case .attributes(let objectSchema):
+                        return try! render(objectSchema: objectSchema)
                     case .relationships(let objectSchema):
                         return try! render(objectSchema: objectSchema)
                     }
 
                 }]
+    }
+
+    private struct Property {
+        let rendered: String
+        let documentation: String?
     }
 
     private struct PropertyName {

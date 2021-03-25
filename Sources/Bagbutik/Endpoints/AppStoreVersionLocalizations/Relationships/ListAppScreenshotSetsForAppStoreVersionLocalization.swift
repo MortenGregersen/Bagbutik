@@ -51,6 +51,7 @@ public extension Request {
             /// Filter by attribute 'screenshotDisplayType'
             case screenshotDisplayType([ScreenshotDisplayType])
 
+            /// String that represents the display type of an app screenshot.
             public enum ScreenshotDisplayType: String, ParameterValue, CaseIterable {
                 case appIphone65 = "APP_IPHONE_65"
                 case appIphone58 = "APP_IPHONE_58"

@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single App Categories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategoryresponse>
+ */
 public struct AppCategoryResponse: Codable {
+    /// The resource data.
     public let data: AppCategory
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppCategory, included: [Included]? = nil, links: DocumentLinks) {

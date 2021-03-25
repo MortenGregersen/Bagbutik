@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single App Infos resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinforesponse>
+ */
 public struct AppInfoResponse: Codable {
+    /// The resource data.
     public let data: AppInfo
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppInfo, included: [Included]? = nil, links: DocumentLinks) {

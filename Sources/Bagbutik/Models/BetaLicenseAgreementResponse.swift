@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Beta License Agreements resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementresponse>
+ */
 public struct BetaLicenseAgreementResponse: Codable {
+    /// The resource data.
     public let data: BetaLicenseAgreement
+    /// The included related resources.
     public let included: [App]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaLicenseAgreement, included: [App]? = nil, links: DocumentLinks) {

@@ -1,5 +1,11 @@
 import Foundation
 
+/**
+ An error code and description.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appmediastateerror>
+ */
 public struct AppMediaStateError: Codable {
     public let code: String?
     public let description: String?

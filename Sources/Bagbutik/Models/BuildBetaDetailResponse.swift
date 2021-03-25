@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Build Beta Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailresponse>
+ */
 public struct BuildBetaDetailResponse: Codable {
+    /// The resource data.
     public let data: BuildBetaDetail
+    /// The included related resources.
     public let included: [Build]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BuildBetaDetail, included: [Build]? = nil, links: DocumentLinks) {

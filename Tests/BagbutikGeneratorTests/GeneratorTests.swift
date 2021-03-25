@@ -22,8 +22,8 @@ final class GeneratorTests: XCTestCase {
         ]),
     ],
     components: .init(schemas: [
-        "UsersResponse": .object(.init(properties: ["users": .arrayOfSchemaRef("User")], name: "UsersResponse")),
-        "ReplaceUsersResponse": .enum(.init(type: "String", values: ["none", "some"], name: "ReplaceUsersResponse")),
+        "UsersResponse": .object(.init(name: "UsersResponse",  url: "some://url", properties: ["users": .arrayOfSchemaRef("User")])),
+        "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", values: ["none", "some"])),
     ]))
     
     func testGenerateAllSimple() throws {
@@ -76,6 +76,21 @@ final class GeneratorTests: XCTestCase {
         }
         // Then
         XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
+    }
+    
+    func testUnloadableSpecFileURL() throws {
+        // Given
+        let generator = Generator()
+        // When
+        let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
+        let outputDirURL = validOutputDirURL
+        var thrownError: Error?
+        XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
+            thrownError = $0
+        }
+        // Then
+        let nsError = try XCTUnwrap(thrownError as NSError?)
+        XCTAssertEqual(nsError.code, 260)
     }
     
     func testFailedCreatingEndpoint() throws {

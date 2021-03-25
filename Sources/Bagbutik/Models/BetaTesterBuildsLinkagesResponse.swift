@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response body that contains a list of related resource IDs.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesresponse>
+ */
 public struct BetaTesterBuildsLinkagesResponse: Codable {
+    /// The resource data.
     public let data: [Data]
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [Data], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
@@ -11,8 +20,16 @@ public struct BetaTesterBuildsLinkagesResponse: Codable {
         self.meta = meta
     }
 
+    /**
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesresponse/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "builds" }
 
         public init(id: String) {

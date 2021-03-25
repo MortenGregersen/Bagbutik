@@ -1,15 +1,31 @@
 import Foundation
 
+/**
+ The request body you use to create an IDFA Declaration.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationcreaterequest>
+ */
 public struct IdfaDeclarationCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationcreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "idfaDeclarations" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -38,13 +54,19 @@ public struct IdfaDeclarationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        public struct Attributes: Codable {
-            public let attributesActionWithPreviousAd: Bool?
-            public let attributesAppInstallationToPreviousAd: Bool?
-            public let honorsLimitedAdTracking: Bool?
-            public let servesAds: Bool?
+        /**
+         Attributes that you set that describe the new resource.
 
-            public init(attributesActionWithPreviousAd: Bool? = nil, attributesAppInstallationToPreviousAd: Bool? = nil, honorsLimitedAdTracking: Bool? = nil, servesAds: Bool? = nil) {
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationcreaterequest/data/attributes>
+         */
+        public struct Attributes: Codable {
+            public let attributesActionWithPreviousAd: Bool
+            public let attributesAppInstallationToPreviousAd: Bool
+            public let honorsLimitedAdTracking: Bool
+            public let servesAds: Bool
+
+            public init(attributesActionWithPreviousAd: Bool, attributesAppInstallationToPreviousAd: Bool, honorsLimitedAdTracking: Bool, servesAds: Bool) {
                 self.attributesActionWithPreviousAd = attributesActionWithPreviousAd
                 self.attributesAppInstallationToPreviousAd = attributesAppInstallationToPreviousAd
                 self.honorsLimitedAdTracking = honorsLimitedAdTracking
@@ -52,6 +74,12 @@ public struct IdfaDeclarationCreateRequest: Codable, RequestBody {
             }
         }
 
+        /**
+         The relationships to other resources that you can set with this request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationcreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
 
@@ -60,14 +88,23 @@ public struct IdfaDeclarationCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersion: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationcreaterequest/data/relationships/appstoreversion/data>
+                 */
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "appStoreVersions" }
 
                     public init(id: String) {

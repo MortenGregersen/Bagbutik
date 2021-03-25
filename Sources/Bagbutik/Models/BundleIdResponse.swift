@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Bundle IDs resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidresponse>
+ */
 public struct BundleIdResponse: Codable {
+    /// The resource data.
     public let data: BundleId
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BundleId, included: [Included]? = nil, links: DocumentLinks) {

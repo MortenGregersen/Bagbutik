@@ -1,9 +1,19 @@
 import Foundation
 
+/**
+ The data structure that represents the Diagnostic Signatures resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature>
+ */
 public struct DiagnosticSignature: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "diagnosticSignatures" }
+    /// The resource's attributes.
     public let attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
@@ -36,6 +46,12 @@ public struct DiagnosticSignature: Codable {
         case attributes
     }
 
+    /**
+     Attributes that describe a Diagnostic Signatures resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature/attributes>
+     */
     public struct Attributes: Codable {
         public let diagnosticType: DiagnosticType?
         public let signature: String?

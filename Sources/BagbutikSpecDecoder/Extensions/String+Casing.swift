@@ -1,7 +1,7 @@
 import Foundation
 
-extension StringProtocol {
-    public func camelCased(with separator: Character) -> String {
+public extension StringProtocol {
+    func camelCased(with separator: Character) -> String {
         guard self.contains(separator) else {
             var result = String(self)
             if self.allSatisfy({ $0.isUppercase }) { result = self.lowercased() }
@@ -24,6 +24,8 @@ extension StringProtocol {
     private func fixTrademarkCasing() -> String {
         switch self.lowercased() {
         case "ios": return "iOS"
+        case "macos": return "macOS"
+        case "tvos": return "tvOS"
         case "imessage": return "iMessage"
         case "ipad": return "iPad"
         case "iphone": return "iPhone"
@@ -37,11 +39,11 @@ extension StringProtocol {
         }
     }
 
-    public func capitalizingFirstLetter() -> String {
+    func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
     }
-    
-    public func lowercasedFirstLetter() -> String {
+
+    func lowercasedFirstLetter() -> String {
         return prefix(1).lowercased() + dropFirst()
     }
 }

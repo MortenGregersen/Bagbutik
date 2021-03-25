@@ -1,9 +1,19 @@
 import Foundation
 
+/**
+ A response that contains a list of Beta App Review Detail resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailsresponse>
+ */
 public struct BetaAppReviewDetailsResponse: Codable {
+    /// The resource data.
     public let data: [BetaAppReviewDetail]
+    /// The included related resources.
     public let included: [App]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [BetaAppReviewDetail], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

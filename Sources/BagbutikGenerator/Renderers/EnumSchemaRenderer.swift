@@ -11,15 +11,19 @@ public class EnumSchemaRenderer: Renderer {
     }
 
     private let template = """
-    public enum {{ name }}: {{ rawType }}, {{ additionalProtocol }}, CaseIterable {
+    {% if documentation %}/// {{ documentation }}
+    {% endif %}public enum {{ name }}: {{ rawType }}, {{ additionalProtocol }}, CaseIterable {
         {% for case in cases %}
-        case {{ case.id }} = "{{ case.value }}"{%
+        {% if case.documentation %}/// {{ case.documentation }}
+        {% else %}{%
+        endif %}case {{ case.id }} = "{{ case.value }}"{%
         endfor %}
     }
     """
 
     private func enumContext(for enumSchema: EnumSchema, additionalProtocol: String) -> [String: Any] {
         return ["name": enumSchema.name,
+                "documentation": enumSchema.documentation?.summary ?? "",
                 "rawType": enumSchema.type.capitalized,
                 "additionalProtocol": additionalProtocol,
                 "cases": enumSchema.cases]
