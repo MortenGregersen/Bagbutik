@@ -52,6 +52,6 @@ public struct EnumSchema: Decodable, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(name: container.codingPath.last!.stringValue.capitalizingFirstLetter(),
                   type: try container.decode(String.self, forKey: .type),
-                  values: try container.decode([String].self, forKey: .enum))
+                  caseValues: try container.decode([String].self, forKey: .enum))
     }
 }
