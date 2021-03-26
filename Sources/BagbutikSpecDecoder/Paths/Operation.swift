@@ -1,17 +1,28 @@
 import Foundation
 
+/// Errors that can occur when decoding operations
 public enum OperationError: Error {
+    /// The documentation is missing for the operation and needs to be added
     case missingDocumentation(operationId: String)
+    /// The pattern of the operation id is unknown and needs to be implemented
     case unknownOperationIdPattern(operationId: String)
 }
 
+/// An operation that can be executed
 public struct Operation: Decodable {
+    /// The name of the operation
     public let name: String
+    /// The documentation for the operation
     public let documentation: Documentation
+    /// The HTTP method used when executing the operation
     public let method: HTTPMethod
+    /// The different kind of parameters that can be sent with the operation
     public let parameters: [Parameter]?
+    /// Information about the object that can be sent as request body
     public let requestBody: RequestBody?
+    /// The name of the type returned on a successful request
     public let successResponseType: String
+    /// The name of the type returned on a failing request
     public let errorResponseType: String
     
     private static let getInstanceRegex = try! NSRegularExpression(pattern: "(.*)-get_instance", options: [])
@@ -28,14 +39,25 @@ public struct Operation: Decodable {
     private static let deleteInstanceRegex = try! NSRegularExpression(pattern: "(.*)-delete_instance", options: [])
     private static let deleteToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-delete_to_many_relationship", options: [])
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case operationId, parameters, requestBody, responses
     }
     
-    enum RequestBodyCodingKeys: String, CodingKey {
+    private enum RequestBodyCodingKeys: String, CodingKey {
         case content, applicationJson = "application/json", schema, ref = "$ref", description
     }
     
+    /**
+     Initialize a new operation
+     
+     - Parameter name: The name of the operation
+     - Parameter documentation: The documentation for the operation
+     - Parameter method: The HTTP method used when executing the operation
+     - Parameter parameters: The different kind of parameters that can be sent with the operation
+     - Parameter requestBody: Information about the object that can be sent as request body
+     - Parameter successResponseType: The name of the type returned on a successful request
+     - Parameter errorResponseType: The name of the type returned on a failing request
+     */
     public init(name: String, documentation: Documentation, method: HTTPMethod, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
         self.name = name
         self.documentation = documentation
