@@ -132,7 +132,7 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(patchOperation?.documentation.title, "Modify an Age Rating Declaration")
         XCTAssertEqual(patchOperation?.method, .patch)
         XCTAssertEqual(patchOperation?.parameters, nil)
-        XCTAssertEqual(patchOperation?.requestBody, .init(name: "AgeRatingDeclarationUpdateRequest", description: "AgeRatingDeclaration representation"))
+        XCTAssertEqual(patchOperation?.requestBody, .init(name: "AgeRatingDeclarationUpdateRequest", documentation: "AgeRatingDeclaration representation"))
         XCTAssertEqual(patchOperation?.successResponseType, "AgeRatingDeclarationResponse")
         XCTAssertEqual(patchOperation?.errorResponseType, "ErrorResponse")
     }

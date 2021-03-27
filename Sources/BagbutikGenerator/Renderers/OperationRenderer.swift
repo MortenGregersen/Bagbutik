@@ -236,7 +236,7 @@ public class OperationRenderer: Renderer {
         }
         if let requestBody = operation.requestBody {
             parameters.append("requestBody: \(requestBody.name)")
-            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.description.capitalizingFirstLetter())")
+            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
             parameters.append("fields: [\(name).Field]? = nil")

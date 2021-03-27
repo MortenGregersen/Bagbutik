@@ -83,7 +83,7 @@ public struct Operation: Decodable {
            let requestBodyName = try? schemaContainer.decode(String.self, forKey: .ref).components(separatedBy: "/").last,
            let requestBodyDescription = try? requestBodyContainter.decode(String.self, forKey: .description)
         {
-            requestBody = .init(name: requestBodyName, description: requestBodyDescription)
+            requestBody = .init(name: requestBodyName, documentation: requestBodyDescription)
         } else {
             requestBody = nil
         }
