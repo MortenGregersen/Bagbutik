@@ -1,14 +1,21 @@
 import Foundation
 
+/// A representation of an object
 public struct ObjectSchema: Decodable, Equatable {
+    /// The name of the object
     public let name: String
+    /// An url for the documentation for the object
     public let url: String
+    /// The documentation for the obejct - if any
     public let documentation: Schema.Documentation?
+    /// The properties for the obejct
     public let properties: [String: PropertyType]
+    /// A list of properties that is required (always available)
     public let requiredProperties: [String]
+    /// A list of schemas derived from the properties
     public let subSchemas: [SubSchema]
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case type
         case title
         case properties

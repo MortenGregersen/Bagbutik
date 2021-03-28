@@ -171,7 +171,7 @@ public class OperationRenderer: Renderer {
                     fields.append(EnumCase(id: name, value: type.description, documentation: documentation))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                    let enumSchema = EnumSchema(name: enumName, type: type, values: values)
+                    let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     fieldSubSchemas[name] = rendered
@@ -183,7 +183,7 @@ public class OperationRenderer: Renderer {
                     filters.append(EnumCase(id: name, value: type.description, documentation: documentation))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                    let enumSchema = EnumSchema(name: enumName, type: type, values: values)
+                    let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     filterSubSchemas[name] = rendered
@@ -236,7 +236,7 @@ public class OperationRenderer: Renderer {
         }
         if let requestBody = operation.requestBody {
             parameters.append("requestBody: \(requestBody.name)")
-            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.description.capitalizingFirstLetter())")
+            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
             parameters.append("fields: [\(name).Field]? = nil")

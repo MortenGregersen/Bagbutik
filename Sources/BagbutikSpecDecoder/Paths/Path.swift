@@ -1,9 +1,14 @@
 import Foundation
 
+/// An endpoint path
 public struct Path: Decodable {
+    /// The raw path
     public let path: String
+    /// Type info about the path
     public let info: Info
+    /// Operations available on the path
     public let operations: [Operation]
+    /// Path parameters
     public let parameters: [Parameter]?
     private static let methodKeys: [CodingKeys] = [.get, .patch, .post, .delete]
 
@@ -15,6 +20,14 @@ public struct Path: Decodable {
         case parameters
     }
 
+    /**
+     Initialize a new path
+     
+     - Parameter path: The raw path
+     - Parameter info: Type info about the path
+     - Parameter operations: Operations available on the path
+     - Parameter parameters: Path parameters
+     */
     public init(path: String, info: Info, operations: [Operation], parameters: [Parameter]? = nil) {
         self.path = path
         self.info = info
@@ -35,13 +48,19 @@ public struct Path: Decodable {
         self.init(path: path, info: info, operations: operations, parameters: parameters)
     }
 
+    /// Type info about a path
     public struct Info: Equatable {
+        /// The main type of the path
         public let mainType: String
+        /// Is the path accessing a relationship
         public let isRelationship: Bool
     }
 
+    /// A parameter for a path
     public struct Parameter: Decodable, Equatable {
+        /// The name of the paramter
         public let name: String
+        /// A short description of what the parameter is
         public let description: String
     }
 }

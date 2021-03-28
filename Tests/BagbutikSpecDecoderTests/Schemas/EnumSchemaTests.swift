@@ -6,7 +6,7 @@ final class EnumSchemaTests: XCTestCase {
         let type = "type"
         let values = ["IOS", "MAC_OS"]
         let name = "name"
-        let enumSchema = EnumSchema(name: name, type: type, values: values)
+        let enumSchema = EnumSchema(name: name, type: type, caseValues: values)
         XCTAssertEqual(enumSchema.type, type)
         XCTAssertEqual(enumSchema.cases, [
             EnumCase(id: "iOS", value: "IOS"),

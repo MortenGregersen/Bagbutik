@@ -1,12 +1,17 @@
 import Foundation
 
 public extension Operation {
+    /// Documentation for operations
     struct Documentation {
-        let title: String
-        let summary: String
-        let url: String
+        /// A short title of the operation
+        public let title: String
+        /// A short summary of what the operation does
+        public let summary: String
+        /// An url for the documentation for the operation
+        public let url: String
 
-        static let allDocumentation: [String: Documentation] = [
+        /// Documentation for all the operations. These are copied directly from the official documentation
+        public static let allDocumentation: [String: Documentation] = [
             "ageRatingDeclarations-update_instance": .init(title: "Modify an Age Rating Declaration",
                                                            summary: "Provide age-related information so the App Store can determine the age rating for your app.",
                                                            url: "https://developer.apple.com/documentation/appstoreconnectapi/modify_an_age_rating_declaration"),

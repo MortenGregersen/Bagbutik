@@ -1,12 +1,19 @@
 import Foundation
 
 extension Operation {
+    /// A parameter that can be sent with an operation
     public enum Parameter: Decodable, Equatable {
+        /// A parameter that filter the data in the response
         case filter(name: String, type: ParameterValueType, required: Bool, documentation: String)
+        /// A parameter that checks for existance of a property
         case exists(name: String, type: ParameterValueType, documentation: String)
+        /// A parameter that lists the desired fields in the response
         case fields(name: String, type: ParameterValueType, documentation: String)
+        /// A parameter that sorts the data in the response
         case sort(type: ParameterValueType, documentation: String)
+        /// A parameter that limits the number of elements in the response
         case limit(name: String, documentation: String, maximum: Int)
+        /// A parameter that indicates which related types shoudl be included in the response
         case include(type: ParameterValueType)
         
         private enum CodingKeys: String, CodingKey {
@@ -60,8 +67,11 @@ extension Operation {
             }
         }
         
+        /// The type of value of a parameter
         public enum ParameterValueType: Decodable, Equatable {
+            /// A simple value type
             case simple(type: SimplePropertyType)
+            /// An enum value type
             case `enum`(type: String, values: [String])
             
             enum CodingKeys: String, CodingKey {

@@ -237,7 +237,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "connection": .schemaRef("Connection")],
                                   subSchemas: [
                                       .objectSchema(.init(name: "Pet", url: "some://url", properties: ["name": .simple(.init(type: "string"))])),
-                                      .enumSchema(.init(name: "Preference", type: "string", values: ["TABS", "SPACES"])),
+                                      .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"])),
                                       .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])),
                                   ])
         // When
