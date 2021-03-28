@@ -1,9 +1,13 @@
 import Foundation
 
+/// A wrapper for the different schema types
 public enum Schema: Decodable {
+    /// An enum schema
     case `enum`(EnumSchema)
+    /// An object schema
     case object(ObjectSchema)
     
+    /// The name of the schema
     public var name: String {
         switch self {
         case .enum(let enumSchema):
