@@ -1,53 +1,94 @@
 import Foundation
 
 public extension Schema {
+    /// Documentation for a schema's attributes
     struct AttributesDocumentation: Equatable {
+        /// The summary for the attributes
         let summary: String
+        /// The attributes' properties
         let properties: [String: String]?
 
+        /**
+         Initialize a new documentation for a schema's attributes
+
+         - Parameter summary: The summary for the attributes
+         - Parameter properties: The attributes' properties
+         */
         init(summary: String, properties: [String: String]? = nil) {
             self.summary = summary
             self.properties = properties
         }
     }
 
+    /// Documentation for a request's data's attributes
     struct RequestDataAttributesDocumentaion: Equatable {
+        /// The attributes' properties
         let properties: [String: String]?
 
+        /**
+         Initialize a new documentation for a request's data's attributes
+
+         - Parameter properties: The attributes' properties
+         */
         init(properties: [String: String]? = nil) {
             self.properties = properties
         }
     }
 
+    /// Documentation for a schema
     enum Documentation: Equatable {
+        /// Documentation for a schema which is not a child of another schema
         case rootSchema(summary: String, discussion: String? = nil, properties: [String: String]? = nil, attributes: AttributesDocumentation? = nil)
+        /// Documentation for attributes
         case attributes(AttributesDocumentation)
+        /// Documentation for relationships
         case relationships
+        /// Documentation for a relationship
         case relationship
+        /// Documentation for data of a relationship
         case relationshipData
+        /// Documentation for links of a relationship
         case relationshipLinks
+        /// Documentation for a create request
         case createRequest(summary: String, attributes: RequestDataAttributesDocumentaion? = nil)
+        /// Documentation for data of a create request
         case createRequestData
+        /// Documentation for attributes for data of a create request
         case createRequestDataAttributes(RequestDataAttributesDocumentaion)
+        /// Documentation for relationships for data of a create request
         case createRequestDataRelationships
+        /// Documentation for a relationship for data of a create request
         case createRequestDataRelationship
+        /// Documentation for data of a relationship for data of a create request
         case createRequestDataRelationshipData
+        /// Documentation for a update request
         case updateRequest(summary: String, attributes: RequestDataAttributesDocumentaion? = nil)
+        /// Documentation for data of a update request
         case updateRequestData
+        /// Documentation for attributes for data of a update request
         case updateRequestDataAttributes(RequestDataAttributesDocumentaion)
+        /// Documentation for relationships for data of a update request
         case updateRequestDataRelationships
+        /// Documentation for a relationship for data of a update request
         case updateRequestDataRelationship
+        /// Documentation for data of a relationship for data of a update request
         case updateRequestDataRelationshipData
+        /// Documentation for a linkages request
         case linkagesRequest(summary: String)
+        /// Documentation for data of a linkages request
         case linkagesRequestData
+        /// Documentation for a linkages response
         case linkagesResponse
+        /// Documentation for data of a linkages response
         case linkagesResponseData
+        /// Documentation for a enum
         case enumObject(summary: String, cases: [String: String])
-        
-        static internal func lookupDocumentation(forSchemaNamed name: String) -> Documentation? {
+
+        internal static func lookupDocumentation(forSchemaNamed name: String) -> Documentation? {
             return allDocumentation[name]
         }
 
+        /// The potential summary for the schema
         public var summary: String? {
             switch self {
             case .rootSchema(let summary, _, _, _):
@@ -99,6 +140,7 @@ public extension Schema {
             }
         }
 
+        /// The potential discussion for the schema
         public var discussion: String? {
             switch self {
             case .rootSchema(_, let discussion, _, _):
@@ -108,6 +150,7 @@ public extension Schema {
             }
         }
 
+        /// The properties for the schema
         public var properties: [String: String] {
             switch self {
             case .rootSchema(_, _, let properties, _):
@@ -136,7 +179,7 @@ public extension Schema {
                 return Self.commonProperties
             }
         }
-        
+
         internal static func propertiesMergedWithCommonProperties(_ properties: [String: String]?) -> [String: String] {
             return commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
         }
@@ -149,7 +192,7 @@ public extension Schema {
             "links": "Navigational links that include the self-link.",
             "type": "The resource type.",
             "meta": "Paging information.",
-            "included": "The included related resources." // Unofficial documentation
+            "included": "The included related resources.", // Unofficial documentation
         ]
 
         internal static let relationshipProperties: [String: String] = [
