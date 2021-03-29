@@ -6,7 +6,7 @@ public struct Spec: Decodable {
     public let paths: [String: Path]
     /// The components contained in the spec
     public let components: Components
-    /// Fix ups for the includes parameter of a path
+    /// Fix ups for the includes on the schemas based the field parameters of a the path operations
     public var includesFixUps: [String: [String]] {
         paths.values.reduce(into: [:]) { result, path in
             path.operations.forEach { operation in

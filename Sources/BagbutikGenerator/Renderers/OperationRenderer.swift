@@ -4,17 +4,27 @@ import Stencil
 import StencilSwiftKit
 import SwiftFormat
 
+/// Errors that can occur when rendering an operation
 public enum OperationRendererError: Error {
+    /// The type of an 'exists' parameter is unknown as needs to be implemented
     case unknownTypeOfExists(name: String)
+    /// The type of an 'include' parameter is unknown as needs to be implemented
     case unknownTypeOfInclude
+    /// The type of an 'sort' parameter is unknown as needs to be implemented
     case unknownTypeOfSort
 }
 
 extension OperationRendererError: Equatable {}
 
+/// A renderer which renders operations
 public class OperationRenderer: Renderer {
-    override public init() {}
-
+    /**
+     Render an operation
+     
+     - Parameter operation: The operation to render
+     - Parameter path: The path which contains the operation
+     - Returns: The rendered operation
+     */
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
         let context = try Self.operationContext(for: operation, in: path)
         let rendered = try environment.renderTemplate(string: template, context: context)
