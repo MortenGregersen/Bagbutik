@@ -4,9 +4,15 @@ import Stencil
 import StencilSwiftKit
 import SwiftFormat
 
+/// A renderer which renders object schemas
 public class ObjectSchemaRenderer {
-    public init() {}
-
+    /**
+     Render a object schema
+     
+     - Parameter objectSchema: The object schema to render
+     - Parameter includesFixUps: Fix ups for the included related types
+     - Returns: The rendered object schema
+     */
     public func render(objectSchema: ObjectSchema, includesFixUps: [String] = []) throws -> String {
         let context = objectContext(for: objectSchema, in: environment, includesFixUps: includesFixUps)
         let rendered = try environment.renderTemplate(name: "objectTemplate", context: context)

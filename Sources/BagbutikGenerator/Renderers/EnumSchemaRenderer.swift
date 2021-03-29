@@ -1,9 +1,15 @@
 import BagbutikSpecDecoder
 import SwiftFormat
 
+/// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
-    public override init() {}
-    
+    /**
+     Render a enum schema
+
+     - Parameter enumSchema: The enum schema to render
+     - Parameter additionalProtocol: Any additional protocol the enum should conform to
+     - Returns: The rendered enum schema
+     */
     public func render(enumSchema: EnumSchema, additionalProtocol: String = "Codable") throws -> String {
         let context = enumContext(for: enumSchema, additionalProtocol: additionalProtocol)
         let rendered = try environment.renderTemplate(string: template, context: context)
