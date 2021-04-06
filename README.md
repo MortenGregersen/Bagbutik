@@ -1,6 +1,6 @@
 <p align="center">
     <br />
-    <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/readme/Assets/Bagbutik-logo.png" max-width="90%" alt="Bagbutik" />
+    <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/main/Assets/Bagbutik-logo.png" max-width="90%" alt="Bagbutik" />
 </p>
 
 <p align="center">
