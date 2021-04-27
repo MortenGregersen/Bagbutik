@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Prerelease Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionresponse>
+ */
 public struct PrereleaseVersionResponse: Codable {
+    /// The resource data.
     public let data: PrereleaseVersion
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: PrereleaseVersion, included: [Included]? = nil, links: DocumentLinks) {

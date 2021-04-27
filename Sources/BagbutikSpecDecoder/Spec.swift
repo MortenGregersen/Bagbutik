@@ -1,8 +1,12 @@
 import Foundation
 
+/// A representation of the spec file
 public struct Spec: Decodable {
+    /// The paths contained in the spec
     public let paths: [String: Path]
+    /// The components contained in the spec
     public let components: Components
+    /// Fix ups for the includes on the schemas based the field parameters of a the path operations
     public var includesFixUps: [String: [String]] {
         paths.values.reduce(into: [:]) { result, path in
             path.operations.forEach { operation in
@@ -23,7 +27,9 @@ public struct Spec: Decodable {
         }
     }
 
+    /// A wrapper for schemas to ease decoding
     public struct Components: Decodable {
+        /// A list of schema names and their representation
         public let schemas: [String: Schema]
     }
 }

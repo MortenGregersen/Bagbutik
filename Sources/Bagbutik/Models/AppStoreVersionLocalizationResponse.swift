@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single App Store Version Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationresponse>
+ */
 public struct AppStoreVersionLocalizationResponse: Codable {
+    /// The resource data.
     public let data: AppStoreVersionLocalization
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppStoreVersionLocalization, included: [Included]? = nil, links: DocumentLinks) {

@@ -1,5 +1,6 @@
 import Foundation
 
+/// Literal values that represent types of signing certificates.
 public enum CertificateType: String, Codable, CaseIterable {
     case iOSDevelopment = "IOS_DEVELOPMENT"
     case iOSDistribution = "IOS_DISTRIBUTION"

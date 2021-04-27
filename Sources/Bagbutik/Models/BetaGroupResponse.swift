@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Beta Groups resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupresponse>
+ */
 public struct BetaGroupResponse: Codable {
+    /// The resource data.
     public let data: BetaGroup
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaGroup, included: [Included]? = nil, links: DocumentLinks) {

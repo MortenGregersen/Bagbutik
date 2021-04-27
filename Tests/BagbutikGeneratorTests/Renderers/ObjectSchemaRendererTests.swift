@@ -6,7 +6,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))], name: "Person")
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -21,16 +23,57 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
-    func testRenderRequest() throws {
+
+    func testRenderPlainDocumented() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))], name: "PersonCreateRequest")
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name.",
+                                                             properties: ["name": "The person's name"]),
+                                  properties: ["name": .simple(.init(type: "string"))])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
+        public struct Person: Codable {
+            /// The person's name
+            public let name: String?
+
+            public init(name: String? = nil) {
+                self.name = name
+            }
+        }
+
+        """#)
+    }
+
+    func testRenderRequest() throws {
+        // Given
+        let renderer = ObjectSchemaRenderer()
+        let schema = ObjectSchema(name: "PersonCreateRequest",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "The data for a request to create a person.",
+                                                             properties: ["name": "The person's name"]),
+                                  properties: ["name": .simple(.init(type: "string"))])
+        // When
+        let rendered = try renderer.render(objectSchema: schema)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        /**
+         The data for a request to create a person.
+
+         Full documentation:
+         <some://url>
+         */
         public struct PersonCreateRequest: Codable, RequestBody {
+            /// The person's name
             public let name: String?
 
             public init(name: String? = nil) {
@@ -44,20 +87,36 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderSpecialPropertyTypes() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["firstName": .simple(.init(type: "string")),
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name.",
+                                                             properties: ["firstName": "The firstname of the person",
+                                                                          "lastName": "The lastname of the person",
+                                                                          "self": "A reference to the person",
+                                                                          "id": "The unique id for the person"]),
+                                  properties: ["firstName": .simple(.init(type: "string")),
                                                "lastName": .simple(.init(type: "string")),
                                                "self": .schemaRef("string"),
                                                "id": .constant("person")],
-                                  requiredProperties: ["firstName"],
-                                  name: "Person")
+                                  requiredProperties: ["firstName"])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
+            /// The firstname of the person
             public let firstName: String
+            /// The unique id for the person
             public var id: String { "person" }
+            /// The lastname of the person
             public let lastName: String?
+            /// A reference to the person
             public let `self`: String?
 
             public init(firstName: String, id: Person? = nil, lastName: String? = nil, self aSelf: String? = nil) {
@@ -74,16 +133,25 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderWithAttributes() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let attributesSchema = AttributesSchema(properties: ["age": .simple(.init(type: "integer"))])
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))],
-                                  name: "Person",
+        let attributesSchema = ObjectSchema(name: "Attributes", url: "some://url", properties: ["age": .simple(.init(type: "integer"))])
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name."),
+                                  properties: ["name": .simple(.init(type: "string"))],
                                   subSchemas: [.attributes(attributesSchema)])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             public let name: String?
+            /// The resource's attributes.
             public let attributes: Attributes?
 
             public init(name: String? = nil, attributes: Attributes? = nil) {
@@ -106,16 +174,28 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderWithRelationships() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let relationshipsSchema = ObjectSchema(properties: ["children": .arrayOfSchemaRef("Child")], name: "Relationships")
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string"))],
-                                  name: "Person",
+        let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url",
+                                               documentation: .relationships,
+                                               properties: ["children": .arrayOfSchemaRef("Child")])
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name."),
+                                  properties: ["name": .simple(.init(type: "string"))],
                                   subSchemas: [.relationships(relationshipsSchema)])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             public let name: String?
+            /// Navigational links to related data and included resource types and IDs.
             public let relationships: Relationships?
 
             public init(name: String? = nil, relationships: Relationships? = nil) {
@@ -123,6 +203,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.relationships = relationships
             }
 
+            /**
+             The relationships you included in the request and those on which you can operate.
+
+             Full documentation:
+             <some://url>
+             */
             public struct Relationships: Codable {
                 public let children: [Child]?
 
@@ -138,24 +224,40 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderSubSchemas() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string")),
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name.",
+                                                             properties: ["name": "The person's name",
+                                                                          "pet": "The person's pet",
+                                                                          "preference": "The person's indentation preference",
+                                                                          "connection": "The person's connection"]),
+                                  properties: ["name": .simple(.init(type: "string")),
                                                "pet": .schemaRef("Pet"),
                                                "preference": .schemaRef("Preference"),
                                                "connection": .schemaRef("Connection")],
-                                  name: "Person",
                                   subSchemas: [
-                                      .objectSchema(.init(properties: ["name": .simple(.init(type: "string"))], name: "Pet")),
-                                      .enumSchema(.init(type: "string", values: ["TABS", "SPACES"], name: "Preference")),
+                                      .objectSchema(.init(name: "Pet", url: "some://url", properties: ["name": .simple(.init(type: "string"))])),
+                                      .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"])),
                                       .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])),
                                   ])
         // When
         let rendered = try renderer.render(objectSchema: schema, includesFixUps: ["computers", "phones"])
         // Then
         XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
+            /// The person's connection
             public let connection: Connection?
+            /// The person's name
             public let name: String?
+            /// The person's pet
             public let pet: Pet?
+            /// The person's indentation preference
             public let preference: Preference?
 
             public init(connection: Connection? = nil, name: String? = nil, pet: Pet? = nil, preference: Preference? = nil) {
@@ -219,24 +321,42 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderCustomCoding() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
-        let attributesSchema = AttributesSchema(properties: ["age": .simple(.init(type: "integer"))])
-        let relationshipsSchema = ObjectSchema(properties: ["children": .arrayOfSchemaRef("Child")], name: "Relationships")
-        let schema = ObjectSchema(properties: ["name": .simple(.init(type: "string")),
+        let attributesSchema = ObjectSchema(name: "Attributes",
+                                            url: "some://url",
+                                            documentation: .attributes(.init(summary: "Attributes for a Person",
+                                                                             properties: ["age": "The person's age"])),
+                                            properties: ["age": .simple(.init(type: "integer"))])
+        let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url",
+                                               documentation: .relationships,
+                                               properties: ["children": .arrayOfSchemaRef("Child")])
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name."),
+                                  properties: ["name": .simple(.init(type: "string")),
                                                "age": .simple(.init(type: "integer")),
                                                "type": .constant("person")],
                                   requiredProperties: ["name", "attributes"],
-                                  name: "Person",
                                   subSchemas: [.attributes(attributesSchema),
                                                .relationships(relationshipsSchema)])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
         public struct Person: Codable {
             public let age: Int?
             public let name: String
+            /// The resource type.
             public var type: String { "person" }
+            /// The resource's attributes.
             public let attributes: Attributes
+            /// Navigational links to related data and included resource types and IDs.
             public let relationships: Relationships?
 
             public init(age: Int? = nil, name: String, attributes: Attributes, relationships: Relationships? = nil) {
@@ -273,7 +393,14 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 case relationships
             }
 
+            /**
+             Attributes for a Person
+
+             Full documentation:
+             <some://url>
+             */
             public struct Attributes: Codable {
+                /// The person's age
                 public let age: Int?
 
                 public init(age: Int? = nil) {
@@ -281,6 +408,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
 
+            /**
+             The relationships you included in the request and those on which you can operate.
+
+             Full documentation:
+             <some://url>
+             */
             public struct Relationships: Codable {
                 public let children: [Child]?
 

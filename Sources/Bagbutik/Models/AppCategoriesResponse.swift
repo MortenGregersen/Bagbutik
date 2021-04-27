@@ -1,9 +1,19 @@
 import Foundation
 
+/**
+ A response that contains a list of App Category resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategoriesresponse>
+ */
 public struct AppCategoriesResponse: Codable {
+    /// The resource data.
     public let data: [AppCategory]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppCategory], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

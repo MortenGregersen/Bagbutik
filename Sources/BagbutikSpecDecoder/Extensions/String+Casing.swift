@@ -1,7 +1,13 @@
 import Foundation
 
-extension StringProtocol {
-    public func camelCased(with separator: Character) -> String {
+public extension StringProtocol {
+    /**
+      Turns a string with separators into a camel cased version. The string is separated by the separators
+      and every word (except the first) is capitalized.
+
+      - Parameter separator: The character used to separate the words in the string
+     */
+    func camelCased(with separator: Character) -> String {
         guard self.contains(separator) else {
             var result = String(self)
             if self.allSatisfy({ $0.isUppercase }) { result = self.lowercased() }
@@ -21,9 +27,22 @@ extension StringProtocol {
             .joined()
     }
 
+    /// Returns a copy of the string where the first letter is capitalized
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    /// Returns a copy of the string where the first letter is lowercased
+    func lowercasedFirstLetter() -> String {
+        return prefix(1).lowercased() + dropFirst()
+    }
+
+    /// Returns a correctly capitalized version of the string if it is an Apple trademark
     private func fixTrademarkCasing() -> String {
         switch self.lowercased() {
         case "ios": return "iOS"
+        case "macos": return "macOS"
+        case "tvos": return "tvOS"
         case "imessage": return "iMessage"
         case "ipad": return "iPad"
         case "iphone": return "iPhone"
@@ -35,13 +54,5 @@ extension StringProtocol {
         case "sirikit": return "siriKit"
         default: return String(self)
         }
-    }
-
-    public func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-    
-    public func lowercasedFirstLetter() -> String {
-        return prefix(1).lowercased() + dropFirst()
     }
 }

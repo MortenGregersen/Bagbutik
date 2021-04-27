@@ -1,15 +1,31 @@
 import Foundation
 
+/**
+ The request body you use to create a Bundle ID Capability.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest>
+ */
 public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "bundleIdCapabilities" }
+        /// The resource's attributes.
         public let attributes: Attributes
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -38,16 +54,28 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
-            public let capabilityType: CapabilityType?
+            public let capabilityType: CapabilityType
             public let settings: [CapabilitySetting]?
 
-            public init(capabilityType: CapabilityType? = nil, settings: [CapabilitySetting]? = nil) {
+            public init(capabilityType: CapabilityType, settings: [CapabilitySetting]? = nil) {
                 self.capabilityType = capabilityType
                 self.settings = settings
             }
         }
 
+        /**
+         The relationships to other resources that you can set with this request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let bundleId: BundleId
 
@@ -56,14 +84,23 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             }
 
             public struct BundleId: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/relationships/bundleid/data>
+                 */
                 public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
+                    /// The resource type.
                     public var type: String { "bundleIds" }
 
                     public init(id: String) {

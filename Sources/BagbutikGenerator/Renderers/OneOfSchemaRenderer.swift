@@ -4,15 +4,27 @@ import Stencil
 import StencilSwiftKit
 import SwiftFormat
 
+/// Errors that can occur when rendering a one of schema
 public enum OneOfSchemaRendererError: Error {
+    /// The type of the option is uknown and needs to be implemented
     case unknownTypeForOption(schemaName: String)
+    /// The is no fix up matching the option
     case noMatchingFixUp(optionName: String)
 }
 
 extension OneOfSchemaRendererError: Equatable {}
 
-class OneOfSchemaRenderer {
-    func render(name: String, oneOfSchema: OneOfSchema, includesFixUps: [String] = []) throws -> String {
+/// A renderer which renders one of schemas
+public class OneOfSchemaRenderer {
+    /**
+     Render an one of schema
+     
+     - Parameter name: The name of the one of schema
+     - Parameter oneOfSchema: The one of schema to render
+     - Parameter includesFixUps: Fix ups for the options of the one of schema
+     - Returns: The rendered one of schema
+     */
+    public func render(name: String, oneOfSchema: OneOfSchema, includesFixUps: [String] = []) throws -> String {
         let context = try Self.oneOfContext(for: oneOfSchema, named: name, includesFixUps: includesFixUps)
         let rendered = try environment.renderTemplate(name: "oneOfTemplate", context: context)
         return try SwiftFormat.format(rendered)

@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Builds resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildresponse>
+ */
 public struct BuildResponse: Codable {
+    /// The resource data.
     public let data: Build
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Build, included: [Included]? = nil, links: DocumentLinks) {

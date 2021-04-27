@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Beta Testers resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterresponse>
+ */
 public struct BetaTesterResponse: Codable {
+    /// The resource data.
     public let data: BetaTester
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaTester, included: [Included]? = nil, links: DocumentLinks) {

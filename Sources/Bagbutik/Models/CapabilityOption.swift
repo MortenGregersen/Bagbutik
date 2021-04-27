@@ -1,5 +1,11 @@
 import Foundation
 
+/**
+ An option within a capability setting.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/capabilityoption>
+ */
 public struct CapabilityOption: Codable {
     public let description: String?
     public let enabled: Bool?

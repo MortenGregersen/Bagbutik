@@ -1,32 +1,61 @@
 import BagbutikSpecDecoder
 import Foundation
 
+/**
+ An alias for a function loading a spec from a file URL
+ 
+ - Parameter fileUrl: The file URL to load the spec from
+ - Returns: A decoded Spec
+ */
 public typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
+
+/**
+ A file manager which can perform the operations needed by the Generator
+ 
+ This is just an interface already implemented by Foundation's FileManager, needed to enable unit testing.
+ 
+ # Reference
+ <https://developer.apple.com/documentation/foundation/filemanager>
+ */
 public protocol GeneratorFileManager {
+    /// # Reference:
+    /// <https://developer.apple.com/documentation/foundation/filemanager/1415371-createdirectory>
     func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws
+    /// # Reference:
+    /// <https://developer.apple.com/documentation/foundation/filemanager/1410695-createfile>
     func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool
+    /// # Reference:
+    /// <https://developer.apple.com/documentation/foundation/filemanager/1413590-removeitem>
     func removeItem(at URL: URL) throws
 }
 
 extension FileManager: GeneratorFileManager {}
 
+/// Errors that can occur when generating
 public enum GeneratorError: Error {
+    /// The URL is not a file URL
     case notFileUrl(FileURLType)
+    /// The file could not be created
     case couldNotCreateFile(String)
 
+    /// The type of the file URL
     public enum FileURLType {
+        /// The URL for the spec file
         case specFileURL
+        /// The URL for the output directory
         case outputDirURL
     }
 }
 
 extension GeneratorError: Equatable {}
 
+/// A generator which loads a spec and generates endpoints and models from the spec
 public class Generator {
     private let loadSpec: LoadSpec
     private let fileManager: GeneratorFileManager
     private let print: (String) -> Void
 
+    /// Initialize a new generator
     public convenience init() {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
@@ -41,9 +70,16 @@ public class Generator {
         self.print = print
     }
 
+    /**
+     Load a spec file and generate endpoints and models from the spec
+     
+     - Parameter specFileURL: The file URL to load the spec from
+     - Parameter outputDirURL: The file URL for the directory where the generated code should be saved
+     */
     public func generateAll(specFileURL: URL, outputDirURL: URL) throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
+        print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")

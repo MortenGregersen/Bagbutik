@@ -1,14 +1,24 @@
 import Foundation
 
+/// A type for a property
 public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
+    /// A simple type
     case simple(SimplePropertyType)
+    /// A constant type
     case constant(String)
+    /// A schema
     case schemaRef(String)
+    /// An object schema
     case schema(ObjectSchema)
+    /// An enum schema
     case enumSchema(EnumSchema)
+    /// An array of schema
     case arrayOfSchemaRef(String)
+    /// An array of object schema
     case arrayOfSubSchema(ObjectSchema)
+    /// A one of schema
     case oneOf(name: String, schema: OneOfSchema)
+    /// An array of one of schema
     case arrayOfOneOf(name: String, schema: OneOfSchema)
 
     public var description: String {

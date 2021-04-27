@@ -1,5 +1,11 @@
 import Foundation
 
+/**
+ The state of an app or media upload, including any errors and warnings.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appmediaassetstate>
+ */
 public struct AppMediaAssetState: Codable {
     public let errors: [AppMediaStateError]?
     public let state: State?

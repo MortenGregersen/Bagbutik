@@ -1,12 +1,19 @@
 import Foundation
 
 extension Operation {
+    /// A parameter that can be sent with an operation
     public enum Parameter: Decodable, Equatable {
-        case filter(name: String, type: ParameterValueType, required: Bool, description: String)
-        case exists(name: String, type: ParameterValueType, description: String)
-        case fields(name: String, type: ParameterValueType, description: String)
-        case sort(type: ParameterValueType, description: String)
-        case limit(name: String, description: String, maximum: Int)
+        /// A parameter that filter the data in the response
+        case filter(name: String, type: ParameterValueType, required: Bool, documentation: String)
+        /// A parameter that checks for existance of a property
+        case exists(name: String, type: ParameterValueType, documentation: String)
+        /// A parameter that lists the desired fields in the response
+        case fields(name: String, type: ParameterValueType, documentation: String)
+        /// A parameter that sorts the data in the response
+        case sort(type: ParameterValueType, documentation: String)
+        /// A parameter that limits the number of elements in the response
+        case limit(name: String, documentation: String, maximum: Int)
+        /// A parameter that indicates which related types shoudl be included in the response
         case include(type: ParameterValueType)
         
         private enum CodingKeys: String, CodingKey {
@@ -16,23 +23,23 @@ extension Operation {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let name = try container.decode(String.self, forKey: .name)
-            let description = try container.decode(String.self, forKey: .description)
+            let documentation = try container.decode(String.self, forKey: .description)
             if name.starts(with: "filter") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
                 let required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
-                self = .filter(name: Self.getAttribute(forName: name), type: type, required: required, description: description)
+                self = .filter(name: Self.getAttribute(forName: name), type: type, required: required, documentation: documentation)
             } else if name.starts(with: "exists") {
                 let type = ParameterValueType.simple(type: .boolean)
-                self = .exists(name: Self.getAttribute(forName: name), type: type, description: description)
+                self = .exists(name: Self.getAttribute(forName: name), type: type, documentation: documentation)
             } else if name.starts(with: "fields") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                self = .fields(name: Self.getAttribute(forName: name), type: type, description: description)
+                self = .fields(name: Self.getAttribute(forName: name), type: type, documentation: documentation)
             } else if name.starts(with: "sort") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                self = .sort(type: type, description: description)
+                self = .sort(type: type, documentation: documentation)
             } else if name.starts(with: "limit") {
                 let limitParameter = try container.decode(LimitParameter.self, forKey: .schema)
-                self = .limit(name: Self.getAttribute(forName: name), description: description, maximum: limitParameter.maximum)
+                self = .limit(name: Self.getAttribute(forName: name), documentation: documentation, maximum: limitParameter.maximum)
             } else if name.starts(with: "include") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
                 self = .include(type: type)
@@ -60,8 +67,11 @@ extension Operation {
             }
         }
         
+        /// The type of value of a parameter
         public enum ParameterValueType: Decodable, Equatable {
+            /// A simple value type
             case simple(type: SimplePropertyType)
+            /// An enum value type
             case `enum`(type: String, values: [String])
             
             enum CodingKeys: String, CodingKey {

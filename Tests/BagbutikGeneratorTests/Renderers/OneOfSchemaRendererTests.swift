@@ -228,8 +228,8 @@ final class OneOfSchemaRendererTests: XCTestCase {
     func testRenderWithSubSchemas() throws {
         // Given
         let renderer = OneOfSchemaRenderer()
-        let jsonPointerSchema = ObjectSchema(properties: ["pointer": .simple(.init(type: "string"))], name: "JsonPointer")
-        let parameterSchema = ObjectSchema(properties: ["parameter": .simple(.init(type: "string"))], name: "Parameter")
+        let jsonPointerSchema = ObjectSchema(name: "JsonPointer", url: "some://url", properties: ["pointer": .simple(.init(type: "string"))])
+        let parameterSchema = ObjectSchema(name: "Parameter", url: "some://url", properties: ["parameter": .simple(.init(type: "string"))])
         let schema = OneOfSchema(options: [.objectSchema(jsonPointerSchema), .objectSchema(parameterSchema)])
         // When
         let rendered = try renderer.render(name: "Source", oneOfSchema: schema, includesFixUps: ["bundleIds", "certificates", "devices"])
@@ -287,12 +287,12 @@ final class OneOfSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testUnknownTypeForOption() throws {
         // Given
         let oneOfSchema = OneOfSchema(options: [
-            .objectSchema(.init(properties: [:], name: "AppCategory")),
-            .objectSchema(.init(properties: [:], name: "SomeUnknownSchema"))
+            .objectSchema(.init(name: "AppCategory", url: "some://url")),
+            .objectSchema(.init(name: "SomeUnknownSchema", url: "some://url"))
         ])
         // When
         var thrownError: Error?
@@ -302,11 +302,11 @@ final class OneOfSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(thrownError as? OneOfSchemaRendererError, OneOfSchemaRendererError.unknownTypeForOption(schemaName: "SomeUnknownSchema"))
     }
-    
+
     func testNoMatchingFixUp() throws {
         // Given
         let oneOfSchema = OneOfSchema(options: [
-            .objectSchema(.init(properties: [:], name: "SomeUnknownSchema"))
+            .objectSchema(.init(name: "SomeUnknownSchema", url: "some://url"))
         ])
         // When
         var thrownError: Error?

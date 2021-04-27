@@ -1,9 +1,19 @@
 import Foundation
 
+/**
+ A response that contains a list of App Info resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>
+ */
 public struct AppInfosResponse: Codable {
+    /// The resource data.
     public let data: [AppInfo]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppInfo], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

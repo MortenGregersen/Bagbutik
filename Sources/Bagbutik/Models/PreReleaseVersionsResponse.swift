@@ -1,9 +1,19 @@
 import Foundation
 
+/**
+ A response that contains a list of Pre-Release Version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
+ */
 public struct PreReleaseVersionsResponse: Codable {
+    /// The resource data.
     public let data: [PrereleaseVersion]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [PrereleaseVersion], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

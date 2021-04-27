@@ -4,17 +4,27 @@ import Stencil
 import StencilSwiftKit
 import SwiftFormat
 
+/// Errors that can occur when rendering an operation
 public enum OperationRendererError: Error {
+    /// The type of an 'exists' parameter is unknown as needs to be implemented
     case unknownTypeOfExists(name: String)
+    /// The type of an 'include' parameter is unknown as needs to be implemented
     case unknownTypeOfInclude
+    /// The type of an 'sort' parameter is unknown as needs to be implemented
     case unknownTypeOfSort
 }
 
 extension OperationRendererError: Equatable {}
 
+/// A renderer which renders operations
 public class OperationRenderer: Renderer {
-    override public init() {}
-
+    /**
+     Render an operation
+     
+     - Parameter operation: The operation to render
+     - Parameter path: The path which contains the operation
+     - Returns: The rendered operation
+     */
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
         let context = try Self.operationContext(for: operation, in: path)
         let rendered = try environment.renderTemplate(string: template, context: context)
@@ -32,7 +42,7 @@ public class OperationRenderer: Renderer {
             */
             public enum Field: FieldParameter {
                 {% for field in fields %}
-                /// {{ field.description }}
+                /// {{ field.documentation }}
                 case {{ field.id }}([{{ field.value }}]){%
                 endfor %}
 
@@ -51,7 +61,7 @@ public class OperationRenderer: Renderer {
             */
             public enum Filter: FilterParameter { {%
                 for filter in filters %}
-                /// {{ filter.description }}
+                /// {{ filter.documentation }}
                 case {{ filter.id }}([{{ filter.value }}]){%
                 endfor %}
 
@@ -66,7 +76,7 @@ public class OperationRenderer: Renderer {
             */
             public enum Exist: ExistParameter { {%
                 for exist in exists %}
-                /// {{ exist.description }}
+                /// {{ exist.documentation }}
                 case {{ exist.id }}({{ exist.value }}){%
                 endfor %}
             }
@@ -98,7 +108,7 @@ public class OperationRenderer: Renderer {
             */
             public enum Limit: LimitParameter { {%
                 for limit in limits %}
-                /// {{ limit.description }} - maximum {{ limit.maximum }}
+                /// {{ limit.documentation }} - maximum {{ limit.maximum }}
                 case {{ limit.name }}(Int){%
                 endfor %}
             }
@@ -133,7 +143,7 @@ public class OperationRenderer: Renderer {
          - Parameter sorts: Attributes by which to sort
         {% endif %}
         {% if limits.count == 1 %}
-         - Parameter limit: {{ limits[0].description }} - maximum {{ limits[0].maximum }}
+         - Parameter limit: {{ limits[0].documentation }} - maximum {{ limits[0].maximum }}
         {% endif %}
         {% if limits.count > 1 %}
          - Parameter limits: Number of resources to return
@@ -165,37 +175,37 @@ public class OperationRenderer: Renderer {
         var limits = [LimitCase]()
         try operation.parameters?.forEach { parameter in
             switch parameter {
-            case .fields(let name, let type, let description):
+            case .fields(let name, let type, let documentation):
                 switch type {
                 case .simple(let type):
-                    fields.append(EnumCase(id: name, value: type.description, description: description))
+                    fields.append(EnumCase(id: name, value: type.description, documentation: documentation))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                    let enumSchema = EnumSchema(type: type, values: values, name: enumName)
+                    let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     fieldSubSchemas[name] = rendered
-                    fields.append(EnumCase(id: name, value: enumName, description: description))
+                    fields.append(EnumCase(id: name, value: enumName, documentation: documentation))
                 }
-            case .filter(let name, let type, let required, let description):
+            case .filter(let name, let type, let required, let documentation):
                 switch type {
                 case .simple(let type):
-                    filters.append(EnumCase(id: name, value: type.description, description: description))
+                    filters.append(EnumCase(id: name, value: type.description, documentation: documentation))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                    let enumSchema = EnumSchema(type: type, values: values, name: enumName)
+                    let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     filterSubSchemas[name] = rendered
-                    filters.append(EnumCase(id: name, value: enumName, description: description))
+                    filters.append(EnumCase(id: name, value: enumName, documentation: documentation))
                 }
                 if required {
                     filtersRequired.append(name)
                 }
-            case .exists(let name, let type, let description):
+            case .exists(let name, let type, let documentation):
                 switch type {
                 case .simple(let type):
-                    exists.append(EnumCase(id: name, value: type.description, description: description))
+                    exists.append(EnumCase(id: name, value: type.description, documentation: documentation))
                 default:
                     throw OperationRendererError.unknownTypeOfExists(name: name)
                 }
@@ -206,7 +216,7 @@ public class OperationRenderer: Renderer {
                 default:
                     throw OperationRendererError.unknownTypeOfInclude
                 }
-            case .sort(let type, let description):
+            case .sort(let type, let documentation):
                 switch type {
                 case .enum(_, let values):
                     sorts = values.map { sort in
@@ -217,13 +227,13 @@ public class OperationRenderer: Renderer {
                         else {
                             id = "\(sort)Ascending"
                         }
-                        return EnumCase(id: id, value: sort, description: description)
+                        return EnumCase(id: id, value: sort, documentation: documentation)
                     }.sorted(by: { $0.id < $1.id })
                 default:
                     throw OperationRendererError.unknownTypeOfSort
                 }
-            case .limit(let name, let description, let maximum):
-                limits.append(LimitCase(name: name, description: description, maximum: maximum))
+            case .limit(let name, let documentation, let maximum):
+                limits.append(LimitCase(name: name, documentation: documentation, maximum: maximum))
             }
         }
 
@@ -236,7 +246,7 @@ public class OperationRenderer: Renderer {
         }
         if let requestBody = operation.requestBody {
             parameters.append("requestBody: \(requestBody.name)")
-            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.description.capitalizingFirstLetter())")
+            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
             parameters.append("fields: [\(name).Field]? = nil")
@@ -296,12 +306,12 @@ public class OperationRenderer: Renderer {
 
     private struct LimitCase {
         let name: String
-        let description: String
+        let documentation: String
         let maximum: Int
 
-        init(name: String, description: String, maximum: Int) {
+        init(name: String, documentation: String, maximum: Int) {
             self.name = name
-            self.description = description.capitalizingFirstLetter()
+            self.documentation = documentation.capitalizingFirstLetter()
             self.maximum = maximum
         }
     }
