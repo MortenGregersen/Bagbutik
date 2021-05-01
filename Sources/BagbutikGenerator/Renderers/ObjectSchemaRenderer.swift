@@ -8,7 +8,7 @@ import SwiftFormat
 public class ObjectSchemaRenderer {
     /**
      Render a object schema
-     
+
      - Parameter objectSchema: The object schema to render
      - Parameter includesFixUps: Fix ups for the included related types
      - Returns: The rendered object schema
@@ -25,10 +25,10 @@ public class ObjectSchemaRenderer {
     private static let objectTemplate = #"""
     {% if summary %}/**
       {{ summary }}
-    
+
       Full documentation:
       <{{ url }}>{% if discussion %}
-      
+
       {{ discussion }}{% endif %}
     */
     {% elif summary %}/// {{ summary }}
@@ -53,11 +53,11 @@ public class ObjectSchemaRenderer {
         {% if needsCustomCoding %}
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self){%
-            for codableProperty in codableProperties %}{%
-            if codableProperty.optional %}
-            {{ codableProperty.name }} = try container.decodeIfPresent({{ codableProperty.type }}.self, forKey: .{{ codableProperty.name }}){%
+            for decodableProperty in decodableProperties %}{%
+            if decodableProperty.optional %}
+            {{ decodableProperty.name }} = try container.decodeIfPresent({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
             else %}
-            {{ codableProperty.name }} = try container.decode({{ codableProperty.type }}.self, forKey: .{{ codableProperty.name }}){%
+            {{ decodableProperty.name }} = try container.decode({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
             endif %}{% endfor %}
             if try container.decode(String.self, forKey: .type) != type {
                 throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -66,11 +66,11 @@ public class ObjectSchemaRenderer {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self){%
-            for codableProperty in codableProperties %}{%
-            if codableProperty.optional %}
-            try container.encodeIfPresent({{ codableProperty.name }}, forKey: .{{ codableProperty.name }}){%
+            for encodableProperty in encodableProperties %}{%
+            if encodableProperty.optional %}
+            try container.encodeIfPresent({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
             else %}
-            try container.encode({{ codableProperty.name }}, forKey: .{{ codableProperty.name }}){%
+            try container.encode({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
             endif %}{% endfor %}
         }
 
@@ -101,23 +101,27 @@ public class ObjectSchemaRenderer {
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { $0.key != "type" }
         var codingKeys = sortedProperties.map(\.key)
-        var codableProperties = initParameters.map { property in CodableProperty(name: property.key,
-                                                                                 type: property.value.description,
-                                                                                 optional: !objectSchema.requiredProperties.contains(property.key)) }
+        var encodableProperties = sortedProperties.map {
+            CodableProperty(name: $0.key,
+                            type: $0.value.description,
+                            optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
+        }
+
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
             initParameters.append((key: name, value: PropertyType.schemaRef(type)))
             codingKeys.append(name)
-            codableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
+            encodableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
             initParameters.append((key: name, value: PropertyType.schemaRef(type)))
             codingKeys.append(name)
-            codableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
+            encodableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
+        let decodableProperties = encodableProperties.filter { $0.name != "type" }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         let publicInit = initParameters
@@ -155,7 +159,8 @@ public class ObjectSchemaRenderer {
                 "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
                 "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" }),
                 "codingKeys": codingKeys,
-                "codableProperties": codableProperties,
+                "decodableProperties": decodableProperties,
+                "encodableProperties": encodableProperties,
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,

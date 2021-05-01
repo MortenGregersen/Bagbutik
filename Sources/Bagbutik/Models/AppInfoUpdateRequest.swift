@@ -45,6 +45,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(id, forKey: .id)
+            try container.encode(type, forKey: .type)
             try container.encodeIfPresent(relationships, forKey: .relationships)
         }
 
@@ -112,6 +113,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
                     }
 
                     private enum CodingKeys: String, CodingKey {
@@ -156,6 +158,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
                     }
 
                     private enum CodingKeys: String, CodingKey {
@@ -200,6 +203,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
                     }
 
                     private enum CodingKeys: String, CodingKey {
@@ -244,6 +248,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
                     }
 
                     private enum CodingKeys: String, CodingKey {
@@ -288,6 +293,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
                     }
 
                     private enum CodingKeys: String, CodingKey {
@@ -332,6 +338,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
                     }
 
                     private enum CodingKeys: String, CodingKey {

@@ -22,10 +22,13 @@ public class BagbutikService {
         signedJwt = "\(headerString).\(payloadString).\(signingString)"
     }
     
-    /**
-     Errors from the API or from the decoding of the responses.
-     */
-    enum BagbutikError: Error {
+    public convenience init(keyId: String, issuerId: String, privateKeyPath: String) throws {
+        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))
+        try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
+    }
+    
+    /// Errors from the API or from the decoding of the responses.
+    public enum ServiceError: Error {
         /// Bad Request (HTTP status code 400). An error occurred with your request.
         case badRequest(ErrorResponse)
         /// Forbidden (HTTP status code 403). Request not authorized.
@@ -34,10 +37,29 @@ public class BagbutikService {
         case notFound(ErrorResponse)
         /// Conflict (HTTP status code 409). The provided resource data is not valid.
         case conflict(ErrorResponse)
-        /// The date format in the response is unknown.
-        case wrongDateFormat
-        /// The error is unknown and not handled.
-        case unknown
+        /// The date in the response has an unknown format.
+        case wrongDateFormat(dateString: String)
+        /// The error is unhandled HTTP error.
+        case unknownHTTPError(statusCode: Int, data: Data)
+        /// The error is unknown.
+        case unknown(data: Data?)
+        
+        /// A human readable description of the error.
+        var localizedDescription: String {
+            switch self {
+            case .badRequest(let response),
+                 .forbidden(let response),
+                 .notFound(let response),
+                 .conflict(let response):
+                return response.localizedDescription
+            case .wrongDateFormat(let dateString):
+                return "A date in the response has an unknown format. The date: \(dateString)"
+            case .unknownHTTPError(let statusCode, let data):
+                return "An unhandled HTTP error occurred. Status code \(statusCode). Data as UTF-8 string: \(String(data: data, encoding: .utf8) ?? "Not UTF-8")"
+            case .unknown:
+                return "An unknown error occurred."
+            }
+        }
     }
     
     private static let jsonDecoder: JSONDecoder = {
@@ -55,7 +77,7 @@ public class BagbutikService {
             if let date = dateFormatter.date(from: dateString, inFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ") {
                 return date
             }
-            throw BagbutikError.wrongDateFormat
+            throw ServiceError.wrongDateFormat(dateString: dateString)
         }
         return decoder
     }()
@@ -64,31 +86,47 @@ public class BagbutikService {
         let urlRequest = request.asUrlRequest(withSignedJwt: signedJwt)
         return URLSession.shared
             .dataTaskPublisher(for: urlRequest)
-            .tryMap { data, response -> T in
-                if let httpResponse = response as? HTTPURLResponse {
-                    if (200 ... 300).contains(httpResponse.statusCode) {
-                        if T.self == GzipResponse.self {
-                            return try GzipResponse(data: data) as! T
-                        }
-                        return try Self.jsonDecoder.decode(T.self, from: data)
-                    } else if let errorResponse = try? Self.jsonDecoder.decode(ErrorResponse.self, from: data) {
-                        switch httpResponse.statusCode {
-                        case 400:
-                            throw BagbutikError.badRequest(errorResponse)
-                        case 403:
-                            throw BagbutikError.forbidden(errorResponse)
-                        case 404:
-                            throw BagbutikError.notFound(errorResponse)
-                        case 409:
-                            throw BagbutikError.conflict(errorResponse)
-                        default:
-                            break
-                        }
-                    }
-                }
-                throw BagbutikError.unknown
-            }
+            .tryMap { try Self.decodeResponse(data: $0, response: $1) }
             .eraseToAnyPublisher()
+    }
+    
+    public func request<T: Decodable>(_ request: Request<T, ErrorResponse>, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        let urlRequest = request.asUrlRequest(withSignedJwt: signedJwt)
+        URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, _ in
+            do {
+                let decodedResponse: T = try Self.decodeResponse(data: data, response: response)
+                completionHandler(.success(decodedResponse))
+            } catch {
+                completionHandler(.failure(error))
+            }
+        }).resume()
+    }
+    
+    private static func decodeResponse<T: Decodable>(data: Data?, response: URLResponse?) throws -> T {
+        if let data = data, let httpResponse = response as? HTTPURLResponse {
+            if (200 ... 300).contains(httpResponse.statusCode) {
+                if T.self == GzipResponse.self {
+                    return try GzipResponse(data: data) as! T
+                }
+                return try Self.jsonDecoder.decode(T.self, from: data)
+            } else if let errorResponse = try? Self.jsonDecoder.decode(ErrorResponse.self, from: data) {
+                switch httpResponse.statusCode {
+                case 400:
+                    throw ServiceError.badRequest(errorResponse)
+                case 403:
+                    throw ServiceError.forbidden(errorResponse)
+                case 404:
+                    throw ServiceError.notFound(errorResponse)
+                case 409:
+                    throw ServiceError.conflict(errorResponse)
+                default:
+                    print(errorResponse)
+                    break
+                }
+            }
+            throw ServiceError.unknownHTTPError(statusCode: httpResponse.statusCode, data: data)
+        }
+        throw ServiceError.unknown(data: data)
     }
     
     private struct Header: Encodable {

@@ -381,6 +381,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encodeIfPresent(age, forKey: .age)
                 try container.encode(name, forKey: .name)
+                try container.encode(type, forKey: .type)
                 try container.encode(attributes, forKey: .attributes)
                 try container.encodeIfPresent(relationships, forKey: .relationships)
             }
