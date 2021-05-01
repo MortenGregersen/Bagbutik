@@ -45,13 +45,13 @@ public class BagbutikService {
         case unknown(data: Data?)
         
         /// A human readable description of the error.
-        var localizedDescription: String {
+        public var description: String? {
             switch self {
             case .badRequest(let response),
                  .forbidden(let response),
                  .notFound(let response),
                  .conflict(let response):
-                return response.localizedDescription
+                return response.errors?.first?.detail
             case .wrongDateFormat(let dateString):
                 return "A date in the response has an unknown format. The date: \(dateString)"
             case .unknownHTTPError(let statusCode, let data):
