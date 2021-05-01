@@ -40,6 +40,7 @@ public struct AppStoreVersionLocalization: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
     }
@@ -142,6 +143,7 @@ public struct AppStoreVersionLocalization: Codable {
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
                     try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
                 }
 
                 private enum CodingKeys: String, CodingKey {
@@ -216,6 +218,7 @@ public struct AppStoreVersionLocalization: Codable {
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
                     try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
                 }
 
                 private enum CodingKeys: String, CodingKey {
@@ -287,6 +290,7 @@ public struct AppStoreVersionLocalization: Codable {
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
                     try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
                 }
 
                 private enum CodingKeys: String, CodingKey {

@@ -36,6 +36,7 @@ public struct AgeRatingDeclaration: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
     }
 
