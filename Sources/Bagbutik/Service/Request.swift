@@ -44,6 +44,7 @@ public struct Request<ResponseType, ErrorResponseType> {
         urlRequest.httpMethod = method.rawValue
         if let requestBody = requestBody {
             urlRequest.httpBody = requestBody.jsonData
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         return urlRequest
     }
