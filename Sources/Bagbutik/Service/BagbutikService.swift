@@ -90,6 +90,18 @@ public class BagbutikService {
             .eraseToAnyPublisher()
     }
     
+    public func request<T: Decodable>(_ request: Request<T, ErrorResponse>, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        let urlRequest = request.asUrlRequest(withSignedJwt: signedJwt)
+        URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, _ in
+            do {
+                let decodedResponse: T = try Self.decodeResponse(data: data, response: response)
+                completionHandler(.success(decodedResponse))
+            } catch {
+                completionHandler(.failure(error))
+            }
+        }).resume()
+    }
+    
     private static func decodeResponse<T: Decodable>(data: Data?, response: URLResponse?) throws -> T {
         if let data = data, let httpResponse = response as? HTTPURLResponse {
             if (200 ... 300).contains(httpResponse.statusCode) {
