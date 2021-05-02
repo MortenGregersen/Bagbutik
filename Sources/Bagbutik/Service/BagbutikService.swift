@@ -108,6 +108,9 @@ public class BagbutikService {
                 if T.self == GzipResponse.self {
                     return try GzipResponse(data: data) as! T
                 }
+                else if T.self == EmptyResponse.self {
+                    return EmptyResponse() as! T
+                }
                 return try Self.jsonDecoder.decode(T.self, from: data)
             } else if let errorResponse = try? Self.jsonDecoder.decode(ErrorResponse.self, from: data) {
                 switch httpResponse.statusCode {
