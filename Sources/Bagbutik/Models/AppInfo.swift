@@ -60,9 +60,13 @@ public struct AppInfo: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/attributes>
      */
     public struct Attributes: Codable {
+        /// The app’s age rating as it appears on the App Store for all platforms.
         public let appStoreAgeRating: AppStoreAgeRating?
+        /// The state of an app version in the App Store.
         public let appStoreState: AppStoreVersionState?
+        /// The app’s age rating as it appears on the App Store in Brazil for all platforms.
         public let brazilAgeRating: BrazilAgeRating?
+        /// A Made for Kids app’s age band.
         public let kidsAgeBand: KidsAgeBand?
 
         public init(appStoreAgeRating: AppStoreAgeRating? = nil, appStoreState: AppStoreVersionState? = nil, brazilAgeRating: BrazilAgeRating? = nil, kidsAgeBand: KidsAgeBand? = nil) {

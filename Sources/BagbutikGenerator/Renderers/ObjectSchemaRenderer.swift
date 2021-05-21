@@ -36,6 +36,8 @@ public class ObjectSchemaRenderer {
         {% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
         {% else %}{%
+        endif %}{% if property.deprecated %}@available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+        {% else %}{%
         endif %}{{ property.rendered }}{%
         endfor %}{%
         if hasAttributes %}
@@ -103,21 +105,21 @@ public class ObjectSchemaRenderer {
         var codingKeys = sortedProperties.map(\.key)
         var encodableProperties = sortedProperties.map {
             CodableProperty(name: $0.key,
-                            type: $0.value.description,
+                            type: $0.value.type.description,
                             optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
         }
 
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
-            initParameters.append((key: name, value: PropertyType.schemaRef(type)))
+            initParameters.append((key: name, value: Property(type: .schemaRef(type))))
             codingKeys.append(name)
             encodableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
-            initParameters.append((key: name, value: PropertyType.schemaRef(type)))
+            initParameters.append((key: name, value: Property(type: .schemaRef(type))))
             codingKeys.append(name)
             encodableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
@@ -131,7 +133,7 @@ public class ObjectSchemaRenderer {
                 if propertyName.hasDifferentSafeName {
                     parameter += " \(propertyName.safeName)"
                 }
-                parameter += ": \($0.value.description.capitalizingFirstLetter())"
+                parameter += ": \($0.value.type.description.capitalizingFirstLetter())"
                 guard !objectSchema.requiredProperties.contains($0.key) else { return parameter }
                 return "\(parameter)? = nil"
             }
@@ -141,19 +143,18 @@ public class ObjectSchemaRenderer {
                 "url": objectSchema.url,
                 "discussion": objectSchema.documentation?.discussion ?? "",
                 "isRequest": objectSchema.name.hasSuffix("Request"),
-                "sortedProperties": sortedProperties,
-                "properties": sortedProperties.map { property -> Property in
+                "properties": sortedProperties.map { property -> RenderProperty in
                     let rendered: String
-                    switch property.value {
+                    switch property.value.type {
                     case .constant(let value):
                         rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
                     default:
                         rendered = try! PropertyRenderer().render(id: property.key,
-                                                                  type: property.value.description,
+                                                                  type: property.value.type.description,
                                                                   optional: !objectSchema.requiredProperties.contains(property.key))
                     }
                     let propertyDocumentation = objectSchema.documentation?.properties[property.key]
-                    return Property(rendered: rendered, documentation: propertyDocumentation)
+                    return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
                 },
                 "publicInit": publicInit,
                 "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
@@ -184,9 +185,10 @@ public class ObjectSchemaRenderer {
                 }]
     }
 
-    private struct Property {
+    private struct RenderProperty {
         let rendered: String
         let documentation: String?
+        let deprecated: Bool
     }
 
     private struct PropertyName {

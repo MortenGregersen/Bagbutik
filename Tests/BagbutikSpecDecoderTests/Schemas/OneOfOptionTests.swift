@@ -14,6 +14,10 @@ final class OneOfOptionTests: XCTestCase {
                 "properties" : {
                     "name" : {
                         "type" : "string"
+                    },
+                    "vehicle" : {
+                        "type" : "string",
+                        "deprecated" : true
                     }
                 }
             },
@@ -30,8 +34,10 @@ final class OneOfOptionTests: XCTestCase {
         else { return XCTFail("") }
         XCTAssertEqual(oneOfOptions[0].schemaName, "SomeModel")
         XCTAssertEqual(objectSchema.name, "SomeModel")
-        XCTAssertEqual(objectSchema.properties.count, 1)
-        XCTAssertEqual(objectSchema.properties["name"]?.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties.count, 2)
+        XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties["vehicle"]?.deprecated, true)
         XCTAssertEqual(oneOfOptions[1].schemaName, "AnotherModel")
         XCTAssertEqual(refName, "AnotherModel")
     }
