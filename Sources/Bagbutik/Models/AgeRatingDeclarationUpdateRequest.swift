@@ -63,6 +63,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public let alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
+            public let contests: Contests?
+            public let gambling: Bool?
             public let gamblingAndContests: Bool?
             public let gamblingSimulated: GamblingSimulated?
             public let horrorOrFearThemes: HorrorOrFearThemes?
@@ -70,6 +72,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             public let matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
             public let medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
             public let profanityOrCrudeHumor: ProfanityOrCrudeHumor?
+            public let seventeenPlus: Bool?
             public let sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
             public let sexualContentOrNudity: SexualContentOrNudity?
             public let unrestrictedWebAccess: Bool?
@@ -77,8 +80,10 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             public let violenceRealistic: ViolenceRealistic?
             public let violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
-            public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, gamblingAndContests: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {
+            public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gambling: Bool? = nil, gamblingAndContests: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {
                 self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
+                self.contests = contests
+                self.gambling = gambling
                 self.gamblingAndContests = gamblingAndContests
                 self.gamblingSimulated = gamblingSimulated
                 self.horrorOrFearThemes = horrorOrFearThemes
@@ -86,6 +91,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                 self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
                 self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
                 self.profanityOrCrudeHumor = profanityOrCrudeHumor
+                self.seventeenPlus = seventeenPlus
                 self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
                 self.sexualContentOrNudity = sexualContentOrNudity
                 self.unrestrictedWebAccess = unrestrictedWebAccess
@@ -95,6 +101,12 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             }
 
             public enum AlcoholTobaccoOrDrugUseOrReferences: String, Codable, CaseIterable {
+                case none = "NONE"
+                case infrequentOrMild = "INFREQUENT_OR_MILD"
+                case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            }
+
+            public enum Contests: String, Codable, CaseIterable {
                 case none = "NONE"
                 case infrequentOrMild = "INFREQUENT_OR_MILD"
                 case frequentOrIntense = "FREQUENT_OR_INTENSE"

@@ -4,12 +4,34 @@ public extension Request {
          Fields to return for included related types.
          */
         public enum Field: FieldParameter {
+            /// The fields to include for returned resources of type ageRatingDeclarations
+            case ageRatingDeclarations([AgeRatingDeclarations])
             /// The fields to include for returned resources of type appCategories
             case appCategories([AppCategories])
             /// The fields to include for returned resources of type appInfoLocalizations
             case appInfoLocalizations([AppInfoLocalizations])
             /// The fields to include for returned resources of type appInfos
             case appInfos([AppInfos])
+
+            public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+                case alcoholTobaccoOrDrugUseOrReferences
+                case contests
+                case gambling
+                case gamblingAndContests
+                case gamblingSimulated
+                case horrorOrFearThemes
+                case kidsAgeBand
+                case matureOrSuggestiveThemes
+                case medicalOrTreatmentInformation
+                case profanityOrCrudeHumor
+                case seventeenPlus
+                case sexualContentGraphicAndNudity
+                case sexualContentOrNudity
+                case unrestrictedWebAccess
+                case violenceCartoonOrFantasy
+                case violenceRealistic
+                case violenceRealisticProlongedGraphicOrSadistic
+            }
 
             public enum AppCategories: String, ParameterValue, CaseIterable {
                 case parent
@@ -27,6 +49,7 @@ public extension Request {
             }
 
             public enum AppInfos: String, ParameterValue, CaseIterable {
+                case ageRatingDeclaration
                 case app
                 case appInfoLocalizations
                 case appStoreAgeRating
@@ -46,7 +69,7 @@ public extension Request {
          Relationship data to include in the response.
          */
         public enum Include: String, IncludeParameter {
-            case app, appInfoLocalizations, primaryCategory, primarySubcategoryOne, primarySubcategoryTwo, secondaryCategory, secondarySubcategoryOne, secondarySubcategoryTwo
+            case ageRatingDeclaration, app, appInfoLocalizations, primaryCategory, primarySubcategoryOne, primarySubcategoryTwo, secondaryCategory, secondarySubcategoryOne, secondarySubcategoryTwo
         }
     }
 

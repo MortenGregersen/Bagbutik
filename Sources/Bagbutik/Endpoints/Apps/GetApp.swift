@@ -38,6 +38,7 @@ public extension Request {
             case territories([Territories])
 
             public enum AppInfos: String, ParameterValue, CaseIterable {
+                case ageRatingDeclaration
                 case app
                 case appInfoLocalizations
                 case appStoreAgeRating
