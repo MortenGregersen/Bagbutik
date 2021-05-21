@@ -10,7 +10,7 @@ final class SpecTests: XCTestCase {
                       documentation: .init(title: "List users", summary: "Get a list of users", url: "https://developer.apple.com"),
                       method: .get,
                       parameters: [
-                          .fields(name: "name", type: .simple(type: .string), documentation: "name of the user"),
+                          .fields(name: "name", type: .simple(type: .string), deprecated: false, documentation: "name of the user"),
                           .include(type: .enum(type: "string", values: ["DOG", "CAT"])),
                           .limit(name: "limit", documentation: "maximum number of users", maximum: 200),
                       ],

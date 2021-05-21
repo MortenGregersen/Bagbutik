@@ -11,7 +11,7 @@ public struct Spec: Decodable {
         paths.values.reduce(into: [:]) { result, path in
             path.operations.forEach { operation in
                 let fields = operation.parameters?.compactMap { parameter -> String? in
-                    guard case .fields(let name, _, _) = parameter else { return nil }
+                    guard case .fields(let name, _, _, _) = parameter else { return nil }
                     return name
                 } ?? []
                 let includesValues = operation.parameters?.compactMap { parameter -> [String]? in

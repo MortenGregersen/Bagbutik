@@ -78,6 +78,7 @@ final class ParameterTests: XCTestCase {
         let json = #"""
         {
             "name" : "fields[territories]",
+            "deprecated" : true,
             "description" : "the fields to include for returned resources of type territories",
             "schema" : {
                 "type" : "array",
@@ -92,9 +93,10 @@ final class ParameterTests: XCTestCase {
         // When
         let paramater = try jsonDecoder.decode(BagbutikSpecDecoder.Operation.Parameter.self, from: json.data(using: .utf8)!)
         // Then
-        guard case let .fields(name, type, description) = paramater else { return XCTFail("Wrong parameter type") }
+        guard case let .fields(name, type, deprecated, description) = paramater else { return XCTFail("Wrong parameter type") }
         XCTAssertEqual(name, "territories")
         XCTAssertEqual(type, .enum(type: "String", values: ["currency"]))
+        XCTAssertEqual(deprecated, true)
         XCTAssertEqual(description, "the fields to include for returned resources of type territories")
     }
 

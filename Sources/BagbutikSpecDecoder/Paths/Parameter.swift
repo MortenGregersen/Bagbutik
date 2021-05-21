@@ -8,7 +8,7 @@ extension Operation {
         /// A parameter that checks for existance of a property
         case exists(name: String, type: ParameterValueType, documentation: String)
         /// A parameter that lists the desired fields in the response
-        case fields(name: String, type: ParameterValueType, documentation: String)
+        case fields(name: String, type: ParameterValueType, deprecated: Bool, documentation: String)
         /// A parameter that sorts the data in the response
         case sort(type: ParameterValueType, documentation: String)
         /// A parameter that limits the number of elements in the response
@@ -17,7 +17,7 @@ extension Operation {
         case include(type: ParameterValueType)
         
         private enum CodingKeys: String, CodingKey {
-            case name, description, required, schema
+            case name, description, required, deprecated, schema
         }
         
         public init(from decoder: Decoder) throws {
@@ -33,7 +33,8 @@ extension Operation {
                 self = .exists(name: Self.getAttribute(forName: name), type: type, documentation: documentation)
             } else if name.starts(with: "fields") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
-                self = .fields(name: Self.getAttribute(forName: name), type: type, documentation: documentation)
+                let deprecated = try container.decodeIfPresent(Bool.self, forKey: .deprecated) ?? false
+                self = .fields(name: Self.getAttribute(forName: name), type: type, deprecated: deprecated, documentation: documentation)
             } else if name.starts(with: "sort") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
                 self = .sort(type: type, documentation: documentation)

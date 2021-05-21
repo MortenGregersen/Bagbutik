@@ -5,6 +5,7 @@ public extension Request {
          */
         public enum Field: FieldParameter {
             /// The fields to include for returned resources of type ageRatingDeclarations
+            @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
             case ageRatingDeclarations([AgeRatingDeclarations])
 
             public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {

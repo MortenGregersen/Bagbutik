@@ -75,9 +75,9 @@ final class OperationRendererTests: XCTestCase {
         let renderer = OperationRenderer()
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .fields(name: "name", type: .simple(type: .init(type: "string")), documentation: "The name of the user"),
-            .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), documentation: "Fields for included vehicles"),
-            .fields(name: "devices", type: .enum(type: "string", values: ["model", "os"]), documentation: "Fields for included devices"),
+            .fields(name: "name", type: .simple(type: .init(type: "string")), deprecated: false, documentation: "The name of the user"),
+            .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), deprecated: true, documentation: "Fields for included vehicles"),
+            .fields(name: "devices", type: .enum(type: "string", values: ["model", "os"]), deprecated: false, documentation: "Fields for included devices"),
             .filter(name: "name", type: .simple(type: .init(type: "string")), required: false, documentation: "Filter by name"),
             .filter(name: "vehicles.properties", type: .enum(type: "string", values: ["car", "bicycle"]), required: false, documentation: "Filter by vehicles properties"),
             .filter(name: "devices.properties", type: .enum(type: "string", values: ["model", "os"]), required: true, documentation: "Filter by device properties"),
@@ -105,6 +105,7 @@ final class OperationRendererTests: XCTestCase {
                     /// The name of the user
                     case name([String])
                     /// Fields for included vehicles
+                    @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
                     case vehicles([Vehicles])
 
                     public enum Devices: String, ParameterValue, CaseIterable {
