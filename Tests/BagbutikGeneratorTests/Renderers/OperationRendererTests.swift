@@ -37,6 +37,39 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
+    func testRenderDeprecated() throws {
+        // Given
+        let renderer = OperationRenderer()
+        let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
+        let parameters: [Parameter] = [
+            .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
+        ]
+        let operation = Operation(name: "listUsers", documentation: documentation, method: .get, deprecated: true, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        // When
+        let rendered = try renderer.render(operation: operation, in: path)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public extension Request {
+            /**
+              # Documentation title
+              Documentation summary
+
+              Full documentation:
+              <https://developer.apple.com/documentation>
+
+              - Parameter limit: Maximum resources per page - maximum 200
+              - Returns: A `Request` with to send to an instance of `BagbutikService`
+             */
+            @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+            static func listUsers(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
+                return .init(path: "/users", method: .get, parameters: .init(limit: limit))
+            }
+        }
+
+        """#)
+    }
+
     func testRenderParameters() throws {
         // Given
         let renderer = OperationRenderer()
