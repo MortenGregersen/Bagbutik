@@ -61,7 +61,7 @@ public struct AgeRatingDeclaration: Codable {
         /// Declaration for gambling, provided as a Boolean value.
         public let gambling: Bool?
         /// Declaration for gambling or contests, as a Boolean value.
-        @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         public let gamblingAndContests: Bool?
         /// Declaration for simulated gambling.
         public let gamblingSimulated: GamblingSimulated?

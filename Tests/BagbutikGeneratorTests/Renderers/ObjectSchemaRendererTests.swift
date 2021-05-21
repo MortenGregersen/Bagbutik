@@ -74,7 +74,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's name
-            @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             public let name: String?
 
             public init(name: String? = nil) {

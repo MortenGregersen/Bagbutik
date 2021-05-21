@@ -240,7 +240,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
             case parameter(Parameter)
 
             public struct JsonPointer: Codable {
-                @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+                @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
                 public let pointer: String?
 
                 public init(pointer: String? = nil) {

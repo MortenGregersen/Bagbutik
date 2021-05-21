@@ -5,7 +5,7 @@ public extension Request {
          */
         public enum Field: FieldParameter {
             /// The fields to include for returned resources of type ageRatingDeclarations
-            @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             case ageRatingDeclarations([AgeRatingDeclarations])
             /// The fields to include for returned resources of type appStoreReviewDetails
             case appStoreReviewDetails([AppStoreReviewDetails])

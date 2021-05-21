@@ -61,7 +61,7 @@ final class OperationRendererTests: XCTestCase {
               - Parameter limit: Maximum resources per page - maximum 200
               - Returns: A `Request` with to send to an instance of `BagbutikService`
              */
-            @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             static func listUsers(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
                 return .init(path: "/users", method: .get, parameters: .init(limit: limit))
             }
@@ -105,7 +105,7 @@ final class OperationRendererTests: XCTestCase {
                     /// The name of the user
                     case name([String])
                     /// Fields for included vehicles
-                    @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+                    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
                     case vehicles([Vehicles])
 
                     public enum Devices: String, ParameterValue, CaseIterable {

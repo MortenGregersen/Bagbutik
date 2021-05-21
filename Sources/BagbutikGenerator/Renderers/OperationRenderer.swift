@@ -43,7 +43,7 @@ public class OperationRenderer: Renderer {
             public enum Field: FieldParameter {
                 {% for field in fields %}
                 /// {{ field.documentation }}{% if field.deprecated %}
-                @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.") {% endif %}
+                @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.") {% endif %}
                 case {{ field.id }}([{{ field.value }}]){%
                 endfor %}
 
@@ -151,7 +151,7 @@ public class OperationRenderer: Renderer {
         {% endif %}
          - Returns: A `Request` with to send to an instance of `BagbutikService`
         */{% if deprecated %}
-        @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future."){% endif %}
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future."){% endif %}
         public static func {{ name|lowerFirstLetter }}({{ parameters }}) -> Request<{{ successResponseType }}, {{ errorResponseType }}> {
             return .init(path: "{{ path }}", method: .{{ method }}{%
                          if hasRequestBodyParameter %}, requestBody: requestBody{% endif %}{%

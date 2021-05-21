@@ -5,7 +5,7 @@ public extension Request {
          */
         public enum Field: FieldParameter {
             /// The fields to include for returned resources of type ageRatingDeclarations
-            @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             case ageRatingDeclarations([AgeRatingDeclarations])
 
             public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
@@ -38,7 +38,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
-    @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAgeRatingDeclarationForAppStoreVersion(id: String,
                                                           fields: [GetAgeRatingDeclarationForAppStoreVersion.Field]? = nil) -> Request<AgeRatingDeclarationResponse, ErrorResponse>
     {

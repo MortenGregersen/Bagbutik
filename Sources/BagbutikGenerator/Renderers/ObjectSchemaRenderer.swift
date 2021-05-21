@@ -36,7 +36,7 @@ public class ObjectSchemaRenderer {
         {% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
         {% else %}{%
-        endif %}{% if property.deprecated %}@available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+        endif %}{% if property.deprecated %}@available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         {% else %}{%
         endif %}{{ property.rendered }}{%
         endfor %}{%

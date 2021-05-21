@@ -96,7 +96,7 @@ public struct AppStoreVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships>
      */
     public struct Relationships: Codable {
-        @available(*, deprecated, message: "Apple has marked it as deprecated and will remove it sometime in the future.")
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         public let ageRatingDeclaration: AgeRatingDeclaration?
         public let app: App?
         public let appStoreReviewDetail: AppStoreReviewDetail?
