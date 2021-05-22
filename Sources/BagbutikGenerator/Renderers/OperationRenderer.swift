@@ -20,7 +20,7 @@ extension OperationRendererError: Equatable {}
 public class OperationRenderer: Renderer {
     /**
      Render an operation
-     
+
      - Parameter operation: The operation to render
      - Parameter path: The path which contains the operation
      - Returns: The rendered operation
@@ -42,7 +42,8 @@ public class OperationRenderer: Renderer {
             */
             public enum Field: FieldParameter {
                 {% for field in fields %}
-                /// {{ field.documentation }}
+                /// {{ field.documentation }}{% if field.deprecated %}
+                @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.") {% endif %}
                 case {{ field.id }}([{{ field.value }}]){%
                 endfor %}
 
@@ -149,7 +150,8 @@ public class OperationRenderer: Renderer {
          - Parameter limits: Number of resources to return
         {% endif %}
          - Returns: A `Request` with to send to an instance of `BagbutikService`
-        */
+        */{% if deprecated %}
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future."){% endif %}
         public static func {{ name|lowerFirstLetter }}({{ parameters }}) -> Request<{{ successResponseType }}, {{ errorResponseType }}> {
             return .init(path: "{{ path }}", method: .{{ method }}{%
                          if hasRequestBodyParameter %}, requestBody: requestBody{% endif %}{%
@@ -175,17 +177,17 @@ public class OperationRenderer: Renderer {
         var limits = [LimitCase]()
         try operation.parameters?.forEach { parameter in
             switch parameter {
-            case .fields(let name, let type, let documentation):
+            case .fields(let name, let type, let deprecated, let documentation):
                 switch type {
                 case .simple(let type):
-                    fields.append(EnumCase(id: name, value: type.description, documentation: documentation))
+                    fields.append(EnumCase(id: name, value: type.description, deprecated: deprecated, documentation: documentation))
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
                     let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     fieldSubSchemas[name] = rendered
-                    fields.append(EnumCase(id: name, value: enumName, documentation: documentation))
+                    fields.append(EnumCase(id: name, value: enumName, deprecated: deprecated, documentation: documentation))
                 }
             case .filter(let name, let type, let required, let documentation):
                 switch type {
@@ -282,6 +284,7 @@ public class OperationRenderer: Renderer {
             count += properties.count
         } + (limits.count > 1 ? limits.count : 0)
         return ["name": name,
+                "deprecated": operation.deprecated,
                 "documentation": operation.documentation,
                 "path": interpolatablePath,
                 "method": operation.method.rawValue,

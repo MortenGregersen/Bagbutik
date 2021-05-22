@@ -228,8 +228,8 @@ final class OneOfSchemaRendererTests: XCTestCase {
     func testRenderWithSubSchemas() throws {
         // Given
         let renderer = OneOfSchemaRenderer()
-        let jsonPointerSchema = ObjectSchema(name: "JsonPointer", url: "some://url", properties: ["pointer": .simple(.init(type: "string"))])
-        let parameterSchema = ObjectSchema(name: "Parameter", url: "some://url", properties: ["parameter": .simple(.init(type: "string"))])
+        let jsonPointerSchema = ObjectSchema(name: "JsonPointer", url: "some://url", properties: ["pointer": Property(type: .simple(.init(type: "string")), deprecated: true)])
+        let parameterSchema = ObjectSchema(name: "Parameter", url: "some://url", properties: ["parameter": Property(type: .simple(.init(type: "string")))])
         let schema = OneOfSchema(options: [.objectSchema(jsonPointerSchema), .objectSchema(parameterSchema)])
         // When
         let rendered = try renderer.render(name: "Source", oneOfSchema: schema, includesFixUps: ["bundleIds", "certificates", "devices"])
@@ -240,6 +240,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
             case parameter(Parameter)
 
             public struct JsonPointer: Codable {
+                @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
                 public let pointer: String?
 
                 public init(pointer: String? = nil) {

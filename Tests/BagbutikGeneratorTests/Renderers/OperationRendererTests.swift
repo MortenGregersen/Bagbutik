@@ -37,14 +37,47 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
+    func testRenderDeprecated() throws {
+        // Given
+        let renderer = OperationRenderer()
+        let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
+        let parameters: [Parameter] = [
+            .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
+        ]
+        let operation = Operation(name: "listUsers", documentation: documentation, method: .get, deprecated: true, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        // When
+        let rendered = try renderer.render(operation: operation, in: path)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public extension Request {
+            /**
+              # Documentation title
+              Documentation summary
+
+              Full documentation:
+              <https://developer.apple.com/documentation>
+
+              - Parameter limit: Maximum resources per page - maximum 200
+              - Returns: A `Request` with to send to an instance of `BagbutikService`
+             */
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+            static func listUsers(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
+                return .init(path: "/users", method: .get, parameters: .init(limit: limit))
+            }
+        }
+
+        """#)
+    }
+
     func testRenderParameters() throws {
         // Given
         let renderer = OperationRenderer()
         let documentation = Operation.Documentation(title: "Documentation title", summary: "Documentation summary", url: "https://developer.apple.com/documentation")
         let parameters: [Parameter] = [
-            .fields(name: "name", type: .simple(type: .init(type: "string")), documentation: "The name of the user"),
-            .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), documentation: "Fields for included vehicles"),
-            .fields(name: "devices", type: .enum(type: "string", values: ["model", "os"]), documentation: "Fields for included devices"),
+            .fields(name: "name", type: .simple(type: .init(type: "string")), deprecated: false, documentation: "The name of the user"),
+            .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), deprecated: true, documentation: "Fields for included vehicles"),
+            .fields(name: "devices", type: .enum(type: "string", values: ["model", "os"]), deprecated: false, documentation: "Fields for included devices"),
             .filter(name: "name", type: .simple(type: .init(type: "string")), required: false, documentation: "Filter by name"),
             .filter(name: "vehicles.properties", type: .enum(type: "string", values: ["car", "bicycle"]), required: false, documentation: "Filter by vehicles properties"),
             .filter(name: "devices.properties", type: .enum(type: "string", values: ["model", "os"]), required: true, documentation: "Filter by device properties"),
@@ -72,6 +105,7 @@ final class OperationRendererTests: XCTestCase {
                     /// The name of the user
                     case name([String])
                     /// Fields for included vehicles
+                    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
                     case vehicles([Vehicles])
 
                     public enum Devices: String, ParameterValue, CaseIterable {

@@ -13,6 +13,10 @@ final class ObjectSchemaTests: XCTestCase {
                 "properties": {
                     "name": {
                         "type": "string"
+                    },
+                    "vehicle" : {
+                        "type" : "string",
+                        "deprecated" : true
                     }
                 }
             }
@@ -22,8 +26,10 @@ final class ObjectSchemaTests: XCTestCase {
         let objectSchema = try decodeObjectSchema(from: json)
         // Then
         XCTAssertEqual(objectSchema.name, "SomeModel")
-        XCTAssertEqual(objectSchema.properties.count, 1)
-        XCTAssertEqual(objectSchema.properties["name"]?.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties.count, 2)
+        XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties["vehicle"]?.deprecated, true)
     }
 
     func testDecodingAllPropertyTypes() throws {

@@ -9,7 +9,7 @@ public struct ObjectSchema: Decodable, Equatable {
     /// The documentation for the obejct - if any
     public let documentation: Schema.Documentation?
     /// The properties for the obejct
-    public let properties: [String: PropertyType]
+    public let properties: [String: Property]
     /// A list of properties that is required (always available)
     public let requiredProperties: [String]
     /// A list of schemas derived from the properties
@@ -19,12 +19,17 @@ public struct ObjectSchema: Decodable, Equatable {
         case type
         case title
         case properties
+        case deprecated
         case required
         case attributes
         case relationships
     }
 
-    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: PropertyType] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+    private enum PropertyCodingKeys: String, CodingKey {
+        case deprecated
+    }
+
+    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: Property] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
         self.name = name
         self.url = url
         self.documentation = documentation
@@ -38,7 +43,7 @@ public struct ObjectSchema: Decodable, Equatable {
         let requiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
         let propertiesContainer = try container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
         var subSchemas = [SubSchema]()
-        let properties = try propertiesContainer.allKeys.reduce(into: [String: PropertyType]()) { properties, key in
+        let properties = try propertiesContainer.allKeys.reduce(into: [String: Property]()) { properties, key in
             guard key.stringValue != CodingKeys.attributes.stringValue,
                   key.stringValue != CodingKeys.relationships.stringValue else { return }
             guard let propertyType = try? propertiesContainer.decode(PropertyType.self, forKey: key) else {
@@ -53,7 +58,9 @@ public struct ObjectSchema: Decodable, Equatable {
                 subSchemas.append(.enumSchema(schema))
             default: break
             }
-            properties[key.stringValue] = propertyType
+            let propertyContainer = try propertiesContainer.nestedContainer(keyedBy: PropertyCodingKeys.self, forKey: key)
+            let deprecated = try propertyContainer.decodeIfPresent(Bool.self, forKey: .deprecated) ?? false
+            properties[key.stringValue] = .init(type: propertyType, deprecated: deprecated)
         }
         let name: String
         if let title = try container.decodeIfPresent(String.self, forKey: .title) {

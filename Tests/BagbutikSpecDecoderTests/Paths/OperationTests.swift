@@ -118,7 +118,7 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(getOperation?.documentation.title, "List Territories")
         XCTAssertEqual(getOperation?.method, .get)
         let getParameters: [BagbutikSpecDecoder.Operation.Parameter] = [
-            .fields(name: "territories", type: .enum(type: "String", values: ["currency"]),
+            .fields(name: "territories", type: .enum(type: "String", values: ["currency"]), deprecated: false,
                     documentation: "the fields to include for returned resources of type territories"),
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]

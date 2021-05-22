@@ -60,9 +60,13 @@ public struct AppInfo: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/attributes>
      */
     public struct Attributes: Codable {
+        /// The app’s age rating as it appears on the App Store for all platforms.
         public let appStoreAgeRating: AppStoreAgeRating?
+        /// The state of an app version in the App Store.
         public let appStoreState: AppStoreVersionState?
+        /// The app’s age rating as it appears on the App Store in Brazil for all platforms.
         public let brazilAgeRating: BrazilAgeRating?
+        /// A Made for Kids app’s age band.
         public let kidsAgeBand: KidsAgeBand?
 
         public init(appStoreAgeRating: AppStoreAgeRating? = nil, appStoreState: AppStoreVersionState? = nil, brazilAgeRating: BrazilAgeRating? = nil, kidsAgeBand: KidsAgeBand? = nil) {
@@ -80,6 +84,7 @@ public struct AppInfo: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships>
      */
     public struct Relationships: Codable {
+        public let ageRatingDeclaration: AgeRatingDeclaration?
         public let app: App?
         public let appInfoLocalizations: AppInfoLocalizations?
         public let primaryCategory: PrimaryCategory?
@@ -89,7 +94,8 @@ public struct AppInfo: Codable {
         public let secondarySubcategoryOne: SecondarySubcategoryOne?
         public let secondarySubcategoryTwo: SecondarySubcategoryTwo?
 
-        public init(app: App? = nil, appInfoLocalizations: AppInfoLocalizations? = nil, primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
+        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appInfoLocalizations: AppInfoLocalizations? = nil, primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
+            self.ageRatingDeclaration = ageRatingDeclaration
             self.app = app
             self.appInfoLocalizations = appInfoLocalizations
             self.primaryCategory = primaryCategory
@@ -98,6 +104,78 @@ public struct AppInfo: Codable {
             self.secondaryCategory = secondaryCategory
             self.secondarySubcategoryOne = secondarySubcategoryOne
             self.secondarySubcategoryTwo = secondarySubcategoryTwo
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration>
+         */
+        public struct AgeRatingDeclaration: Codable {
+            /// The type and ID of a related resource.
+            public let data: Data?
+            /// The links to the related data and the relationship's self-link.
+            public let links: Links?
+
+            public init(data: Data? = nil, links: Links? = nil) {
+                self.data = data
+                self.links = links
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "ageRatingDeclarations" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public let related: String?
+                /// The relationship's self-link
+                public let `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
         }
 
         /**

@@ -16,6 +16,8 @@ public struct Operation: Decodable {
     public let documentation: Documentation
     /// The HTTP method used when executing the operation
     public let method: HTTPMethod
+    /// Tells if the operation is deprecated
+    public let deprecated: Bool
     /// The different kind of parameters that can be sent with the operation
     public let parameters: [Parameter]?
     /// Information about the object that can be sent as request body
@@ -40,7 +42,7 @@ public struct Operation: Decodable {
     private static let deleteToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-delete_to_many_relationship", options: [])
     
     private enum CodingKeys: String, CodingKey {
-        case operationId, parameters, requestBody, responses
+        case operationId, deprecated, parameters, requestBody, responses
     }
     
     private enum RequestBodyCodingKeys: String, CodingKey {
@@ -58,10 +60,11 @@ public struct Operation: Decodable {
      - Parameter successResponseType: The name of the type returned on a successful request
      - Parameter errorResponseType: The name of the type returned on a failing request
      */
-    public init(name: String, documentation: Documentation, method: HTTPMethod, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
+    public init(name: String, documentation: Documentation, method: HTTPMethod, deprecated: Bool = false, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
         self.name = name
         self.documentation = documentation
         self.method = method
+        self.deprecated = deprecated
         self.parameters = parameters
         self.requestBody = requestBody
         self.successResponseType = successResponseType
@@ -73,6 +76,7 @@ public struct Operation: Decodable {
         let operationId = try container.decode(String.self, forKey: .operationId)
         let name = try Self.getName(forId: operationId)
         let documentation = try Self.getDocumentation(forId: operationId)
+        let deprecated = try container.decodeIfPresent(Bool.self, forKey: .deprecated) ?? false
         let method = HTTPMethod(rawValue: container.codingPath.last!.stringValue)!
         let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
         let requestBody: RequestBody?
@@ -92,7 +96,7 @@ public struct Operation: Decodable {
         let successResponseType = try Self.responseType(forCode: successCode, in: responsesContainer)
         let errorCode = responsesContainer.allKeys.first { $0.stringValue.hasPrefix("4") }!.stringValue
         let errorResponseType = try Self.responseType(forCode: errorCode, in: responsesContainer)
-        self.init(name: name, documentation: documentation, method: method, parameters: parameters, requestBody: requestBody, successResponseType: successResponseType, errorResponseType: errorResponseType)
+        self.init(name: name, documentation: documentation, method: method, deprecated: deprecated, parameters: parameters, requestBody: requestBody, successResponseType: successResponseType, errorResponseType: errorResponseType)
     }
     
     internal static func getName(forId operationId: String) throws -> String {
