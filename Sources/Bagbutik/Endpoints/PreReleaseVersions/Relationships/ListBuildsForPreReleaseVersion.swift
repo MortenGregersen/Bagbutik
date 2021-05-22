@@ -1,37 +1,4 @@
 public extension Request {
-    enum ListBuildsForPreReleaseVersion {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type builds
-            case builds([Builds])
-
-            public enum Builds: String, ParameterValue, CaseIterable {
-                case app
-                case appEncryptionDeclaration
-                case appStoreVersion
-                case betaAppReviewSubmission
-                case betaBuildLocalizations
-                case betaGroups
-                case buildBetaDetail
-                case diagnosticSignatures
-                case expirationDate
-                case expired
-                case iconAssetToken
-                case icons
-                case individualTesters
-                case minOsVersion
-                case perfPowerMetrics
-                case preReleaseVersion
-                case processingState
-                case uploadedDate
-                case usesNonExemptEncryption
-                case version
-            }
-        }
-    }
-
     /**
       # List All Builds of a Prerelease Version
       Get a list of builds of a specific prerelease version.
@@ -50,5 +17,38 @@ public extension Request {
     {
         return .init(path: "/v1/preReleaseVersions/\(id)/builds", method: .get, parameters: .init(fields: fields,
                                                                                                   limit: limit))
+    }
+}
+
+public enum ListBuildsForPreReleaseVersion {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
+
+        public enum Builds: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildBetaDetail
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
     }
 }

@@ -1,24 +1,4 @@
 public extension Request {
-    enum ListIndividualTestersForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaTesters
-            case betaTesters([BetaTesters])
-
-            public enum BetaTesters: String, ParameterValue, CaseIterable {
-                case apps
-                case betaGroups
-                case builds
-                case email
-                case firstName
-                case inviteType
-                case lastName
-            }
-        }
-    }
-
     /**
       # List All Individual Testers for a Build
       Get a list of beta testers individually assigned to a build.
@@ -37,5 +17,25 @@ public extension Request {
     {
         return .init(path: "/v1/builds/\(id)/individualTesters", method: .get, parameters: .init(fields: fields,
                                                                                                  limit: limit))
+    }
+}
+
+public enum ListIndividualTestersForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaTesters
+        case betaTesters([BetaTesters])
+
+        public enum BetaTesters: String, ParameterValue, CaseIterable {
+            case apps
+            case betaGroups
+            case builds
+            case email
+            case firstName
+            case inviteType
+            case lastName
+        }
     }
 }

@@ -1,60 +1,4 @@
 public extension Request {
-    enum ListPricesForApp {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appPriceTiers
-            case appPriceTiers([AppPriceTiers])
-            /// The fields to include for returned resources of type appPrices
-            case appPrices([AppPrices])
-            /// The fields to include for returned resources of type apps
-            case apps([Apps])
-
-            public enum AppPriceTiers: String, ParameterValue, CaseIterable {
-                case pricePoints
-            }
-
-            public enum AppPrices: String, ParameterValue, CaseIterable {
-                case app
-                case priceTier
-            }
-
-            public enum Apps: String, ParameterValue, CaseIterable {
-                case appInfos
-                case appStoreVersions
-                case availableInNewTerritories
-                case availableTerritories
-                case betaAppLocalizations
-                case betaAppReviewDetail
-                case betaGroups
-                case betaLicenseAgreement
-                case betaTesters
-                case builds
-                case bundleId
-                case contentRightsDeclaration
-                case endUserLicenseAgreement
-                case gameCenterEnabledVersions
-                case inAppPurchases
-                case isOrEverWasMadeForKids
-                case name
-                case perfPowerMetrics
-                case preOrder
-                case preReleaseVersions
-                case prices
-                case primaryLocale
-                case sku
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case app, priceTier
-        }
-    }
-
     /**
       # List All Prices for an App
       Get current price tier of an app and any future planned price changes.
@@ -76,5 +20,61 @@ public extension Request {
         return .init(path: "/v1/apps/\(id)/prices", method: .get, parameters: .init(fields: fields,
                                                                                     includes: includes,
                                                                                     limit: limit))
+    }
+}
+
+public enum ListPricesForApp {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPriceTiers
+        case appPriceTiers([AppPriceTiers])
+        /// The fields to include for returned resources of type appPrices
+        case appPrices([AppPrices])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+
+        public enum AppPriceTiers: String, ParameterValue, CaseIterable {
+            case pricePoints
+        }
+
+        public enum AppPrices: String, ParameterValue, CaseIterable {
+            case app
+            case priceTier
+        }
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case primaryLocale
+            case sku
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case app, priceTier
     }
 }

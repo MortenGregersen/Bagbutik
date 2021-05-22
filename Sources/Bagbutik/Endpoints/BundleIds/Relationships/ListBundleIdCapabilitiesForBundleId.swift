@@ -1,20 +1,4 @@
 public extension Request {
-    enum ListBundleIdCapabilitiesForBundleId {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type bundleIdCapabilities
-            case bundleIdCapabilities([BundleIdCapabilities])
-
-            public enum BundleIdCapabilities: String, ParameterValue, CaseIterable {
-                case bundleId
-                case capabilityType
-                case settings
-            }
-        }
-    }
-
     /**
       # List All Capabilities for a Bundle ID
       Get a list of all capabilities for a specific bundle ID.
@@ -33,5 +17,21 @@ public extension Request {
     {
         return .init(path: "/v1/bundleIds/\(id)/bundleIdCapabilities", method: .get, parameters: .init(fields: fields,
                                                                                                        limit: limit))
+    }
+}
+
+public enum ListBundleIdCapabilitiesForBundleId {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type bundleIdCapabilities
+        case bundleIdCapabilities([BundleIdCapabilities])
+
+        public enum BundleIdCapabilities: String, ParameterValue, CaseIterable {
+            case bundleId
+            case capabilityType
+            case settings
+        }
     }
 }

@@ -1,20 +1,4 @@
 public extension Request {
-    enum GetPreOrderForApp {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appPreOrders
-            case appPreOrders([AppPreOrders])
-
-            public enum AppPreOrders: String, ParameterValue, CaseIterable {
-                case app
-                case appReleaseDate
-                case preOrderAvailableDate
-            }
-        }
-    }
-
     /**
       # Read the Pre-Order Information of an App
       Get available date and release date of an app that is available for pre-order.
@@ -30,5 +14,21 @@ public extension Request {
                                   fields: [GetPreOrderForApp.Field]? = nil) -> Request<AppPreOrderResponse, ErrorResponse>
     {
         return .init(path: "/v1/apps/\(id)/preOrder", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetPreOrderForApp {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPreOrders
+        case appPreOrders([AppPreOrders])
+
+        public enum AppPreOrders: String, ParameterValue, CaseIterable {
+            case app
+            case appReleaseDate
+            case preOrderAvailableDate
+        }
     }
 }

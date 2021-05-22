@@ -1,34 +1,4 @@
 public extension Request {
-    enum GetAppPricePoint {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appPricePoints
-            case appPricePoints([AppPricePoints])
-            /// The fields to include for returned resources of type territories
-            case territories([Territories])
-
-            public enum AppPricePoints: String, ParameterValue, CaseIterable {
-                case customerPrice
-                case priceTier
-                case proceeds
-                case territory
-            }
-
-            public enum Territories: String, ParameterValue, CaseIterable {
-                case currency
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case priceTier, territory
-        }
-    }
-
     /**
       # Read App Price Point Information
       Read the customer prices and your proceeds for a price tier.
@@ -47,5 +17,35 @@ public extension Request {
     {
         return .init(path: "/v1/appPricePoints/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                        includes: includes))
+    }
+}
+
+public enum GetAppPricePoint {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPricePoints
+        case appPricePoints([AppPricePoints])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
+
+        public enum AppPricePoints: String, ParameterValue, CaseIterable {
+            case customerPrice
+            case priceTier
+            case proceeds
+            case territory
+        }
+
+        public enum Territories: String, ParameterValue, CaseIterable {
+            case currency
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case priceTier, territory
     }
 }

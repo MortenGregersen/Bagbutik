@@ -1,40 +1,4 @@
 public extension Request {
-    enum ListVisibleAppsForUser {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type apps
-            case apps([Apps])
-
-            public enum Apps: String, ParameterValue, CaseIterable {
-                case appInfos
-                case appStoreVersions
-                case availableInNewTerritories
-                case availableTerritories
-                case betaAppLocalizations
-                case betaAppReviewDetail
-                case betaGroups
-                case betaLicenseAgreement
-                case betaTesters
-                case builds
-                case bundleId
-                case contentRightsDeclaration
-                case endUserLicenseAgreement
-                case gameCenterEnabledVersions
-                case inAppPurchases
-                case isOrEverWasMadeForKids
-                case name
-                case perfPowerMetrics
-                case preOrder
-                case preReleaseVersions
-                case prices
-                case primaryLocale
-                case sku
-            }
-        }
-    }
-
     /**
       # List All Apps Visible to a User
       Get a list of apps that a user on your team can view.
@@ -53,5 +17,41 @@ public extension Request {
     {
         return .init(path: "/v1/users/\(id)/visibleApps", method: .get, parameters: .init(fields: fields,
                                                                                           limit: limit))
+    }
+}
+
+public enum ListVisibleAppsForUser {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case primaryLocale
+            case sku
+        }
     }
 }

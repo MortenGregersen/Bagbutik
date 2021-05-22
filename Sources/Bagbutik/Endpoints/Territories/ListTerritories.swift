@@ -1,18 +1,4 @@
 public extension Request {
-    enum ListTerritories {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type territories
-            case territories([Territories])
-
-            public enum Territories: String, ParameterValue, CaseIterable {
-                case currency
-            }
-        }
-    }
-
     /**
       # List Territories
       List all territories where the App Store operates.
@@ -29,5 +15,19 @@ public extension Request {
     {
         return .init(path: "/v1/territories", method: .get, parameters: .init(fields: fields,
                                                                               limit: limit))
+    }
+}
+
+public enum ListTerritories {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
+
+        public enum Territories: String, ParameterValue, CaseIterable {
+            case currency
+        }
     }
 }

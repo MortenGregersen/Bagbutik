@@ -1,71 +1,4 @@
 public extension Request {
-    enum ListBetaAppReviewDetails {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type apps
-            case apps([Apps])
-            /// The fields to include for returned resources of type betaAppReviewDetails
-            case betaAppReviewDetails([BetaAppReviewDetails])
-
-            public enum Apps: String, ParameterValue, CaseIterable {
-                case appInfos
-                case appStoreVersions
-                case availableInNewTerritories
-                case availableTerritories
-                case betaAppLocalizations
-                case betaAppReviewDetail
-                case betaGroups
-                case betaLicenseAgreement
-                case betaTesters
-                case builds
-                case bundleId
-                case contentRightsDeclaration
-                case endUserLicenseAgreement
-                case gameCenterEnabledVersions
-                case inAppPurchases
-                case isOrEverWasMadeForKids
-                case name
-                case perfPowerMetrics
-                case preOrder
-                case preReleaseVersions
-                case prices
-                case primaryLocale
-                case sku
-            }
-
-            public enum BetaAppReviewDetails: String, ParameterValue, CaseIterable {
-                case app
-                case contactEmail
-                case contactFirstName
-                case contactLastName
-                case contactPhone
-                case demoAccountName
-                case demoAccountPassword
-                case demoAccountRequired
-                case notes
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-
-         Required: app
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by id(s) of related 'app'
-            case app([String])
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case app
-        }
-    }
-
     /**
       # List Beta App Review Details
       Find and list beta app review details for all apps.
@@ -88,5 +21,72 @@ public extension Request {
                                                                                        filters: filters,
                                                                                        includes: includes,
                                                                                        limit: limit))
+    }
+}
+
+public enum ListBetaAppReviewDetails {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+        /// The fields to include for returned resources of type betaAppReviewDetails
+        case betaAppReviewDetails([BetaAppReviewDetails])
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case primaryLocale
+            case sku
+        }
+
+        public enum BetaAppReviewDetails: String, ParameterValue, CaseIterable {
+            case app
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+
+     Required: app
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'app'
+        case app([String])
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case app
     }
 }

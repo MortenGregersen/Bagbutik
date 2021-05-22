@@ -1,52 +1,4 @@
 public extension Request {
-    enum GetBetaBuildLocalization {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaBuildLocalizations
-            case betaBuildLocalizations([BetaBuildLocalizations])
-            /// The fields to include for returned resources of type builds
-            case builds([Builds])
-
-            public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
-                case build
-                case locale
-                case whatsNew
-            }
-
-            public enum Builds: String, ParameterValue, CaseIterable {
-                case app
-                case appEncryptionDeclaration
-                case appStoreVersion
-                case betaAppReviewSubmission
-                case betaBuildLocalizations
-                case betaGroups
-                case buildBetaDetail
-                case diagnosticSignatures
-                case expirationDate
-                case expired
-                case iconAssetToken
-                case icons
-                case individualTesters
-                case minOsVersion
-                case perfPowerMetrics
-                case preReleaseVersion
-                case processingState
-                case uploadedDate
-                case usesNonExemptEncryption
-                case version
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case build
-        }
-    }
-
     /**
       # Read Beta Build Localization Information
       Get a specific beta build localization resource.
@@ -65,5 +17,53 @@ public extension Request {
     {
         return .init(path: "/v1/betaBuildLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                                includes: includes))
+    }
+}
+
+public enum GetBetaBuildLocalization {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaBuildLocalizations
+        case betaBuildLocalizations([BetaBuildLocalizations])
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
+
+        public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
+            case build
+            case locale
+            case whatsNew
+        }
+
+        public enum Builds: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildBetaDetail
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case build
     }
 }

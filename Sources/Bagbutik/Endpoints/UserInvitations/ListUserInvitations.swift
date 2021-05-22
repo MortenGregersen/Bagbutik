@@ -1,106 +1,4 @@
 public extension Request {
-    enum ListUserInvitations {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type apps
-            case apps([Apps])
-            /// The fields to include for returned resources of type userInvitations
-            case userInvitations([UserInvitations])
-
-            public enum Apps: String, ParameterValue, CaseIterable {
-                case appInfos
-                case appStoreVersions
-                case availableInNewTerritories
-                case availableTerritories
-                case betaAppLocalizations
-                case betaAppReviewDetail
-                case betaGroups
-                case betaLicenseAgreement
-                case betaTesters
-                case builds
-                case bundleId
-                case contentRightsDeclaration
-                case endUserLicenseAgreement
-                case gameCenterEnabledVersions
-                case inAppPurchases
-                case isOrEverWasMadeForKids
-                case name
-                case perfPowerMetrics
-                case preOrder
-                case preReleaseVersions
-                case prices
-                case primaryLocale
-                case sku
-            }
-
-            public enum UserInvitations: String, ParameterValue, CaseIterable {
-                case allAppsVisible
-                case email
-                case expirationDate
-                case firstName
-                case lastName
-                case provisioningAllowed
-                case roles
-                case visibleApps
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by attribute 'email'
-            case email([String])
-            /// Filter by attribute 'roles'
-            case roles([Roles])
-            /// Filter by id(s) of related 'visibleApps'
-            case visibleApps([String])
-
-            public enum Roles: String, ParameterValue, CaseIterable {
-                case admin = "ADMIN"
-                case finance = "FINANCE"
-                case technical = "TECHNICAL"
-                case accountHolder = "ACCOUNT_HOLDER"
-                case readOnly = "READ_ONLY"
-                case sales = "SALES"
-                case marketing = "MARKETING"
-                case appManager = "APP_MANAGER"
-                case developer = "DEVELOPER"
-                case accessToReports = "ACCESS_TO_REPORTS"
-                case customerSupport = "CUSTOMER_SUPPORT"
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case visibleApps
-        }
-
-        /**
-         Attributes by which to sort.
-         */
-        public enum Sort: String, SortParameter {
-            case emailAscending = "email"
-            case emailDescending = "-email"
-            case lastNameAscending = "lastName"
-            case lastNameDescending = "-lastName"
-        }
-
-        /**
-         Number of included related resources to return.
-         */
-        public enum Limit: LimitParameter {
-            /// Maximum resources per page - maximum 200
-            case limit(Int)
-            /// Maximum number of related visibleApps returned (when they are included) - maximum 50
-            case visibleApps(Int)
-        }
-    }
-
     /**
       # List Invited Users
       Get a list of pending invitations to join your team.
@@ -126,5 +24,107 @@ public extension Request {
                                                                                   includes: includes,
                                                                                   sorts: sorts,
                                                                                   limits: limits))
+    }
+}
+
+public enum ListUserInvitations {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+        /// The fields to include for returned resources of type userInvitations
+        case userInvitations([UserInvitations])
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case primaryLocale
+            case sku
+        }
+
+        public enum UserInvitations: String, ParameterValue, CaseIterable {
+            case allAppsVisible
+            case email
+            case expirationDate
+            case firstName
+            case lastName
+            case provisioningAllowed
+            case roles
+            case visibleApps
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by attribute 'email'
+        case email([String])
+        /// Filter by attribute 'roles'
+        case roles([Roles])
+        /// Filter by id(s) of related 'visibleApps'
+        case visibleApps([String])
+
+        public enum Roles: String, ParameterValue, CaseIterable {
+            case admin = "ADMIN"
+            case finance = "FINANCE"
+            case technical = "TECHNICAL"
+            case accountHolder = "ACCOUNT_HOLDER"
+            case readOnly = "READ_ONLY"
+            case sales = "SALES"
+            case marketing = "MARKETING"
+            case appManager = "APP_MANAGER"
+            case developer = "DEVELOPER"
+            case accessToReports = "ACCESS_TO_REPORTS"
+            case customerSupport = "CUSTOMER_SUPPORT"
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case visibleApps
+    }
+
+    /**
+     Attributes by which to sort.
+     */
+    public enum Sort: String, SortParameter {
+        case emailAscending = "email"
+        case emailDescending = "-email"
+        case lastNameAscending = "lastName"
+        case lastNameDescending = "-lastName"
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
+        /// Maximum number of related visibleApps returned (when they are included) - maximum 50
+        case visibleApps(Int)
     }
 }

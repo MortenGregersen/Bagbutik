@@ -1,20 +1,4 @@
 public extension Request {
-    enum GetSecondaryCategoryForAppInfo {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appCategories
-            case appCategories([AppCategories])
-
-            public enum AppCategories: String, ParameterValue, CaseIterable {
-                case parent
-                case platforms
-                case subcategories
-            }
-        }
-    }
-
     /**
       # Read the Secondary Category Information of an App Info
       Get an app’s secondary App Store category.
@@ -30,5 +14,21 @@ public extension Request {
                                                fields: [GetSecondaryCategoryForAppInfo.Field]? = nil) -> Request<AppCategoryResponse, ErrorResponse>
     {
         return .init(path: "/v1/appInfos/\(id)/secondaryCategory", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetSecondaryCategoryForAppInfo {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appCategories
+        case appCategories([AppCategories])
+
+        public enum AppCategories: String, ParameterValue, CaseIterable {
+            case parent
+            case platforms
+            case subcategories
+        }
     }
 }

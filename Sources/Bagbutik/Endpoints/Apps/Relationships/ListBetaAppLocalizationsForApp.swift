@@ -1,24 +1,4 @@
 public extension Request {
-    enum ListBetaAppLocalizationsForApp {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaAppLocalizations
-            case betaAppLocalizations([BetaAppLocalizations])
-
-            public enum BetaAppLocalizations: String, ParameterValue, CaseIterable {
-                case app
-                case description
-                case feedbackEmail
-                case locale
-                case marketingUrl
-                case privacyPolicyUrl
-                case tvOsPrivacyPolicy
-            }
-        }
-    }
-
     /**
       # List All Beta App Localizations of an App
       Get a list of localized beta test information for a specific app.
@@ -37,5 +17,25 @@ public extension Request {
     {
         return .init(path: "/v1/apps/\(id)/betaAppLocalizations", method: .get, parameters: .init(fields: fields,
                                                                                                   limit: limit))
+    }
+}
+
+public enum ListBetaAppLocalizationsForApp {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaAppLocalizations
+        case betaAppLocalizations([BetaAppLocalizations])
+
+        public enum BetaAppLocalizations: String, ParameterValue, CaseIterable {
+            case app
+            case description
+            case feedbackEmail
+            case locale
+            case marketingUrl
+            case privacyPolicyUrl
+            case tvOsPrivacyPolicy
+        }
     }
 }

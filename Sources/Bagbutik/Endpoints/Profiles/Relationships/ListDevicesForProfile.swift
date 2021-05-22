@@ -1,24 +1,4 @@
 public extension Request {
-    enum ListDevicesForProfile {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type devices
-            case devices([Devices])
-
-            public enum Devices: String, ParameterValue, CaseIterable {
-                case addedDate
-                case deviceClass
-                case model
-                case name
-                case platform
-                case status
-                case udid
-            }
-        }
-    }
-
     /**
       # List All Devices in a Profile
       Get a list of all devices for a specific provisioning profile.
@@ -37,5 +17,25 @@ public extension Request {
     {
         return .init(path: "/v1/profiles/\(id)/devices", method: .get, parameters: .init(fields: fields,
                                                                                          limit: limit))
+    }
+}
+
+public enum ListDevicesForProfile {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type devices
+        case devices([Devices])
+
+        public enum Devices: String, ParameterValue, CaseIterable {
+            case addedDate
+            case deviceClass
+            case model
+            case name
+            case platform
+            case status
+            case udid
+        }
     }
 }

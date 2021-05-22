@@ -1,22 +1,4 @@
 public extension Request {
-    enum GetAppStoreVersionPhasedReleaseForAppStoreVersion {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appStoreVersionPhasedReleases
-            case appStoreVersionPhasedReleases([AppStoreVersionPhasedReleases])
-
-            public enum AppStoreVersionPhasedReleases: String, ParameterValue, CaseIterable {
-                case appStoreVersion
-                case currentDayNumber
-                case phasedReleaseState
-                case startDate
-                case totalPauseDuration
-            }
-        }
-    }
-
     /**
       # Read the App Store Version Phased Release Information of an App Store Version
       Read the phased release status and configuration for a version with phased release enabled.
@@ -32,5 +14,23 @@ public extension Request {
                                                                   fields: [GetAppStoreVersionPhasedReleaseForAppStoreVersion.Field]? = nil) -> Request<AppStoreVersionPhasedReleaseResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionPhasedRelease", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetAppStoreVersionPhasedReleaseForAppStoreVersion {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersionPhasedReleases
+        case appStoreVersionPhasedReleases([AppStoreVersionPhasedReleases])
+
+        public enum AppStoreVersionPhasedReleases: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+            case currentDayNumber
+            case phasedReleaseState
+            case startDate
+            case totalPauseDuration
+        }
     }
 }

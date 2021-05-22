@@ -1,34 +1,4 @@
 public extension Request {
-    enum GetAgeRatingDeclarationForAppInfo {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type ageRatingDeclarations
-            case ageRatingDeclarations([AgeRatingDeclarations])
-
-            public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
-                case alcoholTobaccoOrDrugUseOrReferences
-                case contests
-                case gambling
-                case gamblingAndContests
-                case gamblingSimulated
-                case horrorOrFearThemes
-                case kidsAgeBand
-                case matureOrSuggestiveThemes
-                case medicalOrTreatmentInformation
-                case profanityOrCrudeHumor
-                case seventeenPlus
-                case sexualContentGraphicAndNudity
-                case sexualContentOrNudity
-                case unrestrictedWebAccess
-                case violenceCartoonOrFantasy
-                case violenceRealistic
-                case violenceRealisticProlongedGraphicOrSadistic
-            }
-        }
-    }
-
     /**
       # Read the Age Rating Declaration for an App Info
       Get the age rating declaration for the app info.
@@ -44,5 +14,35 @@ public extension Request {
                                                   fields: [GetAgeRatingDeclarationForAppInfo.Field]? = nil) -> Request<AgeRatingDeclarationResponse, ErrorResponse>
     {
         return .init(path: "/v1/appInfos/\(id)/ageRatingDeclaration", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetAgeRatingDeclarationForAppInfo {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type ageRatingDeclarations
+        case ageRatingDeclarations([AgeRatingDeclarations])
+
+        public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+            case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
+            case gamblingAndContests
+            case gamblingSimulated
+            case horrorOrFearThemes
+            case kidsAgeBand
+            case matureOrSuggestiveThemes
+            case medicalOrTreatmentInformation
+            case profanityOrCrudeHumor
+            case seventeenPlus
+            case sexualContentGraphicAndNudity
+            case sexualContentOrNudity
+            case unrestrictedWebAccess
+            case violenceCartoonOrFantasy
+            case violenceRealistic
+            case violenceRealisticProlongedGraphicOrSadistic
+        }
     }
 }

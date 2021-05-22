@@ -1,19 +1,4 @@
 public extension Request {
-    enum ListIconsForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type buildIcons
-            case buildIcons([BuildIcons])
-
-            public enum BuildIcons: String, ParameterValue, CaseIterable {
-                case iconAsset
-                case iconType
-            }
-        }
-    }
-
     /**
       # List All Icons for a Build
       List all the icons for various platforms delivered with a build.
@@ -32,5 +17,20 @@ public extension Request {
     {
         return .init(path: "/v1/builds/\(id)/icons", method: .get, parameters: .init(fields: fields,
                                                                                      limit: limit))
+    }
+}
+
+public enum ListIconsForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type buildIcons
+        case buildIcons([BuildIcons])
+
+        public enum BuildIcons: String, ParameterValue, CaseIterable {
+            case iconAsset
+            case iconType
+        }
     }
 }

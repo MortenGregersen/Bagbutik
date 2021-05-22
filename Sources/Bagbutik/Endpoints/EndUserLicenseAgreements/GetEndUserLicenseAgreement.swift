@@ -1,33 +1,4 @@
 public extension Request {
-    enum GetEndUserLicenseAgreement {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type endUserLicenseAgreements
-            case endUserLicenseAgreements([EndUserLicenseAgreements])
-            /// The fields to include for returned resources of type territories
-            case territories([Territories])
-
-            public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
-                case agreementText
-                case app
-                case territories
-            }
-
-            public enum Territories: String, ParameterValue, CaseIterable {
-                case currency
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case app, territories
-        }
-    }
-
     /**
       # Read End User License Agreement Information
       Get the custom end user license agreement associated with an app, and the territories it applies to.
@@ -49,5 +20,34 @@ public extension Request {
         return .init(path: "/v1/endUserLicenseAgreements/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                                  includes: includes,
                                                                                                  limit: limit))
+    }
+}
+
+public enum GetEndUserLicenseAgreement {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type endUserLicenseAgreements
+        case endUserLicenseAgreements([EndUserLicenseAgreements])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
+
+        public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
+            case agreementText
+            case app
+            case territories
+        }
+
+        public enum Territories: String, ParameterValue, CaseIterable {
+            case currency
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case app, territories
     }
 }

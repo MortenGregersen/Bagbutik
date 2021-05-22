@@ -1,56 +1,4 @@
 public extension Request {
-    enum ListAppInfoLocalizationsForAppInfo {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appInfoLocalizations
-            case appInfoLocalizations([AppInfoLocalizations])
-            /// The fields to include for returned resources of type appInfos
-            case appInfos([AppInfos])
-
-            public enum AppInfoLocalizations: String, ParameterValue, CaseIterable {
-                case appInfo
-                case locale
-                case name
-                case privacyPolicyText
-                case privacyPolicyUrl
-                case subtitle
-            }
-
-            public enum AppInfos: String, ParameterValue, CaseIterable {
-                case ageRatingDeclaration
-                case app
-                case appInfoLocalizations
-                case appStoreAgeRating
-                case appStoreState
-                case brazilAgeRating
-                case kidsAgeBand
-                case primaryCategory
-                case primarySubcategoryOne
-                case primarySubcategoryTwo
-                case secondaryCategory
-                case secondarySubcategoryOne
-                case secondarySubcategoryTwo
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by attribute 'locale'
-            case locale([String])
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case appInfo
-        }
-    }
-
     /**
       # List All App Info Localizations for an App Info
       Get a list of localized, app-level information for an app.
@@ -75,5 +23,57 @@ public extension Request {
                                                                                                       filters: filters,
                                                                                                       includes: includes,
                                                                                                       limit: limit))
+    }
+}
+
+public enum ListAppInfoLocalizationsForAppInfo {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appInfoLocalizations
+        case appInfoLocalizations([AppInfoLocalizations])
+        /// The fields to include for returned resources of type appInfos
+        case appInfos([AppInfos])
+
+        public enum AppInfoLocalizations: String, ParameterValue, CaseIterable {
+            case appInfo
+            case locale
+            case name
+            case privacyPolicyText
+            case privacyPolicyUrl
+            case subtitle
+        }
+
+        public enum AppInfos: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appInfoLocalizations
+            case appStoreAgeRating
+            case appStoreState
+            case brazilAgeRating
+            case kidsAgeBand
+            case primaryCategory
+            case primarySubcategoryOne
+            case primarySubcategoryTwo
+            case secondaryCategory
+            case secondarySubcategoryOne
+            case secondarySubcategoryTwo
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by attribute 'locale'
+        case locale([String])
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appInfo
     }
 }

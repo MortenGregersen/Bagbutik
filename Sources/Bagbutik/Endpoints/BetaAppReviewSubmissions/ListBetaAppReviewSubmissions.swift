@@ -1,71 +1,4 @@
 public extension Request {
-    enum ListBetaAppReviewSubmissions {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaAppReviewSubmissions
-            case betaAppReviewSubmissions([BetaAppReviewSubmissions])
-            /// The fields to include for returned resources of type builds
-            case builds([Builds])
-
-            public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
-                case betaReviewState
-                case build
-            }
-
-            public enum Builds: String, ParameterValue, CaseIterable {
-                case app
-                case appEncryptionDeclaration
-                case appStoreVersion
-                case betaAppReviewSubmission
-                case betaBuildLocalizations
-                case betaGroups
-                case buildBetaDetail
-                case diagnosticSignatures
-                case expirationDate
-                case expired
-                case iconAssetToken
-                case icons
-                case individualTesters
-                case minOsVersion
-                case perfPowerMetrics
-                case preReleaseVersion
-                case processingState
-                case uploadedDate
-                case usesNonExemptEncryption
-                case version
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-
-         Required: build
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by attribute 'betaReviewState'
-            case betaReviewState([BetaReviewState])
-            /// Filter by id(s) of related 'build'
-            case build([String])
-
-            /// String that indicates the review state of a beta app.
-            public enum BetaReviewState: String, ParameterValue, CaseIterable {
-                case waitingForReview = "WAITING_FOR_REVIEW"
-                case inReview = "IN_REVIEW"
-                case rejected = "REJECTED"
-                case approved = "APPROVED"
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case build
-        }
-    }
-
     /**
       # List Beta App Review Submissions
       Find and list beta app review submissions for all builds.
@@ -88,5 +21,72 @@ public extension Request {
                                                                                            filters: filters,
                                                                                            includes: includes,
                                                                                            limit: limit))
+    }
+}
+
+public enum ListBetaAppReviewSubmissions {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaAppReviewSubmissions
+        case betaAppReviewSubmissions([BetaAppReviewSubmissions])
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
+
+        public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
+            case betaReviewState
+            case build
+        }
+
+        public enum Builds: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildBetaDetail
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+
+     Required: build
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by attribute 'betaReviewState'
+        case betaReviewState([BetaReviewState])
+        /// Filter by id(s) of related 'build'
+        case build([String])
+
+        /// String that indicates the review state of a beta app.
+        public enum BetaReviewState: String, ParameterValue, CaseIterable {
+            case waitingForReview = "WAITING_FOR_REVIEW"
+            case inReview = "IN_REVIEW"
+            case rejected = "REJECTED"
+            case approved = "APPROVED"
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case build
     }
 }

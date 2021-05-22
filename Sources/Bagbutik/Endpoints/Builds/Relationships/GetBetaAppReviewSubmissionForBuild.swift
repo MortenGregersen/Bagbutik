@@ -1,19 +1,4 @@
 public extension Request {
-    enum GetBetaAppReviewSubmissionForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaAppReviewSubmissions
-            case betaAppReviewSubmissions([BetaAppReviewSubmissions])
-
-            public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
-                case betaReviewState
-                case build
-            }
-        }
-    }
-
     /**
       # Read the Beta App Review Submission of a Build
       Get the beta app review submission status for a specific build.
@@ -29,5 +14,20 @@ public extension Request {
                                                    fields: [GetBetaAppReviewSubmissionForBuild.Field]? = nil) -> Request<BetaAppReviewSubmissionResponse, ErrorResponse>
     {
         return .init(path: "/v1/builds/\(id)/betaAppReviewSubmission", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetBetaAppReviewSubmissionForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaAppReviewSubmissions
+        case betaAppReviewSubmissions([BetaAppReviewSubmissions])
+
+        public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
+            case betaReviewState
+            case build
+        }
     }
 }

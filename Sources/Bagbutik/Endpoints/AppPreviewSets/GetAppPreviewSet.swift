@@ -1,43 +1,4 @@
 public extension Request {
-    enum GetAppPreviewSet {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appPreviewSets
-            case appPreviewSets([AppPreviewSets])
-            /// The fields to include for returned resources of type appPreviews
-            case appPreviews([AppPreviews])
-
-            public enum AppPreviewSets: String, ParameterValue, CaseIterable {
-                case appPreviews
-                case appStoreVersionLocalization
-                case previewType
-            }
-
-            public enum AppPreviews: String, ParameterValue, CaseIterable {
-                case appPreviewSet
-                case assetDeliveryState
-                case fileName
-                case fileSize
-                case mimeType
-                case previewFrameTimeCode
-                case previewImage
-                case sourceFileChecksum
-                case uploadOperations
-                case uploaded
-                case videoUrl
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case appPreviews, appStoreVersionLocalization
-        }
-    }
-
     /**
       # Read App Preview Set Information
       Get an app preview set that includes its display target, language, and the previews it contains.
@@ -59,5 +20,44 @@ public extension Request {
         return .init(path: "/v1/appPreviewSets/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                        includes: includes,
                                                                                        limit: limit))
+    }
+}
+
+public enum GetAppPreviewSet {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPreviewSets
+        case appPreviewSets([AppPreviewSets])
+        /// The fields to include for returned resources of type appPreviews
+        case appPreviews([AppPreviews])
+
+        public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+            case appPreviews
+            case appStoreVersionLocalization
+            case previewType
+        }
+
+        public enum AppPreviews: String, ParameterValue, CaseIterable {
+            case appPreviewSet
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case mimeType
+            case previewFrameTimeCode
+            case previewImage
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+            case videoUrl
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appPreviews, appStoreVersionLocalization
     }
 }
