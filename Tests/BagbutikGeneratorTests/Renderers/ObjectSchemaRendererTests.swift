@@ -60,8 +60,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name.",
-                                                             properties: ["name": "The person's name"]),
-                                  properties: ["name": .init(type: .simple(.init(type: "string")), deprecated: true)])
+                                                             properties: ["name": "The person's name",
+                                                                          "age": "The person's age"]),
+                                  properties: ["name": .init(type: .simple(.string), deprecated: true),
+                                               "age": .init(type: .simple(.integer), deprecated: false)])
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -73,12 +75,20 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
+            /// The person's age
+            public let age: Int?
             /// The person's name
-            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
             public let name: String?
 
-            public init(name: String? = nil) {
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(age: Int? = nil, name: String? = nil) {
+                self.age = age
                 self.name = name
+            }
+
+            public init(age: Int? = nil) {
+                self.age = age
             }
         }
 
