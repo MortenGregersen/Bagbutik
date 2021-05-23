@@ -14,8 +14,8 @@ public class ObjectSchemaRenderer {
      - Returns: The rendered object schema
      */
     public func render(objectSchema: ObjectSchema, includesFixUps: [String] = []) throws -> String {
-        let context = objectContext(for: objectSchema, in: environment, includesFixUps: includesFixUps)
-        let rendered = try environment.renderTemplate(name: "objectTemplate", context: context)
+        let context = objectContext(for: objectSchema, in: Self.environment, includesFixUps: includesFixUps)
+        let rendered = try Self.environment.renderTemplate(name: "objectTemplate", context: context)
         return try SwiftFormat.format(rendered)
     }
 
@@ -90,7 +90,7 @@ public class ObjectSchemaRenderer {
         {% endif %}
     }
     """#
-    private let environment = Environment(loader: DictionaryLoader(templates: [
+    private static let environment = Environment(loader: DictionaryLoader(templates: [
         "constantTemplate": constantTemplate,
         "objectTemplate": objectTemplate
     ]), extensions: StencilSwiftKit.stencilSwiftEnvironment().extensions)

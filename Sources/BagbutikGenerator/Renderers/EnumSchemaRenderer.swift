@@ -12,11 +12,11 @@ public class EnumSchemaRenderer: Renderer {
      */
     public func render(enumSchema: EnumSchema, additionalProtocol: String = "Codable") throws -> String {
         let context = enumContext(for: enumSchema, additionalProtocol: additionalProtocol)
-        let rendered = try environment.renderTemplate(string: template, context: context)
+        let rendered = try Self.environment.renderTemplate(string: Self.template, context: context)
         return try SwiftFormat.format(rendered)
     }
 
-    private let template = """
+    private static let template = """
     {% if documentation %}/// {{ documentation }}
     {% endif %}public enum {{ name }}: {{ rawType }}, {{ additionalProtocol }}, CaseIterable {
         {% for case in cases %}
