@@ -26,11 +26,11 @@ public class OneOfSchemaRenderer {
      */
     public func render(name: String, oneOfSchema: OneOfSchema, includesFixUps: [String] = []) throws -> String {
         let context = try Self.oneOfContext(for: oneOfSchema, named: name, includesFixUps: includesFixUps)
-        let rendered = try environment.renderTemplate(name: "oneOfTemplate", context: context)
+        let rendered = try Self.environment.renderTemplate(name: "oneOfTemplate", context: context)
         return try SwiftFormat.format(rendered)
     }
 
-    private let environment = Environment(loader: DictionaryLoader(templates: ["oneOfTemplate":
+    private static let environment = Environment(loader: DictionaryLoader(templates: ["oneOfTemplate":
             """
             public enum {{ name }}: Codable {
                 {% for option in options %}

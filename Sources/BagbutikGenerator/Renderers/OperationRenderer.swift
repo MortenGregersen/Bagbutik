@@ -27,12 +27,12 @@ public class OperationRenderer: Renderer {
      */
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
         let context = try Self.operationContext(for: operation, in: path)
-        let rendered = try environment.renderTemplate(string: template, context: context)
+        let rendered = try Self.environment.renderTemplate(string: Self.template, context: context)
         return try SwiftFormat.format(rendered)
     }
 
     private static let pathParameterRegex = try! NSRegularExpression(pattern: #"\{(.*)\}"#, options: [])
-    private let template = """
+    private static let template = """
     public extension Request {
         /**
          # {{ documentation.title }}
