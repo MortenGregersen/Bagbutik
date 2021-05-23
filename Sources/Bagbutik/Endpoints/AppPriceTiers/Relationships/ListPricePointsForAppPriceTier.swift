@@ -1,21 +1,4 @@
 public extension Request {
-    enum ListPricePointsForAppPriceTier {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appPricePoints
-            case appPricePoints([AppPricePoints])
-
-            public enum AppPricePoints: String, ParameterValue, CaseIterable {
-                case customerPrice
-                case priceTier
-                case proceeds
-                case territory
-            }
-        }
-    }
-
     /**
       # List All Price Points for an App Price Tier
       List price points across all App Store territories for a specific price tier.
@@ -34,5 +17,22 @@ public extension Request {
     {
         return .init(path: "/v1/appPriceTiers/\(id)/pricePoints", method: .get, parameters: .init(fields: fields,
                                                                                                   limit: limit))
+    }
+}
+
+public enum ListPricePointsForAppPriceTier {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPricePoints
+        case appPricePoints([AppPricePoints])
+
+        public enum AppPricePoints: String, ParameterValue, CaseIterable {
+            case customerPrice
+            case priceTier
+            case proceeds
+            case territory
+        }
     }
 }

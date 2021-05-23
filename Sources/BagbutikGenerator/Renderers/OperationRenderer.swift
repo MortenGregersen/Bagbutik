@@ -34,89 +34,6 @@ public class OperationRenderer: Renderer {
     private static let pathParameterRegex = try! NSRegularExpression(pattern: #"\{(.*)\}"#, options: [])
     private let template = """
     public extension Request {
-        {% if addWrapperStruct %}
-        struct {{ name }} {
-            {% if fields %}
-            /**
-            Fields to return for included related types.
-            */
-            public enum Field: FieldParameter {
-                {% for field in fields %}
-                /// {{ field.documentation }}{% if field.deprecated %}
-                @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.") {% endif %}
-                case {{ field.id }}([{{ field.value }}]){%
-                endfor %}
-
-
-                {{ fieldSubschemas|indent:12," ",false }}
-            }
-            {% endif %}
-
-            {% if filters %}
-            /**
-            Attributes, relationships, and IDs by which to filter.
-            {% if filtersRequired.count > 0 %}
-
-
-            Required: {{ filtersRequired }}{% endif %}
-            */
-            public enum Filter: FilterParameter { {%
-                for filter in filters %}
-                /// {{ filter.documentation }}
-                case {{ filter.id }}([{{ filter.value }}]){%
-                endfor %}
-
-
-                {{ filterSubschemas|indent:12," ",false }}
-            }
-            {% endif %}
-
-            {% if exists %}
-            /**
-            Attributes, relationships, and IDs to check for existence.
-            */
-            public enum Exist: ExistParameter { {%
-                for exist in exists %}
-                /// {{ exist.documentation }}
-                case {{ exist.id }}({{ exist.value }}){%
-                endfor %}
-            }
-            {% endif %}
-
-            {% if includes %}
-            /**
-            Relationship data to include in the response.
-            */
-            public enum Include: String, IncludeParameter {
-                case {{ includes }}
-            }
-            {% endif %}
-
-            {% if sorts %}
-            /**
-            Attributes by which to sort.
-            */
-            public enum Sort: String, SortParameter { {%
-                for sort in sorts %}
-                case {{ sort.id }} = "{{ sort.value }}"{%
-                endfor %}
-            }
-            {% endif %}
-
-            {% if limits.count > 1 %}
-            /**
-            Number of included related resources to return.
-            */
-            public enum Limit: LimitParameter { {%
-                for limit in limits %}
-                /// {{ limit.documentation }} - maximum {{ limit.maximum }}
-                case {{ limit.name }}(Int){%
-                endfor %}
-            }
-            {% endif %}
-        }
-        {% endif %}
-
         /**
          # {{ documentation.title }}
          {{ documentation.summary }}
@@ -159,6 +76,89 @@ public class OperationRenderer: Renderer {
             )
         }
     }
+    
+    {% if addWrapperStruct %}
+    public struct {{ name }} {
+        {% if fields %}
+        /**
+        Fields to return for included related types.
+        */
+        public enum Field: FieldParameter {
+            {% for field in fields %}
+            /// {{ field.documentation }}{% if field.deprecated %}
+            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.") {% endif %}
+            case {{ field.id }}([{{ field.value }}]){%
+            endfor %}
+
+
+            {{ fieldSubschemas|indent:12," ",false }}
+        }
+        {% endif %}
+
+        {% if filters %}
+        /**
+        Attributes, relationships, and IDs by which to filter.
+        {% if filtersRequired.count > 0 %}
+
+
+        Required: {{ filtersRequired }}{% endif %}
+        */
+        public enum Filter: FilterParameter { {%
+            for filter in filters %}
+            /// {{ filter.documentation }}
+            case {{ filter.id }}([{{ filter.value }}]){%
+            endfor %}
+
+
+            {{ filterSubschemas|indent:12," ",false }}
+        }
+        {% endif %}
+
+        {% if exists %}
+        /**
+        Attributes, relationships, and IDs to check for existence.
+        */
+        public enum Exist: ExistParameter { {%
+            for exist in exists %}
+            /// {{ exist.documentation }}
+            case {{ exist.id }}({{ exist.value }}){%
+            endfor %}
+        }
+        {% endif %}
+
+        {% if includes %}
+        /**
+        Relationship data to include in the response.
+        */
+        public enum Include: String, IncludeParameter {
+            case {{ includes }}
+        }
+        {% endif %}
+
+        {% if sorts %}
+        /**
+        Attributes by which to sort.
+        */
+        public enum Sort: String, SortParameter { {%
+            for sort in sorts %}
+            case {{ sort.id }} = "{{ sort.value }}"{%
+            endfor %}
+        }
+        {% endif %}
+
+        {% if limits.count > 1 %}
+        /**
+        Number of included related resources to return.
+        */
+        public enum Limit: LimitParameter { {%
+            for limit in limits %}
+            /// {{ limit.documentation }} - maximum {{ limit.maximum }}
+            case {{ limit.name }}(Int){%
+            endfor %}
+        }
+        {% endif %}
+    }
+    {% endif %}
     """
 
     internal static func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {

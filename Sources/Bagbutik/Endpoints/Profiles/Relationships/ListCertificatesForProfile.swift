@@ -1,25 +1,4 @@
 public extension Request {
-    enum ListCertificatesForProfile {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type certificates
-            case certificates([Certificates])
-
-            public enum Certificates: String, ParameterValue, CaseIterable {
-                case certificateContent
-                case certificateType
-                case csrContent
-                case displayName
-                case expirationDate
-                case name
-                case platform
-                case serialNumber
-            }
-        }
-    }
-
     /**
       # List All Certificates in a Profile
       Get a list of all certificates and their data for a specific provisioning profile.
@@ -38,5 +17,26 @@ public extension Request {
     {
         return .init(path: "/v1/profiles/\(id)/certificates", method: .get, parameters: .init(fields: fields,
                                                                                               limit: limit))
+    }
+}
+
+public enum ListCertificatesForProfile {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type certificates
+        case certificates([Certificates])
+
+        public enum Certificates: String, ParameterValue, CaseIterable {
+            case certificateContent
+            case certificateType
+            case csrContent
+            case displayName
+            case expirationDate
+            case name
+            case platform
+            case serialNumber
+        }
     }
 }

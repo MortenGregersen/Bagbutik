@@ -1,37 +1,4 @@
 public extension Request {
-    enum GetBuildForAppStoreVersion {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type builds
-            case builds([Builds])
-
-            public enum Builds: String, ParameterValue, CaseIterable {
-                case app
-                case appEncryptionDeclaration
-                case appStoreVersion
-                case betaAppReviewSubmission
-                case betaBuildLocalizations
-                case betaGroups
-                case buildBetaDetail
-                case diagnosticSignatures
-                case expirationDate
-                case expired
-                case iconAssetToken
-                case icons
-                case individualTesters
-                case minOsVersion
-                case perfPowerMetrics
-                case preReleaseVersion
-                case processingState
-                case uploadedDate
-                case usesNonExemptEncryption
-                case version
-            }
-        }
-    }
-
     /**
       # Read the Build Information of an App Store Version
       Get the build that is attached to a specific App Store version.
@@ -47,5 +14,38 @@ public extension Request {
                                            fields: [GetBuildForAppStoreVersion.Field]? = nil) -> Request<BuildResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreVersions/\(id)/build", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetBuildForAppStoreVersion {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
+
+        public enum Builds: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildBetaDetail
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
     }
 }

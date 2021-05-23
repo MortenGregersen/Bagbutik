@@ -1,62 +1,4 @@
 public extension Request {
-    enum ListBetaBuildLocalizations {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaBuildLocalizations
-            case betaBuildLocalizations([BetaBuildLocalizations])
-            /// The fields to include for returned resources of type builds
-            case builds([Builds])
-
-            public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
-                case build
-                case locale
-                case whatsNew
-            }
-
-            public enum Builds: String, ParameterValue, CaseIterable {
-                case app
-                case appEncryptionDeclaration
-                case appStoreVersion
-                case betaAppReviewSubmission
-                case betaBuildLocalizations
-                case betaGroups
-                case buildBetaDetail
-                case diagnosticSignatures
-                case expirationDate
-                case expired
-                case iconAssetToken
-                case icons
-                case individualTesters
-                case minOsVersion
-                case perfPowerMetrics
-                case preReleaseVersion
-                case processingState
-                case uploadedDate
-                case usesNonExemptEncryption
-                case version
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by id(s) of related 'build'
-            case build([String])
-            /// Filter by attribute 'locale'
-            case locale([String])
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case build
-        }
-    }
-
     /**
       # List Beta Build Localizations
       Find and list beta build localizations currently associated with apps.
@@ -79,5 +21,63 @@ public extension Request {
                                                                                          filters: filters,
                                                                                          includes: includes,
                                                                                          limit: limit))
+    }
+}
+
+public enum ListBetaBuildLocalizations {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaBuildLocalizations
+        case betaBuildLocalizations([BetaBuildLocalizations])
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
+
+        public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
+            case build
+            case locale
+            case whatsNew
+        }
+
+        public enum Builds: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildBetaDetail
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'build'
+        case build([String])
+        /// Filter by attribute 'locale'
+        case locale([String])
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case build
     }
 }

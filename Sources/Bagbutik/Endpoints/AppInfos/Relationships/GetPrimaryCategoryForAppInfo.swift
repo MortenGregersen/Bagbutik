@@ -1,20 +1,4 @@
 public extension Request {
-    enum GetPrimaryCategoryForAppInfo {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appCategories
-            case appCategories([AppCategories])
-
-            public enum AppCategories: String, ParameterValue, CaseIterable {
-                case parent
-                case platforms
-                case subcategories
-            }
-        }
-    }
-
     /**
       # Read the Primary Category Information of an App Info
       Get an app’s primary App Store category.
@@ -30,5 +14,21 @@ public extension Request {
                                              fields: [GetPrimaryCategoryForAppInfo.Field]? = nil) -> Request<AppCategoryResponse, ErrorResponse>
     {
         return .init(path: "/v1/appInfos/\(id)/primaryCategory", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetPrimaryCategoryForAppInfo {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appCategories
+        case appCategories([AppCategories])
+
+        public enum AppCategories: String, ParameterValue, CaseIterable {
+            case parent
+            case platforms
+            case subcategories
+        }
     }
 }

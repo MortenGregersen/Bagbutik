@@ -1,20 +1,4 @@
 public extension Request {
-    enum ListBetaBuildLocalizationsForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaBuildLocalizations
-            case betaBuildLocalizations([BetaBuildLocalizations])
-
-            public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
-                case build
-                case locale
-                case whatsNew
-            }
-        }
-    }
-
     /**
       # List All Beta Build Localizations of a Build
       Get a list of localized beta test information for a specific build.
@@ -33,5 +17,21 @@ public extension Request {
     {
         return .init(path: "/v1/builds/\(id)/betaBuildLocalizations", method: .get, parameters: .init(fields: fields,
                                                                                                       limit: limit))
+    }
+}
+
+public enum ListBetaBuildLocalizationsForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaBuildLocalizations
+        case betaBuildLocalizations([BetaBuildLocalizations])
+
+        public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
+            case build
+            case locale
+            case whatsNew
+        }
     }
 }

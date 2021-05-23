@@ -1,24 +1,4 @@
 public extension Request {
-    enum GetDevice {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type devices
-            case devices([Devices])
-
-            public enum Devices: String, ParameterValue, CaseIterable {
-                case addedDate
-                case deviceClass
-                case model
-                case name
-                case platform
-                case status
-                case udid
-            }
-        }
-    }
-
     /**
       # Read Device Information
       Get information for a specific device registered to your team.
@@ -34,5 +14,25 @@ public extension Request {
                           fields: [GetDevice.Field]? = nil) -> Request<DeviceResponse, ErrorResponse>
     {
         return .init(path: "/v1/devices/\(id)", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetDevice {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type devices
+        case devices([Devices])
+
+        public enum Devices: String, ParameterValue, CaseIterable {
+            case addedDate
+            case deviceClass
+            case model
+            case name
+            case platform
+            case status
+            case udid
+        }
     }
 }

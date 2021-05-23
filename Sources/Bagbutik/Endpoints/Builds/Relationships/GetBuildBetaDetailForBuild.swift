@@ -1,21 +1,4 @@
 public extension Request {
-    enum GetBuildBetaDetailForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type buildBetaDetails
-            case buildBetaDetails([BuildBetaDetails])
-
-            public enum BuildBetaDetails: String, ParameterValue, CaseIterable {
-                case autoNotifyEnabled
-                case build
-                case externalBuildState
-                case internalBuildState
-            }
-        }
-    }
-
     /**
       # Read the Build Beta Details Information of a Build
       Get the beta test details for a specific build.
@@ -31,5 +14,22 @@ public extension Request {
                                            fields: [GetBuildBetaDetailForBuild.Field]? = nil) -> Request<BuildBetaDetailResponse, ErrorResponse>
     {
         return .init(path: "/v1/builds/\(id)/buildBetaDetail", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetBuildBetaDetailForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type buildBetaDetails
+        case buildBetaDetails([BuildBetaDetails])
+
+        public enum BuildBetaDetails: String, ParameterValue, CaseIterable {
+            case autoNotifyEnabled
+            case build
+            case externalBuildState
+            case internalBuildState
+        }
     }
 }

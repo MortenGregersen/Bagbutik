@@ -1,31 +1,4 @@
 public extension Request {
-    enum GetAppStoreReviewAttachment {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appStoreReviewAttachments
-            case appStoreReviewAttachments([AppStoreReviewAttachments])
-
-            public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
-                case appStoreReviewDetail
-                case assetDeliveryState
-                case fileName
-                case fileSize
-                case sourceFileChecksum
-                case uploadOperations
-                case uploaded
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case appStoreReviewDetail
-        }
-    }
-
     /**
       # Read App Store Review Attachment Information
       Get information about an App Store review attachment and its upload and processing status.
@@ -44,5 +17,32 @@ public extension Request {
     {
         return .init(path: "/v1/appStoreReviewAttachments/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                                   includes: includes))
+    }
+}
+
+public enum GetAppStoreReviewAttachment {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreReviewAttachments
+        case appStoreReviewAttachments([AppStoreReviewAttachments])
+
+        public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
+            case appStoreReviewDetail
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appStoreReviewDetail
     }
 }

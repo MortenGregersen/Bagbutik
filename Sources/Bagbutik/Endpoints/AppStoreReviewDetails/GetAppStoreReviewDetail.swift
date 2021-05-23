@@ -1,46 +1,4 @@
 public extension Request {
-    enum GetAppStoreReviewDetail {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appStoreReviewAttachments
-            case appStoreReviewAttachments([AppStoreReviewAttachments])
-            /// The fields to include for returned resources of type appStoreReviewDetails
-            case appStoreReviewDetails([AppStoreReviewDetails])
-
-            public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
-                case appStoreReviewDetail
-                case assetDeliveryState
-                case fileName
-                case fileSize
-                case sourceFileChecksum
-                case uploadOperations
-                case uploaded
-            }
-
-            public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
-                case appStoreReviewAttachments
-                case appStoreVersion
-                case contactEmail
-                case contactFirstName
-                case contactLastName
-                case contactPhone
-                case demoAccountName
-                case demoAccountPassword
-                case demoAccountRequired
-                case notes
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case appStoreReviewAttachments, appStoreVersion
-        }
-    }
-
     /**
       # Read App Store Review Detail Information
       Get App Review details you provided, including contact information, demo account, and notes.
@@ -62,5 +20,47 @@ public extension Request {
         return .init(path: "/v1/appStoreReviewDetails/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                               includes: includes,
                                                                                               limit: limit))
+    }
+}
+
+public enum GetAppStoreReviewDetail {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreReviewAttachments
+        case appStoreReviewAttachments([AppStoreReviewAttachments])
+        /// The fields to include for returned resources of type appStoreReviewDetails
+        case appStoreReviewDetails([AppStoreReviewDetails])
+
+        public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
+            case appStoreReviewDetail
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+        }
+
+        public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
+            case appStoreReviewAttachments
+            case appStoreVersion
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appStoreReviewAttachments, appStoreVersion
     }
 }

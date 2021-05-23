@@ -1,35 +1,4 @@
 public extension Request {
-    enum GetAppPreview {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appPreviews
-            case appPreviews([AppPreviews])
-
-            public enum AppPreviews: String, ParameterValue, CaseIterable {
-                case appPreviewSet
-                case assetDeliveryState
-                case fileName
-                case fileSize
-                case mimeType
-                case previewFrameTimeCode
-                case previewImage
-                case sourceFileChecksum
-                case uploadOperations
-                case uploaded
-                case videoUrl
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case appPreviewSet
-        }
-    }
-
     /**
       # Read App Preview Information
       Get information about an app preview and its upload and processing status.
@@ -48,5 +17,36 @@ public extension Request {
     {
         return .init(path: "/v1/appPreviews/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                     includes: includes))
+    }
+}
+
+public enum GetAppPreview {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appPreviews
+        case appPreviews([AppPreviews])
+
+        public enum AppPreviews: String, ParameterValue, CaseIterable {
+            case appPreviewSet
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case mimeType
+            case previewFrameTimeCode
+            case previewImage
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+            case videoUrl
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appPreviewSet
     }
 }

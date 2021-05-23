@@ -95,92 +95,6 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public extension Request {
-            enum ListUsers {
-                /**
-                 Fields to return for included related types.
-                 */
-                public enum Field: FieldParameter {
-                    /// Fields for included devices
-                    case devices([Devices])
-                    /// The name of the user
-                    case name([String])
-                    /// Fields for included vehicles
-                    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-                    case vehicles([Vehicles])
-
-                    public enum Devices: String, ParameterValue, CaseIterable {
-                        case model
-                        case os
-                    }
-
-                    public enum Vehicles: String, ParameterValue, CaseIterable {
-                        case car
-                        case bicycle
-                    }
-                }
-
-                /**
-                 Attributes, relationships, and IDs by which to filter.
-
-                 Required: devices.properties
-                 */
-                public enum Filter: FilterParameter {
-                    /// Filter by device properties
-                    case devices_properties([DevicesProperties])
-                    /// Filter by name
-                    case name([String])
-                    /// Filter by vehicles properties
-                    case vehicles_properties([VehiclesProperties])
-
-                    public enum DevicesProperties: String, ParameterValue, CaseIterable {
-                        case model
-                        case os
-                    }
-
-                    public enum VehiclesProperties: String, ParameterValue, CaseIterable {
-                        case car
-                        case bicycle
-                    }
-                }
-
-                /**
-                 Attributes, relationships, and IDs to check for existence.
-                 */
-                public enum Exist: ExistParameter {
-                    /// Check for existance of a device
-                    case device(Bool)
-                    /// Check for existance of a vehicle
-                    case vehicle(Bool)
-                }
-
-                /**
-                 Relationship data to include in the response.
-                 */
-                public enum Include: String, IncludeParameter {
-                    case devices, glasses
-                }
-
-                /**
-                 Attributes by which to sort.
-                 */
-                public enum Sort: String, SortParameter {
-                    case devicesCountAscending = "devicesCount"
-                    case devicesCountDescending = "-devicesCount"
-                    case nameAscending = "name"
-                    case nameDescending = "-name"
-                }
-
-                /**
-                 Number of included related resources to return.
-                 */
-                public enum Limit: LimitParameter {
-                    /// Maximum of users - maximum 200
-                    case limit(Int)
-                    /// Maximum of included devices - maximum 10
-                    case devices(Int)
-                }
-            }
-
             /**
               # Documentation title
               Documentation summary
@@ -209,6 +123,92 @@ final class OperationRendererTests: XCTestCase {
                                                                              includes: includes,
                                                                              sorts: sorts,
                                                                              limits: limits))
+            }
+        }
+
+        public enum ListUsers {
+            /**
+             Fields to return for included related types.
+             */
+            public enum Field: FieldParameter {
+                /// Fields for included devices
+                case devices([Devices])
+                /// The name of the user
+                case name([String])
+                /// Fields for included vehicles
+                @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+                case vehicles([Vehicles])
+
+                public enum Devices: String, ParameterValue, CaseIterable {
+                    case model
+                    case os
+                }
+
+                public enum Vehicles: String, ParameterValue, CaseIterable {
+                    case car
+                    case bicycle
+                }
+            }
+
+            /**
+             Attributes, relationships, and IDs by which to filter.
+
+             Required: devices.properties
+             */
+            public enum Filter: FilterParameter {
+                /// Filter by device properties
+                case devices_properties([DevicesProperties])
+                /// Filter by name
+                case name([String])
+                /// Filter by vehicles properties
+                case vehicles_properties([VehiclesProperties])
+
+                public enum DevicesProperties: String, ParameterValue, CaseIterable {
+                    case model
+                    case os
+                }
+
+                public enum VehiclesProperties: String, ParameterValue, CaseIterable {
+                    case car
+                    case bicycle
+                }
+            }
+
+            /**
+             Attributes, relationships, and IDs to check for existence.
+             */
+            public enum Exist: ExistParameter {
+                /// Check for existance of a device
+                case device(Bool)
+                /// Check for existance of a vehicle
+                case vehicle(Bool)
+            }
+
+            /**
+             Relationship data to include in the response.
+             */
+            public enum Include: String, IncludeParameter {
+                case devices, glasses
+            }
+
+            /**
+             Attributes by which to sort.
+             */
+            public enum Sort: String, SortParameter {
+                case devicesCountAscending = "devicesCount"
+                case devicesCountDescending = "-devicesCount"
+                case nameAscending = "name"
+                case nameDescending = "-name"
+            }
+
+            /**
+             Number of included related resources to return.
+             */
+            public enum Limit: LimitParameter {
+                /// Maximum of users - maximum 200
+                case limit(Int)
+                /// Maximum of included devices - maximum 10
+                case devices(Int)
             }
         }
 

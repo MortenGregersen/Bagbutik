@@ -1,32 +1,4 @@
 public extension Request {
-    enum GetAgeRatingDeclarationForAppStoreVersion {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type ageRatingDeclarations
-            @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-            case ageRatingDeclarations([AgeRatingDeclarations])
-
-            public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
-                case alcoholTobaccoOrDrugUseOrReferences
-                case gamblingAndContests
-                case gamblingSimulated
-                case horrorOrFearThemes
-                case kidsAgeBand
-                case matureOrSuggestiveThemes
-                case medicalOrTreatmentInformation
-                case profanityOrCrudeHumor
-                case sexualContentGraphicAndNudity
-                case sexualContentOrNudity
-                case unrestrictedWebAccess
-                case violenceCartoonOrFantasy
-                case violenceRealistic
-                case violenceRealisticProlongedGraphicOrSadistic
-            }
-        }
-    }
-
     /**
       # Read the Age Rating Declaration Information of an App Store Version
       Get the age-related information declared for your app.
@@ -43,5 +15,33 @@ public extension Request {
                                                           fields: [GetAgeRatingDeclarationForAppStoreVersion.Field]? = nil) -> Request<AgeRatingDeclarationResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreVersions/\(id)/ageRatingDeclaration", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetAgeRatingDeclarationForAppStoreVersion {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type ageRatingDeclarations
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
+        case ageRatingDeclarations([AgeRatingDeclarations])
+
+        public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+            case alcoholTobaccoOrDrugUseOrReferences
+            case gamblingAndContests
+            case gamblingSimulated
+            case horrorOrFearThemes
+            case kidsAgeBand
+            case matureOrSuggestiveThemes
+            case medicalOrTreatmentInformation
+            case profanityOrCrudeHumor
+            case sexualContentGraphicAndNudity
+            case sexualContentOrNudity
+            case unrestrictedWebAccess
+            case violenceCartoonOrFantasy
+            case violenceRealistic
+            case violenceRealisticProlongedGraphicOrSadistic
+        }
     }
 }

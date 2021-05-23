@@ -1,20 +1,4 @@
 public extension Request {
-    enum ListSubcategoriesForAppCategory {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appCategories
-            case appCategories([AppCategories])
-
-            public enum AppCategories: String, ParameterValue, CaseIterable {
-                case parent
-                case platforms
-                case subcategories
-            }
-        }
-    }
-
     /**
       # List All Subcategories for an App Category
       List all App Store subcategories that belong to a specific category.
@@ -33,5 +17,21 @@ public extension Request {
     {
         return .init(path: "/v1/appCategories/\(id)/subcategories", method: .get, parameters: .init(fields: fields,
                                                                                                     limit: limit))
+    }
+}
+
+public enum ListSubcategoriesForAppCategory {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appCategories
+        case appCategories([AppCategories])
+
+        public enum AppCategories: String, ParameterValue, CaseIterable {
+            case parent
+            case platforms
+            case subcategories
+        }
     }
 }

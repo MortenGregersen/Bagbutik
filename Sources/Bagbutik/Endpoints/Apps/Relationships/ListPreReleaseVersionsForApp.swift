@@ -1,21 +1,4 @@
 public extension Request {
-    enum ListPreReleaseVersionsForApp {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type preReleaseVersions
-            case preReleaseVersions([PreReleaseVersions])
-
-            public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
-                case app
-                case builds
-                case platform
-                case version
-            }
-        }
-    }
-
     /**
       # List All Prerelease Versions for an App
       Get a list of prerelease versions associated with a specific app.
@@ -34,5 +17,22 @@ public extension Request {
     {
         return .init(path: "/v1/apps/\(id)/preReleaseVersions", method: .get, parameters: .init(fields: fields,
                                                                                                 limit: limit))
+    }
+}
+
+public enum ListPreReleaseVersionsForApp {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type preReleaseVersions
+        case preReleaseVersions([PreReleaseVersions])
+
+        public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
+            case app
+            case builds
+            case platform
+            case version
+        }
     }
 }

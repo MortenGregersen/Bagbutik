@@ -1,89 +1,4 @@
 public extension Request {
-    enum ListCompatibleVersionsForGameCenterEnabledVersion {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type apps
-            case apps([Apps])
-            /// The fields to include for returned resources of type gameCenterEnabledVersions
-            case gameCenterEnabledVersions([GameCenterEnabledVersions])
-
-            public enum Apps: String, ParameterValue, CaseIterable {
-                case appInfos
-                case appStoreVersions
-                case availableInNewTerritories
-                case availableTerritories
-                case betaAppLocalizations
-                case betaAppReviewDetail
-                case betaGroups
-                case betaLicenseAgreement
-                case betaTesters
-                case builds
-                case bundleId
-                case contentRightsDeclaration
-                case endUserLicenseAgreement
-                case gameCenterEnabledVersions
-                case inAppPurchases
-                case isOrEverWasMadeForKids
-                case name
-                case perfPowerMetrics
-                case preOrder
-                case preReleaseVersions
-                case prices
-                case primaryLocale
-                case sku
-            }
-
-            public enum GameCenterEnabledVersions: String, ParameterValue, CaseIterable {
-                case app
-                case compatibleVersions
-                case iconAsset
-                case platform
-                case versionString
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by id(s) of related 'app'
-            case app([String])
-            /// Filter by id(s)
-            case id([String])
-            /// Filter by attribute 'platform'
-            case platform([Platform])
-            /// Filter by attribute 'versionString'
-            case versionString([String])
-
-            /// Strings that represent Apple operating systems.
-            public enum Platform: String, ParameterValue, CaseIterable {
-                /// A string that represents iOS.
-                case iOS = "IOS"
-                /// A string that represents macOS.
-                case macOS = "MAC_OS"
-                /// A string that represents tvOS.
-                case tvOS = "TV_OS"
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case app, compatibleVersions
-        }
-
-        /**
-         Attributes by which to sort.
-         */
-        public enum Sort: String, SortParameter {
-            case versionStringAscending = "versionString"
-            case versionStringDescending = "-versionString"
-        }
-    }
-
     /**
       # List All Compatible Versions for a Game Center Enabled Version
       Get a list of compatible versions associated with a Game Center enabled version.
@@ -111,5 +26,90 @@ public extension Request {
                                                                                                                      includes: includes,
                                                                                                                      sorts: sorts,
                                                                                                                      limit: limit))
+    }
+}
+
+public enum ListCompatibleVersionsForGameCenterEnabledVersion {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+        /// The fields to include for returned resources of type gameCenterEnabledVersions
+        case gameCenterEnabledVersions([GameCenterEnabledVersions])
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case primaryLocale
+            case sku
+        }
+
+        public enum GameCenterEnabledVersions: String, ParameterValue, CaseIterable {
+            case app
+            case compatibleVersions
+            case iconAsset
+            case platform
+            case versionString
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'app'
+        case app([String])
+        /// Filter by id(s)
+        case id([String])
+        /// Filter by attribute 'platform'
+        case platform([Platform])
+        /// Filter by attribute 'versionString'
+        case versionString([String])
+
+        /// Strings that represent Apple operating systems.
+        public enum Platform: String, ParameterValue, CaseIterable {
+            /// A string that represents iOS.
+            case iOS = "IOS"
+            /// A string that represents macOS.
+            case macOS = "MAC_OS"
+            /// A string that represents tvOS.
+            case tvOS = "TV_OS"
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case app, compatibleVersions
+    }
+
+    /**
+     Attributes by which to sort.
+     */
+    public enum Sort: String, SortParameter {
+        case versionStringAscending = "versionString"
+        case versionStringDescending = "-versionString"
     }
 }

@@ -1,27 +1,4 @@
 public extension Request {
-    enum GetFinanceReports {
-        /**
-         Attributes, relationships, and IDs by which to filter.
-
-         Required: regionCode, reportDate, reportType, vendorNumber
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by attribute 'regionCode'
-            case regionCode([String])
-            /// Filter by attribute 'reportDate'
-            case reportDate([String])
-            /// Filter by attribute 'reportType'
-            case reportType([ReportType])
-            /// Filter by attribute 'vendorNumber'
-            case vendorNumber([String])
-
-            public enum ReportType: String, ParameterValue, CaseIterable {
-                case financial = "FINANCIAL"
-                case financeDetail = "FINANCE_DETAIL"
-            }
-        }
-    }
-
     /**
       # Download Finance Reports
       Download finance reports filtered by your specified criteria.
@@ -34,5 +11,28 @@ public extension Request {
      */
     static func getFinanceReports(filters: [GetFinanceReports.Filter]? = nil) -> Request<GzipResponse, ErrorResponse> {
         return .init(path: "/v1/financeReports", method: .get, parameters: .init(filters: filters))
+    }
+}
+
+public enum GetFinanceReports {
+    /**
+     Attributes, relationships, and IDs by which to filter.
+
+     Required: regionCode, reportDate, reportType, vendorNumber
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by attribute 'regionCode'
+        case regionCode([String])
+        /// Filter by attribute 'reportDate'
+        case reportDate([String])
+        /// Filter by attribute 'reportType'
+        case reportType([ReportType])
+        /// Filter by attribute 'vendorNumber'
+        case vendorNumber([String])
+
+        public enum ReportType: String, ParameterValue, CaseIterable {
+            case financial = "FINANCIAL"
+            case financeDetail = "FINANCE_DETAIL"
+        }
     }
 }

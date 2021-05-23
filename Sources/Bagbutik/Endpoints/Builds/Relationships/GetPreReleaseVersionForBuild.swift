@@ -1,21 +1,4 @@
 public extension Request {
-    enum GetPreReleaseVersionForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type preReleaseVersions
-            case preReleaseVersions([PreReleaseVersions])
-
-            public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
-                case app
-                case builds
-                case platform
-                case version
-            }
-        }
-    }
-
     /**
       # Read the Prerelease Version of a Build
       Get the prerelease version for a specific build.
@@ -31,5 +14,22 @@ public extension Request {
                                              fields: [GetPreReleaseVersionForBuild.Field]? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse>
     {
         return .init(path: "/v1/builds/\(id)/preReleaseVersion", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetPreReleaseVersionForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type preReleaseVersions
+        case preReleaseVersions([PreReleaseVersions])
+
+        public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
+            case app
+            case builds
+            case platform
+            case version
+        }
     }
 }

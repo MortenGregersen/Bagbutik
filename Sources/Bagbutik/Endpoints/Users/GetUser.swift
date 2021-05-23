@@ -1,59 +1,4 @@
 public extension Request {
-    enum GetUser {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type apps
-            case apps([Apps])
-            /// The fields to include for returned resources of type users
-            case users([Users])
-
-            public enum Apps: String, ParameterValue, CaseIterable {
-                case appInfos
-                case appStoreVersions
-                case availableInNewTerritories
-                case availableTerritories
-                case betaAppLocalizations
-                case betaAppReviewDetail
-                case betaGroups
-                case betaLicenseAgreement
-                case betaTesters
-                case builds
-                case bundleId
-                case contentRightsDeclaration
-                case endUserLicenseAgreement
-                case gameCenterEnabledVersions
-                case inAppPurchases
-                case isOrEverWasMadeForKids
-                case name
-                case perfPowerMetrics
-                case preOrder
-                case preReleaseVersions
-                case prices
-                case primaryLocale
-                case sku
-            }
-
-            public enum Users: String, ParameterValue, CaseIterable {
-                case allAppsVisible
-                case firstName
-                case lastName
-                case provisioningAllowed
-                case roles
-                case username
-                case visibleApps
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case visibleApps
-        }
-    }
-
     /**
       # Read User Information
       Get information about a user on your team, such as name, roles, and app visibility.
@@ -75,5 +20,60 @@ public extension Request {
         return .init(path: "/v1/users/\(id)", method: .get, parameters: .init(fields: fields,
                                                                               includes: includes,
                                                                               limit: limit))
+    }
+}
+
+public enum GetUser {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+        /// The fields to include for returned resources of type users
+        case users([Users])
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case primaryLocale
+            case sku
+        }
+
+        public enum Users: String, ParameterValue, CaseIterable {
+            case allAppsVisible
+            case firstName
+            case lastName
+            case provisioningAllowed
+            case roles
+            case username
+            case visibleApps
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case visibleApps
     }
 }

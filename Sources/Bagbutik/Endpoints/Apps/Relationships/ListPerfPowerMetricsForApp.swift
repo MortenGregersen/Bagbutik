@@ -1,33 +1,4 @@
 public extension Request {
-    enum ListPerfPowerMetricsForApp {
-        /**
-         Attributes, relationships, and IDs by which to filter.
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by attribute 'deviceType'
-            case deviceType([String])
-            /// Filter by attribute 'metricType'
-            case metricType([MetricType])
-            /// Filter by attribute 'platform'
-            case platform([Platform])
-
-            public enum MetricType: String, ParameterValue, CaseIterable {
-                case disk = "DISK"
-                case hang = "HANG"
-                case battery = "BATTERY"
-                case launch = "LAUNCH"
-                case memory = "MEMORY"
-                case animation = "ANIMATION"
-            }
-
-            /// Strings that represent Apple operating systems.
-            public enum Platform: String, ParameterValue, CaseIterable {
-                /// A string that represents iOS.
-                case iOS = "IOS"
-            }
-        }
-    }
-
     /**
       # Get Power and Performance Metrics for an App.
       Get the performance and power metrics data for the most recent versions of an app.
@@ -43,5 +14,34 @@ public extension Request {
                                            filters: [ListPerfPowerMetricsForApp.Filter]? = nil) -> Request<PerfPowerMetricsResponse, ErrorResponse>
     {
         return .init(path: "/v1/apps/\(id)/perfPowerMetrics", method: .get, parameters: .init(filters: filters))
+    }
+}
+
+public enum ListPerfPowerMetricsForApp {
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by attribute 'deviceType'
+        case deviceType([String])
+        /// Filter by attribute 'metricType'
+        case metricType([MetricType])
+        /// Filter by attribute 'platform'
+        case platform([Platform])
+
+        public enum MetricType: String, ParameterValue, CaseIterable {
+            case disk = "DISK"
+            case hang = "HANG"
+            case battery = "BATTERY"
+            case launch = "LAUNCH"
+            case memory = "MEMORY"
+            case animation = "ANIMATION"
+        }
+
+        /// Strings that represent Apple operating systems.
+        public enum Platform: String, ParameterValue, CaseIterable {
+            /// A string that represents iOS.
+            case iOS = "IOS"
+        }
     }
 }

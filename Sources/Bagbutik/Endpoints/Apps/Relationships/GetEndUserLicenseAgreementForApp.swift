@@ -1,20 +1,4 @@
 public extension Request {
-    enum GetEndUserLicenseAgreementForApp {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type endUserLicenseAgreements
-            case endUserLicenseAgreements([EndUserLicenseAgreements])
-
-            public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
-                case agreementText
-                case app
-                case territories
-            }
-        }
-    }
-
     /**
       # Read the End User License Agreement Information of an App
       Get the custom end user license agreement (EULA) for a specific app and the territories where the agreement applies.
@@ -30,5 +14,21 @@ public extension Request {
                                                  fields: [GetEndUserLicenseAgreementForApp.Field]? = nil) -> Request<EndUserLicenseAgreementResponse, ErrorResponse>
     {
         return .init(path: "/v1/apps/\(id)/endUserLicenseAgreement", method: .get, parameters: .init(fields: fields))
+    }
+}
+
+public enum GetEndUserLicenseAgreementForApp {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type endUserLicenseAgreements
+        case endUserLicenseAgreements([EndUserLicenseAgreements])
+
+        public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
+            case agreementText
+            case app
+            case territories
+        }
     }
 }

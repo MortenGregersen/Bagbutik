@@ -1,28 +1,4 @@
 public extension Request {
-    enum ListProfilesForBundleId {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type profiles
-            case profiles([Profiles])
-
-            public enum Profiles: String, ParameterValue, CaseIterable {
-                case bundleId
-                case certificates
-                case createdDate
-                case devices
-                case expirationDate
-                case name
-                case platform
-                case profileContent
-                case profileState
-                case profileType
-                case uuid
-            }
-        }
-    }
-
     /**
       # List All Profiles for a Bundle ID
       Get a list of all profiles for a specific bundle ID.
@@ -41,5 +17,29 @@ public extension Request {
     {
         return .init(path: "/v1/bundleIds/\(id)/profiles", method: .get, parameters: .init(fields: fields,
                                                                                            limit: limit))
+    }
+}
+
+public enum ListProfilesForBundleId {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type profiles
+        case profiles([Profiles])
+
+        public enum Profiles: String, ParameterValue, CaseIterable {
+            case bundleId
+            case certificates
+            case createdDate
+            case devices
+            case expirationDate
+            case name
+            case platform
+            case profileContent
+            case profileState
+            case profileType
+            case uuid
+        }
     }
 }

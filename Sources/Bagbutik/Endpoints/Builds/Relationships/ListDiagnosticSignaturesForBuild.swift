@@ -1,33 +1,4 @@
 public extension Request {
-    enum ListDiagnosticSignaturesForBuild {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type diagnosticSignatures
-            case diagnosticSignatures([DiagnosticSignatures])
-
-            public enum DiagnosticSignatures: String, ParameterValue, CaseIterable {
-                case diagnosticType
-                case logs
-                case signature
-                case weight
-            }
-        }
-
-        /**
-         Attributes, relationships, and IDs by which to filter.
-         */
-        public enum Filter: FilterParameter {
-            /// Filter by attribute 'diagnosticType'
-            case diagnosticType([DiagnosticType])
-
-            public enum DiagnosticType: String, ParameterValue, CaseIterable {
-                case diskWrites = "DISK_WRITES"
-            }
-        }
-    }
-
     /**
       # List All Diagnostic Signatures for a Build
       List the aggregate backtrace signatures captured for a specific build.
@@ -49,5 +20,34 @@ public extension Request {
         return .init(path: "/v1/builds/\(id)/diagnosticSignatures", method: .get, parameters: .init(fields: fields,
                                                                                                     filters: filters,
                                                                                                     limit: limit))
+    }
+}
+
+public enum ListDiagnosticSignaturesForBuild {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type diagnosticSignatures
+        case diagnosticSignatures([DiagnosticSignatures])
+
+        public enum DiagnosticSignatures: String, ParameterValue, CaseIterable {
+            case diagnosticType
+            case logs
+            case signature
+            case weight
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by attribute 'diagnosticType'
+        case diagnosticType([DiagnosticType])
+
+        public enum DiagnosticType: String, ParameterValue, CaseIterable {
+            case diskWrites = "DISK_WRITES"
+        }
     }
 }

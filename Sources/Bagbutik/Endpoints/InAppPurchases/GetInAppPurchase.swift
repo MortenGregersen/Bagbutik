@@ -1,29 +1,4 @@
 public extension Request {
-    enum GetInAppPurchase {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type inAppPurchases
-            case inAppPurchases([InAppPurchases])
-
-            public enum InAppPurchases: String, ParameterValue, CaseIterable {
-                case apps
-                case inAppPurchaseType
-                case productId
-                case referenceName
-                case state
-            }
-        }
-
-        /**
-         Relationship data to include in the response.
-         */
-        public enum Include: String, IncludeParameter {
-            case apps
-        }
-    }
-
     /**
       # Read In-App Purchase Information
       Get information about an in-app purchase.
@@ -45,5 +20,30 @@ public extension Request {
         return .init(path: "/v1/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                        includes: includes,
                                                                                        limit: limit))
+    }
+}
+
+public enum GetInAppPurchase {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type inAppPurchases
+        case inAppPurchases([InAppPurchases])
+
+        public enum InAppPurchases: String, ParameterValue, CaseIterable {
+            case apps
+            case inAppPurchaseType
+            case productId
+            case referenceName
+            case state
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case apps
     }
 }

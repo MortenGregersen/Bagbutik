@@ -1,29 +1,4 @@
 public extension Request {
-    enum ListBetaGroupsForApp {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type betaGroups
-            case betaGroups([BetaGroups])
-
-            public enum BetaGroups: String, ParameterValue, CaseIterable {
-                case app
-                case betaTesters
-                case builds
-                case createdDate
-                case feedbackEnabled
-                case isInternalGroup
-                case name
-                case publicLink
-                case publicLinkEnabled
-                case publicLinkId
-                case publicLinkLimit
-                case publicLinkLimitEnabled
-            }
-        }
-    }
-
     /**
       # List All Beta Groups for an App
       Get a list of beta groups associated with a specific app.
@@ -42,5 +17,30 @@ public extension Request {
     {
         return .init(path: "/v1/apps/\(id)/betaGroups", method: .get, parameters: .init(fields: fields,
                                                                                         limit: limit))
+    }
+}
+
+public enum ListBetaGroupsForApp {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type betaGroups
+        case betaGroups([BetaGroups])
+
+        public enum BetaGroups: String, ParameterValue, CaseIterable {
+            case app
+            case betaTesters
+            case builds
+            case createdDate
+            case feedbackEnabled
+            case isInternalGroup
+            case name
+            case publicLink
+            case publicLinkEnabled
+            case publicLinkId
+            case publicLinkLimit
+            case publicLinkLimitEnabled
+        }
     }
 }

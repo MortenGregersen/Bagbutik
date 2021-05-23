@@ -1,27 +1,4 @@
 public extension Request {
-    enum ListAppStoreVersionLocalizationsForAppStoreVersion {
-        /**
-         Fields to return for included related types.
-         */
-        public enum Field: FieldParameter {
-            /// The fields to include for returned resources of type appStoreVersionLocalizations
-            case appStoreVersionLocalizations([AppStoreVersionLocalizations])
-
-            public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
-                case appPreviewSets
-                case appScreenshotSets
-                case appStoreVersion
-                case description
-                case keywords
-                case locale
-                case marketingUrl
-                case promotionalText
-                case supportUrl
-                case whatsNew
-            }
-        }
-    }
-
     /**
       # List All App Store Version Localizations for an App Store Version
       Get a list of localized, version-level information about an app, for all locales.
@@ -40,5 +17,28 @@ public extension Request {
     {
         return .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionLocalizations", method: .get, parameters: .init(fields: fields,
                                                                                                                       limit: limit))
+    }
+}
+
+public enum ListAppStoreVersionLocalizationsForAppStoreVersion {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersionLocalizations
+        case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+
+        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersion
+            case description
+            case keywords
+            case locale
+            case marketingUrl
+            case promotionalText
+            case supportUrl
+            case whatsNew
+        }
     }
 }
