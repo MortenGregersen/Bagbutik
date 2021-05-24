@@ -36,8 +36,6 @@ public class ObjectSchemaRenderer {
         {% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
         {% else %}{%
-        endif %}{% if property.deprecated %}@available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        {% else %}{%
         endif %}{{ property.rendered }}{%
         endfor %}{%
         if hasAttributes %}
@@ -47,8 +45,15 @@ public class ObjectSchemaRenderer {
         /// {{ relationshipsDocumentation }}
         public let relationships: Relationships{% if relationshipsOptional %}?{% endif %}{% endif %}
 
-        public init({{ publicInit }}) {
-            {% for propertyName in propertyNames %}
+        {% if deprecatedPublicInitParameterList %}
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+        public init({{ deprecatedPublicInitParameterList }}) {
+            {% for propertyName in deprecatedPublicInitPropertyNames %}
+            self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
+            endfor %}
+        }
+        {% endif %}public init({{ publicInitParameterList }}) {
+            {% for propertyName in publicInitPropertyNames %}
             self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
             endfor %}
         }
@@ -126,18 +131,11 @@ public class ObjectSchemaRenderer {
         let decodableProperties = encodableProperties.filter { $0.name != "type" }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
-        let publicInit = initParameters
-            .map {
-                let propertyName = PropertyName(idealName: $0.key)
-                var parameter = "\(propertyName.idealName)"
-                if propertyName.hasDifferentSafeName {
-                    parameter += " \(propertyName.safeName)"
-                }
-                parameter += ": \($0.value.type.description.capitalizingFirstLetter())"
-                guard !objectSchema.requiredProperties.contains($0.key) else { return parameter }
-                return "\(parameter)? = nil"
-            }
-            .joined(separator: ", ")
+        var deprecatedPublicInitParameterList = ""
+        if initParameters.contains(where: { $0.value.deprecated }) {
+            deprecatedPublicInitParameterList = createParameterList(from: initParameters, requiredProperties: objectSchema.requiredProperties)
+        }
+        let publicInitParameterList = createParameterList(from: initParameters.filter { !$0.value.deprecated }, requiredProperties: objectSchema.requiredProperties)
         return ["name": objectSchema.name,
                 "summary": objectSchema.documentation?.summary ?? "",
                 "url": objectSchema.url,
@@ -151,13 +149,16 @@ public class ObjectSchemaRenderer {
                     default:
                         rendered = try! PropertyRenderer().render(id: property.key,
                                                                   type: property.value.type.description,
-                                                                  optional: !objectSchema.requiredProperties.contains(property.key))
+                                                                  optional: !objectSchema.requiredProperties.contains(property.key),
+                                                                  deprecated: property.value.deprecated)
                     }
                     let propertyDocumentation = objectSchema.documentation?.properties[property.key]
                     return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
                 },
-                "publicInit": publicInit,
-                "propertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
+                "deprecatedPublicInitParameterList": deprecatedPublicInitParameterList,
+                "deprecatedPublicInitPropertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
+                "publicInitParameterList": publicInitParameterList,
+                "publicInitPropertyNames": initParameters.filter { $0.key != "type" && !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
                 "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" }),
                 "codingKeys": codingKeys,
                 "decodableProperties": decodableProperties,
@@ -185,6 +186,19 @@ public class ObjectSchemaRenderer {
                 }]
     }
 
+    private func createParameterList(from parameters: [Dictionary<String, Property>.Element], requiredProperties: [String]) -> String {
+        return parameters.map {
+            let propertyName = PropertyName(idealName: $0.key)
+            var parameter = "\(propertyName.idealName)"
+            if propertyName.hasDifferentSafeName {
+                parameter += " \(propertyName.safeName)"
+            }
+            parameter += ": \($0.value.type.description.capitalizingFirstLetter())"
+            guard !requiredProperties.contains($0.key) else { return parameter }
+            return "\(parameter)? = nil"
+        }.joined(separator: ", ")
+    }
+
     private struct RenderProperty {
         let rendered: String
         let documentation: String?
@@ -198,7 +212,7 @@ public class ObjectSchemaRenderer {
 
         init(idealName: String) {
             self.idealName = idealName
-            self.safeName = idealName == "self" ? "aSelf" : idealName
+            safeName = idealName == "self" ? "aSelf" : idealName
         }
     }
 

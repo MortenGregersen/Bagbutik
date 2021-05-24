@@ -61,8 +61,8 @@ public struct AgeRatingDeclaration: Codable {
         /// Declaration for gambling, provided as a Boolean value.
         public let gambling: Bool?
         /// Declaration for gambling or contests, as a Boolean value.
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        public let gamblingAndContests: Bool?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var gamblingAndContests: Bool? = nil
         /// Declaration for simulated gambling.
         public let gamblingSimulated: GamblingSimulated?
         /// Declaration for horror or fear themed content.
@@ -90,11 +90,31 @@ public struct AgeRatingDeclaration: Codable {
         /// Declaration for prolonged realistic or sadistic violence.
         public let violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gambling: Bool? = nil, gamblingAndContests: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
             self.gambling = gambling
             self.gamblingAndContests = gamblingAndContests
+            self.gamblingSimulated = gamblingSimulated
+            self.horrorOrFearThemes = horrorOrFearThemes
+            self.kidsAgeBand = kidsAgeBand
+            self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
+            self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
+            self.profanityOrCrudeHumor = profanityOrCrudeHumor
+            self.seventeenPlus = seventeenPlus
+            self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
+            self.sexualContentOrNudity = sexualContentOrNudity
+            self.unrestrictedWebAccess = unrestrictedWebAccess
+            self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
+            self.violenceRealistic = violenceRealistic
+            self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gambling: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {
+            self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
+            self.contests = contests
+            self.gambling = gambling
             self.gamblingSimulated = gamblingSimulated
             self.horrorOrFearThemes = horrorOrFearThemes
             self.kidsAgeBand = kidsAgeBand

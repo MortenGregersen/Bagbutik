@@ -96,8 +96,8 @@ public struct AppStoreVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships>
      */
     public struct Relationships: Codable {
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        public let ageRatingDeclaration: AgeRatingDeclaration?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public let app: App?
         public let appStoreReviewDetail: AppStoreReviewDetail?
         public let appStoreVersionLocalizations: AppStoreVersionLocalizations?
@@ -107,8 +107,20 @@ public struct AppStoreVersion: Codable {
         public let idfaDeclaration: IdfaDeclaration?
         public let routingAppCoverage: RoutingAppCoverage?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
             self.ageRatingDeclaration = ageRatingDeclaration
+            self.app = app
+            self.appStoreReviewDetail = appStoreReviewDetail
+            self.appStoreVersionLocalizations = appStoreVersionLocalizations
+            self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
+            self.appStoreVersionSubmission = appStoreVersionSubmission
+            self.build = build
+            self.idfaDeclaration = idfaDeclaration
+            self.routingAppCoverage = routingAppCoverage
+        }
+
+        public init(app: App? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
             self.app = app
             self.appStoreReviewDetail = appStoreReviewDetail
             self.appStoreVersionLocalizations = appStoreVersionLocalizations
