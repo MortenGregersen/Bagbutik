@@ -70,7 +70,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             public let gambling: Bool?
             /// Declaration for gambling or contests, as a Boolean value.
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public let gamblingAndContests: Bool?
+            public var gamblingAndContests: Bool? = nil
             /// Declaration for simulated gambling.
             public let gamblingSimulated: GamblingSimulated?
             /// Declaration for horror or fear themed content.

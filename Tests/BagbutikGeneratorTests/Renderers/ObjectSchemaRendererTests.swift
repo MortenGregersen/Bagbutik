@@ -79,7 +79,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public let age: Int?
             /// The person's name
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public let name: String?
+            public var name: String? = nil
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(age: Int? = nil, name: String? = nil) {

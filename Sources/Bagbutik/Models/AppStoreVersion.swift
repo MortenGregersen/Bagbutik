@@ -97,7 +97,7 @@ public struct AppStoreVersion: Codable {
      */
     public struct Relationships: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public let ageRatingDeclaration: AgeRatingDeclaration?
+        public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public let app: App?
         public let appStoreReviewDetail: AppStoreReviewDetail?
         public let appStoreVersionLocalizations: AppStoreVersionLocalizations?

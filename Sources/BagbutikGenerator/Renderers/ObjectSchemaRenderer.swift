@@ -36,8 +36,6 @@ public class ObjectSchemaRenderer {
         {% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
         {% else %}{%
-        endif %}{% if property.deprecated %}@available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        {% else %}{%
         endif %}{{ property.rendered }}{%
         endfor %}{%
         if hasAttributes %}
@@ -151,7 +149,8 @@ public class ObjectSchemaRenderer {
                     default:
                         rendered = try! PropertyRenderer().render(id: property.key,
                                                                   type: property.value.type.description,
-                                                                  optional: !objectSchema.requiredProperties.contains(property.key))
+                                                                  optional: !objectSchema.requiredProperties.contains(property.key),
+                                                                  deprecated: property.value.deprecated)
                     }
                     let propertyDocumentation = objectSchema.documentation?.properties[property.key]
                     return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
@@ -213,7 +212,7 @@ public class ObjectSchemaRenderer {
 
         init(idealName: String) {
             self.idealName = idealName
-            self.safeName = idealName == "self" ? "aSelf" : idealName
+            safeName = idealName == "self" ? "aSelf" : idealName
         }
     }
 
