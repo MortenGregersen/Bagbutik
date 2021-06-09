@@ -19,9 +19,10 @@ public struct EnumSchema: Decodable, Equatable {
     /**
      Initialize a new enum
 
-     - Parameter name: The name of the enum
-     - Parameter type: The type of the value of the enum's cases
-     - Parameter caseValues: Values for the enum's cases
+     - Parameters:
+        - name: The name of the enum
+        - type: The type of the value of the enum's cases
+        - caseValues: Values for the enum's cases
      */
     public init(name: String, type: String, caseValues: [String]) {
         self.init(name: name,

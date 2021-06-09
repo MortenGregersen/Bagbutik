@@ -22,11 +22,12 @@ public struct Path: Decodable {
 
     /**
      Initialize a new path
-     
-     - Parameter path: The raw path
-     - Parameter info: Type info about the path
-     - Parameter operations: Operations available on the path
-     - Parameter parameters: Path parameters
+
+     - Parameters:
+        - path: The raw path
+        - info: Type info about the path
+        - operations: Operations available on the path
+        - parameters: Path parameters
      */
     public init(path: String, info: Info, operations: [Operation], parameters: [Parameter]? = nil) {
         self.path = path

@@ -4,10 +4,11 @@ import SwiftFormat
 /// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
     /**
-     Render a enum schema
+     Render an enum schema
 
-     - Parameter enumSchema: The enum schema to render
-     - Parameter additionalProtocol: Any additional protocol the enum should conform to
+     - Parameters:
+        - enumSchema: The enum schema to render
+        - additionalProtocol: Any additional protocol the enum should conform to
      - Returns: The rendered enum schema
      */
     public func render(enumSchema: EnumSchema, additionalProtocol: String = "Codable") throws -> String {

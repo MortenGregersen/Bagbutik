@@ -73,8 +73,9 @@ public class Generator {
     /**
      Load a spec file and generate endpoints and models from the spec
      
-     - Parameter specFileURL: The file URL to load the spec from
-     - Parameter outputDirURL: The file URL for the directory where the generated code should be saved
+     - Parameters:
+        - specFileURL: The file URL to load the spec from
+        - outputDirURL: The file URL for the directory where the generated code should be saved
      */
     public func generateAll(specFileURL: URL, outputDirURL: URL) throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }

@@ -21,8 +21,9 @@ public class OperationRenderer: Renderer {
     /**
      Render an operation
 
-     - Parameter operation: The operation to render
-     - Parameter path: The path which contains the operation
+     - Parameters:
+        - operation: The operation to render
+        - path: The path which contains the operation
      - Returns: The rendered operation
      */
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
