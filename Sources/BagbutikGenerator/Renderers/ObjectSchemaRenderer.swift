@@ -9,8 +9,9 @@ public class ObjectSchemaRenderer {
     /**
      Render a object schema
 
-     - Parameter objectSchema: The object schema to render
-     - Parameter includesFixUps: Fix ups for the included related types
+     - Parameters:
+        - objectSchema: The object schema to render
+        - includesFixUps: Fix ups for the included related types
      - Returns: The rendered object schema
      */
     public func render(objectSchema: ObjectSchema, includesFixUps: [String] = []) throws -> String {

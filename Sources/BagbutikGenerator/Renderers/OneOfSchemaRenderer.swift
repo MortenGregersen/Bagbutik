@@ -19,9 +19,10 @@ public class OneOfSchemaRenderer {
     /**
      Render an one of schema
      
-     - Parameter name: The name of the one of schema
-     - Parameter oneOfSchema: The one of schema to render
-     - Parameter includesFixUps: Fix ups for the options of the one of schema
+     - Parameters:
+        - name: The name of the one of schema
+        - oneOfSchema: The one of schema to render
+        - includesFixUps: Fix ups for the options of the one of schema
      - Returns: The rendered one of schema
      */
     public func render(name: String, oneOfSchema: OneOfSchema, includesFixUps: [String] = []) throws -> String {

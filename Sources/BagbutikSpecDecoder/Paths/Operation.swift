@@ -52,13 +52,14 @@ public struct Operation: Decodable {
     /**
      Initialize a new operation
      
-     - Parameter name: The name of the operation
-     - Parameter documentation: The documentation for the operation
-     - Parameter method: The HTTP method used when executing the operation
-     - Parameter parameters: The different kind of parameters that can be sent with the operation
-     - Parameter requestBody: Information about the object that can be sent as request body
-     - Parameter successResponseType: The name of the type returned on a successful request
-     - Parameter errorResponseType: The name of the type returned on a failing request
+     - Parameters:
+        - name: The name of the operation
+        - documentation: The documentation for the operation
+        - method: The HTTP method used when executing the operation
+        - parameters: The different kind of parameters that can be sent with the operation
+        - requestBody: Information about the object that can be sent as request body
+        - successResponseType: The name of the type returned on a successful request
+        - errorResponseType: The name of the type returned on a failing request
      */
     public init(name: String, documentation: Documentation, method: HTTPMethod, deprecated: Bool = false, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
         self.name = name

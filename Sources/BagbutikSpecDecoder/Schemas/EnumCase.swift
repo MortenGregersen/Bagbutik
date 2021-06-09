@@ -12,9 +12,10 @@ public struct EnumCase: Equatable {
     /**
      Initialize a new case
      
-     - Parameter id: The name of the case
-     - Parameter value: The value of the case
-     - Parameter documentation: The documentation for the case
+     - Parameters:
+        - id: The name of the case
+        - value: The value of the case
+        - documentation: The documentation for the case
      */
     public init(id: String, value: String, deprecated: Bool = false, documentation: String? = nil) {
         self.id = id.replacingOccurrences(of: ".", with: "_")

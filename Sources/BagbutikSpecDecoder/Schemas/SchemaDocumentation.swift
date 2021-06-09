@@ -11,8 +11,9 @@ public extension Schema {
         /**
          Initialize a new documentation for a schema's attributes
 
-         - Parameter summary: The summary for the attributes
-         - Parameter properties: The attributes' properties
+         - Parameters:
+            - summary: The summary for the attributes
+            - properties: The attributes' properties
          */
         init(summary: String, properties: [String: String]? = nil) {
             self.summary = summary
