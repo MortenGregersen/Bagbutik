@@ -2,14 +2,6 @@ import BagbutikSpecDecoder
 import Foundation
 
 /**
- An alias for a function loading a spec from a file URL
- 
- - Parameter fileUrl: The file URL to load the spec from
- - Returns: A decoded Spec
- */
-public typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
-
-/**
  A file manager which can perform the operations needed by the Generator
  
  This is just an interface already implemented by Foundation's FileManager, needed to enable unit testing.
@@ -48,6 +40,14 @@ public enum GeneratorError: Error {
 }
 
 extension GeneratorError: Equatable {}
+
+/**
+ An alias for a function loading a spec from a file URL
+ 
+ - Parameter fileUrl: The file URL to load the spec from
+ - Returns: A decoded Spec
+ */
+internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// A generator which loads a spec and generates endpoints and models from the spec
 public class Generator {
