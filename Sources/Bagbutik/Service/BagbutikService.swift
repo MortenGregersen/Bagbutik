@@ -2,7 +2,14 @@ import Combine
 import Crypto
 import Foundation
 
-public class BagbutikService {
+public protocol BagbutikServiceProtocol {
+    func request<T: Decodable>(_ request: Request<T, ErrorResponse>) -> AnyPublisher<T, Error>
+    func request<T: Decodable>(_ request: Request<T, ErrorResponse>, completionHandler: @escaping (Result<T, Error>) -> Void)
+    @available(macOS 12.0, iOS 15.0, *)
+    func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T
+}
+
+public class BagbutikService: BagbutikServiceProtocol {
     private let header: Header
     private var payload: Payload
     private let privateKey: String
@@ -102,13 +109,26 @@ public class BagbutikService {
         }).resume()
     }
     
+    @available(macOS 12.0, iOS 15.0, *)
+    public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.request(request, completionHandler: { innerResult in
+                switch innerResult {
+                case .success(let response):
+                    continuation.resume(returning: response)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            })
+        }
+    }
+    
     private static func decodeResponse<T: Decodable>(data: Data?, response: URLResponse?) throws -> T {
         if let data = data, let httpResponse = response as? HTTPURLResponse {
             if (200 ... 300).contains(httpResponse.statusCode) {
                 if T.self == GzipResponse.self {
                     return try GzipResponse(data: data) as! T
-                }
-                else if T.self == EmptyResponse.self {
+                } else if T.self == EmptyResponse.self {
                     return EmptyResponse() as! T
                 }
                 return try Self.jsonDecoder.decode(T.self, from: data)
@@ -124,7 +144,6 @@ public class BagbutikService {
                     throw ServiceError.conflict(errorResponse)
                 default:
                     print(errorResponse)
-                    break
                 }
             }
             throw ServiceError.unknownHTTPError(statusCode: httpResponse.statusCode, data: data)
