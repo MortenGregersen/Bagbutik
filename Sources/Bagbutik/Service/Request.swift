@@ -14,7 +14,7 @@ public struct Request<ResponseType, ErrorResponseType> {
         self.requestBody = requestBody
     }
     
-    public func asUrlRequest(withSignedJwt signedJwt: String) -> URLRequest {
+    func asUrlRequest(withSignedJwt signedJwt: String) -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = path
         if let parameters = parameters {
