@@ -2,7 +2,9 @@ import Foundation
 
 extension ErrorResponse: Error {}
 
-public struct EmptyResponse: Decodable {}
+public struct EmptyResponse: Codable {
+    public init() {}
+}
 
 public struct GzipResponse: Decodable {
     public let data: Data
