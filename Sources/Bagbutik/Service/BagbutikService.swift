@@ -5,6 +5,7 @@ import Foundation
 public protocol BagbutikServiceProtocol {
     func request<T: Decodable>(_ request: Request<T, ErrorResponse>) -> AnyPublisher<T, Error>
     func request<T: Decodable>(_ request: Request<T, ErrorResponse>, completionHandler: @escaping (Result<T, Error>) -> Void)
+    @available(swift 5.5)
     @available(macOS 12.0, iOS 15.0, *)
     func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T
 }
@@ -109,6 +110,7 @@ public class BagbutikService: BagbutikServiceProtocol {
         }).resume()
     }
     
+    @available(swift 5.5)
     @available(macOS 12.0, iOS 15.0, *)
     public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
