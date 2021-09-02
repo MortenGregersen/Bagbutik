@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatesresponse>
  */
-public struct CertificatesResponse: Codable {
+public struct CertificatesResponse: Codable, PagedResponse {
+    public typealias Data = Certificate
     /// The resource data.
     public let data: [Certificate]
     /// Navigational links that include the self-link.

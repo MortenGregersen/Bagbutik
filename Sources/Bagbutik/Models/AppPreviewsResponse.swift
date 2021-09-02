@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsresponse>
  */
-public struct AppPreviewsResponse: Codable {
+public struct AppPreviewsResponse: Codable, PagedResponse {
+    public typealias Data = AppPreview
     /// The resource data.
     public let data: [AppPreview]
     /// Navigational links that include the self-link.

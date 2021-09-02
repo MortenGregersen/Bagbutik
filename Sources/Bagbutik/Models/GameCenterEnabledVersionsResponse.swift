@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversionsresponse>
  */
-public struct GameCenterEnabledVersionsResponse: Codable {
+public struct GameCenterEnabledVersionsResponse: Codable, PagedResponse {
+    public typealias Data = GameCenterEnabledVersion
     /// The resource data.
     public let data: [GameCenterEnabledVersion]
     /// The included related resources.

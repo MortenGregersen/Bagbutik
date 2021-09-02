@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildsresponse>
  */
-public struct BuildsResponse: Codable {
+public struct BuildsResponse: Codable, PagedResponse {
+    public typealias Data = Build
     /// The resource data.
     public let data: [Build]
     /// The included related resources.

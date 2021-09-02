@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsresponse>
  */
-public struct AppScreenshotsResponse: Codable {
+public struct AppScreenshotsResponse: Codable, PagedResponse {
+    public typealias Data = AppScreenshot
     /// The resource data.
     public let data: [AppScreenshot]
     /// Navigational links that include the self-link.

@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupsresponse>
  */
-public struct BetaGroupsResponse: Codable {
+public struct BetaGroupsResponse: Codable, PagedResponse {
+    public typealias Data = BetaGroup
     /// The resource data.
     public let data: [BetaGroup]
     /// The included related resources.

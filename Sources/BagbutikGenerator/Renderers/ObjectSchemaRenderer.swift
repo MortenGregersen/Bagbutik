@@ -33,8 +33,9 @@ public class ObjectSchemaRenderer {
       {{ discussion }}{% endif %}
     */
     {% elif summary %}/// {{ summary }}
-    {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %} {
-        {% for property in properties %}
+    {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %}{% if isPagedResponse %}, PagedResponse{% endif %} {
+        {% if pagedDataSchemaRef %}public typealias Data = {{ pagedDataSchemaRef }}{%
+        endif %}{% for property in properties %}
         {% if property.documentation %}/// {{ property.documentation }}
         {% else %}{%
         endif %}{{ property.rendered }}{%
@@ -137,11 +138,18 @@ public class ObjectSchemaRenderer {
             deprecatedPublicInitParameterList = createParameterList(from: initParameters, requiredProperties: objectSchema.requiredProperties)
         }
         let publicInitParameterList = createParameterList(from: initParameters.filter { !$0.value.deprecated }, requiredProperties: objectSchema.requiredProperties)
+        let isPagedResponse = objectSchema.properties["links"]?.type == .schemaRef("PagedDocumentLinks")
+        var pagedDataSchemaRef = ""
+        if case .arrayOfSchemaRef(let schemaRef) = objectSchema.properties["data"]?.type {
+            pagedDataSchemaRef = schemaRef
+        }
         return ["name": objectSchema.name,
                 "summary": objectSchema.documentation?.summary ?? "",
                 "url": objectSchema.url,
                 "discussion": objectSchema.documentation?.discussion ?? "",
                 "isRequest": objectSchema.name.hasSuffix("Request"),
+                "isPagedResponse": isPagedResponse,
+                "pagedDataSchemaRef": pagedDataSchemaRef,
                 "properties": sortedProperties.map { property -> RenderProperty in
                     let rendered: String
                     switch property.value.type {

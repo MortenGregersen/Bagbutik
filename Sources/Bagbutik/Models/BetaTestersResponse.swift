@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatestersresponse>
  */
-public struct BetaTestersResponse: Codable {
+public struct BetaTestersResponse: Codable, PagedResponse {
+    public typealias Data = BetaTester
     /// The resource data.
     public let data: [BetaTester]
     /// The included related resources.

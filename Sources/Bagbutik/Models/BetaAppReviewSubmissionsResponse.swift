@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissionsresponse>
  */
-public struct BetaAppReviewSubmissionsResponse: Codable {
+public struct BetaAppReviewSubmissionsResponse: Codable, PagedResponse {
+    public typealias Data = BetaAppReviewSubmission
     /// The resource data.
     public let data: [BetaAppReviewSubmission]
     /// The included related resources.

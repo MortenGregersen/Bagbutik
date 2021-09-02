@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationsresponse>
  */
-public struct AppInfoLocalizationsResponse: Codable {
+public struct AppInfoLocalizationsResponse: Codable, PagedResponse {
+    public typealias Data = AppInfoLocalization
     /// The resource data.
     public let data: [AppInfoLocalization]
     /// Navigational links that include the self-link.
