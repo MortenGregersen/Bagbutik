@@ -3,10 +3,10 @@ import Crypto
 import Foundation
 
 public protocol BagbutikServiceProtocol {
-    func request<T: Decodable>(_ request: Request<T, ErrorResponse>) -> AnyPublisher<T, Error>
-    func request<T: Decodable>(_ request: Request<T, ErrorResponse>, completionHandler: @escaping (Result<T, Error>) -> Void)
-    @available(macOS 12.0, iOS 15.0, *)
     func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T
+    func requestAllPages<T: Decodable & PagedResponse>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data])
+    func requestNextPage<T: Decodable & PagedResponse>(for response: T) async throws -> T?
+    func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data])
 }
 
 public class BagbutikService: BagbutikServiceProtocol {
@@ -92,42 +92,39 @@ public class BagbutikService: BagbutikServiceProtocol {
         return decoder
     }()
     
-    public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) -> AnyPublisher<T, Error> {
-        let urlRequest = request.asUrlRequest(withSignedJwt: signedJwt)
-        return URLSession.shared
-            .dataTaskPublisher(for: urlRequest)
-            .tryMap { try Self.decodeResponse(data: $0, response: $1) }
-            .eraseToAnyPublisher()
-    }
-    
-    public func request<T: Decodable>(_ request: Request<T, ErrorResponse>, completionHandler: @escaping (Result<T, Error>) -> Void) {
-        let urlRequest = request.asUrlRequest(withSignedJwt: signedJwt)
-        URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, _ in
-            do {
-                let decodedResponse: T = try Self.decodeResponse(data: data, response: response)
-                completionHandler(.success(decodedResponse))
-            } catch {
-                completionHandler(.failure(error))
-            }
-        }).resume()
-    }
-    
-    @available(macOS 12.0, iOS 15.0, *)
     public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T {
-        return try await withCheckedThrowingContinuation { continuation in
-            self.request(request, completionHandler: { innerResult in
-                switch innerResult {
-                case .success(let response):
-                    continuation.resume(returning: response)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            })
-        }
+        let urlRequest = request.asUrlRequest()
+        return try await fetch(urlRequest)
     }
     
-    private static func decodeResponse<T: Decodable>(data: Data?, response: URLResponse?) throws -> T {
-        if let data = data, let httpResponse = response as? HTTPURLResponse {
+    public func requestAllPages<T: Decodable & PagedResponse>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data]) {
+        let response = try await self.request(request)
+        return try await requestAllPages(for: response)
+    }
+    
+    public func requestNextPage<T: Decodable & PagedResponse>(for response: T) async throws -> T? {
+        guard let urlString = response.links.next, let url = URL(string: urlString) else { return nil }
+        let urlRequest = URLRequest(url: url)
+        return try await fetch(urlRequest)
+    }
+    
+    public func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data]) {
+        var responses = [response]
+        while let nextResponse = try await requestNextPage(for: responses.last!) {
+            responses.append(nextResponse)
+        }
+        return (responses: responses, data: responses.flatMap { $0.data })
+    }
+    
+    private func fetch<T: Decodable>(_ urlRequest: URLRequest) async throws -> T {
+        var urlRequest = urlRequest
+        urlRequest.addJWTAuthorizationHeader(signedJwt)
+        let dataAndResponse = try await URLSession.shared.data(for: urlRequest)
+        return try Self.decodeResponse(data: dataAndResponse.0, response: dataAndResponse.1) as T
+    }
+    
+    private static func decodeResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
+        if let httpResponse = response as? HTTPURLResponse {
             if (200 ... 300).contains(httpResponse.statusCode) {
                 if T.self == GzipResponse.self {
                     return try GzipResponse(data: data) as! T

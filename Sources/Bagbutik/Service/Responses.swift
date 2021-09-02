@@ -15,3 +15,13 @@ public struct GzipResponse: Decodable {
         self.unzippedData = try data.gunzippedData()
     }
 }
+
+public protocol PagedResponse {
+    associatedtype Data
+    /// The resource data.
+    var data: [Data] { get }
+    /// Navigational links that include the self-link.
+    var links: PagedDocumentLinks { get }
+    /// Paging information.
+    var meta: PagingInformation? { get }
+}
