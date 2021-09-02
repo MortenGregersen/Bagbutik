@@ -12,6 +12,9 @@ public extension UserRole {
         case .accountHolder: return "Account Holder"
         case .readOnly: return "Read Only"
         case .technical: return "Technical"
+        case .createApps: return "Create Apps"
+        case .cloudManagedDeveloperId: return "Cloud Managed Developer ID"
+        case .cloudManagedAppDistribution: return "Cloud Managed App Distribution"
         }
     }
 }
