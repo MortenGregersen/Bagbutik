@@ -16,7 +16,9 @@ public struct GzipResponse: Decodable {
     }
 }
 
+/// A response which contains pages of data.
 public protocol PagedResponse {
+    /// The type of the paged data.
     associatedtype Data
     /// The resource data.
     var data: [Data] { get }
