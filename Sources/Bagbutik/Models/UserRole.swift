@@ -23,4 +23,10 @@ public enum UserRole: String, Codable, CaseIterable {
     case accessToReports = "ACCESS_TO_REPORTS"
     /// Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.
     case customerSupport = "CUSTOMER_SUPPORT"
+    /// A permission that enables users with Developer or Marketing roles to create app records.
+    case createApps = "CREATE_APPS"
+    /// No documentation available from Apple.
+    case cloudManagedDeveloperId = "CLOUD_MANAGED_DEVELOPER_ID"
+    /// No documentation available from Apple.
+    case cloudManagedAppDistribution = "CLOUD_MANAGED_APP_DISTRIBUTION"
 }
