@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/usersresponse>
  */
-public struct UsersResponse: Codable {
+public struct UsersResponse: Codable, PagedResponse {
+    public typealias Data = User
     /// The resource data.
     public let data: [User]
     /// The included related resources.

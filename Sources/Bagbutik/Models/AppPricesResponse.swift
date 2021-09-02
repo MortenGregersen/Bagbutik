@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricesresponse>
  */
-public struct AppPricesResponse: Codable {
+public struct AppPricesResponse: Codable, PagedResponse {
+    public typealias Data = AppPrice
     /// The resource data.
     public let data: [AppPrice]
     /// Navigational links that include the self-link.

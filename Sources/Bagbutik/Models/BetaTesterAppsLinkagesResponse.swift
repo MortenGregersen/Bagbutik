@@ -6,7 +6,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterappslinkagesresponse>
  */
-public struct BetaTesterAppsLinkagesResponse: Codable {
+public struct BetaTesterAppsLinkagesResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [Data]
     /// Navigational links that include the self-link.

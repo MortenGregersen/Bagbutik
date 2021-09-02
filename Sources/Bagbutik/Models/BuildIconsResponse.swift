@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildiconsresponse>
  */
-public struct BuildIconsResponse: Codable {
+public struct BuildIconsResponse: Codable, PagedResponse {
+    public typealias Data = BuildIcon
     /// The resource data.
     public let data: [BuildIcon]
     /// Navigational links that include the self-link.

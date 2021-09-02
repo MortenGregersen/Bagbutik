@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogsresponse>
  */
-public struct DiagnosticLogsResponse: Codable {
+public struct DiagnosticLogsResponse: Codable, PagedResponse {
+    public typealias Data = DiagnosticLog
     /// The resource data.
     public let data: [DiagnosticLog]
     /// Navigational links that include the self-link.

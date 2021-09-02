@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignaturesresponse>
  */
-public struct DiagnosticSignaturesResponse: Codable {
+public struct DiagnosticSignaturesResponse: Codable, PagedResponse {
+    public typealias Data = DiagnosticSignature
     /// The resource data.
     public let data: [DiagnosticSignature]
     /// The included related resources.

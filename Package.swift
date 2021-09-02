@@ -1,12 +1,12 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 
 import PackageDescription
 
 let package = Package(
     name: "Bagbutik",
     platforms: [
-        .macOS(.v11),
-        .iOS(.v14)
+        .macOS(.v12),
+        .iOS(.v15)
     ],
     products: [
         .library(
@@ -29,7 +29,7 @@ let package = Package(
         .testTarget(
             name: "BagbutikTests",
             dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")]),
-        .target(
+        .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
                 "Bagbutik",

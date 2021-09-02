@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationsresponse>
  */
-public struct UserInvitationsResponse: Codable {
+public struct UserInvitationsResponse: Codable, PagedResponse {
+    public typealias Data = UserInvitation
     /// The resource data.
     public let data: [UserInvitation]
     /// The included related resources.

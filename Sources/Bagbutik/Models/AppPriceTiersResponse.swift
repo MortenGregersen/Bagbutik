@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricetiersresponse>
  */
-public struct AppPriceTiersResponse: Codable {
+public struct AppPriceTiersResponse: Codable, PagedResponse {
+    public typealias Data = AppPriceTier
     /// The resource data.
     public let data: [AppPriceTier]
     /// The included related resources.

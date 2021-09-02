@@ -361,6 +361,32 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
+    func testPagedResponse() throws {
+        // Given
+        let renderer = ObjectSchemaRenderer()
+        let schema = ObjectSchema(name: "PersonsResponse",
+                                  url: "some://url",
+                                  properties: ["data": .init(type: .arrayOfSchemaRef("Person")),
+                                               "links": .init(type: .schemaRef("PagedDocumentLinks"))],
+                                  requiredProperties: ["data", "links"])
+        // When
+        let rendered = try renderer.render(objectSchema: schema)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct PersonsResponse: Codable, PagedResponse {
+            public typealias Data = Person
+            public let data: [Person]
+            public let links: PagedDocumentLinks
+
+            public init(data: [Person], links: PagedDocumentLinks) {
+                self.data = data
+                self.links = links
+            }
+        }
+
+        """#)
+    }
+
     func testRenderCustomCoding() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
