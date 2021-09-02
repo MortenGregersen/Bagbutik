@@ -36,11 +36,13 @@ public class BagbutikService: BagbutikServiceProtocol {
     
     /// Errors from the API or from the decoding of the responses.
     public enum ServiceError: Error {
-        /// Bad Request (HTTP status code 400). An error occurred with your request.
+        /// Bad Request (HTTP status code 400). The request is invalid and cannot be accepted.
         case badRequest(ErrorResponse)
-        /// Forbidden (HTTP status code 403). Request not authorized.
+        /// Unauthorized (HTTP status code 401).
+        case unauthorized(ErrorResponse)
+        /// Forbidden (HTTP status code 403). The request is not allowed. This can happen if your API key is revoked, your token is incorrectly formatted, or if the requested operation is not allowed.
         case forbidden(ErrorResponse)
-        /// Not Found (HTTP status code 404). Resource not found.
+        /// Not Found (HTTP status code 404). The request cannot be fulfilled because the resource does not exist.
         case notFound(ErrorResponse)
         /// Conflict (HTTP status code 409). The provided resource data is not valid.
         case conflict(ErrorResponse)
@@ -55,6 +57,7 @@ public class BagbutikService: BagbutikServiceProtocol {
         public var description: String? {
             switch self {
             case .badRequest(let response),
+                 .unauthorized(let response),
                  .forbidden(let response),
                  .notFound(let response),
                  .conflict(let response):
@@ -136,6 +139,8 @@ public class BagbutikService: BagbutikServiceProtocol {
                 switch httpResponse.statusCode {
                 case 400:
                     throw ServiceError.badRequest(errorResponse)
+                case 401:
+                    throw ServiceError.unauthorized(errorResponse)
                 case 403:
                     throw ServiceError.forbidden(errorResponse)
                 case 404:
