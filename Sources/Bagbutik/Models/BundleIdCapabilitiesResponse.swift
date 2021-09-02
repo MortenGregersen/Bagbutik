@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitiesresponse>
  */
-public struct BundleIdCapabilitiesResponse: Codable {
+public struct BundleIdCapabilitiesResponse: Codable, PagedResponse {
+    public typealias Data = BundleIdCapability
     /// The resource data.
     public let data: [BundleIdCapability]
     /// Navigational links that include the self-link.

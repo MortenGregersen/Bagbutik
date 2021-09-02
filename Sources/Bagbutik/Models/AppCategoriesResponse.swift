@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcategoriesresponse>
  */
-public struct AppCategoriesResponse: Codable {
+public struct AppCategoriesResponse: Codable, PagedResponse {
+    public typealias Data = AppCategory
     /// The resource data.
     public let data: [AppCategory]
     /// The included related resources.

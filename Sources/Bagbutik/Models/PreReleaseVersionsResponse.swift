@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
  */
-public struct PreReleaseVersionsResponse: Codable {
+public struct PreReleaseVersionsResponse: Codable, PagedResponse {
+    public typealias Data = PrereleaseVersion
     /// The resource data.
     public let data: [PrereleaseVersion]
     /// The included related resources.

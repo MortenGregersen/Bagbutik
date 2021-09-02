@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetsresponse>
  */
-public struct AppPreviewSetsResponse: Codable {
+public struct AppPreviewSetsResponse: Codable, PagedResponse {
+    public typealias Data = AppPreviewSet
     /// The resource data.
     public let data: [AppPreviewSet]
     /// The included related resources.

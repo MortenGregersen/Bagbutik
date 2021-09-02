@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/devicesresponse>
  */
-public struct DevicesResponse: Codable {
+public struct DevicesResponse: Codable, PagedResponse {
+    public typealias Data = Device
     /// The resource data.
     public let data: [Device]
     /// Navigational links that include the self-link.

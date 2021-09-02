@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetsresponse>
  */
-public struct AppScreenshotSetsResponse: Codable {
+public struct AppScreenshotSetsResponse: Codable, PagedResponse {
+    public typealias Data = AppScreenshotSet
     /// The resource data.
     public let data: [AppScreenshotSet]
     /// The included related resources.

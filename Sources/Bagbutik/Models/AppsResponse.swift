@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appsresponse>
  */
-public struct AppsResponse: Codable {
+public struct AppsResponse: Codable, PagedResponse {
+    public typealias Data = App
     /// The resource data.
     public let data: [App]
     /// The included related resources.

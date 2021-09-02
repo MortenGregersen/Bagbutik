@@ -14,7 +14,7 @@ public struct Request<ResponseType, ErrorResponseType> {
         self.requestBody = requestBody
     }
     
-    func asUrlRequest(withSignedJwt signedJwt: String) -> URLRequest {
+    func asUrlRequest() -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = path
         if let parameters = parameters {
@@ -40,7 +40,6 @@ public struct Request<ResponseType, ErrorResponseType> {
         }
         let url = urlComponents.url(relativeTo: Self.baseUrl)!
         var urlRequest = URLRequest(url: url)
-        urlRequest.addValue("Bearer \(signedJwt)", forHTTPHeaderField: "Authorization")
         urlRequest.httpMethod = method.rawValue
         if let requestBody = requestBody {
             urlRequest.httpBody = requestBody.jsonData

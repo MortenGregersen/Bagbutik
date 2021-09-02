@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesresponse>
  */
-public struct InAppPurchasesResponse: Codable {
+public struct InAppPurchasesResponse: Codable, PagedResponse {
+    public typealias Data = InAppPurchase
     /// The resource data.
     public let data: [InAppPurchase]
     /// Navigational links that include the self-link.

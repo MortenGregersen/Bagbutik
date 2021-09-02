@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidsresponse>
  */
-public struct BundleIdsResponse: Codable {
+public struct BundleIdsResponse: Codable, PagedResponse {
+    public typealias Data = BundleId
     /// The resource data.
     public let data: [BundleId]
     /// The included related resources.

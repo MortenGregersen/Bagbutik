@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profilesresponse>
  */
-public struct ProfilesResponse: Codable {
+public struct ProfilesResponse: Codable, PagedResponse {
+    public typealias Data = Profile
     /// The resource data.
     public let data: [Profile]
     /// The included related resources.

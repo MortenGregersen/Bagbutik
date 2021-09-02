@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentsresponse>
  */
-public struct AppStoreReviewAttachmentsResponse: Codable {
+public struct AppStoreReviewAttachmentsResponse: Codable, PagedResponse {
+    public typealias Data = AppStoreReviewAttachment
     /// The resource data.
     public let data: [AppStoreReviewAttachment]
     /// Navigational links that include the self-link.

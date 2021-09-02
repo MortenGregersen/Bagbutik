@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationsresponse>
  */
-public struct AppStoreVersionLocalizationsResponse: Codable {
+public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
+    public typealias Data = AppStoreVersionLocalization
     /// The resource data.
     public let data: [AppStoreVersionLocalization]
     /// The included related resources.
