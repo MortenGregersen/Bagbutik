@@ -6,7 +6,7 @@ import SwiftFormat
 
 /// Errors that can occur when rendering a one of schema
 public enum OneOfSchemaRendererError: Error {
-    /// The type of the option is uknown and needs to be implemented
+    /// The type of the option is unknown and needs to be implemented
     case unknownTypeForOption(schemaName: String)
     /// The is no fix up matching the option
     case noMatchingFixUp(optionName: String)
@@ -18,7 +18,7 @@ extension OneOfSchemaRendererError: Equatable {}
 public class OneOfSchemaRenderer {
     /**
      Render an one of schema
-     
+
      - Parameters:
         - name: The name of the one of schema
         - oneOfSchema: The one of schema to render
@@ -89,10 +89,10 @@ public class OneOfSchemaRenderer {
             optionCases = relevantFixUps.map { fixUp in
                 EnumCase(id: fixUp, value: oneOfSchema.options[0].schemaName)
             }
-        } else if oneOfSchema.options.count == 2, oneOfSchema.options.contains(where: { $0.schemaName == "AppCategory" }) {
+        } else if oneOfSchema.options.count >= 2, oneOfSchema.options.contains(where: { $0.schemaName == "AppCategory" }) {
             // AppInfosResponse and AppInfoResponse has multiple cases with the same type
             optionCases = try oneOfSchema.options.map { option -> [EnumCase] in
-                if option.schemaName == "AppInfoLocalization" {
+                if option.schemaName == "AgeRatingDeclaration" || option.schemaName == "App" || option.schemaName == "AppInfoLocalization" {
                     return [EnumCase(id: "\(option.schemaName.lowercasedFirstLetter())s", value: option.schemaName)]
                 } else if option.schemaName == "AppCategory" {
                     return includesFixUps.compactMap {
