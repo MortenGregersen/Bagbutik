@@ -129,7 +129,10 @@ public class OneOfSchemaRenderer {
                                            "bundleIdCapability": "bundleIdCapabilities",
                                            "prereleaseVersion": "preReleaseVersions",
                                            "territory": "territories"]
-                optionName = optionNameOverrides[optionName] ?? optionName.appending("s")
+                optionName = optionNameOverrides[optionName] ?? optionName
+                if !includesFixUps.contains(optionName) {
+                   optionName = optionName.appending("s")
+                }
                 guard includesFixUps.contains(optionName) else {
                     throw OneOfSchemaRendererError.noMatchingFixUp(optionName: optionName)
                 }
