@@ -129,6 +129,9 @@ public struct Operation: Decodable {
             return "list\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
         } else if let result = createInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
+            if operationId == "ciBuildRuns-create_instance" {
+                return "start\(name.capitalizingFirstLetter())"
+            }
             return "create\(singularize(name.capitalizingFirstLetter()))"
         } else if let result = createToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
