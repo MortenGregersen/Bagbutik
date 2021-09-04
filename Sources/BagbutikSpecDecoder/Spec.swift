@@ -9,9 +9,12 @@ public struct Spec: Decodable {
     /// Fix ups for the includes on the schemas based the field parameters of a the path operations
     public var includesFixUps: [String: [String]] {
         paths.values.reduce(into: [:]) { result, path in
+            guard path.path == "/v1/appStoreVersions/{id}/appStoreVersionLocalizations" else { return }
             path.operations.forEach { operation in
                 let fields = operation.parameters?.compactMap { parameter -> [String]? in
-                    guard case .fields(let name, let type, _, _) = parameter else { return nil }
+                    guard case .fields(let paramName, let type, _, _) = parameter else { return nil }
+                    let paramNameOverrides = ["appPrices": "prices", "ciBuildRuns": "buildRuns", "ciWorkflows": "workflows"]
+                    let name = paramNameOverrides[paramName] ?? paramName
                     if let lastSlashIndex = path.path.lastIndex(of: "/"),
                        name == path.path.suffix(from: path.path.index(after: lastSlashIndex)),
                        case .enum(_, let values) = type
