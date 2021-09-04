@@ -3,9 +3,9 @@ import Foundation
 
 /**
  A file manager which can perform the operations needed by the Generator
- 
+
  This is just an interface already implemented by Foundation's FileManager, needed to enable unit testing.
- 
+
  # Reference
  <https://developer.apple.com/documentation/foundation/filemanager>
  */
@@ -43,7 +43,7 @@ extension GeneratorError: Equatable {}
 
 /**
  An alias for a function loading a spec from a file URL
- 
+
  - Parameter fileUrl: The file URL to load the spec from
  - Returns: A decoded Spec
  */
@@ -72,7 +72,7 @@ public class Generator {
 
     /**
      Load a spec file and generate endpoints and models from the spec
-     
+
      - Parameters:
         - specFileURL: The file URL to load the spec from
         - outputDirURL: The file URL for the directory where the generated code should be saved
