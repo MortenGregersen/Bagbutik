@@ -93,7 +93,7 @@ public class OneOfSchemaRenderer {
             // AppInfosResponse and AppInfoResponse has multiple cases with the same type
             optionCases = try oneOfSchema.options.map { option -> [EnumCase] in
                 if option.schemaName == "AgeRatingDeclaration" || option.schemaName == "App" || option.schemaName == "AppInfoLocalization" {
-                    return [EnumCase(id: "\(option.schemaName.lowercasedFirstLetter())s", value: option.schemaName)]
+                    return [EnumCase(id: option.schemaName.lowercasedFirstLetter(), value: option.schemaName)]
                 } else if option.schemaName == "AppCategory" {
                     return includesFixUps.compactMap {
                         guard $0.lowercased().contains("category") else { return nil }
@@ -103,9 +103,24 @@ public class OneOfSchemaRenderer {
                 throw OneOfSchemaRendererError.unknownTypeForOption(schemaName: option.schemaName)
             }.flatMap { $0 }
         } else if oneOfSchema.options.count == 2, oneOfSchema.options[0].schemaName == "AppScreenshotSet", oneOfSchema.options[1].schemaName == "AppPreviewSet" {
-            // AppStoreVersionLocalizationsResponse doesn't have any fixUps, but they should just be the types with 's' appended
+            // AppStoreVersionLocalizationsResponse doesn't have any fixUps
             optionCases = oneOfSchema.options.map { option in
-                EnumCase(id: "\(option.schemaName.lowercasedFirstLetter())s", value: option.schemaName)
+                EnumCase(id: option.schemaName.lowercasedFirstLetter(), value: option.schemaName)
+            }
+        } else if includesFixUps.contains("destinationBranch"), includesFixUps.contains("sourceBranchOrTag") {
+            let cases = [EnumCase(id: "destinationBranches", value: "ScmGitReference"),
+                         EnumCase(id: "sourceBranchOrTags", value: "ScmGitReference")]
+            optionCases = [cases, try mapOptionCases(for: oneOfSchema.options.filter { $0.schemaName != "ScmGitReference" }, includesFixUps: includesFixUps)].flatMap { $0 }
+        } else if includesFixUps.contains("primaryRepositories") {
+            optionCases = [
+                [EnumCase(id: "primaryRepositories", value: "ScmRepository")],
+                try mapOptionCases(for: oneOfSchema.options.filter { $0.schemaName != "ScmRepository" }, includesFixUps: includesFixUps),
+            ].flatMap { $0 }
+        } else if oneOfSchema.options.count == 2, oneOfSchema.options[0].schemaName == "ErrorSourcePointer", oneOfSchema.options[1].schemaName == "ErrorSourceParameter" {
+            // ErrorResponse doesn't have any fixUps
+            let nameOverrides = ["ErrorSourcePointer": "JsonPointer", "ErrorSourceParameter": "Parameter"]
+            optionCases = oneOfSchema.options.map { option in
+                EnumCase(id: option.schemaName.lowercasedFirstLetter(), value: nameOverrides[option.schemaName]!)
             }
         } else {
             optionCases = try mapOptionCases(for: oneOfSchema.options, includesFixUps: includesFixUps)
@@ -122,20 +137,28 @@ public class OneOfSchemaRenderer {
     private static func mapOptionCases(for options: [OneOfOption], includesFixUps: [String] = []) throws -> [EnumCase] {
         return try options.map { option in
             var optionName = option.schemaName.lowercasedFirstLetter()
-            // ErrorResponse has a special JsonPointer and Parameter type
-            // If not these types use the manual overrides and validate the fix
-            if optionName != "jsonPointer", optionName != "parameter" {
-                let optionNameOverrides = ["buildIcon": "icons",
+            if !includesFixUps.contains(optionName) {
+                // Some options are called something else
+                let optionNameOverrides = ["appPrice": "prices",
+                                           "appPriceTier": "priceTier",
+                                           "buildIcon": "icons",
                                            "bundleIdCapability": "bundleIdCapabilities",
+                                           "ciMacOsVersion": "macOsVersion",
+                                           "ciProduct": "product",
+                                           "ciWorkflow": "workflow",
                                            "prereleaseVersion": "preReleaseVersions",
-                                           "territory": "territories"]
+                                           "scmPullRequest": "pullRequest",
+                                           "scmRepository": "repository",
+                                           "territory": "territories",
+                                           "ciXcodeVersion": "xcodeVersion"]
                 optionName = optionNameOverrides[optionName] ?? optionName
-                if !includesFixUps.contains(optionName) {
-                   optionName = optionName.appending("s")
-                }
-                guard includesFixUps.contains(optionName) else {
-                    throw OneOfSchemaRendererError.noMatchingFixUp(optionName: optionName)
-                }
+            }
+            if !includesFixUps.contains(optionName) {
+                // Some options need to be plural
+                optionName = optionName.appending("s")
+            }
+            guard includesFixUps.contains(optionName) else {
+                throw OneOfSchemaRendererError.noMatchingFixUp(optionName: optionName)
             }
             return EnumCase(id: optionName, value: option.schemaName)
         }
