@@ -1,9 +1,9 @@
 /// Parameter for endpoint
-protocol Parameter {
+protocol EndpointParameter {
     var caseName: String { get }
 }
 
-extension Parameter {
+extension EndpointParameter {
     var caseName: String {
         // If the case has an associated value, take the name of the case
         guard let rawName = Mirror(reflecting: self).children.first?.label else {
@@ -17,7 +17,7 @@ extension Parameter {
 
 // MARK: - Parameter with associated (string) value
 
-protocol AssociatedValueParameter: Parameter {
+protocol AssociatedValueParameter: EndpointParameter {
     var value: String { get }
 }
 
@@ -43,9 +43,9 @@ protocol ParameterValue {
 ///
 protocol FieldParameter: AssociatedValueParameter {}
 protocol FilterParameter: AssociatedValueParameter {}
-protocol IncludeParameter: Parameter {}
+protocol IncludeParameter: EndpointParameter {}
 
-protocol ExistParameter: Parameter {
+protocol ExistParameter: EndpointParameter {
     var value: Bool { get }
 }
 
@@ -55,7 +55,7 @@ extension ExistParameter {
     }
 }
 
-protocol SortParameter: Parameter {
+protocol SortParameter: EndpointParameter {
     var value: String { get }
     var rawValue: String { get }
 }
@@ -64,7 +64,7 @@ extension SortParameter {
     var value: String { rawValue }
 }
 
-protocol LimitParameter: Parameter {
+protocol LimitParameter: EndpointParameter {
     var value: Int { get }
 }
 
