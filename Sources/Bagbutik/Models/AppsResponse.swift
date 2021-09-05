@@ -27,18 +27,18 @@ public struct AppsResponse: Codable, PagedResponse {
     public enum Included: Codable {
         case appInfos(AppInfo)
         case appPreOrders(AppPreOrder)
-        case appPrices(AppPrice)
         case appStoreVersions(AppStoreVersion)
         case betaAppLocalizations(BetaAppLocalization)
-        case betaAppReviewDetails(BetaAppReviewDetail)
+        case betaAppReviewDetail(BetaAppReviewDetail)
         case betaGroups(BetaGroup)
-        case betaLicenseAgreements(BetaLicenseAgreement)
+        case betaLicenseAgreement(BetaLicenseAgreement)
         case builds(Build)
-        case endUserLicenseAgreements(EndUserLicenseAgreement)
+        case ciProduct(CiProduct)
+        case endUserLicenseAgreement(EndUserLicenseAgreement)
         case gameCenterEnabledVersions(GameCenterEnabledVersion)
         case inAppPurchases(InAppPurchase)
-        case perfPowerMetrics(PerfPowerMetric)
         case preReleaseVersions(PrereleaseVersion)
+        case prices(AppPrice)
         case territories(Territory)
 
         public init(from decoder: Decoder) throws {
@@ -46,30 +46,30 @@ public struct AppsResponse: Codable, PagedResponse {
                 self = .appInfos(appInfos)
             } else if let appPreOrders = try? AppPreOrder(from: decoder) {
                 self = .appPreOrders(appPreOrders)
-            } else if let appPrices = try? AppPrice(from: decoder) {
-                self = .appPrices(appPrices)
             } else if let appStoreVersions = try? AppStoreVersion(from: decoder) {
                 self = .appStoreVersions(appStoreVersions)
             } else if let betaAppLocalizations = try? BetaAppLocalization(from: decoder) {
                 self = .betaAppLocalizations(betaAppLocalizations)
-            } else if let betaAppReviewDetails = try? BetaAppReviewDetail(from: decoder) {
-                self = .betaAppReviewDetails(betaAppReviewDetails)
+            } else if let betaAppReviewDetail = try? BetaAppReviewDetail(from: decoder) {
+                self = .betaAppReviewDetail(betaAppReviewDetail)
             } else if let betaGroups = try? BetaGroup(from: decoder) {
                 self = .betaGroups(betaGroups)
-            } else if let betaLicenseAgreements = try? BetaLicenseAgreement(from: decoder) {
-                self = .betaLicenseAgreements(betaLicenseAgreements)
+            } else if let betaLicenseAgreement = try? BetaLicenseAgreement(from: decoder) {
+                self = .betaLicenseAgreement(betaLicenseAgreement)
             } else if let builds = try? Build(from: decoder) {
                 self = .builds(builds)
-            } else if let endUserLicenseAgreements = try? EndUserLicenseAgreement(from: decoder) {
-                self = .endUserLicenseAgreements(endUserLicenseAgreements)
+            } else if let ciProduct = try? CiProduct(from: decoder) {
+                self = .ciProduct(ciProduct)
+            } else if let endUserLicenseAgreement = try? EndUserLicenseAgreement(from: decoder) {
+                self = .endUserLicenseAgreement(endUserLicenseAgreement)
             } else if let gameCenterEnabledVersions = try? GameCenterEnabledVersion(from: decoder) {
                 self = .gameCenterEnabledVersions(gameCenterEnabledVersions)
             } else if let inAppPurchases = try? InAppPurchase(from: decoder) {
                 self = .inAppPurchases(inAppPurchases)
-            } else if let perfPowerMetrics = try? PerfPowerMetric(from: decoder) {
-                self = .perfPowerMetrics(perfPowerMetrics)
             } else if let preReleaseVersions = try? PrereleaseVersion(from: decoder) {
                 self = .preReleaseVersions(preReleaseVersions)
+            } else if let prices = try? AppPrice(from: decoder) {
+                self = .prices(prices)
             } else if let territories = try? Territory(from: decoder) {
                 self = .territories(territories)
             } else {
@@ -84,29 +84,29 @@ public struct AppsResponse: Codable, PagedResponse {
                 try value.encode(to: encoder)
             case let .appPreOrders(value):
                 try value.encode(to: encoder)
-            case let .appPrices(value):
-                try value.encode(to: encoder)
             case let .appStoreVersions(value):
                 try value.encode(to: encoder)
             case let .betaAppLocalizations(value):
                 try value.encode(to: encoder)
-            case let .betaAppReviewDetails(value):
+            case let .betaAppReviewDetail(value):
                 try value.encode(to: encoder)
             case let .betaGroups(value):
                 try value.encode(to: encoder)
-            case let .betaLicenseAgreements(value):
+            case let .betaLicenseAgreement(value):
                 try value.encode(to: encoder)
             case let .builds(value):
                 try value.encode(to: encoder)
-            case let .endUserLicenseAgreements(value):
+            case let .ciProduct(value):
+                try value.encode(to: encoder)
+            case let .endUserLicenseAgreement(value):
                 try value.encode(to: encoder)
             case let .gameCenterEnabledVersions(value):
                 try value.encode(to: encoder)
             case let .inAppPurchases(value):
                 try value.encode(to: encoder)
-            case let .perfPowerMetrics(value):
-                try value.encode(to: encoder)
             case let .preReleaseVersions(value):
+                try value.encode(to: encoder)
+            case let .prices(value):
                 try value.encode(to: encoder)
             case let .territories(value):
                 try value.encode(to: encoder)
@@ -120,18 +120,18 @@ public struct AppsResponse: Codable, PagedResponse {
         private enum TypeKeys: String, Codable {
             case appInfos
             case appPreOrders
-            case appPrices
             case appStoreVersions
             case betaAppLocalizations
-            case betaAppReviewDetails
+            case betaAppReviewDetail
             case betaGroups
-            case betaLicenseAgreements
+            case betaLicenseAgreement
             case builds
-            case endUserLicenseAgreements
+            case ciProduct
+            case endUserLicenseAgreement
             case gameCenterEnabledVersions
             case inAppPurchases
-            case perfPowerMetrics
             case preReleaseVersions
+            case prices
             case territories
         }
     }

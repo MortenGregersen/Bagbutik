@@ -9,11 +9,14 @@ import Foundation
 public struct InAppPurchaseResponse: Codable {
     /// The resource data.
     public let data: InAppPurchase
+    /// The included related resources.
+    public let included: [App]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: InAppPurchase, links: DocumentLinks) {
+    public init(data: InAppPurchase, included: [App]? = nil, links: DocumentLinks) {
         self.data = data
+        self.included = included
         self.links = links
     }
 }

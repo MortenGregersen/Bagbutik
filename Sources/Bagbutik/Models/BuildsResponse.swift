@@ -25,39 +25,33 @@ public struct BuildsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case appEncryptionDeclarations(AppEncryptionDeclaration)
-        case appStoreVersions(AppStoreVersion)
-        case apps(App)
-        case betaAppReviewSubmissions(BetaAppReviewSubmission)
+        case app(App)
+        case appEncryptionDeclaration(AppEncryptionDeclaration)
+        case appStoreVersion(AppStoreVersion)
+        case betaAppReviewSubmission(BetaAppReviewSubmission)
         case betaBuildLocalizations(BetaBuildLocalization)
         case betaTesters(BetaTester)
-        case buildBetaDetails(BuildBetaDetail)
-        case diagnosticSignatures(DiagnosticSignature)
+        case buildBetaDetail(BuildBetaDetail)
         case icons(BuildIcon)
-        case perfPowerMetrics(PerfPowerMetric)
         case preReleaseVersions(PrereleaseVersion)
 
         public init(from decoder: Decoder) throws {
-            if let appEncryptionDeclarations = try? AppEncryptionDeclaration(from: decoder) {
-                self = .appEncryptionDeclarations(appEncryptionDeclarations)
-            } else if let appStoreVersions = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersions(appStoreVersions)
-            } else if let apps = try? App(from: decoder) {
-                self = .apps(apps)
-            } else if let betaAppReviewSubmissions = try? BetaAppReviewSubmission(from: decoder) {
-                self = .betaAppReviewSubmissions(betaAppReviewSubmissions)
+            if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let appEncryptionDeclaration = try? AppEncryptionDeclaration(from: decoder) {
+                self = .appEncryptionDeclaration(appEncryptionDeclaration)
+            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
+                self = .appStoreVersion(appStoreVersion)
+            } else if let betaAppReviewSubmission = try? BetaAppReviewSubmission(from: decoder) {
+                self = .betaAppReviewSubmission(betaAppReviewSubmission)
             } else if let betaBuildLocalizations = try? BetaBuildLocalization(from: decoder) {
                 self = .betaBuildLocalizations(betaBuildLocalizations)
             } else if let betaTesters = try? BetaTester(from: decoder) {
                 self = .betaTesters(betaTesters)
-            } else if let buildBetaDetails = try? BuildBetaDetail(from: decoder) {
-                self = .buildBetaDetails(buildBetaDetails)
-            } else if let diagnosticSignatures = try? DiagnosticSignature(from: decoder) {
-                self = .diagnosticSignatures(diagnosticSignatures)
+            } else if let buildBetaDetail = try? BuildBetaDetail(from: decoder) {
+                self = .buildBetaDetail(buildBetaDetail)
             } else if let icons = try? BuildIcon(from: decoder) {
                 self = .icons(icons)
-            } else if let perfPowerMetrics = try? PerfPowerMetric(from: decoder) {
-                self = .perfPowerMetrics(perfPowerMetrics)
             } else if let preReleaseVersions = try? PrereleaseVersion(from: decoder) {
                 self = .preReleaseVersions(preReleaseVersions)
             } else {
@@ -68,25 +62,21 @@ public struct BuildsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .appEncryptionDeclarations(value):
+            case let .app(value):
                 try value.encode(to: encoder)
-            case let .appStoreVersions(value):
+            case let .appEncryptionDeclaration(value):
                 try value.encode(to: encoder)
-            case let .apps(value):
+            case let .appStoreVersion(value):
                 try value.encode(to: encoder)
-            case let .betaAppReviewSubmissions(value):
+            case let .betaAppReviewSubmission(value):
                 try value.encode(to: encoder)
             case let .betaBuildLocalizations(value):
                 try value.encode(to: encoder)
             case let .betaTesters(value):
                 try value.encode(to: encoder)
-            case let .buildBetaDetails(value):
-                try value.encode(to: encoder)
-            case let .diagnosticSignatures(value):
+            case let .buildBetaDetail(value):
                 try value.encode(to: encoder)
             case let .icons(value):
-                try value.encode(to: encoder)
-            case let .perfPowerMetrics(value):
                 try value.encode(to: encoder)
             case let .preReleaseVersions(value):
                 try value.encode(to: encoder)
@@ -98,16 +88,14 @@ public struct BuildsResponse: Codable, PagedResponse {
         }
 
         private enum TypeKeys: String, Codable {
-            case appEncryptionDeclarations
-            case appStoreVersions
-            case apps
-            case betaAppReviewSubmissions
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaTesters
-            case buildBetaDetails
-            case diagnosticSignatures
+            case buildBetaDetail
             case icons
-            case perfPowerMetrics
             case preReleaseVersions
         }
     }

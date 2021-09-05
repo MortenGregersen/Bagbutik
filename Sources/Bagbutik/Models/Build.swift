@@ -60,6 +60,7 @@ public struct Build: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/build/attributes>
      */
     public struct Attributes: Codable {
+        public let buildAudienceType: BuildAudienceType?
         /// The date and time the build will auto-expire and no longer be available for testing.
         public let expirationDate: Date?
         /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
@@ -77,7 +78,8 @@ public struct Build: Codable {
         /// The version number of the uploaded build.
         public let version: String?
 
-        public init(expirationDate: Date? = nil, expired: Bool? = nil, iconAssetToken: ImageAsset? = nil, minOsVersion: String? = nil, processingState: ProcessingState? = nil, uploadedDate: Date? = nil, usesNonExemptEncryption: Bool? = nil, version: String? = nil) {
+        public init(buildAudienceType: BuildAudienceType? = nil, expirationDate: Date? = nil, expired: Bool? = nil, iconAssetToken: ImageAsset? = nil, minOsVersion: String? = nil, processingState: ProcessingState? = nil, uploadedDate: Date? = nil, usesNonExemptEncryption: Bool? = nil, version: String? = nil) {
+            self.buildAudienceType = buildAudienceType
             self.expirationDate = expirationDate
             self.expired = expired
             self.iconAssetToken = iconAssetToken

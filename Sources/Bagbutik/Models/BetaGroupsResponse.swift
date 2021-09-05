@@ -25,13 +25,13 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case apps(App)
+        case app(App)
         case betaTesters(BetaTester)
         case builds(Build)
 
         public init(from decoder: Decoder) throws {
-            if let apps = try? App(from: decoder) {
-                self = .apps(apps)
+            if let app = try? App(from: decoder) {
+                self = .app(app)
             } else if let betaTesters = try? BetaTester(from: decoder) {
                 self = .betaTesters(betaTesters)
             } else if let builds = try? Build(from: decoder) {
@@ -44,7 +44,7 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .apps(value):
+            case let .app(value):
                 try value.encode(to: encoder)
             case let .betaTesters(value):
                 try value.encode(to: encoder)
@@ -58,7 +58,7 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
         }
 
         private enum TypeKeys: String, Codable {
-            case apps
+            case app
             case betaTesters
             case builds
         }

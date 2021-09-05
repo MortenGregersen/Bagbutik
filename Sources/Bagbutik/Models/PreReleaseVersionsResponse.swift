@@ -25,12 +25,12 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case apps(App)
+        case app(App)
         case builds(Build)
 
         public init(from decoder: Decoder) throws {
-            if let apps = try? App(from: decoder) {
-                self = .apps(apps)
+            if let app = try? App(from: decoder) {
+                self = .app(app)
             } else if let builds = try? Build(from: decoder) {
                 self = .builds(builds)
             } else {
@@ -41,7 +41,7 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .apps(value):
+            case let .app(value):
                 try value.encode(to: encoder)
             case let .builds(value):
                 try value.encode(to: encoder)
@@ -53,7 +53,7 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
         }
 
         private enum TypeKeys: String, Codable {
-            case apps
+            case app
             case builds
         }
     }

@@ -62,9 +62,11 @@ public struct BetaAppReviewSubmission: Codable {
     public struct Attributes: Codable {
         /// A state that indicates the current status of the beta app review submission.
         public let betaReviewState: BetaReviewState?
+        public let submittedDate: Date?
 
-        public init(betaReviewState: BetaReviewState? = nil) {
+        public init(betaReviewState: BetaReviewState? = nil, submittedDate: Date? = nil) {
             self.betaReviewState = betaReviewState
+            self.submittedDate = submittedDate
         }
     }
 

@@ -10,13 +10,16 @@ public struct InAppPurchasesResponse: Codable, PagedResponse {
     public typealias Data = InAppPurchase
     /// The resource data.
     public let data: [InAppPurchase]
+    /// The included related resources.
+    public let included: [App]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
     public let meta: PagingInformation?
 
-    public init(data: [InAppPurchase], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [InAppPurchase], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
+        self.included = included
         self.links = links
         self.meta = meta
     }

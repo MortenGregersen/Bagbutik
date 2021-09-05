@@ -9,11 +9,14 @@ import Foundation
 public struct AppScreenshotResponse: Codable {
     /// The resource data.
     public let data: AppScreenshot
+    /// The included related resources.
+    public let included: [AppScreenshotSet]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppScreenshot, links: DocumentLinks) {
+    public init(data: AppScreenshot, included: [AppScreenshotSet]? = nil, links: DocumentLinks) {
         self.data = data
+        self.included = included
         self.links = links
     }
 }

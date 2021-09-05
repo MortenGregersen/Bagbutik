@@ -21,13 +21,13 @@ public struct BundleIdResponse: Codable {
     }
 
     public enum Included: Codable {
-        case apps(App)
+        case app(App)
         case bundleIdCapabilities(BundleIdCapability)
         case profiles(Profile)
 
         public init(from decoder: Decoder) throws {
-            if let apps = try? App(from: decoder) {
-                self = .apps(apps)
+            if let app = try? App(from: decoder) {
+                self = .app(app)
             } else if let bundleIdCapabilities = try? BundleIdCapability(from: decoder) {
                 self = .bundleIdCapabilities(bundleIdCapabilities)
             } else if let profiles = try? Profile(from: decoder) {
@@ -40,7 +40,7 @@ public struct BundleIdResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .apps(value):
+            case let .app(value):
                 try value.encode(to: encoder)
             case let .bundleIdCapabilities(value):
                 try value.encode(to: encoder)
@@ -54,7 +54,7 @@ public struct BundleIdResponse: Codable {
         }
 
         private enum TypeKeys: String, Codable {
-            case apps
+            case app
             case bundleIdCapabilities
             case profiles
         }

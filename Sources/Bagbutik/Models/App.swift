@@ -103,6 +103,7 @@ public struct App: Codable {
         public let betaGroups: BetaGroups?
         public let betaLicenseAgreement: BetaLicenseAgreement?
         public let builds: Builds?
+        public let ciProduct: CiProduct?
         public let endUserLicenseAgreement: EndUserLicenseAgreement?
         public let gameCenterEnabledVersions: GameCenterEnabledVersions?
         public let inAppPurchases: InAppPurchases?
@@ -110,7 +111,7 @@ public struct App: Codable {
         public let preReleaseVersions: PreReleaseVersions?
         public let prices: Prices?
 
-        public init(appInfos: AppInfos? = nil, appStoreVersions: AppStoreVersions? = nil, availableTerritories: AvailableTerritories? = nil, betaAppLocalizations: BetaAppLocalizations? = nil, betaAppReviewDetail: BetaAppReviewDetail? = nil, betaGroups: BetaGroups? = nil, betaLicenseAgreement: BetaLicenseAgreement? = nil, builds: Builds? = nil, endUserLicenseAgreement: EndUserLicenseAgreement? = nil, gameCenterEnabledVersions: GameCenterEnabledVersions? = nil, inAppPurchases: InAppPurchases? = nil, preOrder: PreOrder? = nil, preReleaseVersions: PreReleaseVersions? = nil, prices: Prices? = nil) {
+        public init(appInfos: AppInfos? = nil, appStoreVersions: AppStoreVersions? = nil, availableTerritories: AvailableTerritories? = nil, betaAppLocalizations: BetaAppLocalizations? = nil, betaAppReviewDetail: BetaAppReviewDetail? = nil, betaGroups: BetaGroups? = nil, betaLicenseAgreement: BetaLicenseAgreement? = nil, builds: Builds? = nil, ciProduct: CiProduct? = nil, endUserLicenseAgreement: EndUserLicenseAgreement? = nil, gameCenterEnabledVersions: GameCenterEnabledVersions? = nil, inAppPurchases: InAppPurchases? = nil, preOrder: PreOrder? = nil, preReleaseVersions: PreReleaseVersions? = nil, prices: Prices? = nil) {
             self.appInfos = appInfos
             self.appStoreVersions = appStoreVersions
             self.availableTerritories = availableTerritories
@@ -119,6 +120,7 @@ public struct App: Codable {
             self.betaGroups = betaGroups
             self.betaLicenseAgreement = betaLicenseAgreement
             self.builds = builds
+            self.ciProduct = ciProduct
             self.endUserLicenseAgreement = endUserLicenseAgreement
             self.gameCenterEnabledVersions = gameCenterEnabledVersions
             self.inAppPurchases = inAppPurchases
@@ -707,6 +709,78 @@ public struct App: Codable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public let related: String?
+                /// The relationship's self-link
+                public let `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct>
+         */
+        public struct CiProduct: Codable {
+            /// The type and ID of a related resource.
+            public let data: Data?
+            /// The links to the related data and the relationship's self-link.
+            public let links: Links?
+
+            public init(data: Data? = nil, links: Links? = nil) {
+                self.data = data
+                self.links = links
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "ciProducts" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/links>
              */
             public struct Links: Codable {
                 /// The link to the related data.

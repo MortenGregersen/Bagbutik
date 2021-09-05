@@ -63,6 +63,7 @@ public struct BetaGroup: Codable {
         /// The creation date of the beta group.
         public let createdDate: Date?
         public let feedbackEnabled: Bool?
+        public let hasAccessToAllBuilds: Bool?
         /// A Boolean value that indicates whether the group is internal. Only existing users of App Store Connect may be added for internal beta testing.
         public let isInternalGroup: Bool?
         /// The name for the beta group.
@@ -78,9 +79,10 @@ public struct BetaGroup: Codable {
         /// A Boolean value that limits the number of testers who can join the beta group using the public link.
         public let publicLinkLimitEnabled: Bool?
 
-        public init(createdDate: Date? = nil, feedbackEnabled: Bool? = nil, isInternalGroup: Bool? = nil, name: String? = nil, publicLink: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkId: String? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+        public init(createdDate: Date? = nil, feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, isInternalGroup: Bool? = nil, name: String? = nil, publicLink: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkId: String? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
             self.createdDate = createdDate
             self.feedbackEnabled = feedbackEnabled
+            self.hasAccessToAllBuilds = hasAccessToAllBuilds
             self.isInternalGroup = isInternalGroup
             self.name = name
             self.publicLink = publicLink

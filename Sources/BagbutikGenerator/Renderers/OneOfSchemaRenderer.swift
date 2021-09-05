@@ -84,7 +84,7 @@ public class OneOfSchemaRenderer {
     internal static func oneOfContext(for oneOfSchema: OneOfSchema, named name: String, includesFixUps: [String] = []) throws -> [String: Any] {
         let optionCases: [EnumCase]
         if oneOfSchema.options.count == 1, oneOfSchema.options[0].schemaName == "AppCategory" {
-            let relevantFixUps = includesFixUps.filter { $0 != "appCategories" }
+            let relevantFixUps = Set(includesFixUps.filter { $0 != "appCategories" && $0 != "platforms" })
             // AppCategoriesResponse and AppCategoryResponse has two cases but they are the same type
             optionCases = relevantFixUps.map { fixUp in
                 EnumCase(id: fixUp, value: oneOfSchema.options[0].schemaName)
@@ -108,8 +108,8 @@ public class OneOfSchemaRenderer {
                 EnumCase(id: option.schemaName.lowercasedFirstLetter(), value: option.schemaName)
             }
         } else if includesFixUps.contains("destinationBranch"), includesFixUps.contains("sourceBranchOrTag") {
-            let cases = [EnumCase(id: "destinationBranches", value: "ScmGitReference"),
-                         EnumCase(id: "sourceBranchOrTags", value: "ScmGitReference")]
+            let cases = [EnumCase(id: "destinationBranch", value: "ScmGitReference"),
+                         EnumCase(id: "sourceBranchOrTag", value: "ScmGitReference")]
             optionCases = [cases, try mapOptionCases(for: oneOfSchema.options.filter { $0.schemaName != "ScmGitReference" }, includesFixUps: includesFixUps)].flatMap { $0 }
         } else if includesFixUps.contains("primaryRepositories") {
             optionCases = [

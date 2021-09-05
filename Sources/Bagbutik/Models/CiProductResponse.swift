@@ -1,0 +1,62 @@
+import Foundation
+
+/**
+ A response that contains a single Products resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciproductresponse>
+ */
+public struct CiProductResponse: Codable {
+    /// The resource data.
+    public let data: CiProduct
+    /// The included related resources.
+    public let included: [Included]?
+    /// Navigational links that include the self-link.
+    public let links: DocumentLinks
+
+    public init(data: CiProduct, included: [Included]? = nil, links: DocumentLinks) {
+        self.data = data
+        self.included = included
+        self.links = links
+    }
+
+    public enum Included: Codable {
+        case app(App)
+        case bundleId(BundleId)
+        case primaryRepositories(ScmRepository)
+
+        public init(from decoder: Decoder) throws {
+            if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let bundleId = try? BundleId(from: decoder) {
+                self = .bundleId(bundleId)
+            } else if let primaryRepositories = try? ScmRepository(from: decoder) {
+                self = .primaryRepositories(primaryRepositories)
+            } else {
+                throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
+                                                                                      debugDescription: "Unknown Included"))
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            switch self {
+            case let .app(value):
+                try value.encode(to: encoder)
+            case let .bundleId(value):
+                try value.encode(to: encoder)
+            case let .primaryRepositories(value):
+                try value.encode(to: encoder)
+            }
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case type
+        }
+
+        private enum TypeKeys: String, Codable {
+            case app
+            case bundleId
+            case primaryRepositories
+        }
+    }
+}

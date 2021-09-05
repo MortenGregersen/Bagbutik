@@ -46,46 +46,14 @@ public struct ErrorResponse: Codable {
         }
 
         public enum Source: Codable {
-            case jsonPointer(JsonPointer)
-            case parameter(Parameter)
-
-            /**
-             An object that contains the JSON pointer that indicates the location of the error.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors/jsonpointer>
-
-             In some cases, the JSON pointer may indicate an element that isn't in the request entity, but should be. For more information about JSON pointers, see the [RFC 6901](https://tools.ietf.org/html/rfc6901) proposed standards document.
-             */
-            public struct JsonPointer: Codable {
-                /// A JSON pointer that indicates the location in the request entity where the error originates.
-                public let pointer: String?
-
-                public init(pointer: String? = nil) {
-                    self.pointer = pointer
-                }
-            }
-
-            /**
-             An object that contains the query parameter that produced the error.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors/parameter>
-             */
-            public struct Parameter: Codable {
-                /// The query parameter that produced the error.
-                public let parameter: String?
-
-                public init(parameter: String? = nil) {
-                    self.parameter = parameter
-                }
-            }
+            case errorSourceParameter(Parameter)
+            case errorSourcePointer(JsonPointer)
 
             public init(from decoder: Decoder) throws {
-                if let jsonPointer = try? JsonPointer(from: decoder) {
-                    self = .jsonPointer(jsonPointer)
-                } else if let parameter = try? Parameter(from: decoder) {
-                    self = .parameter(parameter)
+                if let errorSourceParameter = try? Parameter(from: decoder) {
+                    self = .errorSourceParameter(errorSourceParameter)
+                } else if let errorSourcePointer = try? JsonPointer(from: decoder) {
+                    self = .errorSourcePointer(errorSourcePointer)
                 } else {
                     throw DecodingError.typeMismatch(Source.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                         debugDescription: "Unknown Source"))
@@ -94,9 +62,9 @@ public struct ErrorResponse: Codable {
 
             public func encode(to encoder: Encoder) throws {
                 switch self {
-                case let .jsonPointer(value):
+                case let .errorSourceParameter(value):
                     try value.encode(to: encoder)
-                case let .parameter(value):
+                case let .errorSourcePointer(value):
                     try value.encode(to: encoder)
                 }
             }
@@ -106,8 +74,8 @@ public struct ErrorResponse: Codable {
             }
 
             private enum TypeKeys: String, Codable {
-                case jsonPointer
-                case parameter
+                case errorSourceParameter
+                case errorSourcePointer
             }
         }
     }
