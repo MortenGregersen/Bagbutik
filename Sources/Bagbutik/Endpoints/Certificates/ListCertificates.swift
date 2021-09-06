@@ -68,6 +68,8 @@ public enum ListCertificates {
             case developerIdApplication = "DEVELOPER_ID_APPLICATION"
             case development = "DEVELOPMENT"
             case distribution = "DISTRIBUTION"
+            case passTypeId = "PASS_TYPE_ID"
+            case passTypeIdWithNfc = "PASS_TYPE_ID_WITH_NFC"
         }
     }
 

@@ -53,6 +53,7 @@ public enum ListBetaGroups {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -73,6 +74,7 @@ public enum ListBetaGroups {
             case builds
             case createdDate
             case feedbackEnabled
+            case hasAccessToAllBuilds
             case isInternalGroup
             case name
             case publicLink
@@ -99,6 +101,7 @@ public enum ListBetaGroups {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate

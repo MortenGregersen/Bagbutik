@@ -42,6 +42,7 @@ public enum GetBetaAppLocalization {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions

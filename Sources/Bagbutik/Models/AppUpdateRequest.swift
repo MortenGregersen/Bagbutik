@@ -9,9 +9,12 @@ import Foundation
 public struct AppUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
+    /// The included related resources.
+    public let included: [AppPriceInlineCreate]?
 
-    public init(data: Data) {
+    public init(data: Data, included: [AppPriceInlineCreate]? = nil) {
         self.data = data
+        self.included = included
     }
 
     /**

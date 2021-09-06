@@ -10,13 +10,16 @@ public struct AppStoreReviewAttachmentsResponse: Codable, PagedResponse {
     public typealias Data = AppStoreReviewAttachment
     /// The resource data.
     public let data: [AppStoreReviewAttachment]
+    /// The included related resources.
+    public let included: [AppStoreReviewDetail]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
     public let meta: PagingInformation?
 
-    public init(data: [AppStoreReviewAttachment], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppStoreReviewAttachment], included: [AppStoreReviewDetail]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
+        self.included = included
         self.links = links
         self.meta = meta
     }

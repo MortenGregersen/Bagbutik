@@ -32,6 +32,7 @@ public enum GetAppInfoLocalization {
             case appInfo
             case locale
             case name
+            case privacyChoicesUrl
             case privacyPolicyText
             case privacyPolicyUrl
             case subtitle

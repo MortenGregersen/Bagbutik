@@ -51,6 +51,7 @@ public enum ListPreReleaseVersions {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -72,6 +73,7 @@ public enum ListPreReleaseVersions {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate
@@ -108,6 +110,8 @@ public enum ListPreReleaseVersions {
         case builds_expired([String])
         /// Filter by attribute 'builds.processingState'
         case builds_processingState([BuildsProcessingState])
+        /// Filter by attribute 'builds.version'
+        case builds_version([String])
         /// Filter by attribute 'platform'
         case platform([Platform])
         /// Filter by attribute 'version'

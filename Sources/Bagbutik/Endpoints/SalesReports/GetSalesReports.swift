@@ -44,7 +44,6 @@ public enum GetSalesReports {
         public enum ReportSubType: String, ParameterValue, CaseIterable {
             case summary = "SUMMARY"
             case detailed = "DETAILED"
-            case optIn = "OPT_IN"
         }
 
         public enum ReportType: String, ParameterValue, CaseIterable {

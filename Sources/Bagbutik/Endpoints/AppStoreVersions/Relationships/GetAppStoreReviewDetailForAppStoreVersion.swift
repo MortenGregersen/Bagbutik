@@ -9,14 +9,17 @@ public extension Request {
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
+      - Parameter limit: Maximum number of related appStoreReviewAttachments returned (when they are included) - maximum 50
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func getAppStoreReviewDetailForAppStoreVersion(id: String,
                                                           fields: [GetAppStoreReviewDetailForAppStoreVersion.Field]? = nil,
-                                                          includes: [GetAppStoreReviewDetailForAppStoreVersion.Include]? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse>
+                                                          includes: [GetAppStoreReviewDetailForAppStoreVersion.Include]? = nil,
+                                                          limit: Int? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreVersions/\(id)/appStoreReviewDetail", method: .get, parameters: .init(fields: fields,
-                                                                                                              includes: includes))
+                                                                                                              includes: includes,
+                                                                                                              limit: limit))
     }
 }
 
@@ -29,8 +32,6 @@ public enum GetAppStoreReviewDetailForAppStoreVersion {
         case appStoreReviewAttachments([AppStoreReviewAttachments])
         /// The fields to include for returned resources of type appStoreReviewDetails
         case appStoreReviewDetails([AppStoreReviewDetails])
-        /// The fields to include for returned resources of type appStoreVersions
-        case appStoreVersions([AppStoreVersions])
 
         public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
             case appStoreReviewDetail
@@ -54,33 +55,12 @@ public enum GetAppStoreReviewDetailForAppStoreVersion {
             case demoAccountRequired
             case notes
         }
-
-        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
-            case ageRatingDeclaration
-            case app
-            case appStoreReviewDetail
-            case appStoreState
-            case appStoreVersionLocalizations
-            case appStoreVersionPhasedRelease
-            case appStoreVersionSubmission
-            case build
-            case copyright
-            case createdDate
-            case downloadable
-            case earliestReleaseDate
-            case idfaDeclaration
-            case platform
-            case releaseType
-            case routingAppCoverage
-            case usesIdfa
-            case versionString
-        }
     }
 
     /**
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appStoreReviewAttachments, appStoreVersion
+        case appStoreReviewAttachments
     }
 }

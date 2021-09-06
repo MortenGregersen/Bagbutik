@@ -10,16 +10,13 @@ public struct DiagnosticSignaturesResponse: Codable, PagedResponse {
     public typealias Data = DiagnosticSignature
     /// The resource data.
     public let data: [DiagnosticSignature]
-    /// The included related resources.
-    public let included: [DiagnosticLog]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
     public let meta: PagingInformation?
 
-    public init(data: [DiagnosticSignature], included: [DiagnosticLog]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [DiagnosticSignature], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
-        self.included = included
         self.links = links
         self.meta = meta
     }

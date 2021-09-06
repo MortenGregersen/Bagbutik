@@ -25,32 +25,35 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case ageRatingDeclarations(AgeRatingDeclaration)
-        case appStoreReviewDetails(AppStoreReviewDetail)
+        case ageRatingDeclaration(AgeRatingDeclaration)
+        case app(App)
+        case appStoreReviewDetail(AppStoreReviewDetail)
         case appStoreVersionLocalizations(AppStoreVersionLocalization)
-        case appStoreVersionPhasedReleases(AppStoreVersionPhasedRelease)
-        case appStoreVersionSubmissions(AppStoreVersionSubmission)
-        case builds(Build)
-        case idfaDeclarations(IdfaDeclaration)
-        case routingAppCoverages(RoutingAppCoverage)
+        case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
+        case appStoreVersionSubmission(AppStoreVersionSubmission)
+        case build(Build)
+        case idfaDeclaration(IdfaDeclaration)
+        case routingAppCoverage(RoutingAppCoverage)
 
         public init(from decoder: Decoder) throws {
-            if let ageRatingDeclarations = try? AgeRatingDeclaration(from: decoder) {
-                self = .ageRatingDeclarations(ageRatingDeclarations)
-            } else if let appStoreReviewDetails = try? AppStoreReviewDetail(from: decoder) {
-                self = .appStoreReviewDetails(appStoreReviewDetails)
+            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
+                self = .ageRatingDeclaration(ageRatingDeclaration)
+            } else if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
+                self = .appStoreReviewDetail(appStoreReviewDetail)
             } else if let appStoreVersionLocalizations = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalizations(appStoreVersionLocalizations)
-            } else if let appStoreVersionPhasedReleases = try? AppStoreVersionPhasedRelease(from: decoder) {
-                self = .appStoreVersionPhasedReleases(appStoreVersionPhasedReleases)
-            } else if let appStoreVersionSubmissions = try? AppStoreVersionSubmission(from: decoder) {
-                self = .appStoreVersionSubmissions(appStoreVersionSubmissions)
-            } else if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
-            } else if let idfaDeclarations = try? IdfaDeclaration(from: decoder) {
-                self = .idfaDeclarations(idfaDeclarations)
-            } else if let routingAppCoverages = try? RoutingAppCoverage(from: decoder) {
-                self = .routingAppCoverages(routingAppCoverages)
+            } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
+                self = .appStoreVersionPhasedRelease(appStoreVersionPhasedRelease)
+            } else if let appStoreVersionSubmission = try? AppStoreVersionSubmission(from: decoder) {
+                self = .appStoreVersionSubmission(appStoreVersionSubmission)
+            } else if let build = try? Build(from: decoder) {
+                self = .build(build)
+            } else if let idfaDeclaration = try? IdfaDeclaration(from: decoder) {
+                self = .idfaDeclaration(idfaDeclaration)
+            } else if let routingAppCoverage = try? RoutingAppCoverage(from: decoder) {
+                self = .routingAppCoverage(routingAppCoverage)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -59,21 +62,23 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .ageRatingDeclarations(value):
+            case let .ageRatingDeclaration(value):
                 try value.encode(to: encoder)
-            case let .appStoreReviewDetails(value):
+            case let .app(value):
+                try value.encode(to: encoder)
+            case let .appStoreReviewDetail(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalizations(value):
                 try value.encode(to: encoder)
-            case let .appStoreVersionPhasedReleases(value):
+            case let .appStoreVersionPhasedRelease(value):
                 try value.encode(to: encoder)
-            case let .appStoreVersionSubmissions(value):
+            case let .appStoreVersionSubmission(value):
                 try value.encode(to: encoder)
-            case let .builds(value):
+            case let .build(value):
                 try value.encode(to: encoder)
-            case let .idfaDeclarations(value):
+            case let .idfaDeclaration(value):
                 try value.encode(to: encoder)
-            case let .routingAppCoverages(value):
+            case let .routingAppCoverage(value):
                 try value.encode(to: encoder)
             }
         }
@@ -83,14 +88,15 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         }
 
         private enum TypeKeys: String, Codable {
-            case ageRatingDeclarations
-            case appStoreReviewDetails
+            case ageRatingDeclaration
+            case app
+            case appStoreReviewDetail
             case appStoreVersionLocalizations
-            case appStoreVersionPhasedReleases
-            case appStoreVersionSubmissions
-            case builds
-            case idfaDeclarations
-            case routingAppCoverages
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case idfaDeclaration
+            case routingAppCoverage
         }
     }
 }

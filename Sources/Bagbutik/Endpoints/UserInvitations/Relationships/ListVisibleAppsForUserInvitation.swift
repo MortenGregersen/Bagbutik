@@ -40,6 +40,7 @@ public enum ListVisibleAppsForUserInvitation {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions

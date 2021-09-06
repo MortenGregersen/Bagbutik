@@ -53,6 +53,7 @@ public enum ListBetaTesters {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -73,6 +74,7 @@ public enum ListBetaTesters {
             case builds
             case createdDate
             case feedbackEnabled
+            case hasAccessToAllBuilds
             case isInternalGroup
             case name
             case publicLink
@@ -99,6 +101,7 @@ public enum ListBetaTesters {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate
@@ -130,6 +133,8 @@ public enum ListBetaTesters {
         case email([String])
         /// Filter by attribute 'firstName'
         case firstName([String])
+        /// Filter by id(s)
+        case id([String])
         /// Filter by attribute 'inviteType'
         case inviteType([InviteType])
         /// Filter by attribute 'lastName'

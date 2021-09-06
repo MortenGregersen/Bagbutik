@@ -34,6 +34,7 @@ public enum ListBetaGroupsForApp {
             case builds
             case createdDate
             case feedbackEnabled
+            case hasAccessToAllBuilds
             case isInternalGroup
             case name
             case publicLink

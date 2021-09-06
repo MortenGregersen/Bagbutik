@@ -9,11 +9,14 @@ import Foundation
 public struct AppStoreVersionSubmissionResponse: Codable {
     /// The resource data.
     public let data: AppStoreVersionSubmission
+    /// The included related resources.
+    public let included: [AppStoreVersion]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersionSubmission, links: DocumentLinks) {
+    public init(data: AppStoreVersionSubmission, included: [AppStoreVersion]? = nil, links: DocumentLinks) {
         self.data = data
+        self.included = included
         self.links = links
     }
 }

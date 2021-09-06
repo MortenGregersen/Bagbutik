@@ -44,12 +44,15 @@ public enum GetAppStoreVersion {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
         /// The fields to include for returned resources of type idfaDeclarations
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case idfaDeclarations([IdfaDeclarations])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
             case gamblingAndContests
             case gamblingSimulated
             case horrorOrFearThemes
@@ -57,6 +60,7 @@ public enum GetAppStoreVersion {
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
+            case seventeenPlus
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess
@@ -131,6 +135,7 @@ public enum GetAppStoreVersion {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate

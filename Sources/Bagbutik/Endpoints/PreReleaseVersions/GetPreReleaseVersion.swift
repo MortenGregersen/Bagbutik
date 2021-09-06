@@ -47,6 +47,7 @@ public enum GetPreReleaseVersion {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -68,6 +69,7 @@ public enum GetPreReleaseVersion {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate

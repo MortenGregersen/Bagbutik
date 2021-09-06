@@ -11,7 +11,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
-      - Parameter limit: Maximum resources per page - maximum 200
+      - Parameter limits: Number of resources to return
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listCompatibleVersionsForGameCenterEnabledVersion(id: String,
@@ -19,13 +19,13 @@ public extension Request {
                                                                   filters: [ListCompatibleVersionsForGameCenterEnabledVersion.Filter]? = nil,
                                                                   includes: [ListCompatibleVersionsForGameCenterEnabledVersion.Include]? = nil,
                                                                   sorts: [ListCompatibleVersionsForGameCenterEnabledVersion.Sort]? = nil,
-                                                                  limit: Int? = nil) -> Request<GameCenterEnabledVersionsResponse, ErrorResponse>
+                                                                  limits: [ListCompatibleVersionsForGameCenterEnabledVersion.Limit]? = nil) -> Request<GameCenterEnabledVersionsResponse, ErrorResponse>
     {
         return .init(path: "/v1/gameCenterEnabledVersions/\(id)/compatibleVersions", method: .get, parameters: .init(fields: fields,
                                                                                                                      filters: filters,
                                                                                                                      includes: includes,
                                                                                                                      sorts: sorts,
-                                                                                                                     limit: limit))
+                                                                                                                     limits: limits))
     }
 }
 
@@ -34,36 +34,8 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersion {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type apps
-        case apps([Apps])
         /// The fields to include for returned resources of type gameCenterEnabledVersions
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
-
-        public enum Apps: String, ParameterValue, CaseIterable {
-            case appInfos
-            case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
-            case betaAppLocalizations
-            case betaAppReviewDetail
-            case betaGroups
-            case betaLicenseAgreement
-            case betaTesters
-            case builds
-            case bundleId
-            case contentRightsDeclaration
-            case endUserLicenseAgreement
-            case gameCenterEnabledVersions
-            case inAppPurchases
-            case isOrEverWasMadeForKids
-            case name
-            case perfPowerMetrics
-            case preOrder
-            case preReleaseVersions
-            case prices
-            case primaryLocale
-            case sku
-        }
 
         public enum GameCenterEnabledVersions: String, ParameterValue, CaseIterable {
             case app
@@ -102,7 +74,7 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersion {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, compatibleVersions
+        case compatibleVersions
     }
 
     /**
@@ -111,5 +83,15 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersion {
     public enum Sort: String, SortParameter {
         case versionStringAscending = "versionString"
         case versionStringDescending = "-versionString"
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
+        /// Maximum number of related compatibleVersions returned (when they are included) - maximum 50
+        case compatibleVersions(Int)
     }
 }

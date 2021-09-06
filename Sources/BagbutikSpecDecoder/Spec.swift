@@ -10,10 +10,18 @@ public struct Spec: Decodable {
     public var includesFixUps: [String: [String]] {
         paths.values.reduce(into: [:]) { result, path in
             path.operations.forEach { operation in
-                let fields = operation.parameters?.compactMap { parameter -> String? in
-                    guard case .fields(let name, _, _, _) = parameter else { return nil }
-                    return name
-                } ?? []
+                let fields = operation.parameters?.compactMap { parameter -> [String]? in
+                    guard case .fields(let paramName, let type, _, _) = parameter else { return nil }
+                    let paramNameOverrides = ["appPrices": "prices", "ciBuildRuns": "buildRuns", "ciWorkflows": "workflows"]
+                    let name = paramNameOverrides[paramName] ?? paramName
+                    if let lastSlashIndex = path.path.lastIndex(of: "/"),
+                       name == path.path.suffix(from: path.path.index(after: lastSlashIndex)),
+                       case .enum(_, let values) = type
+                    {
+                        return values
+                    }
+                    return [name]
+                }.flatMap { $0 } ?? []
                 let includesValues = operation.parameters?.compactMap { parameter -> [String]? in
                     guard case .include(let type) = parameter,
                           case .enum(_, let values) = type else { return nil }

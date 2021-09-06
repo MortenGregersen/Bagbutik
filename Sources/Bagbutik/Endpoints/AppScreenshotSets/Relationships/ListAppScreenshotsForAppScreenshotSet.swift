@@ -8,17 +8,14 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppScreenshotsForAppScreenshotSet(id: String,
                                                       fields: [ListAppScreenshotsForAppScreenshotSet.Field]? = nil,
-                                                      includes: [ListAppScreenshotsForAppScreenshotSet.Include]? = nil,
                                                       limit: Int? = nil) -> Request<AppScreenshotsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appScreenshotSets/\(id)/appScreenshots", method: .get, parameters: .init(fields: fields,
-                                                                                                         includes: includes,
                                                                                                          limit: limit))
     }
 }
@@ -28,16 +25,8 @@ public enum ListAppScreenshotsForAppScreenshotSet {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type appScreenshotSets
-        case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
-
-        public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
-            case appScreenshots
-            case appStoreVersionLocalization
-            case screenshotDisplayType
-        }
 
         public enum AppScreenshots: String, ParameterValue, CaseIterable {
             case appScreenshotSet
@@ -51,12 +40,5 @@ public enum ListAppScreenshotsForAppScreenshotSet {
             case uploadOperations
             case uploaded
         }
-    }
-
-    /**
-     Relationship data to include in the response.
-     */
-    public enum Include: String, IncludeParameter {
-        case appScreenshotSet
     }
 }

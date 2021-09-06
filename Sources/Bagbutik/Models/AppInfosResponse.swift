@@ -25,7 +25,9 @@ public struct AppInfosResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case appInfoLocalizations(AppInfoLocalization)
+        case ageRatingDeclaration(AgeRatingDeclaration)
+        case app(App)
+        case appInfoLocalization(AppInfoLocalization)
         case primaryCategory(AppCategory)
         case primarySubcategoryOne(AppCategory)
         case primarySubcategoryTwo(AppCategory)
@@ -34,8 +36,12 @@ public struct AppInfosResponse: Codable, PagedResponse {
         case secondarySubcategoryTwo(AppCategory)
 
         public init(from decoder: Decoder) throws {
-            if let appInfoLocalizations = try? AppInfoLocalization(from: decoder) {
-                self = .appInfoLocalizations(appInfoLocalizations)
+            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
+                self = .ageRatingDeclaration(ageRatingDeclaration)
+            } else if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let appInfoLocalization = try? AppInfoLocalization(from: decoder) {
+                self = .appInfoLocalization(appInfoLocalization)
             } else if let primaryCategory = try? AppCategory(from: decoder) {
                 self = .primaryCategory(primaryCategory)
             } else if let primarySubcategoryOne = try? AppCategory(from: decoder) {
@@ -56,7 +62,11 @@ public struct AppInfosResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .appInfoLocalizations(value):
+            case let .ageRatingDeclaration(value):
+                try value.encode(to: encoder)
+            case let .app(value):
+                try value.encode(to: encoder)
+            case let .appInfoLocalization(value):
                 try value.encode(to: encoder)
             case let .primaryCategory(value):
                 try value.encode(to: encoder)
@@ -78,7 +88,9 @@ public struct AppInfosResponse: Codable, PagedResponse {
         }
 
         private enum TypeKeys: String, Codable {
-            case appInfoLocalizations
+            case ageRatingDeclaration
+            case app
+            case appInfoLocalization
             case primaryCategory
             case primarySubcategoryOne
             case primarySubcategoryTwo

@@ -9,11 +9,14 @@ import Foundation
 public struct AppInfoLocalizationResponse: Codable {
     /// The resource data.
     public let data: AppInfoLocalization
+    /// The included related resources.
+    public let included: [AppInfo]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppInfoLocalization, links: DocumentLinks) {
+    public init(data: AppInfoLocalization, included: [AppInfo]? = nil, links: DocumentLinks) {
         self.data = data
+        self.included = included
         self.links = links
     }
 }

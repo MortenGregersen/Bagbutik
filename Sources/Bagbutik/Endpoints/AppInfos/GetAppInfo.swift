@@ -67,6 +67,7 @@ public enum GetAppInfo {
             case appInfo
             case locale
             case name
+            case privacyChoicesUrl
             case privacyPolicyText
             case privacyPolicyUrl
             case subtitle

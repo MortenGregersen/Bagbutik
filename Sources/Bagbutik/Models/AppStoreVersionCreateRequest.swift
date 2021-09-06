@@ -93,10 +93,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
+            public let appStoreVersionLocalizations: AppStoreVersionLocalizations?
             public let build: Build?
 
-            public init(app: App, build: Build? = nil) {
+            public init(app: App, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, build: Build? = nil) {
                 self.app = app
+                self.appStoreVersionLocalizations = appStoreVersionLocalizations
                 self.build = build
             }
 
@@ -119,6 +121,51 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     public let id: String
                     /// The resource type.
                     public var type: String { "apps" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
+                }
+            }
+
+            public struct AppStoreVersionLocalizations: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
+                public let data: [Data]?
+
+                public init(data: [Data]? = nil) {
+                    self.data = data
+                }
+
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/appstoreversionlocalizations/data>
+                 */
+                public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
+                    public let id: String
+                    /// The resource type.
+                    public var type: String { "appStoreVersionLocalizations" }
 
                     public init(id: String) {
                         self.id = id
