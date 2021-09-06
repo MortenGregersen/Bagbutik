@@ -24,9 +24,22 @@ final class SpecTests: XCTestCase {
                       successResponseType: "UserVisibleAppsLinkagesResponse",
                       errorResponseType: "ErrorResponse"),
             ]),
+            "/v1/ciProducts/{id}/buildRuns": Path(path: "/v1/ciProducts/{id}/buildRuns", info: .init(mainType: "CiProducts", isRelationship: true), operations: [
+                .init(name: "listBuildRunsForCiProduct",
+                      documentation: .init(title: "List All Xcode Cloud Builds for an Xcode Cloud Product", summary: "List all builds Xcode Cloud performed for a specific product.", url: "https://developer.apple.com"),
+                      method: .get,
+                      parameters: [
+                          .fields(name: "ciBuildRuns", type: .enum(type: "string", values: ["actions", "cancelReason", "completionStatus"]), deprecated: false, documentation: "The fields to include for returned resources of type ciBuildRuns"),
+                      ],
+                      successResponseType: "CiBuildRunsResponse",
+                      errorResponseType: "ErrorResponse"),
+            ]),
         ],
         components: .init(schemas: [:]))
         // Then
-        XCTAssertEqual(spec.includesFixUps, ["UsersResponse": ["name", "DOG", "CAT"]])
+        XCTAssertEqual(spec.includesFixUps, [
+            "UsersResponse": ["name", "DOG", "CAT"],
+            "CiBuildRunsResponse": ["actions", "cancelReason", "completionStatus"],
+        ])
     }
 }
