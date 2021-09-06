@@ -276,6 +276,7 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(try Operation.getName(forId: "users-visibleApps-delete_to_many_relationship"), "deleteVisibleAppsForUser")
         XCTAssertEqual(try Operation.getName(forId: "salesReports-get_collection"), "getSalesReports")
         XCTAssertEqual(try Operation.getName(forId: "financeReports-get_collection"), "getFinanceReports")
+        XCTAssertEqual(try Operation.getName(forId: "ciBuildRuns-create_instance"), "startCiBuildRun")
         XCTAssertThrowsError(try Operation.getName(forId: "invalid-id"))
     }
 

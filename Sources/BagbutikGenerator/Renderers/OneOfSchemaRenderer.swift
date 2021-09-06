@@ -38,13 +38,6 @@ public class OneOfSchemaRenderer {
                 case {{ option.id }}({{ option.value }}){%
                 endfor %}
 
-                {% if subSchemas.count > 0 %}
-                    {% for subSchema in subSchemas %}
-
-                        {{ subSchema|indent }}
-                    {% endfor %}
-                {% endif %}
-
                 public init(from decoder: Decoder) throws {
                     {% for option in options %}
                         {% if forloop.first %}
@@ -125,13 +118,7 @@ public class OneOfSchemaRenderer {
         } else {
             optionCases = try mapOptionCases(for: oneOfSchema.options, includesFixUps: includesFixUps)
         }
-        let subSchemas: [String] = oneOfSchema.options.compactMap { option in
-            if case .objectSchema(let objectSchema) = option {
-                return try! ObjectSchemaRenderer().render(objectSchema: objectSchema)
-            }
-            return nil
-        }
-        return ["name": name, "options": optionCases.sorted { $0.id < $1.id }, "subSchemas": subSchemas]
+        return ["name": name, "options": optionCases.sorted { $0.id < $1.id }]
     }
 
     private static func mapOptionCases(for options: [OneOfOption], includesFixUps: [String] = []) throws -> [EnumCase] {

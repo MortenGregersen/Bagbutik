@@ -104,17 +104,19 @@ final class OneOfSchemaRendererTests: XCTestCase {
         let renderer = OneOfSchemaRenderer()
         let schema = OneOfSchema(options: [.schemaRef("AppInfoLocalization"), .schemaRef("AppCategory")])
         // When
-        let rendered = try renderer.render(name: "Included", oneOfSchema: schema, includesFixUps: ["appInfoLocalizations",
-                                                                                                   "primaryCategory",
-                                                                                                   "primarySubcategoryOne",
-                                                                                                   "primarySubcategoryTwo",
-                                                                                                   "secondaryCategory",
-                                                                                                   "secondarySubcategoryOne",
-                                                                                                   "secondarySubcategoryTwo"])
+        let rendered = try renderer.render(name: "Included",
+                                           oneOfSchema: schema,
+                                           includesFixUps: ["appInfoLocalization",
+                                                            "primaryCategory",
+                                                            "primarySubcategoryOne",
+                                                            "primarySubcategoryTwo",
+                                                            "secondaryCategory",
+                                                            "secondarySubcategoryOne",
+                                                            "secondarySubcategoryTwo"])
         // Then
         XCTAssertEqual(rendered, #"""
         public enum Included: Codable {
-            case appInfoLocalizations(AppInfoLocalization)
+            case appInfoLocalization(AppInfoLocalization)
             case primaryCategory(AppCategory)
             case primarySubcategoryOne(AppCategory)
             case primarySubcategoryTwo(AppCategory)
@@ -123,8 +125,8 @@ final class OneOfSchemaRendererTests: XCTestCase {
             case secondarySubcategoryTwo(AppCategory)
 
             public init(from decoder: Decoder) throws {
-                if let appInfoLocalizations = try? AppInfoLocalization(from: decoder) {
-                    self = .appInfoLocalizations(appInfoLocalizations)
+                if let appInfoLocalization = try? AppInfoLocalization(from: decoder) {
+                    self = .appInfoLocalization(appInfoLocalization)
                 } else if let primaryCategory = try? AppCategory(from: decoder) {
                     self = .primaryCategory(primaryCategory)
                 } else if let primarySubcategoryOne = try? AppCategory(from: decoder) {
@@ -145,7 +147,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
 
             public func encode(to encoder: Encoder) throws {
                 switch self {
-                case let .appInfoLocalizations(value):
+                case let .appInfoLocalization(value):
                     try value.encode(to: encoder)
                 case let .primaryCategory(value):
                     try value.encode(to: encoder)
@@ -167,7 +169,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
             }
 
             private enum TypeKeys: String, Codable {
-                case appInfoLocalizations
+                case appInfoLocalization
                 case primaryCategory
                 case primarySubcategoryOne
                 case primarySubcategoryTwo
@@ -189,14 +191,14 @@ final class OneOfSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public enum Included: Codable {
-            case appPreviewSets(AppPreviewSet)
-            case appScreenshotSets(AppScreenshotSet)
+            case appPreviewSet(AppPreviewSet)
+            case appScreenshotSet(AppScreenshotSet)
 
             public init(from decoder: Decoder) throws {
-                if let appPreviewSets = try? AppPreviewSet(from: decoder) {
-                    self = .appPreviewSets(appPreviewSets)
-                } else if let appScreenshotSets = try? AppScreenshotSet(from: decoder) {
-                    self = .appScreenshotSets(appScreenshotSets)
+                if let appPreviewSet = try? AppPreviewSet(from: decoder) {
+                    self = .appPreviewSet(appPreviewSet)
+                } else if let appScreenshotSet = try? AppScreenshotSet(from: decoder) {
+                    self = .appScreenshotSet(appScreenshotSet)
                 } else {
                     throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                           debugDescription: "Unknown Included"))
@@ -205,9 +207,9 @@ final class OneOfSchemaRendererTests: XCTestCase {
 
             public func encode(to encoder: Encoder) throws {
                 switch self {
-                case let .appPreviewSets(value):
+                case let .appPreviewSet(value):
                     try value.encode(to: encoder)
-                case let .appScreenshotSets(value):
+                case let .appScreenshotSet(value):
                     try value.encode(to: encoder)
                 }
             }
@@ -217,79 +219,62 @@ final class OneOfSchemaRendererTests: XCTestCase {
             }
 
             private enum TypeKeys: String, Codable {
-                case appPreviewSets
-                case appScreenshotSets
+                case appPreviewSet
+                case appScreenshotSet
             }
         }
 
         """#)
     }
 
-    func testRenderWithSubSchemas() throws {
+    func testContextMultipleScmGitReference() throws {
         // Given
-        let renderer = OneOfSchemaRenderer()
-        let jsonPointerSchema = ObjectSchema(name: "JsonPointer", url: "some://url", properties: ["pointer": Property(type: .simple(.init(type: "string")), deprecated: true)])
-        let parameterSchema = ObjectSchema(name: "Parameter", url: "some://url", properties: ["parameter": Property(type: .simple(.init(type: "string")))])
-        let schema = OneOfSchema(options: [.objectSchema(jsonPointerSchema), .objectSchema(parameterSchema)])
+        let schema = OneOfSchema(options: [
+            .schemaRef("User")
+        ])
+        let includesFixUps = ["destinationBranch", "sourceBranchOrTag", "user"]
         // When
-        let rendered = try renderer.render(name: "Source", oneOfSchema: schema, includesFixUps: ["bundleIds", "certificates", "devices"])
+        let context = try OneOfSchemaRenderer.oneOfContext(for: schema, named: "BlameGame", includesFixUps: includesFixUps)
         // Then
-        XCTAssertEqual(rendered, #"""
-        public enum Source: Codable {
-            case jsonPointer(JsonPointer)
-            case parameter(Parameter)
+        XCTAssertEqual(context["name"] as! String, "BlameGame")
+        XCTAssertEqual(context["options"] as! [EnumCase], [
+            EnumCase(id: "destinationBranch", value: "ScmGitReference"),
+            EnumCase(id: "sourceBranchOrTag", value: "ScmGitReference"),
+            EnumCase(id: "user", value: "User")
+        ])
+    }
 
-            public struct JsonPointer: Codable {
-                @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-                public var pointer: String? = nil
-
-                @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-                public init(pointer: String? = nil) {
-                    self.pointer = pointer
-                }
-
-                public init() {}
-            }
-
-            public struct Parameter: Codable {
-                public let parameter: String?
-
-                public init(parameter: String? = nil) {
-                    self.parameter = parameter
-                }
-            }
-
-            public init(from decoder: Decoder) throws {
-                if let jsonPointer = try? JsonPointer(from: decoder) {
-                    self = .jsonPointer(jsonPointer)
-                } else if let parameter = try? Parameter(from: decoder) {
-                    self = .parameter(parameter)
-                } else {
-                    throw DecodingError.typeMismatch(Source.self, DecodingError.Context(codingPath: decoder.codingPath,
-                                                                                        debugDescription: "Unknown Source"))
-                }
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                switch self {
-                case let .jsonPointer(value):
-                    try value.encode(to: encoder)
-                case let .parameter(value):
-                    try value.encode(to: encoder)
-                }
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case type
-            }
-
-            private enum TypeKeys: String, Codable {
-                case jsonPointer
-                case parameter
-            }
-        }
-
-        """#)
+    func testContextPrimaryRepositories() throws {
+        // Given
+        let schema = OneOfSchema(options: [
+            .schemaRef("ScmRepository"),
+            .schemaRef("User")
+        ])
+        let includesFixUps = ["primaryRepositories", "user"]
+        // When
+        let context = try OneOfSchemaRenderer.oneOfContext(for: schema, named: "PrivateRepositories", includesFixUps: includesFixUps)
+        // Then
+        XCTAssertEqual(context["name"] as! String, "PrivateRepositories")
+        XCTAssertEqual(context["options"] as! [EnumCase], [
+            EnumCase(id: "primaryRepositories", value: "ScmRepository"),
+            EnumCase(id: "user", value: "User")
+        ])
+    }
+    
+    func testContextErrorSubTypes() throws {
+        // Given
+        let schema = OneOfSchema(options: [
+            .schemaRef("ErrorSourcePointer"),
+            .schemaRef("ErrorSourceParameter")
+        ])
+        // When
+        let context = try OneOfSchemaRenderer.oneOfContext(for: schema, named: "ErrorResponse")
+        // Then
+        XCTAssertEqual(context["name"] as! String, "ErrorResponse")
+        XCTAssertEqual(context["options"] as! [EnumCase], [
+            EnumCase(id: "errorSourceParameter", value: "Parameter"),
+            EnumCase(id: "errorSourcePointer", value: "JsonPointer")
+        ])
     }
 
     func testUnknownTypeForOption() throws {

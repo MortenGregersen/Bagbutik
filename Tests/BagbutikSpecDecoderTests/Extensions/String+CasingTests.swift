@@ -14,7 +14,11 @@ class StringCasingTests: XCTestCase {
             (input: "HOMEKIT", output: "homeKit"),
             (input: "HEALTHKIT", output: "healthKit"),
             (input: "CLASSKIT", output: "classKit"),
-            (input: "SIRIKIT", output: "siriKit")
+            (input: "SIRIKIT", output: "siriKit"),
+            (input: "MACOS_MONTEREY", output: "macOSMonterey"),
+            (input: "APPLE_TV", output: "appleTV"),
+            (input: "TVOS_REMOTE", output: "tvOSRemote"),
+            (input: "IPOD_TOUCH", output: "iPodTouch"),
         ].forEach { (input: String, output: String) in
             let result = input.camelCased(with: "_")
             XCTAssertEqual(result, output)
