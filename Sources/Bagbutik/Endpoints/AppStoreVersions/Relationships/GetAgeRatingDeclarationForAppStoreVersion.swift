@@ -24,11 +24,12 @@ public enum GetAgeRatingDeclarationForAppStoreVersion {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type ageRatingDeclarations
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case ageRatingDeclarations([AgeRatingDeclarations])
 
         public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
             case gamblingAndContests
             case gamblingSimulated
             case horrorOrFearThemes
@@ -36,6 +37,7 @@ public enum GetAgeRatingDeclarationForAppStoreVersion {
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
+            case seventeenPlus
             case sexualContentGraphicAndNudity
             case sexualContentOrNudity
             case unrestrictedWebAccess

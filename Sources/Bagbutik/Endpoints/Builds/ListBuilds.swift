@@ -107,6 +107,7 @@ public enum ListBuilds {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -124,6 +125,7 @@ public enum ListBuilds {
         public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
             case betaReviewState
             case build
+            case submittedDate
         }
 
         public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
@@ -161,6 +163,7 @@ public enum ListBuilds {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate
@@ -210,6 +213,8 @@ public enum ListBuilds {
         case betaAppReviewSubmission_betaReviewState([BetaAppReviewSubmissionBetaReviewState])
         /// Filter by id(s) of related 'betaGroups'
         case betaGroups([String])
+        /// Filter by attribute 'buildAudienceType'
+        case buildAudienceType([BuildAudienceType])
         /// Filter by attribute 'expired'
         case expired([String])
         /// Filter by id(s)
@@ -232,6 +237,11 @@ public enum ListBuilds {
             case inReview = "IN_REVIEW"
             case rejected = "REJECTED"
             case approved = "APPROVED"
+        }
+
+        public enum BuildAudienceType: String, ParameterValue, CaseIterable {
+            case internalOnly = "INTERNAL_ONLY"
+            case appStoreEligible = "APP_STORE_ELIGIBLE"
         }
 
         public enum PreReleaseVersionPlatform: String, ParameterValue, CaseIterable {

@@ -28,6 +28,7 @@ public enum GetBetaAppReviewSubmissionForBuild {
         public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
             case betaReviewState
             case build
+            case submittedDate
         }
     }
 }

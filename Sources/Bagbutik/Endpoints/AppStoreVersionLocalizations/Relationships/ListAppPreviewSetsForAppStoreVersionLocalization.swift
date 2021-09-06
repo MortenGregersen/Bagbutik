@@ -10,19 +10,19 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
+      - Parameter limits: Number of resources to return
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppPreviewSetsForAppStoreVersionLocalization(id: String,
                                                                  fields: [ListAppPreviewSetsForAppStoreVersionLocalization.Field]? = nil,
                                                                  filters: [ListAppPreviewSetsForAppStoreVersionLocalization.Filter]? = nil,
                                                                  includes: [ListAppPreviewSetsForAppStoreVersionLocalization.Include]? = nil,
-                                                                 limit: Int? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse>
+                                                                 limits: [ListAppPreviewSetsForAppStoreVersionLocalization.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreVersionLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
                                                                                                                     filters: filters,
                                                                                                                     includes: includes,
-                                                                                                                    limit: limit))
+                                                                                                                    limits: limits))
     }
 }
 
@@ -35,8 +35,6 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])
-        /// The fields to include for returned resources of type appStoreVersionLocalizations
-        case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {
             case appPreviews
@@ -56,19 +54,6 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
             case uploadOperations
             case uploaded
             case videoUrl
-        }
-
-        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
-            case appPreviewSets
-            case appScreenshotSets
-            case appStoreVersion
-            case description
-            case keywords
-            case locale
-            case marketingUrl
-            case promotionalText
-            case supportUrl
-            case whatsNew
         }
     }
 
@@ -103,6 +88,16 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appPreviews, appStoreVersionLocalization
+        case appPreviews
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
+        /// Maximum number of related appPreviews returned (when they are included) - maximum 50
+        case appPreviews(Int)
     }
 }

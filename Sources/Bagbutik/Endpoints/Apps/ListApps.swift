@@ -55,6 +55,8 @@ public enum ListApps {
         case betaLicenseAgreements([BetaLicenseAgreements])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
+        /// The fields to include for returned resources of type ciProducts
+        case ciProducts([CiProducts])
         /// The fields to include for returned resources of type endUserLicenseAgreements
         case endUserLicenseAgreements([EndUserLicenseAgreements])
         /// The fields to include for returned resources of type gameCenterEnabledVersions
@@ -128,6 +130,7 @@ public enum ListApps {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -170,6 +173,7 @@ public enum ListApps {
             case builds
             case createdDate
             case feedbackEnabled
+            case hasAccessToAllBuilds
             case isInternalGroup
             case name
             case publicLink
@@ -191,6 +195,7 @@ public enum ListApps {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate
@@ -205,6 +210,18 @@ public enum ListApps {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+        }
+
+        public enum CiProducts: String, ParameterValue, CaseIterable {
+            case additionalRepositories
+            case app
+            case buildRuns
+            case bundleId
+            case createdDate
+            case name
+            case primaryRepositories
+            case productType
+            case workflows
         }
 
         public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
@@ -305,7 +322,7 @@ public enum ListApps {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices
+        case appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices
     }
 
     /**

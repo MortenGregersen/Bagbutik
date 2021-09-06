@@ -103,6 +103,7 @@ public enum GetBuild {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -120,6 +121,7 @@ public enum GetBuild {
         public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
             case betaReviewState
             case build
+            case submittedDate
         }
 
         public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
@@ -157,6 +159,7 @@ public enum GetBuild {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate

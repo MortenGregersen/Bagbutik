@@ -8,17 +8,14 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppPreviewsForAppPreviewSet(id: String,
                                                 fields: [ListAppPreviewsForAppPreviewSet.Field]? = nil,
-                                                includes: [ListAppPreviewsForAppPreviewSet.Include]? = nil,
                                                 limit: Int? = nil) -> Request<AppPreviewsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appPreviewSets/\(id)/appPreviews", method: .get, parameters: .init(fields: fields,
-                                                                                                   includes: includes,
                                                                                                    limit: limit))
     }
 }
@@ -28,16 +25,8 @@ public enum ListAppPreviewsForAppPreviewSet {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type appPreviewSets
-        case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])
-
-        public enum AppPreviewSets: String, ParameterValue, CaseIterable {
-            case appPreviews
-            case appStoreVersionLocalization
-            case previewType
-        }
 
         public enum AppPreviews: String, ParameterValue, CaseIterable {
             case appPreviewSet
@@ -52,12 +41,5 @@ public enum ListAppPreviewsForAppPreviewSet {
             case uploaded
             case videoUrl
         }
-    }
-
-    /**
-     Relationship data to include in the response.
-     */
-    public enum Include: String, IncludeParameter {
-        case appPreviewSet
     }
 }

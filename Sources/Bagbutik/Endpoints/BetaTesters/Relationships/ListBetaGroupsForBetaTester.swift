@@ -34,6 +34,7 @@ public enum ListBetaGroupsForBetaTester {
             case builds
             case createdDate
             case feedbackEnabled
+            case hasAccessToAllBuilds
             case isInternalGroup
             case name
             case publicLink

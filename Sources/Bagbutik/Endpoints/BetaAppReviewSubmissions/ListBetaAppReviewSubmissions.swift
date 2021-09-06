@@ -37,6 +37,7 @@ public enum ListBetaAppReviewSubmissions {
         public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
             case betaReviewState
             case build
+            case submittedDate
         }
 
         public enum Builds: String, ParameterValue, CaseIterable {
@@ -46,6 +47,7 @@ public enum ListBetaAppReviewSubmissions {
             case betaAppReviewSubmission
             case betaBuildLocalizations
             case betaGroups
+            case buildAudienceType
             case buildBetaDetail
             case diagnosticSignatures
             case expirationDate

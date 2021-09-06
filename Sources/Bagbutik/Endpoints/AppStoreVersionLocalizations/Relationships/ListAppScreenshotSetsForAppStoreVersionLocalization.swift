@@ -10,19 +10,19 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
+      - Parameter limits: Number of resources to return
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppScreenshotSetsForAppStoreVersionLocalization(id: String,
                                                                     fields: [ListAppScreenshotSetsForAppStoreVersionLocalization.Field]? = nil,
                                                                     filters: [ListAppScreenshotSetsForAppStoreVersionLocalization.Filter]? = nil,
                                                                     includes: [ListAppScreenshotSetsForAppStoreVersionLocalization.Include]? = nil,
-                                                                    limit: Int? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse>
+                                                                    limits: [ListAppScreenshotSetsForAppStoreVersionLocalization.Limit]? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreVersionLocalizations/\(id)/appScreenshotSets", method: .get, parameters: .init(fields: fields,
                                                                                                                        filters: filters,
                                                                                                                        includes: includes,
-                                                                                                                       limit: limit))
+                                                                                                                       limits: limits))
     }
 }
 
@@ -35,8 +35,6 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appScreenshots
         case appScreenshots([AppScreenshots])
-        /// The fields to include for returned resources of type appStoreVersionLocalizations
-        case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
         public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
             case appScreenshots
@@ -55,19 +53,6 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
-        }
-
-        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
-            case appPreviewSets
-            case appScreenshotSets
-            case appStoreVersion
-            case description
-            case keywords
-            case locale
-            case marketingUrl
-            case promotionalText
-            case supportUrl
-            case whatsNew
         }
     }
 
@@ -112,6 +97,16 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appScreenshots, appStoreVersionLocalization
+        case appScreenshots
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
+        /// Maximum number of related appScreenshots returned (when they are included) - maximum 50
+        case appScreenshots(Int)
     }
 }

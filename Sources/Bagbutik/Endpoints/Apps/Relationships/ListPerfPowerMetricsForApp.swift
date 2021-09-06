@@ -36,6 +36,7 @@ public enum ListPerfPowerMetricsForApp {
             case launch = "LAUNCH"
             case memory = "MEMORY"
             case animation = "ANIMATION"
+            case termination = "TERMINATION"
         }
 
         /// Strings that represent Apple operating systems.

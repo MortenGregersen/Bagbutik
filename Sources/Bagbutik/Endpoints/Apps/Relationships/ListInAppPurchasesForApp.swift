@@ -11,7 +11,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
-      - Parameter limit: Maximum resources per page - maximum 200
+      - Parameter limits: Number of resources to return
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listInAppPurchasesForApp(id: String,
@@ -19,13 +19,13 @@ public extension Request {
                                          filters: [ListInAppPurchasesForApp.Filter]? = nil,
                                          includes: [ListInAppPurchasesForApp.Include]? = nil,
                                          sorts: [ListInAppPurchasesForApp.Sort]? = nil,
-                                         limit: Int? = nil) -> Request<InAppPurchasesResponse, ErrorResponse>
+                                         limits: [ListInAppPurchasesForApp.Limit]? = nil) -> Request<InAppPurchasesResponse, ErrorResponse>
     {
         return .init(path: "/v1/apps/\(id)/inAppPurchases", method: .get, parameters: .init(fields: fields,
                                                                                             filters: filters,
                                                                                             includes: includes,
                                                                                             sorts: sorts,
-                                                                                            limit: limit))
+                                                                                            limits: limits))
     }
 }
 
@@ -51,6 +51,7 @@ public enum ListInAppPurchasesForApp {
             case betaTesters
             case builds
             case bundleId
+            case ciProduct
             case contentRightsDeclaration
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
@@ -109,5 +110,15 @@ public enum ListInAppPurchasesForApp {
         case productIdDescending = "-productId"
         case referenceNameAscending = "referenceName"
         case referenceNameDescending = "-referenceName"
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
+        /// Maximum number of related apps returned (when they are included) - maximum 50
+        case apps(Int)
     }
 }

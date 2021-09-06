@@ -8,17 +8,14 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppStoreReviewAttachmentsForAppStoreReviewDetail(id: String,
                                                                      fields: [ListAppStoreReviewAttachmentsForAppStoreReviewDetail.Field]? = nil,
-                                                                     includes: [ListAppStoreReviewAttachmentsForAppStoreReviewDetail.Include]? = nil,
                                                                      limit: Int? = nil) -> Request<AppStoreReviewAttachmentsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appStoreReviewDetails/\(id)/appStoreReviewAttachments", method: .get, parameters: .init(fields: fields,
-                                                                                                                        includes: includes,
                                                                                                                         limit: limit))
     }
 }
@@ -30,8 +27,6 @@ public enum ListAppStoreReviewAttachmentsForAppStoreReviewDetail {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appStoreReviewAttachments
         case appStoreReviewAttachments([AppStoreReviewAttachments])
-        /// The fields to include for returned resources of type appStoreReviewDetails
-        case appStoreReviewDetails([AppStoreReviewDetails])
 
         public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
             case appStoreReviewDetail
@@ -42,25 +37,5 @@ public enum ListAppStoreReviewAttachmentsForAppStoreReviewDetail {
             case uploadOperations
             case uploaded
         }
-
-        public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
-            case appStoreReviewAttachments
-            case appStoreVersion
-            case contactEmail
-            case contactFirstName
-            case contactLastName
-            case contactPhone
-            case demoAccountName
-            case demoAccountPassword
-            case demoAccountRequired
-            case notes
-        }
-    }
-
-    /**
-     Relationship data to include in the response.
-     */
-    public enum Include: String, IncludeParameter {
-        case appStoreReviewDetail
     }
 }

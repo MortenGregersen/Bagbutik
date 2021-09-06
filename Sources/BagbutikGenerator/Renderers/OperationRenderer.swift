@@ -77,7 +77,7 @@ public class OperationRenderer: Renderer {
             )
         }
     }
-    
+
     {% if addWrapperStruct %}
     public struct {{ name }} {
         {% if fields %}
@@ -179,6 +179,8 @@ public class OperationRenderer: Renderer {
         try operation.parameters?.forEach { parameter in
             switch parameter {
             case .fields(let name, let type, let deprecated, let documentation):
+                // In version 1.5 of the spec, `appCategories-get_collection` and `appCategories-get_instance` has two identical `appCategories` fields
+                if fields.contains(where: { $0.id == name }) { return }
                 switch type {
                 case .simple(let type):
                     fields.append(EnumCase(id: name, value: type.description, deprecated: deprecated, documentation: documentation))
