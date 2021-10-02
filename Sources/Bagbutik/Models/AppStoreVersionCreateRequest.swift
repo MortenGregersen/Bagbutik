@@ -66,15 +66,25 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             public let earliestReleaseDate: Date?
             public let platform: Platform
             public let releaseType: ReleaseType?
-            public let usesIdfa: Bool?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var usesIdfa: Bool? = nil
             public let versionString: String
 
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String) {
                 self.copyright = copyright
                 self.earliestReleaseDate = earliestReleaseDate
                 self.platform = platform
                 self.releaseType = releaseType
                 self.usesIdfa = usesIdfa
+                self.versionString = versionString
+            }
+
+            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: ReleaseType? = nil, versionString: String) {
+                self.copyright = copyright
+                self.earliestReleaseDate = earliestReleaseDate
+                self.platform = platform
+                self.releaseType = releaseType
                 self.versionString = versionString
             }
 
