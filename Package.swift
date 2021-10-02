@@ -32,7 +32,6 @@ let package = Package(
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
-                "Bagbutik",
                 "BagbutikGenerator",
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),

@@ -67,9 +67,11 @@ public struct AppStoreVersion: Codable {
         public let earliestReleaseDate: Date?
         public let platform: Platform?
         public let releaseType: ReleaseType?
-        public let usesIdfa: Bool?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var usesIdfa: Bool? = nil
         public let versionString: String?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appStoreState: AppStoreVersionState? = nil, copyright: String? = nil, createdDate: Date? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, platform: Platform? = nil, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String? = nil) {
             self.appStoreState = appStoreState
             self.copyright = copyright
@@ -79,6 +81,17 @@ public struct AppStoreVersion: Codable {
             self.platform = platform
             self.releaseType = releaseType
             self.usesIdfa = usesIdfa
+            self.versionString = versionString
+        }
+
+        public init(appStoreState: AppStoreVersionState? = nil, copyright: String? = nil, createdDate: Date? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, platform: Platform? = nil, releaseType: ReleaseType? = nil, versionString: String? = nil) {
+            self.appStoreState = appStoreState
+            self.copyright = copyright
+            self.createdDate = createdDate
+            self.downloadable = downloadable
+            self.earliestReleaseDate = earliestReleaseDate
+            self.platform = platform
+            self.releaseType = releaseType
             self.versionString = versionString
         }
 
@@ -104,7 +117,8 @@ public struct AppStoreVersion: Codable {
         public let appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
         public let appStoreVersionSubmission: AppStoreVersionSubmission?
         public let build: Build?
-        public let idfaDeclaration: IdfaDeclaration?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var idfaDeclaration: IdfaDeclaration? = nil
         public let routingAppCoverage: RoutingAppCoverage?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -120,14 +134,13 @@ public struct AppStoreVersion: Codable {
             self.routingAppCoverage = routingAppCoverage
         }
 
-        public init(app: App? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
+        public init(app: App? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
             self.app = app
             self.appStoreReviewDetail = appStoreReviewDetail
             self.appStoreVersionLocalizations = appStoreVersionLocalizations
             self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
             self.appStoreVersionSubmission = appStoreVersionSubmission
             self.build = build
-            self.idfaDeclaration = idfaDeclaration
             self.routingAppCoverage = routingAppCoverage
         }
 
