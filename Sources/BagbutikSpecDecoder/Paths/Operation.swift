@@ -166,12 +166,6 @@ public struct Operation: Decodable {
         return documentation
     }
     
-    internal static func singularize(_ word: String) -> String {
-        guard word.hasSuffix("s") else { return word }
-        if word.hasSuffix("ies") { return word.dropLast(3).appending("y") }
-        return String(word.prefix(upTo: word.index(before: word.endIndex)))
-    }
-    
     private static func responseType(forCode statusCode: String, in responsesContainer: KeyedDecodingContainer<DynamicCodingKeys>) throws -> String {
         let contentContainer = try? responsesContainer
             .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: statusCode)!)
