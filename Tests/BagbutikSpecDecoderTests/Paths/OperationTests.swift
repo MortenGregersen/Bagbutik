@@ -284,11 +284,4 @@ final class OperationTests: XCTestCase {
         XCTAssertNoThrow(try Operation.getDocumentation(forId: "users-get_collection"))
         XCTAssertThrowsError(try Operation.getDocumentation(forId: "invalid-id"))
     }
-
-    func testSingularize() {
-        let singularize = BagbutikSpecDecoder.Operation.singularize
-        XCTAssertEqual(singularize("territory"), "territory")
-        XCTAssertEqual(singularize("categories"), "category")
-        XCTAssertEqual(singularize("users"), "user")
-    }
 }

@@ -67,7 +67,7 @@ final class PathTests: XCTestCase {
         // Then
         let path = paths["/v1/users"]
         XCTAssertEqual(path?.path, "/v1/users")
-        XCTAssertEqual(path?.info, Path.Info(mainType: "Users", isRelationship: false))
+        XCTAssertEqual(path?.info, Path.Info(mainType: "User", isRelationship: false))
         XCTAssertEqual(path?.operations.count, 1)
         XCTAssertEqual(path?.operations[0].method, .get)
         XCTAssertEqual(path?.parameters, nil)
@@ -126,7 +126,7 @@ final class PathTests: XCTestCase {
         // Then
         let path = paths["/v1/users/{id}/relationships/visibleApps"]
         XCTAssertEqual(path?.path, "/v1/users/{id}/relationships/visibleApps")
-        XCTAssertEqual(path?.info, Path.Info(mainType: "Users", isRelationship: true))
+        XCTAssertEqual(path?.info, Path.Info(mainType: "User", isRelationship: true))
         XCTAssertEqual(path?.operations.count, 1)
         XCTAssertEqual(path?.operations[0].method, .post)
         XCTAssertEqual(path?.parameters?.count, 1)

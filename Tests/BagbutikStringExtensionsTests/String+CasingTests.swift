@@ -1,4 +1,4 @@
-import BagbutikSpecDecoder
+import BagbutikStringExtensions
 import XCTest
 
 class StringCasingTests: XCTestCase {

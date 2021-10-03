@@ -1,3 +1,4 @@
+import BagbutikStringExtensions
 import Foundation
 
 /// Errors that can occur when decoding operations
@@ -104,7 +105,7 @@ public struct Operation: Decodable {
         let range = NSRange(location: 0, length: operationId.utf16.count)
         if let result = getInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "get\(singularize(name.capitalizingFirstLetter()))"
+            return "get\(name.capitalizingFirstLetter().singularized())"
         } else if let result = getCollectionRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
             if operationId == "salesReports-get_collection" || operationId == "financeReports-get_collection" {
@@ -114,47 +115,47 @@ public struct Operation: Decodable {
         } else if let result = getToOneRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "get\(singularize(relationship.capitalizingFirstLetter()))IdsFor\(singularize(name.capitalizingFirstLetter()))"
+            return "get\(relationship.capitalizingFirstLetter().singularized())IdsFor\(name.capitalizingFirstLetter().singularized())"
         } else if let result = getToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "list\(singularize(relationship.capitalizingFirstLetter()))IdsFor\(singularize(name.capitalizingFirstLetter()))"
+            return "list\(relationship.capitalizingFirstLetter().singularized())IdsFor\(name.capitalizingFirstLetter().singularized())"
         } else if let result = getToOneRelatedRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "get\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
+            return "get\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = getToManyRelatedRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "list\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
+            return "list\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = createInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
             if operationId == "ciBuildRuns-create_instance" {
-                return "start\(singularize(name.capitalizingFirstLetter()))"
+                return "start\(name.capitalizingFirstLetter().singularized())"
             }
-            return "create\(singularize(name.capitalizingFirstLetter()))"
+            return "create\(name.capitalizingFirstLetter().singularized())"
         } else if let result = createToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "create\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
+            return "create\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = replaceToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "replace\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
+            return "replace\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = updateInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "update\(singularize(name.capitalizingFirstLetter()))"
+            return "update\(name.capitalizingFirstLetter().singularized())"
         } else if let result = updateToOneRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "update\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
+            return "update\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = deleteInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "delete\(singularize(name.capitalizingFirstLetter()))"
+            return "delete\(name.capitalizingFirstLetter().singularized())"
         } else if let result = deleteToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "delete\(relationship.capitalizingFirstLetter())For\(singularize(name.capitalizingFirstLetter()))"
+            return "delete\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         }
         throw OperationError.unknownOperationIdPattern(operationId: operationId)
     }
@@ -164,12 +165,6 @@ public struct Operation: Decodable {
             throw OperationError.missingDocumentation(operationId: operationId)
         }
         return documentation
-    }
-    
-    internal static func singularize(_ word: String) -> String {
-        guard word.hasSuffix("s") else { return word }
-        if word.hasSuffix("ies") { return word.dropLast(3).appending("y") }
-        return String(word.prefix(upTo: word.index(before: word.endIndex)))
     }
     
     private static func responseType(forCode statusCode: String, in responsesContainer: KeyedDecodingContainer<DynamicCodingKeys>) throws -> String {

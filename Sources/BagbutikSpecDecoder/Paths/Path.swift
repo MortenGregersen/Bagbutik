@@ -43,7 +43,9 @@ public struct Path: Decodable {
         let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
 
         let pathComponents = path.components(separatedBy: "/")
-        let mainType = pathComponents.first { $0 != "v1" && $0 != "" }!.capitalizingFirstLetter()
+        let mainType = pathComponents.first { $0 != "v1" && $0 != "" }!
+            .capitalizingFirstLetter()
+            .singularized()
         let isRelationship = pathComponents.count > 4
         let info = Info(mainType: mainType, isRelationship: isRelationship)
         self.init(path: path, info: info, operations: operations, parameters: parameters)
