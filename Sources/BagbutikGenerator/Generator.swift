@@ -59,7 +59,9 @@ public class Generator {
     public convenience init() {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
-            return try JSONDecoder().decode(Spec.self, from: specData)
+            var spec = try JSONDecoder().decode(Spec.self, from: specData)
+            spec.flattenIdenticalSchemas()
+            return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
     }
