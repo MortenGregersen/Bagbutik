@@ -63,16 +63,11 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public let name: String?
-            public let status: Status?
+            public let status: Device.Attributes.Status?
 
-            public init(name: String? = nil, status: Status? = nil) {
+            public init(name: String? = nil, status: Device.Attributes.Status? = nil) {
                 self.name = name
                 self.status = status
-            }
-
-            public enum Status: String, Codable, CaseIterable {
-                case enabled = "ENABLED"
-                case disabled = "DISABLED"
             }
         }
     }

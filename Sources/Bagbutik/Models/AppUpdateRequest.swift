@@ -73,19 +73,14 @@ public struct AppUpdateRequest: Codable, RequestBody {
         public struct Attributes: Codable {
             public let availableInNewTerritories: Bool?
             public let bundleId: String?
-            public let contentRightsDeclaration: ContentRightsDeclaration?
+            public let contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
             public let primaryLocale: String?
 
-            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
+            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
                 self.availableInNewTerritories = availableInNewTerritories
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
                 self.primaryLocale = primaryLocale
-            }
-
-            public enum ContentRightsDeclaration: String, Codable, CaseIterable {
-                case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"
-                case usesThirdPartyContent = "USES_THIRD_PARTY_CONTENT"
             }
         }
 

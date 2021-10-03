@@ -42,4 +42,78 @@ final class SpecTests: XCTestCase {
             "CiBuildRunsResponse": ["actions", "cancelReason", "completionStatus"],
         ])
     }
+
+    func testFlattenIdenticalSchemas() throws {
+        let specString = """
+        {
+            "paths": {},
+            "components": {
+                "schemas": {
+                    "ProfileCreateRequest" : {
+                        "type" : "object",
+                        "title" : "ProfileCreateRequest",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "profiles" ]
+                                    },
+                                    "attributes" : {
+                                        "type" : "object",
+                                        "properties" : {
+                                            "profileType" : {
+                                                "type" : "string",
+                                                "enum" : [ "IOS_APP_DEVELOPMENT", "IOS_APP_STORE", "IOS_APP_ADHOC", "IOS_APP_INHOUSE", "MAC_APP_DEVELOPMENT", "MAC_APP_STORE", "MAC_APP_DIRECT", "TVOS_APP_DEVELOPMENT", "TVOS_APP_STORE", "TVOS_APP_ADHOC", "TVOS_APP_INHOUSE", "MAC_CATALYST_APP_DEVELOPMENT", "MAC_CATALYST_APP_STORE", "MAC_CATALYST_APP_DIRECT" ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Profile" : {
+                        "type" : "object",
+                        "title" : "Profile",
+                        "properties" : {
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "profiles" ]
+                            },
+                            "attributes" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "profileType" : {
+                                        "type" : "string",
+                                        "enum" : [ "IOS_APP_DEVELOPMENT", "IOS_APP_STORE", "IOS_APP_ADHOC", "IOS_APP_INHOUSE", "MAC_APP_DEVELOPMENT", "MAC_APP_STORE", "MAC_APP_DIRECT", "TVOS_APP_DEVELOPMENT", "TVOS_APP_STORE", "TVOS_APP_ADHOC", "TVOS_APP_INHOUSE", "MAC_CATALYST_APP_DEVELOPMENT", "MAC_CATALYST_APP_STORE", "MAC_CATALYST_APP_DIRECT" ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """
+        let jsonDecoder = JSONDecoder()
+        var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
+        spec.flattenIdenticalSchemas()
+        guard case .object(let profileCreateRequest) = spec.components.schemas["ProfileCreateRequest"],
+              case .schema(let dataSchema) = profileCreateRequest.properties["data"]?.type,
+              let dataAttributesSchema = dataSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+              case .schemaRef(let typeSchemaRef) = dataAttributesSchema.properties["profileType"]?.type
+        else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(typeSchemaRef, "Profile.Attributes.ProfileType")
+    }
+}
+
+private extension SubSchema {
+    /// Match the sub schema as an Attributes schema and return it if it is
+    var asAttributes: ObjectSchema? {
+        guard case .attributes(let attributesSchema) = self else { return nil }
+        return attributesSchema
+    }
 }
