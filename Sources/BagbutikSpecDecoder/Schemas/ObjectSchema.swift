@@ -9,11 +9,11 @@ public struct ObjectSchema: Decodable, Equatable {
     /// The documentation for the obejct - if any
     public let documentation: Schema.Documentation?
     /// The properties for the obejct
-    public let properties: [String: Property]
+    public var properties: [String: Property]
     /// A list of properties that is required (always available)
     public let requiredProperties: [String]
     /// A list of schemas derived from the properties
-    public let subSchemas: [SubSchema]
+    public var subSchemas: [SubSchema]
 
     private enum CodingKeys: String, CodingKey {
         case type
