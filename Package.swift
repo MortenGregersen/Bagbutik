@@ -37,13 +37,19 @@ let package = Package(
             ]),
         .target(
             name: "BagbutikGenerator",
-            dependencies: ["BagbutikSpecDecoder", "StencilSwiftKit", "SwiftFormat"]),
+            dependencies: ["BagbutikSpecDecoder", "BagbutikStringExtensions", "StencilSwiftKit", "SwiftFormat"]),
         .testTarget(
             name: "BagbutikGeneratorTests",
             dependencies: ["BagbutikGenerator"]),
         .target(
-            name: "BagbutikSpecDecoder"),
+            name: "BagbutikSpecDecoder",
+            dependencies: ["BagbutikStringExtensions"]),
         .testTarget(
             name: "BagbutikSpecDecoderTests",
-            dependencies: ["BagbutikSpecDecoder"])
+            dependencies: ["BagbutikSpecDecoder"]),
+        .target(
+            name: "BagbutikStringExtensions"),
+        .testTarget(
+            name: "BagbutikStringExtensionsTests",
+            dependencies: ["BagbutikStringExtensions"])
     ])
