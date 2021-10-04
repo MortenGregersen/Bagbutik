@@ -53,22 +53,21 @@ public struct Spec: Decodable {
                     else { return }
                     targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
-                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first
-                        else { return }
-                        guard mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
-                            guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
-                            return mainAttributesPropertySchema == targetDataAttributesPropertySchema
-                        }) else { return }
+                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+                              mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
+                                  guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
+                                  return mainAttributesPropertySchema == targetDataAttributesPropertySchema
+                              }) else { return }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
                         targetDataAttributesSchema.subSchemas.removeAll { subSchema in
                             guard case .enumSchema(let subSchema) = subSchema else { return false }
                             return subSchema.name == targetDataAttributesPropertySchema.name
                         }
-                        targetDataSchema.subSchemas[targetDataAttributesIndex] = .attributes(targetDataAttributesSchema)
-                        targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
-                        targetSchema.subSchemas[targetDataIndex] = .objectSchema(targetDataSchema)
-                        components.schemas[targetSchemaName] = .object(targetSchema)
                     }
+                    targetDataSchema.subSchemas[targetDataAttributesIndex] = .attributes(targetDataAttributesSchema)
+                    targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
+                    targetSchema.subSchemas[targetDataIndex] = .objectSchema(targetDataSchema)
+                    components.schemas[targetSchemaName] = .object(targetSchema)
                 }
         }
     }
