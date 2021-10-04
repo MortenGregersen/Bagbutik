@@ -7,7 +7,7 @@ public struct Path: Decodable {
     /// Type info about the path
     public let info: Info
     /// Operations available on the path
-    public let operations: [Operation]
+    public var operations: [Operation]
     /// Path parameters
     public let parameters: [Parameter]?
     private static let methodKeys: [CodingKeys] = [.get, .patch, .post, .delete]

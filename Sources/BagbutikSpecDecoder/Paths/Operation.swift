@@ -10,7 +10,7 @@ public enum OperationError: Error {
 }
 
 /// An operation that can be executed
-public struct Operation: Decodable {
+public struct Operation: Decodable, Equatable {
     /// The name of the operation
     public let name: String
     /// The documentation for the operation
@@ -20,7 +20,7 @@ public struct Operation: Decodable {
     /// Tells if the operation is deprecated
     public let deprecated: Bool
     /// The different kind of parameters that can be sent with the operation
-    public let parameters: [Parameter]?
+    public var parameters: [Parameter]?
     /// Information about the object that can be sent as request body
     public let requestBody: RequestBody?
     /// The name of the type returned on a successful request
