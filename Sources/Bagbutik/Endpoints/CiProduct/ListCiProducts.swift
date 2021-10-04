@@ -143,12 +143,7 @@ public enum ListCiProducts {
         /// Filter by id(s) of related 'app'
         case app([String])
         /// Filter by attribute 'productType'
-        case productType([ProductType])
-
-        public enum ProductType: String, ParameterValue, CaseIterable {
-            case app = "APP"
-            case framework = "FRAMEWORK"
-        }
+        case productType([CiProduct.Attributes.ProductType])
     }
 
     /**

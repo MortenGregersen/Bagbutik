@@ -3,7 +3,7 @@ import Foundation
 /// A representation of the spec file
 public struct Spec: Decodable {
     /// The paths contained in the spec
-    public let paths: [String: Path]
+    public var paths: [String: Path]
     /// The components contained in the spec
     public var components: Components
     /// Fix ups for the includes on the schemas based the field parameters of a the path operations
@@ -35,7 +35,34 @@ public struct Spec: Decodable {
         }
     }
 
+    /// Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
+    /// Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used
     public mutating func flattenIdenticalSchemas() {
+        paths.forEach { (pathKey: String, path: Path) in
+            var path = path
+            path.operations.forEach { operation in
+                let operationIndex = path.operations.firstIndex(of: operation)!
+                var operation = operation
+                operation.parameters?
+                    .forEach { parameter in
+                        guard let parameterIndex = operation.parameters?.firstIndex(of: parameter),
+                              case .filter(let parameterName, let parameterValueType, let parameterRequired, let parameterDocumentation) = parameter,
+                              case .enum(let type, let values) = parameterValueType,
+                              case .object(let mainSchema) = components.schemas[path.info.mainType],
+                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+                              mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
+                                  guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
+                                  let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
+                                  let equal = mainAttributesPropertySchema == parameterEnumSchema
+                                  return equal
+                              })
+                        else { return }
+                        operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: "\(path.info.mainType).Attributes.\(parameterName.capitalizingFirstLetter())")), required: parameterRequired, documentation: parameterDocumentation)
+                    }
+                path.operations[operationIndex] = operation
+            }
+            paths[pathKey] = path
+        }
         ["CreateRequest", "UpdateRequest"].forEach { suffix in
             components.schemas
                 .filter { $0.key.hasSuffix(suffix) }
@@ -53,22 +80,21 @@ public struct Spec: Decodable {
                     else { return }
                     targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
-                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first
-                        else { return }
-                        guard mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
-                            guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
-                            return mainAttributesPropertySchema == targetDataAttributesPropertySchema
-                        }) else { return }
+                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+                              mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
+                                  guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
+                                  return mainAttributesPropertySchema == targetDataAttributesPropertySchema
+                              }) else { return }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
                         targetDataAttributesSchema.subSchemas.removeAll { subSchema in
                             guard case .enumSchema(let subSchema) = subSchema else { return false }
                             return subSchema.name == targetDataAttributesPropertySchema.name
                         }
-                        targetDataSchema.subSchemas[targetDataAttributesIndex] = .attributes(targetDataAttributesSchema)
-                        targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
-                        targetSchema.subSchemas[targetDataIndex] = .objectSchema(targetDataSchema)
-                        components.schemas[targetSchemaName] = .object(targetSchema)
                     }
+                    targetDataSchema.subSchemas[targetDataAttributesIndex] = .attributes(targetDataAttributesSchema)
+                    targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
+                    targetSchema.subSchemas[targetDataIndex] = .objectSchema(targetDataSchema)
+                    components.schemas[targetSchemaName] = .object(targetSchema)
                 }
         }
     }

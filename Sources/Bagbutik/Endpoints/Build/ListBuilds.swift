@@ -226,7 +226,7 @@ public enum ListBuilds {
         /// Filter by attribute 'preReleaseVersion.version'
         case preReleaseVersion_version([String])
         /// Filter by attribute 'processingState'
-        case processingState([ProcessingState])
+        case processingState([Build.Attributes.ProcessingState])
         /// Filter by attribute 'usesNonExemptEncryption'
         case usesNonExemptEncryption([String])
         /// Filter by attribute 'version'
@@ -248,13 +248,6 @@ public enum ListBuilds {
             case iOS = "IOS"
             case macOS = "MAC_OS"
             case tvOS = "TV_OS"
-        }
-
-        public enum ProcessingState: String, ParameterValue, CaseIterable {
-            case processing = "PROCESSING"
-            case failed = "FAILED"
-            case invalid = "INVALID"
-            case valid = "VALID"
         }
     }
 

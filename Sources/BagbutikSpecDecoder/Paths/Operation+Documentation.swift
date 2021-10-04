@@ -2,7 +2,7 @@ import Foundation
 
 public extension Operation {
     /// Documentation for operations
-    struct Documentation {
+    struct Documentation: Equatable {
         /// A short title of the operation
         public let title: String
         /// A short summary of what the operation does

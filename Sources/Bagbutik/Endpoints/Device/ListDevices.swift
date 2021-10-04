@@ -54,7 +54,7 @@ public enum ListDevices {
         /// Filter by attribute 'platform'
         case platform([Platform])
         /// Filter by attribute 'status'
-        case status([Status])
+        case status([Device.Attributes.Status])
         /// Filter by attribute 'udid'
         case udid([String])
 
@@ -64,11 +64,6 @@ public enum ListDevices {
             case iOS = "IOS"
             /// A string that represents macOS.
             case macOS = "MAC_OS"
-        }
-
-        public enum Status: String, ParameterValue, CaseIterable {
-            case enabled = "ENABLED"
-            case disabled = "DISABLED"
         }
     }
 
