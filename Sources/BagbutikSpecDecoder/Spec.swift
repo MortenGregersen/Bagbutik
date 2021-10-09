@@ -96,6 +96,8 @@ public enum SpecError: Error {
     case unexpectedErrorResponseSource(Schema?)
 }
 
+extension SpecError: Equatable {}
+
 private extension SubSchema {
     /// Match the sub schema as an Attributes schema and return it if it is
     var asAttributes: ObjectSchema? {

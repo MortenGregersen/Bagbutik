@@ -220,6 +220,59 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertEqual(oneOfSchema.options, [.schemaRef("JsonPointer"), .schemaRef("Parameter")])
     }
+    
+    func testApplyManualPatches_Error() throws {
+        let specString = """
+        {
+            "paths": {},
+            "components": {
+                "schemas": {
+                    "ErrorResponse" : {
+                        "type" : "object",
+                        "properties" : {
+                            "errors" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "string"
+                                        },
+                                        "code" : {
+                                            "type" : "string"
+                                        },
+                                        "title" : {
+                                            "type" : "string"
+                                        },
+                                        "detail" : {
+                                            "type" : "string"
+                                        },
+                                        "source" : {
+                                            "oneOf" : [ {
+                                                "$ref" : "#/components/schemas/ErrorSourcePointer"
+                                            }, {
+                                                "$ref" : "#/components/schemas/ErrorSourceBonanza"
+                                            } ]
+                                        }
+                                    },
+                                    "required" : [ "code", "detail", "title", "status" ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """
+        let jsonDecoder = JSONDecoder()
+        var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
+        XCTAssertThrowsError(try spec.applyManualPatches()) { error in
+            XCTAssertEqual(error as! SpecError, .unexpectedErrorResponseSource(spec.components.schemas["ErrorResponse"]))
+        }
+    }
 }
 
 private extension SubSchema {
