@@ -61,6 +61,7 @@ public class Generator {
             let specData = try Data(contentsOf: fileUrl)
             var spec = try JSONDecoder().decode(Spec.self, from: specData)
             spec.flattenIdenticalSchemas()
+            try spec.applyManualPatches()
             return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })

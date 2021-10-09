@@ -162,6 +162,64 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertEqual(typeSchemaRef, "Profile.Attributes.ProfileType")
     }
+
+    func testApplyManualPatches() throws {
+        let specString = """
+        {
+            "paths": {},
+            "components": {
+                "schemas": {
+                    "ErrorResponse" : {
+                        "type" : "object",
+                        "properties" : {
+                            "errors" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "string"
+                                        },
+                                        "code" : {
+                                            "type" : "string"
+                                        },
+                                        "title" : {
+                                            "type" : "string"
+                                        },
+                                        "detail" : {
+                                            "type" : "string"
+                                        },
+                                        "source" : {
+                                            "oneOf" : [ {
+                                                "$ref" : "#/components/schemas/ErrorSourcePointer"
+                                            }, {
+                                                "$ref" : "#/components/schemas/ErrorSourceParameter"
+                                            } ]
+                                        }
+                                    },
+                                    "required" : [ "code", "detail", "title", "status" ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """
+        let jsonDecoder = JSONDecoder()
+        var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
+        try spec.applyManualPatches()
+        guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
+              case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
+              case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type
+        else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(oneOfSchema.options, [.schemaRef("JsonPointer"), .schemaRef("Parameter")])
+    }
 }
 
 private extension SubSchema {

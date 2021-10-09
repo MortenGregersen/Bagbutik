@@ -46,9 +46,7 @@ public struct Spec: Decodable {
                     guard case .object(let mainSchema) = components.schemas[mainSchemaName],
                           let targetDataProperty = targetSchema.properties["data"],
                           case .schema(var targetDataSchema) = targetDataProperty.type,
-                          let targetDataIndex = targetSchema.subSchemas.firstIndex(of: .objectSchema(targetDataSchema)),
-                          var targetDataAttributesSchema = targetDataSchema.subSchemas.compactMap({ $0.asAttributes }).first,
-                          let targetDataAttributesIndex = targetDataSchema.subSchemas.firstIndex(of: .attributes(targetDataAttributesSchema))
+                          case .attributes(var targetDataAttributesSchema) = targetDataSchema.attributesSchema
                     else { return }
                     targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
@@ -58,17 +56,33 @@ public struct Spec: Decodable {
                                   return mainAttributesPropertySchema == targetDataAttributesPropertySchema
                               }) else { return }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
-                        targetDataAttributesSchema.subSchemas.removeAll { subSchema in
-                            guard case .enumSchema(let subSchema) = subSchema else { return false }
-                            return subSchema.name == targetDataAttributesPropertySchema.name
-                        }
                     }
-                    targetDataSchema.subSchemas[targetDataAttributesIndex] = .attributes(targetDataAttributesSchema)
+                    targetDataSchema.attributesSchema = .attributes(targetDataAttributesSchema)
                     targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
-                    targetSchema.subSchemas[targetDataIndex] = .objectSchema(targetDataSchema)
                     components.schemas[targetSchemaName] = .object(targetSchema)
                 }
         }
+    }
+
+    public mutating func applyManualPatches() throws {
+        guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
+              let errorsProperty = errorResponseSchema.properties["errors"],
+              case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
+              var sourceProperty = errorSchema.properties["source"],
+              case .oneOf(let sourcePropertyName, var sourceOneOfSchema) = sourceProperty.type,
+              let pointerIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourcePointer")),
+              let parameterIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourceParameter"))
+        else {
+            throw SpecError.unexpectedErrorResponseSource(components.schemas["ErrorResponse"])
+        }
+        sourceOneOfSchema.options.remove(at: pointerIndex)
+        sourceOneOfSchema.options.insert(.schemaRef("JsonPointer"), at: pointerIndex)
+        sourceOneOfSchema.options.remove(at: parameterIndex)
+        sourceOneOfSchema.options.insert(.schemaRef("Parameter"), at: parameterIndex)
+        sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
+        errorSchema.properties["source"] = sourceProperty
+        errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
+        components.schemas["ErrorResponse"] = .object(errorResponseSchema)
     }
 
     /// A wrapper for schemas to ease decoding
@@ -76,6 +90,10 @@ public struct Spec: Decodable {
         /// A list of schema names and their representation
         public var schemas: [String: Schema]
     }
+}
+
+public enum SpecError: Error {
+    case unexpectedErrorResponseSource(Schema?)
 }
 
 private extension SubSchema {
