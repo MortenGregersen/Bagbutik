@@ -52,11 +52,5 @@ public struct ProfileResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case bundleId
-            case certificate
-            case device
-        }
     }
 }

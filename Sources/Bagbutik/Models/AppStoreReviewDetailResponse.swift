@@ -47,10 +47,5 @@ public struct AppStoreReviewDetailResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case appStoreReviewAttachment
-            case appStoreVersion
-        }
     }
 }

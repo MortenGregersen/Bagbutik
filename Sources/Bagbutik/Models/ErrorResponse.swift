@@ -72,11 +72,6 @@ public struct ErrorResponse: Codable {
             private enum CodingKeys: String, CodingKey {
                 case type
             }
-
-            private enum TypeKeys: String, Codable {
-                case jsonPointer
-                case parameter
-            }
         }
     }
 }

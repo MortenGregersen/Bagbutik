@@ -47,10 +47,5 @@ public struct AppPricePointResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case appPriceTier
-            case territory
-        }
     }
 }

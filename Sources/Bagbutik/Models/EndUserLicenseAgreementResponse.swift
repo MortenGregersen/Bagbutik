@@ -47,10 +47,5 @@ public struct EndUserLicenseAgreementResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case app
-            case territory
-        }
     }
 }

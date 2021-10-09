@@ -61,12 +61,5 @@ public struct AppInfosResponse: Codable, PagedResponse {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case ageRatingDeclaration
-            case app
-            case appCategory
-            case appInfoLocalization
-        }
     }
 }

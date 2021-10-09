@@ -52,11 +52,5 @@ public struct BetaTesterResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case app
-            case betaGroup
-            case build
-        }
     }
 }

@@ -56,11 +56,5 @@ public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case appPreviewSet
-            case appScreenshotSet
-            case appStoreVersion
-        }
     }
 }

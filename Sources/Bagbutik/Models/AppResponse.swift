@@ -112,23 +112,5 @@ public struct AppResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case appInfo
-            case appPreOrder
-            case appPrice
-            case appStoreVersion
-            case betaAppLocalization
-            case betaAppReviewDetail
-            case betaGroup
-            case betaLicenseAgreement
-            case build
-            case ciProduct
-            case endUserLicenseAgreement
-            case gameCenterEnabledVersion
-            case inAppPurchase
-            case prereleaseVersion
-            case territory
-        }
     }
 }

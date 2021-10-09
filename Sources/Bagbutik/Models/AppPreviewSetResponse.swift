@@ -47,10 +47,5 @@ public struct AppPreviewSetResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case appPreview
-            case appStoreVersionLocalization
-        }
     }
 }

@@ -61,12 +61,5 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case ciMacOsVersion
-            case ciProduct
-            case ciXcodeVersion
-            case scmRepository
-        }
     }
 }

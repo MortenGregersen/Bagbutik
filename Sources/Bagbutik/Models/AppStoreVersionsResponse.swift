@@ -86,17 +86,5 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case ageRatingDeclaration
-            case app
-            case appStoreReviewDetail
-            case appStoreVersionLocalization
-            case appStoreVersionPhasedRelease
-            case appStoreVersionSubmission
-            case build
-            case idfaDeclaration
-            case routingAppCoverage
-        }
     }
 }

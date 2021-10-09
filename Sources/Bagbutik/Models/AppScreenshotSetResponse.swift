@@ -47,10 +47,5 @@ public struct AppScreenshotSetResponse: Codable {
         private enum CodingKeys: String, CodingKey {
             case type
         }
-
-        private enum TypeKeys: String, Codable {
-            case appScreenshot
-            case appStoreVersionLocalization
-        }
     }
 }
