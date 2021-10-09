@@ -54,12 +54,6 @@ public class OneOfSchemaRenderer {
                 private enum CodingKeys: String, CodingKey {
                     case type
                 }
-
-                private enum TypeKeys: String, Codable {
-                    {% for option in options %}
-                    case {{ option.id }}{%
-                    endfor %}
-                }
             }
             """]), extensions: StencilSwiftKit.stencilSwiftEnvironment().extensions)
 
