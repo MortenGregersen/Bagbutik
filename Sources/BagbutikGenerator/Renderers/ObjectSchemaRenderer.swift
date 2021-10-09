@@ -11,11 +11,10 @@ public class ObjectSchemaRenderer {
 
      - Parameters:
         - objectSchema: The object schema to render
-        - includesFixUps: Fix ups for the included related types
      - Returns: The rendered object schema
      */
-    public func render(objectSchema: ObjectSchema, includesFixUps: [String] = []) throws -> String {
-        let context = objectContext(for: objectSchema, in: environment, includesFixUps: includesFixUps)
+    public func render(objectSchema: ObjectSchema) throws -> String {
+        let context = objectContext(for: objectSchema, in: environment)
         let rendered = try environment.renderTemplate(name: "objectTemplate", context: context)
         return try SwiftFormat.format(rendered)
     }
@@ -102,10 +101,11 @@ public class ObjectSchemaRenderer {
         "objectTemplate": objectTemplate
     ]), extensions: StencilSwiftKit.stencilSwiftEnvironment().extensions)
 
-    private func objectContext(for objectSchema: ObjectSchema, in environment: Environment, includesFixUps: [String] = []) -> [String: Any] {
+    private func objectContext(for objectSchema: ObjectSchema, in environment: Environment) -> [String: Any] {
+        let subSchemas = objectSchema.subSchemas
         let sortedProperties = objectSchema.properties.sorted { $0.key < $1.key }
-        let hasAttributes = objectSchema.subSchemas.contains(where: { if case .attributes = $0 { return true } else { return false } })
-        let hasRelationships = objectSchema.subSchemas.contains(where: { if case .relationships = $0 { return true } else { return false } })
+        let hasAttributes = objectSchema.attributesSchema != nil
+        let hasRelationships = objectSchema.relationshipsSchema != nil
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { $0.key != "type" }
@@ -178,14 +178,14 @@ public class ObjectSchemaRenderer {
                 "hasRelationships": hasRelationships,
                 "relationshipsDocumentation": relationshipsDocumentation,
                 "relationshipsOptional": relationshipsOptional,
-                "subSchemas": objectSchema.subSchemas.map { subSchema -> String in
+                "subSchemas": subSchemas.map { subSchema -> String in
                     switch subSchema {
                     case .objectSchema(let objectSchema):
                         return try! render(objectSchema: objectSchema)
                     case .enumSchema(let enumSchema):
                         return try! EnumSchemaRenderer().render(enumSchema: enumSchema)
                     case .oneOf(let name, let oneOfSchema):
-                        return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema, includesFixUps: includesFixUps)
+                        return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema)
                     case .attributes(let objectSchema):
                         return try! render(objectSchema: objectSchema)
                     case .relationships(let objectSchema):

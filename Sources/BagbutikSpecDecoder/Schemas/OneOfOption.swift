@@ -25,10 +25,12 @@ public enum OneOfOption: Decodable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let schemaPath = try container.decodeIfPresent(String.self, forKey: .ref),
-            let schemaName = schemaPath.components(separatedBy: "/").last {
+           let schemaName = schemaPath.components(separatedBy: "/").last
+        {
             self = .schemaRef(schemaName)
         } else if let type = try container.decodeIfPresent(String.self, forKey: .type),
-            type == "object" {
+                  type == "object"
+        {
             self = .objectSchema(try ObjectSchema(from: decoder))
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "OneOf option not known")

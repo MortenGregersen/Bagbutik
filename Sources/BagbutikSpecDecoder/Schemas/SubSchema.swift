@@ -1,7 +1,7 @@
 import Foundation
 
 /// A schema contained in another schema
-public enum SubSchema: Equatable {
+public indirect enum SubSchema: Equatable {
     /// An object schema
     case objectSchema(ObjectSchema)
     /// An enum schema

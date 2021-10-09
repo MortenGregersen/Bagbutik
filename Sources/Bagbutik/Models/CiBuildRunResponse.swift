@@ -21,26 +21,23 @@ public struct CiBuildRunResponse: Codable {
     }
 
     public enum Included: Codable {
-        case builds(Build)
-        case destinationBranch(ScmGitReference)
-        case product(CiProduct)
-        case pullRequest(ScmPullRequest)
-        case sourceBranchOrTag(ScmGitReference)
-        case workflow(CiWorkflow)
+        case build(Build)
+        case ciProduct(CiProduct)
+        case ciWorkflow(CiWorkflow)
+        case scmGitReference(ScmGitReference)
+        case scmPullRequest(ScmPullRequest)
 
         public init(from decoder: Decoder) throws {
-            if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
-            } else if let destinationBranch = try? ScmGitReference(from: decoder) {
-                self = .destinationBranch(destinationBranch)
-            } else if let product = try? CiProduct(from: decoder) {
-                self = .product(product)
-            } else if let pullRequest = try? ScmPullRequest(from: decoder) {
-                self = .pullRequest(pullRequest)
-            } else if let sourceBranchOrTag = try? ScmGitReference(from: decoder) {
-                self = .sourceBranchOrTag(sourceBranchOrTag)
-            } else if let workflow = try? CiWorkflow(from: decoder) {
-                self = .workflow(workflow)
+            if let build = try? Build(from: decoder) {
+                self = .build(build)
+            } else if let ciProduct = try? CiProduct(from: decoder) {
+                self = .ciProduct(ciProduct)
+            } else if let ciWorkflow = try? CiWorkflow(from: decoder) {
+                self = .ciWorkflow(ciWorkflow)
+            } else if let scmGitReference = try? ScmGitReference(from: decoder) {
+                self = .scmGitReference(scmGitReference)
+            } else if let scmPullRequest = try? ScmPullRequest(from: decoder) {
+                self = .scmPullRequest(scmPullRequest)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -49,32 +46,21 @@ public struct CiBuildRunResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .builds(value):
+            case let .build(value):
                 try value.encode(to: encoder)
-            case let .destinationBranch(value):
+            case let .ciProduct(value):
                 try value.encode(to: encoder)
-            case let .product(value):
+            case let .ciWorkflow(value):
                 try value.encode(to: encoder)
-            case let .pullRequest(value):
+            case let .scmGitReference(value):
                 try value.encode(to: encoder)
-            case let .sourceBranchOrTag(value):
-                try value.encode(to: encoder)
-            case let .workflow(value):
+            case let .scmPullRequest(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case builds
-            case destinationBranch
-            case product
-            case pullRequest
-            case sourceBranchOrTag
-            case workflow
         }
     }
 }

@@ -21,12 +21,12 @@ public struct AppPricePointResponse: Codable {
     }
 
     public enum Included: Codable {
-        case priceTier(AppPriceTier)
+        case appPriceTier(AppPriceTier)
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let priceTier = try? AppPriceTier(from: decoder) {
-                self = .priceTier(priceTier)
+            if let appPriceTier = try? AppPriceTier(from: decoder) {
+                self = .appPriceTier(appPriceTier)
             } else if let territory = try? Territory(from: decoder) {
                 self = .territory(territory)
             } else {
@@ -37,7 +37,7 @@ public struct AppPricePointResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .priceTier(value):
+            case let .appPriceTier(value):
                 try value.encode(to: encoder)
             case let .territory(value):
                 try value.encode(to: encoder)
@@ -46,11 +46,6 @@ public struct AppPricePointResponse: Codable {
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case priceTier
-            case territory
         }
     }
 }

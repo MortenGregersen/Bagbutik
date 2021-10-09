@@ -22,16 +22,16 @@ public struct BundleIdResponse: Codable {
 
     public enum Included: Codable {
         case app(App)
-        case bundleIdCapabilities(BundleIdCapability)
-        case profiles(Profile)
+        case bundleIdCapability(BundleIdCapability)
+        case profile(Profile)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
-            } else if let bundleIdCapabilities = try? BundleIdCapability(from: decoder) {
-                self = .bundleIdCapabilities(bundleIdCapabilities)
-            } else if let profiles = try? Profile(from: decoder) {
-                self = .profiles(profiles)
+            } else if let bundleIdCapability = try? BundleIdCapability(from: decoder) {
+                self = .bundleIdCapability(bundleIdCapability)
+            } else if let profile = try? Profile(from: decoder) {
+                self = .profile(profile)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -42,21 +42,15 @@ public struct BundleIdResponse: Codable {
             switch self {
             case let .app(value):
                 try value.encode(to: encoder)
-            case let .bundleIdCapabilities(value):
+            case let .bundleIdCapability(value):
                 try value.encode(to: encoder)
-            case let .profiles(value):
+            case let .profile(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case app
-            case bundleIdCapabilities
-            case profiles
         }
     }
 }

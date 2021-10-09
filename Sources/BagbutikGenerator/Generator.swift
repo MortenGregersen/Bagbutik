@@ -61,6 +61,7 @@ public class Generator {
             let specData = try Data(contentsOf: fileUrl)
             var spec = try JSONDecoder().decode(Spec.self, from: specData)
             spec.flattenIdenticalSchemas()
+            try spec.applyManualPatches()
             return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
@@ -102,8 +103,7 @@ public class Generator {
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
         try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
-            let includesFixUps = spec.includesFixUps[schema.name] ?? []
-            let model = try generateModel(for: schema, includesFixUps: includesFixUps)
+            let model = try generateModel(for: schema)
             let fileURL = modelsDirURL.appendingPathComponent(model.fileName)
             print("⚡️ Generating model \(model.fileName)...")
             guard fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
@@ -135,14 +135,14 @@ public class Generator {
         }
     }
 
-    private func generateModel(for schema: Schema, includesFixUps: [String]) throws -> (fileName: String, contents: String) {
+    private func generateModel(for schema: Schema) throws -> (fileName: String, contents: String) {
         let fileName = "\(schema.name).swift"
         let renderedSchema: String
         switch schema {
         case .enum(let enumSchema):
             renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema, includesFixUps: includesFixUps)
+            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema)
         }
         let contents = """
         import Foundation

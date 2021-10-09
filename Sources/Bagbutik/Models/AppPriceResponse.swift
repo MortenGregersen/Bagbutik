@@ -22,13 +22,13 @@ public struct AppPriceResponse: Codable {
 
     public enum Included: Codable {
         case app(App)
-        case priceTier(AppPriceTier)
+        case appPriceTier(AppPriceTier)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
-            } else if let priceTier = try? AppPriceTier(from: decoder) {
-                self = .priceTier(priceTier)
+            } else if let appPriceTier = try? AppPriceTier(from: decoder) {
+                self = .appPriceTier(appPriceTier)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -39,18 +39,13 @@ public struct AppPriceResponse: Codable {
             switch self {
             case let .app(value):
                 try value.encode(to: encoder)
-            case let .priceTier(value):
+            case let .appPriceTier(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case app
-            case priceTier
         }
     }
 }

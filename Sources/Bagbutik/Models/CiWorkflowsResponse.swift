@@ -25,20 +25,20 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case macOsVersion(CiMacOsVersion)
-        case product(CiProduct)
-        case repository(ScmRepository)
-        case xcodeVersion(CiXcodeVersion)
+        case ciMacOsVersion(CiMacOsVersion)
+        case ciProduct(CiProduct)
+        case ciXcodeVersion(CiXcodeVersion)
+        case scmRepository(ScmRepository)
 
         public init(from decoder: Decoder) throws {
-            if let macOsVersion = try? CiMacOsVersion(from: decoder) {
-                self = .macOsVersion(macOsVersion)
-            } else if let product = try? CiProduct(from: decoder) {
-                self = .product(product)
-            } else if let repository = try? ScmRepository(from: decoder) {
-                self = .repository(repository)
-            } else if let xcodeVersion = try? CiXcodeVersion(from: decoder) {
-                self = .xcodeVersion(xcodeVersion)
+            if let ciMacOsVersion = try? CiMacOsVersion(from: decoder) {
+                self = .ciMacOsVersion(ciMacOsVersion)
+            } else if let ciProduct = try? CiProduct(from: decoder) {
+                self = .ciProduct(ciProduct)
+            } else if let ciXcodeVersion = try? CiXcodeVersion(from: decoder) {
+                self = .ciXcodeVersion(ciXcodeVersion)
+            } else if let scmRepository = try? ScmRepository(from: decoder) {
+                self = .scmRepository(scmRepository)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -47,26 +47,19 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .macOsVersion(value):
+            case let .ciMacOsVersion(value):
                 try value.encode(to: encoder)
-            case let .product(value):
+            case let .ciProduct(value):
                 try value.encode(to: encoder)
-            case let .repository(value):
+            case let .ciXcodeVersion(value):
                 try value.encode(to: encoder)
-            case let .xcodeVersion(value):
+            case let .scmRepository(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case macOsVersion
-            case product
-            case repository
-            case xcodeVersion
         }
     }
 }

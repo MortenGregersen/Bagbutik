@@ -25,12 +25,12 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case scmGitReferences(ScmGitReference)
+        case scmGitReference(ScmGitReference)
         case scmProvider(ScmProvider)
 
         public init(from decoder: Decoder) throws {
-            if let scmGitReferences = try? ScmGitReference(from: decoder) {
-                self = .scmGitReferences(scmGitReferences)
+            if let scmGitReference = try? ScmGitReference(from: decoder) {
+                self = .scmGitReference(scmGitReference)
             } else if let scmProvider = try? ScmProvider(from: decoder) {
                 self = .scmProvider(scmProvider)
             } else {
@@ -41,7 +41,7 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .scmGitReferences(value):
+            case let .scmGitReference(value):
                 try value.encode(to: encoder)
             case let .scmProvider(value):
                 try value.encode(to: encoder)
@@ -50,11 +50,6 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case scmGitReferences
-            case scmProvider
         }
     }
 }

@@ -6,34 +6,6 @@ public struct Spec: Decodable {
     public var paths: [String: Path]
     /// The components contained in the spec
     public var components: Components
-    /// Fix ups for the includes on the schemas based the field parameters of a the path operations
-    public var includesFixUps: [String: [String]] {
-        paths.values.reduce(into: [:]) { result, path in
-            path.operations.forEach { operation in
-                let fields = operation.parameters?.compactMap { parameter -> [String]? in
-                    guard case .fields(let paramName, let type, _, _) = parameter else { return nil }
-                    let paramNameOverrides = ["appPrices": "prices", "ciBuildRuns": "buildRuns", "ciWorkflows": "workflows"]
-                    let name = paramNameOverrides[paramName] ?? paramName
-                    if let lastSlashIndex = path.path.lastIndex(of: "/"),
-                       name == path.path.suffix(from: path.path.index(after: lastSlashIndex)),
-                       case .enum(_, let values) = type
-                    {
-                        return values
-                    }
-                    return [name]
-                }.flatMap { $0 } ?? []
-                let includesValues = operation.parameters?.compactMap { parameter -> [String]? in
-                    guard case .include(let type) = parameter,
-                          case .enum(_, let values) = type else { return nil }
-                    return values
-                }.flatMap { $0 } ?? []
-                let allFixUps = fields + includesValues
-                guard allFixUps.count > 0 else { return }
-                let currentFixUps = result[operation.successResponseType] ?? []
-                result[operation.successResponseType] = currentFixUps + allFixUps
-            }
-        }
-    }
 
     /// Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
     /// Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used
@@ -74,9 +46,7 @@ public struct Spec: Decodable {
                     guard case .object(let mainSchema) = components.schemas[mainSchemaName],
                           let targetDataProperty = targetSchema.properties["data"],
                           case .schema(var targetDataSchema) = targetDataProperty.type,
-                          let targetDataIndex = targetSchema.subSchemas.firstIndex(of: .objectSchema(targetDataSchema)),
-                          var targetDataAttributesSchema = targetDataSchema.subSchemas.compactMap({ $0.asAttributes }).first,
-                          let targetDataAttributesIndex = targetDataSchema.subSchemas.firstIndex(of: .attributes(targetDataAttributesSchema))
+                          case .attributes(var targetDataAttributesSchema) = targetDataSchema.attributesSchema
                     else { return }
                     targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
@@ -86,17 +56,33 @@ public struct Spec: Decodable {
                                   return mainAttributesPropertySchema == targetDataAttributesPropertySchema
                               }) else { return }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
-                        targetDataAttributesSchema.subSchemas.removeAll { subSchema in
-                            guard case .enumSchema(let subSchema) = subSchema else { return false }
-                            return subSchema.name == targetDataAttributesPropertySchema.name
-                        }
                     }
-                    targetDataSchema.subSchemas[targetDataAttributesIndex] = .attributes(targetDataAttributesSchema)
+                    targetDataSchema.attributesSchema = .attributes(targetDataAttributesSchema)
                     targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
-                    targetSchema.subSchemas[targetDataIndex] = .objectSchema(targetDataSchema)
                     components.schemas[targetSchemaName] = .object(targetSchema)
                 }
         }
+    }
+
+    public mutating func applyManualPatches() throws {
+        guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
+              let errorsProperty = errorResponseSchema.properties["errors"],
+              case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
+              var sourceProperty = errorSchema.properties["source"],
+              case .oneOf(let sourcePropertyName, var sourceOneOfSchema) = sourceProperty.type,
+              let pointerIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourcePointer")),
+              let parameterIndex = sourceOneOfSchema.options.firstIndex(of: .schemaRef("ErrorSourceParameter"))
+        else {
+            throw SpecError.unexpectedErrorResponseSource(components.schemas["ErrorResponse"])
+        }
+        sourceOneOfSchema.options.remove(at: pointerIndex)
+        sourceOneOfSchema.options.insert(.schemaRef("JsonPointer"), at: pointerIndex)
+        sourceOneOfSchema.options.remove(at: parameterIndex)
+        sourceOneOfSchema.options.insert(.schemaRef("Parameter"), at: parameterIndex)
+        sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
+        errorSchema.properties["source"] = sourceProperty
+        errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
+        components.schemas["ErrorResponse"] = .object(errorResponseSchema)
     }
 
     /// A wrapper for schemas to ease decoding
@@ -105,6 +91,12 @@ public struct Spec: Decodable {
         public var schemas: [String: Schema]
     }
 }
+
+public enum SpecError: Error {
+    case unexpectedErrorResponseSource(Schema?)
+}
+
+extension SpecError: Equatable {}
 
 private extension SubSchema {
     /// Match the sub schema as an Attributes schema and return it if it is
