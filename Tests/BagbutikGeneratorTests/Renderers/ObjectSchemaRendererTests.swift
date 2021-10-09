@@ -181,7 +181,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name."),
                                   properties: ["name": .init(type: .simple(.init(type: "string")))],
-                                  subSchemas: [.attributes(attributesSchema)])
+                                  attributesSchema: .attributes(attributesSchema))
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -225,7 +225,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   url: "some://url",
                                   documentation: .rootSchema(summary: "A person with a name."),
                                   properties: ["name": .init(type: .simple(.init(type: "string")))],
-                                  subSchemas: [.relationships(relationshipsSchema)])
+                                  relationshipsSchema: .relationships(relationshipsSchema))
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
@@ -275,16 +275,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                                           "preference": "The person's indentation preference",
                                                                           "connection": "The person's connection"]),
                                   properties: ["name": .init(type: .simple(.init(type: "string"))),
-                                               "pet": .init(type: .schemaRef("Pet")),
-                                               "preference": .init(type: .schemaRef("Preference")),
-                                               "connection": .init(type: .schemaRef("Connection"))],
-                                  subSchemas: [
-                                      .objectSchema(.init(name: "Pet", url: "some://url", properties: ["name": .init(type: .simple(.init(type: "string")))])),
-                                      .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"])),
-                                      .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])),
-                                  ])
+                                               "pet": .init(type: .schema(.init(name: "Pet", url: "some://url", properties: ["name": .init(type: .simple(.init(type: "string")))]))),
+                                               "preference": .init(type: .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"]))),
+                                               "connection": .init(type: .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])))])
         // When
-        let rendered = try renderer.render(objectSchema: schema, includesFixUps: ["computers", "phones"])
+        let rendered = try renderer.render(objectSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -311,14 +306,14 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public enum Connection: Codable {
-                case computers(Computer)
-                case phones(Phone)
+                case computer(Computer)
+                case phone(Phone)
 
                 public init(from decoder: Decoder) throws {
-                    if let computers = try? Computer(from: decoder) {
-                        self = .computers(computers)
-                    } else if let phones = try? Phone(from: decoder) {
-                        self = .phones(phones)
+                    if let computer = try? Computer(from: decoder) {
+                        self = .computer(computer)
+                    } else if let phone = try? Phone(from: decoder) {
+                        self = .phone(phone)
                     } else {
                         throw DecodingError.typeMismatch(Connection.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                                 debugDescription: "Unknown Connection"))
@@ -327,9 +322,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
                 public func encode(to encoder: Encoder) throws {
                     switch self {
-                    case let .computers(value):
+                    case let .computer(value):
                         try value.encode(to: encoder)
-                    case let .phones(value):
+                    case let .phone(value):
                         try value.encode(to: encoder)
                     }
                 }
@@ -339,8 +334,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
 
                 private enum TypeKeys: String, Codable {
-                    case computers
-                    case phones
+                    case computer
+                    case phone
                 }
             }
 
@@ -406,8 +401,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "age": .init(type: .simple(.init(type: "integer"))),
                                                "type": .init(type: .constant("person"))],
                                   requiredProperties: ["name", "attributes"],
-                                  subSchemas: [.attributes(attributesSchema),
-                                               .relationships(relationshipsSchema)])
+                                  attributesSchema: .attributes(attributesSchema),
+                                  relationshipsSchema: .relationships(relationshipsSchema))
         // When
         let rendered = try renderer.render(objectSchema: schema)
         // Then
