@@ -104,8 +104,8 @@ public class ObjectSchemaRenderer {
     private func objectContext(for objectSchema: ObjectSchema, in environment: Environment) -> [String: Any] {
         let subSchemas = objectSchema.subSchemas
         let sortedProperties = objectSchema.properties.sorted { $0.key < $1.key }
-        let hasAttributes = subSchemas.contains(where: { if case .attributes = $0 { return true } else { return false } })
-        let hasRelationships = subSchemas.contains(where: { if case .relationships = $0 { return true } else { return false } })
+        let hasAttributes = objectSchema.attributesSchema != nil
+        let hasRelationships = objectSchema.relationshipsSchema != nil
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { $0.key != "type" }
