@@ -27,15 +27,15 @@ public struct CiProductsResponse: Codable, PagedResponse {
     public enum Included: Codable {
         case app(App)
         case bundleId(BundleId)
-        case primaryRepositories(ScmRepository)
+        case scmRepository(ScmRepository)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
             } else if let bundleId = try? BundleId(from: decoder) {
                 self = .bundleId(bundleId)
-            } else if let primaryRepositories = try? ScmRepository(from: decoder) {
-                self = .primaryRepositories(primaryRepositories)
+            } else if let scmRepository = try? ScmRepository(from: decoder) {
+                self = .scmRepository(scmRepository)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -48,7 +48,7 @@ public struct CiProductsResponse: Codable, PagedResponse {
                 try value.encode(to: encoder)
             case let .bundleId(value):
                 try value.encode(to: encoder)
-            case let .primaryRepositories(value):
+            case let .scmRepository(value):
                 try value.encode(to: encoder)
             }
         }
@@ -60,7 +60,7 @@ public struct CiProductsResponse: Codable, PagedResponse {
         private enum TypeKeys: String, Codable {
             case app
             case bundleId
-            case primaryRepositories
+            case scmRepository
         }
     }
 }

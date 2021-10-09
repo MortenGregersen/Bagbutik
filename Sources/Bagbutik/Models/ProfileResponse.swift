@@ -22,16 +22,16 @@ public struct ProfileResponse: Codable {
 
     public enum Included: Codable {
         case bundleId(BundleId)
-        case certificates(Certificate)
-        case devices(Device)
+        case certificate(Certificate)
+        case device(Device)
 
         public init(from decoder: Decoder) throws {
             if let bundleId = try? BundleId(from: decoder) {
                 self = .bundleId(bundleId)
-            } else if let certificates = try? Certificate(from: decoder) {
-                self = .certificates(certificates)
-            } else if let devices = try? Device(from: decoder) {
-                self = .devices(devices)
+            } else if let certificate = try? Certificate(from: decoder) {
+                self = .certificate(certificate)
+            } else if let device = try? Device(from: decoder) {
+                self = .device(device)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -42,9 +42,9 @@ public struct ProfileResponse: Codable {
             switch self {
             case let .bundleId(value):
                 try value.encode(to: encoder)
-            case let .certificates(value):
+            case let .certificate(value):
                 try value.encode(to: encoder)
-            case let .devices(value):
+            case let .device(value):
                 try value.encode(to: encoder)
             }
         }
@@ -55,8 +55,8 @@ public struct ProfileResponse: Codable {
 
         private enum TypeKeys: String, Codable {
             case bundleId
-            case certificates
-            case devices
+            case certificate
+            case device
         }
     }
 }

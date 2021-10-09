@@ -29,11 +29,11 @@ public struct BuildsResponse: Codable, PagedResponse {
         case appEncryptionDeclaration(AppEncryptionDeclaration)
         case appStoreVersion(AppStoreVersion)
         case betaAppReviewSubmission(BetaAppReviewSubmission)
-        case betaBuildLocalizations(BetaBuildLocalization)
-        case betaTesters(BetaTester)
+        case betaBuildLocalization(BetaBuildLocalization)
+        case betaTester(BetaTester)
         case buildBetaDetail(BuildBetaDetail)
-        case icons(BuildIcon)
-        case preReleaseVersions(PrereleaseVersion)
+        case buildIcon(BuildIcon)
+        case prereleaseVersion(PrereleaseVersion)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
@@ -44,16 +44,16 @@ public struct BuildsResponse: Codable, PagedResponse {
                 self = .appStoreVersion(appStoreVersion)
             } else if let betaAppReviewSubmission = try? BetaAppReviewSubmission(from: decoder) {
                 self = .betaAppReviewSubmission(betaAppReviewSubmission)
-            } else if let betaBuildLocalizations = try? BetaBuildLocalization(from: decoder) {
-                self = .betaBuildLocalizations(betaBuildLocalizations)
-            } else if let betaTesters = try? BetaTester(from: decoder) {
-                self = .betaTesters(betaTesters)
+            } else if let betaBuildLocalization = try? BetaBuildLocalization(from: decoder) {
+                self = .betaBuildLocalization(betaBuildLocalization)
+            } else if let betaTester = try? BetaTester(from: decoder) {
+                self = .betaTester(betaTester)
             } else if let buildBetaDetail = try? BuildBetaDetail(from: decoder) {
                 self = .buildBetaDetail(buildBetaDetail)
-            } else if let icons = try? BuildIcon(from: decoder) {
-                self = .icons(icons)
-            } else if let preReleaseVersions = try? PrereleaseVersion(from: decoder) {
-                self = .preReleaseVersions(preReleaseVersions)
+            } else if let buildIcon = try? BuildIcon(from: decoder) {
+                self = .buildIcon(buildIcon)
+            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
+                self = .prereleaseVersion(prereleaseVersion)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -70,15 +70,15 @@ public struct BuildsResponse: Codable, PagedResponse {
                 try value.encode(to: encoder)
             case let .betaAppReviewSubmission(value):
                 try value.encode(to: encoder)
-            case let .betaBuildLocalizations(value):
+            case let .betaBuildLocalization(value):
                 try value.encode(to: encoder)
-            case let .betaTesters(value):
+            case let .betaTester(value):
                 try value.encode(to: encoder)
             case let .buildBetaDetail(value):
                 try value.encode(to: encoder)
-            case let .icons(value):
+            case let .buildIcon(value):
                 try value.encode(to: encoder)
-            case let .preReleaseVersions(value):
+            case let .prereleaseVersion(value):
                 try value.encode(to: encoder)
             }
         }
@@ -92,11 +92,11 @@ public struct BuildsResponse: Codable, PagedResponse {
             case appEncryptionDeclaration
             case appStoreVersion
             case betaAppReviewSubmission
-            case betaBuildLocalizations
-            case betaTesters
+            case betaBuildLocalization
+            case betaTester
             case buildBetaDetail
-            case icons
-            case preReleaseVersions
+            case buildIcon
+            case prereleaseVersion
         }
     }
 }

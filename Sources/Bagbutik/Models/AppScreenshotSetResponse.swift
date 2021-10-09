@@ -21,12 +21,12 @@ public struct AppScreenshotSetResponse: Codable {
     }
 
     public enum Included: Codable {
-        case appScreenshots(AppScreenshot)
+        case appScreenshot(AppScreenshot)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appScreenshots = try? AppScreenshot(from: decoder) {
-                self = .appScreenshots(appScreenshots)
+            if let appScreenshot = try? AppScreenshot(from: decoder) {
+                self = .appScreenshot(appScreenshot)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else {
@@ -37,7 +37,7 @@ public struct AppScreenshotSetResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .appScreenshots(value):
+            case let .appScreenshot(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)
@@ -49,7 +49,7 @@ public struct AppScreenshotSetResponse: Codable {
         }
 
         private enum TypeKeys: String, Codable {
-            case appScreenshots
+            case appScreenshot
             case appStoreVersionLocalization
         }
     }

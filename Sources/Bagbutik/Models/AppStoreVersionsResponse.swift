@@ -28,7 +28,7 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)
         case appStoreReviewDetail(AppStoreReviewDetail)
-        case appStoreVersionLocalizations(AppStoreVersionLocalization)
+        case appStoreVersionLocalization(AppStoreVersionLocalization)
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
         case build(Build)
@@ -42,8 +42,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
                 self = .app(app)
             } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
                 self = .appStoreReviewDetail(appStoreReviewDetail)
-            } else if let appStoreVersionLocalizations = try? AppStoreVersionLocalization(from: decoder) {
-                self = .appStoreVersionLocalizations(appStoreVersionLocalizations)
+            } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
+                self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
                 self = .appStoreVersionPhasedRelease(appStoreVersionPhasedRelease)
             } else if let appStoreVersionSubmission = try? AppStoreVersionSubmission(from: decoder) {
@@ -68,7 +68,7 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
                 try value.encode(to: encoder)
             case let .appStoreReviewDetail(value):
                 try value.encode(to: encoder)
-            case let .appStoreVersionLocalizations(value):
+            case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionPhasedRelease(value):
                 try value.encode(to: encoder)
@@ -91,7 +91,7 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
             case ageRatingDeclaration
             case app
             case appStoreReviewDetail
-            case appStoreVersionLocalizations
+            case appStoreVersionLocalization
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
             case build

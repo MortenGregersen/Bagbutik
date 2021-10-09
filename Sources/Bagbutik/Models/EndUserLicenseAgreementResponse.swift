@@ -22,13 +22,13 @@ public struct EndUserLicenseAgreementResponse: Codable {
 
     public enum Included: Codable {
         case app(App)
-        case territories(Territory)
+        case territory(Territory)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
-            } else if let territories = try? Territory(from: decoder) {
-                self = .territories(territories)
+            } else if let territory = try? Territory(from: decoder) {
+                self = .territory(territory)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -39,7 +39,7 @@ public struct EndUserLicenseAgreementResponse: Codable {
             switch self {
             case let .app(value):
                 try value.encode(to: encoder)
-            case let .territories(value):
+            case let .territory(value):
                 try value.encode(to: encoder)
             }
         }
@@ -50,7 +50,7 @@ public struct EndUserLicenseAgreementResponse: Codable {
 
         private enum TypeKeys: String, Codable {
             case app
-            case territories
+            case territory
         }
     }
 }

@@ -26,16 +26,16 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
 
     public enum Included: Codable {
         case app(App)
-        case betaTesters(BetaTester)
-        case builds(Build)
+        case betaTester(BetaTester)
+        case build(Build)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
-            } else if let betaTesters = try? BetaTester(from: decoder) {
-                self = .betaTesters(betaTesters)
-            } else if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
+            } else if let betaTester = try? BetaTester(from: decoder) {
+                self = .betaTester(betaTester)
+            } else if let build = try? Build(from: decoder) {
+                self = .build(build)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -46,9 +46,9 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
             switch self {
             case let .app(value):
                 try value.encode(to: encoder)
-            case let .betaTesters(value):
+            case let .betaTester(value):
                 try value.encode(to: encoder)
-            case let .builds(value):
+            case let .build(value):
                 try value.encode(to: encoder)
             }
         }
@@ -59,8 +59,8 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
 
         private enum TypeKeys: String, Codable {
             case app
-            case betaTesters
-            case builds
+            case betaTester
+            case build
         }
     }
 }

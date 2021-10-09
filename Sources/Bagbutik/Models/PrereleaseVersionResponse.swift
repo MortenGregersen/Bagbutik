@@ -22,13 +22,13 @@ public struct PrereleaseVersionResponse: Codable {
 
     public enum Included: Codable {
         case app(App)
-        case builds(Build)
+        case build(Build)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
                 self = .app(app)
-            } else if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
+            } else if let build = try? Build(from: decoder) {
+                self = .build(build)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -39,7 +39,7 @@ public struct PrereleaseVersionResponse: Codable {
             switch self {
             case let .app(value):
                 try value.encode(to: encoder)
-            case let .builds(value):
+            case let .build(value):
                 try value.encode(to: encoder)
             }
         }
@@ -50,7 +50,7 @@ public struct PrereleaseVersionResponse: Codable {
 
         private enum TypeKeys: String, Codable {
             case app
-            case builds
+            case build
         }
     }
 }

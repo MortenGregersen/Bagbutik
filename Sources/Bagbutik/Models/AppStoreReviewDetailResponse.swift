@@ -21,12 +21,12 @@ public struct AppStoreReviewDetailResponse: Codable {
     }
 
     public enum Included: Codable {
-        case appStoreReviewAttachments(AppStoreReviewAttachment)
+        case appStoreReviewAttachment(AppStoreReviewAttachment)
         case appStoreVersion(AppStoreVersion)
 
         public init(from decoder: Decoder) throws {
-            if let appStoreReviewAttachments = try? AppStoreReviewAttachment(from: decoder) {
-                self = .appStoreReviewAttachments(appStoreReviewAttachments)
+            if let appStoreReviewAttachment = try? AppStoreReviewAttachment(from: decoder) {
+                self = .appStoreReviewAttachment(appStoreReviewAttachment)
             } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
                 self = .appStoreVersion(appStoreVersion)
             } else {
@@ -37,7 +37,7 @@ public struct AppStoreReviewDetailResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .appStoreReviewAttachments(value):
+            case let .appStoreReviewAttachment(value):
                 try value.encode(to: encoder)
             case let .appStoreVersion(value):
                 try value.encode(to: encoder)
@@ -49,7 +49,7 @@ public struct AppStoreReviewDetailResponse: Codable {
         }
 
         private enum TypeKeys: String, Codable {
-            case appStoreReviewAttachments
+            case appStoreReviewAttachment
             case appStoreVersion
         }
     }

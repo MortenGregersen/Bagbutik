@@ -25,17 +25,17 @@ public struct BetaTestersResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
-        case apps(App)
-        case betaGroups(BetaGroup)
-        case builds(Build)
+        case app(App)
+        case betaGroup(BetaGroup)
+        case build(Build)
 
         public init(from decoder: Decoder) throws {
-            if let apps = try? App(from: decoder) {
-                self = .apps(apps)
-            } else if let betaGroups = try? BetaGroup(from: decoder) {
-                self = .betaGroups(betaGroups)
-            } else if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
+            if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let betaGroup = try? BetaGroup(from: decoder) {
+                self = .betaGroup(betaGroup)
+            } else if let build = try? Build(from: decoder) {
+                self = .build(build)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -44,11 +44,11 @@ public struct BetaTestersResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .apps(value):
+            case let .app(value):
                 try value.encode(to: encoder)
-            case let .betaGroups(value):
+            case let .betaGroup(value):
                 try value.encode(to: encoder)
-            case let .builds(value):
+            case let .build(value):
                 try value.encode(to: encoder)
             }
         }
@@ -58,9 +58,9 @@ public struct BetaTestersResponse: Codable, PagedResponse {
         }
 
         private enum TypeKeys: String, Codable {
-            case apps
-            case betaGroups
-            case builds
+            case app
+            case betaGroup
+            case build
         }
     }
 }

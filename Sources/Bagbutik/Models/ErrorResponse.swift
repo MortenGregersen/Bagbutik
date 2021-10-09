@@ -46,14 +46,14 @@ public struct ErrorResponse: Codable {
         }
 
         public enum Source: Codable {
-            case errorSourceParameter(Parameter)
-            case errorSourcePointer(JsonPointer)
+            case jsonPointer(JsonPointer)
+            case parameter(Parameter)
 
             public init(from decoder: Decoder) throws {
-                if let errorSourceParameter = try? Parameter(from: decoder) {
-                    self = .errorSourceParameter(errorSourceParameter)
-                } else if let errorSourcePointer = try? JsonPointer(from: decoder) {
-                    self = .errorSourcePointer(errorSourcePointer)
+                if let jsonPointer = try? JsonPointer(from: decoder) {
+                    self = .jsonPointer(jsonPointer)
+                } else if let parameter = try? Parameter(from: decoder) {
+                    self = .parameter(parameter)
                 } else {
                     throw DecodingError.typeMismatch(Source.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                         debugDescription: "Unknown Source"))
@@ -62,9 +62,9 @@ public struct ErrorResponse: Codable {
 
             public func encode(to encoder: Encoder) throws {
                 switch self {
-                case let .errorSourceParameter(value):
+                case let .jsonPointer(value):
                     try value.encode(to: encoder)
-                case let .errorSourcePointer(value):
+                case let .parameter(value):
                     try value.encode(to: encoder)
                 }
             }
@@ -74,8 +74,8 @@ public struct ErrorResponse: Codable {
             }
 
             private enum TypeKeys: String, Codable {
-                case errorSourceParameter
-                case errorSourcePointer
+                case jsonPointer
+                case parameter
             }
         }
     }
