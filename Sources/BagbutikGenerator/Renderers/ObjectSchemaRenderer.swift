@@ -102,9 +102,10 @@ public class ObjectSchemaRenderer {
     ]), extensions: StencilSwiftKit.stencilSwiftEnvironment().extensions)
 
     private func objectContext(for objectSchema: ObjectSchema, in environment: Environment) -> [String: Any] {
+        let subSchemas = objectSchema.subSchemas
         let sortedProperties = objectSchema.properties.sorted { $0.key < $1.key }
-        let hasAttributes = objectSchema.subSchemas.contains(where: { if case .attributes = $0 { return true } else { return false } })
-        let hasRelationships = objectSchema.subSchemas.contains(where: { if case .relationships = $0 { return true } else { return false } })
+        let hasAttributes = subSchemas.contains(where: { if case .attributes = $0 { return true } else { return false } })
+        let hasRelationships = subSchemas.contains(where: { if case .relationships = $0 { return true } else { return false } })
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { $0.key != "type" }
@@ -177,7 +178,7 @@ public class ObjectSchemaRenderer {
                 "hasRelationships": hasRelationships,
                 "relationshipsDocumentation": relationshipsDocumentation,
                 "relationshipsOptional": relationshipsOptional,
-                "subSchemas": objectSchema.subSchemas.map { subSchema -> String in
+                "subSchemas": subSchemas.map { subSchema -> String in
                     switch subSchema {
                     case .objectSchema(let objectSchema):
                         return try! render(objectSchema: objectSchema)
