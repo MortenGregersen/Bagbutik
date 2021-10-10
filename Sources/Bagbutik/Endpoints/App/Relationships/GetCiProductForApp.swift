@@ -62,6 +62,6 @@ public enum GetCiProductForApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case primaryRepositories
+        case app, bundleId, primaryRepositories
     }
 }

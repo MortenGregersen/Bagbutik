@@ -88,7 +88,7 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appPreviews
+        case appPreviews, appStoreVersionLocalization
     }
 
     /**

@@ -98,7 +98,7 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appScreenshots
+        case appScreenshots, appStoreVersionLocalization
     }
 
     /**

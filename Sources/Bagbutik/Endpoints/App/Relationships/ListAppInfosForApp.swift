@@ -64,7 +64,7 @@ public enum ListAppInfosForApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appInfoLocalizations
+        case ageRatingDeclaration, app, appInfoLocalizations, primaryCategory, primarySubcategoryOne, primarySubcategoryTwo, secondaryCategory, secondarySubcategoryOne, secondarySubcategoryTwo
     }
 
     /**

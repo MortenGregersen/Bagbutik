@@ -72,7 +72,7 @@ public enum ListGameCenterEnabledVersionsForApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case compatibleVersions
+        case app, compatibleVersions
     }
 
     /**

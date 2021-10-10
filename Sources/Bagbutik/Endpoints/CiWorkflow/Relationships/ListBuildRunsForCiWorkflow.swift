@@ -97,7 +97,7 @@ public enum ListBuildRunsForCiWorkflow {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case builds
+        case builds, destinationBranch, product, pullRequest, sourceBranchOrTag, workflow
     }
 
     /**

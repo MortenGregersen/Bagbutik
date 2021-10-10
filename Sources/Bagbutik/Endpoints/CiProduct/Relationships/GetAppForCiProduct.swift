@@ -202,7 +202,7 @@ public enum GetAppForCiProduct {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaGroups, builds, gameCenterEnabledVersions, inAppPurchases, preReleaseVersions, prices
+        case appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices
     }
 
     /**
