@@ -61,6 +61,6 @@ public enum GetAppStoreReviewDetailForAppStoreVersion {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appStoreReviewAttachments
+        case appStoreReviewAttachments, appStoreVersion
     }
 }

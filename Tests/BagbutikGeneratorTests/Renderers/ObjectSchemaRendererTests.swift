@@ -332,11 +332,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 private enum CodingKeys: String, CodingKey {
                     case type
                 }
-
-                private enum TypeKeys: String, Codable {
-                    case computer
-                    case phone
-                }
             }
 
             public struct Pet: Codable {

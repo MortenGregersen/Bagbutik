@@ -150,7 +150,7 @@ public enum ListBuildsForCiBuildRun {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case betaBuildLocalizations, icons, individualTesters
+        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, icons, individualTesters, preReleaseVersion
     }
 
     /**
