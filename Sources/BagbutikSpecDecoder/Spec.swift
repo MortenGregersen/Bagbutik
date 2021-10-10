@@ -7,6 +7,39 @@ public struct Spec: Decodable {
     /// The components contained in the spec
     public var components: Components
 
+    public mutating func addForgottenIncludeParameters() {
+        paths.forEach { (pathKey: String, path: Path) in
+            var path = path
+            path.operations.forEach { operation in
+                let operationIndex = path.operations.firstIndex(of: operation)!
+                var operation = operation
+                let responseSchemaName = operation.successResponseType
+                guard case .object(let responseSchema) = components.schemas[responseSchemaName] else { return }
+                let dataSchemaName: String
+                guard let dataProperty = responseSchema.properties["data"] else { return }
+                if case .arrayOfSchemaRef(let theDataSchemaName) = dataProperty.type {
+                    dataSchemaName = theDataSchemaName
+                } else if case .schemaRef(let theDataSchemaName) = dataProperty.type {
+                    dataSchemaName = theDataSchemaName
+                } else { return }
+                guard case .object(let dataSchema) = components.schemas[dataSchemaName],
+                      case .relationships(let dataRelationshipsSchema) = dataSchema.relationshipsSchema
+                else { return }
+                let includeNamesFromResponse = dataRelationshipsSchema.properties.map(\.key)
+                operation.parameters?.forEach { parameter in
+                    guard let parameterIndex = operation.parameters?.firstIndex(of: parameter),
+                          case .include(let parameterValueType) = parameter,
+                          case .enum(let includeType, let includeValues) = parameterValueType
+                    else { return }
+                    let allValues = Array(Set<String>(includeValues).union(includeNamesFromResponse)).sorted()
+                    operation.parameters?[parameterIndex] = .include(type: .enum(type: includeType, values: allValues))
+                }
+                path.operations[operationIndex] = operation
+            }
+            paths[pathKey] = path
+        }
+    }
+
     /// Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
     /// Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used
     public mutating func flattenIdenticalSchemas() {

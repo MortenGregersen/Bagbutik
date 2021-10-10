@@ -60,6 +60,7 @@ public class Generator {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
             var spec = try JSONDecoder().decode(Spec.self, from: specData)
+            spec.addForgottenIncludeParameters()
             spec.flattenIdenticalSchemas()
             try spec.applyManualPatches()
             return spec
