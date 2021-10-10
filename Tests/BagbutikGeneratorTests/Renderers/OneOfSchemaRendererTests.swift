@@ -43,12 +43,6 @@ final class OneOfSchemaRendererTests: XCTestCase {
             private enum CodingKeys: String, CodingKey {
                 case type
             }
-
-            private enum TypeKeys: String, Codable {
-                case bundleId
-                case certificate
-                case device
-            }
         }
 
         """#)
