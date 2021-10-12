@@ -10,28 +10,10 @@ public protocol BagbutikServiceProtocol {
 }
 
 public class BagbutikService: BagbutikServiceProtocol {
-    private let header: Header
-    private var payload: Payload
-    private let privateKey: String
-    private var signedJwt: String
+    private var jwt: JWT
     
-    public init(keyId: String, issuerId: String, privateKey: String) throws {
-        header = Header(kid: keyId)
-        payload = Payload(iss: issuerId)
-        self.privateKey = privateKey
-        let jsonEncoder = JSONEncoder()
-        let headerString = try jsonEncoder.encode(header).base64EncodedURLString()
-        let payloadString = try jsonEncoder.encode(payload).base64EncodedURLString()
-        let headerPayloadString = "\(headerString).\(payloadString)"
-        let hashedDigest = SHA256.hash(data: headerPayloadString.data(using: .utf8)!)
-        let signature = try P256.Signing.PrivateKey(pemRepresentation: privateKey).signature(for: hashedDigest)
-        let signingString = signature.rawRepresentation.base64EncodedURLString()
-        signedJwt = "\(headerString).\(payloadString).\(signingString)"
-    }
-    
-    public convenience init(keyId: String, issuerId: String, privateKeyPath: String) throws {
-        let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))
-        try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
+    public init(jwt: JWT) {
+        self.jwt = jwt
     }
     
     /// Errors from the API or from the decoding of the responses.
@@ -118,7 +100,10 @@ public class BagbutikService: BagbutikServiceProtocol {
     
     private func fetch<T: Decodable>(_ urlRequest: URLRequest) async throws -> T {
         var urlRequest = urlRequest
-        urlRequest.addJWTAuthorizationHeader(signedJwt)
+        if jwt.isExpired {
+            try jwt.renewEncodedSignature()
+        }
+        urlRequest.addJWTAuthorizationHeader(jwt.encodedSignature)
         let dataAndResponse = try await URLSession.shared.data(for: urlRequest)
         return try Self.decodeResponse(data: dataAndResponse.0, response: dataAndResponse.1) as T
     }
@@ -151,18 +136,6 @@ public class BagbutikService: BagbutikServiceProtocol {
             throw ServiceError.unknownHTTPError(statusCode: httpResponse.statusCode, data: data)
         }
         throw ServiceError.unknown(data: data)
-    }
-    
-    private struct Header: Encodable {
-        let alg = "ES256"
-        let kid: String
-        let typ = "kid"
-    }
-    
-    private struct Payload: Encodable {
-        let iss: String
-        let exp = Int(Date(timeIntervalSinceNow: 20 * 60).timeIntervalSince1970)
-        let aud = "appstoreconnect-v1"
     }
 }
 
