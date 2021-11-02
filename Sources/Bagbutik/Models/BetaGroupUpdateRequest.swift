@@ -63,6 +63,7 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public let feedbackEnabled: Bool?
+            public let iosBuildsAvailableForAppleSiliconMac: Bool?
             /// The name for the beta group.
             public let name: String?
             /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
@@ -72,8 +73,9 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
             public let publicLinkLimitEnabled: Bool?
 
-            public init(feedbackEnabled: Bool? = nil, name: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+            public init(feedbackEnabled: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, name: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
                 self.feedbackEnabled = feedbackEnabled
+                self.iosBuildsAvailableForAppleSiliconMac = iosBuildsAvailableForAppleSiliconMac
                 self.name = name
                 self.publicLinkEnabled = publicLinkEnabled
                 self.publicLinkLimit = publicLinkLimit

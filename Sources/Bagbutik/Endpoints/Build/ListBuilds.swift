@@ -77,6 +77,7 @@ public enum ListBuilds {
         public enum AppStoreVersions: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
+            case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionLocalizations
@@ -96,6 +97,7 @@ public enum ListBuilds {
         }
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
@@ -165,12 +167,15 @@ public enum ListBuilds {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion
@@ -255,7 +260,7 @@ public enum ListBuilds {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, icons, individualTesters, preReleaseVersion
+        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
     }
 
     /**
@@ -278,6 +283,8 @@ public enum ListBuilds {
         case limit(Int)
         /// Maximum number of related betaBuildLocalizations returned (when they are included) - maximum 50
         case betaBuildLocalizations(Int)
+        /// Maximum number of related buildBundles returned (when they are included) - maximum 50
+        case buildBundles(Int)
         /// Maximum number of related icons returned (when they are included) - maximum 50
         case icons(Int)
         /// Maximum number of related individualTesters returned (when they are included) - maximum 50

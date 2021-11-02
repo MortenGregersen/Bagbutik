@@ -1,0 +1,7 @@
+import Foundation
+
+public enum AppClipAction: String, Codable, CaseIterable {
+    case open = "OPEN"
+    case view = "VIEW"
+    case play = "PLAY"
+}

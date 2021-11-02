@@ -23,6 +23,7 @@ public struct AppStoreVersionResponse: Codable {
     public enum Included: Codable {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)
+        case appClipDefaultExperience(AppClipDefaultExperience)
         case appStoreReviewDetail(AppStoreReviewDetail)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
@@ -36,6 +37,8 @@ public struct AppStoreVersionResponse: Codable {
                 self = .ageRatingDeclaration(ageRatingDeclaration)
             } else if let app = try? App(from: decoder) {
                 self = .app(app)
+            } else if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
+                self = .appClipDefaultExperience(appClipDefaultExperience)
             } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
                 self = .appStoreReviewDetail(appStoreReviewDetail)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
@@ -61,6 +64,8 @@ public struct AppStoreVersionResponse: Codable {
             case let .ageRatingDeclaration(value):
                 try value.encode(to: encoder)
             case let .app(value):
+                try value.encode(to: encoder)
+            case let .appClipDefaultExperience(value):
                 try value.encode(to: encoder)
             case let .appStoreReviewDetail(value):
                 try value.encode(to: encoder)

@@ -102,10 +102,57 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            public let appClipDefaultExperience: AppClipDefaultExperience?
             public let build: Build?
 
-            public init(build: Build? = nil) {
+            public init(appClipDefaultExperience: AppClipDefaultExperience? = nil, build: Build? = nil) {
+                self.appClipDefaultExperience = appClipDefaultExperience
                 self.build = build
+            }
+
+            public struct AppClipDefaultExperience: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
+                public let data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                /**
+                 The type and ID of a resource that you're relating with the resource you're updating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
+                 */
+                public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
+                    public let id: String
+                    /// The resource type.
+                    public var type: String { "appClipDefaultExperiences" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
+                }
             }
 
             public struct Build: Codable {

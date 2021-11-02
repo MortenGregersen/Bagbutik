@@ -35,6 +35,7 @@ public enum ListBetaLicenseAgreements {
         case betaLicenseAgreements([BetaLicenseAgreements])
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories

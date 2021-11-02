@@ -38,6 +38,8 @@ public enum ListBuildsForCiBuildRun {
         case betaBuildLocalizations([BetaBuildLocalizations])
         /// The fields to include for returned resources of type betaTesters
         case betaTesters([BetaTesters])
+        /// The fields to include for returned resources of type buildBundles
+        case buildBundles([BuildBundles])
         /// The fields to include for returned resources of type buildIcons
         case buildIcons([BuildIcons])
         /// The fields to include for returned resources of type builds
@@ -59,6 +61,30 @@ public enum ListBuildsForCiBuildRun {
             case lastName
         }
 
+        public enum BuildBundles: String, ParameterValue, CaseIterable {
+            case appClipDomainCacheStatus
+            case appClipDomainDebugStatus
+            case betaAppClipInvocations
+            case buildBundleFileSizes
+            case bundleId
+            case bundleType
+            case dSYMUrl
+            case deviceProtocols
+            case entitlements
+            case fileName
+            case hasOnDemandResources
+            case hasPrerenderedIcon
+            case hasSirikit
+            case includesSymbols
+            case isIosBuildMacAppStoreCompatible
+            case locales
+            case platformBuild
+            case requiredCapabilities
+            case sdkBuild
+            case supportedArchitectures
+            case usesLocationServices
+        }
+
         public enum BuildIcons: String, ParameterValue, CaseIterable {
             case iconAsset
             case iconType
@@ -73,12 +99,15 @@ public enum ListBuildsForCiBuildRun {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion
@@ -150,7 +179,7 @@ public enum ListBuildsForCiBuildRun {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, icons, individualTesters, preReleaseVersion
+        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
     }
 
     /**
@@ -177,5 +206,7 @@ public enum ListBuildsForCiBuildRun {
         case betaBuildLocalizations(Int)
         /// Maximum number of related icons returned (when they are included) - maximum 50
         case icons(Int)
+        /// Maximum number of related buildBundles returned (when they are included) - maximum 50
+        case buildBundles(Int)
     }
 }

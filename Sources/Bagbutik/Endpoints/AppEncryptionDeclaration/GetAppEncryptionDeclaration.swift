@@ -48,6 +48,7 @@ public enum GetAppEncryptionDeclaration {
         }
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories

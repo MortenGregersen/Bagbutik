@@ -40,6 +40,7 @@ public enum ListInAppPurchasesForApp {
         case inAppPurchases([InAppPurchases])
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories

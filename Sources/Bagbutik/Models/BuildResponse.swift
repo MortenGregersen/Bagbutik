@@ -28,6 +28,7 @@ public struct BuildResponse: Codable {
         case betaBuildLocalization(BetaBuildLocalization)
         case betaTester(BetaTester)
         case buildBetaDetail(BuildBetaDetail)
+        case buildBundle(BuildBundle)
         case buildIcon(BuildIcon)
         case prereleaseVersion(PrereleaseVersion)
 
@@ -46,6 +47,8 @@ public struct BuildResponse: Codable {
                 self = .betaTester(betaTester)
             } else if let buildBetaDetail = try? BuildBetaDetail(from: decoder) {
                 self = .buildBetaDetail(buildBetaDetail)
+            } else if let buildBundle = try? BuildBundle(from: decoder) {
+                self = .buildBundle(buildBundle)
             } else if let buildIcon = try? BuildIcon(from: decoder) {
                 self = .buildIcon(buildIcon)
             } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
@@ -71,6 +74,8 @@ public struct BuildResponse: Codable {
             case let .betaTester(value):
                 try value.encode(to: encoder)
             case let .buildBetaDetail(value):
+                try value.encode(to: encoder)
+            case let .buildBundle(value):
                 try value.encode(to: encoder)
             case let .buildIcon(value):
                 try value.encode(to: encoder)

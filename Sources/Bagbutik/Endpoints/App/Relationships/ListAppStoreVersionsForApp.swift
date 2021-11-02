@@ -52,6 +52,7 @@ public enum ListAppStoreVersionsForApp {
         public enum AppStoreVersions: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
+            case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionLocalizations
@@ -119,7 +120,7 @@ public enum ListAppStoreVersionsForApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appStoreReviewDetail, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
+        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
     }
 
     /**

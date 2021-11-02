@@ -38,6 +38,7 @@ public enum GetBundleId {
         case profiles([Profiles])
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
