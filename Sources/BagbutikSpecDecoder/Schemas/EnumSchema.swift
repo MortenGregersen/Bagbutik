@@ -51,7 +51,12 @@ public struct EnumSchema: Decodable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.init(name: container.codingPath.last!.stringValue.capitalizingFirstLetter(),
+        var name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
+        if name == "Type" {
+            let parentType = container.codingPath.dropLast(1).last!.stringValue.capitalizingFirstLetter()
+            name = parentType + name
+        }
+        self.init(name: name,
                   type: try container.decode(String.self, forKey: .type),
                   caseValues: try container.decode([String].self, forKey: .enum))
     }

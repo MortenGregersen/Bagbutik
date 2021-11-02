@@ -27,7 +27,7 @@ final class PropertyTypeTests: XCTestCase {
         // Given
         let json = #"""
         {
-            "type" : {
+            "gruopType" : {
                 "type" : "string",
                 "enum" : [ "users" ]
             }
