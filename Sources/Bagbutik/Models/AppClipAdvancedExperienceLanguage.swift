@@ -1,5 +1,6 @@
 import Foundation
 
+/// The data structure that represents the language you configure for an advanced App Clip experience.
 public enum AppClipAdvancedExperienceLanguage: String, Codable, CaseIterable {
     case ar = "AR"
     case ca = "CA"

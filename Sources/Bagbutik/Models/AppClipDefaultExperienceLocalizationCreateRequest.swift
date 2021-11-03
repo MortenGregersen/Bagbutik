@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to create a Default App Clip Experience Localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest>
+ */
 public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,8 +55,16 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The specified locale.
             public let locale: String
+            /// The subtitle that appears on the App Clip card for the default App Clip experience.
             public let subtitle: String?
 
             public init(locale: String, subtitle: String? = nil) {

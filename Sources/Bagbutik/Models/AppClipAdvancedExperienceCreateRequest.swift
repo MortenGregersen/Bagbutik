@@ -1,7 +1,15 @@
 import Foundation
 
+/**
+ The request body you use to create an advanced App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest>
+ */
 public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
+    /// The included related resources.
     public let included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
@@ -50,12 +58,24 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The call-to-action verb that appears on the App Clip card.
             public let action: AppClipAction?
+            /// The business category of an advanced App Clip experience; for example, PARKING
             public let businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            /// The default language for the advanced App Clip experience.
             public let defaultLanguage: AppClipAdvancedExperienceLanguage
+            /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
             public let isPoweredBy: Bool
+            /// The invocation URL of the advanced App Clip experience you’re creating.
             public let link: String
+            /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.
             public let place: Place?
 
             public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage, isPoweredBy: Bool, link: String, place: Place? = nil) {

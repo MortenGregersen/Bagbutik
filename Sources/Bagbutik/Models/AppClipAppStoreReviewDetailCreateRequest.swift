@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to create an App Clip App Store Review Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest>
+ */
 public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,7 +55,14 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// An array of invocation URLs for your App Clip.
             public let invocationUrls: String?
 
             public init(invocationUrls: String? = nil) {

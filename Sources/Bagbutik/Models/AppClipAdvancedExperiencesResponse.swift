@@ -1,10 +1,20 @@
 import Foundation
 
+/**
+ A response that contains a list of Advanced App Clip Experiences resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencesresponse>
+ */
 public struct AppClipAdvancedExperiencesResponse: Codable, PagedResponse {
     public typealias Data = AppClipAdvancedExperience
+    /// The resource data.
     public let data: [AppClipAdvancedExperience]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppClipAdvancedExperience], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

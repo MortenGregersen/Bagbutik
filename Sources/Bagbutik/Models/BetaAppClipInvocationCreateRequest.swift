@@ -1,7 +1,15 @@
 import Foundation
 
+/**
+ The request body you use to create an App Clip invocation for testers.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest>
+ */
 public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
+    /// The included related resources.
     public let included: [BetaAppClipInvocationLocalizationInlineCreate]?
 
     public init(data: Data, included: [BetaAppClipInvocationLocalizationInlineCreate]? = nil) {
@@ -50,7 +58,14 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
             public let url: String
 
             public init(url: String) {

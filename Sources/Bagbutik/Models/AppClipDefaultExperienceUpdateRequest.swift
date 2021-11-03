@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to update a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest>
+ */
 public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -54,7 +61,14 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The call-to-action verb that appears on the App Clip card.
             public let action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {

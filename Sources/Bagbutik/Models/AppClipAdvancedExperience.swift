@@ -1,12 +1,21 @@
 import Foundation
 
+/**
+ The data structure that represents an Advanced App Clip Experiences resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience>
+ */
 public struct AppClipAdvancedExperience: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appClipAdvancedExperiences" }
-    ///
+    /// The resource's attributes.
     public let attributes: Attributes?
-    ///
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -44,15 +53,30 @@ public struct AppClipAdvancedExperience: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe an Advanced App Clip Experiences resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes>
+     */
     public struct Attributes: Codable {
+        /// The call-to-action verb that appears on the App Clip card.
         public let action: AppClipAction?
+        /// The business category of an advanced App Clip experience; for example, PARKING
         public let businessCategory: BusinessCategory?
+        /// The default language for the advanced App Clip experience.
         public let defaultLanguage: AppClipAdvancedExperienceLanguage?
+        /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
         public let isPoweredBy: Bool?
+        /// The invocation URL of the advanced App Clip experience.
         public let link: String?
+        /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
         public let place: Place?
+        /// A string that describes a place’s match status with Points of Interest (POI) in Apple Maps. PENDING indicates that Apple Maps is currently matching the place to a POI. MATCHED indicates that the provided place information matched a POI, and NO_MATCH indicates that the place doesn’t match a POI in Apple Maps or is in a location not supported by Apple Maps.
         public let placeStatus: PlaceStatus?
+        /// A string that describes the status of an advanced App Clip experience. RECEIVED indicates that users can invoke this experience, DEACTIVATED indicates that the experience is deactivated and users can’t launch the App Clip with this invocation, and APP_TRANSFER_IN_PROGRESS indicates that the experience is part of an app that’s currently transferred to another developer.
         public let status: Status?
+        /// The build version of the App Clip as an integer value; for example, 1234.
         public let version: Int?
 
         public init(action: AppClipAction? = nil, businessCategory: BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, link: String? = nil, place: Place? = nil, placeStatus: PlaceStatus? = nil, status: Status? = nil, version: Int? = nil) {

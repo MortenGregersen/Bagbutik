@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to create a Beta App Clip Localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest>
+ */
 public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,8 +55,16 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
             public let locale: String
+            /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
             public let title: String
 
             public init(locale: String, title: String) {

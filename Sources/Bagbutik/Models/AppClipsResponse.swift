@@ -1,10 +1,20 @@
 import Foundation
 
+/**
+ A response that contains a list of App Clips resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipsresponse>
+ */
 public struct AppClipsResponse: Codable, PagedResponse {
     public typealias Data = AppClip
+    /// The resource data.
     public let data: [AppClip]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppClip], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

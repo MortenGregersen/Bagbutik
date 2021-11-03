@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Default App Clip Experience Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationresponse>
+ */
 public struct AppClipDefaultExperienceLocalizationResponse: Codable {
+    /// The resource data.
     public let data: AppClipDefaultExperienceLocalization
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipDefaultExperienceLocalization, included: [Included]? = nil, links: DocumentLinks) {

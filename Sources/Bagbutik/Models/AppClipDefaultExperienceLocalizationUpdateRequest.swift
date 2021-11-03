@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to update a Default App Clip Experiences resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest>
+ */
 public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,7 +55,14 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
             case attributes
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The subtitle that appears on the App Clip card for the default App Clip experience.
             public let subtitle: String?
 
             public init(subtitle: String? = nil) {

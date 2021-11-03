@@ -1,10 +1,19 @@
 import Foundation
 
+/**
+ The data structure that represents the App Clip Domain Statuses resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>
+ */
 public struct AppClipDomainStatus: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appClipDomainStatuses" }
-    ///
+    /// The resource's attributes.
     public let attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
@@ -38,8 +47,16 @@ public struct AppClipDomainStatus: Codable {
         case attributes
     }
 
+    /**
+     The attributes that describe the App Clip Domain Status resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus/attributes>
+     */
     public struct Attributes: Codable {
+        /// An array of domains you associated with your app or App Clip.
         public let domains: [Domains]?
+        /// The date when App Store Connect last verified the status of an associated domain.
         public let lastUpdatedDate: Date?
 
         public init(domains: [Domains]? = nil, lastUpdatedDate: Date? = nil) {

@@ -1,12 +1,21 @@
 import Foundation
 
+/**
+ The data structure that represents a Beta App Clip Invocations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
+ */
 public struct BetaAppClipInvocation: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "betaAppClipInvocations" }
-    ///
+    /// The resource's attributes.
     public let attributes: Attributes?
-    ///
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -44,7 +53,14 @@ public struct BetaAppClipInvocation: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe a Beta App Clip Invocations resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/attributes>
+     */
     public struct Attributes: Codable {
+        /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
         public let url: String?
 
         public init(url: String? = nil) {

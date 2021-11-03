@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to reserve an image asset that appears on the App Clip card of a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest>
+ */
 public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,8 +55,16 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
             public let fileName: String
+            /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
             public let fileSize: Int
 
             public init(fileName: String, fileSize: Int) {

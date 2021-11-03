@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to update App Clip information that you provide to App Store Review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailupdaterequest>
+ */
 public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,7 +55,14 @@ public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// An array of invocation URLs for your App Clip.
             public let invocationUrls: String?
 
             public init(invocationUrls: String? = nil) {

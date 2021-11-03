@@ -1,12 +1,21 @@
 import Foundation
 
+/**
+ The data structure that represents an App Clips resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclip>
+ */
 public struct AppClip: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appClips" }
-    ///
+    /// The resource's attributes.
     public let attributes: Attributes?
-    ///
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -44,7 +53,14 @@ public struct AppClip: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe an App Clips resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclip/attributes>
+     */
     public struct Attributes: Codable {
+        /// The related Bundle IDs resource.
         public let bundleId: String?
 
         public init(bundleId: String? = nil) {

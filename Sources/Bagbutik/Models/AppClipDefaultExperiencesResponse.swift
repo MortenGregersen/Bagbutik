@@ -1,10 +1,20 @@
 import Foundation
 
+/**
+ A response that contains a list of Default App Clip Experiences resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencesresponse>
+ */
 public struct AppClipDefaultExperiencesResponse: Codable, PagedResponse {
     public typealias Data = AppClipDefaultExperience
+    /// The resource data.
     public let data: [AppClipDefaultExperience]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppClipDefaultExperience], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

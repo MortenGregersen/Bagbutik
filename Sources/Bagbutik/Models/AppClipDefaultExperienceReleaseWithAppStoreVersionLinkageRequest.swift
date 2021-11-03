@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to relate a released App Store version with a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkagerequest>
+ */
 public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: Codable, RequestBody {
+    /// The object types and IDs of the related resources.
     public let data: Data
 
     public init(data: Data) {

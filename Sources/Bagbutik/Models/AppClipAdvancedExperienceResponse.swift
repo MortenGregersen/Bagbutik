@@ -1,8 +1,17 @@
 import Foundation
 
+/**
+ A response that contains a single Advanced App Clip Experiences resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceresponse>
+ */
 public struct AppClipAdvancedExperienceResponse: Codable {
+    /// The resource data.
     public let data: AppClipAdvancedExperience
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipAdvancedExperience, included: [Included]? = nil, links: DocumentLinks) {

@@ -1,12 +1,21 @@
 import Foundation
 
+/**
+ The data structure that represents the image that appears on the App Clip card of a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>
+ */
 public struct AppClipHeaderImage: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appClipHeaderImages" }
-    ///
+    /// The resource's attributes.
     public let attributes: Attributes?
-    ///
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -44,12 +53,24 @@ public struct AppClipHeaderImage: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe the image that appears on the App Clip card of a default App Clip experience.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/attributes>
+     */
     public struct Attributes: Codable {
+        /// The state of the App Clip card image asset you uploaded.
         public let assetDeliveryState: AppMediaAssetState?
+        /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
         public let fileName: String?
+        /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
         public let fileSize: Int?
+        /// The image asset that appears on the App Clip card of a default App Clip experience.
         public let imageAsset: ImageAsset?
+        /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
         public let sourceFileChecksum: String?
+        /// Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.
         public let uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {

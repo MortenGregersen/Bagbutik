@@ -1,12 +1,21 @@
 import Foundation
 
+/**
+ The data structure that represents an App Clip App Store Review Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail>
+ */
 public struct AppClipAppStoreReviewDetail: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public let links: ResourceLinks
+    /// The resource type.
     public var type: String { "appClipAppStoreReviewDetails" }
-    ///
+    /// The resource's attributes.
     public let attributes: Attributes?
-    ///
+    /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -44,7 +53,14 @@ public struct AppClipAppStoreReviewDetail: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe the App Clip App Store Review Details resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/attributes>
+     */
     public struct Attributes: Codable {
+        /// An array of invocation URLs for your App Clip.
         public let invocationUrls: String?
 
         public init(invocationUrls: String? = nil) {

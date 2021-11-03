@@ -1,10 +1,20 @@
 import Foundation
 
+/**
+ A response that contains a list of Default App Clip Experience Localizations resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationsresponse>
+ */
 public struct AppClipDefaultExperienceLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppClipDefaultExperienceLocalization
+    /// The resource data.
     public let data: [AppClipDefaultExperienceLocalization]
+    /// The included related resources.
     public let included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public let meta: PagingInformation?
 
     public init(data: [AppClipDefaultExperienceLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

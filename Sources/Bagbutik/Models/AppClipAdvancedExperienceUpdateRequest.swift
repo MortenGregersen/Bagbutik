@@ -1,7 +1,15 @@
 import Foundation
 
+/**
+ The request body you use to update an advanced App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest>
+ */
 public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
+    /// The included related resources.
     public let included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
@@ -56,12 +64,24 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The call-to-action verb that appears on the App Clip card.
             public let action: AppClipAction?
+            /// The business category of an advanced App Clip experience; for example, PARKING
             public let businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            /// The default language for the advanced App Clip experience.
             public let defaultLanguage: AppClipAdvancedExperienceLanguage?
+            /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
             public let isPoweredBy: Bool?
+            /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
             public let place: Place?
+            /// A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to true.
             public let removed: Bool?
 
             public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, place: Place? = nil, removed: Bool? = nil) {

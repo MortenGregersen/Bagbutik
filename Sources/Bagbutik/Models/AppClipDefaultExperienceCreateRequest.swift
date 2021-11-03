@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body you use to create a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest>
+ */
 public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -48,7 +55,14 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The call-to-action verb that appears on the App Clip card.
             public let action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
