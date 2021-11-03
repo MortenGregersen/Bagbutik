@@ -101,15 +101,24 @@ public class Generator {
             }
         }
 
+        var modelsMissingDocumentation = [(name: String, url: String)]()
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
         try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
             let model = try generateModel(for: schema)
-            let fileURL = modelsDirURL.appendingPathComponent(model.fileName)
-            print("⚡️ Generating model \(model.fileName)...")
+            let fileName = model.name + ".swift"
+            let fileURL = modelsDirURL.appendingPathComponent(fileName)
+            print("⚡️ Generating model \(model.name)...")
             guard fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
-                throw GeneratorError.couldNotCreateFile(model.fileName)
+                throw GeneratorError.couldNotCreateFile(fileName)
             }
+            if !model.hasDocumentation {
+                modelsMissingDocumentation.append((name: model.name, url: model.url))
+            }
+        }
+
+        modelsMissingDocumentation.forEach { model in
+            print("⚠️ Documentation missing for '\(model.name)': \(model.url)")
         }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
@@ -136,20 +145,25 @@ public class Generator {
         }
     }
 
-    private func generateModel(for schema: Schema) throws -> (fileName: String, contents: String) {
-        let fileName = "\(schema.name).swift"
+    private func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String) {
         let renderedSchema: String
+        let hasDocumentation: Bool
+        let url: String
         switch schema {
         case .enum(let enumSchema):
             renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
+            hasDocumentation = enumSchema.documentation != nil
+            url = enumSchema.url ?? ""
         case .object(let objectSchema):
             renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema)
+            hasDocumentation = objectSchema.documentation != nil
+            url = objectSchema.url
         }
         let contents = """
         import Foundation
 
         \(renderedSchema)
         """
-        return (fileName: fileName, contents: contents)
+        return (name: schema.name, contents: contents, hasDocumentation: hasDocumentation, url: url)
     }
 }

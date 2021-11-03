@@ -80,25 +80,8 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
-        let codingPathComponents = Array(container.codingPath
-            .map(\.stringValue)
-            .drop { $0 == "components" || $0 == "schemas" }
-            .map { $0.capitalizingFirstLetter() }
-        )
-        var urlPathComponents = codingPathComponents
-            .filter { $0 != "Items" &&
-                $0 != "Source" &&
-                $0 != "OneOf" &&
-                !$0.hasPrefix("Index ")
-            }
-
-        if urlPathComponents.last != name {
-            urlPathComponents.append(name.lowercased())
-        }
-        let uri = urlPathComponents
-            .map { $0.lowercased() }
-            .joined(separator: "/")
-        let url = "https://developer.apple.com/documentation/appstoreconnectapi/\(uri)"
+        let codingPathComponents = container.codingPath.components
+        let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
         let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
         var attributesSchema, relationshipsSchema: SubSchema?
         let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)

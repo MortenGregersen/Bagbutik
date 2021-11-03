@@ -6,6 +6,8 @@ public struct EnumSchema: Decodable, Equatable {
     public let name: String
     /// The type of the value of the enum's cases
     public let type: String
+    /// An url for the documentation for the enum
+    public let url: String?
     /// The documentation for the enum - if any
     public let documentation: Schema.Documentation?
     /// The enum's cases
@@ -22,18 +24,21 @@ public struct EnumSchema: Decodable, Equatable {
      - Parameters:
         - name: The name of the enum
         - type: The type of the value of the enum's cases
+        - url: An url for the documentation for the enum
         - caseValues: Values for the enum's cases
      */
-    public init(name: String, type: String, caseValues: [String]) {
+    public init(name: String, type: String, url: String? = nil, caseValues: [String]) {
         self.init(name: name,
                   type: type,
+                  url: url,
                   caseValues: caseValues,
                   lookupDocumentation: Schema.Documentation.lookupDocumentation)
     }
 
-    internal init(name: String, type: String, caseValues: [String], lookupDocumentation: (String) -> Schema.Documentation?) {
-        self.type = type
+    internal init(name: String, type: String, url: String?, caseValues: [String], lookupDocumentation: (String) -> Schema.Documentation?) {
         self.name = name
+        self.type = type
+        self.url = url
         let documentation = lookupDocumentation(name)
         self.documentation = documentation
         let cases = caseValues.map {
@@ -58,6 +63,7 @@ public struct EnumSchema: Decodable, Equatable {
         }
         self.init(name: name,
                   type: try container.decode(String.self, forKey: .type),
+                  url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components),
                   caseValues: try container.decode([String].self, forKey: .enum))
     }
 }
