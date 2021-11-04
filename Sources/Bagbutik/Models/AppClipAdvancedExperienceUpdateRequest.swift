@@ -39,31 +39,6 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-            try container.encodeIfPresent(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case type
-            case attributes
-            case relationships
-        }
-
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -192,31 +167,10 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     public let number: String?
                     public let type: PhoneNumberType?
 
-                    public init(intent: String? = nil, number: String? = nil) {
+                    public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
                         self.intent = intent
                         self.number = number
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        intent = try container.decodeIfPresent(String.self, forKey: .intent)
-                        number = try container.decodeIfPresent(String.self, forKey: .number)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encodeIfPresent(intent, forKey: .intent)
-                        try container.encodeIfPresent(number, forKey: .number)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case intent
-                        case number
-                        case type
+                        self.type = type
                     }
 
                     public enum PhoneNumberType: String, Codable, CaseIterable {
@@ -275,25 +229,6 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
-                    }
                 }
             }
 
@@ -320,25 +255,6 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
-                    }
                 }
             }
 
@@ -364,25 +280,6 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }
