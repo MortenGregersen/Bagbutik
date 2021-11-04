@@ -25,6 +25,7 @@ public struct AppsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
+        case appClip(AppClip)
         case appInfo(AppInfo)
         case appPreOrder(AppPreOrder)
         case appPrice(AppPrice)
@@ -42,7 +43,9 @@ public struct AppsResponse: Codable, PagedResponse {
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let appInfo = try? AppInfo(from: decoder) {
+            if let appClip = try? AppClip(from: decoder) {
+                self = .appClip(appClip)
+            } else if let appInfo = try? AppInfo(from: decoder) {
                 self = .appInfo(appInfo)
             } else if let appPreOrder = try? AppPreOrder(from: decoder) {
                 self = .appPreOrder(appPreOrder)
@@ -80,6 +83,8 @@ public struct AppsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appClip(value):
+                try value.encode(to: encoder)
             case let .appInfo(value):
                 try value.encode(to: encoder)
             case let .appPreOrder(value):

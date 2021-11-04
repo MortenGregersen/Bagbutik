@@ -45,12 +45,15 @@ public enum GetBetaAppReviewSubmission {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion

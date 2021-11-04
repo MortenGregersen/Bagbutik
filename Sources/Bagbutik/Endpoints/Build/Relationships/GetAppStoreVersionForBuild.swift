@@ -28,6 +28,7 @@ public enum GetAppStoreVersionForBuild {
         public enum AppStoreVersions: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
+            case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionLocalizations

@@ -35,6 +35,7 @@ public enum ListBetaGroupsForBetaTester {
             case createdDate
             case feedbackEnabled
             case hasAccessToAllBuilds
+            case iosBuildsAvailableForAppleSiliconMac
             case isInternalGroup
             case name
             case publicLink

@@ -42,6 +42,7 @@ public enum ListBetaGroups {
         case builds([Builds])
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
@@ -75,6 +76,7 @@ public enum ListBetaGroups {
             case createdDate
             case feedbackEnabled
             case hasAccessToAllBuilds
+            case iosBuildsAvailableForAppleSiliconMac
             case isInternalGroup
             case name
             case publicLink
@@ -103,12 +105,15 @@ public enum ListBetaGroups {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion

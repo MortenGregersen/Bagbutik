@@ -40,6 +40,7 @@ public enum ListPreReleaseVersions {
         case preReleaseVersions([PreReleaseVersions])
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
@@ -75,12 +76,15 @@ public enum ListPreReleaseVersions {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion

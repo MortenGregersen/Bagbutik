@@ -302,6 +302,269 @@ public extension Schema {
                 )
             ),
             "AppCategoryResponse": .rootSchema(summary: "A response that contains a single App Categories resource."),
+            "AppClip": .rootSchema(
+                summary: "The data structure that represents an App Clips resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an App Clips resource.",
+                    properties: [
+                        "bundleId": "The related Bundle IDs resource.",
+                    ]
+                )
+            ),
+            "AppClipAction": .enumObject(
+                summary: "A string that represents the call-to-action verb on the App Clip card.",
+                cases: [
+                    "OPEN": "",
+                    "VIEW": "",
+                    "PLAY": "",
+                ]
+            ),
+            "AppClipAdvancedExperience": .rootSchema(
+                summary: "The data structure that represents an Advanced App Clip Experiences resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experiences resource.",
+                    properties: [
+                        "action": "The call-to-action verb that appears on the App Clip card.",
+                        "businessCategory": "The business category of an advanced App Clip experience; for example, PARKING",
+                        "defaultLanguage": "The default language for the advanced App Clip experience.",
+                        "isPoweredBy": "A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.",
+                        "link": "The invocation URL of the advanced App Clip experience.",
+                        "place": "The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.",
+                        "placeStatus": "A string that describes a place’s match status with Points of Interest (POI) in Apple Maps. PENDING indicates that Apple Maps is currently matching the place to a POI. MATCHED indicates that the provided place information matched a POI, and NO_MATCH indicates that the place doesn’t match a POI in Apple Maps or is in a location not supported by Apple Maps.",
+                        "status": "A string that describes the status of an advanced App Clip experience. RECEIVED indicates that users can invoke this experience, DEACTIVATED indicates that the experience is deactivated and users can’t launch the App Clip with this invocation, and APP_TRANSFER_IN_PROGRESS indicates that the experience is part of an app that’s currently transferred to another developer.",
+                        "version": "The build version of the App Clip as an integer value; for example, 1234.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceCreateRequest": .createRequest(
+                summary: "The request body you use to create an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                    "businessCategory": "The business category of an advanced App Clip experience; for example, PARKING",
+                    "defaultLanguage": "The default language for the advanced App Clip experience.",
+                    "isPoweredBy": "A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.",
+                    "link": "The invocation URL of the advanced App Clip experience you’re creating.",
+                    "place": "The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.",
+                ]
+                )
+            ),
+            "AppClipAdvancedExperienceImage": .rootSchema(
+                summary: "The data structure that represents an image that appears on the App Clip card for an advanced App Clip experience.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experience Images resource.",
+                    properties: [
+                        "assetDeliveryState": "The state of the App Clip card image asset you uploaded.",
+                        "fileName": "The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                        "fileSize": "The size of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                        "imageAsset": "The image asset that appears on the App Clip card of an advanced App Clip experience.",
+                        "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                        "uploadOperations": "Upload operations for the image asset that appears on the App Clip card for an advanced App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceImageCreateRequest": .createRequest(
+                summary: "The request body you use to reserve an image asset for an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "fileName": "The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                    "fileSize": "The size of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                ])
+            ),
+            "AppClipAdvancedExperienceImageResponse": .rootSchema(summary: "A response that contains a single Advanced App Clip Experience Images resource."),
+            "AppClipAdvancedExperienceImageUpdateRequest": .updateRequest(
+                summary: "The request body you use to commit the image asset for an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                    "uploaded": "A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.",
+                ]
+                )
+            ),
+            "AppClipAdvancedExperienceLanguage": .enumObject(
+                summary: "The data structure that represents the language you configure for an advanced App Clip experience.",
+                cases: [
+                    "AR": "",
+                    "CA": "",
+                    "CS": "",
+                    "DA": "",
+                    "DE": "",
+                    "EL": "",
+                    "EN": "",
+                    "ES": "",
+                    "FI": "",
+                    "FR": "",
+                    "HE": "",
+                    "HI": "",
+                    "HR": "",
+                    "HU": "",
+                    "ID": "",
+                    "IT": "",
+                    "JA": "",
+                    "KO": "",
+                    "MS": "",
+                    "NL": "",
+                    "NO": "",
+                    "PL": "",
+                    "PT": "",
+                    "RO": "",
+                    "RU": "",
+                    "SK": "",
+                    "SV": "",
+                    "TH": "",
+                    "TR": "",
+                    "UK": "",
+                    "VI": "",
+                    "ZH": "",
+                ]
+            ),
+            "AppClipAdvancedExperienceLocalization": .rootSchema(
+                summary: "The data structure that represents the Advanced App Clip Localizations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experience Localizations resource.",
+                    properties: [
+                        "language": "A string that identifies the language of the advanced App Clip experience.",
+                        "subtitle": "The subtitle that appears on the App Clip card for the advanced App Clip experience.",
+                        "title": "The title that appears on the App Clip card for the advanced App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceLocalizationInlineCreate": .rootSchema(
+                summary: "The data structure that represents an Advanced App Clip Experience Localization Inline Creates resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experience Localization Inline Creates resource.",
+                    properties: [
+                        "language": "A string that identifies the language of the advanced App Clip experience.",
+                        "subtitle": "The subtitle that appears on the App Clip card for the advanced App Clip experience.",
+                        "title": "The title that appears on the App Clip card for the advanced App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceResponse": .rootSchema(summary: "A response that contains a single Advanced App Clip Experiences resource."),
+            "AppClipAdvancedExperienceUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                    "businessCategory": "The business category of an advanced App Clip experience; for example, PARKING",
+                    "defaultLanguage": "The default language for the advanced App Clip experience.",
+                    "isPoweredBy": "A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.",
+                    "place": "The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.",
+                    "removed": "A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to true.",
+                ]
+                )
+            ),
+            "AppClipAdvancedExperiencesResponse": .rootSchema(summary: "A response that contains a list of Advanced App Clip Experiences resources."),
+            "AppClipAppStoreReviewDetail": .rootSchema(
+                summary: "The data structure that represents an App Clip App Store Review Details resource.",
+                attributes: .init(
+                    summary: "The attributes that describe the App Clip App Store Review Details resource.",
+                    properties: [
+                        "invocationUrls": "An array of invocation URLs for your App Clip.",
+                    ]
+                )
+            ),
+            "AppClipAppStoreReviewDetailCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Clip App Store Review Detail.",
+                attributes: .init(properties: [
+                    "invocationUrls": "An array of invocation URLs for your App Clip.",
+                ])
+            ),
+            "AppClipAppStoreReviewDetailResponse": .rootSchema(summary: "A response that contains a single App Clip App Store Review Details resource."),
+            "AppClipAppStoreReviewDetailUpdateRequest": .updateRequest(
+                summary: "The request body you use to update App Clip information that you provide to App Store Review.",
+                attributes: .init(properties: [
+                    "invocationUrls": "An array of invocation URLs for your App Clip.",
+                ])
+            ),
+            "AppClipDefaultExperience": .rootSchema(
+                summary: "The data structure that represents a Default App Clip Experiences resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Default App Clip Experiences resource.",
+                    properties: [
+                        "action": "The call-to-action verb that appears on the App Clip card.",
+                    ]
+                )
+            ),
+            "AppClipDefaultExperienceCreateRequest": .createRequest(
+                summary: "The request body you use to create a default App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                ])
+            ),
+            "AppClipDefaultExperienceLocalization": .rootSchema(
+                summary: "The data structure that represents a Default App Clip Experience Localizations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Default App Clip Experience Localizations resource.",
+                    properties: [
+                        "locale": "The specified locale.",
+                        "subtitle": "The subtitle that appears on the App Clip card for the default App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipDefaultExperienceLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create a Default App Clip Experience Localization.",
+                attributes: .init(properties: [
+                    "locale": "The specified locale.",
+                    "subtitle": "The subtitle that appears on the App Clip card for the default App Clip experience.",
+                ])
+            ),
+            "AppClipDefaultExperienceLocalizationResponse": .rootSchema(summary: "A response that contains a single Default App Clip Experience Localizations resource."),
+            "AppClipDefaultExperienceLocalizationsResponse": .rootSchema(summary: "A response that contains a list of Default App Clip Experience Localizations resources."),
+            "AppClipDefaultExperienceLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Default App Clip Experiences resource.",
+                attributes: .init(properties: [
+                    "subtitle": "The subtitle that appears on the App Clip card for the default App Clip experience.",
+                ])
+            ),
+            "AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest": .linkagesRequest(summary: "The request body you use to relate a released App Store version with a default App Clip experience."),
+            "AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse": .linkagesResponse,
+            "AppClipDefaultExperienceResponse": .rootSchema(summary: "A response that contains a single Default App Clip Experiences resource."),
+            "AppClipDefaultExperiencesResponse": .rootSchema(summary: "A response that contains a list of Default App Clip Experiences resources."),
+            "AppClipDefaultExperienceUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a default App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                ])
+            ),
+            "AppClipDomainStatus": .rootSchema(
+                summary: "The data structure that represents the App Clip Domain Statuses resource.",
+                attributes: .init(
+                    summary: "The attributes that describe the App Clip Domain Status resource.",
+                    properties: [
+                        "domains": "An array of domains you associated with your app or App Clip.",
+                        "lastUpdatedDate": "The date when App Store Connect last verified the status of an associated domain.",
+                    ]
+                )
+            ),
+            "AppClipDomainStatusResponse": .rootSchema(summary: "A response that contains a single App Clip Domain Statuses resource."),
+            "AppClipHeaderImage": .rootSchema(
+                summary: "The data structure that represents the image that appears on the App Clip card of a default App Clip experience.",
+                attributes: .init(
+                    summary: "The attributes that describe the image that appears on the App Clip card of a default App Clip experience.",
+                    properties: [
+                        "assetDeliveryState": "The state of the App Clip card image asset you uploaded.",
+                        "fileName": "The filename of the image asset that appears on the App Clip card for the default App Clip experience.",
+                        "fileSize": "The size of the image asset that appears on the App Clip card for the default App Clip experience.",
+                        "imageAsset": "The image asset that appears on the App Clip card of a default App Clip experience.",
+                        "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                        "uploadOperations": "Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipHeaderImageCreateRequest": .createRequest(
+                summary: "The request body you use to reserve an image asset that appears on the App Clip card of a default App Clip experience.",
+                attributes: .init(properties: [
+                    "fileName": "The filename of the image asset that appears on the App Clip card for the default App Clip experience.",
+                    "fileSize": "The size of the image asset that appears on the App Clip card for the default App Clip experience.",
+                ])
+            ),
+            "AppClipHeaderImageResponse": .rootSchema(summary: "A response that contains a single App Clip Header Images resource."),
+            "AppClipHeaderImageUpdateRequest": .updateRequest(
+                summary: "The request body you use to commit the image asset for a default App Clip experience.",
+                attributes: .init(properties: [
+                    "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                    "uploaded": "A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.",
+                ])
+            ),
+            "AppClipResponse": .rootSchema(summary: "A response that contains a single App Clips resource."),
+            "AppClipsResponse": .rootSchema(summary: "A response that contains a list of App Clips resources."),
             "AppEncryptionDeclaration": .rootSchema(
                 summary: "The data structure that represents an App Encryption Declarations resource.",
                 attributes: .init(
@@ -472,6 +735,13 @@ public extension Schema {
             "AppPreviewSetResponse": .rootSchema(summary: "A response that contains a single App Preview Sets resource."),
             "AppPreviewSetsResponse": .rootSchema(summary: "A response that contains a list of App Preview Set resources."),
             "AppPrice": .rootSchema(summary: "The data structure that represent an App Prices resource."),
+            "AppPriceInlineCreate": .rootSchema(
+                summary: "",
+                properties: [
+                    "id": "",
+                    "type": "",
+                ]
+            ),
             "AppPricePoint": .rootSchema(
                 summary: "The data structure that represent an App Price Points resource.",
                 attributes: .init(
@@ -636,6 +906,8 @@ public extension Schema {
                     ]
                 )
             ),
+            "AppStoreVersionAppClipDefaultExperienceLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a default App Clip experience to an App Store version."),
+            "AppStoreVersionAppClipDefaultExperienceLinkageResponse": .linkagesResponse,
             "AppStoreVersionBuildLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a build to an App Store version."),
             "AppStoreVersionBuildLinkageResponse": .linkagesResponse,
             "AppStoreVersionCreateRequest": .createRequest(
@@ -758,6 +1030,63 @@ public extension Schema {
                     "bundleId": "",
                     "contentRightsDeclaration": "",
                     "primaryLocale": "",
+                ])
+            ),
+            "BetaAppClipInvocation": .rootSchema(
+                summary: "The data structure that represents a Beta App Clip Invocations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Beta App Clip Invocations resource.",
+                    properties: [
+                        "url": "The invocation URL you configure for testers who use the TestFlight to launch your App Clip.",
+                    ]
+                )
+            ),
+            "BetaAppClipInvocationCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Clip invocation for testers.",
+                attributes: .init(properties: [
+                    "url": "The invocation URL you configure for testers who use the TestFlight to launch your App Clip.",
+                ])
+            ),
+            "BetaAppClipInvocationLocalization": .rootSchema(
+                summary: "The data structure that represents a Beta App Clip Invocation Localizations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Beta App Clip Invocation Localizations resource.",
+                    properties: [
+                        "locale": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                        "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                    ]
+                )
+            ),
+            "BetaAppClipInvocationLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create a Beta App Clip Localization.",
+                attributes: .init(properties: [
+                    "locale": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                    "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                ])
+            ),
+            "BetaAppClipInvocationLocalizationInlineCreate": .rootSchema(
+                summary: "The data structure that represents a Beta App Clip Invocation Localization Inline Creates resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Beta App Clip Invocation Localization Inline Creates resource.",
+                    properties: [
+                        "locale": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                        "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                    ]
+                )
+            ),
+            "BetaAppClipInvocationLocalizationResponse": .rootSchema(summary: "A response that contains a single Beta App Clip Invocation Localizations resource."),
+            "BetaAppClipInvocationLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update localized text that appears on the App Clip card for testers.",
+                attributes: .init(properties: [
+                    "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                ])
+            ),
+            "BetaAppClipInvocationResponse": .rootSchema(summary: "A response that contains a single Beta App Clip Invocations resource."),
+            "BetaAppClipInvocationsResponse": .rootSchema(summary: "A response that contains a list of Beta App Clip Invocations resources."),
+            "BetaAppClipInvocationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta App Clip Invocation.",
+                attributes: .init(properties: [
+                    "url": "The invocation URL you configure for testers who use the TestFlight to launch your App Clip.",
                 ])
             ),
             "BetaAppLocalization": .rootSchema(
@@ -1013,6 +1342,44 @@ public extension Schema {
             "BuildBetaNotification": .rootSchema(summary: "The data structure that represents a Build Beta Notifications resource."),
             "BuildBetaNotificationCreateRequest": .createRequest(summary: "The request body you use to create a Build Beta Notification."),
             "BuildBetaNotificationResponse": .rootSchema(summary: "A response that contains a single Build Beta Notifications resource."),
+            "BuildBundle": .rootSchema(
+                summary: "The data structure that represents Build Bundles resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Build Bundles resource.",
+                    properties: [
+                        "bundleId": "The bundle ID of the build bundle.",
+                        "bundleType": "The type of the build bundle.",
+                        "deviceProtocols": "The protocols that the app uses to communicate with external accessory hardware. For more information, see UISupportedExternalAccessoryProtocols.",
+                        "dSYMUrl": "The URL to the symbolication file for the app or App Clip.",
+                        "entitlements": "Entitlement information for your app or App Clip.",
+                        "fileName": "The name of the build bundle.",
+                        "hasOnDemandResources": "A Boolean value that indicates whether the build bundle contains on-demand resources.",
+                        "hasPrerenderedIcon": "A Boolean value that indicates whether the build bundle contains a pre-rendered app icon.",
+                        "hasSirikit": "A Boolean value that indicates whether the build bundle contains an app or App Clip that allows users to interact with it through voice, intelligent suggestions, and personalized workflows.",
+                        "includesSymbols": "A Boolean value that indicates whether the build bundle includes symbol information for debugging and crash reports.",
+                        "isIosBuildMacAppStoreCompatible": "A Boolean value that indicates whether an iOS app included in the build bundle is included on the Mac App Store.",
+                        "locales": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                        "platformBuild": "The build number of the OS you used to build the app or App Clip.",
+                        "requiredCapabilities": "An array of capabilities that your app or App Clip requires.",
+                        "sdkBuild": "A string that identifies the SDK you used to build your app or App Clip.",
+                        "supportedArchitectures": "An array of supported CPU architectures that your app or App Clip supports.",
+                        "usesLocationServices": "A Boolean value that indicates whether the app or App Clip included in the build bundle uses location services.",
+                    ]
+                )
+            ),
+            "BuildBundleFileSize": .rootSchema(
+                summary: "The data structure that represents a Build Bundle File Sizes resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Build Bundle File Sizes resource.",
+                    properties: [
+                        "deviceModel": "A string that identifies the Apple device model.",
+                        "downloadBytes": "An integer value that represents the download size of the build bundle in bytes.",
+                        "installBytes": "An integer value that represents the installation size of the build bundle in bytes.",
+                        "osVersion": "A string that identifies the OS version supported by the app or App Clip.",
+                    ]
+                )
+            ),
+            "BuildBundleFileSizesResponse": .rootSchema(summary: "A response that contains a list of Build Bundle File Sizes resources."),
             "BuildIcon": .rootSchema(
                 summary: "The data structure that represents the Build Icons resource.",
                 attributes: .init(

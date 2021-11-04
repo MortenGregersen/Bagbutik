@@ -28,6 +28,8 @@ public enum GetApp {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appClips
+        case appClips([AppClips])
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
         /// The fields to include for returned resources of type appPreOrders
@@ -63,6 +65,13 @@ public enum GetApp {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
+        public enum AppClips: String, ParameterValue, CaseIterable {
+            case app
+            case appClipAdvancedExperiences
+            case appClipDefaultExperiences
+            case bundleId
+        }
+
         public enum AppInfos: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
@@ -93,6 +102,7 @@ public enum GetApp {
         public enum AppStoreVersions: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
+            case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionLocalizations
@@ -112,6 +122,7 @@ public enum GetApp {
         }
 
         public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
@@ -167,6 +178,7 @@ public enum GetApp {
             case createdDate
             case feedbackEnabled
             case hasAccessToAllBuilds
+            case iosBuildsAvailableForAppleSiliconMac
             case isInternalGroup
             case name
             case publicLink
@@ -190,12 +202,15 @@ public enum GetApp {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion
@@ -261,13 +276,15 @@ public enum GetApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices
+        case appClips, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related appClips returned (when they are included) - maximum 50
+        case appClips(Int)
         /// Maximum number of related appInfos returned (when they are included) - maximum 50
         case appInfos(Int)
         /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50

@@ -58,8 +58,8 @@ public struct Spec: Decodable {
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
                                   let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
-                                  let equal = mainAttributesPropertySchema == parameterEnumSchema
-                                  return equal
+                                  return mainAttributesPropertySchema.name == parameterEnumSchema.name
+                                      && mainAttributesPropertySchema.cases == parameterEnumSchema.cases
                               })
                         else { return }
                         operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: "\(path.info.mainType).Attributes.\(parameterName.capitalizingFirstLetter())")), required: parameterRequired, documentation: parameterDocumentation)
@@ -86,7 +86,8 @@ public struct Spec: Decodable {
                               let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first,
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
-                                  return mainAttributesPropertySchema == targetDataAttributesPropertySchema
+                                  return mainAttributesPropertySchema.name == targetDataAttributesPropertySchema.name
+                                      && mainAttributesPropertySchema.cases == targetDataAttributesPropertySchema.cases
                               }) else { return }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
                     }

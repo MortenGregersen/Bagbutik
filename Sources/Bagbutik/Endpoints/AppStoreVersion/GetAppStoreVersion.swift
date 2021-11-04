@@ -31,6 +31,8 @@ public enum GetAppStoreVersion {
         /// The fields to include for returned resources of type ageRatingDeclarations
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case ageRatingDeclarations([AgeRatingDeclarations])
+        /// The fields to include for returned resources of type appClipDefaultExperiences
+        case appClipDefaultExperiences([AppClipDefaultExperiences])
         /// The fields to include for returned resources of type appStoreReviewDetails
         case appStoreReviewDetails([AppStoreReviewDetails])
         /// The fields to include for returned resources of type appStoreVersionLocalizations
@@ -67,6 +69,15 @@ public enum GetAppStoreVersion {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public enum AppClipDefaultExperiences: String, ParameterValue, CaseIterable {
+            case action
+            case appClip
+            case appClipAppStoreReviewDetail
+            case appClipDefaultExperienceLocalizations
+            case appClipDefaultExperienceTemplate
+            case releaseWithAppStoreVersion
         }
 
         public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
@@ -110,6 +121,7 @@ public enum GetAppStoreVersion {
         public enum AppStoreVersions: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
+            case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionLocalizations
@@ -137,12 +149,15 @@ public enum GetAppStoreVersion {
             case betaGroups
             case buildAudienceType
             case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
             case diagnosticSignatures
             case expirationDate
             case expired
             case iconAssetToken
             case icons
             case individualTesters
+            case lsMinimumSystemVersion
             case minOsVersion
             case perfPowerMetrics
             case preReleaseVersion
@@ -175,6 +190,6 @@ public enum GetAppStoreVersion {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appStoreReviewDetail, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
+        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
     }
 }

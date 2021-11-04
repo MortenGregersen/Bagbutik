@@ -33,28 +33,6 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
             self.attributes = attributes
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case type
-            case attributes
-        }
-
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -63,6 +41,7 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public let feedbackEnabled: Bool?
+            public let iosBuildsAvailableForAppleSiliconMac: Bool?
             /// The name for the beta group.
             public let name: String?
             /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
@@ -72,8 +51,9 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
             public let publicLinkLimitEnabled: Bool?
 
-            public init(feedbackEnabled: Bool? = nil, name: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+            public init(feedbackEnabled: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, name: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
                 self.feedbackEnabled = feedbackEnabled
+                self.iosBuildsAvailableForAppleSiliconMac = iosBuildsAvailableForAppleSiliconMac
                 self.name = name
                 self.publicLinkEnabled = publicLinkEnabled
                 self.publicLinkLimit = publicLinkLimit

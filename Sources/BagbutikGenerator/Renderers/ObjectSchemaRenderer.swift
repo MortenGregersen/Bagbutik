@@ -57,38 +57,9 @@ public class ObjectSchemaRenderer {
             {% for propertyName in publicInitPropertyNames %}
             self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
             endfor %}
-        }
-        {% if needsCustomCoding %}
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self){%
-            for decodableProperty in decodableProperties %}{%
-            if decodableProperty.optional %}
-            {{ decodableProperty.name }} = try container.decodeIfPresent({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
-            else %}
-            {{ decodableProperty.name }} = try container.decode({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
-            endif %}{% endfor %}
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self){%
-            for encodableProperty in encodableProperties %}{%
-            if encodableProperty.optional %}
-            try container.encodeIfPresent({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
-            else %}
-            try container.encode({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
-            endif %}{% endfor %}
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            {% for codingKey in codingKeys %}
-            case {{ codingKey }}{%
-            endfor %}
-        }
-        {% endif %}
-        {% if subSchemas.count > 0 %}
+        }{%
+        if subSchemas.count > 0 %}
+    
             {% for subSchema in subSchemas %}
 
                 {{ subSchema|indent }}
@@ -108,29 +79,18 @@ public class ObjectSchemaRenderer {
         let hasRelationships = objectSchema.relationshipsSchema != nil
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
-        var initParameters = sortedProperties.filter { $0.key != "type" }
-        var codingKeys = sortedProperties.map(\.key)
-        var encodableProperties = sortedProperties.map {
-            CodableProperty(name: $0.key,
-                            type: $0.value.type.description,
-                            optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
-        }
+        var initParameters = sortedProperties.filter { !$0.value.type.isConstant }
 
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
-            codingKeys.append(name)
-            encodableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
-            codingKeys.append(name)
-            encodableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
-        let decodableProperties = encodableProperties.filter { $0.name != "type" }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         var deprecatedPublicInitParameterList = ""
@@ -165,13 +125,9 @@ public class ObjectSchemaRenderer {
                     return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
                 },
                 "deprecatedPublicInitParameterList": deprecatedPublicInitParameterList,
-                "deprecatedPublicInitPropertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
+                "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
                 "publicInitParameterList": publicInitParameterList,
-                "publicInitPropertyNames": initParameters.filter { $0.key != "type" && !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
-                "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" }),
-                "codingKeys": codingKeys,
-                "decodableProperties": decodableProperties,
-                "encodableProperties": encodableProperties,
+                "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,

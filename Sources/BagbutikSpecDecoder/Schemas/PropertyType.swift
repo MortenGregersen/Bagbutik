@@ -1,7 +1,7 @@
 import Foundation
 
 /// A type for a property
-public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
+public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible {
     /// A simple type
     case simple(SimplePropertyType)
     /// A constant type
@@ -20,6 +20,16 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
     case oneOf(name: String, schema: OneOfSchema)
     /// An array of one of schema
     case arrayOfOneOf(name: String, schema: OneOfSchema)
+    /// A dictionary with values of type
+    case dictionary(PropertyType)
+
+    /// Returns true if the type is a constant (to minimize pattern matching code elsewhere)
+    public var isConstant: Bool {
+        if case .constant = self {
+            return true
+        }
+        return false
+    }
 
     public var description: String {
         switch self {
@@ -41,6 +51,8 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
             return name
         case .arrayOfOneOf(let name, _):
             return "[\(name)]"
+        case .dictionary(let propertyType):
+            return "[String: \(propertyType.description)]"
         }
     }
 
@@ -51,6 +63,7 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
         case `enum`
         case ref = "$ref"
         case oneOf
+        case additionalProperties
     }
 
     public init(from decoder: Decoder) throws {
@@ -76,7 +89,11 @@ public enum PropertyType: Decodable, Equatable, CustomStringConvertible {
                     self = try container.decode(PropertyType.self, forKey: .items)
                 }
             } else if type == "object" {
-                self = .schema(try ObjectSchema(from: decoder))
+                if let dictionaryValueType = try container.decodeIfPresent(PropertyType.self, forKey: .additionalProperties) {
+                    self = .dictionary(dictionaryValueType)
+                } else {
+                    self = .schema(try ObjectSchema(from: decoder))
+                }
             } else {
                 if type == "number" { type = "Double" }
                 if type == "string", let format = try? container.decodeIfPresent(String.self, forKey: .format), format == "date-time" {

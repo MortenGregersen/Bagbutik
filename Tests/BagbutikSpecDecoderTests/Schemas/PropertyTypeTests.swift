@@ -27,7 +27,7 @@ final class PropertyTypeTests: XCTestCase {
         // Given
         let json = #"""
         {
-            "type" : {
+            "gruopType" : {
                 "type" : "string",
                 "enum" : [ "users" ]
             }
@@ -198,6 +198,30 @@ final class PropertyTypeTests: XCTestCase {
         }
         XCTAssertEqual(propertyType.description, "[ArrayOfOneOfSchemas]")
         XCTAssertEqual(name, "ArrayOfOneOfSchemas")
+    }
+    
+    func testDecodingDictionaryOfDictionaries() throws {
+        // Given
+        let json = #"""
+        {
+            "dictionaryOfDictionaries" : {
+                "type" : "object",
+                "additionalProperties" : {
+                    "type" : "object",
+                    "additionalProperties" : {
+                        "type" : "string"
+                    }
+                }
+            }
+        }
+        """#
+        // When
+        let propertyTypes = try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)
+        // Then
+        guard let propertyType = propertyTypes.values.first else {
+            return XCTFail("Wrong property type")
+        }
+        XCTAssertEqual(propertyType.description, "[String: [String: String]]")
     }
     
     func testDecodingDate() throws {
