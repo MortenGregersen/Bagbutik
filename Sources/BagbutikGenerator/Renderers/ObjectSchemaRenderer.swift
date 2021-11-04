@@ -61,24 +61,26 @@ public class ObjectSchemaRenderer {
         {% if needsCustomCoding %}
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self){%
-            for decodableProperty in decodableProperties %}{%
-            if decodableProperty.optional %}
-            {{ decodableProperty.name }} = try container.decodeIfPresent({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
+            for codableProperty in codableProperties %}{%
+            if codableProperty.optional %}
+            {{ codableProperty.name }} = try container.decodeIfPresent({{ codableProperty.type }}.self, forKey: .{{ codableProperty.name }}){%
             else %}
-            {{ decodableProperty.name }} = try container.decode({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
-            endif %}{% endfor %}
+            {{ codableProperty.name }} = try container.decode({{ codableProperty.type }}.self, forKey: .{{ codableProperty.name }}){%
+            endif %}{% endfor %}{%
+            if typePropertyIsConstant %}
             if try container.decode(String.self, forKey: .type) != type {
                 throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
+            }{%
+            endif %}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self){%
-            for encodableProperty in encodableProperties %}{%
-            if encodableProperty.optional %}
-            try container.encodeIfPresent({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
+            for codableProperty in codableProperties %}{%
+            if codableProperty.optional %}
+            try container.encodeIfPresent({{ codableProperty.name }}, forKey: .{{ codableProperty.name }}){%
             else %}
-            try container.encode({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
+            try container.encode({{ codableProperty.name }}, forKey: .{{ codableProperty.name }}){%
             endif %}{% endfor %}
         }
 
@@ -108,29 +110,29 @@ public class ObjectSchemaRenderer {
         let hasRelationships = objectSchema.relationshipsSchema != nil
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
-        var initParameters = sortedProperties.filter { $0.key != "type" }
+        var initParameters = sortedProperties.filter { !$0.value.type.isConstant }
         var codingKeys = sortedProperties.map(\.key)
-        var encodableProperties = sortedProperties.map {
+        var codableProperties = sortedProperties.map {
             CodableProperty(name: $0.key,
                             type: $0.value.type.description,
-                            optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
+                            optional: !objectSchema.requiredProperties.contains($0.key) && !$0.value.type.isConstant)
         }
+        let typePropertyIsConstant = sortedProperties.contains { $0.key == "type" && $0.value.type.isConstant }
 
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
             codingKeys.append(name)
-            encodableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
+            codableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
             codingKeys.append(name)
-            encodableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
+            codableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
-        let decodableProperties = encodableProperties.filter { $0.name != "type" }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         var deprecatedPublicInitParameterList = ""
@@ -165,13 +167,13 @@ public class ObjectSchemaRenderer {
                     return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
                 },
                 "deprecatedPublicInitParameterList": deprecatedPublicInitParameterList,
-                "deprecatedPublicInitPropertyNames": initParameters.filter { $0.key != "type" }.map { PropertyName(idealName: $0.key) },
+                "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
                 "publicInitParameterList": publicInitParameterList,
-                "publicInitPropertyNames": initParameters.filter { $0.key != "type" && !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
-                "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" }),
+                "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
+                "needsCustomCoding": false,//sortedProperties.contains(where: { $0.value.type.isConstant }),
                 "codingKeys": codingKeys,
-                "decodableProperties": decodableProperties,
-                "encodableProperties": encodableProperties,
+                "codableProperties": codableProperties,
+                "typePropertyIsConstant": typePropertyIsConstant,
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,

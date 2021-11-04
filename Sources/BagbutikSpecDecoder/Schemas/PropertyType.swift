@@ -23,6 +23,14 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
     /// A dictionary with values of type
     case dictionary(PropertyType)
 
+    /// Returns true if the type is a constant (to minimize pattern matching code elsewhere)
+    public var isConstant: Bool {
+        if case .constant = self {
+            return true
+        }
+        return false
+    }
+
     public var description: String {
         switch self {
         case .simple(let simplePropertyType):
@@ -84,7 +92,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                 if let dictionaryValueType = try container.decodeIfPresent(PropertyType.self, forKey: .additionalProperties) {
                     self = .dictionary(dictionaryValueType)
                 } else {
-                self = .schema(try ObjectSchema(from: decoder))
+                    self = .schema(try ObjectSchema(from: decoder))
                 }
             } else {
                 if type == "number" { type = "Double" }
