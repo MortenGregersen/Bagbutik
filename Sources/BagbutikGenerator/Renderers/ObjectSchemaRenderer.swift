@@ -57,40 +57,9 @@ public class ObjectSchemaRenderer {
             {% for propertyName in publicInitPropertyNames %}
             self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
             endfor %}
-        }
-        {% if needsCustomCoding %}
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self){%
-            for codableProperty in codableProperties %}{%
-            if codableProperty.optional %}
-            {{ codableProperty.name }} = try container.decodeIfPresent({{ codableProperty.type }}.self, forKey: .{{ codableProperty.name }}){%
-            else %}
-            {{ codableProperty.name }} = try container.decode({{ codableProperty.type }}.self, forKey: .{{ codableProperty.name }}){%
-            endif %}{% endfor %}{%
-            if typePropertyIsConstant %}
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }{%
-            endif %}
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self){%
-            for codableProperty in codableProperties %}{%
-            if codableProperty.optional %}
-            try container.encodeIfPresent({{ codableProperty.name }}, forKey: .{{ codableProperty.name }}){%
-            else %}
-            try container.encode({{ codableProperty.name }}, forKey: .{{ codableProperty.name }}){%
-            endif %}{% endfor %}
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            {% for codingKey in codingKeys %}
-            case {{ codingKey }}{%
-            endfor %}
-        }
-        {% endif %}
-        {% if subSchemas.count > 0 %}
+        }{%
+        if subSchemas.count > 0 %}
+    
             {% for subSchema in subSchemas %}
 
                 {{ subSchema|indent }}
@@ -111,27 +80,16 @@ public class ObjectSchemaRenderer {
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { !$0.value.type.isConstant }
-        var codingKeys = sortedProperties.map(\.key)
-        var codableProperties = sortedProperties.map {
-            CodableProperty(name: $0.key,
-                            type: $0.value.type.description,
-                            optional: !objectSchema.requiredProperties.contains($0.key) && !$0.value.type.isConstant)
-        }
-        let typePropertyIsConstant = sortedProperties.contains { $0.key == "type" && $0.value.type.isConstant }
 
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
-            codingKeys.append(name)
-            codableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
-            codingKeys.append(name)
-            codableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
@@ -170,10 +128,6 @@ public class ObjectSchemaRenderer {
                 "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
                 "publicInitParameterList": publicInitParameterList,
                 "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
-                "needsCustomCoding": false,//sortedProperties.contains(where: { $0.value.type.isConstant }),
-                "codingKeys": codingKeys,
-                "codableProperties": codableProperties,
-                "typePropertyIsConstant": typePropertyIsConstant,
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,
