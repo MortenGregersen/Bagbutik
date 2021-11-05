@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationsresponse>
  */
-public struct BetaBuildLocalizationsResponse: Codable {
+public struct BetaBuildLocalizationsResponse: Codable, PagedResponse {
+    public typealias Data = BetaBuildLocalization
     /// The resource data.
     public let data: [BetaBuildLocalization]
     /// The included related resources.

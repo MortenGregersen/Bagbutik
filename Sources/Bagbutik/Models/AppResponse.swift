@@ -21,53 +21,56 @@ public struct AppResponse: Codable {
     }
 
     public enum Included: Codable {
-        case appInfos(AppInfo)
-        case appPreOrders(AppPreOrder)
-        case appPrices(AppPrice)
-        case appStoreVersions(AppStoreVersion)
-        case betaAppLocalizations(BetaAppLocalization)
-        case betaAppReviewDetails(BetaAppReviewDetail)
-        case betaGroups(BetaGroup)
-        case betaLicenseAgreements(BetaLicenseAgreement)
-        case builds(Build)
-        case endUserLicenseAgreements(EndUserLicenseAgreement)
-        case gameCenterEnabledVersions(GameCenterEnabledVersion)
-        case inAppPurchases(InAppPurchase)
-        case perfPowerMetrics(PerfPowerMetric)
-        case preReleaseVersions(PrereleaseVersion)
-        case territories(Territory)
+        case appClip(AppClip)
+        case appInfo(AppInfo)
+        case appPreOrder(AppPreOrder)
+        case appPrice(AppPrice)
+        case appStoreVersion(AppStoreVersion)
+        case betaAppLocalization(BetaAppLocalization)
+        case betaAppReviewDetail(BetaAppReviewDetail)
+        case betaGroup(BetaGroup)
+        case betaLicenseAgreement(BetaLicenseAgreement)
+        case build(Build)
+        case ciProduct(CiProduct)
+        case endUserLicenseAgreement(EndUserLicenseAgreement)
+        case gameCenterEnabledVersion(GameCenterEnabledVersion)
+        case inAppPurchase(InAppPurchase)
+        case prereleaseVersion(PrereleaseVersion)
+        case territory(Territory)
 
         public init(from decoder: Decoder) throws {
-            if let appInfos = try? AppInfo(from: decoder) {
-                self = .appInfos(appInfos)
-            } else if let appPreOrders = try? AppPreOrder(from: decoder) {
-                self = .appPreOrders(appPreOrders)
-            } else if let appPrices = try? AppPrice(from: decoder) {
-                self = .appPrices(appPrices)
-            } else if let appStoreVersions = try? AppStoreVersion(from: decoder) {
-                self = .appStoreVersions(appStoreVersions)
-            } else if let betaAppLocalizations = try? BetaAppLocalization(from: decoder) {
-                self = .betaAppLocalizations(betaAppLocalizations)
-            } else if let betaAppReviewDetails = try? BetaAppReviewDetail(from: decoder) {
-                self = .betaAppReviewDetails(betaAppReviewDetails)
-            } else if let betaGroups = try? BetaGroup(from: decoder) {
-                self = .betaGroups(betaGroups)
-            } else if let betaLicenseAgreements = try? BetaLicenseAgreement(from: decoder) {
-                self = .betaLicenseAgreements(betaLicenseAgreements)
-            } else if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
-            } else if let endUserLicenseAgreements = try? EndUserLicenseAgreement(from: decoder) {
-                self = .endUserLicenseAgreements(endUserLicenseAgreements)
-            } else if let gameCenterEnabledVersions = try? GameCenterEnabledVersion(from: decoder) {
-                self = .gameCenterEnabledVersions(gameCenterEnabledVersions)
-            } else if let inAppPurchases = try? InAppPurchase(from: decoder) {
-                self = .inAppPurchases(inAppPurchases)
-            } else if let perfPowerMetrics = try? PerfPowerMetric(from: decoder) {
-                self = .perfPowerMetrics(perfPowerMetrics)
-            } else if let preReleaseVersions = try? PrereleaseVersion(from: decoder) {
-                self = .preReleaseVersions(preReleaseVersions)
-            } else if let territories = try? Territory(from: decoder) {
-                self = .territories(territories)
+            if let appClip = try? AppClip(from: decoder) {
+                self = .appClip(appClip)
+            } else if let appInfo = try? AppInfo(from: decoder) {
+                self = .appInfo(appInfo)
+            } else if let appPreOrder = try? AppPreOrder(from: decoder) {
+                self = .appPreOrder(appPreOrder)
+            } else if let appPrice = try? AppPrice(from: decoder) {
+                self = .appPrice(appPrice)
+            } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
+                self = .appStoreVersion(appStoreVersion)
+            } else if let betaAppLocalization = try? BetaAppLocalization(from: decoder) {
+                self = .betaAppLocalization(betaAppLocalization)
+            } else if let betaAppReviewDetail = try? BetaAppReviewDetail(from: decoder) {
+                self = .betaAppReviewDetail(betaAppReviewDetail)
+            } else if let betaGroup = try? BetaGroup(from: decoder) {
+                self = .betaGroup(betaGroup)
+            } else if let betaLicenseAgreement = try? BetaLicenseAgreement(from: decoder) {
+                self = .betaLicenseAgreement(betaLicenseAgreement)
+            } else if let build = try? Build(from: decoder) {
+                self = .build(build)
+            } else if let ciProduct = try? CiProduct(from: decoder) {
+                self = .ciProduct(ciProduct)
+            } else if let endUserLicenseAgreement = try? EndUserLicenseAgreement(from: decoder) {
+                self = .endUserLicenseAgreement(endUserLicenseAgreement)
+            } else if let gameCenterEnabledVersion = try? GameCenterEnabledVersion(from: decoder) {
+                self = .gameCenterEnabledVersion(gameCenterEnabledVersion)
+            } else if let inAppPurchase = try? InAppPurchase(from: decoder) {
+                self = .inAppPurchase(inAppPurchase)
+            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
+                self = .prereleaseVersion(prereleaseVersion)
+            } else if let territory = try? Territory(from: decoder) {
+                self = .territory(territory)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -76,59 +79,43 @@ public struct AppResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .appInfos(value):
+            case let .appClip(value):
                 try value.encode(to: encoder)
-            case let .appPreOrders(value):
+            case let .appInfo(value):
                 try value.encode(to: encoder)
-            case let .appPrices(value):
+            case let .appPreOrder(value):
                 try value.encode(to: encoder)
-            case let .appStoreVersions(value):
+            case let .appPrice(value):
                 try value.encode(to: encoder)
-            case let .betaAppLocalizations(value):
+            case let .appStoreVersion(value):
                 try value.encode(to: encoder)
-            case let .betaAppReviewDetails(value):
+            case let .betaAppLocalization(value):
                 try value.encode(to: encoder)
-            case let .betaGroups(value):
+            case let .betaAppReviewDetail(value):
                 try value.encode(to: encoder)
-            case let .betaLicenseAgreements(value):
+            case let .betaGroup(value):
                 try value.encode(to: encoder)
-            case let .builds(value):
+            case let .betaLicenseAgreement(value):
                 try value.encode(to: encoder)
-            case let .endUserLicenseAgreements(value):
+            case let .build(value):
                 try value.encode(to: encoder)
-            case let .gameCenterEnabledVersions(value):
+            case let .ciProduct(value):
                 try value.encode(to: encoder)
-            case let .inAppPurchases(value):
+            case let .endUserLicenseAgreement(value):
                 try value.encode(to: encoder)
-            case let .perfPowerMetrics(value):
+            case let .gameCenterEnabledVersion(value):
                 try value.encode(to: encoder)
-            case let .preReleaseVersions(value):
+            case let .inAppPurchase(value):
                 try value.encode(to: encoder)
-            case let .territories(value):
+            case let .prereleaseVersion(value):
+                try value.encode(to: encoder)
+            case let .territory(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case appInfos
-            case appPreOrders
-            case appPrices
-            case appStoreVersions
-            case betaAppLocalizations
-            case betaAppReviewDetails
-            case betaGroups
-            case betaLicenseAgreements
-            case builds
-            case endUserLicenseAgreements
-            case gameCenterEnabledVersions
-            case inAppPurchases
-            case perfPowerMetrics
-            case preReleaseVersions
-            case territories
         }
     }
 }

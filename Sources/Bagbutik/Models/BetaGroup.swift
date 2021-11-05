@@ -25,34 +25,6 @@ public struct BetaGroup: Codable {
         self.relationships = relationships
     }
 
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case links
-        case type
-        case attributes
-        case relationships
-    }
-
     /**
      Attributes that describe a Beta Groups resource.
 
@@ -63,6 +35,8 @@ public struct BetaGroup: Codable {
         /// The creation date of the beta group.
         public let createdDate: Date?
         public let feedbackEnabled: Bool?
+        public let hasAccessToAllBuilds: Bool?
+        public let iosBuildsAvailableForAppleSiliconMac: Bool?
         /// A Boolean value that indicates whether the group is internal. Only existing users of App Store Connect may be added for internal beta testing.
         public let isInternalGroup: Bool?
         /// The name for the beta group.
@@ -78,9 +52,11 @@ public struct BetaGroup: Codable {
         /// A Boolean value that limits the number of testers who can join the beta group using the public link.
         public let publicLinkLimitEnabled: Bool?
 
-        public init(createdDate: Date? = nil, feedbackEnabled: Bool? = nil, isInternalGroup: Bool? = nil, name: String? = nil, publicLink: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkId: String? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+        public init(createdDate: Date? = nil, feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, isInternalGroup: Bool? = nil, name: String? = nil, publicLink: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkId: String? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
             self.createdDate = createdDate
             self.feedbackEnabled = feedbackEnabled
+            self.hasAccessToAllBuilds = hasAccessToAllBuilds
+            self.iosBuildsAvailableForAppleSiliconMac = iosBuildsAvailableForAppleSiliconMac
             self.isInternalGroup = isInternalGroup
             self.name = name
             self.publicLink = publicLink
@@ -140,25 +116,6 @@ public struct BetaGroup: Codable {
                 public init(id: String) {
                     self.id = id
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
-                }
             }
 
             /**
@@ -215,25 +172,6 @@ public struct BetaGroup: Codable {
                 public init(id: String) {
                     self.id = id
                 }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
-                }
             }
 
             /**
@@ -289,25 +227,6 @@ public struct BetaGroup: Codable {
 
                 public init(id: String) {
                     self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
                 }
             }
 

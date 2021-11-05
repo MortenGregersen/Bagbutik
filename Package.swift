@@ -1,12 +1,12 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 
 import PackageDescription
 
 let package = Package(
     name: "Bagbutik",
     platforms: [
-        .macOS(.v11),
-        .iOS(.v14)
+        .macOS(.v12),
+        .iOS(.v15)
     ],
     products: [
         .library(
@@ -29,22 +29,27 @@ let package = Package(
         .testTarget(
             name: "BagbutikTests",
             dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")]),
-        .target(
+        .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
-                "Bagbutik",
                 "BagbutikGenerator",
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),
         .target(
             name: "BagbutikGenerator",
-            dependencies: ["BagbutikSpecDecoder", "StencilSwiftKit", "SwiftFormat"]),
+            dependencies: ["BagbutikSpecDecoder", "BagbutikStringExtensions", "StencilSwiftKit", "SwiftFormat"]),
         .testTarget(
             name: "BagbutikGeneratorTests",
             dependencies: ["BagbutikGenerator"]),
         .target(
-            name: "BagbutikSpecDecoder"),
+            name: "BagbutikSpecDecoder",
+            dependencies: ["BagbutikStringExtensions"]),
         .testTarget(
             name: "BagbutikSpecDecoderTests",
-            dependencies: ["BagbutikSpecDecoder"])
+            dependencies: ["BagbutikSpecDecoder"]),
+        .target(
+            name: "BagbutikStringExtensions"),
+        .testTarget(
+            name: "BagbutikStringExtensionsTests",
+            dependencies: ["BagbutikStringExtensions"])
     ])

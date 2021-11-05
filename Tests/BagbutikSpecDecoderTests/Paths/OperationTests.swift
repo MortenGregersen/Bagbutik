@@ -276,18 +276,12 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(try Operation.getName(forId: "users-visibleApps-delete_to_many_relationship"), "deleteVisibleAppsForUser")
         XCTAssertEqual(try Operation.getName(forId: "salesReports-get_collection"), "getSalesReports")
         XCTAssertEqual(try Operation.getName(forId: "financeReports-get_collection"), "getFinanceReports")
+        XCTAssertEqual(try Operation.getName(forId: "ciBuildRuns-create_instance"), "startCiBuildRun")
         XCTAssertThrowsError(try Operation.getName(forId: "invalid-id"))
     }
 
     func testGetDocumentation() {
         XCTAssertNoThrow(try Operation.getDocumentation(forId: "users-get_collection"))
         XCTAssertThrowsError(try Operation.getDocumentation(forId: "invalid-id"))
-    }
-
-    func testSingularize() {
-        let singularize = BagbutikSpecDecoder.Operation.singularize
-        XCTAssertEqual(singularize("territory"), "territory")
-        XCTAssertEqual(singularize("categories"), "category")
-        XCTAssertEqual(singularize("users"), "user")
     }
 }

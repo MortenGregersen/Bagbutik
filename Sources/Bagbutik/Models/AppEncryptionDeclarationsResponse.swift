@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationsresponse>
  */
-public struct AppEncryptionDeclarationsResponse: Codable {
+public struct AppEncryptionDeclarationsResponse: Codable, PagedResponse {
+    public typealias Data = AppEncryptionDeclaration
     /// The resource data.
     public let data: [AppEncryptionDeclaration]
     /// The included related resources.

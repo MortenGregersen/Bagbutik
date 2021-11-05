@@ -1,0 +1,118 @@
+import Foundation
+
+/**
+ The data structure that represents a Git References resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>
+ */
+public struct ScmGitReference: Codable {
+    /// The opaque resource ID that uniquely identifies the resource.
+    public let id: String
+    /// Navigational links that include the self-link.
+    public let links: ResourceLinks
+    /// The resource type.
+    public var type: String { "scmGitReferences" }
+    /// The resource's attributes.
+    public let attributes: Attributes?
+    /// Navigational links to related data and included resource types and IDs.
+    public let relationships: Relationships?
+
+    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        self.id = id
+        self.links = links
+        self.attributes = attributes
+        self.relationships = relationships
+    }
+
+    /**
+     The attributes that describe a Git Reference resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/attributes>
+     */
+    public struct Attributes: Codable {
+        /// The canonical name of the Git reference.
+        public let canonicalName: String?
+        /// A Boolean value that indicates whether the Git reference was deleted.
+        public let isDeleted: Bool?
+        /// A value that indicates whether the Git reference is a tag or a branch.
+        public let kind: CiGitRefKind?
+        /// The name of the Git reference.
+        public let name: String?
+
+        public init(canonicalName: String? = nil, isDeleted: Bool? = nil, kind: CiGitRefKind? = nil, name: String? = nil) {
+            self.canonicalName = canonicalName
+            self.isDeleted = isDeleted
+            self.kind = kind
+            self.name = name
+        }
+    }
+
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships>
+     */
+    public struct Relationships: Codable {
+        public let repository: Repository?
+
+        public init(repository: Repository? = nil) {
+            self.repository = repository
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository>
+         */
+        public struct Repository: Codable {
+            /// The type and ID of a related resource.
+            public let data: Data?
+            /// The links to the related data and the relationship's self-link.
+            public let links: Links?
+
+            public init(data: Data? = nil, links: Links? = nil) {
+                self.data = data
+                self.links = links
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "scmRepositories" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public let related: String?
+                /// The relationship's self-link
+                public let `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
+        }
+    }
+}

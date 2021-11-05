@@ -9,11 +9,32 @@ public struct ObjectSchema: Decodable, Equatable {
     /// The documentation for the obejct - if any
     public let documentation: Schema.Documentation?
     /// The properties for the obejct
-    public let properties: [String: Property]
+    public var properties: [String: Property]
     /// A list of properties that is required (always available)
     public let requiredProperties: [String]
-    /// A list of schemas derived from the properties
-    public let subSchemas: [SubSchema]
+    /// A list of schemas derived from the properties and special sub schemas
+    public var subSchemas: [SubSchema] {
+        var subSchemas = [SubSchema]()
+        subSchemas.append(contentsOf: [attributesSchema, relationshipsSchema].compactMap { $0 })
+        subSchemas.append(contentsOf: properties.compactMap { _, property in
+            switch property.type {
+            case .arrayOfSubSchema(let schema), .schema(let schema):
+                return .objectSchema(schema)
+            case .arrayOfOneOf(let name, let schema), .oneOf(let name, let schema):
+                return .oneOf(name: name, schema: schema)
+            case .enumSchema(let schema):
+                return .enumSchema(schema)
+            default:
+                return nil
+            }
+        })
+        return subSchemas.sorted(by: { $0.name < $1.name })
+    }
+
+    /// A schema for Attributes
+    public var attributesSchema: SubSchema?
+    /// A schema for Relationships
+    public var relationshipsSchema: SubSchema?
 
     private enum CodingKeys: String, CodingKey {
         case type
@@ -29,34 +50,25 @@ public struct ObjectSchema: Decodable, Equatable {
         case deprecated
     }
 
-    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: Property] = [:], requiredProperties: [String] = [], subSchemas: [SubSchema] = []) {
+    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: Property] = [:], requiredProperties: [String] = [], attributesSchema: SubSchema? = nil, relationshipsSchema: SubSchema? = nil) {
         self.name = name
         self.url = url
         self.documentation = documentation
         self.properties = properties
         self.requiredProperties = requiredProperties
-        self.subSchemas = subSchemas.sorted(by: { $0.name < $1.name })
+        self.attributesSchema = attributesSchema
+        self.relationshipsSchema = relationshipsSchema
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let requiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
         let propertiesContainer = try container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
-        var subSchemas = [SubSchema]()
         let properties = try propertiesContainer.allKeys.reduce(into: [String: Property]()) { properties, key in
             guard key.stringValue != CodingKeys.attributes.stringValue,
                   key.stringValue != CodingKeys.relationships.stringValue else { return }
             guard let propertyType = try? propertiesContainer.decode(PropertyType.self, forKey: key) else {
                 throw DecodingError.dataCorruptedError(forKey: key, in: propertiesContainer, debugDescription: "Property type not known")
-            }
-            switch propertyType {
-            case .arrayOfSubSchema(let schema), .schema(let schema):
-                subSchemas.append(.objectSchema(schema))
-            case .arrayOfOneOf(let name, let schema), .oneOf(let name, let schema):
-                subSchemas.append(.oneOf(name: name, schema: schema))
-            case .enumSchema(let schema):
-                subSchemas.append(.enumSchema(schema))
-            default: break
             }
             let propertyContainer = try propertiesContainer.nestedContainer(keyedBy: PropertyCodingKeys.self, forKey: key)
             let deprecated = try propertyContainer.decodeIfPresent(Bool.self, forKey: .deprecated) ?? false
@@ -68,36 +80,20 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
-        let codingPathComponents = Array(container.codingPath
-            .map(\.stringValue)
-            .drop { $0 == "components" || $0 == "schemas" }
-            .map { $0.capitalizingFirstLetter() }
-        )
-        var urlPathComponents = codingPathComponents
-            .filter { $0 != "Items" &&
-                $0 != "Source" &&
-                $0 != "OneOf" &&
-                !$0.hasPrefix("Index ")
-            }
-
-        if urlPathComponents.last != name {
-            urlPathComponents.append(name.lowercased())
-        }
-        let uri = urlPathComponents
-            .map { $0.lowercased() }
-            .joined(separator: "/")
-        let url = "https://developer.apple.com/documentation/appstoreconnectapi/\(uri)"
+        let codingPathComponents = container.codingPath.components
+        let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
         let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
+        var attributesSchema, relationshipsSchema: SubSchema?
         let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
-            subSchemas.append(.attributes(attributes))
+            attributesSchema = .attributes(attributes)
         }
         if let relationships = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "relationships")!),
            relationships.properties.count > 0
         {
-            subSchemas.append(.relationships(relationships))
+            relationshipsSchema = .relationships(relationships)
         }
-        self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, subSchemas: subSchemas)
+        self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, attributesSchema: attributesSchema, relationshipsSchema: relationshipsSchema)
     }
 
     internal static func getDocumentation(forSchemaNamed name: String,

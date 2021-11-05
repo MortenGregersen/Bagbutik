@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupsresponse>
  */
-public struct BetaGroupsResponse: Codable {
+public struct BetaGroupsResponse: Codable, PagedResponse {
+    public typealias Data = BetaGroup
     /// The resource data.
     public let data: [BetaGroup]
     /// The included related resources.
@@ -24,17 +25,17 @@ public struct BetaGroupsResponse: Codable {
     }
 
     public enum Included: Codable {
-        case apps(App)
-        case betaTesters(BetaTester)
-        case builds(Build)
+        case app(App)
+        case betaTester(BetaTester)
+        case build(Build)
 
         public init(from decoder: Decoder) throws {
-            if let apps = try? App(from: decoder) {
-                self = .apps(apps)
-            } else if let betaTesters = try? BetaTester(from: decoder) {
-                self = .betaTesters(betaTesters)
-            } else if let builds = try? Build(from: decoder) {
-                self = .builds(builds)
+            if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let betaTester = try? BetaTester(from: decoder) {
+                self = .betaTester(betaTester)
+            } else if let build = try? Build(from: decoder) {
+                self = .build(build)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -43,23 +44,17 @@ public struct BetaGroupsResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .apps(value):
+            case let .app(value):
                 try value.encode(to: encoder)
-            case let .betaTesters(value):
+            case let .betaTester(value):
                 try value.encode(to: encoder)
-            case let .builds(value):
+            case let .build(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case apps
-            case betaTesters
-            case builds
         }
     }
 }

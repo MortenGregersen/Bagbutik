@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoriesresponse>
  */
-public struct TerritoriesResponse: Codable {
+public struct TerritoriesResponse: Codable, PagedResponse {
+    public typealias Data = Territory
     /// The resource data.
     public let data: [Territory]
     /// Navigational links that include the self-link.

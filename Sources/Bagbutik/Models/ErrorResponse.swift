@@ -49,38 +49,6 @@ public struct ErrorResponse: Codable {
             case jsonPointer(JsonPointer)
             case parameter(Parameter)
 
-            /**
-             An object that contains the JSON pointer that indicates the location of the error.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors/jsonpointer>
-
-             In some cases, the JSON pointer may indicate an element that isn't in the request entity, but should be. For more information about JSON pointers, see the [RFC 6901](https://tools.ietf.org/html/rfc6901) proposed standards document.
-             */
-            public struct JsonPointer: Codable {
-                /// A JSON pointer that indicates the location in the request entity where the error originates.
-                public let pointer: String?
-
-                public init(pointer: String? = nil) {
-                    self.pointer = pointer
-                }
-            }
-
-            /**
-             An object that contains the query parameter that produced the error.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors/parameter>
-             */
-            public struct Parameter: Codable {
-                /// The query parameter that produced the error.
-                public let parameter: String?
-
-                public init(parameter: String? = nil) {
-                    self.parameter = parameter
-                }
-            }
-
             public init(from decoder: Decoder) throws {
                 if let jsonPointer = try? JsonPointer(from: decoder) {
                     self = .jsonPointer(jsonPointer)
@@ -103,11 +71,6 @@ public struct ErrorResponse: Codable {
 
             private enum CodingKeys: String, CodingKey {
                 case type
-            }
-
-            private enum TypeKeys: String, Codable {
-                case jsonPointer
-                case parameter
             }
         }
     }

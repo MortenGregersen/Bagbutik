@@ -10,8 +10,11 @@ public extension UserRole {
         case .customerSupport: return "Customer Support"
         case .marketing: return "Marketing"
         case .accountHolder: return "Account Holder"
-        case .readOnly: return "Read Only"
-        case .technical: return "Technical"
+        // Not mentioned in documentation: https://developer.apple.com/support/roles
+        case .createApps: return "Create Apps"
+        case .cloudManagedDeveloperId: return "Cloud Managed Developer ID"
+        case .cloudManagedAppDistribution: return "Cloud Managed App Distribution"
+        case .imageManager: return "Image Manager"
         }
     }
 }

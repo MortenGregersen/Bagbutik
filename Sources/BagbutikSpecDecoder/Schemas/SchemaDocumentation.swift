@@ -250,7 +250,7 @@ public extension Schema {
                         "violenceRealisticProlongedGraphicOrSadistic": "Declaration for prolonged realistic or sadistic violence.",
                         "contests": "Declaration for contests.",
                         "gambling": "Declaration for gambling, provided as a Boolean value.",
-                        "seventeenPlus": "Declaration for a 17+ rating, provided as a Boolean value."
+                        "seventeenPlus": "Declaration for a 17+ rating, provided as a Boolean value.",
                     ]
                 )
             ),
@@ -274,7 +274,7 @@ public extension Schema {
                     "violenceRealisticProlongedGraphicOrSadistic": "Declaration for prolonged realistic or sadistic violence.",
                     "contests": "Declaration for contests.",
                     "gambling": "Declaration for gambling, provided as a Boolean value.",
-                    "seventeenPlus": "Declaration for a 17+ rating, provided as a Boolean value."
+                    "seventeenPlus": "Declaration for a 17+ rating, provided as a Boolean value.",
                 ])
             ),
             "App": .rootSchema(
@@ -302,6 +302,269 @@ public extension Schema {
                 )
             ),
             "AppCategoryResponse": .rootSchema(summary: "A response that contains a single App Categories resource."),
+            "AppClip": .rootSchema(
+                summary: "The data structure that represents an App Clips resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an App Clips resource.",
+                    properties: [
+                        "bundleId": "The related Bundle IDs resource.",
+                    ]
+                )
+            ),
+            "AppClipAction": .enumObject(
+                summary: "A string that represents the call-to-action verb on the App Clip card.",
+                cases: [
+                    "OPEN": "",
+                    "VIEW": "",
+                    "PLAY": "",
+                ]
+            ),
+            "AppClipAdvancedExperience": .rootSchema(
+                summary: "The data structure that represents an Advanced App Clip Experiences resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experiences resource.",
+                    properties: [
+                        "action": "The call-to-action verb that appears on the App Clip card.",
+                        "businessCategory": "The business category of an advanced App Clip experience; for example, PARKING",
+                        "defaultLanguage": "The default language for the advanced App Clip experience.",
+                        "isPoweredBy": "A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.",
+                        "link": "The invocation URL of the advanced App Clip experience.",
+                        "place": "The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.",
+                        "placeStatus": "A string that describes a place’s match status with Points of Interest (POI) in Apple Maps. PENDING indicates that Apple Maps is currently matching the place to a POI. MATCHED indicates that the provided place information matched a POI, and NO_MATCH indicates that the place doesn’t match a POI in Apple Maps or is in a location not supported by Apple Maps.",
+                        "status": "A string that describes the status of an advanced App Clip experience. RECEIVED indicates that users can invoke this experience, DEACTIVATED indicates that the experience is deactivated and users can’t launch the App Clip with this invocation, and APP_TRANSFER_IN_PROGRESS indicates that the experience is part of an app that’s currently transferred to another developer.",
+                        "version": "The build version of the App Clip as an integer value; for example, 1234.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceCreateRequest": .createRequest(
+                summary: "The request body you use to create an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                    "businessCategory": "The business category of an advanced App Clip experience; for example, PARKING",
+                    "defaultLanguage": "The default language for the advanced App Clip experience.",
+                    "isPoweredBy": "A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.",
+                    "link": "The invocation URL of the advanced App Clip experience you’re creating.",
+                    "place": "The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.",
+                ]
+                )
+            ),
+            "AppClipAdvancedExperienceImage": .rootSchema(
+                summary: "The data structure that represents an image that appears on the App Clip card for an advanced App Clip experience.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experience Images resource.",
+                    properties: [
+                        "assetDeliveryState": "The state of the App Clip card image asset you uploaded.",
+                        "fileName": "The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                        "fileSize": "The size of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                        "imageAsset": "The image asset that appears on the App Clip card of an advanced App Clip experience.",
+                        "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                        "uploadOperations": "Upload operations for the image asset that appears on the App Clip card for an advanced App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceImageCreateRequest": .createRequest(
+                summary: "The request body you use to reserve an image asset for an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "fileName": "The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                    "fileSize": "The size of the image asset that appears on the App Clip card for the advanced App Clip experience.",
+                ])
+            ),
+            "AppClipAdvancedExperienceImageResponse": .rootSchema(summary: "A response that contains a single Advanced App Clip Experience Images resource."),
+            "AppClipAdvancedExperienceImageUpdateRequest": .updateRequest(
+                summary: "The request body you use to commit the image asset for an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                    "uploaded": "A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.",
+                ]
+                )
+            ),
+            "AppClipAdvancedExperienceLanguage": .enumObject(
+                summary: "The data structure that represents the language you configure for an advanced App Clip experience.",
+                cases: [
+                    "AR": "",
+                    "CA": "",
+                    "CS": "",
+                    "DA": "",
+                    "DE": "",
+                    "EL": "",
+                    "EN": "",
+                    "ES": "",
+                    "FI": "",
+                    "FR": "",
+                    "HE": "",
+                    "HI": "",
+                    "HR": "",
+                    "HU": "",
+                    "ID": "",
+                    "IT": "",
+                    "JA": "",
+                    "KO": "",
+                    "MS": "",
+                    "NL": "",
+                    "NO": "",
+                    "PL": "",
+                    "PT": "",
+                    "RO": "",
+                    "RU": "",
+                    "SK": "",
+                    "SV": "",
+                    "TH": "",
+                    "TR": "",
+                    "UK": "",
+                    "VI": "",
+                    "ZH": "",
+                ]
+            ),
+            "AppClipAdvancedExperienceLocalization": .rootSchema(
+                summary: "The data structure that represents the Advanced App Clip Localizations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experience Localizations resource.",
+                    properties: [
+                        "language": "A string that identifies the language of the advanced App Clip experience.",
+                        "subtitle": "The subtitle that appears on the App Clip card for the advanced App Clip experience.",
+                        "title": "The title that appears on the App Clip card for the advanced App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceLocalizationInlineCreate": .rootSchema(
+                summary: "The data structure that represents an Advanced App Clip Experience Localization Inline Creates resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Advanced App Clip Experience Localization Inline Creates resource.",
+                    properties: [
+                        "language": "A string that identifies the language of the advanced App Clip experience.",
+                        "subtitle": "The subtitle that appears on the App Clip card for the advanced App Clip experience.",
+                        "title": "The title that appears on the App Clip card for the advanced App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipAdvancedExperienceResponse": .rootSchema(summary: "A response that contains a single Advanced App Clip Experiences resource."),
+            "AppClipAdvancedExperienceUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an advanced App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                    "businessCategory": "The business category of an advanced App Clip experience; for example, PARKING",
+                    "defaultLanguage": "The default language for the advanced App Clip experience.",
+                    "isPoweredBy": "A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.",
+                    "place": "The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.",
+                    "removed": "A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to true.",
+                ]
+                )
+            ),
+            "AppClipAdvancedExperiencesResponse": .rootSchema(summary: "A response that contains a list of Advanced App Clip Experiences resources."),
+            "AppClipAppStoreReviewDetail": .rootSchema(
+                summary: "The data structure that represents an App Clip App Store Review Details resource.",
+                attributes: .init(
+                    summary: "The attributes that describe the App Clip App Store Review Details resource.",
+                    properties: [
+                        "invocationUrls": "An array of invocation URLs for your App Clip.",
+                    ]
+                )
+            ),
+            "AppClipAppStoreReviewDetailCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Clip App Store Review Detail.",
+                attributes: .init(properties: [
+                    "invocationUrls": "An array of invocation URLs for your App Clip.",
+                ])
+            ),
+            "AppClipAppStoreReviewDetailResponse": .rootSchema(summary: "A response that contains a single App Clip App Store Review Details resource."),
+            "AppClipAppStoreReviewDetailUpdateRequest": .updateRequest(
+                summary: "The request body you use to update App Clip information that you provide to App Store Review.",
+                attributes: .init(properties: [
+                    "invocationUrls": "An array of invocation URLs for your App Clip.",
+                ])
+            ),
+            "AppClipDefaultExperience": .rootSchema(
+                summary: "The data structure that represents a Default App Clip Experiences resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Default App Clip Experiences resource.",
+                    properties: [
+                        "action": "The call-to-action verb that appears on the App Clip card.",
+                    ]
+                )
+            ),
+            "AppClipDefaultExperienceCreateRequest": .createRequest(
+                summary: "The request body you use to create a default App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                ])
+            ),
+            "AppClipDefaultExperienceLocalization": .rootSchema(
+                summary: "The data structure that represents a Default App Clip Experience Localizations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Default App Clip Experience Localizations resource.",
+                    properties: [
+                        "locale": "The specified locale.",
+                        "subtitle": "The subtitle that appears on the App Clip card for the default App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipDefaultExperienceLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create a Default App Clip Experience Localization.",
+                attributes: .init(properties: [
+                    "locale": "The specified locale.",
+                    "subtitle": "The subtitle that appears on the App Clip card for the default App Clip experience.",
+                ])
+            ),
+            "AppClipDefaultExperienceLocalizationResponse": .rootSchema(summary: "A response that contains a single Default App Clip Experience Localizations resource."),
+            "AppClipDefaultExperienceLocalizationsResponse": .rootSchema(summary: "A response that contains a list of Default App Clip Experience Localizations resources."),
+            "AppClipDefaultExperienceLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Default App Clip Experiences resource.",
+                attributes: .init(properties: [
+                    "subtitle": "The subtitle that appears on the App Clip card for the default App Clip experience.",
+                ])
+            ),
+            "AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest": .linkagesRequest(summary: "The request body you use to relate a released App Store version with a default App Clip experience."),
+            "AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse": .linkagesResponse,
+            "AppClipDefaultExperienceResponse": .rootSchema(summary: "A response that contains a single Default App Clip Experiences resource."),
+            "AppClipDefaultExperiencesResponse": .rootSchema(summary: "A response that contains a list of Default App Clip Experiences resources."),
+            "AppClipDefaultExperienceUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a default App Clip experience.",
+                attributes: .init(properties: [
+                    "action": "The call-to-action verb that appears on the App Clip card.",
+                ])
+            ),
+            "AppClipDomainStatus": .rootSchema(
+                summary: "The data structure that represents the App Clip Domain Statuses resource.",
+                attributes: .init(
+                    summary: "The attributes that describe the App Clip Domain Status resource.",
+                    properties: [
+                        "domains": "An array of domains you associated with your app or App Clip.",
+                        "lastUpdatedDate": "The date when App Store Connect last verified the status of an associated domain.",
+                    ]
+                )
+            ),
+            "AppClipDomainStatusResponse": .rootSchema(summary: "A response that contains a single App Clip Domain Statuses resource."),
+            "AppClipHeaderImage": .rootSchema(
+                summary: "The data structure that represents the image that appears on the App Clip card of a default App Clip experience.",
+                attributes: .init(
+                    summary: "The attributes that describe the image that appears on the App Clip card of a default App Clip experience.",
+                    properties: [
+                        "assetDeliveryState": "The state of the App Clip card image asset you uploaded.",
+                        "fileName": "The filename of the image asset that appears on the App Clip card for the default App Clip experience.",
+                        "fileSize": "The size of the image asset that appears on the App Clip card for the default App Clip experience.",
+                        "imageAsset": "The image asset that appears on the App Clip card of a default App Clip experience.",
+                        "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                        "uploadOperations": "Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.",
+                    ]
+                )
+            ),
+            "AppClipHeaderImageCreateRequest": .createRequest(
+                summary: "The request body you use to reserve an image asset that appears on the App Clip card of a default App Clip experience.",
+                attributes: .init(properties: [
+                    "fileName": "The filename of the image asset that appears on the App Clip card for the default App Clip experience.",
+                    "fileSize": "The size of the image asset that appears on the App Clip card for the default App Clip experience.",
+                ])
+            ),
+            "AppClipHeaderImageResponse": .rootSchema(summary: "A response that contains a single App Clip Header Images resource."),
+            "AppClipHeaderImageUpdateRequest": .updateRequest(
+                summary: "The request body you use to commit the image asset for a default App Clip experience.",
+                attributes: .init(properties: [
+                    "sourceFileChecksum": "A string that represents the MD5 checksum of the image asset you use for the App Clip card.",
+                    "uploaded": "A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.",
+                ])
+            ),
+            "AppClipResponse": .rootSchema(summary: "A response that contains a single App Clips resource."),
+            "AppClipsResponse": .rootSchema(summary: "A response that contains a list of App Clips resources."),
             "AppEncryptionDeclaration": .rootSchema(
                 summary: "The data structure that represents an App Encryption Declarations resource.",
                 attributes: .init(
@@ -472,6 +735,13 @@ public extension Schema {
             "AppPreviewSetResponse": .rootSchema(summary: "A response that contains a single App Preview Sets resource."),
             "AppPreviewSetsResponse": .rootSchema(summary: "A response that contains a list of App Preview Set resources."),
             "AppPrice": .rootSchema(summary: "The data structure that represent an App Prices resource."),
+            "AppPriceInlineCreate": .rootSchema(
+                summary: "",
+                properties: [
+                    "id": "",
+                    "type": "",
+                ]
+            ),
             "AppPricePoint": .rootSchema(
                 summary: "The data structure that represent an App Price Points resource.",
                 attributes: .init(
@@ -636,6 +906,8 @@ public extension Schema {
                     ]
                 )
             ),
+            "AppStoreVersionAppClipDefaultExperienceLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a default App Clip experience to an App Store version."),
+            "AppStoreVersionAppClipDefaultExperienceLinkageResponse": .linkagesResponse,
             "AppStoreVersionBuildLinkageRequest": .linkagesRequest(summary: "The request body you use to attach a build to an App Store version."),
             "AppStoreVersionBuildLinkageResponse": .linkagesResponse,
             "AppStoreVersionCreateRequest": .createRequest(
@@ -710,6 +982,9 @@ public extension Schema {
                 summary: "The request body you use to update an App Store Version Phased Release.",
                 attributes: .init(properties: ["phasedReleaseState": ""])
             ),
+            "AppStoreVersionReleaseRequest": .rootSchema(summary: "The data structure that represents an App Store Version Release Request resource."),
+            "AppStoreVersionReleaseRequestCreateRequest": .createRequest(summary: "The request body you use to manually release an App Store approved version of your app."),
+            "AppStoreVersionReleaseRequestResponse": .rootSchema(summary: "A response that contains a single App Store Version Release Request resource."),
             "AppStoreVersionResponse": .rootSchema(summary: "A response that contains a single App Store Versions resource."),
             "AppStoreVersionsResponse": .rootSchema(summary: "A response that contains a list of App Store Version resources."),
             "AppStoreVersionState": .enumObject(
@@ -755,6 +1030,63 @@ public extension Schema {
                     "bundleId": "",
                     "contentRightsDeclaration": "",
                     "primaryLocale": "",
+                ])
+            ),
+            "BetaAppClipInvocation": .rootSchema(
+                summary: "The data structure that represents a Beta App Clip Invocations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Beta App Clip Invocations resource.",
+                    properties: [
+                        "url": "The invocation URL you configure for testers who use the TestFlight to launch your App Clip.",
+                    ]
+                )
+            ),
+            "BetaAppClipInvocationCreateRequest": .createRequest(
+                summary: "The request body you use to create an App Clip invocation for testers.",
+                attributes: .init(properties: [
+                    "url": "The invocation URL you configure for testers who use the TestFlight to launch your App Clip.",
+                ])
+            ),
+            "BetaAppClipInvocationLocalization": .rootSchema(
+                summary: "The data structure that represents a Beta App Clip Invocation Localizations resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Beta App Clip Invocation Localizations resource.",
+                    properties: [
+                        "locale": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                        "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                    ]
+                )
+            ),
+            "BetaAppClipInvocationLocalizationCreateRequest": .createRequest(
+                summary: "The request body you use to create a Beta App Clip Localization.",
+                attributes: .init(properties: [
+                    "locale": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                    "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                ])
+            ),
+            "BetaAppClipInvocationLocalizationInlineCreate": .rootSchema(
+                summary: "The data structure that represents a Beta App Clip Invocation Localization Inline Creates resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Beta App Clip Invocation Localization Inline Creates resource.",
+                    properties: [
+                        "locale": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                        "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                    ]
+                )
+            ),
+            "BetaAppClipInvocationLocalizationResponse": .rootSchema(summary: "A response that contains a single Beta App Clip Invocation Localizations resource."),
+            "BetaAppClipInvocationLocalizationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update localized text that appears on the App Clip card for testers.",
+                attributes: .init(properties: [
+                    "title": "The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.",
+                ])
+            ),
+            "BetaAppClipInvocationResponse": .rootSchema(summary: "A response that contains a single Beta App Clip Invocations resource."),
+            "BetaAppClipInvocationsResponse": .rootSchema(summary: "A response that contains a list of Beta App Clip Invocations resources."),
+            "BetaAppClipInvocationUpdateRequest": .updateRequest(
+                summary: "The request body you use to update a Beta App Clip Invocation.",
+                attributes: .init(properties: [
+                    "url": "The invocation URL you configure for testers who use the TestFlight to launch your App Clip.",
                 ])
             ),
             "BetaAppLocalization": .rootSchema(
@@ -905,6 +1237,13 @@ public extension Schema {
                     "feedbackEnabled": "",
                 ])
             ),
+            "BetaInviteType": .enumObject(
+                summary: "String that indicates how you offer a beta invitation.",
+                cases: [
+                    "EMAIL": "",
+                    "PUBLIC_LINK": "",
+                ]
+            ),
             "BetaLicenseAgreement": .rootSchema(
                 summary: "The data structure that represents a Beta License Agreements resource.",
                 attributes: .init(
@@ -1003,6 +1342,44 @@ public extension Schema {
             "BuildBetaNotification": .rootSchema(summary: "The data structure that represents a Build Beta Notifications resource."),
             "BuildBetaNotificationCreateRequest": .createRequest(summary: "The request body you use to create a Build Beta Notification."),
             "BuildBetaNotificationResponse": .rootSchema(summary: "A response that contains a single Build Beta Notifications resource."),
+            "BuildBundle": .rootSchema(
+                summary: "The data structure that represents Build Bundles resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Build Bundles resource.",
+                    properties: [
+                        "bundleId": "The bundle ID of the build bundle.",
+                        "bundleType": "The type of the build bundle.",
+                        "deviceProtocols": "The protocols that the app uses to communicate with external accessory hardware. For more information, see UISupportedExternalAccessoryProtocols.",
+                        "dSYMUrl": "The URL to the symbolication file for the app or App Clip.",
+                        "entitlements": "Entitlement information for your app or App Clip.",
+                        "fileName": "The name of the build bundle.",
+                        "hasOnDemandResources": "A Boolean value that indicates whether the build bundle contains on-demand resources.",
+                        "hasPrerenderedIcon": "A Boolean value that indicates whether the build bundle contains a pre-rendered app icon.",
+                        "hasSirikit": "A Boolean value that indicates whether the build bundle contains an app or App Clip that allows users to interact with it through voice, intelligent suggestions, and personalized workflows.",
+                        "includesSymbols": "A Boolean value that indicates whether the build bundle includes symbol information for debugging and crash reports.",
+                        "isIosBuildMacAppStoreCompatible": "A Boolean value that indicates whether an iOS app included in the build bundle is included on the Mac App Store.",
+                        "locales": "The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.",
+                        "platformBuild": "The build number of the OS you used to build the app or App Clip.",
+                        "requiredCapabilities": "An array of capabilities that your app or App Clip requires.",
+                        "sdkBuild": "A string that identifies the SDK you used to build your app or App Clip.",
+                        "supportedArchitectures": "An array of supported CPU architectures that your app or App Clip supports.",
+                        "usesLocationServices": "A Boolean value that indicates whether the app or App Clip included in the build bundle uses location services.",
+                    ]
+                )
+            ),
+            "BuildBundleFileSize": .rootSchema(
+                summary: "The data structure that represents a Build Bundle File Sizes resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Build Bundle File Sizes resource.",
+                    properties: [
+                        "deviceModel": "A string that identifies the Apple device model.",
+                        "downloadBytes": "An integer value that represents the download size of the build bundle in bytes.",
+                        "installBytes": "An integer value that represents the installation size of the build bundle in bytes.",
+                        "osVersion": "A string that identifies the OS version supported by the app or App Clip.",
+                    ]
+                )
+            ),
+            "BuildBundleFileSizesResponse": .rootSchema(summary: "A response that contains a list of Build Bundle File Sizes resources."),
             "BuildIcon": .rootSchema(
                 summary: "The data structure that represents the Build Icons resource.",
                 attributes: .init(
@@ -1034,6 +1411,13 @@ public extension Schema {
                     "FOURTEEN": "",
                     "SIXTEEN": "",
                     "EIGHTEEN": "",
+                ]
+            ),
+            "BuildAudienceType": .enumObject(
+                summary: "",
+                cases: [
+                    "INTERNAL_ONLY": "",
+                    "APP_STORE_ELIGIBLE": "",
                 ]
             ),
             "BundleId": .rootSchema(
@@ -1197,6 +1581,359 @@ public extension Schema {
                     "DISTRIBUTION": "",
                 ]
             ),
+            "CiAction": .rootSchema(
+                summary: "The data structure that represents an Actions resource.",
+                properties: [
+                    "actionType": "The type of the action.",
+                    "buildDistributionAudience": "A type that indicates whether a build’s artifact is eligible for release on the App Store.",
+                    "destination": "A string that describes the destination Xcode Cloud uses for an action.",
+                    "isRequiredToPass": "A Boolean value that indicates whether the action must succeed in order for a build to succeed.",
+                    "name": "The name of the action; for example, archive or test.",
+                    "platform": "The platform Xcode Cloud uses for the action.",
+                    "scheme": "The name of the scheme that Xcode Cloud uses to perform the action.",
+                    "testConfiguration": "An action’s test configuration. Only set this field for test actions.",
+                ]
+            ),
+            "CiActionType": .enumObject(
+                summary: "A string that represents the type of an Xcode Cloud workflow’s action.",
+                cases: [
+                    "BUILD": "The action is a build action.",
+                    "ANALYZE": "The action is an analyze action.",
+                    "TEST": "The action is a test action.",
+                    "ARCHIVE": "The action is an archive action.",
+                ]
+            ),
+            "CiArtifact": .rootSchema(
+                summary: "The data structure that represents an Artifacts resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Artifacts resource.",
+                    properties: [
+                        "downloadUrl": "The URL you use to download the Xcode Cloud build artifact.",
+                        "fileName": "The artifact’s filename as a string.",
+                        "fileSize": "An integer value that represents the artifact’s file size.",
+                        "fileType": "A string that describes the type of the artifact.",
+                    ]
+                )
+            ),
+            "CiArtifactResponse": .rootSchema(summary: "A response that contains a single Artifacts resource."),
+            "CiArtifactsResponse": .rootSchema(summary: "A response that contains a list of Artifacts resources."),
+            "CiBranchPatterns": .rootSchema(
+                summary: "Case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.",
+                properties: [
+                    "isAllMatch": "A Boolean value that indicates whether a start condition’s settings apply to all branches. If true, the patterns attribute isn’t expected. If false, the patterns attribute is required.",
+                    "patterns": "The list of case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.",
+                ]
+            ),
+            "CiBranchPatterns.Patterns": .rootSchema(
+                summary: "A case-sensitive pattern Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.",
+                properties: [
+                    "isPrefix": "A Boolean value that indicates whether the pattern matches the start of a branch name, or the exact branch name.",
+                    "pattern": "A case-sensitive string. If the string is a prefix pattern, Xcode Cloud starts a build when the changed branch name starts with this string. Otherwise, Xcode Cloud starts a build when the changed branch name exactly matches this string.",
+                ]
+            ),
+            "CiBranchStartCondition": .rootSchema(
+                summary: "Settings for a start condition that starts a build if a branch changes.",
+                properties: [
+                    "autoCancel": "A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.",
+                    "filesAndFoldersRule": "Settings Xcode Cloud uses to determine whether a change to a branch should start a new build or not.",
+                    "source": "The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a branch.",
+                ]
+            ),
+            "CiBuildAction": .rootSchema(
+                summary: "The data structure that represents a Build Actions resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Build Actions resource.",
+                    properties: [
+                        "actionType": "The type of the build action.",
+                        "completionStatus": "The status of the action.",
+                        "executionProgress": "A string that indicates the progress of the build action.",
+                        "finishedDate": "The date and time when Xcode Cloud finished performing the action.",
+                        "isRequiredToPass": "A Boolean value that indicates whether the action must succeed in order for a build to succeed.",
+                        "issueCounts": "An integer value that represents the number of issues Xcode Cloud encountered when it performed the action.",
+                        "name": "The name of the build action; for example, Archive iOS.",
+                        "startedDate": "The date and time when Xcode Cloud started performing the action.",
+                    ]
+                )
+            ),
+            "CiBuildActionResponse": .rootSchema(summary: "A response that contains a single Build Actions resource."),
+            "CiBuildActionsResponse": .rootSchema(summary: "A response that contains a list of Build Actions resources."),
+            "CiBuildRun": .rootSchema(
+                summary: "The data structure that represents a Build Runs resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Build Runs resource.",
+                    properties: [
+                        "cancelReason": "A string that indicates the reason for a canceled build.",
+                        "completionStatus": "A string that indicates the status of a completed build.",
+                        "createdDate": "The date and time when Xcode Cloud created the build.",
+                        "destinationCommit": "Detailed information about the commit of a pull request build’s target branch. This value is only available to builds from pull requests.",
+                        "executionProgress": "A string that indicates the progress of the build action.",
+                        "finishedDate": "The date and time when Xcode Cloud completed the build.",
+                        "isPullRequestBuild": "A Boolean value that indicates whether the build was started by a change to a pull request.",
+                        "issueCounts": "An integer value that represents the number of issues Xcode Cloud encountered when it performed the build.",
+                        "number": "The Xcode Cloud build number.",
+                        "sourceCommit": "Detailed information about the commit of a pull request build’s source branch. This value is only available to builds from pull requests.",
+                        "startedDate": "The date and time when Xcode Cloud started the build.",
+                        "startReason": "A string that indicates what started the build.",
+                    ]
+                )
+            ),
+            "CiBuildRunCreateRequest": .createRequest(
+                summary: "The request body you use to start a new Xcode Cloud build.",
+                attributes: .init(
+                    properties: [
+                        "clean": "A Boolean value that indicates whether Xcode Cloud should perform a clean build.",
+                    ])
+            ),
+            "CiBuildRunResponse": .rootSchema(summary: "A response that contains a single Build Runs resource."),
+            "CiBuildRunsResponse": .rootSchema(summary: "A response that contains a list of Build Runs resources."),
+            "CiCompletionStatus": .enumObject(
+                summary: "A string that represents the completion status of an Xcode Cloud build.",
+                cases: [
+                    "SUCCEEDED": "Xcode Cloud successfully completed a build.",
+                    "FAILED": "The Xcode Cloud build failed; for example, if you configure the Required to Pass setting for a test action and a unit test fails. For more information, see Add a Test Action in [Configuring Your Xcode Cloud Workflow’s Actions](https://developer.apple.com/documentation/xcode/configuring-your-xcode-cloud-workflow-s-actions).",
+                    "ERRORED": "Xcode Cloud encountered an internal error when it performed the build.",
+                    "CANCELED": "Xcode Cloud canceled the build because you manually canceled an ongoing build or because you enabled the Auto-cancel Builds setting for a workflow. For more information about the Auto-cancel Builds setting, see [Xcode Cloud Workflow Reference](https://developer.apple.com/documentation/xcode/xcode-cloud-workflow-reference).",
+                    "SKIPPED": "Xcode Cloud skipped the build; for example, if you configure the Auto-cancel Builds setting for a workflow and push many changes in quick succession.",
+                ]
+            ),
+            "CiExecutionProgress": .enumObject(
+                summary: "A string that represents the progress of an ongoing Xcode Cloud build.",
+                cases: [
+                    "PENDING": "Xcode Cloud hasn’t started the build.",
+                    "RUNNING": "Xcode Cloud is performing the build.",
+                    "COMPLETE": "Xcode Cloud completed the build.",
+                ]
+            ),
+            "CiFilesAndFoldersRule": .rootSchema(
+                summary: "Settings Xcode Cloud uses to determine whether a change should start a new build or not.",
+                properties: [
+                    "matchers": "Directory and file information Xcode Cloud uses to determine if a change to a file or directory matches a custom start condition.",
+                    "mode": "A string that indicates whether a workflow’s start condition’s Files and Folders setting should start a new build or not for a change.",
+                ]
+            ),
+            "CiGitRefKind": .enumObject(
+                summary: "A string that represents the kind of a Git References resource.",
+                cases: [
+                    "BRANCH": "The Git reference represents a branch.",
+                    "TAG": "The Git reference represents a tag.",
+                ]
+            ),
+            "CiGitUser": .rootSchema(
+                summary: "The data structure that represents a Git Users resource.",
+                properties: [
+                    "avatarUrl": "The URL to the Git user’s avatar image.",
+                    "displayName": "The name of the Git user.",
+                ]
+            ),
+            "CiIssue": .rootSchema(
+                summary: "The data structure that represents an Issues resource.",
+                attributes: .init(
+                    summary: "The attributes that describe an Issues resource.",
+                    properties: [
+                        "category": "A string representing the issue’s category; for example, the name of the build phase where the issue occurred.",
+                        "fileSource": "The file and line number where Xcode Cloud encountered an issue.",
+                        "issueType": "A string that indicates what kind of issue Xcode Cloud encountered.",
+                        "message": "Information about the issue that occurred.",
+                    ]
+                )
+            ),
+            "CiIssueCounts": .rootSchema(
+                summary: "The data structure that represents an Issue Counts resource.",
+                properties: [
+                    "analyzerWarnings": "The number of analyzer warnings.",
+                    "errors": "The number of errors.",
+                    "testFailures": "The number of failing tests.",
+                    "warnings": "The number of warnings.",
+                ]
+            ),
+            "CiIssueResponse": .rootSchema(summary: "A response that contains a single Issues resource."),
+            "CiIssuesResponse": .rootSchema(summary: "A response that contains a list of Issues resources."),
+            "CiMacOsVersion": .rootSchema(
+                summary: "The data structure that represents a macOS Versions resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a macOS Versions resource.",
+                    properties: [
+                        "name": "The name of the macOS version.",
+                        "version": "The macOS version of the simulated environment.",
+                    ]
+                )
+            ),
+            "CiMacOsVersionResponse": .rootSchema(summary: "A response that contains a single macOS Versions resource."),
+            "CiMacOsVersionsResponse": .rootSchema(summary: "A response that contains a list of macOS Versions resources."),
+            "CiProduct": .rootSchema(
+                summary: "The data structure that represents a Products resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Products resource.",
+                    properties: [
+                        "createdDate": "The date when you created the Xcode Cloud product.",
+                        "name": "The name of the Xcode Cloud product.",
+                        "productType": "A string that indicates whether the Xcode Cloud product is a framework or an app.",
+                    ]
+                )
+            ),
+            "CiProductResponse": .rootSchema(summary: "A response that contains a single Products resource."),
+            "CiProductsResponse": .rootSchema(summary: "A response that contains a list of Products resources."),
+            "CiPullRequestStartCondition": .rootSchema(
+                summary: "Settings for a start condition that starts a build if a pull request changes.",
+                properties: [
+                    "destination": "The destination branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.",
+                    "filesAndFoldersRule": "The custom rule that determines whether Xcode Cloud starts a build or not based on a pull request’s changes to files.",
+                    "source": "The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.",
+                    "autoCancel": "A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.",
+                ]
+            ),
+            "CiScheduledStartCondition": .rootSchema(
+                summary: "Settings for a start condition that starts a build based on a schedule.",
+                properties: [
+                    "schedule": "The schedule information you configure for a workflow that starts a new build based on a schedule.",
+                    "source": "The source branch name and custom patterns you configure for a workflow that starts a new build on a schedule.",
+                ]
+            ),
+            "CiStartConditionFileMatcher": .rootSchema(
+                summary: "The data structure that represents a Start Condition File Matchers resource.",
+                properties: [
+                    "directory": "The directory you configure for a custom start condition’s Files and Folders setting.",
+                    "fileExtension": "The file extension you configure for a custom start condition’s Files and Folders setting.",
+                    "fileName": "The filename you configure for a custom start condition’s Files and Folders setting.",
+                ]
+            ),
+            "CiTagPatterns": .rootSchema(
+                summary: "Case-sensitive patterns Xcode Cloud uses to determine if a change meets tag names you configure for a workflow’s start condition.",
+                properties: [
+                    "isAllMatch": "A Boolean value that indicates whether a start condition’s settings apply to all tags. If true, the patterns attribute isn’t expected. If false, the patterns attribute is required.",
+                    "patterns": "The list of case-sensitive patterns Xcode Cloud uses to determine if a change meets tag names you configure for a workflow’s start condition.",
+                ]
+            ),
+            "CiTagPatterns.Patterns": .rootSchema(
+                summary: "A case-sensitive pattern Xcode Cloud uses to determine if a change meets tag names you configure for a workflow’s start condition.",
+                properties: [
+                    "isPrefix": "A Boolean value that indicates whether the pattern matches the start of a tag name, or the exact tag name.",
+                    "pattern": "A case-sensitive string. If the string is a prefix pattern, Xcode Cloud starts a build when the changed tag name starts with this string. Otherwise, Xcode Cloud starts a build when the changed tag name exactly matches this string.",
+                ]
+            ),
+            "CiTagStartCondition": .rootSchema(
+                summary: "Settings for a start condition that starts a build if a Git tag changes.",
+                properties: [
+                    "autoCancel":
+                        "A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.",
+                    "filesAndFoldersRule":
+                        "Settings Xcode Cloud uses to determine whether a change to a tag should start a new build or not.",
+                    "source":
+                        "The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a Git tag.",
+                ]
+            ),
+            "CiTestDestination": .rootSchema(
+                summary: "The test destination of a test action Xcode Cloud performs.",
+                properties: [
+                    "deviceTypeIdentifier": "A string that uniquely identifies the simulated device Xcode Cloud uses for a test action; for example, com.apple.CoreSimulator.SimDeviceType.iPhone-12.",
+                    "deviceTypeName": "The display name of the simulated device Xcode Cloud uses for a test action; for example, iPhone 12.",
+                    "kind": "A string that indicates whether a test destination is a simulated device or a Mac.",
+                    "runtimeIdentifier": "A string that identifies the simulated environment Xcode Cloud uses for a test action.",
+                    "runtimeName": "The name of the operating system of the simulated environment Xcode Cloud uses for a test action.",
+                ]
+            ),
+            "CiTestDestinationKind": .enumObject(
+                summary: "The string that represents the kind of a test destination.",
+                cases: [
+                    "SIMULATOR": "The test destination is a simulated device.",
+                    "MAC": "The test destination is a Mac.",
+                ]
+            ),
+            "CiTestResult": .rootSchema(
+                summary: "The data structure that represents a Test Results resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Test Results resource.",
+                    properties: [
+                        "className": "The name of the class that contained the tests Xcode Cloud performed.",
+                        "destinationTestResults": "Information about the test results for a specific test destination.",
+                        "fileSource": "Information about a test file.",
+                        "message": "A message generated by a test.",
+                        "name": "The name of the test result; for example, ExampleName.",
+                        "status": "Test status information; for example, whether the test succeeded or failed.",
+                    ]
+                )
+            ),
+            "CiTestResultResponse": .rootSchema(summary: "A response that contains a single Test Results resource."),
+            "CiTestResultsResponse": .rootSchema(summary: "A response that contains a list of Test Results resources."),
+            "CiTestStatus": .enumObject(
+                summary: "A string that represents test status information.",
+                cases: [
+                    "SUCCESS": "The tests passed.",
+                    "FAILURE": "The tests failed.",
+                    "MIXED": "Some tests passed and some failed.",
+                    "SKIPPED": "Xcode Cloud skipped some tests.",
+                    "EXPECTED_FAILURE": "Tests failed that you marked as expected to fail with [XCTExpectFailure](https://developer.apple.com/documentation/xctest/3726077-xctexpectfailure).",
+                ]
+            ),
+            "CiWorkflow": .rootSchema(
+                summary: "The data structure that represents a Workflows resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Workflows resource.",
+                    properties: [
+                        "actions": "The actions that are part of the workflow.",
+                        "clean": "A Boolean value that indicates whether Xcode Cloud should perform a clean build.",
+                        "containerFilePath": "The relative path to your Xcode project or workspace.",
+                        "description": "The workflow’s description.",
+                        "isEnabled": "A Boolean value that indicates whether the workflow is active or deactivated.",
+                        "isLockedForEditing": "A Boolean value that indicates whether edits to the workflow are restricted.",
+                        "lastModifiedDate": "The date and time when the workflow was last modified.",
+                        "name": "The name of the Xcode Cloud workflow; for example, My Workflow.",
+                        "pullRequestStartCondition": "The workflow’s start condition for pull request changes.",
+                        "scheduledStartCondition": "The workflow’s start condition that starts new builds on a custom schedule.",
+                        "branchStartCondition": "The workflow’s start condition that starts new builds for changes to a branch.",
+                        "tagStartCondition": "The workflow’s start condition that starts new builds for changes to a tag.",
+                    ]
+                )
+            ),
+            "CiWorkflowCreateRequest": .createRequest(
+                summary: "The request body you use to create a new Xcode Cloud workflow.",
+                attributes: .init(
+                    properties: [
+                        "actions": "The workflow’s actions.",
+                        "clean": "A Boolean value that indicates whether Xcode Cloud should perform a clean build.",
+                        "containerFilePath": "The relative path to your Xcode project or workspace.",
+                        "description": "The workflow description.",
+                        "isEnabled": "A Boolean value that indicates whether the workflow is active or deactivated.",
+                        "name": "The name of the workflow you want to create; for example, My New Workflow.",
+                        "isLockedForEditing": "A Boolean value that indicates whether edits to the workflow are restricted.",
+                        "pullRequestStartCondition": "A start condition that starts new builds for changes to a pull request.",
+                        "scheduledStartCondition": "A start condition that starts new builds based on a custom schedule.",
+                        "branchStartCondition": "A start condition that starts new builds for changes to a branch.",
+                        "tagStartCondition": "A start condition that starts new builds for changes to a tag.",
+                    ]
+                )
+            ),
+            "CiWorkflowUpdateRequest": .updateRequest(
+                summary: "The request body you use to update an Xcode Cloud workflow.",
+                attributes: .init(properties: [
+                    "actions": "The workflow’s actions.",
+                    "clean": "A Boolean value that indicates whether Xcode Cloud should perform a clean build.",
+                    "containerFilePath": "The path to your Xcode project or workspace.",
+                    "description": "The workflow description.",
+                    "isEnabled": "A Boolean value that indicates whether the workflow is active or deactivated.",
+                    "name": "The name of the workflow you want to create; for example, My Workflow.",
+                    "isLockedForEditing": "A Boolean value that indicates whether edits to the workflow are restricted.",
+                    "pullRequestStartCondition": "The workflow’s start condition for pull request changes.",
+                    "scheduledStartCondition": "The workflow’s start condition that starts new builds on a custom schedule.",
+                    "branchStartCondition": "The workflow’s start condition that starts new builds for changes to a branch.",
+                    "tagStartCondition": "The workflow’s start condition that starts new builds for changes to a tag.",
+                ])
+            ),
+            "CiWorkflowResponse": .rootSchema(summary: "A response that contains a single Workflows resource."),
+            "CiWorkflowsResponse": .rootSchema(summary: "A response that contains a list of Workflows resources."),
+            "CiXcodeVersion": .rootSchema(
+                summary: "The data structure that represents an Xcode Versions resource.",
+                attributes: .init(
+                    summary: "",
+                    properties: [
+                        "name": "The name of the Xcode version.",
+                        "testDestinations": "A list of the Xcode version’s available test destinations.",
+                        "version": "The Xcode version.",
+                    ]
+                )
+            ),
+            "CiXcodeVersionResponse": .rootSchema(summary: "A response that contains a single Xcode Versions resource."),
+            "CiXcodeVersionsResponse": .rootSchema(summary: "A response that contains a list of Xcode Versions resources."),
             "ErrorResponse": .rootSchema(
                 summary: "Information with error details that an API returns in the response body whenever the API request is not successful.",
                 properties: ["errors": "An array of one or more errors."]
@@ -1213,12 +1950,12 @@ public extension Schema {
                     "source": "One of two possible types of values: source.parameter, provided when a query parameter produced the error, or source.JsonPointer, provided when a problem with the entity produced the error.",
                 ]
             ),
-            "ErrorResponse.Errors.JsonPointer": .rootSchema(
+            "ErrorSourcePointer": .rootSchema(
                 summary: "An object that contains the JSON pointer that indicates the location of the error.",
                 discussion: "In some cases, the JSON pointer may indicate an element that isn't in the request entity, but should be. For more information about JSON pointers, see the [RFC 6901](https://tools.ietf.org/html/rfc6901) proposed standards document.",
                 properties: ["pointer": "A JSON pointer that indicates the location in the request entity where the error originates."]
             ),
-            "ErrorResponse.Errors.Parameter": .rootSchema(
+            "ErrorSourceParameter": .rootSchema(
                 summary: "An object that contains the query parameter that produced the error.",
                 properties: ["parameter": "The query parameter that produced the error."]
             ),
@@ -1303,6 +2040,13 @@ public extension Schema {
                     "BETA_APPROVED": "",
                 ]
             ),
+            "FileLocation": .rootSchema(
+                summary: "The data structure that represents a File Locations resource.",
+                properties: [
+                    "lineNumber": "The line number of a file that contains code.",
+                    "path": "The path to the file that caused an issue.",
+                ]
+            ),
             "GameCenterEnabledVersion": .rootSchema(
                 summary: "The data structure that represents the Game Center Enabled Versions resource.",
                 attributes: .init(
@@ -1317,6 +2061,13 @@ public extension Schema {
             "GameCenterEnabledVersionCompatibleVersionsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove compatible versions from a Game Center-enabled version."),
             "GameCenterEnabledVersionCompatibleVersionsLinkagesResponse": .linkagesResponse,
             "GameCenterEnabledVersionsResponse": .rootSchema(summary: "A response that contains a list of Game Center Enabled Version resources."),
+            "HttpHeader": .rootSchema(
+                summary: "",
+                properties: [
+                    "name": "",
+                    "value": "",
+                ]
+            ),
             "IconAssetType": .enumObject(
                 summary: "String that represents the type of icon contained in the build.",
                 cases: [
@@ -1541,6 +2292,80 @@ public extension Schema {
 
                 ])
             ),
+            "ScmGitReference": .rootSchema(
+                summary: "The data structure that represents a Git References resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Git Reference resource.",
+                    properties: [
+                        "canonicalName":
+                            "The canonical name of the Git reference.",
+                        "isDeleted":
+                            "A Boolean value that indicates whether the Git reference was deleted.",
+                        "kind":
+                            "A value that indicates whether the Git reference is a tag or a branch.",
+                        "name":
+                            "The name of the Git reference.",
+                    ]
+                )
+            ),
+            "ScmGitReferenceResponse": .rootSchema(summary: "A response that contains a single Git References resource."),
+            "ScmGitReferencesResponse": .rootSchema(summary: "A response that contains a list of Git References resources."),
+            "ScmProvider": .rootSchema(
+                summary: "The data structure that represents a Providers resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Providers resource.",
+                    properties: [
+                        "scmProviderType": "The source code management provider’s type.",
+                        "url": "The URL of the source code management provider.",
+                    ]
+                )
+            ),
+            "ScmProviderResponse": .rootSchema(summary: "A response that contains a single Providers resource."),
+            "ScmProvidersResponse": .rootSchema(summary: "A response that contains a list of Providers resources."),
+            "ScmProviderType": .rootSchema(
+                summary: "The source code management provider’s type.",
+                properties: [
+                    "displayName": "The source code management provider’s display name; for example, Bitbucket Server.",
+                    "isOnPremise": "A Boolean value that indicates whether it’s a self-hosted source code management provider.",
+                    "kind": "A string that represents the kind of a Providers resource.",
+                ]
+            ),
+            "ScmPullRequest": .rootSchema(
+                summary: "The data structure that represents a Pull Requests resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Pull Requests resource.",
+                    properties: [
+                        "destinationBranchName": "The name of the pull request’s destination branch.",
+                        "destinationRepositoryName": "The name of the pull request’s destination repository. If the pull request is not for a fork, this is the same value as the source repository name.",
+                        "destinationRepositoryOwner": "The owner of the pull request’s destination repository.",
+                        "isClosed": "A Boolean value that indicates whether the pull request is open or closed.",
+                        "isCrossRepository": "A Boolean value that indicates whether the pull request is for a Git fork.",
+                        "number": "The pull request number.",
+                        "sourceBranchName": "The name of the pull request’s source branch.",
+                        "sourceRepositoryName": "The name of the pull request’s source repository.",
+                        "sourceRepositoryOwner": "The owner of the pull request’s destination repository.",
+                        "title": "The pull request’s title.",
+                        "webUrl": "The URL of the pull request.",
+                    ]
+                )
+            ),
+            "ScmPullRequestResponse": .rootSchema(summary: "A response that contains a single Pull Requests resource."),
+            "ScmPullRequestsResponse": .rootSchema(summary: "A response that contains a list of Pull Requests resources."),
+            "ScmRepositoriesResponse": .rootSchema(summary: "A response that contains a list of Repositories resources."),
+            "ScmRepository": .rootSchema(
+                summary: "The data structure that represents a Repositories resource.",
+                attributes: .init(
+                    summary: "The attributes that describe a Repositories resource.",
+                    properties: [
+                        "httpCloneUrl": "The Git repository’s URL for cloning it using HTTP.",
+                        "lastAccessedDate": "The date and time when Xcode Cloud last accessed the repository.",
+                        "ownerName": "The name of the Git repository’s owner.",
+                        "repositoryName": "The name of the Git repository.",
+                        "sshCloneUrl": "The Git repository’s URL for cloning it using SSH.",
+                    ]
+                )
+            ),
+            "ScmRepositoryResponse": .rootSchema(summary: "A response that contains a single Repositories resource."),
             "ScreenshotDisplayType": .enumObject(
                 summary: "String that represents the display type of an app screenshot.",
                 cases: [

@@ -21,14 +21,11 @@ public struct AppCategoryResponse: Codable {
     }
 
     public enum Included: Codable {
-        case parent(AppCategory)
-        case subcategories(AppCategory)
+        case appCategory(AppCategory)
 
         public init(from decoder: Decoder) throws {
-            if let parent = try? AppCategory(from: decoder) {
-                self = .parent(parent)
-            } else if let subcategories = try? AppCategory(from: decoder) {
-                self = .subcategories(subcategories)
+            if let appCategory = try? AppCategory(from: decoder) {
+                self = .appCategory(appCategory)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -37,20 +34,13 @@ public struct AppCategoryResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .parent(value):
-                try value.encode(to: encoder)
-            case let .subcategories(value):
+            case let .appCategory(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case parent
-            case subcategories
         }
     }
 }

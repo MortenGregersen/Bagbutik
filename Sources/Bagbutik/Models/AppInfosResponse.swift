@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>
  */
-public struct AppInfosResponse: Codable {
+public struct AppInfosResponse: Codable, PagedResponse {
+    public typealias Data = AppInfo
     /// The resource data.
     public let data: [AppInfo]
     /// The included related resources.
@@ -24,29 +25,20 @@ public struct AppInfosResponse: Codable {
     }
 
     public enum Included: Codable {
-        case appInfoLocalizations(AppInfoLocalization)
-        case primaryCategory(AppCategory)
-        case primarySubcategoryOne(AppCategory)
-        case primarySubcategoryTwo(AppCategory)
-        case secondaryCategory(AppCategory)
-        case secondarySubcategoryOne(AppCategory)
-        case secondarySubcategoryTwo(AppCategory)
+        case ageRatingDeclaration(AgeRatingDeclaration)
+        case app(App)
+        case appCategory(AppCategory)
+        case appInfoLocalization(AppInfoLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appInfoLocalizations = try? AppInfoLocalization(from: decoder) {
-                self = .appInfoLocalizations(appInfoLocalizations)
-            } else if let primaryCategory = try? AppCategory(from: decoder) {
-                self = .primaryCategory(primaryCategory)
-            } else if let primarySubcategoryOne = try? AppCategory(from: decoder) {
-                self = .primarySubcategoryOne(primarySubcategoryOne)
-            } else if let primarySubcategoryTwo = try? AppCategory(from: decoder) {
-                self = .primarySubcategoryTwo(primarySubcategoryTwo)
-            } else if let secondaryCategory = try? AppCategory(from: decoder) {
-                self = .secondaryCategory(secondaryCategory)
-            } else if let secondarySubcategoryOne = try? AppCategory(from: decoder) {
-                self = .secondarySubcategoryOne(secondarySubcategoryOne)
-            } else if let secondarySubcategoryTwo = try? AppCategory(from: decoder) {
-                self = .secondarySubcategoryTwo(secondarySubcategoryTwo)
+            if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
+                self = .ageRatingDeclaration(ageRatingDeclaration)
+            } else if let app = try? App(from: decoder) {
+                self = .app(app)
+            } else if let appCategory = try? AppCategory(from: decoder) {
+                self = .appCategory(appCategory)
+            } else if let appInfoLocalization = try? AppInfoLocalization(from: decoder) {
+                self = .appInfoLocalization(appInfoLocalization)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -55,35 +47,19 @@ public struct AppInfosResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
-            case let .appInfoLocalizations(value):
+            case let .ageRatingDeclaration(value):
                 try value.encode(to: encoder)
-            case let .primaryCategory(value):
+            case let .app(value):
                 try value.encode(to: encoder)
-            case let .primarySubcategoryOne(value):
+            case let .appCategory(value):
                 try value.encode(to: encoder)
-            case let .primarySubcategoryTwo(value):
-                try value.encode(to: encoder)
-            case let .secondaryCategory(value):
-                try value.encode(to: encoder)
-            case let .secondarySubcategoryOne(value):
-                try value.encode(to: encoder)
-            case let .secondarySubcategoryTwo(value):
+            case let .appInfoLocalization(value):
                 try value.encode(to: encoder)
             }
         }
 
         private enum CodingKeys: String, CodingKey {
             case type
-        }
-
-        private enum TypeKeys: String, Codable {
-            case appInfoLocalizations
-            case primaryCategory
-            case primarySubcategoryOne
-            case primarySubcategoryTwo
-            case secondaryCategory
-            case secondarySubcategoryOne
-            case secondarySubcategoryTwo
         }
     }
 }

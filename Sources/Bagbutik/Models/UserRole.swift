@@ -6,11 +6,8 @@ public enum UserRole: String, Codable, CaseIterable {
     case admin = "ADMIN"
     /// Manages financial information, including reports and tax forms. A user assigned this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.
     case finance = "FINANCE"
-    /// The Technical role is no longer assignable to new users in App Store Connect. Existing users with the Technical role can manage all the aspects of an app, such as pricing, App Store information, and app development and delivery. Techncial users have access to all apps.
-    case technical = "TECHNICAL"
     /// Responsible for entering into legal agreements with Apple. The person who completes program enrollment is assigned the Account Holder role in both the Apple Developer account and App Store Connect.
     case accountHolder = "ACCOUNT_HOLDER"
-    case readOnly = "READ_ONLY"
     /// Analyzes sales, downloads, and other analytics for the app.
     case sales = "SALES"
     /// Manages marketing materials and promotional artwork. A user assigned this role will be contacted by Apple if the app is in consideration to be featured on the App Store.
@@ -23,4 +20,8 @@ public enum UserRole: String, Codable, CaseIterable {
     case accessToReports = "ACCESS_TO_REPORTS"
     /// Analyzes and responds to customer reviews on the App Store. If a user has only the Customer Support role, they'll go straight to the Ratings and Reviews section when they click on an app in My Apps.
     case customerSupport = "CUSTOMER_SUPPORT"
+    case imageManager = "IMAGE_MANAGER"
+    case createApps = "CREATE_APPS"
+    case cloudManagedDeveloperId = "CLOUD_MANAGED_DEVELOPER_ID"
+    case cloudManagedAppDistribution = "CLOUD_MANAGED_APP_DISTRIBUTION"
 }

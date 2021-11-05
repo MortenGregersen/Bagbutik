@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetricsresponse>
  */
-public struct PerfPowerMetricsResponse: Codable {
+public struct PerfPowerMetricsResponse: Codable, PagedResponse {
+    public typealias Data = PerfPowerMetric
     /// The resource data.
     public let data: [PerfPowerMetric]
     /// Navigational links that include the self-link.

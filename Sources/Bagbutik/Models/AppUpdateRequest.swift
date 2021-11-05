@@ -9,9 +9,12 @@ import Foundation
 public struct AppUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
+    /// The included related resources.
+    public let included: [AppPriceInlineCreate]?
 
-    public init(data: Data) {
+    public init(data: Data, included: [AppPriceInlineCreate]? = nil) {
         self.data = data
+        self.included = included
     }
 
     /**
@@ -36,31 +39,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-            try container.encodeIfPresent(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case id
-            case type
-            case attributes
-            case relationships
-        }
-
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -70,19 +48,14 @@ public struct AppUpdateRequest: Codable, RequestBody {
         public struct Attributes: Codable {
             public let availableInNewTerritories: Bool?
             public let bundleId: String?
-            public let contentRightsDeclaration: ContentRightsDeclaration?
+            public let contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
             public let primaryLocale: String?
 
-            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
+            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
                 self.availableInNewTerritories = availableInNewTerritories
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
                 self.primaryLocale = primaryLocale
-            }
-
-            public enum ContentRightsDeclaration: String, Codable, CaseIterable {
-                case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"
-                case usesThirdPartyContent = "USES_THIRD_PARTY_CONTENT"
             }
         }
 
@@ -124,25 +97,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
-                    }
                 }
             }
 
@@ -168,25 +122,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

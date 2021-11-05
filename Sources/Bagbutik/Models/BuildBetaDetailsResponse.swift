@@ -6,7 +6,8 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailsresponse>
  */
-public struct BuildBetaDetailsResponse: Codable {
+public struct BuildBetaDetailsResponse: Codable, PagedResponse {
+    public typealias Data = BuildBetaDetail
     /// The resource data.
     public let data: [BuildBetaDetail]
     /// The included related resources.

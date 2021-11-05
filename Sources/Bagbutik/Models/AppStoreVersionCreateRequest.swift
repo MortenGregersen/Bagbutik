@@ -33,28 +33,6 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-            }
-        }
-
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
-            case attributes
-            case relationships
-        }
-
         /**
          Attributes that you set that describe the new resource.
 
@@ -65,11 +43,13 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             public let copyright: String?
             public let earliestReleaseDate: Date?
             public let platform: Platform
-            public let releaseType: ReleaseType?
-            public let usesIdfa: Bool?
+            public let releaseType: AppStoreVersion.Attributes.ReleaseType?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var usesIdfa: Bool? = nil
             public let versionString: String
 
-            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String) {
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String) {
                 self.copyright = copyright
                 self.earliestReleaseDate = earliestReleaseDate
                 self.platform = platform
@@ -78,10 +58,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 self.versionString = versionString
             }
 
-            public enum ReleaseType: String, Codable, CaseIterable {
-                case manual = "MANUAL"
-                case afterApproval = "AFTER_APPROVAL"
-                case scheduled = "SCHEDULED"
+            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, versionString: String) {
+                self.copyright = copyright
+                self.earliestReleaseDate = earliestReleaseDate
+                self.platform = platform
+                self.releaseType = releaseType
+                self.versionString = versionString
             }
         }
 
@@ -93,10 +75,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
+            public let appStoreVersionLocalizations: AppStoreVersionLocalizations?
             public let build: Build?
 
-            public init(app: App, build: Build? = nil) {
+            public init(app: App, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, build: Build? = nil) {
                 self.app = app
+                self.appStoreVersionLocalizations = appStoreVersionLocalizations
                 self.build = build
             }
 
@@ -123,24 +107,31 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+                }
+            }
 
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
+            public struct AppStoreVersionLocalizations: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
+                public let data: [Data]?
 
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
+                public init(data: [Data]? = nil) {
+                    self.data = data
+                }
 
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/appstoreversionlocalizations/data>
+                 */
+                public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
+                    public let id: String
+                    /// The resource type.
+                    public var type: String { "appStoreVersionLocalizations" }
+
+                    public init(id: String) {
+                        self.id = id
                     }
                 }
             }
@@ -167,25 +158,6 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
-                    }
-
-                    public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
-                        }
-                    }
-
-                    public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
                     }
                 }
             }

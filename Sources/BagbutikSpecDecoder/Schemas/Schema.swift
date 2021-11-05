@@ -1,7 +1,7 @@
 import Foundation
 
 /// A wrapper for the different schema types
-public enum Schema: Decodable {
+public enum Schema: Decodable, Equatable {
     /// An enum schema
     case `enum`(EnumSchema)
     /// An object schema

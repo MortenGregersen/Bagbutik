@@ -3,9 +3,9 @@ import Foundation
 
 /**
  A file manager which can perform the operations needed by the Generator
- 
+
  This is just an interface already implemented by Foundation's FileManager, needed to enable unit testing.
- 
+
  # Reference
  <https://developer.apple.com/documentation/foundation/filemanager>
  */
@@ -43,7 +43,7 @@ extension GeneratorError: Equatable {}
 
 /**
  An alias for a function loading a spec from a file URL
- 
+
  - Parameter fileUrl: The file URL to load the spec from
  - Returns: A decoded Spec
  */
@@ -59,7 +59,11 @@ public class Generator {
     public convenience init() {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
-            return try JSONDecoder().decode(Spec.self, from: specData)
+            var spec = try JSONDecoder().decode(Spec.self, from: specData)
+            spec.addForgottenIncludeParameters()
+            spec.flattenIdenticalSchemas()
+            try spec.applyManualPatches()
+            return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
     }
@@ -72,7 +76,7 @@ public class Generator {
 
     /**
      Load a spec file and generate endpoints and models from the spec
-     
+
      - Parameters:
         - specFileURL: The file URL to load the spec from
         - outputDirURL: The file URL for the directory where the generated code should be saved
@@ -97,16 +101,24 @@ public class Generator {
             }
         }
 
+        var modelsMissingDocumentation = [(name: String, url: String)]()
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
         try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
-            let includesFixUps = spec.includesFixUps[schema.name] ?? []
-            let model = try generateModel(for: schema, includesFixUps: includesFixUps)
-            let fileURL = modelsDirURL.appendingPathComponent(model.fileName)
-            print("⚡️ Generating model \(model.fileName)...")
+            let model = try generateModel(for: schema)
+            let fileName = model.name + ".swift"
+            let fileURL = modelsDirURL.appendingPathComponent(fileName)
+            print("⚡️ Generating model \(model.name)...")
             guard fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
-                throw GeneratorError.couldNotCreateFile(model.fileName)
+                throw GeneratorError.couldNotCreateFile(fileName)
             }
+            if !model.hasDocumentation {
+                modelsMissingDocumentation.append((name: model.name, url: model.url))
+            }
+        }
+
+        modelsMissingDocumentation.forEach { model in
+            print("⚠️ Documentation missing for '\(model.name)': \(model.url)")
         }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
@@ -133,20 +145,25 @@ public class Generator {
         }
     }
 
-    private func generateModel(for schema: Schema, includesFixUps: [String]) throws -> (fileName: String, contents: String) {
-        let fileName = "\(schema.name).swift"
+    private func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String) {
         let renderedSchema: String
+        let hasDocumentation: Bool
+        let url: String
         switch schema {
         case .enum(let enumSchema):
             renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
+            hasDocumentation = enumSchema.documentation != nil
+            url = enumSchema.url ?? ""
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema, includesFixUps: includesFixUps)
+            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema)
+            hasDocumentation = objectSchema.documentation != nil
+            url = objectSchema.url
         }
         let contents = """
         import Foundation
 
         \(renderedSchema)
         """
-        return (fileName: fileName, contents: contents)
+        return (name: schema.name, contents: contents, hasDocumentation: hasDocumentation, url: url)
     }
 }
