@@ -18,6 +18,9 @@ jobs:
     - uses: actions/checkout@v2
 #    - name: Build
 #      run: swift build -v
+    - name: Select Xcode
+      run: sudo xcode-select -s /Applications/Xcode_13.1.app
+      continue-on-error: true
     - name: Test
       run: swift test -v --enable-code-coverage
       continue-on-error: true
@@ -26,6 +29,7 @@ jobs:
         ls -la .build/debug
         ls -la .build/debug/BagbutikPackageTests.xctest
         ls -la .build/debug/BagbutikPackageTests.xctest/Contents/MacOS
+        otool -L .build/debug/BagbutikPackageTests.xctest
     - name: Export coverage
       run: xcrun llvm-cov export -format="lcov" -instr-profile=.build/debug/codecov/default.profdata -ignore-filename-regex=".build|Tests" .build/debug/BagbutikPackageTests.xctest/Contents/MacOS/BagbutikPackageTests > coverage.lcov
     - name: Upload coverage
