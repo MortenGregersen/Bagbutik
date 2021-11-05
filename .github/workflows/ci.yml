@@ -12,6 +12,8 @@ jobs:
   build-apple:
     name: Build and Test (Apple platforms)
     runs-on: macos-11
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_13.1.app/Contents/Developer
     steps:
     - uses: actions/checkout@v2
     - name: Build
@@ -28,12 +30,12 @@ jobs:
         coverageCommand: ls
         coverageLocations: coverage.lcov:lcov
         debug: true
-  build-linux:
-    name: Build and Test (Linux)
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Test
-      run: swift test -v
+#  build-linux:
+#    name: Build and Test (Linux)
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Build
+#      run: swift build -v
+#    - name: Test
+#      run: swift test -v
