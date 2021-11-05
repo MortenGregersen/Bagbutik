@@ -20,6 +20,7 @@ jobs:
 #      run: swift build -v
     - name: Test
       run: swift test -v --enable-code-coverage
+      continue-on-error: true
     - name: Debug
       run: |
         ls -la .build/debug
