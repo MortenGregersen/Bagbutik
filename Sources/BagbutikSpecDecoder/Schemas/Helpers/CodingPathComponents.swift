@@ -1,4 +1,4 @@
-extension Array where Element == CodingKey {
+internal extension Array where Element == CodingKey {
     var components: [String] {
         self
             .map(\.stringValue)
