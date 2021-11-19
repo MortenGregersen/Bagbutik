@@ -375,7 +375,116 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
+    func testRenderCustomCoding() throws {
+        // Given
+        let renderer = ObjectSchemaRenderer()
+        let attributesSchema = ObjectSchema(name: "Attributes",
+                                            url: "some://url",
+                                            documentation: .attributes(.init(summary: "Attributes for a Person",
+                                                                             properties: ["age": "The person's age"])),
+                                            properties: ["age": .init(type: .simple(.init(type: "integer")))])
+        let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url",
+                                               documentation: .relationships,
+                                               properties: ["children": .init(type: .arrayOfSchemaRef("Child"))])
+        let schema = ObjectSchema(name: "Person",
+                                  url: "some://url",
+                                  documentation: .rootSchema(summary: "A person with a name."),
+                                  properties: ["name": .init(type: .simple(.init(type: "string"))),
+                                               "age": .init(type: .simple(.init(type: "integer"))),
+                                               "type": .init(type: .constant("person"))],
+                                  requiredProperties: ["name", "attributes"],
+                                  attributesSchema: .attributes(attributesSchema),
+                                  relationshipsSchema: .relationships(relationshipsSchema))
+        // When
+        let rendered = try renderer.render(objectSchema: schema)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        /**
+         A person with a name.
+
+         Full documentation:
+         <some://url>
+         */
+        public struct Person: Codable {
+            public let age: Int?
+            public let name: String
+            /// The resource type.
+            public var type: String { "person" }
+            /// The resource's attributes.
+            public let attributes: Attributes
+            /// Navigational links to related data and included resource types and IDs.
+            public let relationships: Relationships?
+
+            public init(age: Int? = nil, name: String, attributes: Attributes, relationships: Relationships? = nil) {
+                self.age = age
+                self.name = name
+                self.attributes = attributes
+                self.relationships = relationships
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                age = try container.decodeIfPresent(Int.self, forKey: .age)
+                name = try container.decode(String.self, forKey: .name)
+                attributes = try container.decode(Attributes.self, forKey: .attributes)
+                relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
+                if try container.decode(String.self, forKey: .type) != type {
+                    throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(age, forKey: .age)
+                try container.encode(name, forKey: .name)
+                try container.encode(type, forKey: .type)
+                try container.encode(attributes, forKey: .attributes)
+                try container.encodeIfPresent(relationships, forKey: .relationships)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case age
+                case name
+                case type
+                case attributes
+                case relationships
+            }
+
+            /**
+             Attributes for a Person
+
+             Full documentation:
+             <some://url>
+             */
+            public struct Attributes: Codable {
+                /// The person's age
+                public let age: Int?
+
+                public init(age: Int? = nil) {
+                    self.age = age
+                }
+            }
+
+            /**
+             The relationships you included in the request and those on which you can operate.
+
+             Full documentation:
+             <some://url>
+             */
+            public struct Relationships: Codable {
+                public let children: [Child]?
+
+                public init(children: [Child]? = nil) {
+                    self.children = children
+                }
+            }
+        }
+
+        """#)
+    }
+
     func testRenderWithCustomTypeProperty() throws {
         let json = """
         {
