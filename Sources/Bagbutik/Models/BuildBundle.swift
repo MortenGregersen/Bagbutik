@@ -25,6 +25,23 @@ public struct BuildBundle: Codable {
         self.relationships = relationships
     }
 
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(attributes, forKey: .attributes)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case links
+        case type
+        case attributes
+        case relationships
+    }
+
     /**
      The attributes that describe a Build Bundles resource.
 
@@ -144,6 +161,17 @@ public struct BuildBundle: Codable {
                 public init(id: String) {
                     self.id = id
                 }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
             }
 
             /**
@@ -196,6 +224,17 @@ public struct BuildBundle: Codable {
 
                 public init(id: String) {
                     self.id = id
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
                 }
             }
 
@@ -253,6 +292,17 @@ public struct BuildBundle: Codable {
                 public init(id: String) {
                     self.id = id
                 }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
             }
 
             /**
@@ -308,6 +358,17 @@ public struct BuildBundle: Codable {
 
                 public init(id: String) {
                     self.id = id
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
                 }
             }
 

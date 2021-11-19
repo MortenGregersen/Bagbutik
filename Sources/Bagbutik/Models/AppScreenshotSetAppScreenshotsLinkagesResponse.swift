@@ -35,5 +35,16 @@ public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, PagedResp
         public init(id: String) {
             self.id = id
         }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encode(type, forKey: .type)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case type
+        }
     }
 }

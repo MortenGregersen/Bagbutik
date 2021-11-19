@@ -33,6 +33,19 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             self.relationships = relationships
         }
 
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(type, forKey: .type)
+            try container.encode(attributes, forKey: .attributes)
+            try container.encode(relationships, forKey: .relationships)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case type
+            case attributes
+            case relationships
+        }
+
         /**
          Attributes that you set that describe the new resource.
 
@@ -86,6 +99,17 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }

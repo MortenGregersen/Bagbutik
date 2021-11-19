@@ -22,6 +22,21 @@ public struct AppPriceTier: Codable {
         self.relationships = relationships
     }
 
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case links
+        case type
+        case relationships
+    }
+
     /**
      The relationships you included in the request and those on which you can operate.
 
@@ -69,6 +84,17 @@ public struct AppPriceTier: Codable {
 
                 public init(id: String) {
                     self.id = id
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
                 }
             }
 

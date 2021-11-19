@@ -36,6 +36,21 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encode(type, forKey: .type)
+            try container.encodeIfPresent(attributes, forKey: .attributes)
+            try container.encodeIfPresent(relationships, forKey: .relationships)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case type
+            case attributes
+            case relationships
+        }
+
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -86,6 +101,17 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }
