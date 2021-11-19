@@ -57,9 +57,25 @@ public class ObjectSchemaRenderer {
             {% for propertyName in publicInitPropertyNames %}
             self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
             endfor %}
-        }{%
-        if subSchemas.count > 0 %}
-    
+        }
+        {% if needsCustomCoding %}
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self){%
+            for encodableProperty in encodableProperties %}{%
+            if encodableProperty.optional %}
+            try container.encodeIfPresent({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
+            else %}
+            try container.encode({{ encodableProperty.name }}, forKey: .{{ encodableProperty.name }}){%
+            endif %}{% endfor %}
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            {% for codingKey in codingKeys %}
+            case {{ codingKey }}{%
+            endfor %}
+        }
+        {% endif %}
+        {% if subSchemas.count > 0 %}
             {% for subSchema in subSchemas %}
 
                 {{ subSchema|indent }}
@@ -80,21 +96,31 @@ public class ObjectSchemaRenderer {
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { !$0.value.type.isConstant }
+        var codingKeys = sortedProperties.map(\.key)
+        var encodableProperties = sortedProperties.map {
+            CodableProperty(name: $0.key,
+                            type: $0.value.type.description,
+                            optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
+        }
 
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
+            codingKeys.append(name)
+            encodableProperties.append(CodableProperty(name: name, type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
+            codingKeys.append(name)
+            encodableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         var deprecatedPublicInitParameterList = ""
-        if initParameters.contains(where: { $0.value.deprecated }) {
+        if initParameters.contains(where: \.value.deprecated) {
             deprecatedPublicInitParameterList = createParameterList(from: initParameters, requiredProperties: objectSchema.requiredProperties)
         }
         let publicInitParameterList = createParameterList(from: initParameters.filter { !$0.value.deprecated }, requiredProperties: objectSchema.requiredProperties)
@@ -128,6 +154,9 @@ public class ObjectSchemaRenderer {
                 "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
                 "publicInitParameterList": publicInitParameterList,
                 "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
+                "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant }),
+                "codingKeys": codingKeys,
+                "encodableProperties": encodableProperties,
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,
@@ -152,7 +181,7 @@ public class ObjectSchemaRenderer {
     }
 
     private func createParameterList(from parameters: [Dictionary<String, Property>.Element], requiredProperties: [String]) -> String {
-        return parameters.map {
+        parameters.map {
             let propertyName = PropertyName(idealName: $0.key)
             var parameter = "\(propertyName.idealName)"
             if propertyName.hasDifferentSafeName {
