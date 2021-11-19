@@ -59,6 +59,19 @@ public class ObjectSchemaRenderer {
             endfor %}
         }
         {% if needsCustomCoding %}
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self){%
+            for decodableProperty in decodableProperties %}{%
+            if decodableProperty.optional %}
+            {{ decodableProperty.name }} = try container.decodeIfPresent({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
+            else %}
+            {{ decodableProperty.name }} = try container.decode({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name }}){%
+            endif %}{% endfor %}
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self){%
             for encodableProperty in encodableProperties %}{%
@@ -117,6 +130,7 @@ public class ObjectSchemaRenderer {
             codingKeys.append(name)
             encodableProperties.append(CodableProperty(name: name, type: type, optional: relationshipsOptional))
         }
+        let decodableProperties = encodableProperties.filter { $0.name != "type" }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         var deprecatedPublicInitParameterList = ""
@@ -157,6 +171,7 @@ public class ObjectSchemaRenderer {
                 "needsCustomCoding": sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant }),
                 "codingKeys": codingKeys,
                 "encodableProperties": encodableProperties,
+                "decodableProperties": decodableProperties,
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,
