@@ -10,7 +10,7 @@ public struct CiBuildActionResponse: Codable {
     /// The resource data.
     public let data: CiBuildAction
     /// The included related resources.
-    public let included: [CiBuildRun]?
+    @NullCodable public var included: [CiBuildRun]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

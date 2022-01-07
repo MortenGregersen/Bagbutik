@@ -62,7 +62,7 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let appReleaseDate: String?
+            @NullCodable public var appReleaseDate: String?
 
             public init(appReleaseDate: String? = nil) {
                 self.appReleaseDate = appReleaseDate

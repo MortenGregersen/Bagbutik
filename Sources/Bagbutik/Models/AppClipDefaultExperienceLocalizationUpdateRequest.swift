@@ -63,7 +63,7 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
          */
         public struct Attributes: Codable {
             /// The subtitle that appears on the App Clip card for the default App Clip experience.
-            public let subtitle: String?
+            @NullCodable public var subtitle: String?
 
             public init(subtitle: String? = nil) {
                 self.subtitle = subtitle

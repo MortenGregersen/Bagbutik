@@ -65,9 +65,9 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             /// The beta tester's email address, used for sending beta testing invitations.
             public let email: String
             /// The beta tester's first name.
-            public let firstName: String?
+            @NullCodable public var firstName: String?
             /// The beta tester's last name.
-            public let lastName: String?
+            @NullCodable public var lastName: String?
 
             public init(email: String, firstName: String? = nil, lastName: String? = nil) {
                 self.email = email
@@ -83,8 +83,8 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let betaGroups: BetaGroups?
-            public let builds: Builds?
+            @NullCodable public var betaGroups: BetaGroups?
+            @NullCodable public var builds: Builds?
 
             public init(betaGroups: BetaGroups? = nil, builds: Builds? = nil) {
                 self.betaGroups = betaGroups
@@ -93,7 +93,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
 
             public struct BetaGroups: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -138,7 +138,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
 
             public struct Builds: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data

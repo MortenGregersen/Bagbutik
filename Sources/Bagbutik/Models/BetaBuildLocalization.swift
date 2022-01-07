@@ -61,9 +61,9 @@ public struct BetaBuildLocalization: Codable {
      */
     public struct Attributes: Codable {
         /// The specified locale. Refer to Table 1 for possible values.
-        public let locale: String?
+        @NullCodable public var locale: String?
         /// A field that describes changes and additions to a build and indicates features you would like your users to test.
-        public let whatsNew: String?
+        @NullCodable public var whatsNew: String?
 
         public init(locale: String? = nil, whatsNew: String? = nil) {
             self.locale = locale
@@ -78,7 +78,7 @@ public struct BetaBuildLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships>
      */
     public struct Relationships: Codable {
-        public let build: Build?
+        @NullCodable public var build: Build?
 
         public init(build: Build? = nil) {
             self.build = build
@@ -92,9 +92,9 @@ public struct BetaBuildLocalization: Codable {
          */
         public struct Build: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -145,9 +145,9 @@ public struct BetaBuildLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -10,7 +10,7 @@ public struct AppClipAppStoreReviewDetailResponse: Codable {
     /// The resource data.
     public let data: AppClipAppStoreReviewDetail
     /// The included related resources.
-    public let included: [AppClipDefaultExperience]?
+    @NullCodable public var included: [AppClipDefaultExperience]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

@@ -8,7 +8,7 @@ import Foundation
  */
 public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
-    public let id: String?
+    @NullCodable public var id: String?
     /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
     /// The resource's attributes.
@@ -72,7 +72,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships>
      */
     public struct Relationships: Codable {
-        public let betaAppClipInvocation: BetaAppClipInvocation?
+        @NullCodable public var betaAppClipInvocation: BetaAppClipInvocation?
 
         public init(betaAppClipInvocation: BetaAppClipInvocation? = nil) {
             self.betaAppClipInvocation = betaAppClipInvocation
@@ -86,7 +86,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
          */
         public struct BetaAppClipInvocation: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data

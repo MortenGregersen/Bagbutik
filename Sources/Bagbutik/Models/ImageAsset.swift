@@ -7,9 +7,9 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/imageasset>
  */
 public struct ImageAsset: Codable {
-    public let height: Int?
-    public let templateUrl: String?
-    public let width: Int?
+    @NullCodable public var height: Int?
+    @NullCodable public var templateUrl: String?
+    @NullCodable public var width: Int?
 
     public init(height: Int? = nil, templateUrl: String? = nil, width: Int? = nil) {
         self.height = height

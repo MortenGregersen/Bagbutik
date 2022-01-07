@@ -61,7 +61,7 @@ public struct AppClipDefaultExperience: Codable {
      */
     public struct Attributes: Codable {
         /// The call-to-action verb that appears on the App Clip card.
-        public let action: AppClipAction?
+        @NullCodable public var action: AppClipAction?
 
         public init(action: AppClipAction? = nil) {
             self.action = action
@@ -75,10 +75,10 @@ public struct AppClipDefaultExperience: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships>
      */
     public struct Relationships: Codable {
-        public let appClip: AppClip?
-        public let appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail?
-        public let appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations?
-        public let releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
+        @NullCodable public var appClip: AppClip?
+        @NullCodable public var appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail?
+        @NullCodable public var appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations?
+        @NullCodable public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
         public init(appClip: AppClip? = nil, appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail? = nil, appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations? = nil, releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
             self.appClip = appClip
@@ -95,9 +95,9 @@ public struct AppClipDefaultExperience: Codable {
          */
         public struct AppClip: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -148,9 +148,9 @@ public struct AppClipDefaultExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -167,9 +167,9 @@ public struct AppClipDefaultExperience: Codable {
          */
         public struct AppClipAppStoreReviewDetail: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -220,9 +220,9 @@ public struct AppClipDefaultExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -239,11 +239,11 @@ public struct AppClipDefaultExperience: Codable {
          */
         public struct AppClipDefaultExperienceLocalizations: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -295,9 +295,9 @@ public struct AppClipDefaultExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -314,9 +314,9 @@ public struct AppClipDefaultExperience: Codable {
          */
         public struct ReleaseWithAppStoreVersion: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -367,9 +367,9 @@ public struct AppClipDefaultExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

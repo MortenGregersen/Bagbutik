@@ -10,9 +10,9 @@ import Foundation
  */
 public struct PagedDocumentLinks: Codable {
     /// The link to the first page of documents.
-    public let first: String?
+    @NullCodable public var first: String?
     /// The link to the next page of documents.
-    public let next: String?
+    @NullCodable public var next: String?
     /// The link that produced the current document.
     public let `self`: String
 

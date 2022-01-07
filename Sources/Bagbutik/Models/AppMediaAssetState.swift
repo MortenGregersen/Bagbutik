@@ -7,9 +7,9 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appmediaassetstate>
  */
 public struct AppMediaAssetState: Codable {
-    public let errors: [AppMediaStateError]?
-    public let state: State?
-    public let warnings: [AppMediaStateError]?
+    @NullCodable public var errors: [AppMediaStateError]?
+    @NullCodable public var state: State?
+    @NullCodable public var warnings: [AppMediaStateError]?
 
     public init(errors: [AppMediaStateError]? = nil, state: State? = nil, warnings: [AppMediaStateError]? = nil) {
         self.errors = errors

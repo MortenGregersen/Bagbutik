@@ -61,29 +61,29 @@ public struct CiBuildRun: Codable {
      */
     public struct Attributes: Codable {
         /// A string that indicates the reason for a canceled build.
-        public let cancelReason: CancelReason?
+        @NullCodable public var cancelReason: CancelReason?
         /// A string that indicates the status of a completed build.
-        public let completionStatus: CiCompletionStatus?
+        @NullCodable public var completionStatus: CiCompletionStatus?
         /// The date and time when Xcode Cloud created the build.
-        public let createdDate: Date?
+        @NullCodable public var createdDate: Date?
         /// Detailed information about the commit of a pull request build’s target branch. This value is only available to builds from pull requests.
-        public let destinationCommit: DestinationCommit?
+        @NullCodable public var destinationCommit: DestinationCommit?
         /// A string that indicates the progress of the build action.
-        public let executionProgress: CiExecutionProgress?
+        @NullCodable public var executionProgress: CiExecutionProgress?
         /// The date and time when Xcode Cloud completed the build.
-        public let finishedDate: Date?
+        @NullCodable public var finishedDate: Date?
         /// A Boolean value that indicates whether the build was started by a change to a pull request.
-        public let isPullRequestBuild: Bool?
+        @NullCodable public var isPullRequestBuild: Bool?
         /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the build.
-        public let issueCounts: CiIssueCounts?
+        @NullCodable public var issueCounts: CiIssueCounts?
         /// The Xcode Cloud build number.
-        public let number: Int?
+        @NullCodable public var number: Int?
         /// Detailed information about the commit of a pull request build’s source branch. This value is only available to builds from pull requests.
-        public let sourceCommit: SourceCommit?
+        @NullCodable public var sourceCommit: SourceCommit?
         /// A string that indicates what started the build.
-        public let startReason: StartReason?
+        @NullCodable public var startReason: StartReason?
         /// The date and time when Xcode Cloud started the build.
-        public let startedDate: Date?
+        @NullCodable public var startedDate: Date?
 
         public init(cancelReason: CancelReason? = nil, completionStatus: CiCompletionStatus? = nil, createdDate: Date? = nil, destinationCommit: DestinationCommit? = nil, executionProgress: CiExecutionProgress? = nil, finishedDate: Date? = nil, isPullRequestBuild: Bool? = nil, issueCounts: CiIssueCounts? = nil, number: Int? = nil, sourceCommit: SourceCommit? = nil, startReason: StartReason? = nil, startedDate: Date? = nil) {
             self.cancelReason = cancelReason
@@ -106,11 +106,11 @@ public struct CiBuildRun: Codable {
         }
 
         public struct DestinationCommit: Codable {
-            public let author: CiGitUser?
-            public let commitSha: String?
-            public let committer: CiGitUser?
-            public let message: String?
-            public let webUrl: String?
+            @NullCodable public var author: CiGitUser?
+            @NullCodable public var commitSha: String?
+            @NullCodable public var committer: CiGitUser?
+            @NullCodable public var message: String?
+            @NullCodable public var webUrl: String?
 
             public init(author: CiGitUser? = nil, commitSha: String? = nil, committer: CiGitUser? = nil, message: String? = nil, webUrl: String? = nil) {
                 self.author = author
@@ -122,11 +122,11 @@ public struct CiBuildRun: Codable {
         }
 
         public struct SourceCommit: Codable {
-            public let author: CiGitUser?
-            public let commitSha: String?
-            public let committer: CiGitUser?
-            public let message: String?
-            public let webUrl: String?
+            @NullCodable public var author: CiGitUser?
+            @NullCodable public var commitSha: String?
+            @NullCodable public var committer: CiGitUser?
+            @NullCodable public var message: String?
+            @NullCodable public var webUrl: String?
 
             public init(author: CiGitUser? = nil, commitSha: String? = nil, committer: CiGitUser? = nil, message: String? = nil, webUrl: String? = nil) {
                 self.author = author
@@ -154,12 +154,12 @@ public struct CiBuildRun: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships>
      */
     public struct Relationships: Codable {
-        public let builds: Builds?
-        public let destinationBranch: DestinationBranch?
-        public let product: Product?
-        public let pullRequest: PullRequest?
-        public let sourceBranchOrTag: SourceBranchOrTag?
-        public let workflow: Workflow?
+        @NullCodable public var builds: Builds?
+        @NullCodable public var destinationBranch: DestinationBranch?
+        @NullCodable public var product: Product?
+        @NullCodable public var pullRequest: PullRequest?
+        @NullCodable public var sourceBranchOrTag: SourceBranchOrTag?
+        @NullCodable public var workflow: Workflow?
 
         public init(builds: Builds? = nil, destinationBranch: DestinationBranch? = nil, product: Product? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
             self.builds = builds
@@ -178,11 +178,11 @@ public struct CiBuildRun: Codable {
          */
         public struct Builds: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -234,9 +234,9 @@ public struct CiBuildRun: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -253,9 +253,9 @@ public struct CiBuildRun: Codable {
          */
         public struct DestinationBranch: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -306,9 +306,9 @@ public struct CiBuildRun: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -325,9 +325,9 @@ public struct CiBuildRun: Codable {
          */
         public struct Product: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -378,9 +378,9 @@ public struct CiBuildRun: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -397,9 +397,9 @@ public struct CiBuildRun: Codable {
          */
         public struct PullRequest: Codable, RequestBody {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -450,9 +450,9 @@ public struct CiBuildRun: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -469,9 +469,9 @@ public struct CiBuildRun: Codable {
          */
         public struct SourceBranchOrTag: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -522,9 +522,9 @@ public struct CiBuildRun: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -541,9 +541,9 @@ public struct CiBuildRun: Codable {
          */
         public struct Workflow: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -594,9 +594,9 @@ public struct CiBuildRun: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

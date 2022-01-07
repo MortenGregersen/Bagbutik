@@ -80,7 +80,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         public struct Relationships: Codable {
             public let bundleId: BundleId
             public let certificates: Certificates
-            public let devices: Devices?
+            @NullCodable public var devices: Devices?
 
             public init(bundleId: BundleId, certificates: Certificates, devices: Devices? = nil) {
                 self.bundleId = bundleId
@@ -180,7 +180,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
 
             public struct Devices: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data

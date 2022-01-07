@@ -10,7 +10,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The included related resources.
-    public let included: [BetaAppClipInvocationLocalizationInlineCreate]?
+    @NullCodable public var included: [BetaAppClipInvocationLocalizationInlineCreate]?
 
     public init(data: Data, included: [BetaAppClipInvocationLocalizationInlineCreate]? = nil) {
         self.data = data

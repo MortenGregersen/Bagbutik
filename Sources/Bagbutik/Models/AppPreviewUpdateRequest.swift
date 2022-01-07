@@ -62,9 +62,9 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let previewFrameTimeCode: String?
-            public let sourceFileChecksum: String?
-            public let uploaded: Bool?
+            @NullCodable public var previewFrameTimeCode: String?
+            @NullCodable public var sourceFileChecksum: String?
+            @NullCodable public var uploaded: Bool?
 
             public init(previewFrameTimeCode: String? = nil, sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
                 self.previewFrameTimeCode = previewFrameTimeCode

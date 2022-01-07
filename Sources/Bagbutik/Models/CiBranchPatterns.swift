@@ -8,9 +8,9 @@ import Foundation
  */
 public struct CiBranchPatterns: Codable {
     /// A Boolean value that indicates whether a start condition’s settings apply to all branches. If true, the patterns attribute isn’t expected. If false, the patterns attribute is required.
-    public let isAllMatch: Bool?
+    @NullCodable public var isAllMatch: Bool?
     /// The list of case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
-    public let patterns: [Patterns]?
+    @NullCodable public var patterns: [Patterns]?
 
     public init(isAllMatch: Bool? = nil, patterns: [Patterns]? = nil) {
         self.isAllMatch = isAllMatch
@@ -18,8 +18,8 @@ public struct CiBranchPatterns: Codable {
     }
 
     public struct Patterns: Codable {
-        public let isPrefix: Bool?
-        public let pattern: String?
+        @NullCodable public var isPrefix: Bool?
+        @NullCodable public var pattern: String?
 
         public init(isPrefix: Bool? = nil, pattern: String? = nil) {
             self.isPrefix = isPrefix

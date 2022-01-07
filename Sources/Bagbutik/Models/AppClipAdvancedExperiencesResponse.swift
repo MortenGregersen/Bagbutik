@@ -11,11 +11,11 @@ public struct AppClipAdvancedExperiencesResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppClipAdvancedExperience]
     /// The included related resources.
-    public let included: [Included]?
+    @NullCodable public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    public let meta: PagingInformation?
+    @NullCodable public var meta: PagingInformation?
 
     public init(data: [AppClipAdvancedExperience], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

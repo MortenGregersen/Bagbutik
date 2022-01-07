@@ -54,10 +54,10 @@ public struct AppStoreVersionPhasedRelease: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease/attributes>
      */
     public struct Attributes: Codable {
-        public let currentDayNumber: Int?
-        public let phasedReleaseState: PhasedReleaseState?
-        public let startDate: Date?
-        public let totalPauseDuration: Int?
+        @NullCodable public var currentDayNumber: Int?
+        @NullCodable public var phasedReleaseState: PhasedReleaseState?
+        @NullCodable public var startDate: Date?
+        @NullCodable public var totalPauseDuration: Int?
 
         public init(currentDayNumber: Int? = nil, phasedReleaseState: PhasedReleaseState? = nil, startDate: Date? = nil, totalPauseDuration: Int? = nil) {
             self.currentDayNumber = currentDayNumber

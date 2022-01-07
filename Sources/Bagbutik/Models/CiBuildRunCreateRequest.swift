@@ -63,7 +63,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
-            public let clean: Bool?
+            @NullCodable public var clean: Bool?
 
             public init(clean: Bool? = nil) {
                 self.clean = clean
@@ -77,10 +77,10 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let buildRun: BuildRun?
-            public let pullRequest: PullRequest?
-            public let sourceBranchOrTag: SourceBranchOrTag?
-            public let workflow: Workflow?
+            @NullCodable public var buildRun: BuildRun?
+            @NullCodable public var pullRequest: PullRequest?
+            @NullCodable public var sourceBranchOrTag: SourceBranchOrTag?
+            @NullCodable public var workflow: Workflow?
 
             public init(buildRun: BuildRun? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
                 self.buildRun = buildRun
@@ -91,7 +91,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
 
             public struct BuildRun: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -136,7 +136,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
 
             public struct PullRequest: Codable, RequestBody {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -181,7 +181,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
 
             public struct SourceBranchOrTag: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -226,7 +226,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
 
             public struct Workflow: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

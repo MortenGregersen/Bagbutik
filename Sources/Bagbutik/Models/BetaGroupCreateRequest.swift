@@ -62,17 +62,17 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let feedbackEnabled: Bool?
-            public let hasAccessToAllBuilds: Bool?
-            public let isInternalGroup: Bool?
+            @NullCodable public var feedbackEnabled: Bool?
+            @NullCodable public var hasAccessToAllBuilds: Bool?
+            @NullCodable public var isInternalGroup: Bool?
             /// The name for the beta group.
             public let name: String
             /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
-            public let publicLinkEnabled: Bool?
+            @NullCodable public var publicLinkEnabled: Bool?
             /// The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.
-            public let publicLinkLimit: Int?
+            @NullCodable public var publicLinkLimit: Int?
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
-            public let publicLinkLimitEnabled: Bool?
+            @NullCodable public var publicLinkLimitEnabled: Bool?
 
             public init(feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, isInternalGroup: Bool? = nil, name: String, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
                 self.feedbackEnabled = feedbackEnabled
@@ -93,8 +93,8 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
-            public let betaTesters: BetaTesters?
-            public let builds: Builds?
+            @NullCodable public var betaTesters: BetaTesters?
+            @NullCodable public var builds: Builds?
 
             public init(app: App, betaTesters: BetaTesters? = nil, builds: Builds? = nil) {
                 self.app = app
@@ -149,7 +149,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
 
             public struct BetaTesters: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -194,7 +194,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
 
             public struct Builds: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data

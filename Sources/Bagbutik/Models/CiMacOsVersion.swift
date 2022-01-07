@@ -61,9 +61,9 @@ public struct CiMacOsVersion: Codable {
      */
     public struct Attributes: Codable {
         /// The name of the macOS version.
-        public let name: String?
+        @NullCodable public var name: String?
         /// The macOS version of the simulated environment.
-        public let version: String?
+        @NullCodable public var version: String?
 
         public init(name: String? = nil, version: String? = nil) {
             self.name = name
@@ -78,7 +78,7 @@ public struct CiMacOsVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships>
      */
     public struct Relationships: Codable {
-        public let xcodeVersions: XcodeVersions?
+        @NullCodable public var xcodeVersions: XcodeVersions?
 
         public init(xcodeVersions: XcodeVersions? = nil) {
             self.xcodeVersions = xcodeVersions
@@ -92,11 +92,11 @@ public struct CiMacOsVersion: Codable {
          */
         public struct XcodeVersions: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -148,9 +148,9 @@ public struct CiMacOsVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

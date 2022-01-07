@@ -60,14 +60,14 @@ public struct AppStoreReviewDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/attributes>
      */
     public struct Attributes: Codable {
-        public let contactEmail: String?
-        public let contactFirstName: String?
-        public let contactLastName: String?
-        public let contactPhone: String?
-        public let demoAccountName: String?
-        public let demoAccountPassword: String?
-        public let demoAccountRequired: Bool?
-        public let notes: String?
+        @NullCodable public var contactEmail: String?
+        @NullCodable public var contactFirstName: String?
+        @NullCodable public var contactLastName: String?
+        @NullCodable public var contactPhone: String?
+        @NullCodable public var demoAccountName: String?
+        @NullCodable public var demoAccountPassword: String?
+        @NullCodable public var demoAccountRequired: Bool?
+        @NullCodable public var notes: String?
 
         public init(contactEmail: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactPhone: String? = nil, demoAccountName: String? = nil, demoAccountPassword: String? = nil, demoAccountRequired: Bool? = nil, notes: String? = nil) {
             self.contactEmail = contactEmail
@@ -88,8 +88,8 @@ public struct AppStoreReviewDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships>
      */
     public struct Relationships: Codable {
-        public let appStoreReviewAttachments: AppStoreReviewAttachments?
-        public let appStoreVersion: AppStoreVersion?
+        @NullCodable public var appStoreReviewAttachments: AppStoreReviewAttachments?
+        @NullCodable public var appStoreVersion: AppStoreVersion?
 
         public init(appStoreReviewAttachments: AppStoreReviewAttachments? = nil, appStoreVersion: AppStoreVersion? = nil) {
             self.appStoreReviewAttachments = appStoreReviewAttachments
@@ -104,11 +104,11 @@ public struct AppStoreReviewDetail: Codable {
          */
         public struct AppStoreReviewAttachments: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -160,9 +160,9 @@ public struct AppStoreReviewDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -179,9 +179,9 @@ public struct AppStoreReviewDetail: Codable {
          */
         public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -232,9 +232,9 @@ public struct AppStoreReviewDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

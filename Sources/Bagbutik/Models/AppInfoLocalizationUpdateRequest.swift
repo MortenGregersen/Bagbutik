@@ -62,11 +62,11 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let name: String?
-            public let privacyChoicesUrl: String?
-            public let privacyPolicyText: String?
-            public let privacyPolicyUrl: String?
-            public let subtitle: String?
+            @NullCodable public var name: String?
+            @NullCodable public var privacyChoicesUrl: String?
+            @NullCodable public var privacyPolicyText: String?
+            @NullCodable public var privacyPolicyUrl: String?
+            @NullCodable public var subtitle: String?
 
             public init(name: String? = nil, privacyChoicesUrl: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
                 self.name = name

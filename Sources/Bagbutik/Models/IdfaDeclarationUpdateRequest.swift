@@ -62,10 +62,10 @@ public struct IdfaDeclarationUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/idfadeclarationupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let attributesActionWithPreviousAd: Bool?
-            public let attributesAppInstallationToPreviousAd: Bool?
-            public let honorsLimitedAdTracking: Bool?
-            public let servesAds: Bool?
+            @NullCodable public var attributesActionWithPreviousAd: Bool?
+            @NullCodable public var attributesAppInstallationToPreviousAd: Bool?
+            @NullCodable public var honorsLimitedAdTracking: Bool?
+            @NullCodable public var servesAds: Bool?
 
             public init(attributesActionWithPreviousAd: Bool? = nil, attributesAppInstallationToPreviousAd: Bool? = nil, honorsLimitedAdTracking: Bool? = nil, servesAds: Bool? = nil) {
                 self.attributesActionWithPreviousAd = attributesActionWithPreviousAd

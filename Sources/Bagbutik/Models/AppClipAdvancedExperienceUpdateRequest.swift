@@ -10,7 +10,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The included related resources.
-    public let included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
+    @NullCodable public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
         self.data = data
@@ -72,17 +72,17 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The call-to-action verb that appears on the App Clip card.
-            public let action: AppClipAction?
+            @NullCodable public var action: AppClipAction?
             /// The business category of an advanced App Clip experience; for example, PARKING
-            public let businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            @NullCodable public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
             /// The default language for the advanced App Clip experience.
-            public let defaultLanguage: AppClipAdvancedExperienceLanguage?
+            @NullCodable public var defaultLanguage: AppClipAdvancedExperienceLanguage?
             /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
-            public let isPoweredBy: Bool?
+            @NullCodable public var isPoweredBy: Bool?
             /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
-            public let place: Place?
+            @NullCodable public var place: Place?
             /// A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to true.
-            public let removed: Bool?
+            @NullCodable public var removed: Bool?
 
             public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, place: Place? = nil, removed: Bool? = nil) {
                 self.action = action
@@ -94,15 +94,15 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct Place: Codable {
-                public let categories: String?
-                public let displayPoint: DisplayPoint?
-                public let homePage: String?
-                public let mainAddress: MainAddress?
-                public let mapAction: MapAction?
-                public let names: String?
-                public let phoneNumber: PhoneNumber?
-                public let placeId: String?
-                public let relationship: Relationship?
+                @NullCodable public var categories: String?
+                @NullCodable public var displayPoint: DisplayPoint?
+                @NullCodable public var homePage: String?
+                @NullCodable public var mainAddress: MainAddress?
+                @NullCodable public var mapAction: MapAction?
+                @NullCodable public var names: String?
+                @NullCodable public var phoneNumber: PhoneNumber?
+                @NullCodable public var placeId: String?
+                @NullCodable public var relationship: Relationship?
 
                 public init(categories: String? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: String? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
                     self.categories = categories
@@ -117,8 +117,8 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 public struct DisplayPoint: Codable {
-                    public let coordinates: Coordinates?
-                    public let source: Source?
+                    @NullCodable public var coordinates: Coordinates?
+                    @NullCodable public var source: Source?
 
                     public init(coordinates: Coordinates? = nil, source: Source? = nil) {
                         self.coordinates = coordinates
@@ -126,8 +126,8 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     }
 
                     public struct Coordinates: Codable {
-                        public let latitude: Double?
-                        public let longitude: Double?
+                        @NullCodable public var latitude: Double?
+                        @NullCodable public var longitude: Double?
 
                         public init(latitude: Double? = nil, longitude: Double? = nil) {
                             self.latitude = latitude
@@ -142,8 +142,8 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 public struct MainAddress: Codable {
-                    public let fullAddress: String?
-                    public let structuredAddress: StructuredAddress?
+                    @NullCodable public var fullAddress: String?
+                    @NullCodable public var structuredAddress: StructuredAddress?
 
                     public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
                         self.fullAddress = fullAddress
@@ -151,13 +151,13 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     }
 
                     public struct StructuredAddress: Codable {
-                        public let countryCode: String?
-                        public let floor: String?
-                        public let locality: String?
-                        public let neighborhood: String?
-                        public let postalCode: String?
-                        public let stateProvince: String?
-                        public let streetAddress: String?
+                        @NullCodable public var countryCode: String?
+                        @NullCodable public var floor: String?
+                        @NullCodable public var locality: String?
+                        @NullCodable public var neighborhood: String?
+                        @NullCodable public var postalCode: String?
+                        @NullCodable public var stateProvince: String?
+                        @NullCodable public var streetAddress: String?
 
                         public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: String? = nil) {
                             self.countryCode = countryCode
@@ -188,9 +188,9 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 public struct PhoneNumber: Codable {
-                    public let intent: String?
-                    public let number: String?
-                    public let type: PhoneNumberType?
+                    @NullCodable public var intent: String?
+                    @NullCodable public var number: String?
+                    @NullCodable public var type: PhoneNumberType?
 
                     public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
                         self.intent = intent
@@ -221,9 +221,9 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let appClip: AppClip?
-            public let headerImage: HeaderImage?
-            public let localizations: Localizations?
+            @NullCodable public var appClip: AppClip?
+            @NullCodable public var headerImage: HeaderImage?
+            @NullCodable public var localizations: Localizations?
 
             public init(appClip: AppClip? = nil, headerImage: HeaderImage? = nil, localizations: Localizations? = nil) {
                 self.appClip = appClip
@@ -233,7 +233,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
 
             public struct AppClip: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -278,7 +278,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
 
             public struct HeaderImage: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -323,7 +323,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
 
             public struct Localizations: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data

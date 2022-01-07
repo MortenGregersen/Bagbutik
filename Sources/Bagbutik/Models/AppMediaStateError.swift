@@ -7,8 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appmediastateerror>
  */
 public struct AppMediaStateError: Codable {
-    public let code: String?
-    public let description: String?
+    @NullCodable public var code: String?
+    @NullCodable public var description: String?
 
     public init(code: String? = nil, description: String? = nil) {
         self.code = code

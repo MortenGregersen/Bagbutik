@@ -12,7 +12,7 @@ public struct BetaTesterBetaGroupsLinkagesResponse: Codable, PagedResponse {
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    public let meta: PagingInformation?
+    @NullCodable public var meta: PagingInformation?
 
     public init(data: [Data], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

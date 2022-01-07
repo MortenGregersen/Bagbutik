@@ -61,19 +61,19 @@ public struct UserInvitation: Codable {
      */
     public struct Attributes: Codable {
         /// A Boolean value that indicates whether a user has access to all apps available to the team.
-        public let allAppsVisible: Bool?
+        @NullCodable public var allAppsVisible: Bool?
         /// The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.
-        public let email: String?
+        @NullCodable public var email: String?
         /// The expiration date of the pending invitation.
-        public let expirationDate: Date?
+        @NullCodable public var expirationDate: Date?
         /// The first name of the user with the pending user invitation.
-        public let firstName: String?
+        @NullCodable public var firstName: String?
         /// The last name of the user with the pending user invitation.
-        public let lastName: String?
+        @NullCodable public var lastName: String?
         /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
-        public let provisioningAllowed: Bool?
+        @NullCodable public var provisioningAllowed: Bool?
         /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
-        public let roles: [UserRole]?
+        @NullCodable public var roles: [UserRole]?
 
         public init(allAppsVisible: Bool? = nil, email: String? = nil, expirationDate: Date? = nil, firstName: String? = nil, lastName: String? = nil, provisioningAllowed: Bool? = nil, roles: [UserRole]? = nil) {
             self.allAppsVisible = allAppsVisible
@@ -93,7 +93,7 @@ public struct UserInvitation: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/relationships>
      */
     public struct Relationships: Codable {
-        public let visibleApps: VisibleApps?
+        @NullCodable public var visibleApps: VisibleApps?
 
         public init(visibleApps: VisibleApps? = nil) {
             self.visibleApps = visibleApps
@@ -107,11 +107,11 @@ public struct UserInvitation: Codable {
          */
         public struct VisibleApps: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -163,9 +163,9 @@ public struct UserInvitation: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

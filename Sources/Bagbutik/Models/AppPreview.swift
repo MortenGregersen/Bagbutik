@@ -60,15 +60,15 @@ public struct AppPreview: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/attributes>
      */
     public struct Attributes: Codable {
-        public let assetDeliveryState: AppMediaAssetState?
-        public let fileName: String?
-        public let fileSize: Int?
-        public let mimeType: String?
-        public let previewFrameTimeCode: String?
-        public let previewImage: ImageAsset?
-        public let sourceFileChecksum: String?
-        public let uploadOperations: [UploadOperation]?
-        public let videoUrl: String?
+        @NullCodable public var assetDeliveryState: AppMediaAssetState?
+        @NullCodable public var fileName: String?
+        @NullCodable public var fileSize: Int?
+        @NullCodable public var mimeType: String?
+        @NullCodable public var previewFrameTimeCode: String?
+        @NullCodable public var previewImage: ImageAsset?
+        @NullCodable public var sourceFileChecksum: String?
+        @NullCodable public var uploadOperations: [UploadOperation]?
+        @NullCodable public var videoUrl: String?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, mimeType: String? = nil, previewFrameTimeCode: String? = nil, previewImage: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil, videoUrl: String? = nil) {
             self.assetDeliveryState = assetDeliveryState
@@ -90,7 +90,7 @@ public struct AppPreview: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships>
      */
     public struct Relationships: Codable {
-        public let appPreviewSet: AppPreviewSet?
+        @NullCodable public var appPreviewSet: AppPreviewSet?
 
         public init(appPreviewSet: AppPreviewSet? = nil) {
             self.appPreviewSet = appPreviewSet
@@ -104,9 +104,9 @@ public struct AppPreview: Codable {
          */
         public struct AppPreviewSet: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -157,9 +157,9 @@ public struct AppPreview: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

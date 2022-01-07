@@ -60,10 +60,10 @@ public struct InAppPurchase: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/attributes>
      */
     public struct Attributes: Codable {
-        public let inAppPurchaseType: InAppPurchaseType?
-        public let productId: String?
-        public let referenceName: String?
-        public let state: State?
+        @NullCodable public var inAppPurchaseType: InAppPurchaseType?
+        @NullCodable public var productId: String?
+        @NullCodable public var referenceName: String?
+        @NullCodable public var state: State?
 
         public init(inAppPurchaseType: InAppPurchaseType? = nil, productId: String? = nil, referenceName: String? = nil, state: State? = nil) {
             self.inAppPurchaseType = inAppPurchaseType
@@ -110,7 +110,7 @@ public struct InAppPurchase: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships>
      */
     public struct Relationships: Codable {
-        public let apps: Apps?
+        @NullCodable public var apps: Apps?
 
         public init(apps: Apps? = nil) {
             self.apps = apps
@@ -124,11 +124,11 @@ public struct InAppPurchase: Codable {
          */
         public struct Apps: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -180,9 +180,9 @@ public struct InAppPurchase: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

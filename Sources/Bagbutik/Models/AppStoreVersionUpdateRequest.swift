@@ -68,13 +68,13 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let copyright: String?
-            public let downloadable: Bool?
-            public let earliestReleaseDate: Date?
-            public let releaseType: AppStoreVersion.Attributes.ReleaseType?
+            @NullCodable public var copyright: String?
+            @NullCodable public var downloadable: Bool?
+            @NullCodable public var earliestReleaseDate: Date?
+            @NullCodable public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var usesIdfa: Bool? = nil
-            public let versionString: String?
+            @NullCodable public var usesIdfa: Bool? = nil
+            @NullCodable public var versionString: String?
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(copyright: String? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String? = nil) {
@@ -102,8 +102,8 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let appClipDefaultExperience: AppClipDefaultExperience?
-            public let build: Build?
+            @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
+            @NullCodable public var build: Build?
 
             public init(appClipDefaultExperience: AppClipDefaultExperience? = nil, build: Build? = nil) {
                 self.appClipDefaultExperience = appClipDefaultExperience
@@ -112,7 +112,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
 
             public struct AppClipDefaultExperience: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -157,7 +157,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
 
             public struct Build: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

@@ -63,7 +63,7 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
          */
         public struct Attributes: Codable {
             /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
-            public let title: String?
+            @NullCodable public var title: String?
 
             public init(title: String? = nil) {
                 self.title = title

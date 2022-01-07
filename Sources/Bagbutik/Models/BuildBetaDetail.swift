@@ -61,11 +61,11 @@ public struct BuildBetaDetail: Codable {
      */
     public struct Attributes: Codable {
         /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
-        public let autoNotifyEnabled: Bool?
+        @NullCodable public var autoNotifyEnabled: Bool?
         /// A state that indicates if the build is available for external testing.
-        public let externalBuildState: ExternalBetaState?
+        @NullCodable public var externalBuildState: ExternalBetaState?
         /// A state that indicates if the build is available for internal testing.
-        public let internalBuildState: InternalBetaState?
+        @NullCodable public var internalBuildState: InternalBetaState?
 
         public init(autoNotifyEnabled: Bool? = nil, externalBuildState: ExternalBetaState? = nil, internalBuildState: InternalBetaState? = nil) {
             self.autoNotifyEnabled = autoNotifyEnabled
@@ -81,7 +81,7 @@ public struct BuildBetaDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships>
      */
     public struct Relationships: Codable {
-        public let build: Build?
+        @NullCodable public var build: Build?
 
         public init(build: Build? = nil) {
             self.build = build
@@ -95,9 +95,9 @@ public struct BuildBetaDetail: Codable {
          */
         public struct Build: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -148,9 +148,9 @@ public struct BuildBetaDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

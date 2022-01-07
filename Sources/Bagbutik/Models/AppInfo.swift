@@ -61,13 +61,13 @@ public struct AppInfo: Codable {
      */
     public struct Attributes: Codable {
         /// The app’s age rating as it appears on the App Store for all platforms.
-        public let appStoreAgeRating: AppStoreAgeRating?
+        @NullCodable public var appStoreAgeRating: AppStoreAgeRating?
         /// The state of an app version in the App Store.
-        public let appStoreState: AppStoreVersionState?
+        @NullCodable public var appStoreState: AppStoreVersionState?
         /// The app’s age rating as it appears on the App Store in Brazil for all platforms.
-        public let brazilAgeRating: BrazilAgeRating?
+        @NullCodable public var brazilAgeRating: BrazilAgeRating?
         /// A Made for Kids app’s age band.
-        public let kidsAgeBand: KidsAgeBand?
+        @NullCodable public var kidsAgeBand: KidsAgeBand?
 
         public init(appStoreAgeRating: AppStoreAgeRating? = nil, appStoreState: AppStoreVersionState? = nil, brazilAgeRating: BrazilAgeRating? = nil, kidsAgeBand: KidsAgeBand? = nil) {
             self.appStoreAgeRating = appStoreAgeRating
@@ -84,15 +84,15 @@ public struct AppInfo: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships>
      */
     public struct Relationships: Codable {
-        public let ageRatingDeclaration: AgeRatingDeclaration?
-        public let app: App?
-        public let appInfoLocalizations: AppInfoLocalizations?
-        public let primaryCategory: PrimaryCategory?
-        public let primarySubcategoryOne: PrimarySubcategoryOne?
-        public let primarySubcategoryTwo: PrimarySubcategoryTwo?
-        public let secondaryCategory: SecondaryCategory?
-        public let secondarySubcategoryOne: SecondarySubcategoryOne?
-        public let secondarySubcategoryTwo: SecondarySubcategoryTwo?
+        @NullCodable public var ageRatingDeclaration: AgeRatingDeclaration?
+        @NullCodable public var app: App?
+        @NullCodable public var appInfoLocalizations: AppInfoLocalizations?
+        @NullCodable public var primaryCategory: PrimaryCategory?
+        @NullCodable public var primarySubcategoryOne: PrimarySubcategoryOne?
+        @NullCodable public var primarySubcategoryTwo: PrimarySubcategoryTwo?
+        @NullCodable public var secondaryCategory: SecondaryCategory?
+        @NullCodable public var secondarySubcategoryOne: SecondarySubcategoryOne?
+        @NullCodable public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
 
         public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appInfoLocalizations: AppInfoLocalizations? = nil, primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
             self.ageRatingDeclaration = ageRatingDeclaration
@@ -114,9 +114,9 @@ public struct AppInfo: Codable {
          */
         public struct AgeRatingDeclaration: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -167,9 +167,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -186,9 +186,9 @@ public struct AppInfo: Codable {
          */
         public struct App: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -239,9 +239,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -258,11 +258,11 @@ public struct AppInfo: Codable {
          */
         public struct AppInfoLocalizations: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -314,9 +314,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -333,9 +333,9 @@ public struct AppInfo: Codable {
          */
         public struct PrimaryCategory: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -386,9 +386,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -405,9 +405,9 @@ public struct AppInfo: Codable {
          */
         public struct PrimarySubcategoryOne: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -458,9 +458,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -477,9 +477,9 @@ public struct AppInfo: Codable {
          */
         public struct PrimarySubcategoryTwo: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -530,9 +530,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -549,9 +549,9 @@ public struct AppInfo: Codable {
          */
         public struct SecondaryCategory: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -602,9 +602,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -621,9 +621,9 @@ public struct AppInfo: Codable {
          */
         public struct SecondarySubcategoryOne: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -674,9 +674,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -693,9 +693,9 @@ public struct AppInfo: Codable {
          */
         public struct SecondarySubcategoryTwo: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -746,9 +746,9 @@ public struct AppInfo: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

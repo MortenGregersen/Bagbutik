@@ -60,12 +60,12 @@ public struct AppInfoLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/attributes>
      */
     public struct Attributes: Codable {
-        public let locale: String?
-        public let name: String?
-        public let privacyChoicesUrl: String?
-        public let privacyPolicyText: String?
-        public let privacyPolicyUrl: String?
-        public let subtitle: String?
+        @NullCodable public var locale: String?
+        @NullCodable public var name: String?
+        @NullCodable public var privacyChoicesUrl: String?
+        @NullCodable public var privacyPolicyText: String?
+        @NullCodable public var privacyPolicyUrl: String?
+        @NullCodable public var subtitle: String?
 
         public init(locale: String? = nil, name: String? = nil, privacyChoicesUrl: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
             self.locale = locale
@@ -84,7 +84,7 @@ public struct AppInfoLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships>
      */
     public struct Relationships: Codable {
-        public let appInfo: AppInfo?
+        @NullCodable public var appInfo: AppInfo?
 
         public init(appInfo: AppInfo? = nil) {
             self.appInfo = appInfo
@@ -98,9 +98,9 @@ public struct AppInfoLocalization: Codable {
          */
         public struct AppInfo: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -151,9 +151,9 @@ public struct AppInfoLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -63,11 +63,11 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public let locale: String
-            public let name: String?
-            public let privacyChoicesUrl: String?
-            public let privacyPolicyText: String?
-            public let privacyPolicyUrl: String?
-            public let subtitle: String?
+            @NullCodable public var name: String?
+            @NullCodable public var privacyChoicesUrl: String?
+            @NullCodable public var privacyPolicyText: String?
+            @NullCodable public var privacyPolicyUrl: String?
+            @NullCodable public var subtitle: String?
 
             public init(locale: String, name: String? = nil, privacyChoicesUrl: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
                 self.locale = locale

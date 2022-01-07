@@ -61,17 +61,17 @@ public struct BetaAppLocalization: Codable {
      */
     public struct Attributes: Codable {
         /// A description of your app that highlights features and functionality.
-        public let description: String?
+        @NullCodable public var description: String?
         /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
-        public let feedbackEmail: String?
+        @NullCodable public var feedbackEmail: String?
         /// The specified locale. Refer to Table 1 for possible values.
-        public let locale: String?
+        @NullCodable public var locale: String?
         /// A URL with information about your app. This URL is visible to testers in the TestFlight app.
-        public let marketingUrl: String?
+        @NullCodable public var marketingUrl: String?
         /// A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.
-        public let privacyPolicyUrl: String?
+        @NullCodable public var privacyPolicyUrl: String?
         /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
-        public let tvOsPrivacyPolicy: String?
+        @NullCodable public var tvOsPrivacyPolicy: String?
 
         public init(description: String? = nil, feedbackEmail: String? = nil, locale: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
             self.description = description
@@ -90,7 +90,7 @@ public struct BetaAppLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization/relationships>
      */
     public struct Relationships: Codable {
-        public let app: App?
+        @NullCodable public var app: App?
 
         public init(app: App? = nil) {
             self.app = app
@@ -104,9 +104,9 @@ public struct BetaAppLocalization: Codable {
          */
         public struct App: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -157,9 +157,9 @@ public struct BetaAppLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
