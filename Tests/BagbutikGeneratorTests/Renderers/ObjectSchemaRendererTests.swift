@@ -14,7 +14,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public struct Person: Codable {
-            public let name: String?
+            @NullCodable public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name
@@ -44,7 +44,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's name
-            public let name: String?
+            @NullCodable public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name
@@ -76,10 +76,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's age
-            public let age: Int?
+            @NullCodable public var age: Int?
             /// The person's name
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var name: String? = nil
+            @NullCodable public var name: String? = nil
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(age: Int? = nil, name: String? = nil) {
@@ -115,7 +115,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct PersonCreateRequest: Codable, RequestBody {
             /// The person's name
-            public let name: String?
+            @NullCodable public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name
@@ -156,9 +156,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The unique id for the person
             public var id: String { "person" }
             /// The lastname of the person
-            public let lastName: String?
+            @NullCodable public var lastName: String?
             /// A reference to the person
-            public let `self`: String?
+            @NullCodable public var `self`: String?
 
             public init(firstName: String, lastName: String? = nil, self aSelf: String? = nil) {
                 self.firstName = firstName
@@ -192,7 +192,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
-            public let name: String?
+            @NullCodable public var name: String?
             /// The resource's attributes.
             public let attributes: Attributes?
 
@@ -202,7 +202,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public struct Attributes: Codable {
-                public let age: Int?
+                @NullCodable public var age: Int?
 
                 public init(age: Int? = nil) {
                     self.age = age
@@ -236,7 +236,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
-            public let name: String?
+            @NullCodable public var name: String?
             /// Navigational links to related data and included resource types and IDs.
             public let relationships: Relationships?
 
@@ -252,7 +252,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              <some://url>
              */
             public struct Relationships: Codable {
-                public let children: [Child]?
+                @NullCodable public var children: [Child]?
 
                 public init(children: [Child]? = nil) {
                     self.children = children
@@ -289,13 +289,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's connection
-            public let connection: Connection?
+            @NullCodable public var connection: Connection?
             /// The person's name
-            public let name: String?
+            @NullCodable public var name: String?
             /// The person's pet
-            public let pet: Pet?
+            @NullCodable public var pet: Pet?
             /// The person's indentation preference
-            public let preference: Preference?
+            @NullCodable public var preference: Preference?
 
             public init(connection: Connection? = nil, name: String? = nil, pet: Pet? = nil, preference: Preference? = nil) {
                 self.connection = connection
@@ -334,7 +334,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public struct Pet: Codable {
-                public let name: String?
+                @NullCodable public var name: String?
 
                 public init(name: String? = nil) {
                     self.name = name
@@ -376,6 +376,84 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
+    func testEncodedOptionals() throws {
+        // It is necessary to render a encode(into:) function, to ensure that optionals are encoded as null.
+        // If this is not done, the default synthesized function will leave out optionals from the JSON.
+        // Given
+        let renderer = ObjectSchemaRenderer()
+        let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url",
+                                               documentation: .relationships,
+                                               properties: [
+                                                   "children": .init(type: .arrayOfSubSchema(.init(
+                                                       name: "Child",
+                                                       url: "some://url",
+                                                       documentation: nil,
+                                                       properties: ["data": .init(type: .schema(.init(
+                                                           name: "Data",
+                                                           url: "some://url",
+                                                           documentation: nil,
+                                                           properties: ["id": .init(type: .simple(.string)), "type": .init(type: .constant("child"))],
+                                                           requiredProperties: ["id"])))],
+                                                       requiredProperties: []))),
+                                               ])
+        // When
+        let rendered = try renderer.render(objectSchema: relationshipsSchema)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        /**
+         The relationships you included in the request and those on which you can operate.
+
+         Full documentation:
+         <some://url>
+         */
+        public struct Relationships: Codable {
+            @NullCodable public var children: [Child]?
+
+            public init(children: [Child]? = nil) {
+                self.children = children
+            }
+        
+            public struct Child: Codable {
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                public struct Data: Codable {
+                    public let id: String
+                    public var type: String { "child" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
+                }
+            }
+        }
+
+        """#)
+    }
+
     func testRenderCustomCoding() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
@@ -408,7 +486,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
-            public let age: Int?
+            @NullCodable public var age: Int?
             public let name: String
             /// The resource type.
             public var type: String { "person" }
@@ -460,7 +538,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              */
             public struct Attributes: Codable {
                 /// The person's age
-                public let age: Int?
+                @NullCodable public var age: Int?
 
                 public init(age: Int? = nil) {
                     self.age = age
@@ -474,7 +552,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              <some://url>
              */
             public struct Relationships: Codable {
-                public let children: [Child]?
+                @NullCodable public var children: [Child]?
 
                 public init(children: [Child]? = nil) {
                     self.children = children
@@ -512,9 +590,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public struct PhoneNumber: Codable {
-            public let intent: String?
-            public let number: String?
-            public let type: PhoneNumberType?
+            @NullCodable public var intent: String?
+            @NullCodable public var number: String?
+            @NullCodable public var type: PhoneNumberType?
 
             public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
                 self.intent = intent

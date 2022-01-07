@@ -5,13 +5,13 @@ class PropertyRenderer: Renderer {
             "type": type,
             "optional": optional,
             "deprecated": deprecated,
-            "propertyType": deprecated ? "var" : "let",
+            "propertyType": deprecated || optional ? "var" : "let",
             "defaultValue": deprecated ? "nil" : ""
         ])
     }
 
     private let template = """
     {% if deprecated %}@available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-    {% else %}{% endif %}public {{ propertyType }} {{ id|escapeReservedKeywords }}: {{ type|upperFirstLetter }}{% if optional %}?{% endif %}{% if defaultValue %} = {{ defaultValue }}{% endif %}
+    {% else %}{% endif %}{% if optional %}@NullCodable {% endif %}public {{ propertyType }} {{ id|escapeReservedKeywords }}: {{ type|upperFirstLetter }}{% if optional %}?{% endif %}{% if defaultValue %} = {{ defaultValue }}{% endif %}
     """
 }
