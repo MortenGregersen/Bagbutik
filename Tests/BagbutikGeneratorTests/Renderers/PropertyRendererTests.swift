@@ -9,6 +9,8 @@ final class PropertyRendererTests: XCTestCase {
         let rendered = try renderer.render(id: "name", type: "string", optional: true)
         // Then
         XCTAssertEqual(rendered, "@NullCodable public var name: String?")
+        // It is necessary to add the @NullCodable property wrapper, to ensure that optionals are encoded as null.
+        // If this is not done, the JSONEncoder will leave out optionals from the JSON instead.
     }
 
     func testRenderReservedButNotOptional() throws {
