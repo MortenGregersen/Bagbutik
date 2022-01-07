@@ -8,9 +8,9 @@ import Foundation
  */
 public struct CiFilesAndFoldersRule: Codable {
     /// Directory and file information Xcode Cloud uses to determine if a change to a file or directory matches a custom start condition.
-    public let matchers: [CiStartConditionFileMatcher]?
+    @NullCodable public var matchers: [CiStartConditionFileMatcher]?
     /// A string that indicates whether a workflow’s start condition’s Files and Folders setting should start a new build or not for a change.
-    public let mode: Mode?
+    @NullCodable public var mode: Mode?
 
     public init(matchers: [CiStartConditionFileMatcher]? = nil, mode: Mode? = nil) {
         self.matchers = matchers

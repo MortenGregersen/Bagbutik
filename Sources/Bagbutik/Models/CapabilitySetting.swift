@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilitysetting>
  */
 public struct CapabilitySetting: Codable {
-    public let allowedInstances: AllowedInstances?
-    public let description: String?
-    public let enabledByDefault: Bool?
-    public let key: Key?
-    public let minInstances: Int?
-    public let name: String?
-    public let options: [CapabilityOption]?
-    public let visible: Bool?
+    @NullCodable public var allowedInstances: AllowedInstances?
+    @NullCodable public var description: String?
+    @NullCodable public var enabledByDefault: Bool?
+    @NullCodable public var key: Key?
+    @NullCodable public var minInstances: Int?
+    @NullCodable public var name: String?
+    @NullCodable public var options: [CapabilityOption]?
+    @NullCodable public var visible: Bool?
 
     public init(allowedInstances: AllowedInstances? = nil, description: String? = nil, enabledByDefault: Bool? = nil, key: Key? = nil, minInstances: Int? = nil, name: String? = nil, options: [CapabilityOption]? = nil, visible: Bool? = nil) {
         self.allowedInstances = allowedInstances

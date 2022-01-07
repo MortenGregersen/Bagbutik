@@ -60,7 +60,7 @@ public struct AppPreviewSet: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewset/attributes>
      */
     public struct Attributes: Codable {
-        public let previewType: PreviewType?
+        @NullCodable public var previewType: PreviewType?
 
         public init(previewType: PreviewType? = nil) {
             self.previewType = previewType
@@ -74,8 +74,8 @@ public struct AppPreviewSet: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewset/relationships>
      */
     public struct Relationships: Codable {
-        public let appPreviews: AppPreviews?
-        public let appStoreVersionLocalization: AppStoreVersionLocalization?
+        @NullCodable public var appPreviews: AppPreviews?
+        @NullCodable public var appStoreVersionLocalization: AppStoreVersionLocalization?
 
         public init(appPreviews: AppPreviews? = nil, appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
             self.appPreviews = appPreviews
@@ -90,11 +90,11 @@ public struct AppPreviewSet: Codable {
          */
         public struct AppPreviews: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -146,9 +146,9 @@ public struct AppPreviewSet: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -165,9 +165,9 @@ public struct AppPreviewSet: Codable {
          */
         public struct AppStoreVersionLocalization: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -218,9 +218,9 @@ public struct AppPreviewSet: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

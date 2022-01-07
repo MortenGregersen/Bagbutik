@@ -60,16 +60,16 @@ public struct AppStoreVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
      */
     public struct Attributes: Codable {
-        public let appStoreState: AppStoreVersionState?
-        public let copyright: String?
-        public let createdDate: Date?
-        public let downloadable: Bool?
-        public let earliestReleaseDate: Date?
-        public let platform: Platform?
-        public let releaseType: ReleaseType?
+        @NullCodable public var appStoreState: AppStoreVersionState?
+        @NullCodable public var copyright: String?
+        @NullCodable public var createdDate: Date?
+        @NullCodable public var downloadable: Bool?
+        @NullCodable public var earliestReleaseDate: Date?
+        @NullCodable public var platform: Platform?
+        @NullCodable public var releaseType: ReleaseType?
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var usesIdfa: Bool? = nil
-        public let versionString: String?
+        @NullCodable public var usesIdfa: Bool? = nil
+        @NullCodable public var versionString: String?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appStoreState: AppStoreVersionState? = nil, copyright: String? = nil, createdDate: Date? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, platform: Platform? = nil, releaseType: ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String? = nil) {
@@ -110,16 +110,16 @@ public struct AppStoreVersion: Codable {
      */
     public struct Relationships: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var ageRatingDeclaration: AgeRatingDeclaration? = nil
-        public let app: App?
-        public let appClipDefaultExperience: AppClipDefaultExperience?
-        public let appStoreReviewDetail: AppStoreReviewDetail?
-        public let appStoreVersionLocalizations: AppStoreVersionLocalizations?
-        public let appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
-        public let appStoreVersionSubmission: AppStoreVersionSubmission?
-        public let build: Build?
-        public let idfaDeclaration: IdfaDeclaration?
-        public let routingAppCoverage: RoutingAppCoverage?
+        @NullCodable public var ageRatingDeclaration: AgeRatingDeclaration? = nil
+        @NullCodable public var app: App?
+        @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
+        @NullCodable public var appStoreReviewDetail: AppStoreReviewDetail?
+        @NullCodable public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
+        @NullCodable public var appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
+        @NullCodable public var appStoreVersionSubmission: AppStoreVersionSubmission?
+        @NullCodable public var build: Build?
+        @NullCodable public var idfaDeclaration: IdfaDeclaration?
+        @NullCodable public var routingAppCoverage: RoutingAppCoverage?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
@@ -155,9 +155,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct AgeRatingDeclaration: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -208,9 +208,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -227,9 +227,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct App: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -280,9 +280,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -299,9 +299,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct AppClipDefaultExperience: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -352,9 +352,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -371,9 +371,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct AppStoreReviewDetail: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -424,9 +424,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -443,11 +443,11 @@ public struct AppStoreVersion: Codable {
          */
         public struct AppStoreVersionLocalizations: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -499,9 +499,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -518,9 +518,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct AppStoreVersionPhasedRelease: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -571,9 +571,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -590,9 +590,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct AppStoreVersionSubmission: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -643,9 +643,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -662,9 +662,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct Build: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -715,9 +715,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -734,9 +734,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct IdfaDeclaration: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -787,9 +787,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -806,9 +806,9 @@ public struct AppStoreVersion: Codable {
          */
         public struct RoutingAppCoverage: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -859,9 +859,9 @@ public struct AppStoreVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

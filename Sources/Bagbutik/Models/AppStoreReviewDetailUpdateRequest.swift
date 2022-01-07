@@ -62,14 +62,14 @@ public struct AppStoreReviewDetailUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let contactEmail: String?
-            public let contactFirstName: String?
-            public let contactLastName: String?
-            public let contactPhone: String?
-            public let demoAccountName: String?
-            public let demoAccountPassword: String?
-            public let demoAccountRequired: Bool?
-            public let notes: String?
+            @NullCodable public var contactEmail: String?
+            @NullCodable public var contactFirstName: String?
+            @NullCodable public var contactLastName: String?
+            @NullCodable public var contactPhone: String?
+            @NullCodable public var demoAccountName: String?
+            @NullCodable public var demoAccountPassword: String?
+            @NullCodable public var demoAccountRequired: Bool?
+            @NullCodable public var notes: String?
 
             public init(contactEmail: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactPhone: String? = nil, demoAccountName: String? = nil, demoAccountPassword: String? = nil, demoAccountRequired: Bool? = nil, notes: String? = nil) {
                 self.contactEmail = contactEmail

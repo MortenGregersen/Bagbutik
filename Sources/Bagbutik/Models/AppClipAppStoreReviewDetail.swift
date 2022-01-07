@@ -61,7 +61,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
      */
     public struct Attributes: Codable {
         /// An array of invocation URLs for your App Clip.
-        public let invocationUrls: String?
+        @NullCodable public var invocationUrls: String?
 
         public init(invocationUrls: String? = nil) {
             self.invocationUrls = invocationUrls
@@ -75,7 +75,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships>
      */
     public struct Relationships: Codable {
-        public let appClipDefaultExperience: AppClipDefaultExperience?
+        @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
 
         public init(appClipDefaultExperience: AppClipDefaultExperience? = nil) {
             self.appClipDefaultExperience = appClipDefaultExperience
@@ -89,9 +89,9 @@ public struct AppClipAppStoreReviewDetail: Codable {
          */
         public struct AppClipDefaultExperience: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -142,9 +142,9 @@ public struct AppClipAppStoreReviewDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

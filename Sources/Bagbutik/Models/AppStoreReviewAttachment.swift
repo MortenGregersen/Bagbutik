@@ -60,11 +60,11 @@ public struct AppStoreReviewAttachment: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/attributes>
      */
     public struct Attributes: Codable {
-        public let assetDeliveryState: AppMediaAssetState?
-        public let fileName: String?
-        public let fileSize: Int?
-        public let sourceFileChecksum: String?
-        public let uploadOperations: [UploadOperation]?
+        @NullCodable public var assetDeliveryState: AppMediaAssetState?
+        @NullCodable public var fileName: String?
+        @NullCodable public var fileSize: Int?
+        @NullCodable public var sourceFileChecksum: String?
+        @NullCodable public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.assetDeliveryState = assetDeliveryState
@@ -82,7 +82,7 @@ public struct AppStoreReviewAttachment: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships>
      */
     public struct Relationships: Codable {
-        public let appStoreReviewDetail: AppStoreReviewDetail?
+        @NullCodable public var appStoreReviewDetail: AppStoreReviewDetail?
 
         public init(appStoreReviewDetail: AppStoreReviewDetail? = nil) {
             self.appStoreReviewDetail = appStoreReviewDetail
@@ -96,9 +96,9 @@ public struct AppStoreReviewAttachment: Codable {
          */
         public struct AppStoreReviewDetail: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -149,9 +149,9 @@ public struct AppStoreReviewAttachment: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

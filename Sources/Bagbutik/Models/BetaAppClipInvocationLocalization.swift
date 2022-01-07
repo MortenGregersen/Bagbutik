@@ -55,9 +55,9 @@ public struct BetaAppClipInvocationLocalization: Codable {
      */
     public struct Attributes: Codable {
         /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
-        public let locale: String?
+        @NullCodable public var locale: String?
         /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
-        public let title: String?
+        @NullCodable public var title: String?
 
         public init(locale: String? = nil, title: String? = nil) {
             self.locale = locale

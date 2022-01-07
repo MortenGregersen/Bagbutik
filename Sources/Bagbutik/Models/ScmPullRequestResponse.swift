@@ -10,7 +10,7 @@ public struct ScmPullRequestResponse: Codable {
     /// The resource data.
     public let data: ScmPullRequest
     /// The included related resources.
-    public let included: [ScmRepository]?
+    @NullCodable public var included: [ScmRepository]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

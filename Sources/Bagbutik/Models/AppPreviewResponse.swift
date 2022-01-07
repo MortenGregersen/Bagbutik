@@ -10,7 +10,7 @@ public struct AppPreviewResponse: Codable {
     /// The resource data.
     public let data: AppPreview
     /// The included related resources.
-    public let included: [AppPreviewSet]?
+    @NullCodable public var included: [AppPreviewSet]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

@@ -11,11 +11,11 @@ public struct ScmGitReferencesResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [ScmGitReference]
     /// The included related resources.
-    public let included: [ScmRepository]?
+    @NullCodable public var included: [ScmRepository]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    public let meta: PagingInformation?
+    @NullCodable public var meta: PagingInformation?
 
     public init(data: [ScmGitReference], included: [ScmRepository]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

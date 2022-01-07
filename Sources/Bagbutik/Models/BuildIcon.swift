@@ -54,8 +54,8 @@ public struct BuildIcon: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/buildicon/attributes>
      */
     public struct Attributes: Codable {
-        public let iconAsset: ImageAsset?
-        public let iconType: IconAssetType?
+        @NullCodable public var iconAsset: ImageAsset?
+        @NullCodable public var iconType: IconAssetType?
 
         public init(iconAsset: ImageAsset? = nil, iconType: IconAssetType? = nil) {
             self.iconAsset = iconAsset

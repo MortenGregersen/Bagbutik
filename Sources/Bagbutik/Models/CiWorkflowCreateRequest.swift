@@ -65,7 +65,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// The workflow’s actions.
             public let actions: [CiAction]
             /// A start condition that starts new builds for changes to a branch.
-            public let branchStartCondition: CiBranchStartCondition?
+            @NullCodable public var branchStartCondition: CiBranchStartCondition?
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public let clean: Bool
             /// The relative path to your Xcode project or workspace.
@@ -75,15 +75,15 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// A Boolean value that indicates whether the workflow is active or deactivated.
             public let isEnabled: Bool
             /// A Boolean value that indicates whether edits to the workflow are restricted.
-            public let isLockedForEditing: Bool?
+            @NullCodable public var isLockedForEditing: Bool?
             /// The name of the workflow you want to create; for example, My New Workflow.
             public let name: String
             /// A start condition that starts new builds for changes to a pull request.
-            public let pullRequestStartCondition: CiPullRequestStartCondition?
+            @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
             /// A start condition that starts new builds based on a custom schedule.
-            public let scheduledStartCondition: CiScheduledStartCondition?
+            @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
             /// A start condition that starts new builds for changes to a tag.
-            public let tagStartCondition: CiTagStartCondition?
+            @NullCodable public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction], branchStartCondition: CiBranchStartCondition? = nil, clean: Bool, containerFilePath: String, description: String, isEnabled: Bool, isLockedForEditing: Bool? = nil, name: String, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
                 self.actions = actions

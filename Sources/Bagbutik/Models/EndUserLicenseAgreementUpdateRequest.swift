@@ -68,7 +68,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let agreementText: String?
+            @NullCodable public var agreementText: String?
 
             public init(agreementText: String? = nil) {
                 self.agreementText = agreementText
@@ -82,7 +82,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let territories: Territories?
+            @NullCodable public var territories: Territories?
 
             public init(territories: Territories? = nil) {
                 self.territories = territories
@@ -90,7 +90,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
 
             public struct Territories: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data

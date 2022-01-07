@@ -61,29 +61,29 @@ public struct AppEncryptionDeclaration: Codable {
      */
     public struct Attributes: Codable {
         /// The approval state of your export compliance documentation.
-        public let appEncryptionDeclarationState: AppEncryptionDeclarationState?
+        @NullCodable public var appEncryptionDeclarationState: AppEncryptionDeclarationState?
         /// A Boolean value that indicates the intent to distribute your app on the French App Store.
-        public let availableOnFrenchStore: Bool?
+        @NullCodable public var availableOnFrenchStore: Bool?
         /// A unique identifier that can be added to your app to associate it with a given declaration.
-        public let codeValue: String?
+        @NullCodable public var codeValue: String?
         /// A Boolean value that indicates your app implements any proprietary encryption algorithms.
-        public let containsProprietaryCryptography: Bool?
+        @NullCodable public var containsProprietaryCryptography: Bool?
         /// A Boolean value that indicates your app implements any standard encryption algorithms instead of, or in addition to, using or accessing the encryption in Apple’s operating systems.
-        public let containsThirdPartyCryptography: Bool?
+        @NullCodable public var containsThirdPartyCryptography: Bool?
         /// The document name of your submitted export compliance documentation.
-        public let documentName: String?
+        @NullCodable public var documentName: String?
         /// The file type of your submitted export compliance documentation.
-        public let documentType: String?
+        @NullCodable public var documentType: String?
         /// The URL to the file of your submitted export compliance documentation.
-        public let documentUrl: String?
+        @NullCodable public var documentUrl: String?
         /// A Boolean value that indicates your app is exempt based on your use of encryption and the app's availability.
-        public let exempt: Bool?
+        @NullCodable public var exempt: Bool?
         /// The platform of the declaration.
-        public let platform: Platform?
+        @NullCodable public var platform: Platform?
         /// The date and time you submitted your declaration.
-        public let uploadedDate: Date?
+        @NullCodable public var uploadedDate: Date?
         /// A Boolean value that indicates whether your app uses, contains, or incorporates cryptography.
-        public let usesEncryption: Bool?
+        @NullCodable public var usesEncryption: Bool?
 
         public init(appEncryptionDeclarationState: AppEncryptionDeclarationState? = nil, availableOnFrenchStore: Bool? = nil, codeValue: String? = nil, containsProprietaryCryptography: Bool? = nil, containsThirdPartyCryptography: Bool? = nil, documentName: String? = nil, documentType: String? = nil, documentUrl: String? = nil, exempt: Bool? = nil, platform: Platform? = nil, uploadedDate: Date? = nil, usesEncryption: Bool? = nil) {
             self.appEncryptionDeclarationState = appEncryptionDeclarationState
@@ -108,7 +108,7 @@ public struct AppEncryptionDeclaration: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/relationships>
      */
     public struct Relationships: Codable {
-        public let app: App?
+        @NullCodable public var app: App?
 
         public init(app: App? = nil) {
             self.app = app
@@ -122,9 +122,9 @@ public struct AppEncryptionDeclaration: Codable {
          */
         public struct App: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -175,9 +175,9 @@ public struct AppEncryptionDeclaration: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -62,8 +62,8 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilityupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let capabilityType: CapabilityType?
-            public let settings: [CapabilitySetting]?
+            @NullCodable public var capabilityType: CapabilityType?
+            @NullCodable public var settings: [CapabilitySetting]?
 
             public init(capabilityType: CapabilityType? = nil, settings: [CapabilitySetting]? = nil) {
                 self.capabilityType = capabilityType

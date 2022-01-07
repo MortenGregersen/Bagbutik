@@ -61,13 +61,13 @@ public struct ScmGitReference: Codable {
      */
     public struct Attributes: Codable {
         /// The canonical name of the Git reference.
-        public let canonicalName: String?
+        @NullCodable public var canonicalName: String?
         /// A Boolean value that indicates whether the Git reference was deleted.
-        public let isDeleted: Bool?
+        @NullCodable public var isDeleted: Bool?
         /// A value that indicates whether the Git reference is a tag or a branch.
-        public let kind: CiGitRefKind?
+        @NullCodable public var kind: CiGitRefKind?
         /// The name of the Git reference.
-        public let name: String?
+        @NullCodable public var name: String?
 
         public init(canonicalName: String? = nil, isDeleted: Bool? = nil, kind: CiGitRefKind? = nil, name: String? = nil) {
             self.canonicalName = canonicalName
@@ -84,7 +84,7 @@ public struct ScmGitReference: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships>
      */
     public struct Relationships: Codable {
-        public let repository: Repository?
+        @NullCodable public var repository: Repository?
 
         public init(repository: Repository? = nil) {
             self.repository = repository
@@ -98,9 +98,9 @@ public struct ScmGitReference: Codable {
          */
         public struct Repository: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -151,9 +151,9 @@ public struct ScmGitReference: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -54,7 +54,7 @@ public struct Territory: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/territory/attributes>
      */
     public struct Attributes: Codable {
-        public let currency: String?
+        @NullCodable public var currency: String?
 
         public init(currency: String? = nil) {
             self.currency = currency

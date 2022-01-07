@@ -62,7 +62,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let phasedReleaseState: PhasedReleaseState?
+            @NullCodable public var phasedReleaseState: PhasedReleaseState?
 
             public init(phasedReleaseState: PhasedReleaseState? = nil) {
                 self.phasedReleaseState = phasedReleaseState

@@ -60,14 +60,14 @@ public struct Profile: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/profile/attributes>
      */
     public struct Attributes: Codable {
-        public let createdDate: Date?
-        public let expirationDate: Date?
-        public let name: String?
-        public let platform: BundleIdPlatform?
-        public let profileContent: String?
-        public let profileState: ProfileState?
-        public let profileType: ProfileType?
-        public let uuid: String?
+        @NullCodable public var createdDate: Date?
+        @NullCodable public var expirationDate: Date?
+        @NullCodable public var name: String?
+        @NullCodable public var platform: BundleIdPlatform?
+        @NullCodable public var profileContent: String?
+        @NullCodable public var profileState: ProfileState?
+        @NullCodable public var profileType: ProfileType?
+        @NullCodable public var uuid: String?
 
         public init(createdDate: Date? = nil, expirationDate: Date? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, profileContent: String? = nil, profileState: ProfileState? = nil, profileType: ProfileType? = nil, uuid: String? = nil) {
             self.createdDate = createdDate
@@ -110,9 +110,9 @@ public struct Profile: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships>
      */
     public struct Relationships: Codable {
-        public let bundleId: BundleId?
-        public let certificates: Certificates?
-        public let devices: Devices?
+        @NullCodable public var bundleId: BundleId?
+        @NullCodable public var certificates: Certificates?
+        @NullCodable public var devices: Devices?
 
         public init(bundleId: BundleId? = nil, certificates: Certificates? = nil, devices: Devices? = nil) {
             self.bundleId = bundleId
@@ -128,9 +128,9 @@ public struct Profile: Codable {
          */
         public struct BundleId: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -181,9 +181,9 @@ public struct Profile: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -200,11 +200,11 @@ public struct Profile: Codable {
          */
         public struct Certificates: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -256,9 +256,9 @@ public struct Profile: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -275,11 +275,11 @@ public struct Profile: Codable {
          */
         public struct Devices: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -331,9 +331,9 @@ public struct Profile: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

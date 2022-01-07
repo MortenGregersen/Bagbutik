@@ -61,7 +61,7 @@ public struct BetaAppClipInvocation: Codable {
      */
     public struct Attributes: Codable {
         /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
-        public let url: String?
+        @NullCodable public var url: String?
 
         public init(url: String? = nil) {
             self.url = url
@@ -75,7 +75,7 @@ public struct BetaAppClipInvocation: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships>
      */
     public struct Relationships: Codable {
-        public let betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations?
+        @NullCodable public var betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations?
 
         public init(betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations? = nil) {
             self.betaAppClipInvocationLocalizations = betaAppClipInvocationLocalizations
@@ -89,11 +89,11 @@ public struct BetaAppClipInvocation: Codable {
          */
         public struct BetaAppClipInvocationLocalizations: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -145,9 +145,9 @@ public struct BetaAppClipInvocation: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -62,12 +62,12 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let primaryCategory: PrimaryCategory?
-            public let primarySubcategoryOne: PrimarySubcategoryOne?
-            public let primarySubcategoryTwo: PrimarySubcategoryTwo?
-            public let secondaryCategory: SecondaryCategory?
-            public let secondarySubcategoryOne: SecondarySubcategoryOne?
-            public let secondarySubcategoryTwo: SecondarySubcategoryTwo?
+            @NullCodable public var primaryCategory: PrimaryCategory?
+            @NullCodable public var primarySubcategoryOne: PrimarySubcategoryOne?
+            @NullCodable public var primarySubcategoryTwo: PrimarySubcategoryTwo?
+            @NullCodable public var secondaryCategory: SecondaryCategory?
+            @NullCodable public var secondarySubcategoryOne: SecondarySubcategoryOne?
+            @NullCodable public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
 
             public init(primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
                 self.primaryCategory = primaryCategory
@@ -80,7 +80,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
             public struct PrimaryCategory: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -125,7 +125,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
             public struct PrimarySubcategoryOne: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -170,7 +170,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
             public struct PrimarySubcategoryTwo: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -215,7 +215,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
             public struct SecondaryCategory: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -260,7 +260,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
             public struct SecondarySubcategoryOne: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -305,7 +305,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
             public struct SecondarySubcategoryTwo: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

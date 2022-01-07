@@ -69,11 +69,11 @@ public struct UserUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
-            public let allAppsVisible: Bool?
+            @NullCodable public var allAppsVisible: Bool?
             /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
-            public let provisioningAllowed: Bool?
+            @NullCodable public var provisioningAllowed: Bool?
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
-            public let roles: [UserRole]?
+            @NullCodable public var roles: [UserRole]?
 
             public init(allAppsVisible: Bool? = nil, provisioningAllowed: Bool? = nil, roles: [UserRole]? = nil) {
                 self.allAppsVisible = allAppsVisible
@@ -89,7 +89,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let visibleApps: VisibleApps?
+            @NullCodable public var visibleApps: VisibleApps?
 
             public init(visibleApps: VisibleApps? = nil) {
                 self.visibleApps = visibleApps
@@ -97,7 +97,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
 
             public struct VisibleApps: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data

@@ -63,7 +63,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The call-to-action verb that appears on the App Clip card.
-            public let action: AppClipAction?
+            @NullCodable public var action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
                 self.action = action
@@ -78,8 +78,8 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let appClip: AppClip
-            public let appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate?
-            public let releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
+            @NullCodable public var appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate?
+            @NullCodable public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
             public init(appClip: AppClip, appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate? = nil, releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
                 self.appClip = appClip
@@ -134,7 +134,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
 
             public struct AppClipDefaultExperienceTemplate: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -179,7 +179,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
 
             public struct ReleaseWithAppStoreVersion: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

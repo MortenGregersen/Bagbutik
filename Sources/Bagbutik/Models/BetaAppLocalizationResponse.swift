@@ -10,7 +10,7 @@ public struct BetaAppLocalizationResponse: Codable {
     /// The resource data.
     public let data: BetaAppLocalization
     /// The included related resources.
-    public let included: [App]?
+    @NullCodable public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

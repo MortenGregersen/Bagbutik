@@ -65,7 +65,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
             /// The specified locale.
             public let locale: String
             /// The subtitle that appears on the App Clip card for the default App Clip experience.
-            public let subtitle: String?
+            @NullCodable public var subtitle: String?
 
             public init(locale: String, subtitle: String? = nil) {
                 self.locale = locale

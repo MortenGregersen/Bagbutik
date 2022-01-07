@@ -61,8 +61,8 @@ public struct BetaAppReviewSubmission: Codable {
      */
     public struct Attributes: Codable {
         /// A state that indicates the current status of the beta app review submission.
-        public let betaReviewState: BetaReviewState?
-        public let submittedDate: Date?
+        @NullCodable public var betaReviewState: BetaReviewState?
+        @NullCodable public var submittedDate: Date?
 
         public init(betaReviewState: BetaReviewState? = nil, submittedDate: Date? = nil) {
             self.betaReviewState = betaReviewState
@@ -77,7 +77,7 @@ public struct BetaAppReviewSubmission: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships>
      */
     public struct Relationships: Codable {
-        public let build: Build?
+        @NullCodable public var build: Build?
 
         public init(build: Build? = nil) {
             self.build = build
@@ -91,9 +91,9 @@ public struct BetaAppReviewSubmission: Codable {
          */
         public struct Build: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -144,9 +144,9 @@ public struct BetaAppReviewSubmission: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

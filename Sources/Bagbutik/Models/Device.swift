@@ -54,13 +54,13 @@ public struct Device: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/device/attributes>
      */
     public struct Attributes: Codable {
-        public let addedDate: Date?
-        public let deviceClass: DeviceClass?
-        public let model: String?
-        public let name: String?
-        public let platform: BundleIdPlatform?
-        public let status: Status?
-        public let udid: String?
+        @NullCodable public var addedDate: Date?
+        @NullCodable public var deviceClass: DeviceClass?
+        @NullCodable public var model: String?
+        @NullCodable public var name: String?
+        @NullCodable public var platform: BundleIdPlatform?
+        @NullCodable public var status: Status?
+        @NullCodable public var udid: String?
 
         public init(addedDate: Date? = nil, deviceClass: DeviceClass? = nil, model: String? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, status: Status? = nil, udid: String? = nil) {
             self.addedDate = addedDate

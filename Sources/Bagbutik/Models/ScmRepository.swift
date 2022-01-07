@@ -61,15 +61,15 @@ public struct ScmRepository: Codable {
      */
     public struct Attributes: Codable {
         /// The Git repository’s URL for cloning it using HTTP.
-        public let httpCloneUrl: String?
+        @NullCodable public var httpCloneUrl: String?
         /// The date and time when Xcode Cloud last accessed the repository.
-        public let lastAccessedDate: Date?
+        @NullCodable public var lastAccessedDate: Date?
         /// The name of the Git repository’s owner.
-        public let ownerName: String?
+        @NullCodable public var ownerName: String?
         /// The name of the Git repository.
-        public let repositoryName: String?
+        @NullCodable public var repositoryName: String?
         /// The Git repository’s URL for cloning it using SSH.
-        public let sshCloneUrl: String?
+        @NullCodable public var sshCloneUrl: String?
 
         public init(httpCloneUrl: String? = nil, lastAccessedDate: Date? = nil, ownerName: String? = nil, repositoryName: String? = nil, sshCloneUrl: String? = nil) {
             self.httpCloneUrl = httpCloneUrl
@@ -87,8 +87,8 @@ public struct ScmRepository: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships>
      */
     public struct Relationships: Codable {
-        public let defaultBranch: DefaultBranch?
-        public let scmProvider: ScmProvider?
+        @NullCodable public var defaultBranch: DefaultBranch?
+        @NullCodable public var scmProvider: ScmProvider?
 
         public init(defaultBranch: DefaultBranch? = nil, scmProvider: ScmProvider? = nil) {
             self.defaultBranch = defaultBranch
@@ -103,9 +103,9 @@ public struct ScmRepository: Codable {
          */
         public struct DefaultBranch: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -156,9 +156,9 @@ public struct ScmRepository: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -175,9 +175,9 @@ public struct ScmRepository: Codable {
          */
         public struct ScmProvider: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -228,9 +228,9 @@ public struct ScmRepository: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

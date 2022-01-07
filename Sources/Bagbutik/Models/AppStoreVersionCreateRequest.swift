@@ -62,12 +62,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let copyright: String?
-            public let earliestReleaseDate: Date?
+            @NullCodable public var copyright: String?
+            @NullCodable public var earliestReleaseDate: Date?
             public let platform: Platform
-            public let releaseType: AppStoreVersion.Attributes.ReleaseType?
+            @NullCodable public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var usesIdfa: Bool? = nil
+            @NullCodable public var usesIdfa: Bool? = nil
             public let versionString: String
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -97,8 +97,8 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
-            public let appStoreVersionLocalizations: AppStoreVersionLocalizations?
-            public let build: Build?
+            @NullCodable public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
+            @NullCodable public var build: Build?
 
             public init(app: App, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, build: Build? = nil) {
                 self.app = app
@@ -153,7 +153,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
 
             public struct AppStoreVersionLocalizations: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -198,7 +198,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
 
             public struct Build: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

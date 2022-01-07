@@ -55,17 +55,17 @@ public struct AppClipAdvancedExperienceImage: Codable {
      */
     public struct Attributes: Codable {
         /// The state of the App Clip card image asset you uploaded.
-        public let assetDeliveryState: AppMediaAssetState?
+        @NullCodable public var assetDeliveryState: AppMediaAssetState?
         /// The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.
-        public let fileName: String?
+        @NullCodable public var fileName: String?
         /// The size of the image asset that appears on the App Clip card for the advanced App Clip experience.
-        public let fileSize: Int?
+        @NullCodable public var fileSize: Int?
         /// The image asset that appears on the App Clip card of an advanced App Clip experience.
-        public let imageAsset: ImageAsset?
+        @NullCodable public var imageAsset: ImageAsset?
         /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
-        public let sourceFileChecksum: String?
+        @NullCodable public var sourceFileChecksum: String?
         /// Upload operations for the image asset that appears on the App Clip card for an advanced App Clip experience.
-        public let uploadOperations: [UploadOperation]?
+        @NullCodable public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.assetDeliveryState = assetDeliveryState

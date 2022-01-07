@@ -8,7 +8,7 @@ import Foundation
  */
 public struct Parameter: Codable {
     /// The query parameter that produced the error.
-    public let parameter: String?
+    @NullCodable public var parameter: String?
 
     public init(parameter: String? = nil) {
         self.parameter = parameter

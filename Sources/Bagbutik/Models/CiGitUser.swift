@@ -8,9 +8,9 @@ import Foundation
  */
 public struct CiGitUser: Codable {
     /// The URL to the Git user’s avatar image.
-    public let avatarUrl: String?
+    @NullCodable public var avatarUrl: String?
     /// The name of the Git user.
-    public let displayName: String?
+    @NullCodable public var displayName: String?
 
     public init(avatarUrl: String? = nil, displayName: String? = nil) {
         self.avatarUrl = avatarUrl

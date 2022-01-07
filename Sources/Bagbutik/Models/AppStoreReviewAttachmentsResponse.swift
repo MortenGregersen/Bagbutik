@@ -11,11 +11,11 @@ public struct AppStoreReviewAttachmentsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppStoreReviewAttachment]
     /// The included related resources.
-    public let included: [AppStoreReviewDetail]?
+    @NullCodable public var included: [AppStoreReviewDetail]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    public let meta: PagingInformation?
+    @NullCodable public var meta: PagingInformation?
 
     public init(data: [AppStoreReviewAttachment], included: [AppStoreReviewDetail]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

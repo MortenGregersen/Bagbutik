@@ -69,27 +69,27 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The workflow’s actions.
-            public let actions: [CiAction]?
+            @NullCodable public var actions: [CiAction]?
             /// The workflow’s start condition that starts new builds for changes to a branch.
-            public let branchStartCondition: CiBranchStartCondition?
+            @NullCodable public var branchStartCondition: CiBranchStartCondition?
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
-            public let clean: Bool?
+            @NullCodable public var clean: Bool?
             /// The path to your Xcode project or workspace.
-            public let containerFilePath: String?
+            @NullCodable public var containerFilePath: String?
             /// The workflow description.
-            public let description: String?
+            @NullCodable public var description: String?
             /// A Boolean value that indicates whether the workflow is active or deactivated.
-            public let isEnabled: Bool?
+            @NullCodable public var isEnabled: Bool?
             /// A Boolean value that indicates whether edits to the workflow are restricted.
-            public let isLockedForEditing: Bool?
+            @NullCodable public var isLockedForEditing: Bool?
             /// The name of the workflow you want to create; for example, My Workflow.
-            public let name: String?
+            @NullCodable public var name: String?
             /// The workflow’s start condition for pull request changes.
-            public let pullRequestStartCondition: CiPullRequestStartCondition?
+            @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
             /// The workflow’s start condition that starts new builds on a custom schedule.
-            public let scheduledStartCondition: CiScheduledStartCondition?
+            @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
             /// The workflow’s start condition that starts new builds for changes to a tag.
-            public let tagStartCondition: CiTagStartCondition?
+            @NullCodable public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction]? = nil, branchStartCondition: CiBranchStartCondition? = nil, clean: Bool? = nil, containerFilePath: String? = nil, description: String? = nil, isEnabled: Bool? = nil, isLockedForEditing: Bool? = nil, name: String? = nil, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
                 self.actions = actions
@@ -113,8 +113,8 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let macOsVersion: MacOsVersion?
-            public let xcodeVersion: XcodeVersion?
+            @NullCodable public var macOsVersion: MacOsVersion?
+            @NullCodable public var xcodeVersion: XcodeVersion?
 
             public init(macOsVersion: MacOsVersion? = nil, xcodeVersion: XcodeVersion? = nil) {
                 self.macOsVersion = macOsVersion
@@ -123,7 +123,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
 
             public struct MacOsVersion: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
@@ -168,7 +168,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
 
             public struct XcodeVersion: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

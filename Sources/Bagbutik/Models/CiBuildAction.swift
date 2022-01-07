@@ -61,21 +61,21 @@ public struct CiBuildAction: Codable {
      */
     public struct Attributes: Codable {
         /// The type of the build action.
-        public let actionType: CiActionType?
+        @NullCodable public var actionType: CiActionType?
         /// The status of the action.
-        public let completionStatus: CiCompletionStatus?
+        @NullCodable public var completionStatus: CiCompletionStatus?
         /// A string that indicates the progress of the build action.
-        public let executionProgress: CiExecutionProgress?
+        @NullCodable public var executionProgress: CiExecutionProgress?
         /// The date and time when Xcode Cloud finished performing the action.
-        public let finishedDate: Date?
+        @NullCodable public var finishedDate: Date?
         /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
-        public let isRequiredToPass: Bool?
+        @NullCodable public var isRequiredToPass: Bool?
         /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the action.
-        public let issueCounts: CiIssueCounts?
+        @NullCodable public var issueCounts: CiIssueCounts?
         /// The name of the build action; for example, Archive iOS.
-        public let name: String?
+        @NullCodable public var name: String?
         /// The date and time when Xcode Cloud started performing the action.
-        public let startedDate: Date?
+        @NullCodable public var startedDate: Date?
 
         public init(actionType: CiActionType? = nil, completionStatus: CiCompletionStatus? = nil, executionProgress: CiExecutionProgress? = nil, finishedDate: Date? = nil, isRequiredToPass: Bool? = nil, issueCounts: CiIssueCounts? = nil, name: String? = nil, startedDate: Date? = nil) {
             self.actionType = actionType
@@ -96,7 +96,7 @@ public struct CiBuildAction: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships>
      */
     public struct Relationships: Codable {
-        public let buildRun: BuildRun?
+        @NullCodable public var buildRun: BuildRun?
 
         public init(buildRun: BuildRun? = nil) {
             self.buildRun = buildRun
@@ -110,9 +110,9 @@ public struct CiBuildAction: Codable {
          */
         public struct BuildRun: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -163,9 +163,9 @@ public struct CiBuildAction: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

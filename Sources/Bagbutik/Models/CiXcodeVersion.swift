@@ -55,11 +55,11 @@ public struct CiXcodeVersion: Codable {
 
     public struct Attributes: Codable {
         /// The name of the Xcode version.
-        public let name: String?
+        @NullCodable public var name: String?
         /// A list of the Xcode version’s available test destinations.
-        public let testDestinations: [TestDestinations]?
+        @NullCodable public var testDestinations: [TestDestinations]?
         /// The Xcode version.
-        public let version: String?
+        @NullCodable public var version: String?
 
         public init(name: String? = nil, testDestinations: [TestDestinations]? = nil, version: String? = nil) {
             self.name = name
@@ -68,10 +68,10 @@ public struct CiXcodeVersion: Codable {
         }
 
         public struct TestDestinations: Codable {
-            public let availableRuntimes: [AvailableRuntimes]?
-            public let deviceTypeIdentifier: String?
-            public let deviceTypeName: String?
-            public let kind: CiTestDestinationKind?
+            @NullCodable public var availableRuntimes: [AvailableRuntimes]?
+            @NullCodable public var deviceTypeIdentifier: String?
+            @NullCodable public var deviceTypeName: String?
+            @NullCodable public var kind: CiTestDestinationKind?
 
             public init(availableRuntimes: [AvailableRuntimes]? = nil, deviceTypeIdentifier: String? = nil, deviceTypeName: String? = nil, kind: CiTestDestinationKind? = nil) {
                 self.availableRuntimes = availableRuntimes
@@ -81,8 +81,8 @@ public struct CiXcodeVersion: Codable {
             }
 
             public struct AvailableRuntimes: Codable {
-                public let runtimeIdentifier: String?
-                public let runtimeName: String?
+                @NullCodable public var runtimeIdentifier: String?
+                @NullCodable public var runtimeName: String?
 
                 public init(runtimeIdentifier: String? = nil, runtimeName: String? = nil) {
                     self.runtimeIdentifier = runtimeIdentifier
@@ -99,7 +99,7 @@ public struct CiXcodeVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships>
      */
     public struct Relationships: Codable {
-        public let macOsVersions: MacOsVersions?
+        @NullCodable public var macOsVersions: MacOsVersions?
 
         public init(macOsVersions: MacOsVersions? = nil) {
             self.macOsVersions = macOsVersions
@@ -113,11 +113,11 @@ public struct CiXcodeVersion: Codable {
          */
         public struct MacOsVersions: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -169,9 +169,9 @@ public struct CiXcodeVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

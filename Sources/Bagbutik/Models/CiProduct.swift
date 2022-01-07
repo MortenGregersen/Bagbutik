@@ -61,11 +61,11 @@ public struct CiProduct: Codable {
      */
     public struct Attributes: Codable {
         /// The date when you created the Xcode Cloud product.
-        public let createdDate: Date?
+        @NullCodable public var createdDate: Date?
         /// The name of the Xcode Cloud product.
-        public let name: String?
+        @NullCodable public var name: String?
         /// A string that indicates whether the Xcode Cloud product is a framework or an app.
-        public let productType: ProductType?
+        @NullCodable public var productType: ProductType?
 
         public init(createdDate: Date? = nil, name: String? = nil, productType: ProductType? = nil) {
             self.createdDate = createdDate
@@ -86,9 +86,9 @@ public struct CiProduct: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships>
      */
     public struct Relationships: Codable {
-        public let app: App?
-        public let bundleId: BundleId?
-        public let primaryRepositories: PrimaryRepositories?
+        @NullCodable public var app: App?
+        @NullCodable public var bundleId: BundleId?
+        @NullCodable public var primaryRepositories: PrimaryRepositories?
 
         public init(app: App? = nil, bundleId: BundleId? = nil, primaryRepositories: PrimaryRepositories? = nil) {
             self.app = app
@@ -104,9 +104,9 @@ public struct CiProduct: Codable {
          */
         public struct App: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -157,9 +157,9 @@ public struct CiProduct: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -176,9 +176,9 @@ public struct CiProduct: Codable {
          */
         public struct BundleId: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -229,9 +229,9 @@ public struct CiProduct: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -248,11 +248,11 @@ public struct CiProduct: Codable {
          */
         public struct PrimaryRepositories: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -304,9 +304,9 @@ public struct CiProduct: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -76,7 +76,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let appStoreVersionLocalization: AppStoreVersionLocalization?
+            @NullCodable public var appStoreVersionLocalization: AppStoreVersionLocalization?
 
             public init(appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
                 self.appStoreVersionLocalization = appStoreVersionLocalization
@@ -84,7 +84,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
 
             public struct AppStoreVersionLocalization: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

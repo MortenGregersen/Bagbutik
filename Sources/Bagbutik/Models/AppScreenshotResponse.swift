@@ -10,7 +10,7 @@ public struct AppScreenshotResponse: Codable {
     /// The resource data.
     public let data: AppScreenshot
     /// The included related resources.
-    public let included: [AppScreenshotSet]?
+    @NullCodable public var included: [AppScreenshotSet]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

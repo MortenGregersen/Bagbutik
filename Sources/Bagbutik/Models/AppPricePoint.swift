@@ -60,8 +60,8 @@ public struct AppPricePoint: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/attributes>
      */
     public struct Attributes: Codable {
-        public let customerPrice: String?
-        public let proceeds: String?
+        @NullCodable public var customerPrice: String?
+        @NullCodable public var proceeds: String?
 
         public init(customerPrice: String? = nil, proceeds: String? = nil) {
             self.customerPrice = customerPrice
@@ -76,8 +76,8 @@ public struct AppPricePoint: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships>
      */
     public struct Relationships: Codable {
-        public let priceTier: PriceTier?
-        public let territory: Territory?
+        @NullCodable public var priceTier: PriceTier?
+        @NullCodable public var territory: Territory?
 
         public init(priceTier: PriceTier? = nil, territory: Territory? = nil) {
             self.priceTier = priceTier
@@ -92,9 +92,9 @@ public struct AppPricePoint: Codable {
          */
         public struct PriceTier: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -145,9 +145,9 @@ public struct AppPricePoint: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -164,9 +164,9 @@ public struct AppPricePoint: Codable {
          */
         public struct Territory: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -217,9 +217,9 @@ public struct AppPricePoint: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                @NullCodable public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                @NullCodable public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

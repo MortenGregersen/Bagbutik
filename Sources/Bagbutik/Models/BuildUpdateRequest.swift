@@ -69,9 +69,9 @@ public struct BuildUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
-            public let expired: Bool?
+            @NullCodable public var expired: Bool?
             /// A Boolean value that indicates whether the build uses non-exempt encryption.
-            public let usesNonExemptEncryption: Bool?
+            @NullCodable public var usesNonExemptEncryption: Bool?
 
             public init(expired: Bool? = nil, usesNonExemptEncryption: Bool? = nil) {
                 self.expired = expired
@@ -86,7 +86,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let appEncryptionDeclaration: AppEncryptionDeclaration?
+            @NullCodable public var appEncryptionDeclaration: AppEncryptionDeclaration?
 
             public init(appEncryptionDeclaration: AppEncryptionDeclaration? = nil) {
                 self.appEncryptionDeclaration = appEncryptionDeclaration
@@ -94,7 +94,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
 
             public struct AppEncryptionDeclaration: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: Data?
+                @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data

@@ -59,7 +59,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             public let identifier: String
             public let name: String
             public let platform: BundleIdPlatform
-            public let seedId: String?
+            @NullCodable public var seedId: String?
 
             public init(identifier: String, name: String, platform: BundleIdPlatform, seedId: String? = nil) {
                 self.identifier = identifier
