@@ -61,7 +61,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
      */
     public struct Attributes: Codable {
         /// An array of invocation URLs for your App Clip.
-        @NullCodable public var invocationUrls: String?
+        public var invocationUrls: String?
 
         public init(invocationUrls: String? = nil) {
             self.invocationUrls = invocationUrls
@@ -142,9 +142,9 @@ public struct AppClipAppStoreReviewDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

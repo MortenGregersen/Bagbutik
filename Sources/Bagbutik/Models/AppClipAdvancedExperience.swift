@@ -67,9 +67,9 @@ public struct AppClipAdvancedExperience: Codable {
         /// The default language for the advanced App Clip experience.
         @NullCodable public var defaultLanguage: AppClipAdvancedExperienceLanguage?
         /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
-        @NullCodable public var isPoweredBy: Bool?
+        public var isPoweredBy: Bool?
         /// The invocation URL of the advanced App Clip experience.
-        @NullCodable public var link: String?
+        public var link: String?
         /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
         @NullCodable public var place: Place?
         /// A string that describes a place’s match status with Points of Interest (POI) in Apple Maps. PENDING indicates that Apple Maps is currently matching the place to a POI. MATCHED indicates that the provided place information matched a POI, and NO_MATCH indicates that the place doesn’t match a POI in Apple Maps or is in a location not supported by Apple Maps.
@@ -77,7 +77,7 @@ public struct AppClipAdvancedExperience: Codable {
         /// A string that describes the status of an advanced App Clip experience. RECEIVED indicates that users can invoke this experience, DEACTIVATED indicates that the experience is deactivated and users can’t launch the App Clip with this invocation, and APP_TRANSFER_IN_PROGRESS indicates that the experience is part of an app that’s currently transferred to another developer.
         @NullCodable public var status: Status?
         /// The build version of the App Clip as an integer value; for example, 1234.
-        @NullCodable public var version: Int?
+        public var version: Int?
 
         public init(action: AppClipAction? = nil, businessCategory: BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, link: String? = nil, place: Place? = nil, placeStatus: PlaceStatus? = nil, status: Status? = nil, version: Int? = nil) {
             self.action = action
@@ -122,14 +122,14 @@ public struct AppClipAdvancedExperience: Codable {
         }
 
         public struct Place: Codable {
-            @NullCodable public var categories: String?
+            public var categories: String?
             @NullCodable public var displayPoint: DisplayPoint?
-            @NullCodable public var homePage: String?
+            public var homePage: String?
             @NullCodable public var mainAddress: MainAddress?
             @NullCodable public var mapAction: MapAction?
-            @NullCodable public var names: String?
+            public var names: String?
             @NullCodable public var phoneNumber: PhoneNumber?
-            @NullCodable public var placeId: String?
+            public var placeId: String?
             @NullCodable public var relationship: Relationship?
 
             public init(categories: String? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: String? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
@@ -154,8 +154,8 @@ public struct AppClipAdvancedExperience: Codable {
                 }
 
                 public struct Coordinates: Codable {
-                    @NullCodable public var latitude: Double?
-                    @NullCodable public var longitude: Double?
+                    public var latitude: Double?
+                    public var longitude: Double?
 
                     public init(latitude: Double? = nil, longitude: Double? = nil) {
                         self.latitude = latitude
@@ -170,7 +170,7 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             public struct MainAddress: Codable {
-                @NullCodable public var fullAddress: String?
+                public var fullAddress: String?
                 @NullCodable public var structuredAddress: StructuredAddress?
 
                 public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
@@ -179,13 +179,13 @@ public struct AppClipAdvancedExperience: Codable {
                 }
 
                 public struct StructuredAddress: Codable {
-                    @NullCodable public var countryCode: String?
-                    @NullCodable public var floor: String?
-                    @NullCodable public var locality: String?
-                    @NullCodable public var neighborhood: String?
-                    @NullCodable public var postalCode: String?
-                    @NullCodable public var stateProvince: String?
-                    @NullCodable public var streetAddress: String?
+                    public var countryCode: String?
+                    public var floor: String?
+                    public var locality: String?
+                    public var neighborhood: String?
+                    public var postalCode: String?
+                    public var stateProvince: String?
+                    public var streetAddress: String?
 
                     public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: String? = nil) {
                         self.countryCode = countryCode
@@ -216,8 +216,8 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             public struct PhoneNumber: Codable {
-                @NullCodable public var intent: String?
-                @NullCodable public var number: String?
+                public var intent: String?
+                public var number: String?
                 @NullCodable public var type: PhoneNumberType?
 
                 public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
@@ -332,9 +332,9 @@ public struct AppClipAdvancedExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -404,9 +404,9 @@ public struct AppClipAdvancedExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -479,9 +479,9 @@ public struct AppClipAdvancedExperience: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

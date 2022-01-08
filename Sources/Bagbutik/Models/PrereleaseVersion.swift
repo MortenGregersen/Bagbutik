@@ -63,7 +63,7 @@ public struct PrereleaseVersion: Codable {
         /// The platform of the prerelease version of your app.
         @NullCodable public var platform: Platform?
         /// The version number of the prerelease version of your app.
-        @NullCodable public var version: String?
+        public var version: String?
 
         public init(platform: Platform? = nil, version: String? = nil) {
             self.platform = platform
@@ -147,9 +147,9 @@ public struct PrereleaseVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -222,9 +222,9 @@ public struct PrereleaseVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

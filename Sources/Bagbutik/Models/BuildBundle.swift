@@ -61,39 +61,39 @@ public struct BuildBundle: Codable {
      */
     public struct Attributes: Codable {
         /// The bundle ID of the build bundle.
-        @NullCodable public var bundleId: String?
+        public var bundleId: String?
         /// The type of the build bundle.
         @NullCodable public var bundleType: BundleType?
         /// The URL to the symbolication file for the app or App Clip.
-        @NullCodable public var dSYMUrl: String?
+        public var dSYMUrl: String?
         /// The protocols that the app uses to communicate with external accessory hardware. For more information, see UISupportedExternalAccessoryProtocols.
-        @NullCodable public var deviceProtocols: String?
+        public var deviceProtocols: String?
         /// Entitlement information for your app or App Clip.
         @NullCodable public var entitlements: [String: [String: String]]?
         /// The name of the build bundle.
-        @NullCodable public var fileName: String?
+        public var fileName: String?
         /// A Boolean value that indicates whether the build bundle contains on-demand resources.
-        @NullCodable public var hasOnDemandResources: Bool?
+        public var hasOnDemandResources: Bool?
         /// A Boolean value that indicates whether the build bundle contains a pre-rendered app icon.
-        @NullCodable public var hasPrerenderedIcon: Bool?
+        public var hasPrerenderedIcon: Bool?
         /// A Boolean value that indicates whether the build bundle contains an app or App Clip that allows users to interact with it through voice, intelligent suggestions, and personalized workflows.
-        @NullCodable public var hasSirikit: Bool?
+        public var hasSirikit: Bool?
         /// A Boolean value that indicates whether the build bundle includes symbol information for debugging and crash reports.
-        @NullCodable public var includesSymbols: Bool?
+        public var includesSymbols: Bool?
         /// A Boolean value that indicates whether an iOS app included in the build bundle is included on the Mac App Store.
-        @NullCodable public var isIosBuildMacAppStoreCompatible: Bool?
+        public var isIosBuildMacAppStoreCompatible: Bool?
         /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
-        @NullCodable public var locales: String?
+        public var locales: String?
         /// The build number of the OS you used to build the app or App Clip.
-        @NullCodable public var platformBuild: String?
+        public var platformBuild: String?
         /// An array of capabilities that your app or App Clip requires.
-        @NullCodable public var requiredCapabilities: String?
+        public var requiredCapabilities: String?
         /// A string that identifies the SDK you used to build your app or App Clip.
-        @NullCodable public var sdkBuild: String?
+        public var sdkBuild: String?
         /// An array of supported CPU architectures that your app or App Clip supports.
-        @NullCodable public var supportedArchitectures: String?
+        public var supportedArchitectures: String?
         /// A Boolean value that indicates whether the app or App Clip included in the build bundle uses location services.
-        @NullCodable public var usesLocationServices: Bool?
+        public var usesLocationServices: Bool?
 
         public init(bundleId: String? = nil, bundleType: BundleType? = nil, dSYMUrl: String? = nil, deviceProtocols: String? = nil, entitlements: [String: [String: String]]? = nil, fileName: String? = nil, hasOnDemandResources: Bool? = nil, hasPrerenderedIcon: Bool? = nil, hasSirikit: Bool? = nil, includesSymbols: Bool? = nil, isIosBuildMacAppStoreCompatible: Bool? = nil, locales: String? = nil, platformBuild: String? = nil, requiredCapabilities: String? = nil, sdkBuild: String? = nil, supportedArchitectures: String? = nil, usesLocationServices: Bool? = nil) {
             self.bundleId = bundleId
@@ -201,9 +201,9 @@ public struct BuildBundle: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -273,9 +273,9 @@ public struct BuildBundle: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -348,9 +348,9 @@ public struct BuildBundle: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -423,9 +423,9 @@ public struct BuildBundle: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -10,7 +10,7 @@ import Foundation
  */
 public struct JsonPointer: Codable {
     /// A JSON pointer that indicates the location in the request entity where the error originates.
-    @NullCodable public var pointer: String?
+    public var pointer: String?
 
     public init(pointer: String? = nil) {
         self.pointer = pointer

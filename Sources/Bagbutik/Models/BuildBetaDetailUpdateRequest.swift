@@ -63,7 +63,7 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
-            @NullCodable public var autoNotifyEnabled: Bool?
+            public var autoNotifyEnabled: Bool?
 
             public init(autoNotifyEnabled: Bool? = nil) {
                 self.autoNotifyEnabled = autoNotifyEnabled

@@ -61,9 +61,9 @@ public struct BetaBuildLocalization: Codable {
      */
     public struct Attributes: Codable {
         /// The specified locale. Refer to Table 1 for possible values.
-        @NullCodable public var locale: String?
+        public var locale: String?
         /// A field that describes changes and additions to a build and indicates features you would like your users to test.
-        @NullCodable public var whatsNew: String?
+        public var whatsNew: String?
 
         public init(locale: String? = nil, whatsNew: String? = nil) {
             self.locale = locale
@@ -145,9 +145,9 @@ public struct BetaBuildLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -54,13 +54,13 @@ public struct Certificate: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/certificate/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var certificateContent: String?
+        public var certificateContent: String?
         @NullCodable public var certificateType: CertificateType?
-        @NullCodable public var displayName: String?
-        @NullCodable public var expirationDate: Date?
-        @NullCodable public var name: String?
+        public var displayName: String?
+        public var expirationDate: Date?
+        public var name: String?
         @NullCodable public var platform: BundleIdPlatform?
-        @NullCodable public var serialNumber: String?
+        public var serialNumber: String?
 
         public init(certificateContent: String? = nil, certificateType: CertificateType? = nil, displayName: String? = nil, expirationDate: Date? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, serialNumber: String? = nil) {
             self.certificateContent = certificateContent

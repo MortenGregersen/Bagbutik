@@ -64,8 +64,8 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
         public struct Attributes: Codable {
             public let fileName: String
             public let fileSize: Int
-            @NullCodable public var mimeType: String?
-            @NullCodable public var previewFrameTimeCode: String?
+            public var mimeType: String?
+            public var previewFrameTimeCode: String?
 
             public init(fileName: String, fileSize: Int, mimeType: String? = nil, previewFrameTimeCode: String? = nil) {
                 self.fileName = fileName

@@ -57,7 +57,7 @@ public struct AppClipDomainStatus: Codable {
         /// An array of domains you associated with your app or App Clip.
         @NullCodable public var domains: [Domains]?
         /// The date when App Store Connect last verified the status of an associated domain.
-        @NullCodable public var lastUpdatedDate: Date?
+        public var lastUpdatedDate: Date?
 
         public init(domains: [Domains]? = nil, lastUpdatedDate: Date? = nil) {
             self.domains = domains
@@ -65,10 +65,10 @@ public struct AppClipDomainStatus: Codable {
         }
 
         public struct Domains: Codable {
-            @NullCodable public var domain: String?
+            public var domain: String?
             @NullCodable public var errorCode: ErrorCode?
-            @NullCodable public var isValid: Bool?
-            @NullCodable public var lastUpdatedDate: Date?
+            public var isValid: Bool?
+            public var lastUpdatedDate: Date?
 
             public init(domain: String? = nil, errorCode: ErrorCode? = nil, isValid: Bool? = nil, lastUpdatedDate: Date? = nil) {
                 self.domain = domain

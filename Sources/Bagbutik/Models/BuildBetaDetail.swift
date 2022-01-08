@@ -61,7 +61,7 @@ public struct BuildBetaDetail: Codable {
      */
     public struct Attributes: Codable {
         /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
-        @NullCodable public var autoNotifyEnabled: Bool?
+        public var autoNotifyEnabled: Bool?
         /// A state that indicates if the build is available for external testing.
         @NullCodable public var externalBuildState: ExternalBetaState?
         /// A state that indicates if the build is available for internal testing.
@@ -148,9 +148,9 @@ public struct BuildBetaDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

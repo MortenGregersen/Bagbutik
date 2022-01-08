@@ -8,7 +8,7 @@ import Foundation
  */
 public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
-    @NullCodable public var id: String?
+    public var id: String?
     /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
     /// The resource's attributes.

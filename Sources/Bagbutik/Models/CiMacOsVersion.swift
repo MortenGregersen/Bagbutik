@@ -61,9 +61,9 @@ public struct CiMacOsVersion: Codable {
      */
     public struct Attributes: Codable {
         /// The name of the macOS version.
-        @NullCodable public var name: String?
+        public var name: String?
         /// The macOS version of the simulated environment.
-        @NullCodable public var version: String?
+        public var version: String?
 
         public init(name: String? = nil, version: String? = nil) {
             self.name = name
@@ -148,9 +148,9 @@ public struct CiMacOsVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

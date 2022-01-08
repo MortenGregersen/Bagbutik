@@ -62,17 +62,17 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var feedbackEnabled: Bool?
-            @NullCodable public var hasAccessToAllBuilds: Bool?
-            @NullCodable public var isInternalGroup: Bool?
+            public var feedbackEnabled: Bool?
+            public var hasAccessToAllBuilds: Bool?
+            public var isInternalGroup: Bool?
             /// The name for the beta group.
             public let name: String
             /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
-            @NullCodable public var publicLinkEnabled: Bool?
+            public var publicLinkEnabled: Bool?
             /// The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.
-            @NullCodable public var publicLinkLimit: Int?
+            public var publicLinkLimit: Int?
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
-            @NullCodable public var publicLinkLimitEnabled: Bool?
+            public var publicLinkLimitEnabled: Bool?
 
             public init(feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, isInternalGroup: Bool? = nil, name: String, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
                 self.feedbackEnabled = feedbackEnabled

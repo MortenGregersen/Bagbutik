@@ -75,7 +75,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// A Boolean value that indicates whether the workflow is active or deactivated.
             public let isEnabled: Bool
             /// A Boolean value that indicates whether edits to the workflow are restricted.
-            @NullCodable public var isLockedForEditing: Bool?
+            public var isLockedForEditing: Bool?
             /// The name of the workflow you want to create; for example, My New Workflow.
             public let name: String
             /// A start condition that starts new builds for changes to a pull request.

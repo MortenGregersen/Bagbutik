@@ -68,7 +68,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var agreementText: String?
+            public var agreementText: String?
 
             public init(agreementText: String? = nil) {
                 self.agreementText = agreementText

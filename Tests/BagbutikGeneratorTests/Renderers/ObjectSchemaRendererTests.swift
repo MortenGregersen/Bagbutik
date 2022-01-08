@@ -14,7 +14,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public struct Person: Codable {
-            @NullCodable public var name: String?
+            public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name
@@ -44,7 +44,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's name
-            @NullCodable public var name: String?
+            public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name
@@ -76,10 +76,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's age
-            @NullCodable public var age: Int?
+            public var age: Int?
             /// The person's name
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            @NullCodable public var name: String? = nil
+            public var name: String? = nil
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(age: Int? = nil, name: String? = nil) {
@@ -115,7 +115,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct PersonCreateRequest: Codable, RequestBody {
             /// The person's name
-            @NullCodable public var name: String?
+            public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name
@@ -137,7 +137,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                                           "id": "The unique id for the person"]),
                                   properties: ["firstName": .init(type: .simple(.init(type: "string"))),
                                                "lastName": .init(type: .simple(.init(type: "string"))),
-                                               "self": .init(type: .schemaRef("string")),
+                                               "self": .init(type: .simple(.init(type: "string"))),
                                                "id": .init(type: .constant("person"))],
                                   requiredProperties: ["firstName"])
         // When
@@ -156,9 +156,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The unique id for the person
             public var id: String { "person" }
             /// The lastname of the person
-            @NullCodable public var lastName: String?
+            public var lastName: String?
             /// A reference to the person
-            @NullCodable public var `self`: String?
+            public var `self`: String?
 
             public init(firstName: String, lastName: String? = nil, self aSelf: String? = nil) {
                 self.firstName = firstName
@@ -192,7 +192,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
-            @NullCodable public var name: String?
+            public var name: String?
             /// The resource's attributes.
             public let attributes: Attributes?
 
@@ -202,7 +202,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public struct Attributes: Codable {
-                @NullCodable public var age: Int?
+                public var age: Int?
 
                 public init(age: Int? = nil) {
                     self.age = age
@@ -236,7 +236,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
-            @NullCodable public var name: String?
+            public var name: String?
             /// Navigational links to related data and included resource types and IDs.
             public let relationships: Relationships?
 
@@ -291,7 +291,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The person's connection
             @NullCodable public var connection: Connection?
             /// The person's name
-            @NullCodable public var name: String?
+            public var name: String?
             /// The person's pet
             @NullCodable public var pet: Pet?
             /// The person's indentation preference
@@ -334,7 +334,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public struct Pet: Codable {
-                @NullCodable public var name: String?
+                public var name: String?
 
                 public init(name: String? = nil) {
                     self.name = name
@@ -408,7 +408,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
-            @NullCodable public var age: Int?
+            public var age: Int?
             public let name: String
             /// The resource type.
             public var type: String { "person" }
@@ -460,7 +460,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              */
             public struct Attributes: Codable {
                 /// The person's age
-                @NullCodable public var age: Int?
+                public var age: Int?
 
                 public init(age: Int? = nil) {
                     self.age = age
@@ -512,8 +512,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public struct PhoneNumber: Codable {
-            @NullCodable public var intent: String?
-            @NullCodable public var number: String?
+            public var intent: String?
+            public var number: String?
             @NullCodable public var type: PhoneNumberType?
 
             public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {

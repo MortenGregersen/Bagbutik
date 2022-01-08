@@ -14,13 +14,13 @@ public struct CiAction: Codable {
     /// A string that describes the destination Xcode Cloud uses for an action.
     @NullCodable public var destination: Destination?
     /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
-    @NullCodable public var isRequiredToPass: Bool?
+    public var isRequiredToPass: Bool?
     /// The name of the action; for example, archive or test.
-    @NullCodable public var name: String?
+    public var name: String?
     /// The platform Xcode Cloud uses for the action.
     @NullCodable public var platform: Platform?
     /// The name of the scheme that Xcode Cloud uses to perform the action.
-    @NullCodable public var scheme: String?
+    public var scheme: String?
     /// An action’s test configuration. Only set this field for test actions.
     @NullCodable public var testConfiguration: TestConfiguration?
 
@@ -58,7 +58,7 @@ public struct CiAction: Codable {
     public struct TestConfiguration: Codable {
         @NullCodable public var kind: Kind?
         @NullCodable public var testDestinations: [CiTestDestination]?
-        @NullCodable public var testPlanName: String?
+        public var testPlanName: String?
 
         public init(kind: Kind? = nil, testDestinations: [CiTestDestination]? = nil, testPlanName: String? = nil) {
             self.kind = kind

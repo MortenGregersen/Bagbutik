@@ -61,24 +61,24 @@ public struct Build: Codable {
      */
     public struct Attributes: Codable {
         @NullCodable public var buildAudienceType: BuildAudienceType?
-        @NullCodable public var computedMinMacOsVersion: String?
+        public var computedMinMacOsVersion: String?
         /// The date and time the build will auto-expire and no longer be available for testing.
-        @NullCodable public var expirationDate: Date?
+        public var expirationDate: Date?
         /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
-        @NullCodable public var expired: Bool?
+        public var expired: Bool?
         /// The icon of the uploaded build.
         @NullCodable public var iconAssetToken: ImageAsset?
-        @NullCodable public var lsMinimumSystemVersion: String?
+        public var lsMinimumSystemVersion: String?
         /// The minimum operating system version needed to test a build.
-        @NullCodable public var minOsVersion: String?
+        public var minOsVersion: String?
         /// The processing state of the build indicating that it is not yet available for testing.
         @NullCodable public var processingState: ProcessingState?
         /// The date and time the build was uploaded to App Store Connect.
-        @NullCodable public var uploadedDate: Date?
+        public var uploadedDate: Date?
         /// A Boolean value that indicates whether the build uses non-exempt encryption.
-        @NullCodable public var usesNonExemptEncryption: Bool?
+        public var usesNonExemptEncryption: Bool?
         /// The version number of the uploaded build.
-        @NullCodable public var version: String?
+        public var version: String?
 
         public init(buildAudienceType: BuildAudienceType? = nil, computedMinMacOsVersion: String? = nil, expirationDate: Date? = nil, expired: Bool? = nil, iconAssetToken: ImageAsset? = nil, lsMinimumSystemVersion: String? = nil, minOsVersion: String? = nil, processingState: ProcessingState? = nil, uploadedDate: Date? = nil, usesNonExemptEncryption: Bool? = nil, version: String? = nil) {
             self.buildAudienceType = buildAudienceType
@@ -194,9 +194,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -266,9 +266,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -338,9 +338,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -410,9 +410,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -485,9 +485,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -557,9 +557,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -632,9 +632,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -707,9 +707,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -782,9 +782,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -854,9 +854,9 @@ public struct Build: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

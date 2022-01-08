@@ -62,12 +62,12 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var description: String?
-            @NullCodable public var keywords: String?
-            @NullCodable public var marketingUrl: String?
-            @NullCodable public var promotionalText: String?
-            @NullCodable public var supportUrl: String?
-            @NullCodable public var whatsNew: String?
+            public var description: String?
+            public var keywords: String?
+            public var marketingUrl: String?
+            public var promotionalText: String?
+            public var supportUrl: String?
+            public var whatsNew: String?
 
             public init(description: String? = nil, keywords: String? = nil, marketingUrl: String? = nil, promotionalText: String? = nil, supportUrl: String? = nil, whatsNew: String? = nil) {
                 self.description = description

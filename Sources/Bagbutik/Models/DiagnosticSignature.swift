@@ -55,8 +55,8 @@ public struct DiagnosticSignature: Codable {
      */
     public struct Attributes: Codable {
         @NullCodable public var diagnosticType: DiagnosticType?
-        @NullCodable public var signature: String?
-        @NullCodable public var weight: Double?
+        public var signature: String?
+        public var weight: Double?
 
         public init(diagnosticType: DiagnosticType? = nil, signature: String? = nil, weight: Double? = nil) {
             self.diagnosticType = diagnosticType

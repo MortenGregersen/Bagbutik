@@ -61,24 +61,24 @@ public struct BetaGroup: Codable {
      */
     public struct Attributes: Codable {
         /// The creation date of the beta group.
-        @NullCodable public var createdDate: Date?
-        @NullCodable public var feedbackEnabled: Bool?
-        @NullCodable public var hasAccessToAllBuilds: Bool?
-        @NullCodable public var iosBuildsAvailableForAppleSiliconMac: Bool?
+        public var createdDate: Date?
+        public var feedbackEnabled: Bool?
+        public var hasAccessToAllBuilds: Bool?
+        public var iosBuildsAvailableForAppleSiliconMac: Bool?
         /// A Boolean value that indicates whether the group is internal. Only existing users of App Store Connect may be added for internal beta testing.
-        @NullCodable public var isInternalGroup: Bool?
+        public var isInternalGroup: Bool?
         /// The name for the beta group.
-        @NullCodable public var name: String?
+        public var name: String?
         /// The URL of the public link provided to your app's beta testers.
-        @NullCodable public var publicLink: String?
+        public var publicLink: String?
         /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
-        @NullCodable public var publicLinkEnabled: Bool?
+        public var publicLinkEnabled: Bool?
         /// The ID as part of the URL of the public link.
-        @NullCodable public var publicLinkId: String?
+        public var publicLinkId: String?
         /// The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.
-        @NullCodable public var publicLinkLimit: Int?
+        public var publicLinkLimit: Int?
         /// A Boolean value that limits the number of testers who can join the beta group using the public link.
-        @NullCodable public var publicLinkLimitEnabled: Bool?
+        public var publicLinkLimitEnabled: Bool?
 
         public init(createdDate: Date? = nil, feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, isInternalGroup: Bool? = nil, name: String? = nil, publicLink: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkId: String? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
             self.createdDate = createdDate
@@ -173,9 +173,9 @@ public struct BetaGroup: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -248,9 +248,9 @@ public struct BetaGroup: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -323,9 +323,9 @@ public struct BetaGroup: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

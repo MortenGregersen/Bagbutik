@@ -61,21 +61,21 @@ public struct BetaAppReviewDetail: Codable {
      */
     public struct Attributes: Codable {
         /// Email address of contact in case communication is needed with the beta app review.
-        @NullCodable public var contactEmail: String?
+        public var contactEmail: String?
         /// First name of contact in case communication is needed with the beta app review.
-        @NullCodable public var contactFirstName: String?
+        public var contactFirstName: String?
         /// Last name of contact in case communication is needed with the beta app review.
-        @NullCodable public var contactLastName: String?
+        public var contactLastName: String?
         /// Phone number of contact in case communication is needed with the beta app review.
-        @NullCodable public var contactPhone: String?
+        public var contactPhone: String?
         /// The user name to sign in to your app to review its features.
-        @NullCodable public var demoAccountName: String?
+        public var demoAccountName: String?
         /// The password to sign in to your app to review its features.
-        @NullCodable public var demoAccountPassword: String?
+        public var demoAccountPassword: String?
         /// A Boolean value that indicates if sign-in information is required to review all the features of your app. If users sign in using social media, provide information for an account for review. Credentials must be valid and active for duration of review.
-        @NullCodable public var demoAccountRequired: Bool?
+        public var demoAccountRequired: Bool?
         /// Additional information about your app that can help during the review process. Do not include demo account details. Review notes have a maximum of 4,000 characters.
-        @NullCodable public var notes: String?
+        public var notes: String?
 
         public init(contactEmail: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactPhone: String? = nil, demoAccountName: String? = nil, demoAccountPassword: String? = nil, demoAccountRequired: Bool? = nil, notes: String? = nil) {
             self.contactEmail = contactEmail
@@ -163,9 +163,9 @@ public struct BetaAppReviewDetail: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

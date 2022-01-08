@@ -62,12 +62,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var copyright: String?
-            @NullCodable public var earliestReleaseDate: Date?
+            public var copyright: String?
+            public var earliestReleaseDate: Date?
             public let platform: Platform
             @NullCodable public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            @NullCodable public var usesIdfa: Bool? = nil
+            public var usesIdfa: Bool? = nil
             public let versionString: String
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")

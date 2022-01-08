@@ -61,13 +61,13 @@ public struct BetaTester: Codable {
      */
     public struct Attributes: Codable {
         /// The beta tester's email address, used for sending beta testing invitations.
-        @NullCodable public var email: String?
+        public var email: String?
         /// The beta tester's first name.
-        @NullCodable public var firstName: String?
+        public var firstName: String?
         /// An invite type that indicates if a beta tester was invited by an email invite or used a TestFlight public link to join a beta test.
         @NullCodable public var inviteType: BetaInviteType?
         /// The beta tester's last name.
-        @NullCodable public var lastName: String?
+        public var lastName: String?
 
         public init(email: String? = nil, firstName: String? = nil, inviteType: BetaInviteType? = nil, lastName: String? = nil) {
             self.email = email
@@ -158,9 +158,9 @@ public struct BetaTester: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -233,9 +233,9 @@ public struct BetaTester: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -308,9 +308,9 @@ public struct BetaTester: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

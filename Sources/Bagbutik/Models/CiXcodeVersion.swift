@@ -55,11 +55,11 @@ public struct CiXcodeVersion: Codable {
 
     public struct Attributes: Codable {
         /// The name of the Xcode version.
-        @NullCodable public var name: String?
+        public var name: String?
         /// A list of the Xcode version’s available test destinations.
         @NullCodable public var testDestinations: [TestDestinations]?
         /// The Xcode version.
-        @NullCodable public var version: String?
+        public var version: String?
 
         public init(name: String? = nil, testDestinations: [TestDestinations]? = nil, version: String? = nil) {
             self.name = name
@@ -69,8 +69,8 @@ public struct CiXcodeVersion: Codable {
 
         public struct TestDestinations: Codable {
             @NullCodable public var availableRuntimes: [AvailableRuntimes]?
-            @NullCodable public var deviceTypeIdentifier: String?
-            @NullCodable public var deviceTypeName: String?
+            public var deviceTypeIdentifier: String?
+            public var deviceTypeName: String?
             @NullCodable public var kind: CiTestDestinationKind?
 
             public init(availableRuntimes: [AvailableRuntimes]? = nil, deviceTypeIdentifier: String? = nil, deviceTypeName: String? = nil, kind: CiTestDestinationKind? = nil) {
@@ -81,8 +81,8 @@ public struct CiXcodeVersion: Codable {
             }
 
             public struct AvailableRuntimes: Codable {
-                @NullCodable public var runtimeIdentifier: String?
-                @NullCodable public var runtimeName: String?
+                public var runtimeIdentifier: String?
+                public var runtimeName: String?
 
                 public init(runtimeIdentifier: String? = nil, runtimeName: String? = nil) {
                     self.runtimeIdentifier = runtimeIdentifier
@@ -169,9 +169,9 @@ public struct CiXcodeVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

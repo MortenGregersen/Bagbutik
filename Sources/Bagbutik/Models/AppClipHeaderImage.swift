@@ -63,13 +63,13 @@ public struct AppClipHeaderImage: Codable {
         /// The state of the App Clip card image asset you uploaded.
         @NullCodable public var assetDeliveryState: AppMediaAssetState?
         /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
-        @NullCodable public var fileName: String?
+        public var fileName: String?
         /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
-        @NullCodable public var fileSize: Int?
+        public var fileSize: Int?
         /// The image asset that appears on the App Clip card of a default App Clip experience.
         @NullCodable public var imageAsset: ImageAsset?
         /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
-        @NullCodable public var sourceFileChecksum: String?
+        public var sourceFileChecksum: String?
         /// Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.
         @NullCodable public var uploadOperations: [UploadOperation]?
 
@@ -157,9 +157,9 @@ public struct AppClipHeaderImage: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

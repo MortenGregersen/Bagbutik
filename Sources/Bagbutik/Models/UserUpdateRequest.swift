@@ -69,9 +69,9 @@ public struct UserUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
-            @NullCodable public var allAppsVisible: Bool?
+            public var allAppsVisible: Bool?
             /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
-            @NullCodable public var provisioningAllowed: Bool?
+            public var provisioningAllowed: Bool?
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
             @NullCodable public var roles: [UserRole]?
 

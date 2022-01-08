@@ -65,19 +65,19 @@ public struct CiWorkflow: Codable {
         /// The workflow’s start condition that starts new builds for changes to a branch.
         @NullCodable public var branchStartCondition: CiBranchStartCondition?
         /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
-        @NullCodable public var clean: Bool?
+        public var clean: Bool?
         /// The relative path to your Xcode project or workspace.
-        @NullCodable public var containerFilePath: String?
+        public var containerFilePath: String?
         /// The workflow’s description.
-        @NullCodable public var description: String?
+        public var description: String?
         /// A Boolean value that indicates whether the workflow is active or deactivated.
-        @NullCodable public var isEnabled: Bool?
+        public var isEnabled: Bool?
         /// A Boolean value that indicates whether edits to the workflow are restricted.
-        @NullCodable public var isLockedForEditing: Bool?
+        public var isLockedForEditing: Bool?
         /// The date and time when the workflow was last modified.
-        @NullCodable public var lastModifiedDate: Date?
+        public var lastModifiedDate: Date?
         /// The name of the Xcode Cloud workflow; for example, My Workflow.
-        @NullCodable public var name: String?
+        public var name: String?
         /// The workflow’s start condition for pull request changes.
         @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
         /// The workflow’s start condition that starts new builds on a custom schedule.
@@ -181,9 +181,9 @@ public struct CiWorkflow: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -253,9 +253,9 @@ public struct CiWorkflow: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -325,9 +325,9 @@ public struct CiWorkflow: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -397,9 +397,9 @@ public struct CiWorkflow: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

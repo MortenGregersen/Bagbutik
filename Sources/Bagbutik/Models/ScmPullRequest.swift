@@ -61,27 +61,27 @@ public struct ScmPullRequest: Codable, RequestBody {
      */
     public struct Attributes: Codable {
         /// The name of the pull request’s destination branch.
-        @NullCodable public var destinationBranchName: String?
+        public var destinationBranchName: String?
         /// The name of the pull request’s destination repository. If the pull request is not for a fork, this is the same value as the source repository name.
-        @NullCodable public var destinationRepositoryName: String?
+        public var destinationRepositoryName: String?
         /// The owner of the pull request’s destination repository.
-        @NullCodable public var destinationRepositoryOwner: String?
+        public var destinationRepositoryOwner: String?
         /// A Boolean value that indicates whether the pull request is open or closed.
-        @NullCodable public var isClosed: Bool?
+        public var isClosed: Bool?
         /// A Boolean value that indicates whether the pull request is for a Git fork.
-        @NullCodable public var isCrossRepository: Bool?
+        public var isCrossRepository: Bool?
         /// The pull request number.
-        @NullCodable public var number: Int?
+        public var number: Int?
         /// The name of the pull request’s source branch.
-        @NullCodable public var sourceBranchName: String?
+        public var sourceBranchName: String?
         /// The name of the pull request’s source repository.
-        @NullCodable public var sourceRepositoryName: String?
+        public var sourceRepositoryName: String?
         /// The owner of the pull request’s destination repository.
-        @NullCodable public var sourceRepositoryOwner: String?
+        public var sourceRepositoryOwner: String?
         /// The pull request’s title.
-        @NullCodable public var title: String?
+        public var title: String?
         /// The URL of the pull request.
-        @NullCodable public var webUrl: String?
+        public var webUrl: String?
 
         public init(destinationBranchName: String? = nil, destinationRepositoryName: String? = nil, destinationRepositoryOwner: String? = nil, isClosed: Bool? = nil, isCrossRepository: Bool? = nil, number: Int? = nil, sourceBranchName: String? = nil, sourceRepositoryName: String? = nil, sourceRepositoryOwner: String? = nil, title: String? = nil, webUrl: String? = nil) {
             self.destinationBranchName = destinationBranchName
@@ -172,9 +172,9 @@ public struct ScmPullRequest: Codable, RequestBody {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

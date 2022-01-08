@@ -1,7 +1,7 @@
 import Foundation
 
 public struct AppPriceInlineCreate: Codable {
-    @NullCodable public var id: String?
+    public var id: String?
     public var type: String { "appPrices" }
 
     public init(id: String? = nil) {

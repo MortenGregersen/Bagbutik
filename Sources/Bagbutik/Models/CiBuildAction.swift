@@ -67,15 +67,15 @@ public struct CiBuildAction: Codable {
         /// A string that indicates the progress of the build action.
         @NullCodable public var executionProgress: CiExecutionProgress?
         /// The date and time when Xcode Cloud finished performing the action.
-        @NullCodable public var finishedDate: Date?
+        public var finishedDate: Date?
         /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
-        @NullCodable public var isRequiredToPass: Bool?
+        public var isRequiredToPass: Bool?
         /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the action.
         @NullCodable public var issueCounts: CiIssueCounts?
         /// The name of the build action; for example, Archive iOS.
-        @NullCodable public var name: String?
+        public var name: String?
         /// The date and time when Xcode Cloud started performing the action.
-        @NullCodable public var startedDate: Date?
+        public var startedDate: Date?
 
         public init(actionType: CiActionType? = nil, completionStatus: CiCompletionStatus? = nil, executionProgress: CiExecutionProgress? = nil, finishedDate: Date? = nil, isRequiredToPass: Bool? = nil, issueCounts: CiIssueCounts? = nil, name: String? = nil, startedDate: Date? = nil) {
             self.actionType = actionType
@@ -163,9 +163,9 @@ public struct CiBuildAction: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -60,10 +60,10 @@ public struct BundleId: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var identifier: String?
-        @NullCodable public var name: String?
+        public var identifier: String?
+        public var name: String?
         @NullCodable public var platform: BundleIdPlatform?
-        @NullCodable public var seedId: String?
+        public var seedId: String?
 
         public init(identifier: String? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, seedId: String? = nil) {
             self.identifier = identifier
@@ -151,9 +151,9 @@ public struct BundleId: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -226,9 +226,9 @@ public struct BundleId: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -301,9 +301,9 @@ public struct BundleId: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

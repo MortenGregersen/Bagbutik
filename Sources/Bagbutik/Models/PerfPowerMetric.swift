@@ -54,7 +54,7 @@ public struct PerfPowerMetric: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var deviceType: String?
+        public var deviceType: String?
         @NullCodable public var metricType: MetricType?
         @NullCodable public var platform: Platform?
 

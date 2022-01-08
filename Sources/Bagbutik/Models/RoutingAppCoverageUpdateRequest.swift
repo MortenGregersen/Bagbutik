@@ -62,8 +62,8 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var sourceFileChecksum: String?
-            @NullCodable public var uploaded: Bool?
+            public var sourceFileChecksum: String?
+            public var uploaded: Bool?
 
             public init(sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
                 self.sourceFileChecksum = sourceFileChecksum

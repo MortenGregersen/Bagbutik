@@ -8,13 +8,13 @@ import Foundation
  */
 public struct CapabilitySetting: Codable {
     @NullCodable public var allowedInstances: AllowedInstances?
-    @NullCodable public var description: String?
-    @NullCodable public var enabledByDefault: Bool?
+    public var description: String?
+    public var enabledByDefault: Bool?
     @NullCodable public var key: Key?
-    @NullCodable public var minInstances: Int?
-    @NullCodable public var name: String?
+    public var minInstances: Int?
+    public var name: String?
     @NullCodable public var options: [CapabilityOption]?
-    @NullCodable public var visible: Bool?
+    public var visible: Bool?
 
     public init(allowedInstances: AllowedInstances? = nil, description: String? = nil, enabledByDefault: Bool? = nil, key: Key? = nil, minInstances: Int? = nil, name: String? = nil, options: [CapabilityOption]? = nil, visible: Bool? = nil) {
         self.allowedInstances = allowedInstances

@@ -61,7 +61,7 @@ public struct AppClip: Codable {
      */
     public struct Attributes: Codable {
         /// The related Bundle IDs resource.
-        @NullCodable public var bundleId: String?
+        public var bundleId: String?
 
         public init(bundleId: String? = nil) {
             self.bundleId = bundleId
@@ -144,9 +144,9 @@ public struct AppClip: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -219,9 +219,9 @@ public struct AppClip: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

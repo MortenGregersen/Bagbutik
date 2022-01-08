@@ -63,7 +63,7 @@ public struct BetaBuildLocalizationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A field that describes changes and additions to a build and indicates features you would like your users to test.
-            @NullCodable public var whatsNew: String?
+            public var whatsNew: String?
 
             public init(whatsNew: String? = nil) {
                 self.whatsNew = whatsNew

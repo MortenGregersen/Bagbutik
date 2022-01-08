@@ -8,7 +8,7 @@ import Foundation
  */
 public struct CiTagStartCondition: Codable {
     /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
-    @NullCodable public var autoCancel: Bool?
+    public var autoCancel: Bool?
     /// Settings Xcode Cloud uses to determine whether a change to a tag should start a new build or not.
     @NullCodable public var filesAndFoldersRule: CiFilesAndFoldersRule?
     /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a Git tag.

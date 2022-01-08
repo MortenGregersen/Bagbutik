@@ -63,7 +63,7 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The license agreement text for your beta app that displays to users.
-            @NullCodable public var agreementText: String?
+            public var agreementText: String?
 
             public init(agreementText: String? = nil) {
                 self.agreementText = agreementText

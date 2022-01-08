@@ -61,17 +61,17 @@ public struct User: Codable {
      */
     public struct Attributes: Codable {
         /// A Boolean value that indicates whether a user has access to all apps available to the team.
-        @NullCodable public var allAppsVisible: Bool?
+        public var allAppsVisible: Bool?
         /// The user's first name.
-        @NullCodable public var firstName: String?
+        public var firstName: String?
         /// The user's last name.
-        @NullCodable public var lastName: String?
+        public var lastName: String?
         /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
-        @NullCodable public var provisioningAllowed: Bool?
+        public var provisioningAllowed: Bool?
         /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
         @NullCodable public var roles: [UserRole]?
         /// The user's Apple ID.
-        @NullCodable public var username: String?
+        public var username: String?
 
         public init(allAppsVisible: Bool? = nil, firstName: String? = nil, lastName: String? = nil, provisioningAllowed: Bool? = nil, roles: [UserRole]? = nil, username: String? = nil) {
             self.allAppsVisible = allAppsVisible
@@ -160,9 +160,9 @@ public struct User: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

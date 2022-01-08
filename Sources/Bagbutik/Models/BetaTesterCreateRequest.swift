@@ -65,9 +65,9 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             /// The beta tester's email address, used for sending beta testing invitations.
             public let email: String
             /// The beta tester's first name.
-            @NullCodable public var firstName: String?
+            public var firstName: String?
             /// The beta tester's last name.
-            @NullCodable public var lastName: String?
+            public var lastName: String?
 
             public init(email: String, firstName: String? = nil, lastName: String? = nil) {
                 self.email = email

@@ -67,10 +67,10 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             /// Declaration for contests.
             @NullCodable public var contests: AgeRatingDeclaration.Attributes.Contests?
             /// Declaration for gambling, provided as a Boolean value.
-            @NullCodable public var gambling: Bool?
+            public var gambling: Bool?
             /// Declaration for gambling or contests, as a Boolean value.
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            @NullCodable public var gamblingAndContests: Bool? = nil
+            public var gamblingAndContests: Bool? = nil
             /// Declaration for simulated gambling.
             @NullCodable public var gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated?
             /// Declaration for horror or fear themed content.
@@ -84,13 +84,13 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             /// Declaration for profanity or crude humor.
             @NullCodable public var profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor?
             /// Declaration for a 17+ rating, provided as a Boolean value.
-            @NullCodable public var seventeenPlus: Bool?
+            public var seventeenPlus: Bool?
             /// Declaration for graphic sexual content and nudity.
             @NullCodable public var sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity?
             /// Declaration for sexual content or nudity.
             @NullCodable public var sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity?
             /// Declaration for unrestricted web access, such as with an embedded browser, provided as a Boolean value.
-            @NullCodable public var unrestrictedWebAccess: Bool?
+            public var unrestrictedWebAccess: Bool?
             /// Declaration for cartoon or fantasy violence.
             @NullCodable public var violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy?
             /// Declaration for realistic violence.

@@ -61,9 +61,9 @@ public struct CiProduct: Codable {
      */
     public struct Attributes: Codable {
         /// The date when you created the Xcode Cloud product.
-        @NullCodable public var createdDate: Date?
+        public var createdDate: Date?
         /// The name of the Xcode Cloud product.
-        @NullCodable public var name: String?
+        public var name: String?
         /// A string that indicates whether the Xcode Cloud product is a framework or an app.
         @NullCodable public var productType: ProductType?
 
@@ -157,9 +157,9 @@ public struct CiProduct: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -229,9 +229,9 @@ public struct CiProduct: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -304,9 +304,9 @@ public struct CiProduct: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

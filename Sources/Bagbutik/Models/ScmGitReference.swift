@@ -61,13 +61,13 @@ public struct ScmGitReference: Codable {
      */
     public struct Attributes: Codable {
         /// The canonical name of the Git reference.
-        @NullCodable public var canonicalName: String?
+        public var canonicalName: String?
         /// A Boolean value that indicates whether the Git reference was deleted.
-        @NullCodable public var isDeleted: Bool?
+        public var isDeleted: Bool?
         /// A value that indicates whether the Git reference is a tag or a branch.
         @NullCodable public var kind: CiGitRefKind?
         /// The name of the Git reference.
-        @NullCodable public var name: String?
+        public var name: String?
 
         public init(canonicalName: String? = nil, isDeleted: Bool? = nil, kind: CiGitRefKind? = nil, name: String? = nil) {
             self.canonicalName = canonicalName
@@ -151,9 +151,9 @@ public struct ScmGitReference: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

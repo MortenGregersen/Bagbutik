@@ -61,7 +61,7 @@ public struct BetaLicenseAgreement: Codable {
      */
     public struct Attributes: Codable {
         /// The license agreement text for your beta app that displays to users.
-        @NullCodable public var agreementText: String?
+        public var agreementText: String?
 
         public init(agreementText: String? = nil) {
             self.agreementText = agreementText
@@ -142,9 +142,9 @@ public struct BetaLicenseAgreement: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

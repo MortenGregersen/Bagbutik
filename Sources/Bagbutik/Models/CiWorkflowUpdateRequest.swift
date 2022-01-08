@@ -73,17 +73,17 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             /// The workflow’s start condition that starts new builds for changes to a branch.
             @NullCodable public var branchStartCondition: CiBranchStartCondition?
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
-            @NullCodable public var clean: Bool?
+            public var clean: Bool?
             /// The path to your Xcode project or workspace.
-            @NullCodable public var containerFilePath: String?
+            public var containerFilePath: String?
             /// The workflow description.
-            @NullCodable public var description: String?
+            public var description: String?
             /// A Boolean value that indicates whether the workflow is active or deactivated.
-            @NullCodable public var isEnabled: Bool?
+            public var isEnabled: Bool?
             /// A Boolean value that indicates whether edits to the workflow are restricted.
-            @NullCodable public var isLockedForEditing: Bool?
+            public var isLockedForEditing: Bool?
             /// The name of the workflow you want to create; for example, My Workflow.
-            @NullCodable public var name: String?
+            public var name: String?
             /// The workflow’s start condition for pull request changes.
             @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
             /// The workflow’s start condition that starts new builds on a custom schedule.
