@@ -63,9 +63,9 @@ public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, RequestBody 
          */
         public struct Attributes: Codable {
             /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
-            @NullCodable public var sourceFileChecksum: String?
+            public var sourceFileChecksum: String?
             /// A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.
-            @NullCodable public var uploaded: Bool?
+            public var uploaded: Bool?
 
             public init(sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
                 self.sourceFileChecksum = sourceFileChecksum

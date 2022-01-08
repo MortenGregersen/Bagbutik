@@ -8,9 +8,9 @@ import Foundation
  */
 public struct FileLocation: Codable {
     /// The line number of a file that contains code.
-    @NullCodable public var lineNumber: Int?
+    public var lineNumber: Int?
     /// The path to the file that caused an issue.
-    @NullCodable public var path: String?
+    public var path: String?
 
     public init(lineNumber: Int? = nil, path: String? = nil) {
         self.lineNumber = lineNumber

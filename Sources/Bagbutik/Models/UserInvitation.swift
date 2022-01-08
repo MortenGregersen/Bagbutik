@@ -61,17 +61,17 @@ public struct UserInvitation: Codable {
      */
     public struct Attributes: Codable {
         /// A Boolean value that indicates whether a user has access to all apps available to the team.
-        @NullCodable public var allAppsVisible: Bool?
+        public var allAppsVisible: Bool?
         /// The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.
-        @NullCodable public var email: String?
+        public var email: String?
         /// The expiration date of the pending invitation.
-        @NullCodable public var expirationDate: Date?
+        public var expirationDate: Date?
         /// The first name of the user with the pending user invitation.
-        @NullCodable public var firstName: String?
+        public var firstName: String?
         /// The last name of the user with the pending user invitation.
-        @NullCodable public var lastName: String?
+        public var lastName: String?
         /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
-        @NullCodable public var provisioningAllowed: Bool?
+        public var provisioningAllowed: Bool?
         /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
         @NullCodable public var roles: [UserRole]?
 
@@ -163,9 +163,9 @@ public struct UserInvitation: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

@@ -61,14 +61,14 @@ public struct AppPreview: Codable {
      */
     public struct Attributes: Codable {
         @NullCodable public var assetDeliveryState: AppMediaAssetState?
-        @NullCodable public var fileName: String?
-        @NullCodable public var fileSize: Int?
-        @NullCodable public var mimeType: String?
-        @NullCodable public var previewFrameTimeCode: String?
+        public var fileName: String?
+        public var fileSize: Int?
+        public var mimeType: String?
+        public var previewFrameTimeCode: String?
         @NullCodable public var previewImage: ImageAsset?
-        @NullCodable public var sourceFileChecksum: String?
+        public var sourceFileChecksum: String?
         @NullCodable public var uploadOperations: [UploadOperation]?
-        @NullCodable public var videoUrl: String?
+        public var videoUrl: String?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, mimeType: String? = nil, previewFrameTimeCode: String? = nil, previewImage: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil, videoUrl: String? = nil) {
             self.assetDeliveryState = assetDeliveryState
@@ -157,9 +157,9 @@ public struct AppPreview: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

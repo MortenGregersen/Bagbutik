@@ -63,7 +63,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
-            @NullCodable public var clean: Bool?
+            public var clean: Bool?
 
             public init(clean: Bool? = nil) {
                 self.clean = clean

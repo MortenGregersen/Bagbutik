@@ -55,11 +55,11 @@ public struct CiArtifact: Codable {
      */
     public struct Attributes: Codable {
         /// The URL you use to download the Xcode Cloud build artifact.
-        @NullCodable public var downloadUrl: String?
+        public var downloadUrl: String?
         /// The artifact’s filename as a string.
-        @NullCodable public var fileName: String?
+        public var fileName: String?
         /// An integer value that represents the artifact’s file size.
-        @NullCodable public var fileSize: Int?
+        public var fileSize: Int?
         /// A string that describes the type of the artifact.
         @NullCodable public var fileType: FileType?
 

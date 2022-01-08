@@ -62,7 +62,7 @@ public struct BundleIdUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var name: String?
+            public var name: String?
 
             public init(name: String? = nil) {
                 self.name = name

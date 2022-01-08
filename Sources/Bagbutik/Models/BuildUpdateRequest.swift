@@ -69,9 +69,9 @@ public struct BuildUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
-            @NullCodable public var expired: Bool?
+            public var expired: Bool?
             /// A Boolean value that indicates whether the build uses non-exempt encryption.
-            @NullCodable public var usesNonExemptEncryption: Bool?
+            public var usesNonExemptEncryption: Bool?
 
             public init(expired: Bool? = nil, usesNonExemptEncryption: Bool? = nil) {
                 self.expired = expired

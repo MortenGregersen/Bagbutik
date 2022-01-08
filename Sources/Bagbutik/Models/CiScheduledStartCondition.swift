@@ -20,9 +20,9 @@ public struct CiScheduledStartCondition: Codable {
     public struct Schedule: Codable {
         @NullCodable public var days: Items?
         @NullCodable public var frequency: Frequency?
-        @NullCodable public var hour: Int?
-        @NullCodable public var minute: Int?
-        @NullCodable public var timezone: String?
+        public var hour: Int?
+        public var minute: Int?
+        public var timezone: String?
 
         public init(days: Items? = nil, frequency: Frequency? = nil, hour: Int? = nil, minute: Int? = nil, timezone: String? = nil) {
             self.days = days

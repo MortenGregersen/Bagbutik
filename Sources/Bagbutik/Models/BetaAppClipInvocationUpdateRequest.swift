@@ -63,7 +63,7 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
-            @NullCodable public var url: String?
+            public var url: String?
 
             public init(url: String? = nil) {
                 self.url = url

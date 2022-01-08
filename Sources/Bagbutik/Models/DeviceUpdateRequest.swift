@@ -62,7 +62,7 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/deviceupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var name: String?
+            public var name: String?
             @NullCodable public var status: Device.Attributes.Status?
 
             public init(name: String? = nil, status: Device.Attributes.Status? = nil) {

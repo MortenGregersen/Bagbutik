@@ -60,8 +60,8 @@ public struct AppPreOrder: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var appReleaseDate: String?
-        @NullCodable public var preOrderAvailableDate: String?
+        public var appReleaseDate: String?
+        public var preOrderAvailableDate: String?
 
         public init(appReleaseDate: String? = nil, preOrderAvailableDate: String? = nil) {
             self.appReleaseDate = appReleaseDate
@@ -143,9 +143,9 @@ public struct AppPreOrder: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

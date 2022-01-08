@@ -60,13 +60,13 @@ public struct AppStoreVersionLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var description: String?
-        @NullCodable public var keywords: String?
-        @NullCodable public var locale: String?
-        @NullCodable public var marketingUrl: String?
-        @NullCodable public var promotionalText: String?
-        @NullCodable public var supportUrl: String?
-        @NullCodable public var whatsNew: String?
+        public var description: String?
+        public var keywords: String?
+        public var locale: String?
+        public var marketingUrl: String?
+        public var promotionalText: String?
+        public var supportUrl: String?
+        public var whatsNew: String?
 
         public init(description: String? = nil, keywords: String? = nil, locale: String? = nil, marketingUrl: String? = nil, promotionalText: String? = nil, supportUrl: String? = nil, whatsNew: String? = nil) {
             self.description = description
@@ -160,9 +160,9 @@ public struct AppStoreVersionLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -235,9 +235,9 @@ public struct AppStoreVersionLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -307,9 +307,9 @@ public struct AppStoreVersionLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

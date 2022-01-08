@@ -61,17 +61,17 @@ public struct BetaAppLocalization: Codable {
      */
     public struct Attributes: Codable {
         /// A description of your app that highlights features and functionality.
-        @NullCodable public var description: String?
+        public var description: String?
         /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
-        @NullCodable public var feedbackEmail: String?
+        public var feedbackEmail: String?
         /// The specified locale. Refer to Table 1 for possible values.
-        @NullCodable public var locale: String?
+        public var locale: String?
         /// A URL with information about your app. This URL is visible to testers in the TestFlight app.
-        @NullCodable public var marketingUrl: String?
+        public var marketingUrl: String?
         /// A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.
-        @NullCodable public var privacyPolicyUrl: String?
+        public var privacyPolicyUrl: String?
         /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
-        @NullCodable public var tvOsPrivacyPolicy: String?
+        public var tvOsPrivacyPolicy: String?
 
         public init(description: String? = nil, feedbackEmail: String? = nil, locale: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
             self.description = description
@@ -157,9 +157,9 @@ public struct BetaAppLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

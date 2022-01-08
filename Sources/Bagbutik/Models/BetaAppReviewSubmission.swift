@@ -62,7 +62,7 @@ public struct BetaAppReviewSubmission: Codable {
     public struct Attributes: Codable {
         /// A state that indicates the current status of the beta app review submission.
         @NullCodable public var betaReviewState: BetaReviewState?
-        @NullCodable public var submittedDate: Date?
+        public var submittedDate: Date?
 
         public init(betaReviewState: BetaReviewState? = nil, submittedDate: Date? = nil) {
             self.betaReviewState = betaReviewState
@@ -144,9 +144,9 @@ public struct BetaAppReviewSubmission: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

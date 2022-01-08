@@ -60,12 +60,12 @@ public struct AppInfoLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var locale: String?
-        @NullCodable public var name: String?
-        @NullCodable public var privacyChoicesUrl: String?
-        @NullCodable public var privacyPolicyText: String?
-        @NullCodable public var privacyPolicyUrl: String?
-        @NullCodable public var subtitle: String?
+        public var locale: String?
+        public var name: String?
+        public var privacyChoicesUrl: String?
+        public var privacyPolicyText: String?
+        public var privacyPolicyUrl: String?
+        public var subtitle: String?
 
         public init(locale: String? = nil, name: String? = nil, privacyChoicesUrl: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
             self.locale = locale
@@ -151,9 +151,9 @@ public struct AppInfoLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

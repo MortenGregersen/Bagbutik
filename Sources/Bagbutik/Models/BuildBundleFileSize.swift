@@ -55,13 +55,13 @@ public struct BuildBundleFileSize: Codable {
      */
     public struct Attributes: Codable {
         /// A string that identifies the Apple device model.
-        @NullCodable public var deviceModel: String?
+        public var deviceModel: String?
         /// An integer value that represents the download size of the build bundle in bytes.
-        @NullCodable public var downloadBytes: Int?
+        public var downloadBytes: Int?
         /// An integer value that represents the installation size of the build bundle in bytes.
-        @NullCodable public var installBytes: Int?
+        public var installBytes: Int?
         /// A string that identifies the OS version supported by the app or App Clip.
-        @NullCodable public var osVersion: String?
+        public var osVersion: String?
 
         public init(deviceModel: String? = nil, downloadBytes: Int? = nil, installBytes: Int? = nil, osVersion: String? = nil) {
             self.deviceModel = deviceModel

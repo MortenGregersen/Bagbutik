@@ -61,9 +61,9 @@ public struct AppClipDefaultExperienceLocalization: Codable {
      */
     public struct Attributes: Codable {
         /// The specified locale.
-        @NullCodable public var locale: String?
+        public var locale: String?
         /// The subtitle that appears on the App Clip card for the default App Clip experience.
-        @NullCodable public var subtitle: String?
+        public var subtitle: String?
 
         public init(locale: String? = nil, subtitle: String? = nil) {
             self.locale = locale
@@ -147,9 +147,9 @@ public struct AppClipDefaultExperienceLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -219,9 +219,9 @@ public struct AppClipDefaultExperienceLocalization: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

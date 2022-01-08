@@ -61,9 +61,9 @@ public struct AppStoreReviewAttachment: Codable {
      */
     public struct Attributes: Codable {
         @NullCodable public var assetDeliveryState: AppMediaAssetState?
-        @NullCodable public var fileName: String?
-        @NullCodable public var fileSize: Int?
-        @NullCodable public var sourceFileChecksum: String?
+        public var fileName: String?
+        public var fileSize: Int?
+        public var sourceFileChecksum: String?
         @NullCodable public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
@@ -149,9 +149,9 @@ public struct AppStoreReviewAttachment: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

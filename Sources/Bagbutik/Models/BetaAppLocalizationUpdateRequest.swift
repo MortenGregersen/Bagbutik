@@ -63,15 +63,15 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A description of your app that highlights features and functionality.
-            @NullCodable public var description: String?
+            public var description: String?
             /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
-            @NullCodable public var feedbackEmail: String?
+            public var feedbackEmail: String?
             /// A URL with information about your app. This URL is visible to testers in the TestFlight app
-            @NullCodable public var marketingUrl: String?
+            public var marketingUrl: String?
             /// A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.
-            @NullCodable public var privacyPolicyUrl: String?
+            public var privacyPolicyUrl: String?
             /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
-            @NullCodable public var tvOsPrivacyPolicy: String?
+            public var tvOsPrivacyPolicy: String?
 
             public init(description: String? = nil, feedbackEmail: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
                 self.description = description

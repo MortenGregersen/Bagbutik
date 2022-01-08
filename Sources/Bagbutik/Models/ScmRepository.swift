@@ -61,15 +61,15 @@ public struct ScmRepository: Codable {
      */
     public struct Attributes: Codable {
         /// The Git repository’s URL for cloning it using HTTP.
-        @NullCodable public var httpCloneUrl: String?
+        public var httpCloneUrl: String?
         /// The date and time when Xcode Cloud last accessed the repository.
-        @NullCodable public var lastAccessedDate: Date?
+        public var lastAccessedDate: Date?
         /// The name of the Git repository’s owner.
-        @NullCodable public var ownerName: String?
+        public var ownerName: String?
         /// The name of the Git repository.
-        @NullCodable public var repositoryName: String?
+        public var repositoryName: String?
         /// The Git repository’s URL for cloning it using SSH.
-        @NullCodable public var sshCloneUrl: String?
+        public var sshCloneUrl: String?
 
         public init(httpCloneUrl: String? = nil, lastAccessedDate: Date? = nil, ownerName: String? = nil, repositoryName: String? = nil, sshCloneUrl: String? = nil) {
             self.httpCloneUrl = httpCloneUrl
@@ -156,9 +156,9 @@ public struct ScmRepository: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -228,9 +228,9 @@ public struct ScmRepository: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

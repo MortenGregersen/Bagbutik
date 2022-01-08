@@ -60,14 +60,14 @@ public struct Profile: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/profile/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var createdDate: Date?
-        @NullCodable public var expirationDate: Date?
-        @NullCodable public var name: String?
+        public var createdDate: Date?
+        public var expirationDate: Date?
+        public var name: String?
         @NullCodable public var platform: BundleIdPlatform?
-        @NullCodable public var profileContent: String?
+        public var profileContent: String?
         @NullCodable public var profileState: ProfileState?
         @NullCodable public var profileType: ProfileType?
-        @NullCodable public var uuid: String?
+        public var uuid: String?
 
         public init(createdDate: Date? = nil, expirationDate: Date? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, profileContent: String? = nil, profileState: ProfileState? = nil, profileType: ProfileType? = nil, uuid: String? = nil) {
             self.createdDate = createdDate
@@ -181,9 +181,9 @@ public struct Profile: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -256,9 +256,9 @@ public struct Profile: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -331,9 +331,9 @@ public struct Profile: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

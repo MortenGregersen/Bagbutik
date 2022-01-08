@@ -60,7 +60,7 @@ public struct EndUserLicenseAgreement: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var agreementText: String?
+        public var agreementText: String?
 
         public init(agreementText: String? = nil) {
             self.agreementText = agreementText
@@ -143,9 +143,9 @@ public struct EndUserLicenseAgreement: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related
@@ -218,9 +218,9 @@ public struct EndUserLicenseAgreement: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

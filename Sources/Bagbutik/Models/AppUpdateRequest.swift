@@ -71,10 +71,10 @@ public struct AppUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            @NullCodable public var availableInNewTerritories: Bool?
-            @NullCodable public var bundleId: String?
+            public var availableInNewTerritories: Bool?
+            public var bundleId: String?
             @NullCodable public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
-            @NullCodable public var primaryLocale: String?
+            public var primaryLocale: String?
 
             public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
                 self.availableInNewTerritories = availableInNewTerritories

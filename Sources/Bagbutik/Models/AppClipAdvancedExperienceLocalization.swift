@@ -57,9 +57,9 @@ public struct AppClipAdvancedExperienceLocalization: Codable {
         /// A string that identifies the language of the advanced App Clip experience.
         @NullCodable public var language: AppClipAdvancedExperienceLanguage?
         /// The subtitle that appears on the App Clip card for the advanced App Clip experience.
-        @NullCodable public var subtitle: String?
+        public var subtitle: String?
         /// The title that appears on the App Clip card for the advanced App Clip experience.
-        @NullCodable public var title: String?
+        public var title: String?
 
         public init(language: AppClipAdvancedExperienceLanguage? = nil, subtitle: String? = nil, title: String? = nil) {
             self.language = language

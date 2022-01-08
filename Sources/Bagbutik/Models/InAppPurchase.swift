@@ -61,8 +61,8 @@ public struct InAppPurchase: Codable {
      */
     public struct Attributes: Codable {
         @NullCodable public var inAppPurchaseType: InAppPurchaseType?
-        @NullCodable public var productId: String?
-        @NullCodable public var referenceName: String?
+        public var productId: String?
+        public var referenceName: String?
         @NullCodable public var state: State?
 
         public init(inAppPurchaseType: InAppPurchaseType? = nil, productId: String? = nil, referenceName: String? = nil, state: State? = nil) {
@@ -180,9 +180,9 @@ public struct InAppPurchase: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                @NullCodable public var related: String?
+                public var related: String?
                 /// The relationship's self-link
-                @NullCodable public var `self`: String?
+                public var `self`: String?
 
                 public init(related: String? = nil, self aSelf: String? = nil) {
                     self.related = related

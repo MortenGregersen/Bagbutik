@@ -65,7 +65,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
             /// The specified locale. Refer to Table 1 for possible values.
             public let locale: String
             /// A field that describes changes and additions to a build and indicates features you would like your users to test.
-            @NullCodable public var whatsNew: String?
+            public var whatsNew: String?
 
             public init(locale: String, whatsNew: String? = nil) {
                 self.locale = locale

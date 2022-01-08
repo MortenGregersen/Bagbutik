@@ -88,14 +88,14 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct Place: Codable {
-                @NullCodable public var categories: String?
+                public var categories: String?
                 @NullCodable public var displayPoint: DisplayPoint?
-                @NullCodable public var homePage: String?
+                public var homePage: String?
                 @NullCodable public var mainAddress: MainAddress?
                 @NullCodable public var mapAction: MapAction?
-                @NullCodable public var names: String?
+                public var names: String?
                 @NullCodable public var phoneNumber: PhoneNumber?
-                @NullCodable public var placeId: String?
+                public var placeId: String?
                 @NullCodable public var relationship: Relationship?
 
                 public init(categories: String? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: String? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
@@ -120,8 +120,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     }
 
                     public struct Coordinates: Codable {
-                        @NullCodable public var latitude: Double?
-                        @NullCodable public var longitude: Double?
+                        public var latitude: Double?
+                        public var longitude: Double?
 
                         public init(latitude: Double? = nil, longitude: Double? = nil) {
                             self.latitude = latitude
@@ -136,7 +136,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 public struct MainAddress: Codable {
-                    @NullCodable public var fullAddress: String?
+                    public var fullAddress: String?
                     @NullCodable public var structuredAddress: StructuredAddress?
 
                     public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
@@ -145,13 +145,13 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     }
 
                     public struct StructuredAddress: Codable {
-                        @NullCodable public var countryCode: String?
-                        @NullCodable public var floor: String?
-                        @NullCodable public var locality: String?
-                        @NullCodable public var neighborhood: String?
-                        @NullCodable public var postalCode: String?
-                        @NullCodable public var stateProvince: String?
-                        @NullCodable public var streetAddress: String?
+                        public var countryCode: String?
+                        public var floor: String?
+                        public var locality: String?
+                        public var neighborhood: String?
+                        public var postalCode: String?
+                        public var stateProvince: String?
+                        public var streetAddress: String?
 
                         public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: String? = nil) {
                             self.countryCode = countryCode
@@ -182,8 +182,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 public struct PhoneNumber: Codable {
-                    @NullCodable public var intent: String?
-                    @NullCodable public var number: String?
+                    public var intent: String?
+                    public var number: String?
                     @NullCodable public var type: PhoneNumberType?
 
                     public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
