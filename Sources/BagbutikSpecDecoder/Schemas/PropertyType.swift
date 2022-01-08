@@ -30,6 +30,14 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         }
         return false
     }
+    
+    /// Returns true if the type is a simple data type (to minimize pattern matching code elsewhere)
+    public var isSimple: Bool {
+        if case .simple(_) = self {
+            return true
+        }
+        return false
+    }
 
     public var description: String {
         switch self {

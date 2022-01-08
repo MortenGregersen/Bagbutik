@@ -159,6 +159,7 @@ public class ObjectSchemaRenderer {
                         rendered = try! PropertyRenderer().render(id: property.key,
                                                                   type: property.value.type.description,
                                                                   optional: !objectSchema.requiredProperties.contains(property.key),
+                                                                  isSimpleType: property.value.type.isSimple,
                                                                   deprecated: property.value.deprecated)
                     }
                     let propertyDocumentation = objectSchema.documentation?.properties[property.key]
