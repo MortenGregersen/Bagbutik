@@ -86,7 +86,7 @@ public extension Schema {
         case enumObject(summary: String, cases: [String: String])
 
         internal static func lookupDocumentation(forSchemaNamed name: String) -> Documentation? {
-            return allDocumentation[name]
+            allDocumentation[name]
         }
 
         /// The potential summary for the schema
@@ -182,7 +182,7 @@ public extension Schema {
         }
 
         internal static func propertiesMergedWithCommonProperties(_ properties: [String: String]?) -> [String: String] {
-            return commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
+            commonProperties.merging(properties ?? [:], uniquingKeysWith: { $1 })
         }
 
         internal static let commonProperties: [String: String] = [
@@ -565,6 +565,22 @@ public extension Schema {
             ),
             "AppClipResponse": .rootSchema(summary: "A response that contains a single App Clips resource."),
             "AppClipsResponse": .rootSchema(summary: "A response that contains a list of App Clips resources."),
+            "AppCustomProductPage": .rootSchema(summary: ""),
+            "AppCustomProductPageCreateRequest": .rootSchema(summary: ""),
+            "AppCustomProductPageLocalization": .rootSchema(summary: ""),
+            "AppCustomProductPageLocalizationCreateRequest": .createRequest(summary: ""),
+            "AppCustomProductPageLocalizationInlineCreate": .rootSchema(summary: ""),
+            "AppCustomProductPageLocalizationResponse": .rootSchema(summary: ""),
+            "AppCustomProductPageLocalizationsResponse": .rootSchema(summary: ""),
+            "AppCustomProductPageLocalizationUpdateRequest": .updateRequest(summary: ""),
+            "AppCustomProductPageResponse": .rootSchema(summary: ""),
+            "AppCustomProductPageUpdateRequest": .updateRequest(summary: ""),
+            "AppCustomProductPageVersion": .rootSchema(summary: ""),
+            "AppCustomProductPageVersionCreateRequest": .createRequest(summary: ""),
+            "AppCustomProductPageVersionInlineCreate": .rootSchema(summary: ""),
+            "AppCustomProductPageVersionResponse": .rootSchema(summary: ""),
+            "AppCustomProductPageVersionsResponse": .rootSchema(summary: ""),
+            "AppCustomProductPagesResponse": .rootSchema(summary: ""),
             "AppEncryptionDeclaration": .rootSchema(
                 summary: "The data structure that represents an App Encryption Declarations resource.",
                 attributes: .init(
@@ -598,6 +614,27 @@ public extension Schema {
                     "REJECTED": "",
                 ]
             ),
+            "AppEvent": .rootSchema(summary: ""),
+            "AppEventAssetType": .rootSchema(summary: ""),
+            "AppEventCreateRequest": .rootSchema(summary: ""),
+            "AppEventLocalization": .rootSchema(summary: ""),
+            "AppEventLocalizationCreateRequest": .createRequest(summary: ""),
+            "AppEventLocalizationResponse": .rootSchema(summary: ""),
+            "AppEventLocalizationUpdateRequest": .updateRequest(summary: ""),
+            "AppEventLocalizationsResponse": .rootSchema(summary: ""),
+            "AppEventResponse": .rootSchema(summary: ""),
+            "AppEventScreenshot": .rootSchema(summary: ""),
+            "AppEventScreenshotCreateRequest": .createRequest(summary: ""),
+            "AppEventScreenshotResponse": .rootSchema(summary: ""),
+            "AppEventScreenshotUpdateRequest": .updateRequest(summary: ""),
+            "AppEventScreenshotsResponse": .rootSchema(summary: ""),
+            "AppEventUpdateRequest": .updateRequest(summary: ""),
+            "AppEventVideoClip": .rootSchema(summary: ""),
+            "AppEventVideoClipCreateRequest": .createRequest(summary: ""),
+            "AppEventVideoClipResponse": .rootSchema(summary: ""),
+            "AppEventVideoClipUpdateRequest": .updateRequest(summary: ""),
+            "AppEventVideoClipsResponse": .rootSchema(summary: ""),
+            "AppEventsResponse": .rootSchema(summary: ""),
             "AppInfo": .rootSchema(
                 summary: "The data structure that represent an App Infos resource.",
                 attributes: .init(
@@ -921,6 +958,20 @@ public extension Schema {
                     "versionString": "",
                 ])
             ),
+            "AppStoreVersionExperiment": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentCreateRequest": .createRequest(summary: ""),
+            "AppStoreVersionExperimentResponse": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentTreatment": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentTreatmentCreateRequest": .createRequest(summary: ""),
+            "AppStoreVersionExperimentTreatmentLocalization": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentTreatmentLocalizationCreateRequest": .createRequest(summary: ""),
+            "AppStoreVersionExperimentTreatmentLocalizationResponse": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentTreatmentLocalizationsResponse": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentTreatmentResponse": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentTreatmentUpdateRequest": .updateRequest(summary: ""),
+            "AppStoreVersionExperimentTreatmentsResponse": .rootSchema(summary: ""),
+            "AppStoreVersionExperimentUpdateRequest": .updateRequest(summary: ""),
+            "AppStoreVersionExperimentsResponse": .rootSchema(summary: ""),
             "AppStoreVersionLocalization": .rootSchema(
                 summary: "The data structure that represent an App Store Version Localizations resource.",
                 attributes: .init(
@@ -982,6 +1033,9 @@ public extension Schema {
                 summary: "The request body you use to update an App Store Version Phased Release.",
                 attributes: .init(properties: ["phasedReleaseState": ""])
             ),
+            "AppStoreVersionPromotion": .rootSchema(summary: ""),
+            "AppStoreVersionPromotionCreateRequest": .createRequest(summary: ""),
+            "AppStoreVersionPromotionResponse": .rootSchema(summary: ""),
             "AppStoreVersionReleaseRequest": .rootSchema(summary: "The data structure that represents an App Store Version Release Request resource."),
             "AppStoreVersionReleaseRequestCreateRequest": .createRequest(summary: "The request body you use to manually release an App Store approved version of your app."),
             "AppStoreVersionReleaseRequestResponse": .rootSchema(summary: "A response that contains a single App Store Version Release Request resource."),
@@ -2263,6 +2317,16 @@ public extension Schema {
                 summary: "Self-links to requested resources.",
                 properties: ["self": "The link to the resource."]
             ),
+            "ReviewSubmission": .rootSchema(summary: ""),
+            "ReviewSubmissionCreateRequest": .createRequest(summary: ""),
+            "ReviewSubmissionItem": .rootSchema(summary: ""),
+            "ReviewSubmissionItemCreateRequest": .createRequest(summary: ""),
+            "ReviewSubmissionItemResponse": .rootSchema(summary: ""),
+            "ReviewSubmissionItemUpdateRequest": .updateRequest(summary: ""),
+            "ReviewSubmissionItemsResponse": .rootSchema(summary: ""),
+            "ReviewSubmissionResponse": .rootSchema(summary: ""),
+            "ReviewSubmissionUpdateRequest": .updateRequest(summary: ""),
+            "ReviewSubmissionsResponse": .rootSchema(summary: ""),
             "RoutingAppCoverage": .rootSchema(
                 summary: "The data structure that represents the Routing App Coverages resource.",
                 attributes: .init(
@@ -2396,6 +2460,7 @@ public extension Schema {
                     "IMESSAGE_APP_IPAD_97": "",
                 ]
             ),
+            "SubscriptionStatusUrlVersion": .rootSchema(summary: ""),
             "TerritoriesResponse": .rootSchema(summary: "A response that contains a list of Territory resources."),
             "Territory": .rootSchema(
                 summary: "The data structure that represents a Territories resource.",
