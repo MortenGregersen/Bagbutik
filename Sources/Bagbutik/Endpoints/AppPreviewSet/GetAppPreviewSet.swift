@@ -34,7 +34,9 @@ public enum GetAppPreviewSet {
         case appPreviews([AppPreviews])
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+            case appCustomProductPageLocalization
             case appPreviews
+            case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
         }
@@ -58,6 +60,6 @@ public enum GetAppPreviewSet {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appPreviews, appStoreVersionLocalization
+        case appCustomProductPageLocalization, appPreviews, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
     }
 }

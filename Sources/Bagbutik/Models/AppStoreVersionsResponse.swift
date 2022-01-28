@@ -29,6 +29,7 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appStoreReviewDetail(AppStoreReviewDetail)
+        case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
@@ -45,6 +46,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
                 self = .appClipDefaultExperience(appClipDefaultExperience)
             } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
                 self = .appStoreReviewDetail(appStoreReviewDetail)
+            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
+                self = .appStoreVersionExperiment(appStoreVersionExperiment)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
@@ -72,6 +75,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
             case let .appClipDefaultExperience(value):
                 try value.encode(to: encoder)
             case let .appStoreReviewDetail(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperiment(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)

@@ -31,10 +31,24 @@ public enum ListAppStoreVersionsForApp {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersionExperiments
+        case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
+
+        public enum AppStoreVersionExperiments: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+            case appStoreVersionExperimentTreatments
+            case endDate
+            case name
+            case reviewRequired
+            case startDate
+            case started
+            case state
+            case trafficProportion
+        }
 
         public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
             case appPreviewSets
@@ -55,6 +69,7 @@ public enum ListAppStoreVersionsForApp {
             case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
+            case appStoreVersionExperiments
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -86,6 +101,7 @@ public enum ListAppStoreVersionsForApp {
         case versionString([String])
 
         public enum AppStoreState: String, ParameterValue, CaseIterable {
+            case accepted = "ACCEPTED"
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
             case developerRejected = "DEVELOPER_REJECTED"
             case inReview = "IN_REVIEW"
@@ -97,6 +113,7 @@ public enum ListAppStoreVersionsForApp {
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case preorderReadyForSale = "PREORDER_READY_FOR_SALE"
             case processingForAppStore = "PROCESSING_FOR_APP_STORE"
+            case readyForReview = "READY_FOR_REVIEW"
             case readyForSale = "READY_FOR_SALE"
             case rejected = "REJECTED"
             case removedFromSale = "REMOVED_FROM_SALE"
@@ -120,7 +137,7 @@ public enum ListAppStoreVersionsForApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
+        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
     }
 
     /**
@@ -131,5 +148,7 @@ public enum ListAppStoreVersionsForApp {
         case limit(Int)
         /// Maximum number of related appStoreVersionLocalizations returned (when they are included) - maximum 50
         case appStoreVersionLocalizations(Int)
+        /// Maximum number of related appStoreVersionExperiments returned (when they are included) - maximum 50
+        case appStoreVersionExperiments(Int)
     }
 }

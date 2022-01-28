@@ -114,6 +114,7 @@ public struct AppStoreVersion: Codable {
         @NullCodable public var app: App?
         @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
         @NullCodable public var appStoreReviewDetail: AppStoreReviewDetail?
+        @NullCodable public var appStoreVersionExperiments: AppStoreVersionExperiments?
         @NullCodable public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
         @NullCodable public var appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
         @NullCodable public var appStoreVersionSubmission: AppStoreVersionSubmission?
@@ -122,11 +123,12 @@ public struct AppStoreVersion: Codable {
         @NullCodable public var routingAppCoverage: RoutingAppCoverage?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
+        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionExperiments: AppStoreVersionExperiments? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
             self.ageRatingDeclaration = ageRatingDeclaration
             self.app = app
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appStoreReviewDetail = appStoreReviewDetail
+            self.appStoreVersionExperiments = appStoreVersionExperiments
             self.appStoreVersionLocalizations = appStoreVersionLocalizations
             self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
             self.appStoreVersionSubmission = appStoreVersionSubmission
@@ -135,10 +137,11 @@ public struct AppStoreVersion: Codable {
             self.routingAppCoverage = routingAppCoverage
         }
 
-        public init(app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
+        public init(app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionExperiments: AppStoreVersionExperiments? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
             self.app = app
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appStoreReviewDetail = appStoreReviewDetail
+            self.appStoreVersionExperiments = appStoreVersionExperiments
             self.appStoreVersionLocalizations = appStoreVersionLocalizations
             self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
             self.appStoreVersionSubmission = appStoreVersionSubmission
@@ -421,6 +424,81 @@ public struct AppStoreVersion: Codable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public var related: String?
+                /// The relationship's self-link
+                public var `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionexperiments>
+         */
+        public struct AppStoreVersionExperiments: Codable {
+            /// The type and ID of a related resource.
+            @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
+            @NullCodable public var links: Links?
+            /// Paging information for data responses.
+            @NullCodable public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionexperiments/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "appStoreVersionExperiments" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionexperiments/links>
              */
             public struct Links: Codable {
                 /// The link to the related data.

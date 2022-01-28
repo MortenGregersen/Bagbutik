@@ -25,12 +25,18 @@ public struct AppPreviewSetsResponse: Codable, PagedResponse {
     }
 
     public enum Included: Codable {
+        case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appPreview(AppPreview)
+        case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appPreview = try? AppPreview(from: decoder) {
+            if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
+                self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
+            } else if let appPreview = try? AppPreview(from: decoder) {
                 self = .appPreview(appPreview)
+            } else if let appStoreVersionExperimentTreatmentLocalization = try? AppStoreVersionExperimentTreatmentLocalization(from: decoder) {
+                self = .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else {
@@ -41,7 +47,11 @@ public struct AppPreviewSetsResponse: Codable, PagedResponse {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appCustomProductPageLocalization(value):
+                try value.encode(to: encoder)
             case let .appPreview(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperimentTreatmentLocalization(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)

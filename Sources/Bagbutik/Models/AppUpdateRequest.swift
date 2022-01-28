@@ -75,12 +75,20 @@ public struct AppUpdateRequest: Codable, RequestBody {
             public var bundleId: String?
             @NullCodable public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
             public var primaryLocale: String?
+            public var subscriptionStatusUrl: String?
+            public var subscriptionStatusUrlForSandbox: String?
+            @NullCodable public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
+            @NullCodable public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
-            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
+            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil) {
                 self.availableInNewTerritories = availableInNewTerritories
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
                 self.primaryLocale = primaryLocale
+                self.subscriptionStatusUrl = subscriptionStatusUrl
+                self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
+                self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
+                self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
             }
         }
 

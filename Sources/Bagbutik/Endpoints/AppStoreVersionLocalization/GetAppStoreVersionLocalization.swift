@@ -36,13 +36,17 @@ public enum GetAppStoreVersionLocalization {
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+            case appCustomProductPageLocalization
             case appPreviews
+            case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
         }
 
         public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
+            case appCustomProductPageLocalization
             case appScreenshots
+            case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
         }

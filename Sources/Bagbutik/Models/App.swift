@@ -71,8 +71,12 @@ public struct App: Codable {
         public var primaryLocale: String?
         /// A unique ID for your app that is not visible on the App Store.
         public var sku: String?
+        public var subscriptionStatusUrl: String?
+        public var subscriptionStatusUrlForSandbox: String?
+        @NullCodable public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
+        @NullCodable public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
-        public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil, isOrEverWasMadeForKids: Bool? = nil, name: String? = nil, primaryLocale: String? = nil, sku: String? = nil) {
+        public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil, isOrEverWasMadeForKids: Bool? = nil, name: String? = nil, primaryLocale: String? = nil, sku: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil) {
             self.availableInNewTerritories = availableInNewTerritories
             self.bundleId = bundleId
             self.contentRightsDeclaration = contentRightsDeclaration
@@ -80,6 +84,10 @@ public struct App: Codable {
             self.name = name
             self.primaryLocale = primaryLocale
             self.sku = sku
+            self.subscriptionStatusUrl = subscriptionStatusUrl
+            self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
+            self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
+            self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
         }
 
         public enum ContentRightsDeclaration: String, Codable, CaseIterable {
@@ -96,6 +104,8 @@ public struct App: Codable {
      */
     public struct Relationships: Codable {
         @NullCodable public var appClips: AppClips?
+        @NullCodable public var appCustomProductPages: AppCustomProductPages?
+        @NullCodable public var appEvents: AppEvents?
         @NullCodable public var appInfos: AppInfos?
         @NullCodable public var appStoreVersions: AppStoreVersions?
         @NullCodable public var availableTerritories: AvailableTerritories?
@@ -111,9 +121,12 @@ public struct App: Codable {
         @NullCodable public var preOrder: PreOrder?
         @NullCodable public var preReleaseVersions: PreReleaseVersions?
         @NullCodable public var prices: Prices?
+        @NullCodable public var reviewSubmissions: ReviewSubmissions?
 
-        public init(appClips: AppClips? = nil, appInfos: AppInfos? = nil, appStoreVersions: AppStoreVersions? = nil, availableTerritories: AvailableTerritories? = nil, betaAppLocalizations: BetaAppLocalizations? = nil, betaAppReviewDetail: BetaAppReviewDetail? = nil, betaGroups: BetaGroups? = nil, betaLicenseAgreement: BetaLicenseAgreement? = nil, builds: Builds? = nil, ciProduct: CiProduct? = nil, endUserLicenseAgreement: EndUserLicenseAgreement? = nil, gameCenterEnabledVersions: GameCenterEnabledVersions? = nil, inAppPurchases: InAppPurchases? = nil, preOrder: PreOrder? = nil, preReleaseVersions: PreReleaseVersions? = nil, prices: Prices? = nil) {
+        public init(appClips: AppClips? = nil, appCustomProductPages: AppCustomProductPages? = nil, appEvents: AppEvents? = nil, appInfos: AppInfos? = nil, appStoreVersions: AppStoreVersions? = nil, availableTerritories: AvailableTerritories? = nil, betaAppLocalizations: BetaAppLocalizations? = nil, betaAppReviewDetail: BetaAppReviewDetail? = nil, betaGroups: BetaGroups? = nil, betaLicenseAgreement: BetaLicenseAgreement? = nil, builds: Builds? = nil, ciProduct: CiProduct? = nil, endUserLicenseAgreement: EndUserLicenseAgreement? = nil, gameCenterEnabledVersions: GameCenterEnabledVersions? = nil, inAppPurchases: InAppPurchases? = nil, preOrder: PreOrder? = nil, preReleaseVersions: PreReleaseVersions? = nil, prices: Prices? = nil, reviewSubmissions: ReviewSubmissions? = nil) {
             self.appClips = appClips
+            self.appCustomProductPages = appCustomProductPages
+            self.appEvents = appEvents
             self.appInfos = appInfos
             self.appStoreVersions = appStoreVersions
             self.availableTerritories = availableTerritories
@@ -129,6 +142,7 @@ public struct App: Codable {
             self.preOrder = preOrder
             self.preReleaseVersions = preReleaseVersions
             self.prices = prices
+            self.reviewSubmissions = reviewSubmissions
         }
 
         /**
@@ -192,6 +206,156 @@ public struct App: Codable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public var related: String?
+                /// The relationship's self-link
+                public var `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appcustomproductpages>
+         */
+        public struct AppCustomProductPages: Codable {
+            /// The type and ID of a related resource.
+            @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
+            @NullCodable public var links: Links?
+            /// Paging information for data responses.
+            @NullCodable public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appcustomproductpages/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "appCustomProductPages" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appcustomproductpages/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public var related: String?
+                /// The relationship's self-link
+                public var `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appevents>
+         */
+        public struct AppEvents: Codable {
+            /// The type and ID of a related resource.
+            @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
+            @NullCodable public var links: Links?
+            /// Paging information for data responses.
+            @NullCodable public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appevents/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "appEvents" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appevents/links>
              */
             public struct Links: Codable {
                 /// The link to the related data.
@@ -1302,6 +1466,81 @@ public struct App: Codable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public var related: String?
+                /// The relationship's self-link
+                public var `self`: String?
+
+                public init(related: String? = nil, self aSelf: String? = nil) {
+                    self.related = related
+                    self.`self` = aSelf
+                }
+            }
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/reviewsubmissions>
+         */
+        public struct ReviewSubmissions: Codable {
+            /// The type and ID of a related resource.
+            @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
+            @NullCodable public var links: Links?
+            /// Paging information for data responses.
+            @NullCodable public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/reviewsubmissions/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "reviewSubmissions" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/reviewsubmissions/links>
              */
             public struct Links: Codable {
                 /// The link to the related data.
