@@ -115,7 +115,7 @@ final class OperationTests: XCTestCase {
         // Then
         let getOperation = operations["get"]
         XCTAssertEqual(getOperation?.name, "listTerritories")
-        XCTAssertEqual(getOperation?.documentation.title, "List Territories")
+        XCTAssertEqual(getOperation?.documentation?.title, "List Territories")
         XCTAssertEqual(getOperation?.method, .get)
         let getParameters: [BagbutikSpecDecoder.Operation.Parameter] = [
             .fields(name: "territories", type: .enum(type: "String", values: ["currency"]), deprecated: false,
@@ -129,7 +129,7 @@ final class OperationTests: XCTestCase {
 
         let patchOperation = operations["patch"]
         XCTAssertEqual(patchOperation?.name, "updateAgeRatingDeclaration")
-        XCTAssertEqual(patchOperation?.documentation.title, "Modify an Age Rating Declaration")
+        XCTAssertEqual(patchOperation?.documentation?.title, "Modify an Age Rating Declaration")
         XCTAssertEqual(patchOperation?.method, .patch)
         XCTAssertEqual(patchOperation?.parameters, nil)
         XCTAssertEqual(patchOperation?.requestBody, .init(name: "AgeRatingDeclarationUpdateRequest", documentation: "AgeRatingDeclaration representation"))
@@ -185,7 +185,7 @@ final class OperationTests: XCTestCase {
         // Then
         let getOperation = operations["get"]
         XCTAssertEqual(getOperation?.name, "getFinanceReports")
-        XCTAssertEqual(getOperation?.documentation.title, "Download Finance Reports")
+        XCTAssertEqual(getOperation?.documentation?.title, "Download Finance Reports")
         XCTAssertEqual(getOperation?.method, .get)
         XCTAssertEqual(getOperation?.parameters, [])
         XCTAssertEqual(getOperation?.requestBody, nil)
@@ -252,7 +252,7 @@ final class OperationTests: XCTestCase {
         // Then
         let getOperation = operations["delete"]
         XCTAssertEqual(getOperation?.name, "deleteProfile")
-        XCTAssertEqual(getOperation?.documentation.title, "Delete a Profile")
+        XCTAssertEqual(getOperation?.documentation?.title, "Delete a Profile")
         XCTAssertEqual(getOperation?.method, .delete)
         XCTAssertEqual(getOperation?.parameters, nil)
         XCTAssertEqual(getOperation?.requestBody, nil)
@@ -281,7 +281,6 @@ final class OperationTests: XCTestCase {
     }
 
     func testGetDocumentation() {
-        XCTAssertNoThrow(try Operation.getDocumentation(forId: "users-get_collection"))
-        XCTAssertThrowsError(try Operation.getDocumentation(forId: "invalid-id"))
+        XCTAssertNil(try Operation.getDocumentation(forId: "invalid-id"))
     }
 }

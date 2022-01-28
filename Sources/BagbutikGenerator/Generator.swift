@@ -87,6 +87,7 @@ public class Generator {
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
+        var endpointsMissingDocumentation = [String]()
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
         try removeChildren(at: endpointsDirURL)
         try spec.paths.values.sorted(by: { $0.path < $1.path }).forEach { path in
@@ -98,10 +99,13 @@ public class Generator {
                 guard fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
                     throw GeneratorError.couldNotCreateFile(endpoint.fileName)
                 }
+                if !endpoint.hasDocumentation {
+                    endpointsMissingDocumentation.append(endpoint.name)
+                }
             }
         }
 
-        var modelsMissingDocumentation = [(name: String, url: String)]()
+        var modelsMissingDocumentation = [(name: String, url: String?)]()
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
         try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
@@ -117,8 +121,14 @@ public class Generator {
             }
         }
 
+        endpointsMissingDocumentation.forEach { endpointName in
+            print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
+        }
+
         modelsMissingDocumentation.forEach { model in
-            print("⚠️ Documentation missing for '\(model.name)': \(model.url)")
+            var log = "⚠️ Documentation missing for model: '\(model.name)'"
+            if let url = model.url { log += " (\(url))" }
+            print(log)
         }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
@@ -137,23 +147,24 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private func generateEndpoints(for path: Path) throws -> [(fileName: String, contents: String)] {
+    private func generateEndpoints(for path: Path) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
         try path.operations.map { operation in
-            let fileName = "\(operation.name.capitalizingFirstLetter()).swift"
+            let name = operation.name.capitalizingFirstLetter()
+            let fileName = "\(name).swift"
             let renderedOperation = try OperationRenderer().render(operation: operation, in: path)
-            return (fileName: fileName, contents: renderedOperation)
+            return (name: name, fileName: fileName, contents: renderedOperation, hasDocumentation: operation.documentation != nil)
         }
     }
 
-    private func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String) {
+    private func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
         let renderedSchema: String
         let hasDocumentation: Bool
-        let url: String
+        let url: String?
         switch schema {
         case .enum(let enumSchema):
             renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
             hasDocumentation = enumSchema.documentation != nil
-            url = enumSchema.url ?? ""
+            url = enumSchema.url
         case .object(let objectSchema):
             renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema)
             hasDocumentation = objectSchema.documentation != nil
