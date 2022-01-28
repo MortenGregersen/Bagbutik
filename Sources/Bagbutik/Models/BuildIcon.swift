@@ -56,10 +56,12 @@ public struct BuildIcon: Codable {
     public struct Attributes: Codable {
         @NullCodable public var iconAsset: ImageAsset?
         @NullCodable public var iconType: IconAssetType?
+        public var name: String?
 
-        public init(iconAsset: ImageAsset? = nil, iconType: IconAssetType? = nil) {
+        public init(iconAsset: ImageAsset? = nil, iconType: IconAssetType? = nil, name: String? = nil) {
             self.iconAsset = iconAsset
             self.iconType = iconType
+            self.name = name
         }
     }
 }

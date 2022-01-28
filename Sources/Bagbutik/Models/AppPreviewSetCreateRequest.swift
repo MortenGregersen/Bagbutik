@@ -76,10 +76,104 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            @NullCodable public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
+            @NullCodable public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
             @NullCodable public var appStoreVersionLocalization: AppStoreVersionLocalization?
 
-            public init(appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
+            public init(appCustomProductPageLocalization: AppCustomProductPageLocalization? = nil, appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization? = nil, appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
+                self.appCustomProductPageLocalization = appCustomProductPageLocalization
+                self.appStoreVersionExperimentTreatmentLocalization = appStoreVersionExperimentTreatmentLocalization
                 self.appStoreVersionLocalization = appStoreVersionLocalization
+            }
+
+            public struct AppCustomProductPageLocalization: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships/appcustomproductpagelocalization/data>
+                 */
+                public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
+                    public let id: String
+                    /// The resource type.
+                    public var type: String { "appCustomProductPageLocalizations" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
+                }
+            }
+
+            public struct AppStoreVersionExperimentTreatmentLocalization: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
+                @NullCodable public var data: Data?
+
+                public init(data: Data? = nil) {
+                    self.data = data
+                }
+
+                /**
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships/appstoreversionexperimenttreatmentlocalization/data>
+                 */
+                public struct Data: Codable {
+                    /// The opaque resource ID that uniquely identifies the resource.
+                    public let id: String
+                    /// The resource type.
+                    public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
+                }
             }
 
             public struct AppStoreVersionLocalization: Codable {

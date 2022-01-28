@@ -37,7 +37,9 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
         case appPreviews([AppPreviews])
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+            case appCustomProductPageLocalization
             case appPreviews
+            case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case previewType
         }
@@ -61,6 +63,10 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
      Attributes, relationships, and IDs by which to filter.
      */
     public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'appCustomProductPageLocalization'
+        case appCustomProductPageLocalization([String])
+        /// Filter by id(s) of related 'appStoreVersionExperimentTreatmentLocalization'
+        case appStoreVersionExperimentTreatmentLocalization([String])
         /// Filter by attribute 'previewType'
         case previewType([PreviewType])
 
@@ -88,7 +94,7 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appPreviews, appStoreVersionLocalization
+        case appCustomProductPageLocalization, appPreviews, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
     }
 
     /**

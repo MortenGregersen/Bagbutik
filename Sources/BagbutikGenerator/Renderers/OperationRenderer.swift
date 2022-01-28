@@ -36,11 +36,12 @@ public class OperationRenderer: Renderer {
     private let template = """
     public extension Request {
         /**
-         # {{ documentation.title }}
+         {% if documentation %}# {{ documentation.title }}
          {{ documentation.summary }}
 
          Full documentation:
-         <{{ documentation.url }}>
+         <{{ documentation.url }}>{%
+         else %}# No overview available{% endif %}
 
         {% for parametersDocumentation in parametersDocumentations %}
         {{ parametersDocumentation }}{%
@@ -288,7 +289,7 @@ public class OperationRenderer: Renderer {
         } + (limits.count > 1 ? limits.count : 0)
         return ["name": name,
                 "deprecated": operation.deprecated,
-                "documentation": operation.documentation,
+                "documentation": operation.documentation as Any,
                 "path": interpolatablePath,
                 "method": operation.method.rawValue,
                 "successResponseType": operation.successResponseType,

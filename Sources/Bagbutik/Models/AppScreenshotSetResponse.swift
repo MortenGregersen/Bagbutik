@@ -21,12 +21,18 @@ public struct AppScreenshotSetResponse: Codable {
     }
 
     public enum Included: Codable {
+        case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appScreenshot(AppScreenshot)
+        case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
 
         public init(from decoder: Decoder) throws {
-            if let appScreenshot = try? AppScreenshot(from: decoder) {
+            if let appCustomProductPageLocalization = try? AppCustomProductPageLocalization(from: decoder) {
+                self = .appCustomProductPageLocalization(appCustomProductPageLocalization)
+            } else if let appScreenshot = try? AppScreenshot(from: decoder) {
                 self = .appScreenshot(appScreenshot)
+            } else if let appStoreVersionExperimentTreatmentLocalization = try? AppStoreVersionExperimentTreatmentLocalization(from: decoder) {
+                self = .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else {
@@ -37,7 +43,11 @@ public struct AppScreenshotSetResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .appCustomProductPageLocalization(value):
+                try value.encode(to: encoder)
             case let .appScreenshot(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperimentTreatmentLocalization(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)

@@ -26,6 +26,8 @@ public struct AppsResponse: Codable, PagedResponse {
 
     public enum Included: Codable {
         case appClip(AppClip)
+        case appCustomProductPage(AppCustomProductPage)
+        case appEvent(AppEvent)
         case appInfo(AppInfo)
         case appPreOrder(AppPreOrder)
         case appPrice(AppPrice)
@@ -40,11 +42,16 @@ public struct AppsResponse: Codable, PagedResponse {
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
         case inAppPurchase(InAppPurchase)
         case prereleaseVersion(PrereleaseVersion)
+        case reviewSubmission(ReviewSubmission)
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
             if let appClip = try? AppClip(from: decoder) {
                 self = .appClip(appClip)
+            } else if let appCustomProductPage = try? AppCustomProductPage(from: decoder) {
+                self = .appCustomProductPage(appCustomProductPage)
+            } else if let appEvent = try? AppEvent(from: decoder) {
+                self = .appEvent(appEvent)
             } else if let appInfo = try? AppInfo(from: decoder) {
                 self = .appInfo(appInfo)
             } else if let appPreOrder = try? AppPreOrder(from: decoder) {
@@ -73,6 +80,8 @@ public struct AppsResponse: Codable, PagedResponse {
                 self = .inAppPurchase(inAppPurchase)
             } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                 self = .prereleaseVersion(prereleaseVersion)
+            } else if let reviewSubmission = try? ReviewSubmission(from: decoder) {
+                self = .reviewSubmission(reviewSubmission)
             } else if let territory = try? Territory(from: decoder) {
                 self = .territory(territory)
             } else {
@@ -84,6 +93,10 @@ public struct AppsResponse: Codable, PagedResponse {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .appClip(value):
+                try value.encode(to: encoder)
+            case let .appCustomProductPage(value):
+                try value.encode(to: encoder)
+            case let .appEvent(value):
                 try value.encode(to: encoder)
             case let .appInfo(value):
                 try value.encode(to: encoder)
@@ -112,6 +125,8 @@ public struct AppsResponse: Codable, PagedResponse {
             case let .inAppPurchase(value):
                 try value.encode(to: encoder)
             case let .prereleaseVersion(value):
+                try value.encode(to: encoder)
+            case let .reviewSubmission(value):
                 try value.encode(to: encoder)
             case let .territory(value):
                 try value.encode(to: encoder)
