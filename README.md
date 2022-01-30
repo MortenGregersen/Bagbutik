@@ -21,9 +21,9 @@
 </p>
 
 ## What is Bagbutik?
-Bagbutik is two things, a command line tool for generating Swift code, and a the generated code for the App Store Connect API. The command line tool decodes the official <a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">OpenAPI spec</a> for Apple's <a href="https://developer.apple.com/documentation/appstoreconnectapi">App Store Connect API</a>.
+Bagbutik is two things, a command line tool for generating Swift code, and the generated code for the App Store Connect API. The command line tool decodes the official <a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">OpenAPI spec</a> for Apple's <a href="https://developer.apple.com/documentation/appstoreconnectapi">App Store Connect API</a>.
 
-The command line tool should only be used to generate the Swift code again, when Apple publishes a new version of the spec.
+The command line tool is only needed, when Apple publishes a new version of the spec.
 
 ## How to use Bagbutik
 Bagbutik uses JSON Web Tokens (JWT) for authorization. You obtain the required keys from your organization's App Store Connect account.
