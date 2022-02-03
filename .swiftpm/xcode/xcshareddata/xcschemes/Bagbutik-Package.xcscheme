@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1320"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,51 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikCLI"
-               BuildableName = "BagbutikCLI"
-               BlueprintName = "BagbutikCLI"
+               BlueprintIdentifier = "Bagbutik"
+               BuildableName = "Bagbutik"
+               BlueprintName = "Bagbutik"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bagbutik"
-               BuildableName = "Bagbutik"
-               BlueprintName = "Bagbutik"
+               BlueprintIdentifier = "BagbutikGeneratorTests"
+               BuildableName = "BagbutikGeneratorTests"
+               BlueprintName = "BagbutikGeneratorTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikSpecDecoderTests"
+               BuildableName = "BagbutikSpecDecoderTests"
+               BlueprintName = "BagbutikSpecDecoderTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikStringExtensionsTests"
+               BuildableName = "BagbutikStringExtensionsTests"
+               BlueprintName = "BagbutikStringExtensionsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,20 +93,6 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikGeneratorTests"
-               BuildableName = "BagbutikGeneratorTests"
-               BlueprintName = "BagbutikGeneratorTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
@@ -87,20 +101,6 @@
                BlueprintIdentifier = "BagbutikSpecDecoder"
                BuildableName = "BagbutikSpecDecoder"
                BlueprintName = "BagbutikSpecDecoder"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikSpecDecoderTests"
-               BuildableName = "BagbutikSpecDecoderTests"
-               BlueprintName = "BagbutikSpecDecoderTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -118,28 +118,13 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikStringExtensionsTests"
-               BuildableName = "BagbutikStringExtensionsTests"
-               BlueprintName = "BagbutikStringExtensionsTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -171,9 +156,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikTests"
-               BuildableName = "BagbutikTests"
-               BlueprintName = "BagbutikTests"
+               BlueprintIdentifier = "BagbutikStringExtensionsTests"
+               BuildableName = "BagbutikStringExtensionsTests"
+               BlueprintName = "BagbutikStringExtensionsTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -183,9 +168,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikStringExtensionsTests"
-               BuildableName = "BagbutikStringExtensionsTests"
-               BlueprintName = "BagbutikStringExtensionsTests"
+               BlueprintIdentifier = "BagbutikTests"
+               BuildableName = "BagbutikTests"
+               BlueprintName = "BagbutikTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -201,15 +186,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BagbutikCLI"
-            BuildableName = "BagbutikCLI"
-            BlueprintName = "BagbutikCLI"
-            ReferencedContainer = "container:">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -217,15 +193,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BagbutikCLI"
-            BuildableName = "BagbutikCLI"
-            BlueprintName = "BagbutikCLI"
-            ReferencedContainer = "container:">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
