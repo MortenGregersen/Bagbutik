@@ -30,29 +30,25 @@ Bagbutik uses JSON Web Tokens (JWT) for authorization. You obtain the required k
 
 > See [Creating API Keys for App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api) for how to create your keys.
 
-Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the ID itself descending.
+Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the bundle ID itself descending.
 
 ```swift
-let privateKey = """
------BEGIN PRIVATE KEY-----
-MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgevZzL1gdAFr88hb2
-OF/2NxApJCzGCEDdfSp6VQO30hyhRANCAAQRWz+jn65BtOMvdyHKcvjBeBSDZH2r
-1RTwjmYSi9R/zpBnuQ4EiMnCqfMPWiZqB4QdbAd0E7oH50VpuZ1P087G
------END PRIVATE KEY-----
-"""
-let service = try BagbutikService(keyId: "P9M252746H", issuerId: "82067982-6b3b-4a48-be4f-5b10b373c5f2", privateKey: privateKey)
-let cancellable = service.request(
+let service = try BagbutikService(jwt: .init(
+    keyId: "P9M252746H",
+    issuerId: "82067982-6b3b-4a48-be4f-5b10b373c5f2",
+    privateKey: """
+    -----BEGIN PRIVATE KEY-----
+    MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgevZzL1gdAFr88hb2
+    OF/2NxApJCzGCEDdfSp6VQO30hyhRANCAAQRWz+jn65BtOMvdyHKcvjBeBSDZH2r
+    1RTwjmYSi9R/zpBnuQ4EiMnCqfMPWiZqB4QdbAd0E7oH50VpuZ1P087G
+    -----END PRIVATE KEY-----
+    """
+))
+let response = try await service.request(
     .listBundleIds(fields: [.profiles([.bundleId, .name])],
                    filters: [.platform([.iOS])],
-                   include: [.profiles],
-                   sort: [.seedIdDescending, .idDescending])
+                   includes: [.profiles],
+                   sorts: [.seedIdDescending, .idDescending])
 )
-.sink(receiveCompletion: { error in
-    print(error)
-}, receiveValue: { response in
-    print(response)
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = .prettyPrinted
-    print(String(data: try! encoder.encode(response), encoding: .utf8)!)
-})
+print(response)
 ```
