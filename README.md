@@ -47,8 +47,4 @@ let response: BundleIdsResponse = try await service.request(
                    includes: [.profiles],
                    sorts: [.seedIdDescending, .idDescending])
 )
-print(response)
-let encoder = JSONEncoder()
-encoder.outputFormatting = .prettyPrinted
-print(String(data: try! encoder.encode(response), encoding: .utf8)!)
 ```
