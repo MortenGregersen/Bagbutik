@@ -40,19 +40,15 @@ OF/2NxApJCzGCEDdfSp6VQO30hyhRANCAAQRWz+jn65BtOMvdyHKcvjBeBSDZH2r
 1RTwjmYSi9R/zpBnuQ4EiMnCqfMPWiZqB4QdbAd0E7oH50VpuZ1P087G
 -----END PRIVATE KEY-----
 """
-let service = try BagbutikService(keyId: "P9M252746H", issuerId: "82067982-6b3b-4a48-be4f-5b10b373c5f2", privateKey: privateKey)
-let cancellable = service.request(
+let service = try BagbutikService(jwt: .init(keyId: "P9M252746H", issuerId: "82067982-6b3b-4a48-be4f-5b10b373c5f2", privateKey: privateKey))
+let response: BundleIdsResponse = try await service.request(
     .listBundleIds(fields: [.profiles([.bundleId, .name])],
                    filters: [.platform([.iOS])],
-                   include: [.profiles],
-                   sort: [.seedIdDescending, .idDescending])
+                   includes: [.profiles],
+                   sorts: [.seedIdDescending, .idDescending])
 )
-.sink(receiveCompletion: { error in
-    print(error)
-}, receiveValue: { response in
-    print(response)
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = .prettyPrinted
-    print(String(data: try! encoder.encode(response), encoding: .utf8)!)
-})
+print(response)
+let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
+print(String(data: try! encoder.encode(response), encoding: .utf8)!)
 ```
