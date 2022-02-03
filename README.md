@@ -30,7 +30,7 @@ Bagbutik uses JSON Web Tokens (JWT) for authorization. You obtain the required k
 
 > See [Creating API Keys for App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api) for how to create your keys.
 
-Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the ID itself descending.
+Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the bundle ID itself descending.
 
 ```swift
 let privateKey = """
@@ -41,10 +41,11 @@ OF/2NxApJCzGCEDdfSp6VQO30hyhRANCAAQRWz+jn65BtOMvdyHKcvjBeBSDZH2r
 -----END PRIVATE KEY-----
 """
 let service = try BagbutikService(jwt: .init(keyId: "P9M252746H", issuerId: "82067982-6b3b-4a48-be4f-5b10b373c5f2", privateKey: privateKey))
-let response: BundleIdsResponse = try await service.request(
+let response = try await service.request(
     .listBundleIds(fields: [.profiles([.bundleId, .name])],
                    filters: [.platform([.iOS])],
                    includes: [.profiles],
                    sorts: [.seedIdDescending, .idDescending])
 )
+print(response)
 ```
