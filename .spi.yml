@@ -1,0 +1,11 @@
+version: 1
+builder:
+  configs:
+  - platform: macos
+    scheme: Bagbutik
+  - platform: ios
+    scheme: Bagbutik
+  - platform: tvos
+    scheme: Bagbutik
+  - platform: watchos
+    scheme: Bagbutik
