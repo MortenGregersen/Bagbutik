@@ -43,7 +43,7 @@ public struct JWT {
     }
     
     private struct Payload: Encodable {
-        let iss: String
+        var iss: String
         var exp: Int
         let aud = "appstoreconnect-v1"
         var isExpired: Bool { Date(timeIntervalSince1970: TimeInterval(exp)) < DateFactory.fromTimeIntervalSinceNow(0) }
@@ -58,7 +58,7 @@ public struct JWT {
         }
         
         private static func createExp() -> Int {
-            return Int(DateFactory.fromTimeIntervalSinceNow(20 * 60).timeIntervalSince1970)
+            Int(DateFactory.fromTimeIntervalSinceNow(20 * 60).timeIntervalSince1970)
         }
     }
 }

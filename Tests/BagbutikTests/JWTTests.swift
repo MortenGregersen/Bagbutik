@@ -22,7 +22,7 @@ final class JWTTests: XCTestCase {
     func testInitialEncodedSignature_Renew() throws {
         DateFactory.fromTimeIntervalSinceNow = { _ in Date.distantPast }
         var jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey)
-        DateFactory.fromTimeIntervalSinceNow = Date.init(timeIntervalSinceNow:)
+        DateFactory.reset()
         XCTAssertTrue(jwt.isExpired)
         DateFactory.fromTimeIntervalSinceNow = { _ in Date.distantFuture }
         try jwt.renewEncodedSignature()
