@@ -150,6 +150,7 @@ class MockURLSession: URLSessionProtocol {
     }
 
     func data(for request: URLRequest, delegate: URLSessionTaskDelegate? = nil) async throws -> (Data, URLResponse) {
+        XCTAssertTrue(request.allHTTPHeaderFields?.contains(where: { $0.key == "Authorization" }) ?? false)
         let response = responsesByUrl[request.url!]!
         switch response.type {
         case .http(let statusCode):
