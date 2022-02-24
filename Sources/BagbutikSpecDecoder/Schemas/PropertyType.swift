@@ -30,10 +30,10 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         }
         return false
     }
-    
+
     /// Returns true if the type is a simple data type (to minimize pattern matching code elsewhere)
     public var isSimple: Bool {
-        if case .simple(_) = self {
+        if case .simple = self {
             return true
         }
         return false
@@ -43,7 +43,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         switch self {
         case .simple(let simplePropertyType):
             return simplePropertyType.description
-        case .constant(_):
+        case .constant:
             return SimplePropertyType.string.description
         case .schemaRef(let schemaName):
             return schemaName
@@ -118,12 +118,10 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                 }
             }
         } else if let schemaPath = try container.decodeIfPresent(String.self, forKey: .ref),
-                  let schemaName = schemaPath.components(separatedBy: "/").last
-        {
+                  let schemaName = schemaPath.components(separatedBy: "/").last {
             self = .schemaRef(schemaName)
         } else if let oneOfOptions = try container.decodeIfPresent([OneOfOption].self, forKey: .oneOf),
-                  let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
-        {
+                  let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
             self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Schema type not known")

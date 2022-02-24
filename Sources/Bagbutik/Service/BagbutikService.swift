@@ -15,6 +15,13 @@ public protocol URLSessionProtocol {
 
 extension URLSession: URLSessionProtocol {}
 
+/**
+ Service for performing requests. A valid JWT is required to perform requests.
+ 
+ It is possible to just perform a single request, or to perform requests until all items has been fetched, if the response type supports paging.
+ 
+ If the JWT has expired, it will be renewed before the request is performed.
+ */
 public class BagbutikService: BagbutikServiceProtocol {
     internal private(set) var jwt: JWT
     private let urlSession: URLSessionProtocol
@@ -42,22 +49,54 @@ public class BagbutikService: BagbutikServiceProtocol {
         return decoder
     }()
     
+    /**
+     Perform a single request.
+     
+     - Parameters:
+        - request: A `Request` with the desired `Parameters`.
+     - Returns: The response of the request, decoded to the `ResponseType`.
+     */
     public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T {
         let urlRequest = request.asUrlRequest()
         return try await fetch(urlRequest)
     }
     
+    /**
+     Perform all requests required to get all items.
+     
+     The items for all responses will be in a single array.
+     
+     - Parameters:
+        - request: A `Request` with the desired `Parameters`.
+     - Returns: The responses of the requests, decoded to the `ResponseType` and an array with all the items.
+     */
     public func requestAllPages<T: Decodable & PagedResponse>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data]) {
         let response = try await self.request(request)
         return try await requestAllPages(for: response)
     }
     
+    /**
+     Perform a single request to get the items for the next page.
+     
+     - Parameters:
+        - response: The response for the previous page.
+     - Returns: The response for the next page, decoded to the `ResponseType`.
+     */
     public func requestNextPage<T: Decodable & PagedResponse>(for response: T) async throws -> T? {
         guard let urlString = response.links.next, let url = URL(string: urlString) else { return nil }
         let urlRequest = URLRequest(url: url)
         return try await fetch(urlRequest)
     }
     
+    /**
+     Perform all requests required to get all items for the rest of the pages.
+     
+     The items for all responses will be in a single array.
+     
+     - Parameters:
+        - response: The response for the previous page.
+     - Returns: The responses for the rest of the pages, decoded to the `ResponseType` and an array with all the items.
+     */
     public func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data]) {
         var responses = [response]
         while let nextResponse = try await requestNextPage(for: responses.last!) {

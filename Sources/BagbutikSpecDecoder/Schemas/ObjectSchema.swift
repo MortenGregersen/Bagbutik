@@ -89,8 +89,7 @@ public struct ObjectSchema: Decodable, Equatable {
             attributesSchema = .attributes(attributes)
         }
         if let relationships = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "relationships")!),
-           relationships.properties.count > 0
-        {
+           relationships.properties.count > 0 {
             relationshipsSchema = .relationships(relationships)
         }
         self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, attributesSchema: attributesSchema, relationshipsSchema: relationshipsSchema)
@@ -111,8 +110,7 @@ public struct ObjectSchema: Decodable, Equatable {
             return rootSchemaDocumentation
         } else if case .rootSchema(_, _, _, let possibleAttributes) = rootSchemaDocumentation,
                   let attributes = possibleAttributes,
-                  codingPathComponents.count == 2, name == attributesName
-        {
+                  codingPathComponents.count == 2, name == attributesName {
             return .attributes(attributes)
         } else if codingPathComponents.count >= 2, codingPathComponents[1] == relationshipsName {
             if codingPathComponents.count == 2 {
@@ -135,13 +133,11 @@ public struct ObjectSchema: Decodable, Equatable {
                 return isUpdateRequest ? .updateRequestData : .createRequestData
             } else if case .createRequest(_, let possibleAttributes) = rootSchemaDocumentation,
                       let attributes = possibleAttributes,
-                      codingPathComponents.count == 3, name == attributesName
-            {
+                      codingPathComponents.count == 3, name == attributesName {
                 return .createRequestDataAttributes(attributes)
             } else if case .updateRequest(_, let possibleAttributes) = rootSchemaDocumentation,
                       let attributes = possibleAttributes,
-                      codingPathComponents.count == 3, name == attributesName
-            {
+                      codingPathComponents.count == 3, name == attributesName {
                 return .updateRequestDataAttributes(attributes)
             } else if name == relationshipsName {
                 return isUpdateRequest ? .updateRequestDataRelationships : .createRequestDataRelationships
