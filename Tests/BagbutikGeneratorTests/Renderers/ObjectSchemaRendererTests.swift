@@ -158,12 +158,35 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The lastname of the person
             public var lastName: String?
             /// A reference to the person
-            public var `self`: String?
+            public var itself: String?
 
-            public init(firstName: String, lastName: String? = nil, self aSelf: String? = nil) {
+            public init(firstName: String, lastName: String? = nil, self itself: String? = nil) {
                 self.firstName = firstName
                 self.lastName = lastName
-                self.`self` = aSelf
+                self.itself = itself
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                firstName = try container.decode(String.self, forKey: .firstName)
+                id = try container.decodeIfPresent(String.self, forKey: .id)
+                lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
+                itself = try container.decodeIfPresent(String.self, forKey: .itself)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(firstName, forKey: .firstName)
+                try container.encodeIfPresent(id, forKey: .id)
+                try container.encodeIfPresent(lastName, forKey: .lastName)
+                try container.encodeIfPresent(itself, forKey: .itself)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case firstName
+                case id
+                case lastName
+                case itself = "self"
             }
         }
 
