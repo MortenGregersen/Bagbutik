@@ -113,6 +113,23 @@ final class BagbutikServiceTests: XCTestCase {
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
+    
+    func testDateDecoding_CustomDate() async throws {
+        try setUpService()
+        let dateString = "2021-07-31T21:49:11.000+00:00"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        let date = dateFormatter.date(from: dateString)!
+        let jsonString = """
+        {
+            "date": "\(dateString)"
+        }
+        """
+        let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
+        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(jsonString.utf8), type: .http(statusCode: 200))
+        let response = try await service.request(request)
+        XCTAssertEqual(response.date, date)
+    }
 
     func testDateDecoding_InvalidDate() async throws {
         try setUpService()
@@ -124,7 +141,7 @@ final class BagbutikServiceTests: XCTestCase {
         let request: Request<CrazyDatesResponse, ErrorResponse> = .getCrazyDates()
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(jsonString.utf8), type: .http(statusCode: 200))
         await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
-            XCTAssertTrue(error is DecodingError)
+            XCTAssertEqual(error as! ServiceError, .wrongDateFormat(dateString: "invalid-date"))
         }
     }
 
@@ -207,6 +224,8 @@ extension ServiceError: Equatable {
             return lhsResponse == rhsResponse
         case (.conflict(let lhsResponse), .conflict(let rhsResponse)):
             return lhsResponse == rhsResponse
+        case (.wrongDateFormat(let lhsDateString), .wrongDateFormat(let rhsDateString)):
+            return lhsDateString == rhsDateString
         case (.unknownHTTPError(let lhsStatusCode, let lhsData), .unknownHTTPError(let rhsStatusCode, let rhsData)):
             return lhsStatusCode == rhsStatusCode && lhsData == rhsData
         case (.unknown(let lhsData), .unknown(let rhsData)):
