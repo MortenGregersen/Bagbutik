@@ -33,7 +33,19 @@ public class BagbutikService: BagbutikServiceProtocol {
     
     private static let jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        let isoDateFormatter = ISO8601DateFormatter()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            if let date = isoDateFormatter.date(from: dateString) {
+                return date
+            } else if let date = dateFormatter.date(from: dateString) {
+                return date
+            }
+            throw ServiceError.wrongDateFormat(dateString: dateString)
+        }
         return decoder
     }()
     
