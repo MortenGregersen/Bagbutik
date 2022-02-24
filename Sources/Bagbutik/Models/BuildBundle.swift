@@ -203,11 +203,28 @@ public struct BuildBundle: Codable {
                 /// The link to the related data.
                 public var related: String?
                 /// The relationship's self-link
-                public var `self`: String?
+                public var itself: String?
 
-                public init(related: String? = nil, self aSelf: String? = nil) {
+                public init(related: String? = nil, self itself: String? = nil) {
                     self.related = related
-                    self.`self` = aSelf
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
                 }
             }
         }
@@ -275,11 +292,28 @@ public struct BuildBundle: Codable {
                 /// The link to the related data.
                 public var related: String?
                 /// The relationship's self-link
-                public var `self`: String?
+                public var itself: String?
 
-                public init(related: String? = nil, self aSelf: String? = nil) {
+                public init(related: String? = nil, self itself: String? = nil) {
                     self.related = related
-                    self.`self` = aSelf
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
                 }
             }
         }
@@ -350,11 +384,28 @@ public struct BuildBundle: Codable {
                 /// The link to the related data.
                 public var related: String?
                 /// The relationship's self-link
-                public var `self`: String?
+                public var itself: String?
 
-                public init(related: String? = nil, self aSelf: String? = nil) {
+                public init(related: String? = nil, self itself: String? = nil) {
                     self.related = related
-                    self.`self` = aSelf
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
                 }
             }
         }
@@ -425,11 +476,28 @@ public struct BuildBundle: Codable {
                 /// The link to the related data.
                 public var related: String?
                 /// The relationship's self-link
-                public var `self`: String?
+                public var itself: String?
 
-                public init(related: String? = nil, self aSelf: String? = nil) {
+                public init(related: String? = nil, self itself: String? = nil) {
                     self.related = related
-                    self.`self` = aSelf
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
                 }
             }
         }
