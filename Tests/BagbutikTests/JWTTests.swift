@@ -18,7 +18,7 @@ final class JWTTests: XCTestCase {
         XCTAssertFalse(jwt.isExpired)
         XCTAssertTrue(jwt.encodedSignature.hasPrefix("eyJhbGciOiJFUzI1NiIsImtpZCI6IlA5TTI1Mjc0NkgiLCJ0eXAiOiJraWQifQ.eyJpc3MiOiI4MjA2Nzk4Mi02YjNiLTRhNDgtYmU0Zi01YjEwYjM3M2M1ZjIiLCJleHAiOjY0MDkyMjExMjAwLCJhdWQiOiJhcHBzdG9yZWNvbm5lY3QtdjEifQ"))
     }
-    
+
     func testInitialEncodedSignature_Renew() throws {
         DateFactory.fromTimeIntervalSinceNow = { _ in Date.distantPast }
         var jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey)
@@ -27,5 +27,10 @@ final class JWTTests: XCTestCase {
         DateFactory.fromTimeIntervalSinceNow = { _ in Date.distantFuture }
         try jwt.renewEncodedSignature()
         XCTAssertFalse(jwt.isExpired)
+    }
+
+    func testInitWithPrivateKeyPath() {
+        let privateKeyPath = Bundle.module.path(forResource: "test-private-key", ofType: "p8")!
+        XCTAssertNoThrow(try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKeyPath: privateKeyPath))
     }
 }
