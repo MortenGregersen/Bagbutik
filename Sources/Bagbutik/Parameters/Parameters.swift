@@ -1,13 +1,13 @@
 import Foundation
 
-struct Parameters {
-    let fields: [FieldParameter]?
-    let filters: [FilterParameter]?
-    let exists: [ExistParameter]?
-    let includes: [IncludeParameter]?
-    let sorts: [SortParameter]?
-    let limits: [LimitParameter]?
-    let limit: Int?
+public struct Parameters {
+    public let fields: [FieldParameter]?
+    public let filters: [FilterParameter]?
+    public let exists: [ExistParameter]?
+    public let includes: [IncludeParameter]?
+    public let sorts: [SortParameter]?
+    public let limits: [LimitParameter]?
+    public let limit: Int?
     
     public init(fields: [FieldParameter]? = nil,
                 filters: [FilterParameter]? = nil,
