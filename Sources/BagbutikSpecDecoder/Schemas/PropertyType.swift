@@ -43,7 +43,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         switch self {
         case .simple(let simplePropertyType):
             return simplePropertyType.description
-        case .constant(let _):
+        case .constant(_):
             return SimplePropertyType.string.description
         case .schemaRef(let schemaName):
             return schemaName
