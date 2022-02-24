@@ -1,11 +1,11 @@
 import Foundation
 
 public struct Request<ResponseType, ErrorResponseType> {
-    static var baseUrl: URL { URL(string: "https://api.appstoreconnect.apple.com")! }
-    public let path: String
-    public let method: HTTPMethod
-    public let parameters: Parameters?
-    public let requestBody: RequestBody?
+    private static var baseUrl: URL { URL(string: "https://api.appstoreconnect.apple.com")! }
+    private let path: String
+    private let method: HTTPMethod
+    private let parameters: Parameters?
+    private let requestBody: RequestBody?
     
     public init(path: String, method: HTTPMethod, parameters: Parameters? = nil, requestBody: RequestBody? = nil) {
         self.path = path
@@ -14,7 +14,7 @@ public struct Request<ResponseType, ErrorResponseType> {
         self.requestBody = requestBody
     }
     
-    func asUrlRequest() -> URLRequest {
+    internal func asUrlRequest() -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = path
         if let parameters = parameters {
