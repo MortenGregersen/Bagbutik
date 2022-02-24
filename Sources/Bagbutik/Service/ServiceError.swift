@@ -12,6 +12,8 @@ public enum ServiceError: Error {
     case notFound(ErrorResponse)
     /// Conflict (HTTP status code 409). The provided resource data is not valid.
     case conflict(ErrorResponse)
+    /// The date in the response has an unknown format.
+    case wrongDateFormat(dateString: String)
     /// The error is unhandled HTTP error.
     case unknownHTTPError(statusCode: Int, data: Data)
     /// The error is unknown.
@@ -26,6 +28,8 @@ public enum ServiceError: Error {
              .notFound(let response),
              .conflict(let response):
             return response.errors?.first?.detail
+        case .wrongDateFormat(let dateString):
+            return "A date in the response has an unknown format. The date: \(dateString)"
         case .unknownHTTPError(let statusCode, let data):
             return "An unhandled HTTP error occurred. Status code \(statusCode). Data as UTF-8 string: \(String(data: data, encoding: .utf8) ?? "Not UTF-8")"
         case .unknown:

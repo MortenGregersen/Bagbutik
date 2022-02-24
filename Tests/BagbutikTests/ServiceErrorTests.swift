@@ -19,6 +19,12 @@ final class ServiceErrorTests: XCTestCase {
         }
     }
     
+    func testDescriptionForWrongDateFormat() {
+        let dateString = "11. maj 1988, 15:42"
+        XCTAssertEqual(ServiceError.wrongDateFormat(dateString: dateString).description,
+                       "A date in the response has an unknown format. The date: \(dateString)")
+    }
+    
     func testDescriptionForUnknownHTTPError_UTF8Data() {
         let statusCode = 418
         let data = Data("I'm a teapot".utf8)
