@@ -30,7 +30,8 @@ let package = Package(
             dependencies: [.product(name: "Crypto", package: "swift-crypto")]),
         .testTarget(
             name: "BagbutikTests",
-            dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")]),
+            dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")],
+            resources: [.copy("test-private-key.p8")]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
