@@ -1,3 +1,5 @@
+import Foundation
+
 /// A response with gzipped data.
 public struct GzipResponse: Decodable {
     /// The gzipped data.
