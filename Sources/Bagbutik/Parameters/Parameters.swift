@@ -1,5 +1,6 @@
 import Foundation
 
+/// The parameters for a `Request`.
 public struct Parameters {
     public let fields: [FieldParameter]?
     public let filters: [FilterParameter]?

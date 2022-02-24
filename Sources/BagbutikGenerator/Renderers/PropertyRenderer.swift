@@ -1,4 +1,4 @@
-class PropertyRenderer: Renderer {
+internal class PropertyRenderer: Renderer {
     func render(id: String, type: String, optional: Bool, isSimpleType: Bool, deprecated: Bool = false) throws -> String {
         return try environment.renderTemplate(string: template, context: [
             "id": id,

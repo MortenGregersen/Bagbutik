@@ -11,7 +11,7 @@ public struct EnumCase: Equatable {
 
     /**
      Initialize a new case
-     
+
      - Parameters:
         - id: The name of the case
         - value: The value of the case

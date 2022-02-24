@@ -2,7 +2,7 @@ import Foundation
 import zlib
 
 extension Data {
-    func gunzippedData() throws -> Data {
+    internal func gunzippedData() throws -> Data {
         var stream = z_stream()
         try withUnsafeBytes { bytes in
             guard let pointer = bytes.bindMemory(to: Bytef.self).baseAddress else { throw GunzipError.decompressFailed }
@@ -41,6 +41,6 @@ extension Data {
     }
 }
 
-enum GunzipError: Error {
+internal enum GunzipError: Error {
     case decompressFailed
 }

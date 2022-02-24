@@ -1,13 +1,14 @@
 import Foundation
 
-struct DynamicCodingKeys: CodingKey {
+internal struct DynamicCodingKeys: CodingKey {
     var stringValue: String
+    var intValue: Int?
+
     init?(stringValue: String) {
         self.stringValue = stringValue
     }
-    
-    var intValue: Int?
+
     init?(intValue: Int) {
-        return nil // We are not using this, so just return nil
+        nil // We are not using this, so just return nil
     }
 }

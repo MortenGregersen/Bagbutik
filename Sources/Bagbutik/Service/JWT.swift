@@ -1,13 +1,34 @@
 import Crypto
 import Foundation
 
+/**
+ A JSON Web Token (JWT) to be used to authorize API requests.
+ 
+ The JWT is valid for 20 minutes, but will be renewed automatically when performing requests with `BagbutikService`.
+ 
+ Full documentation for how JWT is used with the API:
+ <https://developer.apple.com/documentation/appstoreconnectapi/generating_tokens_for_api_requests>
+ */
 public struct JWT {
+    /// A value telling if the JWT has expired.
     public var isExpired: Bool { payload.isExpired }
+    /// The signature to use in the authorization header when performing requests.
     public private(set) var encodedSignature: String
     private let header: Header
     private var payload: Payload
     private let privateKey: String
     
+    /**
+     Create a new JWT.
+     
+     Full documentation for how to get the required keys.
+     <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
+     
+     - Parameters:
+        - keyID: Your private key ID from App Store Connect; for example 2X9R4HXF34.
+        - issuerId: Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.
+        - privateKey: The contents of your private key from App Store Connect. Starting with `-----BEGIN PRIVATE KEY-----`.
+      */
     public init(keyId: String, issuerId: String, privateKey: String) throws {
         header = Header(kid: keyId)
         payload = Payload(iss: issuerId)
@@ -15,12 +36,23 @@ public struct JWT {
         encodedSignature = try Self.createEncodedSignature(header: header, payload: payload, privateKey: privateKey)
     }
     
+    /**
+     Create a new JWT.
+     
+     Full documentation for how to get the required keys.
+     <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
+     
+     - Parameters:
+        - keyID: Your private key ID from App Store Connect; for example 2X9R4HXF34.
+        - issuerId: Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.
+        - privateKeyPath: The file path to your private key from App Store Connect.`.
+      */
     public init(keyId: String, issuerId: String, privateKeyPath: String) throws {
         let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))
         try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
     }
     
-    public mutating func renewEncodedSignature() throws {
+    internal mutating func renewEncodedSignature() throws {
         payload.renewExp()
         encodedSignature = try Self.createEncodedSignature(header: header, payload: payload, privateKey: privateKey)
     }
