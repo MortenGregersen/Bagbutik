@@ -27,7 +27,7 @@ final class PropertyTypeTests: XCTestCase {
         // Given
         let json = #"""
         {
-            "gruopType" : {
+            "groupType" : {
                 "type" : "string",
                 "enum" : [ "users" ]
             }
@@ -39,7 +39,7 @@ final class PropertyTypeTests: XCTestCase {
         guard let propertyType = propertyTypes.values.first, case let .constant(constantValue) = propertyType else {
             return XCTFail("Wrong property type")
         }
-        XCTAssertEqual(propertyType.description, "users")
+        XCTAssertEqual(propertyType.description, "String")
         XCTAssertEqual(constantValue, "users")
     }
     
