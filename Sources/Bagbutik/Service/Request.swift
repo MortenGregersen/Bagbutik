@@ -1,14 +1,16 @@
 import Foundation
 
-/**
- A description of a request. This will internally be mapped to a real URL request.
- */
+/// A description of a request. This will internally be mapped to a real URL request.
 public struct Request<ResponseType, ErrorResponseType> {
     private static var baseUrl: URL { URL(string: "https://api.appstoreconnect.apple.com")! }
-    private let path: String
-    private let method: HTTPMethod
-    private let parameters: Parameters?
-    private let requestBody: RequestBody?
+    /// The path of the endpoint.
+    public let path: String
+    /// The HTTP method to use for the request.
+    public let method: HTTPMethod
+    /// The parameters to add to the query.
+    public let parameters: Parameters?
+    /// The request body to send with the request.
+    public let requestBody: RequestBody?
 
     /**
      Create a new description of a request.
