@@ -13,7 +13,7 @@ jobs:
     name: Build and Test (Apple platforms)
     runs-on: macos-11
     env:
-      DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_13.2.app/Contents/Developer
     steps:
     - uses: actions/checkout@v2
 #    - name: Build
