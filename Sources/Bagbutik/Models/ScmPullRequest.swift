@@ -25,6 +25,34 @@ public struct ScmPullRequest: Codable, RequestBody {
         self.relationships = relationships
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        links = try container.decode(ResourceLinks.self, forKey: .links)
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
+        if try container.decode(String.self, forKey: .type) != type {
+            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(attributes, forKey: .attributes)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case links
+        case type
+        case attributes
+        case relationships
+    }
+
     /**
      The attributes that describe a Pull Requests resource.
 
@@ -33,27 +61,27 @@ public struct ScmPullRequest: Codable, RequestBody {
      */
     public struct Attributes: Codable {
         /// The name of the pull request’s destination branch.
-        public let destinationBranchName: String?
+        public var destinationBranchName: String?
         /// The name of the pull request’s destination repository. If the pull request is not for a fork, this is the same value as the source repository name.
-        public let destinationRepositoryName: String?
+        public var destinationRepositoryName: String?
         /// The owner of the pull request’s destination repository.
-        public let destinationRepositoryOwner: String?
+        public var destinationRepositoryOwner: String?
         /// A Boolean value that indicates whether the pull request is open or closed.
-        public let isClosed: Bool?
+        public var isClosed: Bool?
         /// A Boolean value that indicates whether the pull request is for a Git fork.
-        public let isCrossRepository: Bool?
+        public var isCrossRepository: Bool?
         /// The pull request number.
-        public let number: Int?
+        public var number: Int?
         /// The name of the pull request’s source branch.
-        public let sourceBranchName: String?
+        public var sourceBranchName: String?
         /// The name of the pull request’s source repository.
-        public let sourceRepositoryName: String?
+        public var sourceRepositoryName: String?
         /// The owner of the pull request’s destination repository.
-        public let sourceRepositoryOwner: String?
+        public var sourceRepositoryOwner: String?
         /// The pull request’s title.
-        public let title: String?
+        public var title: String?
         /// The URL of the pull request.
-        public let webUrl: String?
+        public var webUrl: String?
 
         public init(destinationBranchName: String? = nil, destinationRepositoryName: String? = nil, destinationRepositoryOwner: String? = nil, isClosed: Bool? = nil, isCrossRepository: Bool? = nil, number: Int? = nil, sourceBranchName: String? = nil, sourceRepositoryName: String? = nil, sourceRepositoryOwner: String? = nil, title: String? = nil, webUrl: String? = nil) {
             self.destinationBranchName = destinationBranchName
@@ -77,7 +105,7 @@ public struct ScmPullRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships>
      */
     public struct Relationships: Codable {
-        public let repository: Repository?
+        @NullCodable public var repository: Repository?
 
         public init(repository: Repository? = nil) {
             self.repository = repository
@@ -91,9 +119,9 @@ public struct ScmPullRequest: Codable, RequestBody {
          */
         public struct Repository: Codable {
             /// The type and ID of a related resource.
-            public let data: Data?
+            @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -115,6 +143,25 @@ public struct ScmPullRequest: Codable, RequestBody {
                 public init(id: String) {
                     self.id = id
                 }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
             }
 
             /**
@@ -125,13 +172,30 @@ public struct ScmPullRequest: Codable, RequestBody {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                public var itself: String?
 
-                public init(related: String? = nil, self aSelf: String? = nil) {
+                public init(related: String? = nil, self itself: String? = nil) {
                     self.related = related
-                    self.`self` = aSelf
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
                 }
             }
         }

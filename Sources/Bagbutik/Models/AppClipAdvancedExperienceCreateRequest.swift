@@ -10,7 +10,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The included related resources.
-    public let included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
+    @NullCodable public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
         self.data = data
@@ -36,6 +36,28 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            attributes = try container.decode(Attributes.self, forKey: .attributes)
+            relationships = try container.decode(Relationships.self, forKey: .relationships)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(type, forKey: .type)
+            try container.encode(attributes, forKey: .attributes)
+            try container.encode(relationships, forKey: .relationships)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case type
+            case attributes
+            case relationships
+        }
+
         /**
          Attributes that you set that describe the new resource.
 
@@ -44,9 +66,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The call-to-action verb that appears on the App Clip card.
-            public let action: AppClipAction?
+            @NullCodable public var action: AppClipAction?
             /// The business category of an advanced App Clip experience; for example, PARKING
-            public let businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            @NullCodable public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
             /// The default language for the advanced App Clip experience.
             public let defaultLanguage: AppClipAdvancedExperienceLanguage
             /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
@@ -54,7 +76,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             /// The invocation URL of the advanced App Clip experience you’re creating.
             public let link: String
             /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.
-            public let place: Place?
+            @NullCodable public var place: Place?
 
             public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage, isPoweredBy: Bool, link: String, place: Place? = nil) {
                 self.action = action
@@ -66,15 +88,15 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct Place: Codable {
-                public let categories: String?
-                public let displayPoint: DisplayPoint?
-                public let homePage: String?
-                public let mainAddress: MainAddress?
-                public let mapAction: MapAction?
-                public let names: String?
-                public let phoneNumber: PhoneNumber?
-                public let placeId: String?
-                public let relationship: Relationship?
+                public var categories: String?
+                @NullCodable public var displayPoint: DisplayPoint?
+                public var homePage: String?
+                @NullCodable public var mainAddress: MainAddress?
+                @NullCodable public var mapAction: MapAction?
+                public var names: String?
+                @NullCodable public var phoneNumber: PhoneNumber?
+                public var placeId: String?
+                @NullCodable public var relationship: Relationship?
 
                 public init(categories: String? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: String? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
                     self.categories = categories
@@ -89,8 +111,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 public struct DisplayPoint: Codable {
-                    public let coordinates: Coordinates?
-                    public let source: Source?
+                    @NullCodable public var coordinates: Coordinates?
+                    @NullCodable public var source: Source?
 
                     public init(coordinates: Coordinates? = nil, source: Source? = nil) {
                         self.coordinates = coordinates
@@ -98,8 +120,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     }
 
                     public struct Coordinates: Codable {
-                        public let latitude: Double?
-                        public let longitude: Double?
+                        public var latitude: Double?
+                        public var longitude: Double?
 
                         public init(latitude: Double? = nil, longitude: Double? = nil) {
                             self.latitude = latitude
@@ -114,8 +136,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 public struct MainAddress: Codable {
-                    public let fullAddress: String?
-                    public let structuredAddress: StructuredAddress?
+                    public var fullAddress: String?
+                    @NullCodable public var structuredAddress: StructuredAddress?
 
                     public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
                         self.fullAddress = fullAddress
@@ -123,13 +145,13 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     }
 
                     public struct StructuredAddress: Codable {
-                        public let countryCode: String?
-                        public let floor: String?
-                        public let locality: String?
-                        public let neighborhood: String?
-                        public let postalCode: String?
-                        public let stateProvince: String?
-                        public let streetAddress: String?
+                        public var countryCode: String?
+                        public var floor: String?
+                        public var locality: String?
+                        public var neighborhood: String?
+                        public var postalCode: String?
+                        public var stateProvince: String?
+                        public var streetAddress: String?
 
                         public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: String? = nil) {
                             self.countryCode = countryCode
@@ -160,9 +182,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 public struct PhoneNumber: Codable {
-                    public let intent: String?
-                    public let number: String?
-                    public let type: PhoneNumberType?
+                    public var intent: String?
+                    public var number: String?
+                    @NullCodable public var type: PhoneNumberType?
 
                     public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
                         self.intent = intent
@@ -226,6 +248,25 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
@@ -252,6 +293,25 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
@@ -277,6 +337,25 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }

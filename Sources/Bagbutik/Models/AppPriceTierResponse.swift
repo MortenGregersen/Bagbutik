@@ -10,7 +10,7 @@ public struct AppPriceTierResponse: Codable {
     /// The resource data.
     public let data: AppPriceTier
     /// The included related resources.
-    public let included: [AppPricePoint]?
+    @NullCodable public var included: [AppPricePoint]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

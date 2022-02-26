@@ -9,64 +9,39 @@ public protocol BagbutikServiceProtocol {
     func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data])
 }
 
+public protocol URLSessionProtocol {
+    func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
+}
+
+extension URLSession: URLSessionProtocol {}
+
+/**
+ Service for performing requests. A valid JWT is required to perform requests.
+ 
+ It is possible to just perform a single request, or to perform requests until all items has been fetched, if the response type supports paging.
+ 
+ If the JWT has expired, it will be renewed before the request is performed.
+ */
 public class BagbutikService: BagbutikServiceProtocol {
-    private var jwt: JWT
+    internal private(set) var jwt: JWT
+    private let urlSession: URLSessionProtocol
     
-    public init(jwt: JWT) {
+    public init(jwt: JWT, urlSession: URLSessionProtocol = URLSession.shared) {
         self.jwt = jwt
-    }
-    
-    /// Errors from the API or from the decoding of the responses.
-    public enum ServiceError: Error {
-        /// Bad Request (HTTP status code 400). The request is invalid and cannot be accepted.
-        case badRequest(ErrorResponse)
-        /// Unauthorized (HTTP status code 401).
-        case unauthorized(ErrorResponse)
-        /// Forbidden (HTTP status code 403). The request is not allowed. This can happen if your API key is revoked, your token is incorrectly formatted, or if the requested operation is not allowed.
-        case forbidden(ErrorResponse)
-        /// Not Found (HTTP status code 404). The request cannot be fulfilled because the resource does not exist.
-        case notFound(ErrorResponse)
-        /// Conflict (HTTP status code 409). The provided resource data is not valid.
-        case conflict(ErrorResponse)
-        /// The date in the response has an unknown format.
-        case wrongDateFormat(dateString: String)
-        /// The error is unhandled HTTP error.
-        case unknownHTTPError(statusCode: Int, data: Data)
-        /// The error is unknown.
-        case unknown(data: Data?)
-        
-        /// A human readable description of the error.
-        public var description: String? {
-            switch self {
-            case .badRequest(let response),
-                 .unauthorized(let response),
-                 .forbidden(let response),
-                 .notFound(let response),
-                 .conflict(let response):
-                return response.errors?.first?.detail
-            case .wrongDateFormat(let dateString):
-                return "A date in the response has an unknown format. The date: \(dateString)"
-            case .unknownHTTPError(let statusCode, let data):
-                return "An unhandled HTTP error occurred. Status code \(statusCode). Data as UTF-8 string: \(String(data: data, encoding: .utf8) ?? "Not UTF-8")"
-            case .unknown:
-                return "An unknown error occurred."
-            }
-        }
+        self.urlSession = urlSession
     }
     
     private static let jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
+        let isoDateFormatter = ISO8601DateFormatter()
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            if let date = dateFormatter.date(from: dateString, inFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX") {
+            if let date = isoDateFormatter.date(from: dateString) {
                 return date
-            }
-            if let date = dateFormatter.date(from: dateString, inFormat: "yyyy-MM-dd'T'HH:mm:ssXXXXX") {
-                return date
-            }
-            if let date = dateFormatter.date(from: dateString, inFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ") {
+            } else if let date = dateFormatter.date(from: dateString) {
                 return date
             }
             throw ServiceError.wrongDateFormat(dateString: dateString)
@@ -74,28 +49,60 @@ public class BagbutikService: BagbutikServiceProtocol {
         return decoder
     }()
     
+    /**
+     Perform a single request.
+     
+     - Parameters:
+        - request: A `Request` with the desired `Parameters`.
+     - Returns: The response of the request, decoded to the `ResponseType`.
+     */
     public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T {
         let urlRequest = request.asUrlRequest()
         return try await fetch(urlRequest)
     }
     
+    /**
+     Perform all requests required to get all items.
+     
+     The items for all responses will be in a single array.
+     
+     - Parameters:
+        - request: A `Request` with the desired `Parameters`.
+     - Returns: The responses of the requests, decoded to the `ResponseType` and an array with all the items.
+     */
     public func requestAllPages<T: Decodable & PagedResponse>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data]) {
         let response = try await self.request(request)
         return try await requestAllPages(for: response)
     }
     
+    /**
+     Perform a single request to get the items for the next page.
+     
+     - Parameters:
+        - response: The response for the previous page.
+     - Returns: The response for the next page, decoded to the `ResponseType`.
+     */
     public func requestNextPage<T: Decodable & PagedResponse>(for response: T) async throws -> T? {
         guard let urlString = response.links.next, let url = URL(string: urlString) else { return nil }
         let urlRequest = URLRequest(url: url)
         return try await fetch(urlRequest)
     }
     
+    /**
+     Perform all requests required to get all items for the rest of the pages.
+     
+     The items for all responses will be in a single array.
+     
+     - Parameters:
+        - response: The response for the previous page.
+     - Returns: The responses for the rest of the pages, decoded to the `ResponseType` and an array with all the items.
+     */
     public func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data]) {
         var responses = [response]
         while let nextResponse = try await requestNextPage(for: responses.last!) {
             responses.append(nextResponse)
         }
-        return (responses: responses, data: responses.flatMap { $0.data })
+        return (responses: responses, data: responses.flatMap(\.data))
     }
     
     private func fetch<T: Decodable>(_ urlRequest: URLRequest) async throws -> T {
@@ -104,7 +111,7 @@ public class BagbutikService: BagbutikServiceProtocol {
             try jwt.renewEncodedSignature()
         }
         urlRequest.addJWTAuthorizationHeader(jwt.encodedSignature)
-        let dataAndResponse = try await URLSession.shared.data(for: urlRequest)
+        let dataAndResponse = try await urlSession.data(for: urlRequest, delegate: nil)
         return try Self.decodeResponse(data: dataAndResponse.0, response: dataAndResponse.1) as T
     }
     
@@ -130,18 +137,11 @@ public class BagbutikService: BagbutikServiceProtocol {
                 case 409:
                     throw ServiceError.conflict(errorResponse)
                 default:
-                    print(errorResponse)
+                    break
                 }
             }
             throw ServiceError.unknownHTTPError(statusCode: httpResponse.statusCode, data: data)
         }
         throw ServiceError.unknown(data: data)
-    }
-}
-
-private extension DateFormatter {
-    func date(from string: String, inFormat format: String) -> Date? {
-        dateFormat = format
-        return date(from: string)
     }
 }

@@ -33,6 +33,28 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
             self.attributes = attributes
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(String.self, forKey: .id)
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encode(type, forKey: .type)
+            try container.encodeIfPresent(attributes, forKey: .attributes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case type
+            case attributes
+        }
+
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -41,15 +63,15 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// A description of your app that highlights features and functionality.
-            public let description: String?
+            public var description: String?
             /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
-            public let feedbackEmail: String?
+            public var feedbackEmail: String?
             /// A URL with information about your app. This URL is visible to testers in the TestFlight app
-            public let marketingUrl: String?
+            public var marketingUrl: String?
             /// A URL that links to your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data or as otherwise required by law.
-            public let privacyPolicyUrl: String?
+            public var privacyPolicyUrl: String?
             /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
-            public let tvOsPrivacyPolicy: String?
+            public var tvOsPrivacyPolicy: String?
 
             public init(description: String? = nil, feedbackEmail: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
                 self.description = description

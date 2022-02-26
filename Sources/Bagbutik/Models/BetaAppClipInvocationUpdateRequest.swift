@@ -33,6 +33,28 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
             self.attributes = attributes
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(String.self, forKey: .id)
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encode(type, forKey: .type)
+            try container.encodeIfPresent(attributes, forKey: .attributes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case type
+            case attributes
+        }
+
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -41,7 +63,7 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
-            public let url: String?
+            public var url: String?
 
             public init(url: String? = nil) {
                 self.url = url

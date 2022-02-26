@@ -7,6 +7,12 @@ public struct Spec: Decodable {
     /// The components contained in the spec
     public var components: Components
 
+    /**
+     Adds include parameters which looks like they are forgotten in the spec.
+
+     This is done by adding the name of the properties in the Relationships on the response schema.
+     Eg. ListAppInfosForApp doesn't list the different types of categories.
+     */
     public mutating func addForgottenIncludeParameters() {
         paths.forEach { (pathKey: String, path: Path) in
             var path = path
@@ -40,8 +46,11 @@ public struct Spec: Decodable {
         }
     }
 
-    /// Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
-    /// Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used
+    /**
+     Flatten the schemas used in schemas for create request and update request and in filter parameters when they are identical to the schemas used in main type.
+
+     Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
+     */
     public mutating func flattenIdenticalSchemas() {
         paths.forEach { (pathKey: String, path: Path) in
             var path = path
@@ -98,6 +107,11 @@ public struct Spec: Decodable {
         }
     }
 
+    /**
+     Applies manual patches for types not adhering to the general conventions of the spec.
+
+     Eg. ErrorResponse has an OneOf with references to ErrorSourcePointer and ErrorSourceParameter, but these schemas have a different title, and have another name when generated.
+     */
     public mutating func applyManualPatches() throws {
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
@@ -126,7 +140,9 @@ public struct Spec: Decodable {
     }
 }
 
+/// Errors that can occur when loading the spec
 public enum SpecError: Error {
+    /// The declaration of ErrorResponse.Source is not as expected
     case unexpectedErrorResponseSource(Schema?)
 }
 

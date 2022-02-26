@@ -10,7 +10,7 @@ public struct AppClipHeaderImageResponse: Codable {
     /// The resource data.
     public let data: AppClipHeaderImage
     /// The included related resources.
-    public let included: [AppClipDefaultExperienceLocalization]?
+    @NullCodable public var included: [AppClipDefaultExperienceLocalization]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

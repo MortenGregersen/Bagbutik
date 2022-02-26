@@ -25,6 +25,34 @@ public struct CiMacOsVersion: Codable {
         self.relationships = relationships
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        links = try container.decode(ResourceLinks.self, forKey: .links)
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
+        if try container.decode(String.self, forKey: .type) != type {
+            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(attributes, forKey: .attributes)
+        try container.encodeIfPresent(relationships, forKey: .relationships)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case links
+        case type
+        case attributes
+        case relationships
+    }
+
     /**
      The attributes that describe a macOS Versions resource.
 
@@ -33,9 +61,9 @@ public struct CiMacOsVersion: Codable {
      */
     public struct Attributes: Codable {
         /// The name of the macOS version.
-        public let name: String?
+        public var name: String?
         /// The macOS version of the simulated environment.
-        public let version: String?
+        public var version: String?
 
         public init(name: String? = nil, version: String? = nil) {
             self.name = name
@@ -50,7 +78,7 @@ public struct CiMacOsVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships>
      */
     public struct Relationships: Codable {
-        public let xcodeVersions: XcodeVersions?
+        @NullCodable public var xcodeVersions: XcodeVersions?
 
         public init(xcodeVersions: XcodeVersions? = nil) {
             self.xcodeVersions = xcodeVersions
@@ -64,11 +92,11 @@ public struct CiMacOsVersion: Codable {
          */
         public struct XcodeVersions: Codable {
             /// The type and ID of a related resource.
-            public let data: [Data]?
+            @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            public let links: Links?
+            @NullCodable public var links: Links?
             /// Paging information for data responses.
-            public let meta: PagingInformation?
+            @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -91,6 +119,25 @@ public struct CiMacOsVersion: Codable {
                 public init(id: String) {
                     self.id = id
                 }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
             }
 
             /**
@@ -101,13 +148,30 @@ public struct CiMacOsVersion: Codable {
              */
             public struct Links: Codable {
                 /// The link to the related data.
-                public let related: String?
+                public var related: String?
                 /// The relationship's self-link
-                public let `self`: String?
+                public var itself: String?
 
-                public init(related: String? = nil, self aSelf: String? = nil) {
+                public init(related: String? = nil, self itself: String? = nil) {
                     self.related = related
-                    self.`self` = aSelf
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
                 }
             }
         }

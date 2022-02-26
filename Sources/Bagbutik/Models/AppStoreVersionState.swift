@@ -2,6 +2,7 @@ import Foundation
 
 /// String that represents the state of an app version in the App Store.
 public enum AppStoreVersionState: String, Codable, CaseIterable {
+    case accepted = "ACCEPTED"
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
     case developerRejected = "DEVELOPER_REJECTED"
     case inReview = "IN_REVIEW"
@@ -13,6 +14,7 @@ public enum AppStoreVersionState: String, Codable, CaseIterable {
     case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
     case preorderReadyForSale = "PREORDER_READY_FOR_SALE"
     case processingForAppStore = "PROCESSING_FOR_APP_STORE"
+    case readyForReview = "READY_FOR_REVIEW"
     case readyForSale = "READY_FOR_SALE"
     case rejected = "REJECTED"
     case removedFromSale = "REMOVED_FROM_SALE"

@@ -33,6 +33,28 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            attributes = try container.decode(Attributes.self, forKey: .attributes)
+            relationships = try container.decode(Relationships.self, forKey: .relationships)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(type, forKey: .type)
+            try container.encode(attributes, forKey: .attributes)
+            try container.encode(relationships, forKey: .relationships)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case type
+            case attributes
+            case relationships
+        }
+
         /**
          Attributes that you set that describe the new resource.
 
@@ -40,17 +62,17 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let feedbackEnabled: Bool?
-            public let hasAccessToAllBuilds: Bool?
-            public let isInternalGroup: Bool?
+            public var feedbackEnabled: Bool?
+            public var hasAccessToAllBuilds: Bool?
+            public var isInternalGroup: Bool?
             /// The name for the beta group.
             public let name: String
             /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
-            public let publicLinkEnabled: Bool?
+            public var publicLinkEnabled: Bool?
             /// The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.
-            public let publicLinkLimit: Int?
+            public var publicLinkLimit: Int?
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
-            public let publicLinkLimitEnabled: Bool?
+            public var publicLinkLimitEnabled: Bool?
 
             public init(feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, isInternalGroup: Bool? = nil, name: String, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
                 self.feedbackEnabled = feedbackEnabled
@@ -71,8 +93,8 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
-            public let betaTesters: BetaTesters?
-            public let builds: Builds?
+            @NullCodable public var betaTesters: BetaTesters?
+            @NullCodable public var builds: Builds?
 
             public init(app: App, betaTesters: BetaTesters? = nil, builds: Builds? = nil) {
                 self.app = app
@@ -103,12 +125,31 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
             public struct BetaTesters: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -129,12 +170,31 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
             public struct Builds: Codable {
                 /// The type and ID of the resource that you're relating with the resource you're creating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -154,6 +214,25 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }

@@ -8,13 +8,13 @@ import Foundation
  */
 public struct CiIssueCounts: Codable {
     /// The number of analyzer warnings.
-    public let analyzerWarnings: Int?
+    public var analyzerWarnings: Int?
     /// The number of errors.
-    public let errors: Int?
+    public var errors: Int?
     /// The number of failing tests.
-    public let testFailures: Int?
+    public var testFailures: Int?
     /// The number of warnings.
-    public let warnings: Int?
+    public var warnings: Int?
 
     public init(analyzerWarnings: Int? = nil, errors: Int? = nil, testFailures: Int? = nil, warnings: Int? = nil) {
         self.analyzerWarnings = analyzerWarnings

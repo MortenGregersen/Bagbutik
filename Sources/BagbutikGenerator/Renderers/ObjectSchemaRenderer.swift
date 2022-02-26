@@ -50,16 +50,45 @@ public class ObjectSchemaRenderer {
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init({{ deprecatedPublicInitParameterList }}) {
             {% for propertyName in deprecatedPublicInitPropertyNames %}
-            self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
+            self.{{ propertyName.safeName }} = {{ propertyName.safeName }}{%
             endfor %}
         }
         {% endif %}public init({{ publicInitParameterList }}) {
             {% for propertyName in publicInitPropertyNames %}
-            self.{{ propertyName.idealName|escapeReservedKeywords }} = {{ propertyName.safeName }}{%
+            self.{{ propertyName.safeName }} = {{ propertyName.safeName }}{%
             endfor %}
-        }{%
-        if subSchemas.count > 0 %}
-    
+        }
+        {% if needsCustomCoding %}
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self){%
+            for decodableProperty in decodableProperties %}{%
+            if decodableProperty.optional %}
+            {{ decodableProperty.name.safeName }} = try container.decodeIfPresent({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name.safeName }}){%
+            else %}
+            {{ decodableProperty.name.safeName }} = try container.decode({{ decodableProperty.type }}.self, forKey: .{{ decodableProperty.name.safeName }}){%
+            endif %}{% endfor %}
+            {% if hasTypeConstant %} if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }{% endif %}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self){%
+            for encodableProperty in encodableProperties %}{%
+            if encodableProperty.optional %}
+            try container.encodeIfPresent({{ encodableProperty.name.safeName }}, forKey: .{{ encodableProperty.name.safeName }}){%
+            else %}
+            try container.encode({{ encodableProperty.name.safeName }}, forKey: .{{ encodableProperty.name.safeName }}){%
+            endif %}{% endfor %}
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            {% for codingKey in codingKeys %}
+            case {{ codingKey.safeName }} = "{{ codingKey.idealName }}"{%
+            endfor %}
+        }
+        {% endif %}
+        {% if subSchemas.count > 0 %}
             {% for subSchema in subSchemas %}
 
                 {{ subSchema|indent }}
@@ -80,21 +109,32 @@ public class ObjectSchemaRenderer {
         let attributesOptional = !objectSchema.requiredProperties.contains("attributes")
         let relationshipsOptional = !objectSchema.requiredProperties.contains("relationships")
         var initParameters = sortedProperties.filter { !$0.value.type.isConstant }
+        var codingKeys = sortedProperties.map { PropertyName(idealName: $0.key) }
+        var encodableProperties = sortedProperties.map {
+            CodableProperty(name: PropertyName(idealName: $0.key),
+                            type: $0.value.type.description,
+                            optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
+        }
 
         if hasAttributes {
             let name = "attributes"
             let type = "Attributes"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
+            codingKeys.append(PropertyName(idealName: name))
+            encodableProperties.append(CodableProperty(name: PropertyName(idealName: name), type: type, optional: attributesOptional))
         }
         if hasRelationships {
             let name = "relationships"
             let type = "Relationships"
             initParameters.append((key: name, value: Property(type: .schemaRef(type))))
+            codingKeys.append(PropertyName(idealName: name))
+            encodableProperties.append(CodableProperty(name: PropertyName(idealName: name), type: type, optional: relationshipsOptional))
         }
+        let decodableProperties = encodableProperties.filter { $0.name.idealName != "type" }
         let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
         let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
         var deprecatedPublicInitParameterList = ""
-        if initParameters.contains(where: { $0.value.deprecated }) {
+        if initParameters.contains(where: \.value.deprecated) {
             deprecatedPublicInitParameterList = createParameterList(from: initParameters, requiredProperties: objectSchema.requiredProperties)
         }
         let publicInitParameterList = createParameterList(from: initParameters.filter { !$0.value.deprecated }, requiredProperties: objectSchema.requiredProperties)
@@ -103,6 +143,7 @@ public class ObjectSchemaRenderer {
         if case .arrayOfSchemaRef(let schemaRef) = objectSchema.properties["data"]?.type {
             pagedDataSchemaRef = schemaRef
         }
+        let hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
         return ["name": objectSchema.name,
                 "summary": objectSchema.documentation?.summary ?? "",
                 "url": objectSchema.url,
@@ -116,9 +157,10 @@ public class ObjectSchemaRenderer {
                     case .constant(let value):
                         rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
                     default:
-                        rendered = try! PropertyRenderer().render(id: property.key,
+                        rendered = try! PropertyRenderer().render(id: PropertyName(idealName: property.key).safeName,
                                                                   type: property.value.type.description,
                                                                   optional: !objectSchema.requiredProperties.contains(property.key),
+                                                                  isSimpleType: property.value.type.isSimple,
                                                                   deprecated: property.value.deprecated)
                     }
                     let propertyDocumentation = objectSchema.documentation?.properties[property.key]
@@ -128,6 +170,11 @@ public class ObjectSchemaRenderer {
                 "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
                 "publicInitParameterList": publicInitParameterList,
                 "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
+                "needsCustomCoding": hasTypeConstant || sortedProperties.contains(where: { PropertyName(idealName: $0.key).hasDifferentSafeName }),
+                "hasTypeConstant": hasTypeConstant,
+                "codingKeys": codingKeys,
+                "encodableProperties": encodableProperties,
+                "decodableProperties": decodableProperties,
                 "hasAttributes": hasAttributes,
                 "attributesDocumentation": attributesDocumentation,
                 "attributesOptional": attributesOptional,
@@ -152,7 +199,7 @@ public class ObjectSchemaRenderer {
     }
 
     private func createParameterList(from parameters: [Dictionary<String, Property>.Element], requiredProperties: [String]) -> String {
-        return parameters.map {
+        parameters.map {
             let propertyName = PropertyName(idealName: $0.key)
             var parameter = "\(propertyName.idealName)"
             if propertyName.hasDifferentSafeName {
@@ -177,12 +224,12 @@ public class ObjectSchemaRenderer {
 
         init(idealName: String) {
             self.idealName = idealName
-            safeName = idealName == "self" ? "aSelf" : idealName
+            safeName = idealName == "self" ? "itself" : idealName
         }
     }
 
     private struct CodableProperty {
-        let name: String
+        let name: PropertyName
         let type: String
         let optional: Bool
     }

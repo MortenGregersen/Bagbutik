@@ -30,6 +30,10 @@ public enum GetApp {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
+        /// The fields to include for returned resources of type appCustomProductPages
+        case appCustomProductPages([AppCustomProductPages])
+        /// The fields to include for returned resources of type appEvents
+        case appEvents([AppEvents])
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
         /// The fields to include for returned resources of type appPreOrders
@@ -62,6 +66,8 @@ public enum GetApp {
         case perfPowerMetrics([PerfPowerMetrics])
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
+        /// The fields to include for returned resources of type reviewSubmissions
+        case reviewSubmissions([ReviewSubmissions])
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
@@ -70,6 +76,31 @@ public enum GetApp {
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
+        }
+
+        public enum AppCustomProductPages: String, ParameterValue, CaseIterable {
+            case app
+            case appCustomProductPageVersions
+            case appStoreVersionTemplate
+            case customProductPageTemplate
+            case name
+            case url
+            case visible
+        }
+
+        public enum AppEvents: String, ParameterValue, CaseIterable {
+            case app
+            case archivedTerritorySchedules
+            case badge
+            case deepLink
+            case eventState
+            case localizations
+            case primaryLocale
+            case priority
+            case purchaseRequirement
+            case purpose
+            case referenceName
+            case territorySchedules
         }
 
         public enum AppInfos: String, ParameterValue, CaseIterable {
@@ -105,6 +136,7 @@ public enum GetApp {
             case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
+            case appStoreVersionExperiments
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -123,6 +155,8 @@ public enum GetApp {
 
         public enum Apps: String, ParameterValue, CaseIterable {
             case appClips
+            case appCustomProductPages
+            case appEvents
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
@@ -146,7 +180,12 @@ public enum GetApp {
             case preReleaseVersions
             case prices
             case primaryLocale
+            case reviewSubmissions
             case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
         }
 
         public enum BetaAppLocalizations: String, ParameterValue, CaseIterable {
@@ -267,6 +306,17 @@ public enum GetApp {
             case version
         }
 
+        public enum ReviewSubmissions: String, ParameterValue, CaseIterable {
+            case app
+            case appStoreVersionForReview
+            case canceled
+            case items
+            case platform
+            case state
+            case submitted
+            case submittedDate
+        }
+
         public enum Territories: String, ParameterValue, CaseIterable {
             case currency
         }
@@ -276,7 +326,7 @@ public enum GetApp {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClips, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices
+        case appClips, appCustomProductPages, appEvents, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices, reviewSubmissions
     }
 
     /**
@@ -285,6 +335,10 @@ public enum GetApp {
     public enum Limit: LimitParameter {
         /// Maximum number of related appClips returned (when they are included) - maximum 50
         case appClips(Int)
+        /// Maximum number of related appCustomProductPages returned (when they are included) - maximum 50
+        case appCustomProductPages(Int)
+        /// Maximum number of related appEvents returned (when they are included) - maximum 50
+        case appEvents(Int)
         /// Maximum number of related appInfos returned (when they are included) - maximum 50
         case appInfos(Int)
         /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50
@@ -305,5 +359,7 @@ public enum GetApp {
         case preReleaseVersions(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50
         case prices(Int)
+        /// Maximum number of related reviewSubmissions returned (when they are included) - maximum 50
+        case reviewSubmissions(Int)
     }
 }

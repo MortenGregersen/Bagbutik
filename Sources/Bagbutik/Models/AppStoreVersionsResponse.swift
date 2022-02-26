@@ -11,11 +11,11 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppStoreVersion]
     /// The included related resources.
-    public let included: [Included]?
+    @NullCodable public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    public let meta: PagingInformation?
+    @NullCodable public var meta: PagingInformation?
 
     public init(data: [AppStoreVersion], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data
@@ -29,6 +29,7 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appStoreReviewDetail(AppStoreReviewDetail)
+        case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
@@ -45,6 +46,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
                 self = .appClipDefaultExperience(appClipDefaultExperience)
             } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
                 self = .appStoreReviewDetail(appStoreReviewDetail)
+            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
+                self = .appStoreVersionExperiment(appStoreVersionExperiment)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
@@ -72,6 +75,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
             case let .appClipDefaultExperience(value):
                 try value.encode(to: encoder)
             case let .appStoreReviewDetail(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperiment(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)

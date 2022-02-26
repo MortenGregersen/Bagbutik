@@ -10,7 +10,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The included related resources.
-    public let included: [AppPriceInlineCreate]?
+    @NullCodable public var included: [AppPriceInlineCreate]?
 
     public init(data: Data, included: [AppPriceInlineCreate]? = nil) {
         self.data = data
@@ -39,6 +39,31 @@ public struct AppUpdateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            id = try container.decode(String.self, forKey: .id)
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(id, forKey: .id)
+            try container.encode(type, forKey: .type)
+            try container.encodeIfPresent(attributes, forKey: .attributes)
+            try container.encodeIfPresent(relationships, forKey: .relationships)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case id
+            case type
+            case attributes
+            case relationships
+        }
+
         /**
          Attributes whose values you're changing as part of the update request.
 
@@ -46,16 +71,24 @@ public struct AppUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public let availableInNewTerritories: Bool?
-            public let bundleId: String?
-            public let contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
-            public let primaryLocale: String?
+            public var availableInNewTerritories: Bool?
+            public var bundleId: String?
+            @NullCodable public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
+            public var primaryLocale: String?
+            public var subscriptionStatusUrl: String?
+            public var subscriptionStatusUrlForSandbox: String?
+            @NullCodable public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
+            @NullCodable public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
-            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil) {
+            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil) {
                 self.availableInNewTerritories = availableInNewTerritories
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
                 self.primaryLocale = primaryLocale
+                self.subscriptionStatusUrl = subscriptionStatusUrl
+                self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
+                self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
+                self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
             }
         }
 
@@ -66,8 +99,8 @@ public struct AppUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public let availableTerritories: AvailableTerritories?
-            public let prices: Prices?
+            @NullCodable public var availableTerritories: AvailableTerritories?
+            @NullCodable public var prices: Prices?
 
             public init(availableTerritories: AvailableTerritories? = nil, prices: Prices? = nil) {
                 self.availableTerritories = availableTerritories
@@ -76,7 +109,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
 
             public struct AvailableTerritories: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -97,12 +130,31 @@ public struct AppUpdateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
             public struct Prices: Codable {
                 /// The type and ID of a resource that you're relating with the resource you're updating.
-                public let data: [Data]?
+                @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
@@ -122,6 +174,25 @@ public struct AppUpdateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }

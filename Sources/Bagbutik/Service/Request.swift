@@ -1,20 +1,34 @@
 import Foundation
 
+/// A description of a request. This will internally be mapped to a real URL request.
 public struct Request<ResponseType, ErrorResponseType> {
-    static var baseUrl: URL { URL(string: "https://api.appstoreconnect.apple.com")! }
-    let path: String
-    let method: HTTPMethod
-    let parameters: Parameters?
-    let requestBody: RequestBody?
-    
-    init(path: String, method: HTTPMethod, parameters: Parameters? = nil, requestBody: RequestBody? = nil) {
+    private static var baseUrl: URL { URL(string: "https://api.appstoreconnect.apple.com")! }
+    /// The path of the endpoint.
+    public let path: String
+    /// The HTTP method to use for the request.
+    public let method: HTTPMethod
+    /// The parameters to add to the query.
+    public let parameters: Parameters?
+    /// The request body to send with the request.
+    public let requestBody: RequestBody?
+
+    /**
+     Create a new description of a request.
+
+     - Parameters:
+        - path: The path of the endpoint.
+        - method: The HTTP method to use for the request.
+        - parameters: The parameters to add to the query.
+        - requestBody: The request body to send with the request.
+      */
+    public init(path: String, method: HTTPMethod, parameters: Parameters? = nil, requestBody: RequestBody? = nil) {
         self.path = path
         self.method = method
         self.parameters = parameters
         self.requestBody = requestBody
     }
-    
-    func asUrlRequest() -> URLRequest {
+
+    internal func asUrlRequest() -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.path = path
         if let parameters = parameters {

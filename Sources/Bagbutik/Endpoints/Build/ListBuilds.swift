@@ -80,6 +80,7 @@ public enum ListBuilds {
             case appClipDefaultExperience
             case appStoreReviewDetail
             case appStoreState
+            case appStoreVersionExperiments
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -98,6 +99,8 @@ public enum ListBuilds {
 
         public enum Apps: String, ParameterValue, CaseIterable {
             case appClips
+            case appCustomProductPages
+            case appEvents
             case appInfos
             case appStoreVersions
             case availableInNewTerritories
@@ -121,7 +124,12 @@ public enum ListBuilds {
             case preReleaseVersions
             case prices
             case primaryLocale
+            case reviewSubmissions
             case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
         }
 
         public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
@@ -156,6 +164,7 @@ public enum ListBuilds {
         public enum BuildIcons: String, ParameterValue, CaseIterable {
             case iconAsset
             case iconType
+            case name
         }
 
         public enum Builds: String, ParameterValue, CaseIterable {

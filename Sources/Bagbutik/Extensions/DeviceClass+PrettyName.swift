@@ -1,4 +1,5 @@
 public extension Device.Attributes.DeviceClass {
+    /// A pretty name for the case.
     var prettyName: String {
         switch self {
         case .appleWatch: return "Apple Watch"

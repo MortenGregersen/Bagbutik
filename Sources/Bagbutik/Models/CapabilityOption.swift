@@ -7,12 +7,12 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilityoption>
  */
 public struct CapabilityOption: Codable {
-    public let description: String?
-    public let enabled: Bool?
-    public let enabledByDefault: Bool?
-    public let key: Key?
-    public let name: String?
-    public let supportsWildcard: Bool?
+    public var description: String?
+    public var enabled: Bool?
+    public var enabledByDefault: Bool?
+    @NullCodable public var key: Key?
+    public var name: String?
+    public var supportsWildcard: Bool?
 
     public init(description: String? = nil, enabled: Bool? = nil, enabledByDefault: Bool? = nil, key: Key? = nil, name: String? = nil, supportsWildcard: Bool? = nil) {
         self.description = description

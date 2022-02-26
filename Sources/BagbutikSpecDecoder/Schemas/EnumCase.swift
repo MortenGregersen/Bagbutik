@@ -4,14 +4,14 @@ public struct EnumCase: Equatable {
     public let id: String
     /// The value of the case
     public let value: String
-    /// Tells if the operation is deprecated
+    /// Tells if the case is deprecated
     public let deprecated: Bool
     /// The documentation for the case - if any
     public let documentation: String?
 
     /**
      Initialize a new case
-     
+
      - Parameters:
         - id: The name of the case
         - value: The value of the case

@@ -31,6 +31,7 @@ public enum ListIconsForBuild {
         public enum BuildIcons: String, ParameterValue, CaseIterable {
             case iconAsset
             case iconType
+            case name
         }
     }
 }

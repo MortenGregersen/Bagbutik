@@ -88,6 +88,7 @@ public enum ListBuildsForCiBuildRun {
         public enum BuildIcons: String, ParameterValue, CaseIterable {
             case iconAsset
             case iconType
+            case name
         }
 
         public enum Builds: String, ParameterValue, CaseIterable {

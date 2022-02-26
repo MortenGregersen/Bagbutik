@@ -10,7 +10,7 @@ public struct AppStoreVersionResponse: Codable {
     /// The resource data.
     public let data: AppStoreVersion
     /// The included related resources.
-    public let included: [Included]?
+    @NullCodable public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
@@ -25,6 +25,7 @@ public struct AppStoreVersionResponse: Codable {
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appStoreReviewDetail(AppStoreReviewDetail)
+        case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
@@ -41,6 +42,8 @@ public struct AppStoreVersionResponse: Codable {
                 self = .appClipDefaultExperience(appClipDefaultExperience)
             } else if let appStoreReviewDetail = try? AppStoreReviewDetail(from: decoder) {
                 self = .appStoreReviewDetail(appStoreReviewDetail)
+            } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
+                self = .appStoreVersionExperiment(appStoreVersionExperiment)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
@@ -68,6 +71,8 @@ public struct AppStoreVersionResponse: Codable {
             case let .appClipDefaultExperience(value):
                 try value.encode(to: encoder)
             case let .appStoreReviewDetail(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperiment(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)

@@ -3,8 +3,6 @@ import Foundation
 
 /// Errors that can occur when decoding operations
 public enum OperationError: Error {
-    /// The documentation is missing for the operation and needs to be added
-    case missingDocumentation(operationId: String)
     /// The pattern of the operation id is unknown and needs to be implemented
     case unknownOperationIdPattern(operationId: String)
 }
@@ -14,7 +12,7 @@ public struct Operation: Decodable, Equatable {
     /// The name of the operation
     public let name: String
     /// The documentation for the operation
-    public let documentation: Documentation
+    public let documentation: Documentation?
     /// The HTTP method used when executing the operation
     public let method: HTTPMethod
     /// Tells if the operation is deprecated
@@ -62,7 +60,7 @@ public struct Operation: Decodable, Equatable {
         - successResponseType: The name of the type returned on a successful request
         - errorResponseType: The name of the type returned on a failing request
      */
-    public init(name: String, documentation: Documentation, method: HTTPMethod, deprecated: Bool = false, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
+    public init(name: String, documentation: Documentation? = nil, method: HTTPMethod, deprecated: Bool = false, parameters: [Parameter]? = nil, requestBody: RequestBody? = nil, successResponseType: String, errorResponseType: String) {
         self.name = name
         self.documentation = documentation
         self.method = method
@@ -160,10 +158,8 @@ public struct Operation: Decodable, Equatable {
         throw OperationError.unknownOperationIdPattern(operationId: operationId)
     }
     
-    internal static func getDocumentation(forId operationId: String) throws -> Documentation {
-        guard let documentation = Documentation.allDocumentation[operationId] else {
-            throw OperationError.missingDocumentation(operationId: operationId)
-        }
+    internal static func getDocumentation(forId operationId: String) throws -> Documentation? {
+        guard let documentation = Documentation.allDocumentation[operationId] else { return nil }
         return documentation
     }
     

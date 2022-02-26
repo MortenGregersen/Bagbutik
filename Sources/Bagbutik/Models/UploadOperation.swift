@@ -7,11 +7,11 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/uploadoperation>
  */
 public struct UploadOperation: Codable {
-    public let length: Int?
-    public let method: String?
-    public let offset: Int?
-    public let requestHeaders: [HttpHeader]?
-    public let url: String?
+    public var length: Int?
+    public var method: String?
+    public var offset: Int?
+    @NullCodable public var requestHeaders: [HttpHeader]?
+    public var url: String?
 
     public init(length: Int? = nil, method: String? = nil, offset: Int? = nil, requestHeaders: [HttpHeader]? = nil, url: String? = nil) {
         self.length = length

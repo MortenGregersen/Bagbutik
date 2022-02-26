@@ -8,11 +8,11 @@ import Foundation
  */
 public struct ScmProviderType: Codable {
     /// The source code management provider’s display name; for example, Bitbucket Server.
-    public let displayName: String?
+    public var displayName: String?
     /// A Boolean value that indicates whether it’s a self-hosted source code management provider.
-    public let isOnPremise: Bool?
+    public var isOnPremise: Bool?
     /// A string that represents the kind of a Providers resource.
-    public let kind: Kind?
+    @NullCodable public var kind: Kind?
 
     public init(displayName: String? = nil, isOnPremise: Bool? = nil, kind: Kind? = nil) {
         self.displayName = displayName

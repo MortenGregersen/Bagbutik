@@ -10,7 +10,7 @@ public struct BetaAppClipInvocationResponse: Codable {
     /// The resource data.
     public let data: BetaAppClipInvocation
     /// The included related resources.
-    public let included: [BetaAppClipInvocationLocalization]?
+    @NullCodable public var included: [BetaAppClipInvocationLocalization]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

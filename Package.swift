@@ -6,7 +6,9 @@ let package = Package(
     name: "Bagbutik",
     platforms: [
         .macOS(.v12),
-        .iOS(.v15)
+        .iOS(.v15),
+        .tvOS(.v15),
+        .watchOS(.v8)
     ],
     products: [
         .library(
@@ -28,7 +30,8 @@ let package = Package(
             dependencies: [.product(name: "Crypto", package: "swift-crypto")]),
         .testTarget(
             name: "BagbutikTests",
-            dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")]),
+            dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")],
+            resources: [.copy("test-private-key.p8")]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [

@@ -11,11 +11,11 @@ public struct AppEncryptionDeclarationsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppEncryptionDeclaration]
     /// The included related resources.
-    public let included: [App]?
+    @NullCodable public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    public let meta: PagingInformation?
+    @NullCodable public var meta: PagingInformation?
 
     public init(data: [AppEncryptionDeclaration], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

@@ -1,10 +1,11 @@
-/// Parameter for endpoint
-protocol EndpointParameter {
+/// Parameter for an endpoint
+public protocol EndpointParameter {
     var caseName: String { get }
 }
 
 extension EndpointParameter {
-    var caseName: String {
+    /// The name of the case to use as value for the parameter.
+    public var caseName: String {
         // If the case has an associated value, take the name of the case
         guard let rawName = Mirror(reflecting: self).children.first?.label else {
             // Take the name of the case
@@ -17,12 +18,14 @@ extension EndpointParameter {
 
 // MARK: - Parameter with associated (string) value
 
-protocol AssociatedValueParameter: EndpointParameter {
+/// Parameter with an associated (string) value.
+public protocol AssociatedValueParameter: EndpointParameter {
     var value: String { get }
 }
 
 extension AssociatedValueParameter {
-    var value: String {
+    /// The comma separated list values to use as value for the parameter.
+    public var value: String {
         // Join the string values by commas
         let stringValues: [String]
         if let parameterValues = Mirror(reflecting: self).children.first!.value as? [ParameterValue] {
@@ -40,36 +43,44 @@ protocol ParameterValue {
 
 // MARK: - Parameter types
 
-///
-protocol FieldParameter: AssociatedValueParameter {}
-protocol FilterParameter: AssociatedValueParameter {}
-protocol IncludeParameter: EndpointParameter {}
+/// Parameter for selecting which fields to return for included related types.
+public protocol FieldParameter: AssociatedValueParameter {}
+/// Parameter for by which attributes, relationships, and IDs to filter.
+public protocol FilterParameter: AssociatedValueParameter {}
+/// Parameter for which relationship data to include in the response.
+public protocol IncludeParameter: EndpointParameter {}
 
-protocol ExistParameter: EndpointParameter {
+/// Parameter for including/excluding where a value exists.
+public protocol ExistParameter: EndpointParameter {
     var value: Bool { get }
 }
 
 extension ExistParameter {
-    var value: Bool {
+    /// The value to for the parameter.
+    public var value: Bool {
         return Mirror(reflecting: self).children.first!.value as! Bool
     }
 }
 
-protocol SortParameter: EndpointParameter {
+/// Parameter for by which attributes to sort.
+public protocol SortParameter: EndpointParameter {
     var value: String { get }
     var rawValue: String { get }
 }
 
 extension SortParameter {
-    var value: String { rawValue }
+    /// The value to for the parameter.
+    public var value: String { rawValue }
 }
 
-protocol LimitParameter: EndpointParameter {
+/// Parameter for number of resources to return.
+public protocol LimitParameter: EndpointParameter {
     var value: Int { get }
 }
 
 extension LimitParameter {
-    var value: Int {
+    /// The value to for the parameter.
+    public var value: Int {
         return Mirror(reflecting: self).children.first!.value as! Int
     }
 }

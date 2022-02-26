@@ -29,9 +29,9 @@ public struct PagingInformation: Codable {
         /// The maximum number of resources to return per page, from 0 to 200.
         public let limit: Int
         /// The total number of resources matching your request.
-        public let total: Int
+        public var total: Int?
 
-        public init(limit: Int, total: Int) {
+        public init(limit: Int, total: Int? = nil) {
             self.limit = limit
             self.total = total
         }

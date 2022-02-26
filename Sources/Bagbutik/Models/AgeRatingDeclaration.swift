@@ -22,6 +22,31 @@ public struct AgeRatingDeclaration: Codable {
         self.attributes = attributes
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        links = try container.decode(ResourceLinks.self, forKey: .links)
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+        if try container.decode(String.self, forKey: .type) != type {
+            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(attributes, forKey: .attributes)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case links
+        case type
+        case attributes
+    }
+
     /**
      Attributes that describe an Age Rating Declarations resource.
 
@@ -30,40 +55,40 @@ public struct AgeRatingDeclaration: Codable {
      */
     public struct Attributes: Codable {
         /// Declaration for alcohol, tobacco, or drug use.
-        public let alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
+        @NullCodable public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
         /// Declaration for contests.
-        public let contests: Contests?
+        @NullCodable public var contests: Contests?
         /// Declaration for gambling, provided as a Boolean value.
-        public let gambling: Bool?
+        public var gambling: Bool?
         /// Declaration for gambling or contests, as a Boolean value.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var gamblingAndContests: Bool? = nil
         /// Declaration for simulated gambling.
-        public let gamblingSimulated: GamblingSimulated?
+        @NullCodable public var gamblingSimulated: GamblingSimulated?
         /// Declaration for horror or fear themed content.
-        public let horrorOrFearThemes: HorrorOrFearThemes?
+        @NullCodable public var horrorOrFearThemes: HorrorOrFearThemes?
         /// Declaration for the Kids Age Band value.
-        public let kidsAgeBand: KidsAgeBand?
+        @NullCodable public var kidsAgeBand: KidsAgeBand?
         /// Declaration for mature or suggestive themes.
-        public let matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
+        @NullCodable public var matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
         /// Declaration for medical or treatment-focused content.
-        public let medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
+        @NullCodable public var medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
         /// Declaration for profanity or crude humor.
-        public let profanityOrCrudeHumor: ProfanityOrCrudeHumor?
+        @NullCodable public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
         /// Declaration for a 17+ rating, provided as a Boolean value.
-        public let seventeenPlus: Bool?
+        public var seventeenPlus: Bool?
         /// Declaration for graphic sexual content and nudity.
-        public let sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
+        @NullCodable public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
         /// Declaration for sexual content or nudity.
-        public let sexualContentOrNudity: SexualContentOrNudity?
+        @NullCodable public var sexualContentOrNudity: SexualContentOrNudity?
         /// Declaration for unrestricted web access, such as with an embedded browser, provided as a Boolean value.
-        public let unrestrictedWebAccess: Bool?
+        public var unrestrictedWebAccess: Bool?
         /// Declaration for cartoon or fantasy violence.
-        public let violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
+        @NullCodable public var violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
         /// Declaration for realistic violence.
-        public let violenceRealistic: ViolenceRealistic?
+        @NullCodable public var violenceRealistic: ViolenceRealistic?
         /// Declaration for prolonged realistic or sadistic violence.
-        public let violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
+        @NullCodable public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gambling: Bool? = nil, gamblingAndContests: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {

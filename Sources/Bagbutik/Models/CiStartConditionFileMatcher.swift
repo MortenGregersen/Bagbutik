@@ -8,11 +8,11 @@ import Foundation
  */
 public struct CiStartConditionFileMatcher: Codable {
     /// The directory you configure for a custom start condition’s Files and Folders setting.
-    public let directory: String?
+    public var directory: String?
     /// The file extension you configure for a custom start condition’s Files and Folders setting.
-    public let fileExtension: String?
+    public var fileExtension: String?
     /// The filename you configure for a custom start condition’s Files and Folders setting.
-    public let fileName: String?
+    public var fileName: String?
 
     public init(directory: String? = nil, fileExtension: String? = nil, fileName: String? = nil) {
         self.directory = directory

@@ -22,6 +22,31 @@ public struct AppClipAdvancedExperienceImage: Codable {
         self.attributes = attributes
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        links = try container.decode(ResourceLinks.self, forKey: .links)
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
+        if try container.decode(String.self, forKey: .type) != type {
+            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(links, forKey: .links)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(attributes, forKey: .attributes)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case links
+        case type
+        case attributes
+    }
+
     /**
      The attributes that describe an Advanced App Clip Experience Images resource.
 
@@ -30,17 +55,17 @@ public struct AppClipAdvancedExperienceImage: Codable {
      */
     public struct Attributes: Codable {
         /// The state of the App Clip card image asset you uploaded.
-        public let assetDeliveryState: AppMediaAssetState?
+        @NullCodable public var assetDeliveryState: AppMediaAssetState?
         /// The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.
-        public let fileName: String?
+        public var fileName: String?
         /// The size of the image asset that appears on the App Clip card for the advanced App Clip experience.
-        public let fileSize: Int?
+        public var fileSize: Int?
         /// The image asset that appears on the App Clip card of an advanced App Clip experience.
-        public let imageAsset: ImageAsset?
+        @NullCodable public var imageAsset: ImageAsset?
         /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
-        public let sourceFileChecksum: String?
+        public var sourceFileChecksum: String?
         /// Upload operations for the image asset that appears on the App Clip card for an advanced App Clip experience.
-        public let uploadOperations: [UploadOperation]?
+        @NullCodable public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.assetDeliveryState = assetDeliveryState

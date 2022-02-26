@@ -30,6 +30,25 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             self.attributes = attributes
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            attributes = try container.decode(Attributes.self, forKey: .attributes)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(type, forKey: .type)
+            try container.encode(attributes, forKey: .attributes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case type
+            case attributes
+        }
+
         /**
          Attributes that you set that describe the new resource.
 
@@ -40,7 +59,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             public let identifier: String
             public let name: String
             public let platform: BundleIdPlatform
-            public let seedId: String?
+            public var seedId: String?
 
             public init(identifier: String, name: String, platform: BundleIdPlatform, seedId: String? = nil) {
                 self.identifier = identifier

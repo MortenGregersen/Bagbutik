@@ -37,7 +37,9 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
         case appScreenshots([AppScreenshots])
 
         public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
+            case appCustomProductPageLocalization
             case appScreenshots
+            case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
         }
@@ -60,6 +62,10 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
      Attributes, relationships, and IDs by which to filter.
      */
     public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'appCustomProductPageLocalization'
+        case appCustomProductPageLocalization([String])
+        /// Filter by id(s) of related 'appStoreVersionExperimentTreatmentLocalization'
+        case appStoreVersionExperimentTreatmentLocalization([String])
         /// Filter by attribute 'screenshotDisplayType'
         case screenshotDisplayType([ScreenshotDisplayType])
 
@@ -98,7 +104,7 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalization {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appScreenshots, appStoreVersionLocalization
+        case appCustomProductPageLocalization, appScreenshots, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
     }
 
     /**

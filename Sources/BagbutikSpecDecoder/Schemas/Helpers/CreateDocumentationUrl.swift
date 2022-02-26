@@ -1,4 +1,4 @@
-func createDocumentationUrl(forSchemaNamed name: String, withCodingPathComponents codingPathComponents: [String]) -> String {
+internal func createDocumentationUrl(forSchemaNamed name: String, withCodingPathComponents codingPathComponents: [String]) -> String {
     var urlPathComponents = codingPathComponents
         .filter { $0 != "Items" &&
             $0 != "Source" &&

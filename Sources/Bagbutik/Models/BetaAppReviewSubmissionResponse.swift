@@ -10,7 +10,7 @@ public struct BetaAppReviewSubmissionResponse: Codable {
     /// The resource data.
     public let data: BetaAppReviewSubmission
     /// The included related resources.
-    public let included: [Build]?
+    @NullCodable public var included: [Build]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

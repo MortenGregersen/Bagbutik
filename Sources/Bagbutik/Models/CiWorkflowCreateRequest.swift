@@ -33,6 +33,28 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             self.relationships = relationships
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            attributes = try container.decode(Attributes.self, forKey: .attributes)
+            relationships = try container.decode(Relationships.self, forKey: .relationships)
+            if try container.decode(String.self, forKey: .type) != type {
+                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(type, forKey: .type)
+            try container.encode(attributes, forKey: .attributes)
+            try container.encode(relationships, forKey: .relationships)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case type
+            case attributes
+            case relationships
+        }
+
         /**
          Attributes that you set that describe the new resource.
 
@@ -43,7 +65,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// The workflow’s actions.
             public let actions: [CiAction]
             /// A start condition that starts new builds for changes to a branch.
-            public let branchStartCondition: CiBranchStartCondition?
+            @NullCodable public var branchStartCondition: CiBranchStartCondition?
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public let clean: Bool
             /// The relative path to your Xcode project or workspace.
@@ -53,15 +75,15 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// A Boolean value that indicates whether the workflow is active or deactivated.
             public let isEnabled: Bool
             /// A Boolean value that indicates whether edits to the workflow are restricted.
-            public let isLockedForEditing: Bool?
+            public var isLockedForEditing: Bool?
             /// The name of the workflow you want to create; for example, My New Workflow.
             public let name: String
             /// A start condition that starts new builds for changes to a pull request.
-            public let pullRequestStartCondition: CiPullRequestStartCondition?
+            @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
             /// A start condition that starts new builds based on a custom schedule.
-            public let scheduledStartCondition: CiScheduledStartCondition?
+            @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
             /// A start condition that starts new builds for changes to a tag.
-            public let tagStartCondition: CiTagStartCondition?
+            @NullCodable public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction], branchStartCondition: CiBranchStartCondition? = nil, clean: Bool, containerFilePath: String, description: String, isEnabled: Bool, isLockedForEditing: Bool? = nil, name: String, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
                 self.actions = actions
@@ -120,6 +142,25 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
@@ -145,6 +186,25 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }
@@ -172,6 +232,25 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                     public init(id: String) {
                         self.id = id
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
+                    }
                 }
             }
 
@@ -197,6 +276,25 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
 
                     public init(id: String) {
                         self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        id = try container.decode(String.self, forKey: .id)
+                        if try container.decode(String.self, forKey: .type) != type {
+                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encode(id, forKey: .id)
+                        try container.encode(type, forKey: .type)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case id
+                        case type
                     }
                 }
             }

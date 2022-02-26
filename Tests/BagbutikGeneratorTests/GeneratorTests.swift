@@ -15,7 +15,7 @@ final class GeneratorTests: XCTestCase {
         ]),
         "/v1/users/{id}/relationships/visibleApps": Path(path: "/v1/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", isRelationship: true), operations: [
             .init(name: "listVisibleAppIdsForUser",
-                  documentation: .init(title: "List ids for visible apps for user", summary: "Get a list ids for visible apps for user", url: "https://developer.apple.com"),
+                  documentation: nil,
                   method: .get,
                   successResponseType: "UserVisibleAppsLinkagesResponse",
                   errorResponseType: "ErrorResponse"),
@@ -54,8 +54,9 @@ final class GeneratorTests: XCTestCase {
             "⚡️ Generating endpoint ListVisibleAppIdsForUser.swift...",
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
-            "⚠️ Documentation missing for \'ReplaceUsersResponse\': ",
-            "⚠️ Documentation missing for \'UsersResponse\': some://url",
+            "⚠️ Documentation missing for endpoint: \'ListVisibleAppIdsForUser\'",
+            "⚠️ Documentation missing for model: \'ReplaceUsersResponse\'",
+            "⚠️ Documentation missing for model: \'UsersResponse\' (some://url)",
             "🎉 Finished generating 2 endpoints and 2 models! 🎉",
         ])
     }

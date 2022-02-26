@@ -34,7 +34,9 @@ public enum GetAppScreenshotSet {
         case appScreenshots([AppScreenshots])
 
         public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
+            case appCustomProductPageLocalization
             case appScreenshots
+            case appStoreVersionExperimentTreatmentLocalization
             case appStoreVersionLocalization
             case screenshotDisplayType
         }
@@ -57,6 +59,6 @@ public enum GetAppScreenshotSet {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appScreenshots, appStoreVersionLocalization
+        case appCustomProductPageLocalization, appScreenshots, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
     }
 }
