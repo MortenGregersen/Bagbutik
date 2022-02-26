@@ -371,7 +371,7 @@ final class ObjectSchemaTests: XCTestCase {
     }
     
     func testGetDocumentationErrorResponseSub() {
-        let testException = expectation(description: debugDescription)
+        let testException = XCTestExpectation()
         _ = ObjectSchema.getDocumentation(forSchemaNamed: "AnotherModel",
                                           codingPathComponents: ["ErrorResponse", "Items", "Source", "OneOf", "Index 0", "SomeModel"],
                                           lookupDocumentation: { name in
@@ -384,7 +384,7 @@ final class ObjectSchemaTests: XCTestCase {
     }
     
     func testGetDocumentationPagingInformationSub() {
-        let testException = expectation(description: debugDescription)
+        let testException = XCTestExpectation()
         _ = ObjectSchema.getDocumentation(forSchemaNamed: "Paging",
                                           codingPathComponents: ["PagingInformation", "Paging"],
                                           lookupDocumentation: { name in
@@ -406,6 +406,6 @@ final class ObjectSchemaTests: XCTestCase {
     }
     
     private func decodeObjectSchema(from json: String) throws -> ObjectSchema {
-        return try jsonDecoder.decode([String: ObjectSchema].self, from: json.data(using: .utf8)!).values.first!
+        try jsonDecoder.decode([String: ObjectSchema].self, from: json.data(using: .utf8)!).values.first!
     }
 }
