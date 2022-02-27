@@ -1,5 +1,9 @@
 @testable import Bagbutik
 import XCTest
+#if canImport(FoundationNetworking)
+    // Linux support
+    import FoundationNetworking
+#endif
 
 final class BagbutikServiceTests: XCTestCase {
     var service: BagbutikService!
@@ -113,7 +117,7 @@ final class BagbutikServiceTests: XCTestCase {
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
-    
+
     func testDateDecoding_CustomDate() async throws {
         try setUpService()
         let dateString = "2021-07-31T21:49:11.000+00:00"
