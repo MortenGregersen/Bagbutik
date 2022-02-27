@@ -58,9 +58,8 @@ public struct EnumSchema: Decodable, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         var name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
         if name == "Type" {
-            print("container.codingPath", container.codingPath)
             var parentType = container.codingPath.dropLast(1).last!.stringValue
-            if parentType == "Properties" {
+            if parentType == "properties" {
                 // The codingPath on Linux has an extra layer ("Properties") which isn't present on macOS
                 parentType = container.codingPath.dropLast(2).last!.stringValue
             }
