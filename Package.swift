@@ -27,11 +27,17 @@ let package = Package(
     targets: [
         .target(
             name: "Bagbutik",
-            dependencies: [.product(name: "Crypto", package: "swift-crypto"), "system-zlib"]),
+            dependencies: [
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
+                .target(name: "system-zlib", condition: .when(platforms: [.linux]))
+            ]),
         .target(name: "system-zlib"),
         .testTarget(
             name: "BagbutikTests",
-            dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")],
+            dependencies: [
+                "Bagbutik",
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
+            ],
             resources: [.copy("test-private-key.p8")]),
         .executableTarget(
             name: "BagbutikCLI",
