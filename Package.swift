@@ -27,7 +27,8 @@ let package = Package(
     targets: [
         .target(
             name: "Bagbutik",
-            dependencies: [.product(name: "Crypto", package: "swift-crypto")]),
+            dependencies: [.product(name: "Crypto", package: "swift-crypto"), "system-zlib"]),
+        .target(name: "system-zlib"),
         .testTarget(
             name: "BagbutikTests",
             dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")],
