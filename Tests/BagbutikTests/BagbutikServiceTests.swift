@@ -64,8 +64,7 @@ final class BagbutikServiceTests: XCTestCase {
         ]
         for response in responses {
             let request: Request<AppsResponse, ErrorResponse> = .listApps()
-            mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(errorResponse),
-                                                                          type: .http(statusCode: response.statusCode))
+            mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .http(statusCode: response.statusCode))
             await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
                 XCTAssertEqual(error as! ServiceError, response.error)
             }

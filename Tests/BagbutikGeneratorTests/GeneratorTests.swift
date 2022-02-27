@@ -101,6 +101,7 @@ final class GeneratorTests: XCTestCase {
         }
         // Then
         let nsError = try XCTUnwrap(thrownError as NSError?)
+        print("nsError", nsError)
         XCTAssertEqual(nsError.code, 260)
     }
     
