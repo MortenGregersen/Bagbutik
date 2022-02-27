@@ -1,2 +1,4 @@
 xcuserdata
 .DS_Store
+.build
+coverage.lcov

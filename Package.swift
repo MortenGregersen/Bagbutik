@@ -19,18 +19,25 @@ let package = Package(
             targets: ["BagbutikCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.2"),
-        .package(url: "https://github.com/SwiftGen/StencilSwiftKit", from: "2.7.2"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.47.11"),
-        .package(url: "https://github.com/apple/swift-crypto", from: "1.1.3")
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.1"),
+        .package(url: "https://github.com/SwiftGen/StencilSwiftKit", from: "2.8.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.17"),
+        .package(url: "https://github.com/apple/swift-crypto", from: "2.0.0")
     ],
     targets: [
         .target(
             name: "Bagbutik",
-            dependencies: [.product(name: "Crypto", package: "swift-crypto")]),
+            dependencies: [
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
+                .target(name: "system-zlib", condition: .when(platforms: [.linux]))
+            ]),
+        .target(name: "system-zlib"),
         .testTarget(
             name: "BagbutikTests",
-            dependencies: ["Bagbutik", .product(name: "Crypto", package: "swift-crypto")],
+            dependencies: [
+                "Bagbutik",
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
+            ],
             resources: [.copy("test-private-key.p8")]),
         .executableTarget(
             name: "BagbutikCLI",

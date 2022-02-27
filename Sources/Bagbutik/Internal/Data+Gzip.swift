@@ -1,8 +1,12 @@
 import Foundation
+#if os(Linux)
+import zlibLinux
+#else
 import zlib
+#endif
 
-extension Data {
-    internal func gunzippedData() throws -> Data {
+internal extension Data {
+    func gunzippedData() throws -> Data {
         var stream = z_stream()
         try withUnsafeBytes { bytes in
             guard let pointer = bytes.bindMemory(to: Bytef.self).baseAddress else { throw GunzipError.decompressFailed }

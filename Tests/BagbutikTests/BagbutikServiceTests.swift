@@ -1,5 +1,9 @@
 @testable import Bagbutik
 import XCTest
+#if canImport(FoundationNetworking)
+    // Linux support
+    import FoundationNetworking
+#endif
 
 final class BagbutikServiceTests: XCTestCase {
     var service: BagbutikService!
@@ -60,8 +64,7 @@ final class BagbutikServiceTests: XCTestCase {
         ]
         for response in responses {
             let request: Request<AppsResponse, ErrorResponse> = .listApps()
-            mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(errorResponse),
-                                                                          type: .http(statusCode: response.statusCode))
+            mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .http(statusCode: response.statusCode))
             await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
                 XCTAssertEqual(error as! ServiceError, response.error)
             }
@@ -113,7 +116,7 @@ final class BagbutikServiceTests: XCTestCase {
         let response = try await service.request(request)
         XCTAssertEqual(response.date, date)
     }
-    
+
     func testDateDecoding_CustomDate() async throws {
         try setUpService()
         let dateString = "2021-07-31T21:49:11.000+00:00"
@@ -173,7 +176,7 @@ class MockURLSession: URLSessionProtocol {
         case .http(let statusCode):
             return (response.data, HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!)
         case .url:
-            return (response.data, URLResponse())
+            return (response.data, URLResponse(url: request.url!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil))
         }
     }
 }
