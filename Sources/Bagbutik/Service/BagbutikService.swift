@@ -3,7 +3,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     // Linux support
     import FoundationNetworking
-    extension URLSession {
+    public extension URLSession {
         // URLSession in FoundationNetworking doesn't have async/await versions of the dataTask functions
         func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
             return try await withCheckedThrowingContinuation { continuation in
