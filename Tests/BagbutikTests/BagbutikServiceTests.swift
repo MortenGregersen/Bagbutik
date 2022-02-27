@@ -177,7 +177,7 @@ class MockURLSession: URLSessionProtocol {
         case .http(let statusCode):
             return (response.data, HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!)
         case .url:
-            return (response.data, URLResponse())
+            return (response.data, URLResponse(url: request.url!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil))
         }
     }
 }
