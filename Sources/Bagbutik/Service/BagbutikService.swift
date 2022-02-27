@@ -4,6 +4,7 @@ import Foundation
     // Linux support
     import FoundationNetworking
     extension URLSession {
+        // URLSession in FoundationNetworking doesn't have async/await versions of the dataTask functions
         func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
             return try await withCheckedThrowingContinuation { continuation in
                 let task = dataTask(with: request) { data, response, error in
