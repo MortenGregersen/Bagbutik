@@ -101,8 +101,13 @@ final class GeneratorTests: XCTestCase {
         }
         // Then
         let nsError = try XCTUnwrap(thrownError as NSError?)
-        print("nsError", nsError)
-        XCTAssertEqual(nsError.code, 260)
+        #if os(Linux)
+            XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
+            XCTAssertEqual(nsError.code, 2)
+        #else
+            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+            XCTAssertEqual(nsError.code, 260)
+        #endif
     }
     
     func testFailedCreatingEndpoint() throws {
