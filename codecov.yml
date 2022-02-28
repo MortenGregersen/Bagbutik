@@ -2,4 +2,3 @@ ignore:
   - "Sources/Bagbutik/Endpoints"
   - "Sources/Bagbutik/Models"
   - "Sources/Bagbutik/Extensions/*+PrettyName.swift"
-  - "Sources/Bagbutik/Extensions/AppMediaStateError+MoreInfo.swift"
