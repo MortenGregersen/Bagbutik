@@ -44,7 +44,7 @@ public struct EnumSchema: Decodable, Equatable {
         let cases = caseValues.map {
             EnumCase(id: $0.camelCased(with: "_"), value: $0, documentation: documentation?.properties[$0])
         }
-        if name == "BundleIdPlatform" {
+        if name == "BundleIdPlatform", !cases.contains(where: { $0.value == "UNIVERSAL" }) {
             // HACK: Apple's OpenAPI spec doesn't include 'Universal' App IDs. Reported to Apple 21/1/21 as FB8977648.
             self.cases = cases + [
                 EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."),

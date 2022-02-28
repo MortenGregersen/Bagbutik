@@ -52,6 +52,25 @@ final class EnumSchemaTests: XCTestCase {
         ])
         XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
     }
+    
+    func testDecodableInitFB8977648_Fixed() throws {
+        let jsonString = """
+        {
+            "BundleIdPlatform" : {
+                "type" : "string",
+                "enum" : [ "IOS", "MAC_OS", "UNIVERSAL" ]
+            }
+        }
+        """
+        let enumSchema = try JSONDecoder().decode([String: EnumSchema].self, from: jsonString.data(using: .utf8)!).values.first!
+        XCTAssertEqual(enumSchema.type, "string")
+        XCTAssertEqual(enumSchema.cases, [
+            EnumCase(id: "iOS", value: "IOS", documentation: "A string that represents iOS."),
+            EnumCase(id: "macOS", value: "MAC_OS", documentation: "A string that represents macOS."),
+            EnumCase(id: "universal", value: "UNIVERSAL", documentation: nil),
+        ])
+        XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
+    }
 
     func testDecodablePropertyNamedType() throws {
         let jsonString = """
