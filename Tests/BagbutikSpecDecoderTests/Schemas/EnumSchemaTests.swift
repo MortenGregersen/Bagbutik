@@ -71,4 +71,22 @@ final class EnumSchemaTests: XCTestCase {
         guard case .enumSchema(let enumSchema) = objectSchema.properties["type"]!.type else { XCTFail("Wrong type"); return }
         XCTAssertEqual(enumSchema.name, "PhoneNumberType")
     }
+    
+    func testDecodablePropertyNamedType_Linux() throws {
+        let jsonString = """
+        {
+            "phoneNumber" : {
+                "properties" : {
+                    "type" : {
+                        "type" : "string",
+                        "enum" : [ "FAX", "LANDLINE", "MOBILE", "TOLLFREE" ]
+                    }
+                }
+            }
+        }
+        """
+        let decodedDictionary = try JSONDecoder().decode([String: [String: [String: EnumSchema]]].self, from: jsonString.data(using: .utf8)!)
+        let enumSchema = decodedDictionary["phoneNumber"]!["properties"]!["type"]!
+        XCTAssertEqual(enumSchema.name, "PhoneNumberType")
+    }
 }
