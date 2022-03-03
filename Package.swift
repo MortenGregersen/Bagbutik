@@ -45,8 +45,9 @@ let package = Package(
             name: "BagbutikCLI",
             dependencies: [
                 "BagbutikGenerator",
-                .product(name: "ArgumentParser", package: "swift-argument-parser")
                 "BagbutikPolyfill",
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                "Zip"
             ]),
         .target(
             name: "BagbutikGenerator",
