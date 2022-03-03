@@ -13,7 +13,7 @@ struct Bagbutik: ParsableCommand {
     struct Generate: ParsableCommand {
         static var configuration = CommandConfiguration(abstract: "Generate models and endpoints from spec. If the path to a spec is omitted, the newest version is downloaded from Apple.")
 
-        @Option(help: "Path to the App Store Connect OpenAPI Spec")
+        @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
         var specPath: String?
 
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
