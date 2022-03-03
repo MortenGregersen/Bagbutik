@@ -25,6 +25,14 @@ else
     echo "New spec is found. Will generate new endpoints and models."
 fi
 
+pr_list_output=$(gh pr list --search "$downloaded_version type:pr")
+if [[ $pr_list_output =~ Update\ from\ new\ spec ]]; then
+    echo "A pull request for this version has already been created."
+    exit 0
+else
+    echo "No pull requests has been created for this version."
+fi
+
 swift run bagbutik generate --spec-path $spec_file_path
 rm $spec_file_path
 echo $downloaded_version > spec-version
