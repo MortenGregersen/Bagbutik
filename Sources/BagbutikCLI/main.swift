@@ -28,7 +28,7 @@ struct Bagbutik: ParsableCommand {
                 specFileURL = try downloadNewestSpec()
             }
             let outputDirURL = URL(fileURLWithPath: outputPath)
-             try Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
+            try Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
         }
     }
 

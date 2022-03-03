@@ -160,6 +160,20 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "bagbutik"
+               BuildableName = "bagbutik"
+               BlueprintName = "bagbutik"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -233,12 +247,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "bagbutik"
+            BuildableName = "bagbutik"
+            BlueprintName = "bagbutik"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "BagbutikCLI"
             BuildableName = "BagbutikCLI"
             BlueprintName = "BagbutikCLI"
             ReferencedContainer = "container:">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -250,9 +273,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BagbutikCLI"
-            BuildableName = "BagbutikCLI"
-            BlueprintName = "BagbutikCLI"
+            BlueprintIdentifier = "bagbutik"
+            BuildableName = "bagbutik"
+            BlueprintName = "bagbutik"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>

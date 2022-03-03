@@ -15,7 +15,7 @@ let package = Package(
             name: "Bagbutik",
             targets: ["Bagbutik"]),
         .executable(
-            name: "BagbutikCLI",
+            name: "bagbutik",
             targets: ["BagbutikCLI"])
     ],
     dependencies: [
