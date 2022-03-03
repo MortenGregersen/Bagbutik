@@ -40,6 +40,7 @@ echo $downloaded_version > spec-version
 git branch spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
+git push
 create_pr_output=$(gh pr create --fill)
 if [ $? != 0 ]; then
     exit $?
