@@ -1,8 +1,11 @@
 import ArgumentParser
 import BagbutikGenerator
-import BagbutikPolyfill
 import Foundation
 import Zip
+#if canImport(FoundationNetworking)
+// Linux support
+import FoundationNetworking
+#endif
 
 struct Bagbutik: ParsableCommand {
     static var configuration = CommandConfiguration(
