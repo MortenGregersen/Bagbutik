@@ -22,14 +22,16 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.1"),
         .package(url: "https://github.com/SwiftGen/StencilSwiftKit", from: "2.8.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.17"),
-        .package(url: "https://github.com/apple/swift-crypto", from: "2.0.0")
+        .package(url: "https://github.com/apple/swift-crypto", from: "2.0.0"),
+        .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.2")
     ],
     targets: [
         .target(
             name: "Bagbutik",
             dependencies: [
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
-                .target(name: "system-zlib", condition: .when(platforms: [.linux]))
+                .target(name: "system-zlib", condition: .when(platforms: [.linux])),
+                "BagbutikPolyfill"
             ]),
         .target(name: "system-zlib"),
         .testTarget(
@@ -44,6 +46,7 @@ let package = Package(
             dependencies: [
                 "BagbutikGenerator",
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
+                "BagbutikPolyfill",
             ]),
         .target(
             name: "BagbutikGenerator",
@@ -61,5 +64,6 @@ let package = Package(
             name: "BagbutikStringExtensions"),
         .testTarget(
             name: "BagbutikStringExtensionsTests",
-            dependencies: ["BagbutikStringExtensions"])
+            dependencies: ["BagbutikStringExtensions"]),
+        .target(name: "BagbutikPolyfill")
     ])
