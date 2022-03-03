@@ -1,3 +1,4 @@
+import Foundation
 #if canImport(FoundationNetworking)
 // Linux support
 import FoundationNetworking
