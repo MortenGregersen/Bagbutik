@@ -87,49 +87,49 @@ public class Generator {
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
-        var endpointsMissingDocumentation = [String]()
-        let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
-        try removeChildren(at: endpointsDirURL)
-        try spec.paths.values.sorted(by: { $0.path < $1.path }).forEach { path in
-            let operationsDirURL = getOperationsDirURL(for: path, in: endpointsDirURL)
-            try fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
-            try generateEndpoints(for: path).forEach { endpoint in
-                let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
-                print("⚡️ Generating endpoint \(endpoint.fileName)...")
-                guard fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
-                    throw GeneratorError.couldNotCreateFile(endpoint.fileName)
-                }
-                if !endpoint.hasDocumentation {
-                    endpointsMissingDocumentation.append(endpoint.name)
-                }
-            }
-        }
-
-        var modelsMissingDocumentation = [(name: String, url: String?)]()
-        let modelsDirURL = outputDirURL.appendingPathComponent("Models")
-        try removeChildren(at: modelsDirURL)
-        try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
-            let model = try generateModel(for: schema)
-            let fileName = model.name + ".swift"
-            let fileURL = modelsDirURL.appendingPathComponent(fileName)
-            print("⚡️ Generating model \(model.name)...")
-            guard fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
-                throw GeneratorError.couldNotCreateFile(fileName)
-            }
-            if !model.hasDocumentation {
-                modelsMissingDocumentation.append((name: model.name, url: model.url))
-            }
-        }
-
-        endpointsMissingDocumentation.forEach { endpointName in
-            print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
-        }
-
-        modelsMissingDocumentation.forEach { model in
-            var log = "⚠️ Documentation missing for model: '\(model.name)'"
-            if let url = model.url { log += " (\(url))" }
-            print(log)
-        }
+//        var endpointsMissingDocumentation = [String]()
+//        let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
+//        try removeChildren(at: endpointsDirURL)
+//        try spec.paths.values.sorted(by: { $0.path < $1.path }).forEach { path in
+//            let operationsDirURL = getOperationsDirURL(for: path, in: endpointsDirURL)
+//            try fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
+//            try generateEndpoints(for: path).forEach { endpoint in
+//                let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
+//                print("⚡️ Generating endpoint \(endpoint.fileName)...")
+//                guard fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
+//                    throw GeneratorError.couldNotCreateFile(endpoint.fileName)
+//                }
+//                if !endpoint.hasDocumentation {
+//                    endpointsMissingDocumentation.append(endpoint.name)
+//                }
+//            }
+//        }
+//
+//        var modelsMissingDocumentation = [(name: String, url: String?)]()
+//        let modelsDirURL = outputDirURL.appendingPathComponent("Models")
+//        try removeChildren(at: modelsDirURL)
+//        try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
+//            let model = try generateModel(for: schema)
+//            let fileName = model.name + ".swift"
+//            let fileURL = modelsDirURL.appendingPathComponent(fileName)
+//            print("⚡️ Generating model \(model.name)...")
+//            guard fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
+//                throw GeneratorError.couldNotCreateFile(fileName)
+//            }
+//            if !model.hasDocumentation {
+//                modelsMissingDocumentation.append((name: model.name, url: model.url))
+//            }
+//        }
+//
+//        endpointsMissingDocumentation.forEach { endpointName in
+//            print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
+//        }
+//
+//        modelsMissingDocumentation.forEach { model in
+//            var log = "⚠️ Documentation missing for model: '\(model.name)'"
+//            if let url = model.url { log += " (\(url))" }
+//            print(log)
+//        }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
         let modelsCount = spec.components.schemas.count
