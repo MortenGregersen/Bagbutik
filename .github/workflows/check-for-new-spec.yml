@@ -1,0 +1,13 @@
+name: Check for new spec
+
+on:
+  schedule:
+    - cron:  '0 */12 * * *'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - run: ./check-spec-version.sh
+      env:
+        GH_TOKEN: ${{ secrets.BAGBUTIK_ACTIONS_TOKEN }}
