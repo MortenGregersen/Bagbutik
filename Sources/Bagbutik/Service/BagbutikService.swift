@@ -5,6 +5,10 @@ import CryptoKit
 import Crypto
 #endif
 import Foundation
+#if canImport(FoundationNetworking)
+// Linux support
+import FoundationNetworking
+#endif
 
 public protocol BagbutikServiceProtocol {
     func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T
