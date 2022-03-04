@@ -125,7 +125,7 @@ public class BagbutikService: BagbutikServiceProtocol {
     
     private static func decodeResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
         if let httpResponse = response as? HTTPURLResponse {
-            if (200 ... 300).contains(httpResponse.statusCode) {
+            if (200 ... 399).contains(httpResponse.statusCode) {
                 if T.self == GzipResponse.self {
                     return try GzipResponse(data: data) as! T
                 } else if T.self == EmptyResponse.self {
