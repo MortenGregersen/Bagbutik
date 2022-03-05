@@ -6,8 +6,11 @@ on:
 
 jobs:
   check:
+    name: Check for new spec
     runs-on: ubuntu-latest
     steps:
-    - run: ./check-spec-version.sh
+    - uses: actions/checkout@v3.0.0
+    - name: Check for new spec
+      run: ./check-spec-version.sh
       env:
         GH_TOKEN: ${{ secrets.BAGBUTIK_ACTIONS_TOKEN }}
