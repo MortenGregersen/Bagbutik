@@ -41,5 +41,5 @@ git checkout -b spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
 git push
-create_pr_output=$(gah pr create --fill)
+create_pr_output=$(gh pr create --fill)
 echo "Pull request created: $create_pr_output"
