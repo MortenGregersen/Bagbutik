@@ -1,10 +1,10 @@
 #!/bin/bash
 
+# exit when any command fails
+set -e
+
 download_newest_spec_output=$(swift run bagbutik download-newest-spec)
 echo "$download_newest_spec_output"
-if [ $? != 0 ]; then
-    exit $?
-fi
 
 if [[ $download_newest_spec_output =~ Spec\ file\ downloaded\ to\ (.+) ]]; then
     spec_file_path=${BASH_REMATCH[1]}
@@ -37,13 +37,9 @@ swift run bagbutik generate --spec-path $spec_file_path
 rm $spec_file_path
 echo $downloaded_version > spec-version
 
-git branch spec-$downloaded_version
+git checkout -b spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
 git push
-create_pr_output=$(gh pr create --fill)
-if [ $? != 0 ]; then
-    exit $?
-else
-    echo "Pull request created: $create_pr_output"
-fi
+create_pr_output=$(gah pr create --fill)
+echo "Pull request created: $create_pr_output"
