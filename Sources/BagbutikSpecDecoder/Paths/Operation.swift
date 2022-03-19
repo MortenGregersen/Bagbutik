@@ -167,15 +167,19 @@ public struct Operation: Decodable, Equatable {
         let contentContainer = try? responsesContainer
             .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: statusCode)!)
             .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "content")!)
-        if let jsonContainer = try? contentContainer?.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "application/json")!) {
-            return try jsonContainer
-                .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "schema")!)
-                .decode(String.self, forKey: DynamicCodingKeys(stringValue: "$ref")!)
-                .components(separatedBy: "/")
-                .last!
-        } else if let _ = try? contentContainer?.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "gzip")!) {
-            return "GzipResponse"
-        }
+        if let jsonResponseType = try responseType(forMimeType: "application/json", in: contentContainer) { return jsonResponseType }
+        else if let gzipResponseType = try responseType(forMimeType: "application/a-gzip", in: contentContainer) { return gzipResponseType }
+        else if let xcodeMetricsResponseType = try responseType(forMimeType: "application/vnd.apple.xcode-metrics+json", in: contentContainer) { return xcodeMetricsResponseType }
         return "EmptyResponse"
+    }
+    
+    private static func responseType(forMimeType mimeType: String, in contentContainer: KeyedDecodingContainer<DynamicCodingKeys>?) throws -> String? {
+        guard let jsonContainer = try? contentContainer?.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: mimeType)!) else { return nil }
+        return try jsonContainer
+            .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "schema")!)
+            .decode(String.self, forKey: DynamicCodingKeys(stringValue: "$ref")!)
+            .components(separatedBy: "/")
+            .last!
+            .capitalizingFirstLetter()
     }
 }

@@ -63,8 +63,10 @@ public struct ObjectSchema: Decodable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let requiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
-        let propertiesContainer = try container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
-        let properties = try propertiesContainer.allKeys.reduce(into: [String: Property]()) { properties, key in
+        let properties: [String: Property]
+        let propertiesContainer = try? container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
+        properties = try propertiesContainer?.allKeys.reduce(into: [String: Property]()) { properties, key in
+            guard let propertiesContainer = propertiesContainer else { return }
             guard key.stringValue != CodingKeys.attributes.stringValue,
                   key.stringValue != CodingKeys.relationships.stringValue else { return }
             guard let propertyType = try? propertiesContainer.decode(PropertyType.self, forKey: key) else {
@@ -73,7 +75,7 @@ public struct ObjectSchema: Decodable, Equatable {
             let propertyContainer = try propertiesContainer.nestedContainer(keyedBy: PropertyCodingKeys.self, forKey: key)
             let deprecated = try propertyContainer.decodeIfPresent(Bool.self, forKey: .deprecated) ?? false
             properties[key.stringValue] = .init(type: propertyType, deprecated: deprecated)
-        }
+        } ?? [:]
         let name: String
         if let title = try container.decodeIfPresent(String.self, forKey: .title) {
             name = title
@@ -84,11 +86,11 @@ public struct ObjectSchema: Decodable, Equatable {
         let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
         let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
         var attributesSchema, relationshipsSchema: SubSchema?
-        let attributes = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
+        let attributes = try? propertiesContainer?.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
             attributesSchema = .attributes(attributes)
         }
-        if let relationships = try propertiesContainer.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "relationships")!),
+        if let relationships = try? propertiesContainer?.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "relationships")!),
            relationships.properties.count > 0 {
             relationshipsSchema = .relationships(relationships)
         }

@@ -36,7 +36,7 @@ final class OperationRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderNoDocumentaion() throws {
         // Given
         let renderer = OperationRenderer()
@@ -285,12 +285,10 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
         // When
-        var thrownError: Error?
         XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfExists(name: "hair"))
         }
-        // Then
-        XCTAssertEqual(thrownError as? OperationRendererError, OperationRendererError.unknownTypeOfExists(name: "hair"))
     }
 
     func testUnknownTypeOfInclude() throws {
@@ -302,12 +300,10 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
         // When
-        var thrownError: Error?
         XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfInclude)
         }
-        // Then
-        XCTAssertEqual(thrownError as? OperationRendererError, OperationRendererError.unknownTypeOfInclude)
     }
 
     func testUnknownTypeOfSort() throws {
@@ -319,11 +315,9 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
         // When
-        var thrownError: Error?
         XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
         }
-        // Then
-        XCTAssertEqual(thrownError as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
     }
 }

@@ -24,6 +24,7 @@ final class GeneratorTests: XCTestCase {
     components: .init(schemas: [
         "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
+        "Gzip": .binary(.init(name: "Gzip", url: "other://url", lookupDocumentation: { _ in nil })),
     ]))
     
     func testGenerateAllSimple() throws {
@@ -43,21 +44,24 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.directoriesCreated[1], "Users")
         XCTAssertEqual(fileManager.directoriesCreated[2], "Relationships")
         XCTAssertEqual(fileManager.directoriesCreated[3], "Models")
-        XCTAssertEqual(fileManager.filesCreated.count, 4)
+        XCTAssertEqual(fileManager.filesCreated.count, 5)
         XCTAssertEqual(fileManager.filesCreated[0].name, "ListUsers.swift")
         XCTAssertEqual(fileManager.filesCreated[1].name, "ListVisibleAppIdsForUser.swift")
-        XCTAssertEqual(fileManager.filesCreated[2].name, "ReplaceUsersResponse.swift")
-        XCTAssertEqual(fileManager.filesCreated[3].name, "UsersResponse.swift")
+        XCTAssertEqual(fileManager.filesCreated[2].name, "Gzip.swift")
+        XCTAssertEqual(fileManager.filesCreated[3].name, "ReplaceUsersResponse.swift")
+        XCTAssertEqual(fileManager.filesCreated[4].name, "UsersResponse.swift")
         XCTAssertEqual(printer.printedLogs, [
             "🔍 Loading spec file:///Users/steve/spec.json...",
             "⚡️ Generating endpoint ListUsers.swift...",
             "⚡️ Generating endpoint ListVisibleAppIdsForUser.swift...",
+            "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
             "⚠️ Documentation missing for endpoint: \'ListVisibleAppIdsForUser\'",
+            "⚠️ Documentation missing for model: \'Gzip\' (other://url)",
             "⚠️ Documentation missing for model: \'ReplaceUsersResponse\'",
             "⚠️ Documentation missing for model: \'UsersResponse\' (some://url)",
-            "🎉 Finished generating 2 endpoints and 2 models! 🎉",
+            "🎉 Finished generating 2 endpoints and 3 models! 🎉",
         ])
     }
     
@@ -67,12 +71,10 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = URL(string: "https://developer.apple.com")!
         let outputDirURL = validOutputDirURL
-        var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.specFileURL))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.specFileURL))
     }
     
     func testInvalidOutputDirURL() throws {
@@ -81,12 +83,10 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = validSpecFileURL
         let outputDirURL = URL(string: "https://developer.apple.com")!
-        var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
     }
     
     func testUnloadableSpecFileURL() throws {
@@ -95,19 +95,17 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
         let outputDirURL = validOutputDirURL
-        var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
-            thrownError = $0
+            // Then
+            let nsError = $0 as NSError
+            #if os(Linux)
+                XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
+                XCTAssertEqual(nsError.code, 2)
+            #else
+                XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+                XCTAssertEqual(nsError.code, 260)
+            #endif
         }
-        // Then
-        let nsError = try XCTUnwrap(thrownError as NSError?)
-        #if os(Linux)
-            XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
-            XCTAssertEqual(nsError.code, 2)
-        #else
-            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
-            XCTAssertEqual(nsError.code, 260)
-        #endif
     }
     
     func testFailedCreatingEndpoint() throws {
@@ -116,12 +114,11 @@ final class GeneratorTests: XCTestCase {
         fileManager.fileNameToFailCreating = "ListUsers.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
-        var thrownError: Error?
+        // When
         XCTAssertThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsers.swift"))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsers.swift"))
     }
     
     func testFailedCreatingModel() throws {
@@ -130,12 +127,11 @@ final class GeneratorTests: XCTestCase {
         fileManager.fileNameToFailCreating = "UsersResponse.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
-        var thrownError: Error?
+        // When
         XCTAssertThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("UsersResponse.swift"))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.couldNotCreateFile("UsersResponse.swift"))
     }
     
     private class MockFileManager: GeneratorFileManager {

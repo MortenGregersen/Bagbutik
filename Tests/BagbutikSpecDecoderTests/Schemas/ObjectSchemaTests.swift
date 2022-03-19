@@ -130,20 +130,19 @@ final class ObjectSchemaTests: XCTestCase {
         XCTAssertEqual(objectSchema.properties.count, 8)
         XCTAssertEqual(objectSchema.subSchemas.count, 7)
 
-        guard case let .oneOf(arrayOfOneOfSchemasName, _) = objectSchema.subSchemas[0],
-              case let .objectSchema(arrayOfObjectSchema) = objectSchema.subSchemas[1],
-              case let .attributes(attributesSchema) = objectSchema.subSchemas[2],
-              case let .enumSchema(enumSchema) = objectSchema.subSchemas[3],
-              case let .relationships(relationshipsSchema) = objectSchema.subSchemas[4],
-              case let .oneOf(singleOfOneOfSchemaName, _) = objectSchema.subSchemas[5],
-              case let .objectSchema(singleObjectSchema) = objectSchema.subSchemas[6]
-        else { return XCTFail("Wrong ordering of sub schemas") }
+        guard case let .oneOf(arrayOfOneOfSchemasName, _) = objectSchema.subSchemas[0] else { return XCTFail() }
         XCTAssertEqual(arrayOfOneOfSchemasName, "ArrayOfOneOfSchemas")
+        guard case let .objectSchema(arrayOfObjectSchema) = objectSchema.subSchemas[1] else { return XCTFail() }
         XCTAssertEqual(arrayOfObjectSchema.name, "ArrayOfSubSchemas")
+        guard case let .attributes(attributesSchema) = objectSchema.subSchemas[2] else { return XCTFail() }
         XCTAssertEqual(attributesSchema.properties.count, 1)
+        guard case let .enumSchema(enumSchema) = objectSchema.subSchemas[3] else { return XCTFail() }
         XCTAssertEqual(enumSchema.name, "EnumSchema")
+        guard case let .relationships(relationshipsSchema) = objectSchema.subSchemas[4] else { return XCTFail() }
         XCTAssertEqual(relationshipsSchema.name, "Relationships")
+        guard case let .oneOf(singleOfOneOfSchemaName, _) = objectSchema.subSchemas[5] else { return XCTFail() }
         XCTAssertEqual(singleOfOneOfSchemaName, "SingleOneOfSchema")
+        guard case let .objectSchema(singleObjectSchema) = objectSchema.subSchemas[6] else { return XCTFail() }
         XCTAssertEqual(singleObjectSchema.name, "SingleSubSchema")
     }
 
@@ -163,14 +162,12 @@ final class ObjectSchemaTests: XCTestCase {
         }
         """#
         // When
-        var thrownError: DecodingError?
         XCTAssertThrowsError(try decodeObjectSchema(from: json)) {
-            thrownError = $0 as? DecodingError
+            // Then
+            guard case let .dataCorrupted(context) = $0 as? DecodingError else { return XCTFail() }
+            XCTAssertEqual(context.codingPath.last?.stringValue, "data")
+            XCTAssertEqual(context.debugDescription, "Property type not known")
         }
-        // Then
-        guard case let .dataCorrupted(context) = thrownError else { throw thrownError! }
-        XCTAssertEqual(context.codingPath.last?.stringValue, "data")
-        XCTAssertEqual(context.debugDescription, "Property type not known")
     }
 
     func testGetDocumentationRoot() {

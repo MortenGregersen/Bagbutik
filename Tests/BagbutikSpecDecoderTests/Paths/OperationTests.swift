@@ -166,12 +166,11 @@ final class OperationTests: XCTestCase {
                         }
                     },
                     "200": {
-                        "description": "List of FinanceReports",
-                        "content": {
-                            "gzip": {
-                                "schema": {
-                                    "type": "string",
-                                    "format": "binary"
+                        "description" : "List of FinanceReports",
+                        "content" : {
+                            "application/a-gzip" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/gzip"
                                 }
                             }
                         }
@@ -189,7 +188,7 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(getOperation?.method, .get)
         XCTAssertEqual(getOperation?.parameters, [])
         XCTAssertEqual(getOperation?.requestBody, nil)
-        XCTAssertEqual(getOperation?.successResponseType, "GzipResponse")
+        XCTAssertEqual(getOperation?.successResponseType, "Gzip")
         XCTAssertEqual(getOperation?.errorResponseType, "ErrorResponse")
     }
 

@@ -66,7 +66,7 @@ public class BagbutikService: BagbutikServiceProtocol {
      */
     public func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T {
         let urlRequest = request.asUrlRequest()
-        return try await fetch(urlRequest)
+        return try await self.fetch(urlRequest)
     }
     
     /**
@@ -80,7 +80,7 @@ public class BagbutikService: BagbutikServiceProtocol {
      */
     public func requestAllPages<T: Decodable & PagedResponse>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data]) {
         let response = try await self.request(request)
-        return try await requestAllPages(for: response)
+        return try await self.requestAllPages(for: response)
     }
     
     /**
@@ -93,7 +93,7 @@ public class BagbutikService: BagbutikServiceProtocol {
     public func requestNextPage<T: Decodable & PagedResponse>(for response: T) async throws -> T? {
         guard let urlString = response.links.next, let url = URL(string: urlString) else { return nil }
         let urlRequest = URLRequest(url: url)
-        return try await fetch(urlRequest)
+        return try await self.fetch(urlRequest)
     }
     
     /**
@@ -115,10 +115,10 @@ public class BagbutikService: BagbutikServiceProtocol {
     
     private func fetch<T: Decodable>(_ urlRequest: URLRequest) async throws -> T {
         var urlRequest = urlRequest
-        if jwt.isExpired {
-            try jwt.renewEncodedSignature()
+        if self.jwt.isExpired {
+            try self.jwt.renewEncodedSignature()
         }
-        urlRequest.addJWTAuthorizationHeader(jwt.encodedSignature)
+        urlRequest.addJWTAuthorizationHeader(self.jwt.encodedSignature)
         let dataAndResponse = try await urlSession.data(for: urlRequest, delegate: nil)
         return try Self.decodeResponse(data: dataAndResponse.0, response: dataAndResponse.1) as T
     }
@@ -126,8 +126,8 @@ public class BagbutikService: BagbutikServiceProtocol {
     private static func decodeResponse<T: Decodable>(data: Data, response: URLResponse) throws -> T {
         if let httpResponse = response as? HTTPURLResponse {
             if (200 ... 399).contains(httpResponse.statusCode) {
-                if T.self == GzipResponse.self {
-                    return try GzipResponse(data: data) as! T
+                if let binaryResponse = T.self as? BinaryResponse.Type {
+                    return binaryResponse.from(data: data) as! T
                 } else if T.self == EmptyResponse.self {
                     return EmptyResponse() as! T
                 }

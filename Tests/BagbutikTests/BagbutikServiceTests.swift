@@ -36,7 +36,7 @@ final class BagbutikServiceTests: XCTestCase {
 
     func testRequest_GzipResponse() async throws {
         try setUpService()
-        let request: Request<GzipResponse, ErrorResponse> = .getSalesReports()
+        let request: Request<GzipResponse, ErrorResponse> = .getAwesomeReports()
         let data = GunzipTests.gzipData
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .http(statusCode: 200))
         let response = try await service.request(request)
@@ -246,5 +246,9 @@ struct CrazyDatesResponse: Decodable {
 extension Request {
     static func getCrazyDates() -> Request<CrazyDatesResponse, ErrorResponse> {
         .init(path: "/v1/crazyDates", method: .get)
+    }
+
+    static func getAwesomeReports() -> Request<GzipResponse, ErrorResponse> {
+        .init(path: "/v1/awesomeReports", method: .get)
     }
 }
