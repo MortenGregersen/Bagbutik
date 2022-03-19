@@ -169,6 +169,10 @@ public class Generator {
             renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema)
             hasDocumentation = objectSchema.documentation != nil
             url = objectSchema.url
+        case .binary(let binarySchema):
+            renderedSchema = try BinarySchemaRenderer().render(binarySchema: binarySchema)
+            hasDocumentation = binarySchema.documentation != nil
+            url = binarySchema.url
         }
         let contents = """
         import Foundation

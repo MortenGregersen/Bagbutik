@@ -24,6 +24,7 @@ final class GeneratorTests: XCTestCase {
     components: .init(schemas: [
         "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
+        "Gzip": .binary(.init(name: "Gzip", url: "other://url", lookupDocumentation: { _ in nil })),
     ]))
     
     func testGenerateAllSimple() throws {
@@ -43,21 +44,24 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.directoriesCreated[1], "Users")
         XCTAssertEqual(fileManager.directoriesCreated[2], "Relationships")
         XCTAssertEqual(fileManager.directoriesCreated[3], "Models")
-        XCTAssertEqual(fileManager.filesCreated.count, 4)
+        XCTAssertEqual(fileManager.filesCreated.count, 5)
         XCTAssertEqual(fileManager.filesCreated[0].name, "ListUsers.swift")
         XCTAssertEqual(fileManager.filesCreated[1].name, "ListVisibleAppIdsForUser.swift")
-        XCTAssertEqual(fileManager.filesCreated[2].name, "ReplaceUsersResponse.swift")
-        XCTAssertEqual(fileManager.filesCreated[3].name, "UsersResponse.swift")
+        XCTAssertEqual(fileManager.filesCreated[2].name, "Gzip.swift")
+        XCTAssertEqual(fileManager.filesCreated[3].name, "ReplaceUsersResponse.swift")
+        XCTAssertEqual(fileManager.filesCreated[4].name, "UsersResponse.swift")
         XCTAssertEqual(printer.printedLogs, [
             "🔍 Loading spec file:///Users/steve/spec.json...",
             "⚡️ Generating endpoint ListUsers.swift...",
             "⚡️ Generating endpoint ListVisibleAppIdsForUser.swift...",
+            "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
             "⚠️ Documentation missing for endpoint: \'ListVisibleAppIdsForUser\'",
+            "⚠️ Documentation missing for model: \'Gzip\' (other://url)",
             "⚠️ Documentation missing for model: \'ReplaceUsersResponse\'",
             "⚠️ Documentation missing for model: \'UsersResponse\' (some://url)",
-            "🎉 Finished generating 2 endpoints and 2 models! 🎉",
+            "🎉 Finished generating 2 endpoints and 3 models! 🎉",
         ])
     }
     
