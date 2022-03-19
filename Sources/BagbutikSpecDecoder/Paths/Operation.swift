@@ -169,6 +169,7 @@ public struct Operation: Decodable, Equatable {
             .nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: DynamicCodingKeys(stringValue: "content")!)
         if let jsonResponseType = try responseType(forMimeType: "application/json", in: contentContainer) { return jsonResponseType }
         else if let gzipResponseType = try responseType(forMimeType: "application/a-gzip", in: contentContainer) { return gzipResponseType }
+        else if let xcodeMetricsResponseType = try responseType(forMimeType: "application/vnd.apple.xcode-metrics+json", in: contentContainer) { return xcodeMetricsResponseType }
         return "EmptyResponse"
     }
     
