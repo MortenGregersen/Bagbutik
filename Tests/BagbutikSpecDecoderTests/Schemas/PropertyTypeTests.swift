@@ -262,4 +262,30 @@ final class PropertyTypeTests: XCTestCase {
         XCTAssertEqual(propertyType.description, "Double")
         XCTAssertEqual(simplePropertyType.type, "Double")
     }
+    
+    func testDecodingNoProperties() throws {
+        // Given
+        let json = #"""
+        {
+            "xcodeMetrics" : {
+                "type" : "object"
+            },
+            "days" : {
+                "type" : "array",
+                "items" : {
+                    "type" : "string",
+                    "enum" : [ "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY" ]
+                }
+            }
+        }
+        """#
+        // When
+        let propertyTypes = try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)
+        // Then
+        guard let propertyType = propertyTypes.values.first, case let .schema(schema) = propertyType else {
+            return XCTFail("Wrong property type")
+        }
+        XCTAssertEqual(schema.name, "XcodeMetrics")
+        XCTAssertEqual(schema.properties.count, 0)
+    }
 }
