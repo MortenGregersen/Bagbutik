@@ -41,7 +41,7 @@ final class OneOfOptionTests: XCTestCase {
         XCTAssertEqual(oneOfOptions[1].schemaName, "AnotherModel")
         XCTAssertEqual(refName, "AnotherModel")
     }
-    
+
     func testDecodingUnknownOption() throws {
         // Given
         let json = #"""
@@ -50,13 +50,11 @@ final class OneOfOptionTests: XCTestCase {
         }
         """#
         // When
-        var thrownError: DecodingError?
         XCTAssertThrowsError(try jsonDecoder.decode(OneOfOption.self, from: json.data(using: .utf8)!)) {
-            thrownError = $0 as? DecodingError
+            // Then
+            guard case let .dataCorrupted(context) = $0 as! DecodingError else { return XCTFail() }
+            XCTAssertEqual(context.codingPath.last?.stringValue, "type")
+            XCTAssertEqual(context.debugDescription, "OneOf option not known")
         }
-        // Then
-        guard case let .dataCorrupted(context) = thrownError else { throw thrownError! }
-        XCTAssertEqual(context.codingPath.last?.stringValue, "type")
-        XCTAssertEqual(context.debugDescription, "OneOf option not known")
     }
 }

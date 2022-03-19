@@ -71,12 +71,10 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = URL(string: "https://developer.apple.com")!
         let outputDirURL = validOutputDirURL
-        var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.specFileURL))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.specFileURL))
     }
     
     func testInvalidOutputDirURL() throws {
@@ -85,12 +83,10 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = validSpecFileURL
         let outputDirURL = URL(string: "https://developer.apple.com")!
-        var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
     }
     
     func testUnloadableSpecFileURL() throws {
@@ -99,19 +95,17 @@ final class GeneratorTests: XCTestCase {
         // When
         let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
         let outputDirURL = validOutputDirURL
-        var thrownError: Error?
         XCTAssertThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
-            thrownError = $0
+            // Then
+            let nsError = $0 as NSError
+            #if os(Linux)
+                XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
+                XCTAssertEqual(nsError.code, 2)
+            #else
+                XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+                XCTAssertEqual(nsError.code, 260)
+            #endif
         }
-        // Then
-        let nsError = try XCTUnwrap(thrownError as NSError?)
-        #if os(Linux)
-            XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
-            XCTAssertEqual(nsError.code, 2)
-        #else
-            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
-            XCTAssertEqual(nsError.code, 260)
-        #endif
     }
     
     func testFailedCreatingEndpoint() throws {
@@ -120,12 +114,11 @@ final class GeneratorTests: XCTestCase {
         fileManager.fileNameToFailCreating = "ListUsers.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
-        var thrownError: Error?
+        // When
         XCTAssertThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsers.swift"))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsers.swift"))
     }
     
     func testFailedCreatingModel() throws {
@@ -134,12 +127,11 @@ final class GeneratorTests: XCTestCase {
         fileManager.fileNameToFailCreating = "UsersResponse.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
-        var thrownError: Error?
+        // When
         XCTAssertThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
-            thrownError = $0
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("UsersResponse.swift"))
         }
-        // Then
-        XCTAssertEqual(thrownError as? GeneratorError, GeneratorError.couldNotCreateFile("UsersResponse.swift"))
     }
     
     private class MockFileManager: GeneratorFileManager {
