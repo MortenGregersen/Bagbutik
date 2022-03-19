@@ -78,11 +78,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if var type = try container.decodeIfPresent(String.self, forKey: .type) {
             if type == "array" {
-                if let schema = try? container.decodeIfPresent(ObjectSchema.self, forKey: .items) {
-                    self = .arrayOfSubSchema(schema)
-                } else if case .schemaRef(let schemaName) = try? container.decodeIfPresent(PropertyType.self, forKey: .items) {
-                    self = .arrayOfSchemaRef(schemaName)
-                } else if let oneOfOptions = try container
+                if let oneOfOptions = try container
                     .nestedContainer(keyedBy: CodingKeys.self, forKey: .items)
                     .decodeIfPresent([OneOfOption].self, forKey: .oneOf)?
                     .reduce(into: [OneOfOption](), { uniqueOptions, option in
@@ -93,6 +89,10 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                     let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter()
                 {
                     self = .arrayOfOneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
+                } else if case .schemaRef(let schemaName) = try? container.decodeIfPresent(PropertyType.self, forKey: .items) {
+                    self = .arrayOfSchemaRef(schemaName)
+                } else if let schema = try? container.decodeIfPresent(ObjectSchema.self, forKey: .items) {
+                    self = .arrayOfSubSchema(schema)
                 } else {
                     self = try container.decode(PropertyType.self, forKey: .items)
                 }

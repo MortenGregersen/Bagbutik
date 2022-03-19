@@ -29,6 +29,26 @@ final class SchemaTests: XCTestCase {
         XCTAssertEqual(objectSchema.properties.count, 1)
     }
 
+    func testDecodingObjectSchema_NoProperties() throws {
+        // Given
+        let json = #"""
+        {
+            "xcodeMetrics" : {
+              "type" : "object"
+            }
+        }
+        """#
+        // When
+        let schemas = try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)
+        // Then
+        guard let schema = schemas.values.first, case let .object(objectSchema) = schema else {
+            return XCTFail("Wrong schema type")
+        }
+        XCTAssertEqual(schema.name, "XcodeMetrics")
+        XCTAssertEqual(objectSchema.name, "XcodeMetrics")
+        XCTAssertEqual(objectSchema.properties.count, 0)
+    }
+
     func testDecodingEnumSchema() throws {
         // Given
         let json = #"""
@@ -82,7 +102,7 @@ final class SchemaTests: XCTestCase {
         """#
         // When
         XCTAssertThrowsError(try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)) {
-            guard case let .dataCorrupted(context) = $0 as! DecodingError else { XCTFail(); return }
+            guard case let .dataCorrupted(context) = $0 as! DecodingError else { return XCTFail() }
             XCTAssertEqual(context.debugDescription, "Schema type not known")
         }
     }
