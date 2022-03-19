@@ -91,7 +91,8 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                     self = .arrayOfOneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
                 } else if case .schemaRef(let schemaName) = try? container.decodeIfPresent(PropertyType.self, forKey: .items) {
                     self = .arrayOfSchemaRef(schemaName)
-                } else if let schema = try? container.decodeIfPresent(ObjectSchema.self, forKey: .items) {
+                } else if let schema = try? container.decodeIfPresent(ObjectSchema.self, forKey: .items),
+                          schema.properties.count > 0 || schema.name == "XcodeMetrics" {
                     self = .arrayOfSubSchema(schema)
                 } else {
                     self = try container.decode(PropertyType.self, forKey: .items)
