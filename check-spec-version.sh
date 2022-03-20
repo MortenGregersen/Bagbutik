@@ -37,6 +37,8 @@ swift run bagbutik generate --spec-path $spec_file_path
 rm $spec_file_path
 echo $downloaded_version > spec-version
 
+git config --local user.email "morten@mogee.dk"
+git config --local user.name "Morten Bjerg Gregersen"
 git checkout -b spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
