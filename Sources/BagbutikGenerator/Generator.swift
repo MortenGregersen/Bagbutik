@@ -122,10 +122,12 @@ public class Generator {
         }
 
         endpointsMissingDocumentation.forEach { endpointName in
+            // Remember to change check-spec-version script if the wording here is changed.
             print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
         }
 
         modelsMissingDocumentation.forEach { model in
+            // Remember to change check-spec-version script if the wording here is changed.
             var log = "⚠️ Documentation missing for model: '\(model.name)'"
             if let url = model.url { log += " (\(url))" }
             print(log)

@@ -22,7 +22,7 @@ if [ "$current_version" == "$downloaded_version" ]; then
     echo "No new spec found."
     exit 0
 else
-    echo "New spec is found. Will generate new endpoints and models."
+    echo "New spec is found. Will generate new endpoints and models (if no pull request is found)."
 fi
 
 pr_list_output=$(gh pr list --search "$downloaded_version type:pr is:open")
@@ -33,7 +33,9 @@ else
     echo "No pull requests has been created for this version."
 fi
 
-swift run bagbutik generate --spec-path $spec_file_path
+generate_output=$(swift run bagbutik generate --spec-path $spec_file_path)
+warnings=$(grep -zo "⚠️.*" <<< "$generate_output")
+
 rm $spec_file_path
 echo $downloaded_version > spec-version
 
@@ -43,5 +45,5 @@ git checkout -b spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
 git push -u origin spec-$downloaded_version
-create_pr_output=$(gh pr create --fill)
+create_pr_output=$(gh pr create --fill --body "$warnings")
 echo "Pull request created: $create_pr_output"
