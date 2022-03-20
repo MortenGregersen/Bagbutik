@@ -61,12 +61,6 @@ public struct AppEventLocalization: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships>
-     */
     public struct Relationships: Codable {
         @NullCodable public var appEvent: AppEvent?
         @NullCodable public var appEventScreenshots: AppEventScreenshots?
@@ -78,16 +72,8 @@ public struct AppEventLocalization: Codable {
             self.appEventVideoClips = appEventVideoClips
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appevent>
-         */
         public struct AppEvent: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -95,16 +81,8 @@ public struct AppEventLocalization: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appevent/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appEvents" }
 
                 public init(id: String) {
@@ -131,16 +109,8 @@ public struct AppEventLocalization: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appevent/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -167,18 +137,9 @@ public struct AppEventLocalization: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appeventscreenshots>
-         */
         public struct AppEventScreenshots: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
-            /// Paging information for data responses.
             @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -187,16 +148,8 @@ public struct AppEventLocalization: Codable {
                 self.meta = meta
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appeventscreenshots/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appEventScreenshots" }
 
                 public init(id: String) {
@@ -223,16 +176,8 @@ public struct AppEventLocalization: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appeventscreenshots/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -259,18 +204,9 @@ public struct AppEventLocalization: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appeventvideoclips>
-         */
         public struct AppEventVideoClips: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
-            /// Paging information for data responses.
             @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -279,16 +215,8 @@ public struct AppEventLocalization: Codable {
                 self.meta = meta
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appeventvideoclips/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appEventVideoClips" }
 
                 public init(id: String) {
@@ -315,16 +243,8 @@ public struct AppEventLocalization: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appeventlocalization/relationships/appeventvideoclips/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

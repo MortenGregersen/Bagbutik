@@ -34,6 +34,8 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPage {
         case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
         /// The fields to include for returned resources of type appCustomProductPageVersions
         case appCustomProductPageVersions([AppCustomProductPageVersions])
+        /// The fields to include for returned resources of type appCustomProductPages
+        case appCustomProductPages([AppCustomProductPages])
 
         public enum AppCustomProductPageLocalizations: String, ParameterValue, CaseIterable {
             case appCustomProductPageVersion
@@ -48,6 +50,16 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPage {
             case appCustomProductPageLocalizations
             case state
             case version
+        }
+
+        public enum AppCustomProductPages: String, ParameterValue, CaseIterable {
+            case app
+            case appCustomProductPageVersions
+            case appStoreVersionTemplate
+            case customProductPageTemplate
+            case name
+            case url
+            case visible
         }
     }
 

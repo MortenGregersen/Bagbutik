@@ -30,6 +30,7 @@ public enum ListAppPriceTiers {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appPricePoints
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPricePoints([AppPricePoints])
         /// The fields to include for returned resources of type appPriceTiers
         case appPriceTiers([AppPriceTiers])

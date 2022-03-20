@@ -31,6 +31,8 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperiment 
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatments
         case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
+        /// The fields to include for returned resources of type appStoreVersionExperiments
+        case appStoreVersionExperiments([AppStoreVersionExperiments])
 
         public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CaseIterable {
             case appPreviewSets
@@ -46,6 +48,18 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperiment 
             case appStoreVersionExperimentTreatmentLocalizations
             case name
             case promotedDate
+        }
+
+        public enum AppStoreVersionExperiments: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+            case appStoreVersionExperimentTreatments
+            case endDate
+            case name
+            case reviewRequired
+            case startDate
+            case started
+            case state
+            case trafficProportion
         }
     }
 

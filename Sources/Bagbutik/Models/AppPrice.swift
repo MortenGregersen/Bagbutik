@@ -47,12 +47,6 @@ public struct AppPrice: Codable {
         case relationships
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships>
-     */
     public struct Relationships: Codable {
         @NullCodable public var app: App?
         @NullCodable public var priceTier: PriceTier?
@@ -62,16 +56,8 @@ public struct AppPrice: Codable {
             self.priceTier = priceTier
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app>
-         */
         public struct App: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -79,16 +65,8 @@ public struct AppPrice: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -115,16 +93,8 @@ public struct AppPrice: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -151,16 +121,8 @@ public struct AppPrice: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier>
-         */
         public struct PriceTier: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -168,16 +130,8 @@ public struct AppPrice: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appPriceTiers" }
 
                 public init(id: String) {
@@ -204,16 +158,8 @@ public struct AppPrice: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

@@ -34,6 +34,8 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersion {
         case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
 
         public enum AppStoreVersionExperimentTreatments: String, ParameterValue, CaseIterable {
             case appIcon
@@ -54,6 +56,29 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersion {
             case started
             case state
             case trafficProportion
+        }
+
+        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case idfaDeclaration
+            case platform
+            case releaseType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
         }
     }
 

@@ -14,18 +14,11 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appClipHeaderImages" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,16 +48,8 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
             public let fileName: String
-            /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
             public let fileSize: Int
 
             public init(fileName: String, fileSize: Int) {
@@ -77,7 +62,7 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization
@@ -87,7 +72,6 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
             }
 
             public struct AppClipDefaultExperienceLocalization: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -98,7 +82,7 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/relationships/appclipdefaultexperiencelocalization/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/properties/data/properties/relationships/properties/appclipdefaultexperiencelocalization/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

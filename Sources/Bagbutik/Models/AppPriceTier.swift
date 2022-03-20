@@ -47,31 +47,20 @@ public struct AppPriceTier: Codable {
         case relationships
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships>
-     */
     public struct Relationships: Codable {
-        @NullCodable public var pricePoints: PricePoints?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        @NullCodable public var pricePoints: PricePoints? = nil
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(pricePoints: PricePoints? = nil) {
             self.pricePoints = pricePoints
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
+        public init() {}
 
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships/pricepoints>
-         */
         public struct PricePoints: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
-            /// Paging information for data responses.
             @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -80,16 +69,8 @@ public struct AppPriceTier: Codable {
                 self.meta = meta
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships/pricepoints/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appPricePoints" }
 
                 public init(id: String) {
@@ -116,16 +97,8 @@ public struct AppPriceTier: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships/pricepoints/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

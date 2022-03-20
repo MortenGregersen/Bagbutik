@@ -53,18 +53,9 @@ public struct CiProduct: Codable {
         case relationships
     }
 
-    /**
-     The attributes that describe a Products resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/attributes>
-     */
     public struct Attributes: Codable {
-        /// The date when you created the Xcode Cloud product.
         public var createdDate: Date?
-        /// The name of the Xcode Cloud product.
         public var name: String?
-        /// A string that indicates whether the Xcode Cloud product is a framework or an app.
         @NullCodable public var productType: ProductType?
 
         public init(createdDate: Date? = nil, name: String? = nil, productType: ProductType? = nil) {
@@ -79,12 +70,6 @@ public struct CiProduct: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships>
-     */
     public struct Relationships: Codable {
         @NullCodable public var app: App?
         @NullCodable public var bundleId: BundleId?
@@ -96,16 +81,8 @@ public struct CiProduct: Codable {
             self.primaryRepositories = primaryRepositories
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app>
-         */
         public struct App: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -113,16 +90,8 @@ public struct CiProduct: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -149,16 +118,8 @@ public struct CiProduct: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -185,16 +146,8 @@ public struct CiProduct: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid>
-         */
         public struct BundleId: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -202,16 +155,8 @@ public struct CiProduct: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "bundleIds" }
 
                 public init(id: String) {
@@ -238,16 +183,8 @@ public struct CiProduct: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -274,18 +211,9 @@ public struct CiProduct: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories>
-         */
         public struct PrimaryRepositories: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
-            /// Paging information for data responses.
             @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -294,16 +222,8 @@ public struct CiProduct: Codable {
                 self.meta = meta
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmRepositories" }
 
                 public init(id: String) {
@@ -330,16 +250,8 @@ public struct CiProduct: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

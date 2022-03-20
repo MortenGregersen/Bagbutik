@@ -35,6 +35,14 @@ public enum ListBuildRunsForCiWorkflow {
         case builds([Builds])
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
+        /// The fields to include for returned resources of type ciProducts
+        case ciProducts([CiProducts])
+        /// The fields to include for returned resources of type ciWorkflows
+        case ciWorkflows([CiWorkflows])
+        /// The fields to include for returned resources of type scmGitReferences
+        case scmGitReferences([ScmGitReferences])
+        /// The fields to include for returned resources of type scmPullRequests
+        case scmPullRequests([ScmPullRequests])
 
         public enum Builds: String, ParameterValue, CaseIterable {
             case app
@@ -85,6 +93,61 @@ public enum ListBuildRunsForCiWorkflow {
             case startReason
             case startedDate
             case workflow
+        }
+
+        public enum CiProducts: String, ParameterValue, CaseIterable {
+            case additionalRepositories
+            case app
+            case buildRuns
+            case bundleId
+            case createdDate
+            case name
+            case primaryRepositories
+            case productType
+            case workflows
+        }
+
+        public enum CiWorkflows: String, ParameterValue, CaseIterable {
+            case actions
+            case branchStartCondition
+            case buildRuns
+            case clean
+            case containerFilePath
+            case description
+            case isEnabled
+            case isLockedForEditing
+            case lastModifiedDate
+            case macOsVersion
+            case name
+            case product
+            case pullRequestStartCondition
+            case repository
+            case scheduledStartCondition
+            case tagStartCondition
+            case xcodeVersion
+        }
+
+        public enum ScmGitReferences: String, ParameterValue, CaseIterable {
+            case canonicalName
+            case isDeleted
+            case kind
+            case name
+            case repository
+        }
+
+        public enum ScmPullRequests: String, ParameterValue, CaseIterable {
+            case destinationBranchName
+            case destinationRepositoryName
+            case destinationRepositoryOwner
+            case isClosed
+            case isCrossRepository
+            case number
+            case repository
+            case sourceBranchName
+            case sourceRepositoryName
+            case sourceRepositoryOwner
+            case title
+            case webUrl
         }
     }
 

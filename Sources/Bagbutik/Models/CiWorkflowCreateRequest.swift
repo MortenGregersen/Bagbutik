@@ -14,18 +14,11 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "ciWorkflows" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,34 +48,17 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The workflow’s actions.
             public let actions: [CiAction]
-            /// A start condition that starts new builds for changes to a branch.
             @NullCodable public var branchStartCondition: CiBranchStartCondition?
-            /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public let clean: Bool
-            /// The relative path to your Xcode project or workspace.
             public let containerFilePath: String
-            /// The workflow description.
             public let description: String
-            /// A Boolean value that indicates whether the workflow is active or deactivated.
             public let isEnabled: Bool
-            /// A Boolean value that indicates whether edits to the workflow are restricted.
             public var isLockedForEditing: Bool?
-            /// The name of the workflow you want to create; for example, My New Workflow.
             public let name: String
-            /// A start condition that starts new builds for changes to a pull request.
             @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
-            /// A start condition that starts new builds based on a custom schedule.
             @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
-            /// A start condition that starts new builds for changes to a tag.
             @NullCodable public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction], branchStartCondition: CiBranchStartCondition? = nil, clean: Bool, containerFilePath: String, description: String, isEnabled: Bool, isLockedForEditing: Bool? = nil, name: String, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
@@ -104,7 +80,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let macOsVersion: MacOsVersion
@@ -120,7 +96,6 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             public struct MacOsVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -131,7 +106,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/macosversion/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/properties/data/properties/relationships/properties/macosversion/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -165,7 +140,6 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             public struct Product: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -176,7 +150,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/product/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/properties/data/properties/relationships/properties/product/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -210,7 +184,6 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             public struct Repository: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -221,7 +194,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/repository/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/properties/data/properties/relationships/properties/repository/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -255,7 +228,6 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             public struct XcodeVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -266,7 +238,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/xcodeversion/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/properties/data/properties/relationships/properties/xcodeversion/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

@@ -11,7 +11,7 @@ public extension Request {
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listPerfPowerMetricsForBuild(id: String,
-                                             filters: [ListPerfPowerMetricsForBuild.Filter]? = nil) -> Request<PerfPowerMetricsResponse, ErrorResponse>
+                                             filters: [ListPerfPowerMetricsForBuild.Filter]? = nil) -> Request<XcodeMetrics, ErrorResponse>
     {
         return .init(path: "/v1/builds/\(id)/perfPowerMetrics", method: .get, parameters: .init(filters: filters))
     }

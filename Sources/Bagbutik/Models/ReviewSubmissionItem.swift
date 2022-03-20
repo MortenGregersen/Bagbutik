@@ -63,12 +63,6 @@ public struct ReviewSubmissionItem: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships>
-     */
     public struct Relationships: Codable {
         @NullCodable public var appCustomProductPageVersion: AppCustomProductPageVersion?
         @NullCodable public var appEvent: AppEvent?
@@ -82,16 +76,8 @@ public struct ReviewSubmissionItem: Codable {
             self.appStoreVersionExperiment = appStoreVersionExperiment
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appcustomproductpageversion>
-         */
         public struct AppCustomProductPageVersion: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -99,16 +85,8 @@ public struct ReviewSubmissionItem: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appcustomproductpageversion/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appCustomProductPageVersions" }
 
                 public init(id: String) {
@@ -135,16 +113,8 @@ public struct ReviewSubmissionItem: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appcustomproductpageversion/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -171,16 +141,8 @@ public struct ReviewSubmissionItem: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appevent>
-         */
         public struct AppEvent: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -188,16 +150,8 @@ public struct ReviewSubmissionItem: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appevent/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appEvents" }
 
                 public init(id: String) {
@@ -224,16 +178,8 @@ public struct ReviewSubmissionItem: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appevent/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -260,16 +206,8 @@ public struct ReviewSubmissionItem: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appstoreversion>
-         */
         public struct AppStoreVersion: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -277,16 +215,8 @@ public struct ReviewSubmissionItem: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appstoreversion/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appStoreVersions" }
 
                 public init(id: String) {
@@ -313,16 +243,8 @@ public struct ReviewSubmissionItem: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appstoreversion/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -349,16 +271,8 @@ public struct ReviewSubmissionItem: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appstoreversionexperiment>
-         */
         public struct AppStoreVersionExperiment: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -366,16 +280,8 @@ public struct ReviewSubmissionItem: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appstoreversionexperiment/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appStoreVersionExperiments" }
 
                 public init(id: String) {
@@ -402,16 +308,8 @@ public struct ReviewSubmissionItem: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships/appstoreversionexperiment/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

@@ -8,13 +8,16 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppStoreVersionSubmissionForAppStoreVersion(id: String,
-                                                               fields: [GetAppStoreVersionSubmissionForAppStoreVersion.Field]? = nil) -> Request<AppStoreVersionSubmissionResponse, ErrorResponse>
+                                                               fields: [GetAppStoreVersionSubmissionForAppStoreVersion.Field]? = nil,
+                                                               includes: [GetAppStoreVersionSubmissionForAppStoreVersion.Include]? = nil) -> Request<AppStoreVersionSubmissionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionSubmission", method: .get, parameters: .init(fields: fields))
+        return .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionSubmission", method: .get, parameters: .init(fields: fields,
+                                                                                                                   includes: includes))
     }
 }
 
@@ -25,9 +28,41 @@ public enum GetAppStoreVersionSubmissionForAppStoreVersion {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appStoreVersionSubmissions
         case appStoreVersionSubmissions([AppStoreVersionSubmissions])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
 
         public enum AppStoreVersionSubmissions: String, ParameterValue, CaseIterable {
             case appStoreVersion
         }
+
+        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case idfaDeclaration
+            case platform
+            case releaseType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appStoreVersion
     }
 }

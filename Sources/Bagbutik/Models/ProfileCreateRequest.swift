@@ -14,18 +14,11 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "profiles" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,12 +48,6 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public let name: String
             public let profileType: Profile.Attributes.ProfileType
@@ -75,7 +62,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let bundleId: BundleId
@@ -89,7 +76,6 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             public struct BundleId: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -100,7 +86,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/bundleid/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/properties/data/properties/relationships/properties/bundleid/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -134,7 +120,6 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             public struct Certificates: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -145,7 +130,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/certificates/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/properties/data/properties/relationships/properties/certificates/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -179,7 +164,6 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             public struct Devices: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -190,7 +174,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/devices/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/properties/data/properties/relationships/properties/devices/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

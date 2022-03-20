@@ -47,12 +47,6 @@ public struct Certificate: Codable {
         case attributes
     }
 
-    /**
-     Attributes that describe a Certificates resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/certificate/attributes>
-     */
     public struct Attributes: Codable {
         public var certificateContent: String?
         @NullCodable public var certificateType: CertificateType?

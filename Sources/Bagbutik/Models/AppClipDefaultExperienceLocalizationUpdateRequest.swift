@@ -14,18 +14,10 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "appClipDefaultExperienceLocalizations" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -55,14 +47,7 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
             case attributes
         }
 
-        /**
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The subtitle that appears on the App Clip card for the default App Clip experience.
             public var subtitle: String?
 
             public init(subtitle: String? = nil) {

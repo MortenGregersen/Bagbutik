@@ -8,12 +8,15 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func getAppClipHeaderImageForAppClipDefaultExperienceLocalization(id: String,
-                                                                             fields: [GetAppClipHeaderImageForAppClipDefaultExperienceLocalization.Field]? = nil) -> Request<AppClipHeaderImageResponse, ErrorResponse>
+                                                                             fields: [GetAppClipHeaderImageForAppClipDefaultExperienceLocalization.Field]? = nil,
+                                                                             includes: [GetAppClipHeaderImageForAppClipDefaultExperienceLocalization.Include]? = nil) -> Request<AppClipHeaderImageResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClipDefaultExperienceLocalizations/\(id)/appClipHeaderImage", method: .get, parameters: .init(fields: fields))
+        return .init(path: "/v1/appClipDefaultExperienceLocalizations/\(id)/appClipHeaderImage", method: .get, parameters: .init(fields: fields,
+                                                                                                                                 includes: includes))
     }
 }
 
@@ -22,8 +25,17 @@ public enum GetAppClipHeaderImageForAppClipDefaultExperienceLocalization {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appClipDefaultExperienceLocalizations
+        case appClipDefaultExperienceLocalizations([AppClipDefaultExperienceLocalizations])
         /// The fields to include for returned resources of type appClipHeaderImages
         case appClipHeaderImages([AppClipHeaderImages])
+
+        public enum AppClipDefaultExperienceLocalizations: String, ParameterValue, CaseIterable {
+            case appClipDefaultExperience
+            case appClipHeaderImage
+            case locale
+            case subtitle
+        }
 
         public enum AppClipHeaderImages: String, ParameterValue, CaseIterable {
             case appClipDefaultExperienceLocalization
@@ -35,5 +47,12 @@ public enum GetAppClipHeaderImageForAppClipDefaultExperienceLocalization {
             case uploadOperations
             case uploaded
         }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appClipDefaultExperienceLocalization
     }
 }

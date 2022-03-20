@@ -9,7 +9,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
-    static func getFinanceReports(filters: [GetFinanceReports.Filter]? = nil) -> Request<GzipResponse, ErrorResponse> {
+    static func getFinanceReports(filters: [GetFinanceReports.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
         return .init(path: "/v1/financeReports", method: .get, parameters: .init(filters: filters))
     }
 }

@@ -36,6 +36,8 @@ public enum GetAppForCiProduct {
         case appEvents([AppEvents])
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
+        /// The fields to include for returned resources of type appPreOrders
+        case appPreOrders([AppPreOrders])
         /// The fields to include for returned resources of type appPrices
         case appPrices([AppPrices])
         /// The fields to include for returned resources of type appStoreVersions
@@ -44,10 +46,18 @@ public enum GetAppForCiProduct {
         case apps([Apps])
         /// The fields to include for returned resources of type betaAppLocalizations
         case betaAppLocalizations([BetaAppLocalizations])
+        /// The fields to include for returned resources of type betaAppReviewDetails
+        case betaAppReviewDetails([BetaAppReviewDetails])
         /// The fields to include for returned resources of type betaGroups
         case betaGroups([BetaGroups])
+        /// The fields to include for returned resources of type betaLicenseAgreements
+        case betaLicenseAgreements([BetaLicenseAgreements])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
+        /// The fields to include for returned resources of type ciProducts
+        case ciProducts([CiProducts])
+        /// The fields to include for returned resources of type endUserLicenseAgreements
+        case endUserLicenseAgreements([EndUserLicenseAgreements])
         /// The fields to include for returned resources of type gameCenterEnabledVersions
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
         /// The fields to include for returned resources of type inAppPurchases
@@ -107,6 +117,12 @@ public enum GetAppForCiProduct {
             case secondarySubcategoryTwo
         }
 
+        public enum AppPreOrders: String, ParameterValue, CaseIterable {
+            case app
+            case appReleaseDate
+            case preOrderAvailableDate
+        }
+
         public enum AppPrices: String, ParameterValue, CaseIterable {
             case app
             case priceTier
@@ -160,6 +176,7 @@ public enum GetAppForCiProduct {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
+            case pricePoints
             case prices
             case primaryLocale
             case reviewSubmissions
@@ -180,6 +197,18 @@ public enum GetAppForCiProduct {
             case tvOsPrivacyPolicy
         }
 
+        public enum BetaAppReviewDetails: String, ParameterValue, CaseIterable {
+            case app
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+        }
+
         public enum BetaGroups: String, ParameterValue, CaseIterable {
             case app
             case betaTesters
@@ -195,6 +224,11 @@ public enum GetAppForCiProduct {
             case publicLinkId
             case publicLinkLimit
             case publicLinkLimitEnabled
+        }
+
+        public enum BetaLicenseAgreements: String, ParameterValue, CaseIterable {
+            case agreementText
+            case app
         }
 
         public enum Builds: String, ParameterValue, CaseIterable {
@@ -222,6 +256,24 @@ public enum GetAppForCiProduct {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+        }
+
+        public enum CiProducts: String, ParameterValue, CaseIterable {
+            case additionalRepositories
+            case app
+            case buildRuns
+            case bundleId
+            case createdDate
+            case name
+            case primaryRepositories
+            case productType
+            case workflows
+        }
+
+        public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
+            case agreementText
+            case app
+            case territories
         }
 
         public enum GameCenterEnabledVersions: String, ParameterValue, CaseIterable {

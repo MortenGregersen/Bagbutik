@@ -9,7 +9,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
-    static func getSalesReports(filters: [GetSalesReports.Filter]? = nil) -> Request<GzipResponse, ErrorResponse> {
+    static func getSalesReports(filters: [GetSalesReports.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
         return .init(path: "/v1/salesReports", method: .get, parameters: .init(filters: filters))
     }
 }
@@ -53,6 +53,7 @@ public enum GetSalesReports {
             case subscription = "SUBSCRIPTION"
             case subscriptionEvent = "SUBSCRIPTION_EVENT"
             case subscriber = "SUBSCRIBER"
+            case subscriptionOfferCodeRedemption = "SUBSCRIPTION_OFFER_CODE_REDEMPTION"
         }
     }
 }
