@@ -42,6 +42,6 @@ git config --local user.name "Morten Bjerg Gregersen"
 git checkout -b spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
-git push
+git push -u origin spec-$downloaded_version
 create_pr_output=$(gh pr create --fill)
 echo "Pull request created: $create_pr_output"
