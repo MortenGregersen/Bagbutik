@@ -36,6 +36,8 @@ public enum ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersio
         case appScreenshotSets([AppScreenshotSets])
         /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
+        /// The fields to include for returned resources of type appStoreVersionExperimentTreatments
+        case appStoreVersionExperimentTreatments([AppStoreVersionExperimentTreatments])
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {
             case appCustomProductPageLocalization
@@ -58,6 +60,15 @@ public enum ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersio
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
+        }
+
+        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, CaseIterable {
+            case appIcon
+            case appIconName
+            case appStoreVersionExperiment
+            case appStoreVersionExperimentTreatmentLocalizations
+            case name
+            case promotedDate
         }
     }
 

@@ -28,10 +28,42 @@ public enum ListAppInfosForApp {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type ageRatingDeclarations
+        case ageRatingDeclarations([AgeRatingDeclarations])
+        /// The fields to include for returned resources of type appCategories
+        case appCategories([AppCategories])
         /// The fields to include for returned resources of type appInfoLocalizations
         case appInfoLocalizations([AppInfoLocalizations])
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+
+        public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+            case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
+            case gamblingAndContests
+            case gamblingSimulated
+            case horrorOrFearThemes
+            case kidsAgeBand
+            case matureOrSuggestiveThemes
+            case medicalOrTreatmentInformation
+            case profanityOrCrudeHumor
+            case seventeenPlus
+            case sexualContentGraphicAndNudity
+            case sexualContentOrNudity
+            case unrestrictedWebAccess
+            case violenceCartoonOrFantasy
+            case violenceRealistic
+            case violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public enum AppCategories: String, ParameterValue, CaseIterable {
+            case parent
+            case platforms
+            case subcategories
+        }
 
         public enum AppInfoLocalizations: String, ParameterValue, CaseIterable {
             case appInfo
@@ -57,6 +89,42 @@ public enum ListAppInfosForApp {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+        }
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
+            case appCustomProductPages
+            case appEvents
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case pricePoints
+            case prices
+            case primaryLocale
+            case reviewSubmissions
+            case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
         }
     }
 

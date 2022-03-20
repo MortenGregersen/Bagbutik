@@ -31,10 +31,24 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appCustomProductPageLocalizations
+        case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
         /// The fields to include for returned resources of type appPreviewSets
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])
+        /// The fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations
+        case appStoreVersionExperimentTreatmentLocalizations([AppStoreVersionExperimentTreatmentLocalizations])
+        /// The fields to include for returned resources of type appStoreVersionLocalizations
+        case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, CaseIterable {
+            case appCustomProductPageVersion
+            case appPreviewSets
+            case appScreenshotSets
+            case locale
+            case promotionalText
+        }
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {
             case appCustomProductPageLocalization
@@ -56,6 +70,26 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalization {
             case uploadOperations
             case uploaded
             case videoUrl
+        }
+
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersionExperimentTreatment
+            case locale
+        }
+
+        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersion
+            case description
+            case keywords
+            case locale
+            case marketingUrl
+            case promotionalText
+            case supportUrl
+            case whatsNew
         }
     }
 

@@ -18,7 +18,7 @@ public struct BuildIndividualTestersLinkagesRequest: Codable, RequestBody {
      The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesrequest/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesrequest/properties/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

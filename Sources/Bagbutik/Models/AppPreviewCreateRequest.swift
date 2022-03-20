@@ -14,18 +14,11 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appPreviews" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,12 +48,6 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public let fileName: String
             public let fileSize: Int
@@ -79,7 +66,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let appPreviewSet: AppPreviewSet
@@ -89,7 +76,6 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
             }
 
             public struct AppPreviewSet: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -100,7 +86,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships/apppreviewset/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/properties/data/properties/relationships/properties/apppreviewset/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

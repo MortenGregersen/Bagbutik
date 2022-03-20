@@ -31,10 +31,21 @@ public enum ListAppClipDefaultExperiencesForAppClip {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appClipAppStoreReviewDetails
+        case appClipAppStoreReviewDetails([AppClipAppStoreReviewDetails])
         /// The fields to include for returned resources of type appClipDefaultExperienceLocalizations
         case appClipDefaultExperienceLocalizations([AppClipDefaultExperienceLocalizations])
         /// The fields to include for returned resources of type appClipDefaultExperiences
         case appClipDefaultExperiences([AppClipDefaultExperiences])
+        /// The fields to include for returned resources of type appClips
+        case appClips([AppClips])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
+
+        public enum AppClipAppStoreReviewDetails: String, ParameterValue, CaseIterable {
+            case appClipDefaultExperience
+            case invocationUrls
+        }
 
         public enum AppClipDefaultExperienceLocalizations: String, ParameterValue, CaseIterable {
             case appClipDefaultExperience
@@ -50,6 +61,36 @@ public enum ListAppClipDefaultExperiencesForAppClip {
             case appClipDefaultExperienceLocalizations
             case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
+        }
+
+        public enum AppClips: String, ParameterValue, CaseIterable {
+            case app
+            case appClipAdvancedExperiences
+            case appClipDefaultExperiences
+            case bundleId
+        }
+
+        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case idfaDeclaration
+            case platform
+            case releaseType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
         }
     }
 

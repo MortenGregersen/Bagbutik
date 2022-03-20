@@ -14,16 +14,8 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageRequest: Codable, Re
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkagerequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
 
         public init(id: String) {

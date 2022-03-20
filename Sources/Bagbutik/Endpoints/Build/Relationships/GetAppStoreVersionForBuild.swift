@@ -28,12 +28,72 @@ public enum GetAppStoreVersionForBuild {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type ageRatingDeclarations
+        case ageRatingDeclarations([AgeRatingDeclarations])
+        /// The fields to include for returned resources of type appClipDefaultExperiences
+        case appClipDefaultExperiences([AppClipDefaultExperiences])
+        /// The fields to include for returned resources of type appStoreReviewDetails
+        case appStoreReviewDetails([AppStoreReviewDetails])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
+        /// The fields to include for returned resources of type appStoreVersionPhasedReleases
+        case appStoreVersionPhasedReleases([AppStoreVersionPhasedReleases])
+        /// The fields to include for returned resources of type appStoreVersionSubmissions
+        case appStoreVersionSubmissions([AppStoreVersionSubmissions])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+        /// The fields to include for returned resources of type builds
+        case builds([Builds])
+        /// The fields to include for returned resources of type idfaDeclarations
+        case idfaDeclarations([IdfaDeclarations])
+        /// The fields to include for returned resources of type routingAppCoverages
+        case routingAppCoverages([RoutingAppCoverages])
+
+        public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+            case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
+            case gamblingAndContests
+            case gamblingSimulated
+            case horrorOrFearThemes
+            case kidsAgeBand
+            case matureOrSuggestiveThemes
+            case medicalOrTreatmentInformation
+            case profanityOrCrudeHumor
+            case seventeenPlus
+            case sexualContentGraphicAndNudity
+            case sexualContentOrNudity
+            case unrestrictedWebAccess
+            case violenceCartoonOrFantasy
+            case violenceRealistic
+            case violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public enum AppClipDefaultExperiences: String, ParameterValue, CaseIterable {
+            case action
+            case appClip
+            case appClipAppStoreReviewDetail
+            case appClipDefaultExperienceLocalizations
+            case appClipDefaultExperienceTemplate
+            case releaseWithAppStoreVersion
+        }
+
+        public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
+            case appStoreReviewAttachments
+            case appStoreVersion
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+        }
 
         public enum AppStoreVersionExperiments: String, ParameterValue, CaseIterable {
             case appStoreVersion
@@ -60,6 +120,18 @@ public enum GetAppStoreVersionForBuild {
             case whatsNew
         }
 
+        public enum AppStoreVersionPhasedReleases: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+            case currentDayNumber
+            case phasedReleaseState
+            case startDate
+            case totalPauseDuration
+        }
+
+        public enum AppStoreVersionSubmissions: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+        }
+
         public enum AppStoreVersions: String, ParameterValue, CaseIterable {
             case ageRatingDeclaration
             case app
@@ -81,6 +153,87 @@ public enum GetAppStoreVersionForBuild {
             case routingAppCoverage
             case usesIdfa
             case versionString
+        }
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
+            case appCustomProductPages
+            case appEvents
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case pricePoints
+            case prices
+            case primaryLocale
+            case reviewSubmissions
+            case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+        }
+
+        public enum Builds: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildAudienceType
+            case buildBetaDetail
+            case buildBundles
+            case computedMinMacOsVersion
+            case diagnosticSignatures
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case icons
+            case individualTesters
+            case lsMinimumSystemVersion
+            case minOsVersion
+            case perfPowerMetrics
+            case preReleaseVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
+
+        public enum IdfaDeclarations: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+            case attributesActionWithPreviousAd
+            case attributesAppInstallationToPreviousAd
+            case honorsLimitedAdTracking
+            case servesAds
+        }
+
+        public enum RoutingAppCoverages: String, ParameterValue, CaseIterable {
+            case appStoreVersion
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
         }
     }
 

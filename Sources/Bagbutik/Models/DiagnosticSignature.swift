@@ -47,12 +47,6 @@ public struct DiagnosticSignature: Codable {
         case attributes
     }
 
-    /**
-     Attributes that describe a Diagnostic Signatures resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature/attributes>
-     */
     public struct Attributes: Codable {
         @NullCodable public var diagnosticType: DiagnosticType?
         public var signature: String?

@@ -14,16 +14,9 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appStoreVersionReleaseRequests" }
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -53,7 +46,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
@@ -63,7 +56,6 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -74,7 +66,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/properties/data/properties/relationships/properties/appstoreversion/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

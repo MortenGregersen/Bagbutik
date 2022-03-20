@@ -7,14 +7,17 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listAppEventScreenshotsForAppEventLocalization(id: String,
                                                                fields: [ListAppEventScreenshotsForAppEventLocalization.Field]? = nil,
+                                                               includes: [ListAppEventScreenshotsForAppEventLocalization.Include]? = nil,
                                                                limit: Int? = nil) -> Request<AppEventScreenshotsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appEventLocalizations/\(id)/appEventScreenshots", method: .get, parameters: .init(fields: fields,
+                                                                                                                  includes: includes,
                                                                                                                   limit: limit))
     }
 }
@@ -24,8 +27,20 @@ public enum ListAppEventScreenshotsForAppEventLocalization {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appEventLocalizations
+        case appEventLocalizations([AppEventLocalizations])
         /// The fields to include for returned resources of type appEventScreenshots
         case appEventScreenshots([AppEventScreenshots])
+
+        public enum AppEventLocalizations: String, ParameterValue, CaseIterable {
+            case appEvent
+            case appEventScreenshots
+            case appEventVideoClips
+            case locale
+            case longDescription
+            case name
+            case shortDescription
+        }
 
         public enum AppEventScreenshots: String, ParameterValue, CaseIterable {
             case appEventAssetType
@@ -38,5 +53,12 @@ public enum ListAppEventScreenshotsForAppEventLocalization {
             case uploadOperations
             case uploaded
         }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case appEventLocalization
     }
 }

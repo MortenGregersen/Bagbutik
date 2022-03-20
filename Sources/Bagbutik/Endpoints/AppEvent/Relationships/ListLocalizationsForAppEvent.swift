@@ -33,6 +33,8 @@ public enum ListLocalizationsForAppEvent {
         case appEventScreenshots([AppEventScreenshots])
         /// The fields to include for returned resources of type appEventVideoClips
         case appEventVideoClips([AppEventVideoClips])
+        /// The fields to include for returned resources of type appEvents
+        case appEvents([AppEvents])
 
         public enum AppEventLocalizations: String, ParameterValue, CaseIterable {
             case appEvent
@@ -67,6 +69,21 @@ public enum ListLocalizationsForAppEvent {
             case uploadOperations
             case uploaded
             case videoUrl
+        }
+
+        public enum AppEvents: String, ParameterValue, CaseIterable {
+            case app
+            case archivedTerritorySchedules
+            case badge
+            case deepLink
+            case eventState
+            case localizations
+            case primaryLocale
+            case priority
+            case purchaseRequirement
+            case purpose
+            case referenceName
+            case territorySchedules
         }
     }
 

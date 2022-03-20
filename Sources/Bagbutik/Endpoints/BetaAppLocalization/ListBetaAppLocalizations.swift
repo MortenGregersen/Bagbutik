@@ -59,6 +59,7 @@ public enum ListBetaAppLocalizations {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
+            case pricePoints
             case prices
             case primaryLocale
             case reviewSubmissions

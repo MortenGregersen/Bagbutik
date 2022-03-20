@@ -118,6 +118,7 @@ public enum GetBuild {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
+            case pricePoints
             case prices
             case primaryLocale
             case reviewSubmissions
@@ -215,7 +216,7 @@ public enum GetBuild {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
+        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, betaGroups, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
     }
 
     /**
@@ -224,6 +225,8 @@ public enum GetBuild {
     public enum Limit: LimitParameter {
         /// Maximum number of related betaBuildLocalizations returned (when they are included) - maximum 50
         case betaBuildLocalizations(Int)
+        /// Maximum number of related betaGroups returned (when they are included) - maximum 50
+        case betaGroups(Int)
         /// Maximum number of related buildBundles returned (when they are included) - maximum 50
         case buildBundles(Int)
         /// Maximum number of related icons returned (when they are included) - maximum 50

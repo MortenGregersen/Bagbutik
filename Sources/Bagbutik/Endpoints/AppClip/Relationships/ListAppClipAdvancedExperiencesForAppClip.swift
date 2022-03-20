@@ -31,10 +31,24 @@ public enum ListAppClipAdvancedExperiencesForAppClip {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appClipAdvancedExperienceImages
+        case appClipAdvancedExperienceImages([AppClipAdvancedExperienceImages])
         /// The fields to include for returned resources of type appClipAdvancedExperienceLocalizations
         case appClipAdvancedExperienceLocalizations([AppClipAdvancedExperienceLocalizations])
         /// The fields to include for returned resources of type appClipAdvancedExperiences
         case appClipAdvancedExperiences([AppClipAdvancedExperiences])
+        /// The fields to include for returned resources of type appClips
+        case appClips([AppClips])
+
+        public enum AppClipAdvancedExperienceImages: String, ParameterValue, CaseIterable {
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+        }
 
         public enum AppClipAdvancedExperienceLocalizations: String, ParameterValue, CaseIterable {
             case language
@@ -56,6 +70,13 @@ public enum ListAppClipAdvancedExperiencesForAppClip {
             case removed
             case status
             case version
+        }
+
+        public enum AppClips: String, ParameterValue, CaseIterable {
+            case app
+            case appClipAdvancedExperiences
+            case appClipDefaultExperiences
+            case bundleId
         }
     }
 

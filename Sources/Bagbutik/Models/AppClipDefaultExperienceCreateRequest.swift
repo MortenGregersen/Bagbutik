@@ -14,18 +14,11 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes?
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes? = nil, relationships: Relationships) {
@@ -55,14 +48,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The call-to-action verb that appears on the App Clip card.
             @NullCodable public var action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
@@ -74,7 +60,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let appClip: AppClip
@@ -88,7 +74,6 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct AppClip: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -99,7 +84,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclip/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/properties/data/properties/relationships/properties/appclip/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -133,7 +118,6 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct AppClipDefaultExperienceTemplate: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -144,7 +128,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclipdefaultexperiencetemplate/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/properties/data/properties/relationships/properties/appclipdefaultexperiencetemplate/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -178,7 +162,6 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct ReleaseWithAppStoreVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -189,7 +172,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/releasewithappstoreversion/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/properties/data/properties/relationships/properties/releasewithappstoreversion/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

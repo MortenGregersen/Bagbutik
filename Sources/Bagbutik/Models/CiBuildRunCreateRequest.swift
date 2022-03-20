@@ -14,18 +14,11 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "ciBuildRuns" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes?
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships?
 
         public init(attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -55,14 +48,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public var clean: Bool?
 
             public init(clean: Bool? = nil) {
@@ -74,7 +60,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             @NullCodable public var buildRun: BuildRun?
@@ -90,7 +76,6 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             public struct BuildRun: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -101,7 +86,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/buildrun/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/properties/data/properties/relationships/properties/buildrun/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -135,7 +120,6 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             public struct PullRequest: Codable, RequestBody {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -146,7 +130,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/pullrequest/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/properties/data/properties/relationships/properties/pullrequest/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -180,7 +164,6 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             public struct SourceBranchOrTag: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -191,7 +174,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/sourcebranchortag/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/properties/data/properties/relationships/properties/sourcebranchortag/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -225,7 +208,6 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             public struct Workflow: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -236,7 +218,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/workflow/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/properties/data/properties/relationships/properties/workflow/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

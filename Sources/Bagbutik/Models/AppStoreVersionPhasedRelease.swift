@@ -47,12 +47,6 @@ public struct AppStoreVersionPhasedRelease: Codable {
         case attributes
     }
 
-    /**
-     Attributes that describe an App Store Version Phased Releases resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease/attributes>
-     */
     public struct Attributes: Codable {
         public var currentDayNumber: Int?
         @NullCodable public var phasedReleaseState: PhasedReleaseState?

@@ -47,16 +47,8 @@ public struct AppClipDomainStatus: Codable {
         case attributes
     }
 
-    /**
-     The attributes that describe the App Clip Domain Status resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus/attributes>
-     */
     public struct Attributes: Codable {
-        /// An array of domains you associated with your app or App Clip.
         @NullCodable public var domains: [Domains]?
-        /// The date when App Store Connect last verified the status of an associated domain.
         public var lastUpdatedDate: Date?
 
         public init(domains: [Domains]? = nil, lastUpdatedDate: Date? = nil) {

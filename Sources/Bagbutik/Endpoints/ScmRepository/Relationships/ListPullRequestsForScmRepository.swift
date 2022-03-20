@@ -8,14 +8,17 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func listPullRequestsForScmRepository(id: String,
                                                  fields: [ListPullRequestsForScmRepository.Field]? = nil,
+                                                 includes: [ListPullRequestsForScmRepository.Include]? = nil,
                                                  limit: Int? = nil) -> Request<ScmPullRequestsResponse, ErrorResponse>
     {
         return .init(path: "/v1/scmRepositories/\(id)/pullRequests", method: .get, parameters: .init(fields: fields,
+                                                                                                     includes: includes,
                                                                                                      limit: limit))
     }
 }
@@ -27,6 +30,8 @@ public enum ListPullRequestsForScmRepository {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
+        /// The fields to include for returned resources of type scmRepositories
+        case scmRepositories([ScmRepositories])
 
         public enum ScmPullRequests: String, ParameterValue, CaseIterable {
             case destinationBranchName
@@ -42,5 +47,24 @@ public enum ListPullRequestsForScmRepository {
             case title
             case webUrl
         }
+
+        public enum ScmRepositories: String, ParameterValue, CaseIterable {
+            case defaultBranch
+            case gitReferences
+            case httpCloneUrl
+            case lastAccessedDate
+            case ownerName
+            case pullRequests
+            case repositoryName
+            case scmProvider
+            case sshCloneUrl
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case repository
     }
 }

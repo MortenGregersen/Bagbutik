@@ -26,6 +26,7 @@ public struct BuildResponse: Codable {
         case appStoreVersion(AppStoreVersion)
         case betaAppReviewSubmission(BetaAppReviewSubmission)
         case betaBuildLocalization(BetaBuildLocalization)
+        case betaGroup(BetaGroup)
         case betaTester(BetaTester)
         case buildBetaDetail(BuildBetaDetail)
         case buildBundle(BuildBundle)
@@ -43,6 +44,8 @@ public struct BuildResponse: Codable {
                 self = .betaAppReviewSubmission(betaAppReviewSubmission)
             } else if let betaBuildLocalization = try? BetaBuildLocalization(from: decoder) {
                 self = .betaBuildLocalization(betaBuildLocalization)
+            } else if let betaGroup = try? BetaGroup(from: decoder) {
+                self = .betaGroup(betaGroup)
             } else if let betaTester = try? BetaTester(from: decoder) {
                 self = .betaTester(betaTester)
             } else if let buildBetaDetail = try? BuildBetaDetail(from: decoder) {
@@ -70,6 +73,8 @@ public struct BuildResponse: Codable {
             case let .betaAppReviewSubmission(value):
                 try value.encode(to: encoder)
             case let .betaBuildLocalization(value):
+                try value.encode(to: encoder)
+            case let .betaGroup(value):
                 try value.encode(to: encoder)
             case let .betaTester(value):
                 try value.encode(to: encoder)
