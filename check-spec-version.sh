@@ -25,7 +25,7 @@ else
     echo "New spec is found. Will generate new endpoints and models."
 fi
 
-pr_list_output=$(gh pr list --search "$downloaded_version type:pr")
+pr_list_output=$(gh pr list --search "$downloaded_version type:pr is:open")
 if [[ $pr_list_output =~ Update\ from\ new\ spec ]]; then
     echo "A pull request for this version has already been created."
     exit 0
@@ -37,8 +37,8 @@ swift run bagbutik generate --spec-path $spec_file_path
 rm $spec_file_path
 echo $downloaded_version > spec-version
 
-git config --local user.email "morten@mogee.dk"
-git config --local user.name "Morten Bjerg Gregersen"
+git config --local user.email "ci@bagbutik.dev"
+git config --local user.name "Bagbutik CI"
 git checkout -b spec-$downloaded_version
 git add .
 git commit -m "Update from new spec ($downloaded_version)"
