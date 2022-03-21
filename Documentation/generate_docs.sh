@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# exit when any command fails
+set -e
+
 rm -rf docs
 mkdir docs
 sourcekitten doc --spm --module-name Bagbutik > docs/mod1.json
