@@ -12,6 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: fwal/setup-swift@v1
+      with:
+        swift-version: "5.6.0"
     - name: Get swift version
       run: swift --version
     - name: Genereate DocC
