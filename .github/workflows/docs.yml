@@ -8,10 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: fwal/setup-swift@v1
+    - uses: fwal/setup-swift@v1.14.0
       with:
         swift-version: "5.6.0"
     - name: Get swift version
