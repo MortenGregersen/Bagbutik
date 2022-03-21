@@ -74,5 +74,5 @@ let package = Package(
             name: "BagbutikStringExtensionsTests",
             dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikPolyfill"),
-        .target(name: "BagbutikTestHelpers")
+        .testTarget(name: "BagbutikTestHelpers")
     ])
