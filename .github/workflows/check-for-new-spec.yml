@@ -2,7 +2,7 @@ name: Check for new spec
 
 on:
   schedule:
-    - cron:  '0 * * * *'
+    - cron: '0 */12 * * *'
 
 jobs:
   check:
