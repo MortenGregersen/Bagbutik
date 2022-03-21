@@ -1,10 +1,20 @@
 import Foundation
 
+/**
+ A response that contains a list of App Price Points V2 resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointsv2response>
+ */
 public struct AppPricePointsV2Response: Codable, PagedResponse {
     public typealias Data = AppPricePointV2
+    /// The resource data.
     public let data: [AppPricePointV2]
+    /// The included related resources.
     @NullCodable public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     @NullCodable public var meta: PagingInformation?
 
     public init(data: [AppPricePointV2], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

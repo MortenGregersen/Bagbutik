@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Price Points for an App
+      Get all the available price points for a specific app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_price_points_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
