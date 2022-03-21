@@ -8,12 +8,15 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
     static func getRepositoryForCiWorkflow(id: String,
-                                           fields: [GetRepositoryForCiWorkflow.Field]? = nil) -> Request<ScmRepositoryResponse, ErrorResponse>
+                                           fields: [GetRepositoryForCiWorkflow.Field]? = nil,
+                                           includes: [GetRepositoryForCiWorkflow.Include]? = nil) -> Request<ScmRepositoryResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciWorkflows/\(id)/repository", method: .get, parameters: .init(fields: fields))
+        return .init(path: "/v1/ciWorkflows/\(id)/repository", method: .get, parameters: .init(fields: fields,
+                                                                                               includes: includes))
     }
 }
 
@@ -22,8 +25,26 @@ public enum GetRepositoryForCiWorkflow {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type scmGitReferences
+        case scmGitReferences([ScmGitReferences])
+        /// The fields to include for returned resources of type scmProviders
+        case scmProviders([ScmProviders])
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
+
+        public enum ScmGitReferences: String, ParameterValue, CaseIterable {
+            case canonicalName
+            case isDeleted
+            case kind
+            case name
+            case repository
+        }
+
+        public enum ScmProviders: String, ParameterValue, CaseIterable {
+            case repositories
+            case scmProviderType
+            case url
+        }
 
         public enum ScmRepositories: String, ParameterValue, CaseIterable {
             case defaultBranch
@@ -36,5 +57,12 @@ public enum GetRepositoryForCiWorkflow {
             case scmProvider
             case sshCloneUrl
         }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case defaultBranch, scmProvider
     }
 }

@@ -114,18 +114,20 @@ public struct Build: Codable {
         @NullCodable public var appStoreVersion: AppStoreVersion?
         @NullCodable public var betaAppReviewSubmission: BetaAppReviewSubmission?
         @NullCodable public var betaBuildLocalizations: BetaBuildLocalizations?
+        @NullCodable public var betaGroups: BetaGroups?
         @NullCodable public var buildBetaDetail: BuildBetaDetail?
         @NullCodable public var buildBundles: BuildBundles?
         @NullCodable public var icons: Icons?
         @NullCodable public var individualTesters: IndividualTesters?
         @NullCodable public var preReleaseVersion: PreReleaseVersion?
 
-        public init(app: App? = nil, appEncryptionDeclaration: AppEncryptionDeclaration? = nil, appStoreVersion: AppStoreVersion? = nil, betaAppReviewSubmission: BetaAppReviewSubmission? = nil, betaBuildLocalizations: BetaBuildLocalizations? = nil, buildBetaDetail: BuildBetaDetail? = nil, buildBundles: BuildBundles? = nil, icons: Icons? = nil, individualTesters: IndividualTesters? = nil, preReleaseVersion: PreReleaseVersion? = nil) {
+        public init(app: App? = nil, appEncryptionDeclaration: AppEncryptionDeclaration? = nil, appStoreVersion: AppStoreVersion? = nil, betaAppReviewSubmission: BetaAppReviewSubmission? = nil, betaBuildLocalizations: BetaBuildLocalizations? = nil, betaGroups: BetaGroups? = nil, buildBetaDetail: BuildBetaDetail? = nil, buildBundles: BuildBundles? = nil, icons: Icons? = nil, individualTesters: IndividualTesters? = nil, preReleaseVersion: PreReleaseVersion? = nil) {
             self.app = app
             self.appEncryptionDeclaration = appEncryptionDeclaration
             self.appStoreVersion = appStoreVersion
             self.betaAppReviewSubmission = betaAppReviewSubmission
             self.betaBuildLocalizations = betaBuildLocalizations
+            self.betaGroups = betaGroups
             self.buildBetaDetail = buildBetaDetail
             self.buildBundles = buildBundles
             self.icons = icons
@@ -550,6 +552,98 @@ public struct Build: Codable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations/links>
+             */
+            public struct Links: Codable {
+                /// The link to the related data.
+                public var related: String?
+                /// The relationship's self-link
+                public var itself: String?
+
+                public init(related: String? = nil, self itself: String? = nil) {
+                    self.related = related
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case related
+                    case itself = "self"
+                }
+            }
+        }
+
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups>
+         */
+        public struct BetaGroups: Codable {
+            /// The type and ID of a related resource.
+            @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
+            @NullCodable public var links: Links?
+            /// Paging information for data responses.
+            @NullCodable public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups/data>
+             */
+            public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
+                public let id: String
+                /// The resource type.
+                public var type: String { "betaGroups" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups/links>
              */
             public struct Links: Codable {
                 /// The link to the related data.

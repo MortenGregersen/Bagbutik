@@ -32,6 +32,8 @@ public enum GetAppStoreReviewDetailForAppStoreVersion {
         case appStoreReviewAttachments([AppStoreReviewAttachments])
         /// The fields to include for returned resources of type appStoreReviewDetails
         case appStoreReviewDetails([AppStoreReviewDetails])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
 
         public enum AppStoreReviewAttachments: String, ParameterValue, CaseIterable {
             case appStoreReviewDetail
@@ -54,6 +56,29 @@ public enum GetAppStoreReviewDetailForAppStoreVersion {
             case demoAccountPassword
             case demoAccountRequired
             case notes
+        }
+
+        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case idfaDeclaration
+            case platform
+            case releaseType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
         }
     }
 

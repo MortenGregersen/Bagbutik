@@ -30,10 +30,73 @@ public enum ListReviewSubmissionsForApp {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
         /// The fields to include for returned resources of type reviewSubmissionItems
         case reviewSubmissionItems([ReviewSubmissionItems])
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
+
+        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case idfaDeclaration
+            case platform
+            case releaseType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+        }
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
+            case appCustomProductPages
+            case appEvents
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case pricePoints
+            case prices
+            case primaryLocale
+            case reviewSubmissions
+            case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+        }
 
         public enum ReviewSubmissionItems: String, ParameterValue, CaseIterable {
             case appCustomProductPageVersion

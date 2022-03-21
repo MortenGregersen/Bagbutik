@@ -8,14 +8,21 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
+      - Parameter filters: Attributes, relationships, and IDs by which to filter
+      - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listPricePointsForAppPriceTier(id: String,
                                                fields: [ListPricePointsForAppPriceTier.Field]? = nil,
+                                               filters: [ListPricePointsForAppPriceTier.Filter]? = nil,
+                                               includes: [ListPricePointsForAppPriceTier.Include]? = nil,
                                                limit: Int? = nil) -> Request<AppPricePointsResponse, ErrorResponse>
     {
         return .init(path: "/v1/appPriceTiers/\(id)/pricePoints", method: .get, parameters: .init(fields: fields,
+                                                                                                  filters: filters,
+                                                                                                  includes: includes,
                                                                                                   limit: limit))
     }
 }
@@ -27,6 +34,10 @@ public enum ListPricePointsForAppPriceTier {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appPricePoints
         case appPricePoints([AppPricePoints])
+        /// The fields to include for returned resources of type appPriceTiers
+        case appPriceTiers([AppPriceTiers])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
 
         public enum AppPricePoints: String, ParameterValue, CaseIterable {
             case customerPrice
@@ -34,5 +45,28 @@ public enum ListPricePointsForAppPriceTier {
             case proceeds
             case territory
         }
+
+        public enum AppPriceTiers: String, ParameterValue, CaseIterable {
+            case pricePoints
+        }
+
+        public enum Territories: String, ParameterValue, CaseIterable {
+            case currency
+        }
+    }
+
+    /**
+     Attributes, relationships, and IDs by which to filter.
+     */
+    public enum Filter: FilterParameter {
+        /// Filter by id(s) of related 'territory'
+        case territory([String])
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case priceTier, territory
     }
 }

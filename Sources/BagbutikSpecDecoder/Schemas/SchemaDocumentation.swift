@@ -791,6 +791,17 @@ public extension Schema {
             ),
             "AppPricePointResponse": .rootSchema(summary: "A response that contains a single App Price Points resource."),
             "AppPricePointsResponse": .rootSchema(summary: "A response that contains a list of App Price Point resources."),
+            "AppPricePointV2": .rootSchema(
+                summary: "The data structure that represents an App Price Point V2 resource.",
+                attributes: .init(
+                    summary: "Attributes that describe an App Price Point V2 resource.",
+                    properties: [
+                        "customerPrice": "The price to the customer.",
+                        "proceeds": "The proceeds that go to the developer.",
+                    ]
+                )
+            ),
+            "AppPricePointsV2Response": .rootSchema(summary: "A response that contains a list of App Price Points V2 resources."),
             "AppPriceResponse": .rootSchema(summary: "A response that contains a single App Prices resource."),
             "AppPricesResponse": .rootSchema(summary: "A response that contains a list of App Prices resources."),
             "AppPriceTier": .rootSchema(summary: "The data structure that represent an App Price Tiers resource."),
@@ -2115,6 +2126,7 @@ public extension Schema {
             "GameCenterEnabledVersionCompatibleVersionsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove compatible versions from a Game Center-enabled version."),
             "GameCenterEnabledVersionCompatibleVersionsLinkagesResponse": .linkagesResponse,
             "GameCenterEnabledVersionsResponse": .rootSchema(summary: "A response that contains a list of Game Center Enabled Version resources."),
+            "Gzip": .rootSchema(summary: ""),
             "HttpHeader": .rootSchema(
                 summary: "",
                 properties: [
@@ -2556,6 +2568,7 @@ public extension Schema {
             ),
             "UserVisibleAppsLinkagesRequest": .linkagesRequest(summary: "A request body you use to add or remove visible apps from a user."),
             "UserVisibleAppsLinkagesResponse": .linkagesResponse,
+            "XcodeMetrics": .rootSchema(summary: ""),
         ]
     }
 }

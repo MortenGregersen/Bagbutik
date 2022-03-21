@@ -38,6 +38,8 @@ public enum GetApp {
         case appInfos([AppInfos])
         /// The fields to include for returned resources of type appPreOrders
         case appPreOrders([AppPreOrders])
+        /// The fields to include for returned resources of type appPricePoints
+        case appPricePoints([AppPricePoints])
         /// The fields to include for returned resources of type appPrices
         case appPrices([AppPrices])
         /// The fields to include for returned resources of type appStoreVersions
@@ -125,6 +127,14 @@ public enum GetApp {
             case preOrderAvailableDate
         }
 
+        public enum AppPricePoints: String, ParameterValue, CaseIterable {
+            case app
+            case customerPrice
+            case priceTier
+            case proceeds
+            case territory
+        }
+
         public enum AppPrices: String, ParameterValue, CaseIterable {
             case app
             case priceTier
@@ -178,6 +188,7 @@ public enum GetApp {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
+            case pricePoints
             case prices
             case primaryLocale
             case reviewSubmissions

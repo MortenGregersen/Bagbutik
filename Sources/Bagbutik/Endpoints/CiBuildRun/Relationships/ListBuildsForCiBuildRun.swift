@@ -34,21 +34,134 @@ public enum ListBuildsForCiBuildRun {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appEncryptionDeclarations
+        case appEncryptionDeclarations([AppEncryptionDeclarations])
+        /// The fields to include for returned resources of type appStoreVersions
+        case appStoreVersions([AppStoreVersions])
+        /// The fields to include for returned resources of type apps
+        case apps([Apps])
+        /// The fields to include for returned resources of type betaAppReviewSubmissions
+        case betaAppReviewSubmissions([BetaAppReviewSubmissions])
         /// The fields to include for returned resources of type betaBuildLocalizations
         case betaBuildLocalizations([BetaBuildLocalizations])
+        /// The fields to include for returned resources of type betaGroups
+        case betaGroups([BetaGroups])
         /// The fields to include for returned resources of type betaTesters
         case betaTesters([BetaTesters])
+        /// The fields to include for returned resources of type buildBetaDetails
+        case buildBetaDetails([BuildBetaDetails])
         /// The fields to include for returned resources of type buildBundles
         case buildBundles([BuildBundles])
         /// The fields to include for returned resources of type buildIcons
         case buildIcons([BuildIcons])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
+        /// The fields to include for returned resources of type preReleaseVersions
+        case preReleaseVersions([PreReleaseVersions])
+
+        public enum AppEncryptionDeclarations: String, ParameterValue, CaseIterable {
+            case app
+            case appEncryptionDeclarationState
+            case availableOnFrenchStore
+            case builds
+            case codeValue
+            case containsProprietaryCryptography
+            case containsThirdPartyCryptography
+            case documentName
+            case documentType
+            case documentUrl
+            case exempt
+            case platform
+            case uploadedDate
+            case usesEncryption
+        }
+
+        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+            case ageRatingDeclaration
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreState
+            case appStoreVersionExperiments
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case idfaDeclaration
+            case platform
+            case releaseType
+            case routingAppCoverage
+            case usesIdfa
+            case versionString
+        }
+
+        public enum Apps: String, ParameterValue, CaseIterable {
+            case appClips
+            case appCustomProductPages
+            case appEvents
+            case appInfos
+            case appStoreVersions
+            case availableInNewTerritories
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case betaTesters
+            case builds
+            case bundleId
+            case ciProduct
+            case contentRightsDeclaration
+            case endUserLicenseAgreement
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case isOrEverWasMadeForKids
+            case name
+            case perfPowerMetrics
+            case preOrder
+            case preReleaseVersions
+            case pricePoints
+            case prices
+            case primaryLocale
+            case reviewSubmissions
+            case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+        }
+
+        public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
+            case betaReviewState
+            case build
+            case submittedDate
+        }
 
         public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
             case build
             case locale
             case whatsNew
+        }
+
+        public enum BetaGroups: String, ParameterValue, CaseIterable {
+            case app
+            case betaTesters
+            case builds
+            case createdDate
+            case feedbackEnabled
+            case hasAccessToAllBuilds
+            case iosBuildsAvailableForAppleSiliconMac
+            case isInternalGroup
+            case name
+            case publicLink
+            case publicLinkEnabled
+            case publicLinkId
+            case publicLinkLimit
+            case publicLinkLimitEnabled
         }
 
         public enum BetaTesters: String, ParameterValue, CaseIterable {
@@ -59,6 +172,13 @@ public enum ListBuildsForCiBuildRun {
             case firstName
             case inviteType
             case lastName
+        }
+
+        public enum BuildBetaDetails: String, ParameterValue, CaseIterable {
+            case autoNotifyEnabled
+            case build
+            case externalBuildState
+            case internalBuildState
         }
 
         public enum BuildBundles: String, ParameterValue, CaseIterable {
@@ -115,6 +235,13 @@ public enum ListBuildsForCiBuildRun {
             case processingState
             case uploadedDate
             case usesNonExemptEncryption
+            case version
+        }
+
+        public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
+            case app
+            case builds
+            case platform
             case version
         }
     }
@@ -180,7 +307,7 @@ public enum ListBuildsForCiBuildRun {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
+        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, betaGroups, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
     }
 
     /**
@@ -203,6 +330,8 @@ public enum ListBuildsForCiBuildRun {
         case limit(Int)
         /// Maximum number of related individualTesters returned (when they are included) - maximum 50
         case individualTesters(Int)
+        /// Maximum number of related betaGroups returned (when they are included) - maximum 50
+        case betaGroups(Int)
         /// Maximum number of related betaBuildLocalizations returned (when they are included) - maximum 50
         case betaBuildLocalizations(Int)
         /// Maximum number of related icons returned (when they are included) - maximum 50

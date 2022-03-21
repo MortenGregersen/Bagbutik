@@ -32,6 +32,8 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersion 
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appCustomProductPageLocalizations
         case appCustomProductPageLocalizations([AppCustomProductPageLocalizations])
+        /// The fields to include for returned resources of type appCustomProductPageVersions
+        case appCustomProductPageVersions([AppCustomProductPageVersions])
         /// The fields to include for returned resources of type appPreviewSets
         case appPreviewSets([AppPreviewSets])
         /// The fields to include for returned resources of type appScreenshotSets
@@ -43,6 +45,13 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersion 
             case appScreenshotSets
             case locale
             case promotionalText
+        }
+
+        public enum AppCustomProductPageVersions: String, ParameterValue, CaseIterable {
+            case appCustomProductPage
+            case appCustomProductPageLocalizations
+            case state
+            case version
         }
 
         public enum AppPreviewSets: String, ParameterValue, CaseIterable {

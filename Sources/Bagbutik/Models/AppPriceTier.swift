@@ -54,11 +54,15 @@ public struct AppPriceTier: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var pricePoints: PricePoints?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        @NullCodable public var pricePoints: PricePoints? = nil
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(pricePoints: PricePoints? = nil) {
             self.pricePoints = pricePoints
         }
+
+        public init() {}
 
         /**
          The data and links that describe the relationship between the resources.
