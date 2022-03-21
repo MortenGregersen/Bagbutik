@@ -1,7 +1,7 @@
 import Foundation
 #if canImport(FoundationNetworking)
-    // Linux support
-    import FoundationNetworking
+// Linux support
+import FoundationNetworking
 #endif
 
 /// A description of a request. This will internally be mapped to a real URL request.

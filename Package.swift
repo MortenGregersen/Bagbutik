@@ -19,7 +19,7 @@ let package = Package(
             targets: ["BagbutikCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.1"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.1.0"),
         .package(url: "https://github.com/SwiftGen/StencilSwiftKit", from: "2.8.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.17"),
         .package(url: "https://github.com/apple/swift-crypto", from: "2.0.0"),
@@ -52,7 +52,12 @@ let package = Package(
             ]),
         .target(
             name: "BagbutikGenerator",
-            dependencies: ["BagbutikSpecDecoder", "BagbutikStringExtensions", "StencilSwiftKit", "SwiftFormat"]),
+            dependencies: [
+                "BagbutikSpecDecoder",
+                "BagbutikStringExtensions",
+                "StencilSwiftKit",
+                "SwiftFormat"
+            ]),
         .testTarget(
             name: "BagbutikGeneratorTests",
             dependencies: ["BagbutikGenerator"]),
@@ -67,5 +72,5 @@ let package = Package(
         .testTarget(
             name: "BagbutikStringExtensionsTests",
             dependencies: ["BagbutikStringExtensions"]),
-        .target(name: "BagbutikPolyfill")
+        .target(name: "BagbutikPolyfill"),
     ])

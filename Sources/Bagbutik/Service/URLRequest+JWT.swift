@@ -1,7 +1,7 @@
 import Foundation
 #if canImport(FoundationNetworking)
-    // Linux support
-    import FoundationNetworking
+// Linux support
+import FoundationNetworking
 #endif
 
 extension URLRequest {
