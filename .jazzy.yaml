@@ -1,0 +1,5 @@
+module: Bagbutik
+author: Morten Bjerg Gregersen
+github_url: https://github.com/MortenGregersen/Bagbutik
+copyright: '© 2022 under [open source license](https://github.com/MortenGregersen/Bagbutik/blob/main/LICENSE).'
+swift_version: 5.6
