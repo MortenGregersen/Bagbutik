@@ -32,7 +32,7 @@ struct BagbutikCLI: AsyncParsableCommand {
                 specFileURL = try await downloadNewestSpec()
             }
             let outputDirURL = URL(fileURLWithPath: outputPath)
-            try Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
+            try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
         }
     }
 
