@@ -40,5 +40,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3.0.0
+    - uses: fwal/setup-swift@v1.14.0
     - name: Test
       run: swift test -v --enable-code-coverage
