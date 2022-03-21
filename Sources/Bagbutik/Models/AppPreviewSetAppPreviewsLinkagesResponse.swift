@@ -24,7 +24,7 @@ public struct AppPreviewSetAppPreviewsLinkagesResponse: Codable, PagedResponse {
      The data element of the response body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

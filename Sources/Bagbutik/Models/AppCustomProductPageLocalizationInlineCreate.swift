@@ -51,6 +51,12 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationinlinecreate/relationships>
+     */
     public struct Relationships: Codable {
         @NullCodable public var appCustomProductPageVersion: AppCustomProductPageVersion?
 
@@ -58,15 +64,30 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable {
             self.appCustomProductPageVersion = appCustomProductPageVersion
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationinlinecreate/relationships/appcustomproductpageversion>
+         */
         public struct AppCustomProductPageVersion: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationinlinecreate/relationships/appcustomproductpageversion/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCustomProductPageVersions" }
 
                 public init(id: String) {

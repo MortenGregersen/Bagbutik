@@ -47,6 +47,12 @@ public struct BundleIdCapability: Codable {
         case attributes
     }
 
+    /**
+     Attributes that describe a Bundle ID Capabilities resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability/attributes>
+     */
     public struct Attributes: Codable {
         @NullCodable public var capabilityType: CapabilityType?
         @NullCodable public var settings: [CapabilitySetting]?

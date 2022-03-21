@@ -53,8 +53,16 @@ public struct CiMacOsVersion: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe a macOS Versions resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/attributes>
+     */
     public struct Attributes: Codable {
+        /// The name of the macOS version.
         public var name: String?
+        /// The macOS version of the simulated environment.
         public var version: String?
 
         public init(name: String? = nil, version: String? = nil) {
@@ -63,6 +71,12 @@ public struct CiMacOsVersion: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships>
+     */
     public struct Relationships: Codable {
         @NullCodable public var xcodeVersions: XcodeVersions?
 
@@ -70,9 +84,18 @@ public struct CiMacOsVersion: Codable {
             self.xcodeVersions = xcodeVersions
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions>
+         */
         public struct XcodeVersions: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
+            /// Paging information for data responses.
             @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -81,8 +104,16 @@ public struct CiMacOsVersion: Codable {
                 self.meta = meta
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "ciXcodeVersions" }
 
                 public init(id: String) {
@@ -109,8 +140,16 @@ public struct CiMacOsVersion: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

@@ -47,24 +47,47 @@ public struct AgeRatingDeclaration: Codable {
         case attributes
     }
 
+    /**
+     Attributes that describe an Age Rating Declarations resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration/attributes>
+     */
     public struct Attributes: Codable {
+        /// Declaration for alcohol, tobacco, or drug use.
         @NullCodable public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
+        /// Declaration for contests.
         @NullCodable public var contests: Contests?
+        /// Declaration for gambling, provided as a Boolean value.
         public var gambling: Bool?
+        /// Declaration for gambling or contests, as a Boolean value.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var gamblingAndContests: Bool? = nil
+        /// Declaration for simulated gambling.
         @NullCodable public var gamblingSimulated: GamblingSimulated?
+        /// Declaration for horror or fear themed content.
         @NullCodable public var horrorOrFearThemes: HorrorOrFearThemes?
+        /// Declaration for the Kids Age Band value.
         @NullCodable public var kidsAgeBand: KidsAgeBand?
+        /// Declaration for mature or suggestive themes.
         @NullCodable public var matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
+        /// Declaration for medical or treatment-focused content.
         @NullCodable public var medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
+        /// Declaration for profanity or crude humor.
         @NullCodable public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
+        /// Declaration for a 17+ rating, provided as a Boolean value.
         public var seventeenPlus: Bool?
+        /// Declaration for graphic sexual content and nudity.
         @NullCodable public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
+        /// Declaration for sexual content or nudity.
         @NullCodable public var sexualContentOrNudity: SexualContentOrNudity?
+        /// Declaration for unrestricted web access, such as with an embedded browser, provided as a Boolean value.
         public var unrestrictedWebAccess: Bool?
+        /// Declaration for cartoon or fantasy violence.
         @NullCodable public var violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
+        /// Declaration for realistic violence.
         @NullCodable public var violenceRealistic: ViolenceRealistic?
+        /// Declaration for prolonged realistic or sadistic violence.
         @NullCodable public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")

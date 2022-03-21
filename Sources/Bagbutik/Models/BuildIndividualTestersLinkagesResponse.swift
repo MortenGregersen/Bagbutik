@@ -24,7 +24,7 @@ public struct BuildIndividualTestersLinkagesResponse: Codable, PagedResponse {
      The data element of the response body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesresponse/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesresponse/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

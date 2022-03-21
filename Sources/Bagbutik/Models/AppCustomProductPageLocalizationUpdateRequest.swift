@@ -8,10 +8,18 @@ public struct AppCustomProductPageLocalizationUpdateRequest: Codable, RequestBod
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appCustomProductPageLocalizations" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {

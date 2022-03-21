@@ -14,12 +14,20 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
-        ///
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -53,7 +61,14 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The call-to-action verb that appears on the App Clip card.
             @NullCodable public var action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
@@ -65,7 +80,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
          The data and links that describe the relationship between the resources.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             @NullCodable public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
@@ -75,6 +90,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct ReleaseWithAppStoreVersion: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -85,7 +101,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/properties/data/properties/relationships/properties/releasewithappstoreversion/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships/releasewithappstoreversion/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

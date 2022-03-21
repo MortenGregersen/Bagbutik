@@ -53,6 +53,12 @@ public struct AppStoreReviewDetail: Codable {
         case relationships
     }
 
+    /**
+     Attributes that describe an App Store Review Details resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/attributes>
+     */
     public struct Attributes: Codable {
         public var contactEmail: String?
         public var contactFirstName: String?
@@ -75,6 +81,12 @@ public struct AppStoreReviewDetail: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships>
+     */
     public struct Relationships: Codable {
         @NullCodable public var appStoreReviewAttachments: AppStoreReviewAttachments?
         @NullCodable public var appStoreVersion: AppStoreVersion?
@@ -84,9 +96,18 @@ public struct AppStoreReviewDetail: Codable {
             self.appStoreVersion = appStoreVersion
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments>
+         */
         public struct AppStoreReviewAttachments: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
+            /// Paging information for data responses.
             @NullCodable public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -95,8 +116,16 @@ public struct AppStoreReviewDetail: Codable {
                 self.meta = meta
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appStoreReviewAttachments" }
 
                 public init(id: String) {
@@ -123,8 +152,16 @@ public struct AppStoreReviewDetail: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -151,8 +188,16 @@ public struct AppStoreReviewDetail: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion>
+         */
         public struct AppStoreVersion: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             @NullCodable public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -160,8 +205,16 @@ public struct AppStoreReviewDetail: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appStoreVersions" }
 
                 public init(id: String) {
@@ -188,8 +241,16 @@ public struct AppStoreReviewDetail: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

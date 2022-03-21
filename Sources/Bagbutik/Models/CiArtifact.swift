@@ -47,10 +47,20 @@ public struct CiArtifact: Codable {
         case attributes
     }
 
+    /**
+     The attributes that describe an Artifacts resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact/attributes>
+     */
     public struct Attributes: Codable {
+        /// The URL you use to download the Xcode Cloud build artifact.
         public var downloadUrl: String?
+        /// The artifact’s filename as a string.
         public var fileName: String?
+        /// An integer value that represents the artifact’s file size.
         public var fileSize: Int?
+        /// A string that describes the type of the artifact.
         @NullCodable public var fileType: FileType?
 
         public init(downloadUrl: String? = nil, fileName: String? = nil, fileSize: Int? = nil, fileType: FileType? = nil) {

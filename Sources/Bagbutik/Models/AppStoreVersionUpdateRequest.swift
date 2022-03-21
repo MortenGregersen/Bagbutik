@@ -14,12 +14,20 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appStoreVersions" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
-        ///
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -53,6 +61,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var copyright: String?
             public var downloadable: Bool?
@@ -85,7 +99,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          The data and links that describe the relationship between the resources.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
@@ -97,6 +111,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
 
             public struct AppClipDefaultExperience: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -107,7 +122,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/properties/data/properties/relationships/properties/appclipdefaultexperience/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -141,6 +156,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -151,7 +167,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/properties/data/properties/relationships/properties/build/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

@@ -14,11 +14,18 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appInfoLocalizations" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes
-        ///
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -48,6 +55,12 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let locale: String
             public var name: String?
@@ -70,7 +83,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public let appInfo: AppInfo
@@ -80,6 +93,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
             }
 
             public struct AppInfo: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -90,7 +104,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/properties/data/properties/relationships/properties/appinfo/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/relationships/appinfo/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

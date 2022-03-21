@@ -14,10 +14,18 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "betaAppClipInvocations" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -47,7 +55,14 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
             public var url: String?
 
             public init(url: String? = nil) {

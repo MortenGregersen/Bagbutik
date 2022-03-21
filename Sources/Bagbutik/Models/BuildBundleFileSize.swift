@@ -47,10 +47,20 @@ public struct BuildBundleFileSize: Codable {
         case attributes
     }
 
+    /**
+     The attributes that describe a Build Bundle File Sizes resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize/attributes>
+     */
     public struct Attributes: Codable {
+        /// A string that identifies the Apple device model.
         public var deviceModel: String?
+        /// An integer value that represents the download size of the build bundle in bytes.
         public var downloadBytes: Int?
+        /// An integer value that represents the installation size of the build bundle in bytes.
         public var installBytes: Int?
+        /// A string that identifies the OS version supported by the app or App Clip.
         public var osVersion: String?
 
         public init(deviceModel: String? = nil, downloadBytes: Int? = nil, installBytes: Int? = nil, osVersion: String? = nil) {
