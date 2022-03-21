@@ -38,7 +38,6 @@ let package = Package(
             name: "BagbutikTests",
             dependencies: [
                 "Bagbutik",
-                "BagbutikTestHelpers",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
             ],
             resources: [.copy("test-private-key.p8")]),
@@ -55,7 +54,6 @@ let package = Package(
             dependencies: [
                 "BagbutikSpecDecoder",
                 "BagbutikStringExtensions",
-                "BagbutikTestHelpers",
                 "StencilSwiftKit",
                 "SwiftFormat"
             ]),
@@ -74,5 +72,4 @@ let package = Package(
             name: "BagbutikStringExtensionsTests",
             dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikPolyfill"),
-        .testTarget(name: "BagbutikTestHelpers")
     ])

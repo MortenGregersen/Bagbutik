@@ -1,6 +1,5 @@
 @testable import BagbutikGenerator
 @testable import BagbutikSpecDecoder
-import BagbutikTestHelpers
 import XCTest
 
 final class GeneratorTests: XCTestCase {
@@ -25,7 +24,7 @@ final class GeneratorTests: XCTestCase {
     components: .init(schemas: [
         "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
-        "Gzip": .binary(.init(name: "Gzip", url: "other://url", lookupDocumentation: { _ in nil })),
+        "Gzip": .binary(.init(name: "Gzip", url: "other://url", lookupDocumentation: { _ in .rootSchema(summary: "Gzip response") })),
     ]))
     
     func testGenerateAllSimple() async throws {
@@ -57,13 +56,12 @@ final class GeneratorTests: XCTestCase {
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(printer.printedLogs[6...9].sorted(), [
+        XCTAssertEqual(printer.printedLogs[6...8].sorted(), [
             "⚠️ Documentation missing for endpoint: \'ListVisibleAppIdsForUser\'",
-            "⚠️ Documentation missing for model: \'Gzip\' (other://url)",
             "⚠️ Documentation missing for model: \'ReplaceUsersResponse\'",
             "⚠️ Documentation missing for model: \'UsersResponse\' (some://url)",
         ])
-        XCTAssertEqual(printer.printedLogs[10], "🎉 Finished generating 2 endpoints and 3 models! 🎉")
+        XCTAssertEqual(printer.printedLogs[9], "🎉 Finished generating 2 endpoints and 3 models! 🎉")
     }
     
     func testInvalidSpecFileURL() async throws {
