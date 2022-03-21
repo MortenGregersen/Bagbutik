@@ -81,52 +81,73 @@ public class Generator {
         - specFileURL: The file URL to load the spec from
         - outputDirURL: The file URL for the directory where the generated code should be saved
      */
-    public func generateAll(specFileURL: URL, outputDirURL: URL) throws {
+    public func generateAll(specFileURL: URL, outputDirURL: URL) async throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
-        var endpointsMissingDocumentation = [String]()
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
         try removeChildren(at: endpointsDirURL)
-        try spec.paths.values.sorted(by: { $0.path < $1.path }).forEach { path in
-            let operationsDirURL = getOperationsDirURL(for: path, in: endpointsDirURL)
-            try fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
-            try generateEndpoints(for: path).forEach { endpoint in
-                let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
-                print("⚡️ Generating endpoint \(endpoint.fileName)...")
-                guard fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
-                    throw GeneratorError.couldNotCreateFile(endpoint.fileName)
-                }
-                if !endpoint.hasDocumentation {
-                    endpointsMissingDocumentation.append(endpoint.name)
+        let endpointsMissingDocumentation: [String] = try await withThrowingTaskGroup(of: [String].self, returning: [String].self) { taskGroup in
+            spec.paths.values.forEach { path in
+                taskGroup.addTask {
+                    var endpointsMissingDocumentation = [String]()
+                    let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
+                    try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
+                    try Self.generateEndpoints(for: path).forEach { endpoint in
+                        let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
+                        self.print("⚡️ Generating endpoint \(endpoint.fileName)...")
+                        guard self.fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
+                            throw GeneratorError.couldNotCreateFile(endpoint.fileName)
+                        }
+                        if !endpoint.hasDocumentation {
+                            endpointsMissingDocumentation.append(endpoint.name)
+                        }
+                    }
+                    return endpointsMissingDocumentation
                 }
             }
+            var endpointsMissingDocumentation = [String]()
+            for try await value in taskGroup {
+                endpointsMissingDocumentation += value
+            }
+            return endpointsMissingDocumentation
         }
 
-        var modelsMissingDocumentation = [(name: String, url: String?)]()
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
-        try spec.components.schemas.values.sorted(by: { $0.name < $1.name }).forEach { schema in
-            let model = try generateModel(for: schema)
-            let fileName = model.name + ".swift"
-            let fileURL = modelsDirURL.appendingPathComponent(fileName)
-            print("⚡️ Generating model \(model.name)...")
-            guard fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
-                throw GeneratorError.couldNotCreateFile(fileName)
+        let modelsMissingDocumentation: [(name: String, url: String?)] = try await withThrowingTaskGroup(of: (name: String, url: String?)?.self) { taskGroup in
+            spec.components.schemas.values.forEach { schema in
+                taskGroup.addTask {
+                    let model = try Self.generateModel(for: schema)
+                    let fileName = model.name + ".swift"
+                    let fileURL = modelsDirURL.appendingPathComponent(fileName)
+                    self.print("⚡️ Generating model \(model.name)...")
+                    guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
+                        throw GeneratorError.couldNotCreateFile(fileName)
+                    }
+                    if !model.hasDocumentation {
+                        return (name: model.name, url: model.url)
+                    }
+                    return nil
+                }
             }
-            if !model.hasDocumentation {
-                modelsMissingDocumentation.append((name: model.name, url: model.url))
+            var modelsMissingDocumentation = [(name: String, url: String?)]()
+            for try await value in taskGroup {
+                if let value = value {
+                    modelsMissingDocumentation.append(value)
+                }
             }
+            return modelsMissingDocumentation
         }
 
-        endpointsMissingDocumentation.forEach { endpointName in
+        endpointsMissingDocumentation.sorted().forEach { endpointName in
             // Remember to change check-spec-version script if the wording here is changed.
             print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
         }
 
-        modelsMissingDocumentation.forEach { model in
+        modelsMissingDocumentation.sorted(by: { $0.name < $1.name }).forEach { model in
             // Remember to change check-spec-version script if the wording here is changed.
             var log = "⚠️ Documentation missing for model: '\(model.name)'"
             if let url = model.url { log += " (\(url))" }
@@ -143,13 +164,13 @@ public class Generator {
         try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
     }
 
-    private func getOperationsDirURL(for path: Path, in endpointsDirURL: URL) -> URL {
+    private static func getOperationsDirURL(for path: Path, in endpointsDirURL: URL) -> URL {
         let operationsDirURL = endpointsDirURL.appendingPathComponent(path.info.mainType)
         guard path.info.isRelationship else { return operationsDirURL }
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private func generateEndpoints(for path: Path) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
+    private static func generateEndpoints(for path: Path) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
         try path.operations.map { operation in
             let name = operation.name.capitalizingFirstLetter()
             let fileName = "\(name).swift"
@@ -158,7 +179,7 @@ public class Generator {
         }
     }
 
-    private func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
+    private static func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
         let renderedSchema: String
         let hasDocumentation: Bool
         let url: String?
