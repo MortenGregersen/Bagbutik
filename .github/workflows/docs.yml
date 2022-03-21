@@ -1,0 +1,24 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ docs-setup ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Genereate DocC
+      uses: fwcd/swift-docc-action@v1.0.1
+      with:
+        output: ./docs
+        transform-static-hosting: true
+    - name: Deploy to GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.6.0
+      with:
+        build_dir: ./docs
+        fqdn: bagbutik.dev
+        jekyll: false
