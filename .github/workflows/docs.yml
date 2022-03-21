@@ -11,6 +11,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: fwal/setup-swift@v1
+    - name: Get swift version
+      run: swift --version
     - name: Genereate DocC
       uses: fwcd/swift-docc-action@v1.0.1
       with:
