@@ -3,6 +3,10 @@ import BagbutikGenerator
 import BagbutikPolyfill
 import Foundation
 import Zip
+#if canImport(FoundationNetworking)
+// Linux support
+import FoundationNetworking
+#endif
 
 @main
 struct BagbutikCLI: AsyncParsableCommand {
