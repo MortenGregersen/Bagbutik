@@ -1,8 +1,8 @@
 @testable import Bagbutik
 import XCTest
 #if canImport(FoundationNetworking)
-    // Linux support
-    import FoundationNetworking
+// Linux support
+import FoundationNetworking
 #endif
 
 final class BagbutikServiceTests: XCTestCase {
