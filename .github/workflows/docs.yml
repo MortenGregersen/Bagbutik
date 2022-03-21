@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: fwal/setup-swift@v1.14.0
-    - name: Get swift version
-      run: swift --version
+    - uses: fwal/setup-swift@v1.14.0 # Until GitHub Actions has Swift >= 5.6 as default
     - name: Genereate DocC
       uses: fwcd/swift-docc-action@v1.0.1
       with:
+        target: Bagbutik
         output: ./docs
         transform-static-hosting: true
     - name: Deploy to GitHub Pages
