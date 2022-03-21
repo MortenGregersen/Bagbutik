@@ -1,10 +1,9 @@
-import Bagbutik
 import XCTest
 
 // This is temporary until Apple releases support for async/await in XCTAssertThrowsError
 // Read more here: https://www.wwt.com/article/unit-testing-on-ios-with-async-await/
 
-extension XCTest {
+public extension XCTest {
     func XCTAssertAsyncThrowsError(
         _ expression: @autoclosure () async throws -> Void,
         _ message: @autoclosure () -> String = "",
