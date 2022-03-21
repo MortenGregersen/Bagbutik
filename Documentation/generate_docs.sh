@@ -3,8 +3,5 @@
 # exit when any command fails
 set -e
 
-rm -rf docs
-mkdir docs
-sourcekitten doc --spm --module-name Bagbutik > docs/mod1.json
-jazzy --sourcekitten-sourcefile docs/mod1.json
+jazzy --clean --module Bagbutik --exclude=Sources/Bagbutik/Endpoints/*,Sources/Bagbutik/Models/* --source-host-url=https://github.com/MortenGregersen/Bagbutik
 open docs/index.html
