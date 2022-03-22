@@ -1,5 +1,6 @@
 /// Parameter for an endpoint
 public protocol EndpointParameter {
+    /// The name of the case to use as value for the parameter.
     var caseName: String { get }
 }
 
@@ -54,6 +55,7 @@ public protocol IncludeParameter: EndpointParameter {}
 
 /// Parameter for including/excluding where a value exists.
 public protocol ExistParameter: EndpointParameter {
+    /// The value for the parameter.
     var value: Bool { get }
 }
 
@@ -66,7 +68,9 @@ extension ExistParameter {
 
 /// Parameter for by which attributes to sort.
 public protocol SortParameter: EndpointParameter {
+    /// The value for the parameter.
     var value: String { get }
+    /// The raw value for the parameter value.
     var rawValue: String { get }
 }
 
@@ -77,6 +81,7 @@ extension SortParameter {
 
 /// Parameter for number of resources to return.
 public protocol LimitParameter: EndpointParameter {
+    /// The value for the parameter.
     var value: Int { get }
 }
 
