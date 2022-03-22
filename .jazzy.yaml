@@ -5,4 +5,36 @@ copyright: '© 2022 under [open source license](https://github.com/MortenGregers
 clean: true
 exclude:
   - Sources/Bagbutik/Endpoints/*
+  - Sources/Bagbutik/Extensions/*
   - Sources/Bagbutik/Models/*
+
+custom_categories:
+  - name: Service
+    children:
+    - BagbutikService
+    - JWT
+    - HTTPMethods
+    - ServiceError
+    - BagbutikServiceProtocol
+  - name: Requests
+    children:
+    - Request
+    - RequestBody
+    - Parameters
+    - EndpointParameter
+    - AssociatedValueParameter
+    - FieldParameter
+    - FilterParameter
+    - IncludeParameter
+    - ExistParameter
+    - SortParameter
+    - LimitParameter
+  - name: Responses
+    children:
+    - EmptyResponse
+    - PagedResponse
+    - BinaryResponse
+    - GzipResponse
+  - name: Property wrappers
+    children:
+    - NullCodable
