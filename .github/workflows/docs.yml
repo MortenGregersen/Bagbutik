@@ -10,13 +10,13 @@ jobs:
     name: Build and Deploy
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3.0.0
     - name: Generate Documentation for Pages
       run: ./Documentation/generate_docs.sh
     - name: Add CNAME
       run: echo -n bagbutik.dev > docs/CNAME
     - name: Deploy to GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v2
+      uses: crazy-max/ghaction-github-pages@v2.6.0
       with:
         build_dir: "docs"
       env:
