@@ -25,7 +25,7 @@ public struct NullCodable<Value>: Codable where Value: Codable {
 
 extension NullCodable: Equatable where Value: Equatable {}
 
-public extension KeyedDecodingContainer {
+internal extension KeyedDecodingContainer {
     /// Decode a `@NullCodable` value with the value or an empty `@NullCodable` if the value isn't present.
     func decode<Value: Decodable>(_ type: NullCodable<Value>.Type, forKey key: Key) throws -> NullCodable<Value> {
         try decodeIfPresent(NullCodable<Value>.self, forKey: key) ?? NullCodable<Value>(wrappedValue: nil)
