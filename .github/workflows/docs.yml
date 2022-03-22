@@ -1,0 +1,24 @@
+name: Docs
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3.0.0
+    - uses: fwal/setup-swift@v1.14.0 # Until GitHub Actions has Swift >= 5.6 as default
+    - name: Generate Documentation for Pages
+      run: ./Documentation/generate_docs.sh
+    - name: Add CNAME
+      run: echo -n bagbutik.dev > docs/CNAME
+    - name: Deploy to GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.6.0
+      with:
+        build_dir: "docs"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -21,7 +21,8 @@ final class BagbutikServiceTests: XCTestCase {
         }
         jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey)
         DateFactory.reset()
-        service = .init(jwt: jwt, urlSession: mockURLSession)
+        let fetchData = mockURLSession.data(for:delegate:)
+        service = .init(jwt: jwt, fetchData: fetchData)
     }
 
     func testRequest_PlainResponse() async throws {
@@ -160,7 +161,7 @@ final class BagbutikServiceTests: XCTestCase {
     }
 }
 
-class MockURLSession: URLSessionProtocol {
+class MockURLSession {
     var responsesByUrl: [URL: (data: Data, type: ResponseType)] = [:]
     var wrapInHTTPURLResponse = true
 
@@ -241,6 +242,14 @@ extension ServiceError: Equatable {
 
 struct CrazyDatesResponse: Decodable {
     let date: Date
+}
+
+struct GzipResponse: BinaryResponse {
+    let data: Data
+
+    public static func from(data: Data) -> Self {
+        Self(data: data)
+    }
 }
 
 extension Request {

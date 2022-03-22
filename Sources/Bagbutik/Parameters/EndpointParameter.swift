@@ -1,5 +1,6 @@
 /// Parameter for an endpoint
 public protocol EndpointParameter {
+    /// The name of the case to use as value for the parameter.
     var caseName: String { get }
 }
 
@@ -20,6 +21,7 @@ extension EndpointParameter {
 
 /// Parameter with an associated (string) value.
 public protocol AssociatedValueParameter: EndpointParameter {
+    /// The comma separated list values to use as value for the parameter.
     var value: String { get }
 }
 
@@ -38,6 +40,7 @@ extension AssociatedValueParameter {
 }
 
 protocol ParameterValue {
+    /// The raw value for the parameter value.
     var rawValue: String { get }
 }
 
@@ -52,11 +55,12 @@ public protocol IncludeParameter: EndpointParameter {}
 
 /// Parameter for including/excluding where a value exists.
 public protocol ExistParameter: EndpointParameter {
+    /// The value for the parameter.
     var value: Bool { get }
 }
 
 extension ExistParameter {
-    /// The value to for the parameter.
+    /// The value for the parameter.
     public var value: Bool {
         return Mirror(reflecting: self).children.first!.value as! Bool
     }
@@ -64,22 +68,25 @@ extension ExistParameter {
 
 /// Parameter for by which attributes to sort.
 public protocol SortParameter: EndpointParameter {
+    /// The value for the parameter.
     var value: String { get }
+    /// The raw value for the parameter value.
     var rawValue: String { get }
 }
 
 extension SortParameter {
-    /// The value to for the parameter.
+    /// The value for the parameter.
     public var value: String { rawValue }
 }
 
 /// Parameter for number of resources to return.
 public protocol LimitParameter: EndpointParameter {
+    /// The value for the parameter.
     var value: Int { get }
 }
 
 extension LimitParameter {
-    /// The value to for the parameter.
+    /// The value for the parameter.
     public var value: Int {
         return Mirror(reflecting: self).children.first!.value as! Int
     }
