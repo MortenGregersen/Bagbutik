@@ -13,6 +13,11 @@
     <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dplatforms" alt="Platforms" />
     </a>
+    <br />
+    <img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="CI" />
+    <a href="https://fluxor.dev">
+        <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/gh-pages/badge.svg" alt="Documentation" />
+    </a>
     <a href="https://codecov.io/gh/MortenGregersen/Bagbutik">
         <img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G"/>
     </a>
