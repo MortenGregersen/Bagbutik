@@ -17,11 +17,15 @@ public protocol BagbutikServiceProtocol {
     func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data])
 }
 
-public protocol URLSessionProtocol {
-    func data(for request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: URLSessionProtocol {}
+/**
+ Function used to fetch data for requests.
+ 
+ - Parameters:
+    - request: The URLRequest for which to load data.
+    - delegate: Task-specific delegate.
+ - Returns: Data and response.
+ */
+public typealias FetchData = (_ request: URLRequest, _ delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 
 /**
  Service for performing requests. A valid JWT is required to perform requests.
@@ -32,11 +36,11 @@ extension URLSession: URLSessionProtocol {}
  */
 public class BagbutikService: BagbutikServiceProtocol {
     internal private(set) var jwt: JWT
-    private let urlSession: URLSessionProtocol
+    private let fetchData: FetchData
     
-    public init(jwt: JWT, urlSession: URLSessionProtocol = URLSession.shared) {
+    public init(jwt: JWT, fetchData: @escaping FetchData = URLSession.shared.data(for:delegate:)) {
         self.jwt = jwt
-        self.urlSession = urlSession
+        self.fetchData = fetchData
     }
     
     private static let jsonDecoder: JSONDecoder = {
@@ -119,7 +123,7 @@ public class BagbutikService: BagbutikServiceProtocol {
             try self.jwt.renewEncodedSignature()
         }
         urlRequest.addJWTAuthorizationHeader(self.jwt.encodedSignature)
-        let dataAndResponse = try await urlSession.data(for: urlRequest, delegate: nil)
+        let dataAndResponse = try await fetchData(urlRequest, nil)
         return try Self.decodeResponse(data: dataAndResponse.0, response: dataAndResponse.1) as T
     }
     
