@@ -11,9 +11,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: fwal/setup-swift@v1.14.0 # Until GitHub Actions has Swift >= 5.6 as default
-    - name: Install sourcekitten
-      run: brew install sourcekitten
     - name: Generate Documentation for Pages
       run: ./Documentation/generate_docs.sh
     - name: Add CNAME
