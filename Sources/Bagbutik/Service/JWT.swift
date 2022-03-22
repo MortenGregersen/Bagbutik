@@ -49,7 +49,7 @@ public struct JWT {
      - Parameters:
         - keyID: Your private key ID from App Store Connect; for example 2X9R4HXF34.
         - issuerId: Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.
-        - privateKeyPath: The file path to your private key from App Store Connect.`.
+        - privateKeyPath: The file path to your private key from App Store Connect.
       */
     public init(keyId: String, issuerId: String, privateKeyPath: String) throws {
         let privateKey = try String(contentsOf: URL(fileURLWithPath: privateKeyPath))

@@ -20,6 +20,7 @@ extension EndpointParameter {
 
 /// Parameter with an associated (string) value.
 public protocol AssociatedValueParameter: EndpointParameter {
+    /// The comma separated list values to use as value for the parameter.
     var value: String { get }
 }
 
@@ -38,6 +39,7 @@ extension AssociatedValueParameter {
 }
 
 protocol ParameterValue {
+    /// The raw value for the parameter value.
     var rawValue: String { get }
 }
 
@@ -56,7 +58,7 @@ public protocol ExistParameter: EndpointParameter {
 }
 
 extension ExistParameter {
-    /// The value to for the parameter.
+    /// The value for the parameter.
     public var value: Bool {
         return Mirror(reflecting: self).children.first!.value as! Bool
     }
@@ -69,7 +71,7 @@ public protocol SortParameter: EndpointParameter {
 }
 
 extension SortParameter {
-    /// The value to for the parameter.
+    /// The value for the parameter.
     public var value: String { rawValue }
 }
 
@@ -79,7 +81,7 @@ public protocol LimitParameter: EndpointParameter {
 }
 
 extension LimitParameter {
-    /// The value to for the parameter.
+    /// The value for the parameter.
     public var value: Int {
         return Mirror(reflecting: self).children.first!.value as! Int
     }
