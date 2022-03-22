@@ -244,6 +244,14 @@ struct CrazyDatesResponse: Decodable {
     let date: Date
 }
 
+struct GzipResponse: BinaryResponse {
+    let data: Data
+
+    public static func from(data: Data) -> Self {
+        Self(data: data)
+    }
+}
+
 extension Request {
     static func getCrazyDates() -> Request<CrazyDatesResponse, ErrorResponse> {
         .init(path: "/v1/crazyDates", method: .get)

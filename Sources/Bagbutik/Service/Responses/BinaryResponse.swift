@@ -13,21 +13,3 @@ public protocol BinaryResponse: Decodable {
      */
     static func from(data: Data) -> Self
 }
-
-/// A response with gzipped data.
-public struct GzipResponse: BinaryResponse {
-    /// The gzipped data.
-    public let data: Data
-    /// The unzipped data.
-    public let unzippedData: Data
-
-    /**
-     Create a new GzipResponse.
-
-     - Parameters:
-        - data: The gzipped data.
-     */
-    public static func from(data: Data) -> Self {
-        Self(data: data, unzippedData: try! data.gunzippedData())
-    }
-}
