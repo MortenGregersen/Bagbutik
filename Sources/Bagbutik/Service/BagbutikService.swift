@@ -10,13 +10,6 @@ import Foundation
 import FoundationNetworking
 #endif
 
-public protocol BagbutikServiceProtocol {
-    func request<T: Decodable>(_ request: Request<T, ErrorResponse>) async throws -> T
-    func requestAllPages<T: Decodable & PagedResponse>(_ request: Request<T, ErrorResponse>) async throws -> (responses: [T], data: [T.Data])
-    func requestNextPage<T: Decodable & PagedResponse>(for response: T) async throws -> T?
-    func requestAllPages<T: Decodable & PagedResponse>(for response: T) async throws -> (responses: [T], data: [T.Data])
-}
-
 /**
  Function used to fetch data for requests.
  
@@ -34,7 +27,7 @@ public typealias FetchData = (_ request: URLRequest, _ delegate: URLSessionTaskD
  
  If the JWT has expired, it will be renewed before the request is performed.
  */
-public class BagbutikService: BagbutikServiceProtocol {
+public class BagbutikService {
     internal private(set) var jwt: JWT
     private let fetchData: FetchData
     
