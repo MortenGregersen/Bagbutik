@@ -13,12 +13,12 @@ custom_categories:
     children:
     - BagbutikService
     - JWT
-    - HTTPMethods
+    - FetchData
     - ServiceError
-    - BagbutikServiceProtocol
   - name: Requests
     children:
     - Request
+    - HTTPMethod
     - RequestBody
     - Parameters
     - EndpointParameter
@@ -34,7 +34,6 @@ custom_categories:
     - EmptyResponse
     - PagedResponse
     - BinaryResponse
-    - GzipResponse
-  - name: Property wrappers
+  - name: Property Wrappers
     children:
     - NullCodable
