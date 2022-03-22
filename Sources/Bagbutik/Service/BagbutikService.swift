@@ -13,6 +13,8 @@ import FoundationNetworking
 /**
  Function used to fetch data for requests.
  
+ Only used to inject into a ``BagbutikService``.
+ 
  - Parameters:
     - request: The URLRequest for which to load data.
     - delegate: Task-specific delegate.
