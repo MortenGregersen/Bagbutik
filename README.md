@@ -17,7 +17,7 @@
     <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/ci.yml">
         <img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="CI" />
     </a>
-    <a href="https://fluxor.dev">
+    <a href="https://bagbutik.dev">
         <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/gh-pages/badge.svg" alt="Documentation" />
     </a>
     <a href="https://codecov.io/gh/MortenGregersen/Bagbutik">
