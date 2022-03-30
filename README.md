@@ -30,7 +30,7 @@
 
 ## What is Bagbutik?
 
-**Bag·bu·tik** (noun) **/ˈb̥a̝w-ˌb̥u-tiːk/** - _(Danish) A room behind a store_
+**Bag·bu·tik** (noun) **[/ˈb̥a̝w-ˌb̥u-tiːk/](http://ipa-reader.xyz/?text=ˈb̥a̝w-ˌb̥u-ti%CB%90k&voice=Amy)** - _(Danish) A room behind a store_
 
 Bagbutik is two things, a command line tool for generating Swift code, and library with the generated code for the App Store Connect API. The command line tool decodes the official [OpenAPI spec](https://en.wikipedia.org/wiki/OpenAPI_Specification) for Apple's [App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi).
 
