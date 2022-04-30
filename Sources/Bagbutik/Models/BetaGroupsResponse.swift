@@ -24,6 +24,37 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getApp(for betaGroup: BetaGroup) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == betaGroup.relationships?.app?.data?.id }
+    }
+
+    public func getBetaTesters(for betaGroup: BetaGroup) -> [BetaTester] {
+        guard let betaTesterIds = betaGroup.relationships?.betaTesters?.data?.map(\.id),
+              let betaTesters = included?.compactMap({ relationship -> BetaTester? in
+                  guard case let .betaTester(betaTester) = relationship else { return nil }
+                  return betaTesterIds.contains(betaTester.id) ? betaTester : nil
+              })
+        else {
+            return []
+        }
+        return betaTesters
+    }
+
+    public func getBuilds(for betaGroup: BetaGroup) -> [Build] {
+        guard let buildIds = betaGroup.relationships?.builds?.data?.map(\.id),
+              let builds = included?.compactMap({ relationship -> Build? in
+                  guard case let .build(build) = relationship else { return nil }
+                  return buildIds.contains(build.id) ? build : nil
+              })
+        else {
+            return []
+        }
+        return builds
+    }
+
     public enum Included: Codable {
         case app(App)
         case betaTester(BetaTester)

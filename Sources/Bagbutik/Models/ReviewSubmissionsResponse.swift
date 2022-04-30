@@ -18,6 +18,32 @@ public struct ReviewSubmissionsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getApp(for reviewSubmission: ReviewSubmission) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == reviewSubmission.relationships?.app?.data?.id }
+    }
+
+    public func getAppStoreVersionForReview(for reviewSubmission: ReviewSubmission) -> AppStoreVersion? {
+        included?.compactMap { relationship -> AppStoreVersion? in
+            guard case let .appStoreVersion(appStoreVersionForReview) = relationship else { return nil }
+            return appStoreVersionForReview
+        }.first { $0.id == reviewSubmission.relationships?.appStoreVersionForReview?.data?.id }
+    }
+
+    public func getItems(for reviewSubmission: ReviewSubmission) -> [ReviewSubmissionItem] {
+        guard let itemIds = reviewSubmission.relationships?.items?.data?.map(\.id),
+              let items = included?.compactMap({ relationship -> ReviewSubmissionItem? in
+                  guard case let .reviewSubmissionItem(item) = relationship else { return nil }
+                  return itemIds.contains(item.id) ? item : nil
+              })
+        else {
+            return []
+        }
+        return items
+    }
+
     public enum Included: Codable {
         case app(App)
         case appStoreVersion(AppStoreVersion)

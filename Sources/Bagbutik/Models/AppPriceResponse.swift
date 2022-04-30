@@ -20,6 +20,20 @@ public struct AppPriceResponse: Codable {
         self.links = links
     }
 
+    public func getApp() -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == data.relationships?.app?.data?.id }
+    }
+
+    public func getPriceTier() -> AppPriceTier? {
+        included?.compactMap { relationship -> AppPriceTier? in
+            guard case let .appPriceTier(priceTier) = relationship else { return nil }
+            return priceTier
+        }.first { $0.id == data.relationships?.priceTier?.data?.id }
+    }
+
     public enum Included: Codable {
         case app(App)
         case appPriceTier(AppPriceTier)

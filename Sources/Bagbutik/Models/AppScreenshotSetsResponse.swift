@@ -24,6 +24,39 @@ public struct AppScreenshotSetsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getAppCustomProductPageLocalization(for appScreenshotSet: AppScreenshotSet) -> AppCustomProductPageLocalization? {
+        included?.compactMap { relationship -> AppCustomProductPageLocalization? in
+            guard case let .appCustomProductPageLocalization(appCustomProductPageLocalization) = relationship else { return nil }
+            return appCustomProductPageLocalization
+        }.first { $0.id == appScreenshotSet.relationships?.appCustomProductPageLocalization?.data?.id }
+    }
+
+    public func getAppScreenshots(for appScreenshotSet: AppScreenshotSet) -> [AppScreenshot] {
+        guard let appScreenshotIds = appScreenshotSet.relationships?.appScreenshots?.data?.map(\.id),
+              let appScreenshots = included?.compactMap({ relationship -> AppScreenshot? in
+                  guard case let .appScreenshot(appScreenshot) = relationship else { return nil }
+                  return appScreenshotIds.contains(appScreenshot.id) ? appScreenshot : nil
+              })
+        else {
+            return []
+        }
+        return appScreenshots
+    }
+
+    public func getAppStoreVersionExperimentTreatmentLocalization(for appScreenshotSet: AppScreenshotSet) -> AppStoreVersionExperimentTreatmentLocalization? {
+        included?.compactMap { relationship -> AppStoreVersionExperimentTreatmentLocalization? in
+            guard case let .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization) = relationship else { return nil }
+            return appStoreVersionExperimentTreatmentLocalization
+        }.first { $0.id == appScreenshotSet.relationships?.appStoreVersionExperimentTreatmentLocalization?.data?.id }
+    }
+
+    public func getAppStoreVersionLocalization(for appScreenshotSet: AppScreenshotSet) -> AppStoreVersionLocalization? {
+        included?.compactMap { relationship -> AppStoreVersionLocalization? in
+            guard case let .appStoreVersionLocalization(appStoreVersionLocalization) = relationship else { return nil }
+            return appStoreVersionLocalization
+        }.first { $0.id == appScreenshotSet.relationships?.appStoreVersionLocalization?.data?.id }
+    }
+
     public enum Included: Codable {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appScreenshot(AppScreenshot)
