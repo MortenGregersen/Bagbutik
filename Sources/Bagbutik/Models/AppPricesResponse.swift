@@ -24,6 +24,20 @@ public struct AppPricesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getApp(for appPrice: AppPrice) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == appPrice.relationships?.app?.data?.id }
+    }
+
+    public func getPriceTier(for appPrice: AppPrice) -> AppPriceTier? {
+        included?.compactMap { relationship -> AppPriceTier? in
+            guard case let .appPriceTier(priceTier) = relationship else { return nil }
+            return priceTier
+        }.first { $0.id == appPrice.relationships?.priceTier?.data?.id }
+    }
+
     public enum Included: Codable {
         case app(App)
         case appPriceTier(AppPriceTier)

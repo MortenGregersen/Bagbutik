@@ -10,7 +10,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         public struct Person: Codable {
@@ -33,7 +33,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                              properties: ["name": "The person's name"]),
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -65,7 +65,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   properties: ["name": .init(type: .simple(.string), deprecated: true),
                                                "age": .init(type: .simple(.integer), deprecated: false)])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -104,7 +104,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                              properties: ["name": "The person's name"]),
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -141,7 +141,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "id": .init(type: .constant("person"))],
                                   requiredProperties: ["firstName"])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -205,7 +205,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   properties: ["name": .init(type: .simple(.init(type: "string")))],
                                   attributesSchema: .attributes(attributesSchema))
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -249,7 +249,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   properties: ["name": .init(type: .simple(.init(type: "string")))],
                                   relationshipsSchema: .relationships(relationshipsSchema))
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -301,7 +301,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "preference": .init(type: .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"]))),
                                                "connection": .init(type: .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])))])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -382,7 +382,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "links": .init(type: .schemaRef("PagedDocumentLinks"))],
                                   requiredProperties: ["data", "links"])
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         public struct PersonsResponse: Codable, PagedResponse {
@@ -393,6 +393,275 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public init(data: [Person], links: PagedDocumentLinks) {
                 self.data = data
                 self.links = links
+            }
+        }
+
+        """#)
+    }
+    
+    func testGetterForIncludedNonPagedResponse() throws {
+        // Given
+        let renderer = ObjectSchemaRenderer()
+        let schema = ObjectSchema(
+            name: "BuildResponse",
+            url: "some://url",
+            properties: [
+                "data": .init(type: .schemaRef("Build")),
+                "included": .init(type: .arrayOfOneOf(
+                    name: "Included",
+                    schema: .init(options: [.schemaRef("PrereleaseVersion"),
+                                            .schemaRef("BetaTester")])
+                ))
+            ]
+        )
+        let buildSchema = ObjectSchema(
+            name: "Build",
+            url: "some://url",
+            relationshipsSchema: .relationships(.init(
+                name: "Relationships",
+                url: "some://url",
+                properties: [
+                    "individualTesters": .init(type: .schema(.init(
+                        name: "IndividualTesters",
+                        url: "some://url",
+                        properties: [
+                            "data": .init(type: .arrayOfSubSchema(.init(
+                                name: "Data",
+                                url: "some://url",
+                                properties: [
+                                    "id": .init(type: .simple(.string)),
+                                    "type": .init(type: .constant("betaTesters"))
+                                ]
+                            )))
+                        ],
+                        requiredProperties: ["id", "type"]
+                    ))),
+                    "preReleaseVersion": .init(type: .schema(.init(
+                        name: "PreReleaseVersion",
+                        url: "some://url",
+                        properties: [
+                            "data": .init(type: .schema(.init(
+                                name: "Data",
+                                url: "some://url",
+                                properties: [
+                                    "id": .init(type: .simple(.string)),
+                                    "type": .init(type: .constant("preReleaseVersions"))
+                                ]
+                            )))
+                        ],
+                        requiredProperties: ["id", "type"]
+                    )))
+                ]
+            ))
+        )
+        let prereleaseVersionSchema = ObjectSchema(
+            name: "PrereleaseVersion",
+            url: "some://url",
+            properties: ["type": .init(type: .constant("preReleaseVersions"))]
+        )
+        let betaTesterSchema = ObjectSchema(
+            name: "BetaTester",
+            url: "some://url",
+            properties: ["type": .init(type: .constant("betaTesters"))]
+        )
+        // When
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [
+            "Build": .object(buildSchema),
+            "BetaTester": .object(betaTesterSchema),
+            "PrereleaseVersion": .object(prereleaseVersionSchema)
+        ])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct BuildResponse: Codable {
+            @NullCodable public var data: Build?
+            @NullCodable public var included: [Included]?
+
+            public init(data: Build? = nil, included: [Included]? = nil) {
+                self.data = data
+                self.included = included
+            }
+
+            public func getIndividualTesters() -> [BetaTester] {
+                guard let individualTesterIds = data.relationships?.individualTesters?.data?.map(\.id),
+                      let individualTesters = included?.compactMap({ relationship -> BetaTester? in
+                          guard case let .betaTester(individualTester) = relationship else { return nil }
+                          return individualTesterIds.contains(individualTester.id) ? individualTester : nil
+                      })
+                else {
+                    return []
+                }
+                return individualTesters
+            }
+
+            public func getPreReleaseVersion() -> PrereleaseVersion? {
+                included?.compactMap { relationship -> PrereleaseVersion? in
+                    guard case let .prereleaseVersion(preReleaseVersion) = relationship else { return nil }
+                    return preReleaseVersion
+                }.first { $0.id == data.relationships?.preReleaseVersion?.data?.id }
+            }
+
+            public enum Included: Codable {
+                case betaTester(BetaTester)
+                case prereleaseVersion(PrereleaseVersion)
+
+                public init(from decoder: Decoder) throws {
+                    if let betaTester = try? BetaTester(from: decoder) {
+                        self = .betaTester(betaTester)
+                    } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
+                        self = .prereleaseVersion(prereleaseVersion)
+                    } else {
+                        throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
+                                                                                              debugDescription: "Unknown Included"))
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    switch self {
+                    case let .betaTester(value):
+                        try value.encode(to: encoder)
+                    case let .prereleaseVersion(value):
+                        try value.encode(to: encoder)
+                    }
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case type
+                }
+            }
+        }
+
+        """#)
+    }
+
+    func testGetterForIncludedPagedResponse() throws {
+        // Given
+        let renderer = ObjectSchemaRenderer()
+        let schema = ObjectSchema(
+            name: "BuildsResponse",
+            url: "some://url",
+            properties: [
+                "data": .init(type: .arrayOfSchemaRef("Build")),
+                "included": .init(type: .arrayOfOneOf(
+                    name: "Included",
+                    schema: .init(options: [.schemaRef("PrereleaseVersion"),
+                                            .schemaRef("BetaTester")])
+                ))
+            ]
+        )
+        let buildSchema = ObjectSchema(
+            name: "Build",
+            url: "some://url",
+            relationshipsSchema: .relationships(.init(
+                name: "Relationships",
+                url: "some://url",
+                properties: [
+                    "individualTesters": .init(type: .schema(.init(
+                        name: "IndividualTesters",
+                        url: "some://url",
+                        properties: [
+                            "data": .init(type: .arrayOfSubSchema(.init(
+                                name: "Data",
+                                url: "some://url",
+                                properties: [
+                                    "id": .init(type: .simple(.string)),
+                                    "type": .init(type: .constant("betaTesters"))
+                                ]
+                            )))
+                        ],
+                        requiredProperties: ["id", "type"]
+                    ))),
+                    "preReleaseVersion": .init(type: .schema(.init(
+                        name: "PreReleaseVersion",
+                        url: "some://url",
+                        properties: [
+                            "data": .init(type: .schema(.init(
+                                name: "Data",
+                                url: "some://url",
+                                properties: [
+                                    "id": .init(type: .simple(.string)),
+                                    "type": .init(type: .constant("preReleaseVersions"))
+                                ]
+                            )))
+                        ],
+                        requiredProperties: ["id", "type"]
+                    )))
+                ]
+            ))
+        )
+        let prereleaseVersionSchema = ObjectSchema(
+            name: "PrereleaseVersion",
+            url: "some://url",
+            properties: ["type": .init(type: .constant("preReleaseVersions"))]
+        )
+        let betaTesterSchema = ObjectSchema(
+            name: "BetaTester",
+            url: "some://url",
+            properties: ["type": .init(type: .constant("betaTesters"))]
+        )
+        // When
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [
+            "Build": .object(buildSchema),
+            "BetaTester": .object(betaTesterSchema),
+            "PrereleaseVersion": .object(prereleaseVersionSchema)
+        ])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct BuildsResponse: Codable {
+            public typealias Data = Build
+            @NullCodable public var data: [Build]?
+            @NullCodable public var included: [Included]?
+
+            public init(data: [Build]? = nil, included: [Included]? = nil) {
+                self.data = data
+                self.included = included
+            }
+
+            public func getIndividualTesters(for build: Build) -> [BetaTester] {
+                guard let individualTesterIds = build.relationships?.individualTesters?.data?.map(\.id),
+                      let individualTesters = included?.compactMap({ relationship -> BetaTester? in
+                          guard case let .betaTester(individualTester) = relationship else { return nil }
+                          return individualTesterIds.contains(individualTester.id) ? individualTester : nil
+                      })
+                else {
+                    return []
+                }
+                return individualTesters
+            }
+
+            public func getPreReleaseVersion(for build: Build) -> PrereleaseVersion? {
+                included?.compactMap { relationship -> PrereleaseVersion? in
+                    guard case let .prereleaseVersion(preReleaseVersion) = relationship else { return nil }
+                    return preReleaseVersion
+                }.first { $0.id == build.relationships?.preReleaseVersion?.data?.id }
+            }
+
+            public enum Included: Codable {
+                case betaTester(BetaTester)
+                case prereleaseVersion(PrereleaseVersion)
+
+                public init(from decoder: Decoder) throws {
+                    if let betaTester = try? BetaTester(from: decoder) {
+                        self = .betaTester(betaTester)
+                    } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
+                        self = .prereleaseVersion(prereleaseVersion)
+                    } else {
+                        throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
+                                                                                              debugDescription: "Unknown Included"))
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    switch self {
+                    case let .betaTester(value):
+                        try value.encode(to: encoder)
+                    case let .prereleaseVersion(value):
+                        try value.encode(to: encoder)
+                    }
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case type
+                }
             }
         }
 
@@ -421,7 +690,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   attributesSchema: .attributes(attributesSchema),
                                   relationshipsSchema: .relationships(relationshipsSchema))
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -531,7 +800,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["phoneNumber"]!
         let renderer = ObjectSchemaRenderer()
         // When
-        let rendered = try renderer.render(objectSchema: schema)
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         public struct PhoneNumber: Codable {

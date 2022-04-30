@@ -24,6 +24,20 @@ public struct AppClipDefaultExperienceLocalizationsResponse: Codable, PagedRespo
         self.meta = meta
     }
 
+    public func getAppClipDefaultExperience(for appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization) -> AppClipDefaultExperience? {
+        included?.compactMap { relationship -> AppClipDefaultExperience? in
+            guard case let .appClipDefaultExperience(appClipDefaultExperience) = relationship else { return nil }
+            return appClipDefaultExperience
+        }.first { $0.id == appClipDefaultExperienceLocalization.relationships?.appClipDefaultExperience?.data?.id }
+    }
+
+    public func getAppClipHeaderImage(for appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization) -> AppClipHeaderImage? {
+        included?.compactMap { relationship -> AppClipHeaderImage? in
+            guard case let .appClipHeaderImage(appClipHeaderImage) = relationship else { return nil }
+            return appClipHeaderImage
+        }.first { $0.id == appClipDefaultExperienceLocalization.relationships?.appClipHeaderImage?.data?.id }
+    }
+
     public enum Included: Codable {
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appClipHeaderImage(AppClipHeaderImage)

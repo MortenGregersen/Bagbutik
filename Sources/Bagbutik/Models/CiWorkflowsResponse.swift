@@ -24,6 +24,34 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getMacOsVersion(for ciWorkflow: CiWorkflow) -> CiMacOsVersion? {
+        included?.compactMap { relationship -> CiMacOsVersion? in
+            guard case let .ciMacOsVersion(macOsVersion) = relationship else { return nil }
+            return macOsVersion
+        }.first { $0.id == ciWorkflow.relationships?.macOsVersion?.data?.id }
+    }
+
+    public func getProduct(for ciWorkflow: CiWorkflow) -> CiProduct? {
+        included?.compactMap { relationship -> CiProduct? in
+            guard case let .ciProduct(product) = relationship else { return nil }
+            return product
+        }.first { $0.id == ciWorkflow.relationships?.product?.data?.id }
+    }
+
+    public func getRepository(for ciWorkflow: CiWorkflow) -> ScmRepository? {
+        included?.compactMap { relationship -> ScmRepository? in
+            guard case let .scmRepository(repository) = relationship else { return nil }
+            return repository
+        }.first { $0.id == ciWorkflow.relationships?.repository?.data?.id }
+    }
+
+    public func getXcodeVersion(for ciWorkflow: CiWorkflow) -> CiXcodeVersion? {
+        included?.compactMap { relationship -> CiXcodeVersion? in
+            guard case let .ciXcodeVersion(xcodeVersion) = relationship else { return nil }
+            return xcodeVersion
+        }.first { $0.id == ciWorkflow.relationships?.xcodeVersion?.data?.id }
+    }
+
     public enum Included: Codable {
         case ciMacOsVersion(CiMacOsVersion)
         case ciProduct(CiProduct)

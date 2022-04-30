@@ -24,6 +24,25 @@ public struct AppClipsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getApp(for appClip: AppClip) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == appClip.relationships?.app?.data?.id }
+    }
+
+    public func getAppClipDefaultExperiences(for appClip: AppClip) -> [AppClipDefaultExperience] {
+        guard let appClipDefaultExperienceIds = appClip.relationships?.appClipDefaultExperiences?.data?.map(\.id),
+              let appClipDefaultExperiences = included?.compactMap({ relationship -> AppClipDefaultExperience? in
+                  guard case let .appClipDefaultExperience(appClipDefaultExperience) = relationship else { return nil }
+                  return appClipDefaultExperienceIds.contains(appClipDefaultExperience.id) ? appClipDefaultExperience : nil
+              })
+        else {
+            return []
+        }
+        return appClipDefaultExperiences
+    }
+
     public enum Included: Codable {
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)

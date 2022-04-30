@@ -18,6 +18,37 @@ public struct AppEventLocalizationsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getAppEvent(for appEventLocalization: AppEventLocalization) -> AppEvent? {
+        included?.compactMap { relationship -> AppEvent? in
+            guard case let .appEvent(appEvent) = relationship else { return nil }
+            return appEvent
+        }.first { $0.id == appEventLocalization.relationships?.appEvent?.data?.id }
+    }
+
+    public func getAppEventScreenshots(for appEventLocalization: AppEventLocalization) -> [AppEventScreenshot] {
+        guard let appEventScreenshotIds = appEventLocalization.relationships?.appEventScreenshots?.data?.map(\.id),
+              let appEventScreenshots = included?.compactMap({ relationship -> AppEventScreenshot? in
+                  guard case let .appEventScreenshot(appEventScreenshot) = relationship else { return nil }
+                  return appEventScreenshotIds.contains(appEventScreenshot.id) ? appEventScreenshot : nil
+              })
+        else {
+            return []
+        }
+        return appEventScreenshots
+    }
+
+    public func getAppEventVideoClips(for appEventLocalization: AppEventLocalization) -> [AppEventVideoClip] {
+        guard let appEventVideoClipIds = appEventLocalization.relationships?.appEventVideoClips?.data?.map(\.id),
+              let appEventVideoClips = included?.compactMap({ relationship -> AppEventVideoClip? in
+                  guard case let .appEventVideoClip(appEventVideoClip) = relationship else { return nil }
+                  return appEventVideoClipIds.contains(appEventVideoClip.id) ? appEventVideoClip : nil
+              })
+        else {
+            return []
+        }
+        return appEventVideoClips
+    }
+
     public enum Included: Codable {
         case appEvent(AppEvent)
         case appEventScreenshot(AppEventScreenshot)

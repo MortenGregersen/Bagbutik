@@ -14,6 +14,25 @@ public struct AppStoreVersionExperimentTreatmentResponse: Codable {
         self.links = links
     }
 
+    public func getAppStoreVersionExperiment() -> AppStoreVersionExperiment? {
+        included?.compactMap { relationship -> AppStoreVersionExperiment? in
+            guard case let .appStoreVersionExperiment(appStoreVersionExperiment) = relationship else { return nil }
+            return appStoreVersionExperiment
+        }.first { $0.id == data.relationships?.appStoreVersionExperiment?.data?.id }
+    }
+
+    public func getAppStoreVersionExperimentTreatmentLocalizations() -> [AppStoreVersionExperimentTreatmentLocalization] {
+        guard let appStoreVersionExperimentTreatmentLocalizationIds = data.relationships?.appStoreVersionExperimentTreatmentLocalizations?.data?.map(\.id),
+              let appStoreVersionExperimentTreatmentLocalizations = included?.compactMap({ relationship -> AppStoreVersionExperimentTreatmentLocalization? in
+                  guard case let .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization) = relationship else { return nil }
+                  return appStoreVersionExperimentTreatmentLocalizationIds.contains(appStoreVersionExperimentTreatmentLocalization.id) ? appStoreVersionExperimentTreatmentLocalization : nil
+              })
+        else {
+            return []
+        }
+        return appStoreVersionExperimentTreatmentLocalizations
+    }
+
     public enum Included: Codable {
         case appStoreVersionExperiment(AppStoreVersionExperiment)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)

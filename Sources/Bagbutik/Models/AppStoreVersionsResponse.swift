@@ -24,6 +24,93 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getAgeRatingDeclaration(for appStoreVersion: AppStoreVersion) -> AgeRatingDeclaration? {
+        included?.compactMap { relationship -> AgeRatingDeclaration? in
+            guard case let .ageRatingDeclaration(ageRatingDeclaration) = relationship else { return nil }
+            return ageRatingDeclaration
+        }.first { $0.id == appStoreVersion.relationships?.ageRatingDeclaration?.data?.id }
+    }
+
+    public func getApp(for appStoreVersion: AppStoreVersion) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == appStoreVersion.relationships?.app?.data?.id }
+    }
+
+    public func getAppClipDefaultExperience(for appStoreVersion: AppStoreVersion) -> AppClipDefaultExperience? {
+        included?.compactMap { relationship -> AppClipDefaultExperience? in
+            guard case let .appClipDefaultExperience(appClipDefaultExperience) = relationship else { return nil }
+            return appClipDefaultExperience
+        }.first { $0.id == appStoreVersion.relationships?.appClipDefaultExperience?.data?.id }
+    }
+
+    public func getAppStoreReviewDetail(for appStoreVersion: AppStoreVersion) -> AppStoreReviewDetail? {
+        included?.compactMap { relationship -> AppStoreReviewDetail? in
+            guard case let .appStoreReviewDetail(appStoreReviewDetail) = relationship else { return nil }
+            return appStoreReviewDetail
+        }.first { $0.id == appStoreVersion.relationships?.appStoreReviewDetail?.data?.id }
+    }
+
+    public func getAppStoreVersionExperiments(for appStoreVersion: AppStoreVersion) -> [AppStoreVersionExperiment] {
+        guard let appStoreVersionExperimentIds = appStoreVersion.relationships?.appStoreVersionExperiments?.data?.map(\.id),
+              let appStoreVersionExperiments = included?.compactMap({ relationship -> AppStoreVersionExperiment? in
+                  guard case let .appStoreVersionExperiment(appStoreVersionExperiment) = relationship else { return nil }
+                  return appStoreVersionExperimentIds.contains(appStoreVersionExperiment.id) ? appStoreVersionExperiment : nil
+              })
+        else {
+            return []
+        }
+        return appStoreVersionExperiments
+    }
+
+    public func getAppStoreVersionLocalizations(for appStoreVersion: AppStoreVersion) -> [AppStoreVersionLocalization] {
+        guard let appStoreVersionLocalizationIds = appStoreVersion.relationships?.appStoreVersionLocalizations?.data?.map(\.id),
+              let appStoreVersionLocalizations = included?.compactMap({ relationship -> AppStoreVersionLocalization? in
+                  guard case let .appStoreVersionLocalization(appStoreVersionLocalization) = relationship else { return nil }
+                  return appStoreVersionLocalizationIds.contains(appStoreVersionLocalization.id) ? appStoreVersionLocalization : nil
+              })
+        else {
+            return []
+        }
+        return appStoreVersionLocalizations
+    }
+
+    public func getAppStoreVersionPhasedRelease(for appStoreVersion: AppStoreVersion) -> AppStoreVersionPhasedRelease? {
+        included?.compactMap { relationship -> AppStoreVersionPhasedRelease? in
+            guard case let .appStoreVersionPhasedRelease(appStoreVersionPhasedRelease) = relationship else { return nil }
+            return appStoreVersionPhasedRelease
+        }.first { $0.id == appStoreVersion.relationships?.appStoreVersionPhasedRelease?.data?.id }
+    }
+
+    public func getAppStoreVersionSubmission(for appStoreVersion: AppStoreVersion) -> AppStoreVersionSubmission? {
+        included?.compactMap { relationship -> AppStoreVersionSubmission? in
+            guard case let .appStoreVersionSubmission(appStoreVersionSubmission) = relationship else { return nil }
+            return appStoreVersionSubmission
+        }.first { $0.id == appStoreVersion.relationships?.appStoreVersionSubmission?.data?.id }
+    }
+
+    public func getBuild(for appStoreVersion: AppStoreVersion) -> Build? {
+        included?.compactMap { relationship -> Build? in
+            guard case let .build(build) = relationship else { return nil }
+            return build
+        }.first { $0.id == appStoreVersion.relationships?.build?.data?.id }
+    }
+
+    public func getIdfaDeclaration(for appStoreVersion: AppStoreVersion) -> IdfaDeclaration? {
+        included?.compactMap { relationship -> IdfaDeclaration? in
+            guard case let .idfaDeclaration(idfaDeclaration) = relationship else { return nil }
+            return idfaDeclaration
+        }.first { $0.id == appStoreVersion.relationships?.idfaDeclaration?.data?.id }
+    }
+
+    public func getRoutingAppCoverage(for appStoreVersion: AppStoreVersion) -> RoutingAppCoverage? {
+        included?.compactMap { relationship -> RoutingAppCoverage? in
+            guard case let .routingAppCoverage(routingAppCoverage) = relationship else { return nil }
+            return routingAppCoverage
+        }.first { $0.id == appStoreVersion.relationships?.routingAppCoverage?.data?.id }
+    }
+
     public enum Included: Codable {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)

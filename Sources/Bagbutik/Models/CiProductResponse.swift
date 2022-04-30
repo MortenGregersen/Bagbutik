@@ -20,6 +20,32 @@ public struct CiProductResponse: Codable {
         self.links = links
     }
 
+    public func getApp() -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == data.relationships?.app?.data?.id }
+    }
+
+    public func getBundleId() -> BundleId? {
+        included?.compactMap { relationship -> BundleId? in
+            guard case let .bundleId(bundleId) = relationship else { return nil }
+            return bundleId
+        }.first { $0.id == data.relationships?.bundleId?.data?.id }
+    }
+
+    public func getPrimaryRepositories() -> [ScmRepository] {
+        guard let primaryRepositoryIds = data.relationships?.primaryRepositories?.data?.map(\.id),
+              let primaryRepositories = included?.compactMap({ relationship -> ScmRepository? in
+                  guard case let .scmRepository(primaryRepository) = relationship else { return nil }
+                  return primaryRepositoryIds.contains(primaryRepository.id) ? primaryRepository : nil
+              })
+        else {
+            return []
+        }
+        return primaryRepositories
+    }
+
     public enum Included: Codable {
         case app(App)
         case bundleId(BundleId)

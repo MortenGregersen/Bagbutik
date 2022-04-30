@@ -14,6 +14,34 @@ public struct ReviewSubmissionItemResponse: Codable {
         self.links = links
     }
 
+    public func getAppCustomProductPageVersion() -> AppCustomProductPageVersion? {
+        included?.compactMap { relationship -> AppCustomProductPageVersion? in
+            guard case let .appCustomProductPageVersion(appCustomProductPageVersion) = relationship else { return nil }
+            return appCustomProductPageVersion
+        }.first { $0.id == data.relationships?.appCustomProductPageVersion?.data?.id }
+    }
+
+    public func getAppEvent() -> AppEvent? {
+        included?.compactMap { relationship -> AppEvent? in
+            guard case let .appEvent(appEvent) = relationship else { return nil }
+            return appEvent
+        }.first { $0.id == data.relationships?.appEvent?.data?.id }
+    }
+
+    public func getAppStoreVersion() -> AppStoreVersion? {
+        included?.compactMap { relationship -> AppStoreVersion? in
+            guard case let .appStoreVersion(appStoreVersion) = relationship else { return nil }
+            return appStoreVersion
+        }.first { $0.id == data.relationships?.appStoreVersion?.data?.id }
+    }
+
+    public func getAppStoreVersionExperiment() -> AppStoreVersionExperiment? {
+        included?.compactMap { relationship -> AppStoreVersionExperiment? in
+            guard case let .appStoreVersionExperiment(appStoreVersionExperiment) = relationship else { return nil }
+            return appStoreVersionExperiment
+        }.first { $0.id == data.relationships?.appStoreVersionExperiment?.data?.id }
+    }
+
     public enum Included: Codable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)

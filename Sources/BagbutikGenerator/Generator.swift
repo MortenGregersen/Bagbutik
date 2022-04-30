@@ -120,7 +120,7 @@ public class Generator {
         let modelsMissingDocumentation: [(name: String, url: String?)] = try await withThrowingTaskGroup(of: (name: String, url: String?)?.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
-                    let model = try Self.generateModel(for: schema)
+                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas)
                     let fileName = model.name + ".swift"
                     let fileURL = modelsDirURL.appendingPathComponent(fileName)
                     self.print("⚡️ Generating model \(model.name)...")
@@ -179,7 +179,7 @@ public class Generator {
         }
     }
 
-    private static func generateModel(for schema: Schema) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
+    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema]) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
         let renderedSchema: String
         let hasDocumentation: Bool
         let url: String?
@@ -189,7 +189,7 @@ public class Generator {
             hasDocumentation = enumSchema.documentation != nil
             url = enumSchema.url
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema)
+            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema, otherSchemas: otherSchemas)
             hasDocumentation = objectSchema.documentation != nil
             url = objectSchema.url
         case .binary(let binarySchema):

@@ -24,6 +24,39 @@ public struct AppPreviewSetsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getAppCustomProductPageLocalization(for appPreviewSet: AppPreviewSet) -> AppCustomProductPageLocalization? {
+        included?.compactMap { relationship -> AppCustomProductPageLocalization? in
+            guard case let .appCustomProductPageLocalization(appCustomProductPageLocalization) = relationship else { return nil }
+            return appCustomProductPageLocalization
+        }.first { $0.id == appPreviewSet.relationships?.appCustomProductPageLocalization?.data?.id }
+    }
+
+    public func getAppPreviews(for appPreviewSet: AppPreviewSet) -> [AppPreview] {
+        guard let appPreviewIds = appPreviewSet.relationships?.appPreviews?.data?.map(\.id),
+              let appPreviews = included?.compactMap({ relationship -> AppPreview? in
+                  guard case let .appPreview(appPreview) = relationship else { return nil }
+                  return appPreviewIds.contains(appPreview.id) ? appPreview : nil
+              })
+        else {
+            return []
+        }
+        return appPreviews
+    }
+
+    public func getAppStoreVersionExperimentTreatmentLocalization(for appPreviewSet: AppPreviewSet) -> AppStoreVersionExperimentTreatmentLocalization? {
+        included?.compactMap { relationship -> AppStoreVersionExperimentTreatmentLocalization? in
+            guard case let .appStoreVersionExperimentTreatmentLocalization(appStoreVersionExperimentTreatmentLocalization) = relationship else { return nil }
+            return appStoreVersionExperimentTreatmentLocalization
+        }.first { $0.id == appPreviewSet.relationships?.appStoreVersionExperimentTreatmentLocalization?.data?.id }
+    }
+
+    public func getAppStoreVersionLocalization(for appPreviewSet: AppPreviewSet) -> AppStoreVersionLocalization? {
+        included?.compactMap { relationship -> AppStoreVersionLocalization? in
+            guard case let .appStoreVersionLocalization(appStoreVersionLocalization) = relationship else { return nil }
+            return appStoreVersionLocalization
+        }.first { $0.id == appPreviewSet.relationships?.appStoreVersionLocalization?.data?.id }
+    }
+
     public enum Included: Codable {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appPreview(AppPreview)

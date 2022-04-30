@@ -24,6 +24,20 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getDefaultBranch(for scmRepository: ScmRepository) -> ScmGitReference? {
+        included?.compactMap { relationship -> ScmGitReference? in
+            guard case let .scmGitReference(defaultBranch) = relationship else { return nil }
+            return defaultBranch
+        }.first { $0.id == scmRepository.relationships?.defaultBranch?.data?.id }
+    }
+
+    public func getScmProvider(for scmRepository: ScmRepository) -> ScmProvider? {
+        included?.compactMap { relationship -> ScmProvider? in
+            guard case let .scmProvider(scmProvider) = relationship else { return nil }
+            return scmProvider
+        }.first { $0.id == scmRepository.relationships?.scmProvider?.data?.id }
+    }
+
     public enum Included: Codable {
         case scmGitReference(ScmGitReference)
         case scmProvider(ScmProvider)

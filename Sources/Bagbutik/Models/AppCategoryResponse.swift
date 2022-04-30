@@ -20,6 +20,25 @@ public struct AppCategoryResponse: Codable {
         self.links = links
     }
 
+    public func getParent() -> AppCategory? {
+        included?.compactMap { relationship -> AppCategory? in
+            guard case let .appCategory(parent) = relationship else { return nil }
+            return parent
+        }.first { $0.id == data.relationships?.parent?.data?.id }
+    }
+
+    public func getSubcategories() -> [AppCategory] {
+        guard let subcategoryIds = data.relationships?.subcategories?.data?.map(\.id),
+              let subcategories = included?.compactMap({ relationship -> AppCategory? in
+                  guard case let .appCategory(subcategory) = relationship else { return nil }
+                  return subcategoryIds.contains(subcategory.id) ? subcategory : nil
+              })
+        else {
+            return []
+        }
+        return subcategories
+    }
+
     public enum Included: Codable {
         case appCategory(AppCategory)
 

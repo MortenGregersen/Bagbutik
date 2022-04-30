@@ -18,6 +18,34 @@ public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getAppCustomProductPageVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> AppCustomProductPageVersion? {
+        included?.compactMap { relationship -> AppCustomProductPageVersion? in
+            guard case let .appCustomProductPageVersion(appCustomProductPageVersion) = relationship else { return nil }
+            return appCustomProductPageVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.appCustomProductPageVersion?.data?.id }
+    }
+
+    public func getAppEvent(for reviewSubmissionItem: ReviewSubmissionItem) -> AppEvent? {
+        included?.compactMap { relationship -> AppEvent? in
+            guard case let .appEvent(appEvent) = relationship else { return nil }
+            return appEvent
+        }.first { $0.id == reviewSubmissionItem.relationships?.appEvent?.data?.id }
+    }
+
+    public func getAppStoreVersion(for reviewSubmissionItem: ReviewSubmissionItem) -> AppStoreVersion? {
+        included?.compactMap { relationship -> AppStoreVersion? in
+            guard case let .appStoreVersion(appStoreVersion) = relationship else { return nil }
+            return appStoreVersion
+        }.first { $0.id == reviewSubmissionItem.relationships?.appStoreVersion?.data?.id }
+    }
+
+    public func getAppStoreVersionExperiment(for reviewSubmissionItem: ReviewSubmissionItem) -> AppStoreVersionExperiment? {
+        included?.compactMap { relationship -> AppStoreVersionExperiment? in
+            guard case let .appStoreVersionExperiment(appStoreVersionExperiment) = relationship else { return nil }
+            return appStoreVersionExperiment
+        }.first { $0.id == reviewSubmissionItem.relationships?.appStoreVersionExperiment?.data?.id }
+    }
+
     public enum Included: Codable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)

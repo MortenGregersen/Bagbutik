@@ -24,6 +24,37 @@ public struct ProfilesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getBundleId(for profile: Profile) -> BundleId? {
+        included?.compactMap { relationship -> BundleId? in
+            guard case let .bundleId(bundleId) = relationship else { return nil }
+            return bundleId
+        }.first { $0.id == profile.relationships?.bundleId?.data?.id }
+    }
+
+    public func getCertificates(for profile: Profile) -> [Certificate] {
+        guard let certificateIds = profile.relationships?.certificates?.data?.map(\.id),
+              let certificates = included?.compactMap({ relationship -> Certificate? in
+                  guard case let .certificate(certificate) = relationship else { return nil }
+                  return certificateIds.contains(certificate.id) ? certificate : nil
+              })
+        else {
+            return []
+        }
+        return certificates
+    }
+
+    public func getDevices(for profile: Profile) -> [Device] {
+        guard let deviceIds = profile.relationships?.devices?.data?.map(\.id),
+              let devices = included?.compactMap({ relationship -> Device? in
+                  guard case let .device(device) = relationship else { return nil }
+                  return deviceIds.contains(device.id) ? device : nil
+              })
+        else {
+            return []
+        }
+        return devices
+    }
+
     public enum Included: Codable {
         case bundleId(BundleId)
         case certificate(Certificate)

@@ -20,6 +20,32 @@ public struct AppClipAdvancedExperienceResponse: Codable {
         self.links = links
     }
 
+    public func getAppClip() -> AppClip? {
+        included?.compactMap { relationship -> AppClip? in
+            guard case let .appClip(appClip) = relationship else { return nil }
+            return appClip
+        }.first { $0.id == data.relationships?.appClip?.data?.id }
+    }
+
+    public func getHeaderImage() -> AppClipAdvancedExperienceImage? {
+        included?.compactMap { relationship -> AppClipAdvancedExperienceImage? in
+            guard case let .appClipAdvancedExperienceImage(headerImage) = relationship else { return nil }
+            return headerImage
+        }.first { $0.id == data.relationships?.headerImage?.data?.id }
+    }
+
+    public func getLocalizations() -> [AppClipAdvancedExperienceLocalization] {
+        guard let localizationIds = data.relationships?.localizations?.data?.map(\.id),
+              let localizations = included?.compactMap({ relationship -> AppClipAdvancedExperienceLocalization? in
+                  guard case let .appClipAdvancedExperienceLocalization(localization) = relationship else { return nil }
+                  return localizationIds.contains(localization.id) ? localization : nil
+              })
+        else {
+            return []
+        }
+        return localizations
+    }
+
     public enum Included: Codable {
         case appClip(AppClip)
         case appClipAdvancedExperienceImage(AppClipAdvancedExperienceImage)

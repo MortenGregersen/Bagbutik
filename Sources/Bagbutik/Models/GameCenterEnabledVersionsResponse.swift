@@ -24,6 +24,25 @@ public struct GameCenterEnabledVersionsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public func getApp(for gameCenterEnabledVersion: GameCenterEnabledVersion) -> App? {
+        included?.compactMap { relationship -> App? in
+            guard case let .app(app) = relationship else { return nil }
+            return app
+        }.first { $0.id == gameCenterEnabledVersion.relationships?.app?.data?.id }
+    }
+
+    public func getCompatibleVersions(for gameCenterEnabledVersion: GameCenterEnabledVersion) -> [GameCenterEnabledVersion] {
+        guard let compatibleVersionIds = gameCenterEnabledVersion.relationships?.compatibleVersions?.data?.map(\.id),
+              let compatibleVersions = included?.compactMap({ relationship -> GameCenterEnabledVersion? in
+                  guard case let .gameCenterEnabledVersion(compatibleVersion) = relationship else { return nil }
+                  return compatibleVersionIds.contains(compatibleVersion.id) ? compatibleVersion : nil
+              })
+        else {
+            return []
+        }
+        return compatibleVersions
+    }
+
     public enum Included: Codable {
         case app(App)
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
