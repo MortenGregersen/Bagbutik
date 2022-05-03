@@ -74,9 +74,9 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
                 public var eventEnd: Date?
                 public var eventStart: Date?
                 public var publishStart: Date?
-                public var territories: String?
+                @NullCodable public var territories: [String]?
 
-                public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: String? = nil) {
+                public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
                     self.eventEnd = eventEnd
                     self.eventStart = eventStart
                     self.publishStart = publishStart
