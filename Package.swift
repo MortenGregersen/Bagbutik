@@ -33,14 +33,6 @@ let package = Package(
                 .target(name: "system-zlib", condition: .when(platforms: [.linux])),
                 "BagbutikPolyfill"
             ]),
-        .target(name: "system-zlib"),
-        .testTarget(
-            name: "BagbutikTests",
-            dependencies: [
-                "Bagbutik",
-                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
-            ],
-            resources: [.copy("test-private-key.p8")]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
@@ -57,19 +49,18 @@ let package = Package(
                 "StencilSwiftKit",
                 "SwiftFormat"
             ]),
-        .testTarget(
-            name: "BagbutikGeneratorTests",
-            dependencies: ["BagbutikGenerator"]),
-        .target(
-            name: "BagbutikSpecDecoder",
-            dependencies: ["BagbutikStringExtensions"]),
-        .testTarget(
-            name: "BagbutikSpecDecoderTests",
-            dependencies: ["BagbutikSpecDecoder"]),
-        .target(
-            name: "BagbutikStringExtensions"),
-        .testTarget(
-            name: "BagbutikStringExtensionsTests",
-            dependencies: ["BagbutikStringExtensions"]),
+        .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
+        .target(name: "BagbutikStringExtensions"),
         .target(name: "BagbutikPolyfill"),
+        .target(name: "system-zlib"),
+        .testTarget(
+            name: "BagbutikTests",
+            dependencies: [
+                "Bagbutik",
+                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
+            ],
+            resources: [.copy("test-private-key.p8")]),
+        .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
+        .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
+        .testTarget(name: "BagbutikStringExtensionsTests", dependencies: ["BagbutikStringExtensions"]),
     ])
