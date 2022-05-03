@@ -77,6 +77,12 @@ final class ObjectSchemaTests: XCTestCase {
                             } ]
                         }
                     },
+                    "arrayOfStrings" : {
+                        "type" : "array",
+                        "items" : {
+                            "type" : "string"
+                        }
+                    },
                     "singleOneOfSchema" : {
                         "oneOf" : [ {
                             "$ref" : "#/components/schemas/Device"
@@ -127,8 +133,10 @@ final class ObjectSchemaTests: XCTestCase {
         let objectSchema = try decodeObjectSchema(from: json)
         // Then
         XCTAssertEqual(objectSchema.name, "AwesomeName")
-        XCTAssertEqual(objectSchema.properties.count, 8)
+        XCTAssertEqual(objectSchema.properties.count, 9)
         XCTAssertEqual(objectSchema.subSchemas.count, 7)
+        
+        XCTAssertEqual(objectSchema.properties["arrayOfStrings"]?.type.description, "[String]")
 
         guard case let .oneOf(arrayOfOneOfSchemasName, _) = objectSchema.subSchemas[0] else { return XCTFail() }
         XCTAssertEqual(arrayOfOneOfSchemasName, "ArrayOfOneOfSchemas")
