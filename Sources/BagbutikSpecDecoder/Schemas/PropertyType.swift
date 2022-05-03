@@ -16,6 +16,8 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
     case arrayOfSchemaRef(String)
     /// An array of object schema
     case arrayOfSubSchema(ObjectSchema)
+    /// An array of a simple type
+    case arrayOfSimple(SimplePropertyType)
     /// A one of schema
     case oneOf(name: String, schema: OneOfSchema)
     /// An array of one of schema
@@ -55,6 +57,8 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
             return "[\(schemaName)]"
         case .arrayOfSubSchema(let schema):
             return "[\(schema.name)]"
+        case .arrayOfSimple(let simplePropertyType):
+            return "[\(simplePropertyType.description)]"
         case .oneOf(let name, _):
             return name
         case .arrayOfOneOf(let name, _):
@@ -95,7 +99,12 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                           schema.properties.count > 0 || schema.name == "XcodeMetrics" {
                     self = .arrayOfSubSchema(schema)
                 } else {
-                    self = try container.decode(PropertyType.self, forKey: .items)
+                    let propertyType = try container.decode(PropertyType.self, forKey: .items)
+                    if propertyType.isSimple {
+                        self = .arrayOfSimple(.init(type: propertyType.description))
+                    } else {
+                        self = propertyType
+                    }
                 }
             } else if type == "object" {
                 if let dictionaryValueType = try container.decodeIfPresent(PropertyType.self, forKey: .additionalProperties) {

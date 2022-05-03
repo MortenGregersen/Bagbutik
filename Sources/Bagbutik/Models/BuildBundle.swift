@@ -67,7 +67,7 @@ public struct BuildBundle: Codable {
         /// The URL to the symbolication file for the app or App Clip.
         public var dSYMUrl: String?
         /// The protocols that the app uses to communicate with external accessory hardware. For more information, see UISupportedExternalAccessoryProtocols.
-        public var deviceProtocols: String?
+        @NullCodable public var deviceProtocols: [String]?
         /// Entitlement information for your app or App Clip.
         @NullCodable public var entitlements: [String: [String: String]]?
         /// The name of the build bundle.
@@ -83,19 +83,19 @@ public struct BuildBundle: Codable {
         /// A Boolean value that indicates whether an iOS app included in the build bundle is included on the Mac App Store.
         public var isIosBuildMacAppStoreCompatible: Bool?
         /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
-        public var locales: String?
+        @NullCodable public var locales: [String]?
         /// The build number of the OS you used to build the app or App Clip.
         public var platformBuild: String?
         /// An array of capabilities that your app or App Clip requires.
-        public var requiredCapabilities: String?
+        @NullCodable public var requiredCapabilities: [String]?
         /// A string that identifies the SDK you used to build your app or App Clip.
         public var sdkBuild: String?
         /// An array of supported CPU architectures that your app or App Clip supports.
-        public var supportedArchitectures: String?
+        @NullCodable public var supportedArchitectures: [String]?
         /// A Boolean value that indicates whether the app or App Clip included in the build bundle uses location services.
         public var usesLocationServices: Bool?
 
-        public init(bundleId: String? = nil, bundleType: BundleType? = nil, dSYMUrl: String? = nil, deviceProtocols: String? = nil, entitlements: [String: [String: String]]? = nil, fileName: String? = nil, hasOnDemandResources: Bool? = nil, hasPrerenderedIcon: Bool? = nil, hasSirikit: Bool? = nil, includesSymbols: Bool? = nil, isIosBuildMacAppStoreCompatible: Bool? = nil, locales: String? = nil, platformBuild: String? = nil, requiredCapabilities: String? = nil, sdkBuild: String? = nil, supportedArchitectures: String? = nil, usesLocationServices: Bool? = nil) {
+        public init(bundleId: String? = nil, bundleType: BundleType? = nil, dSYMUrl: String? = nil, deviceProtocols: [String]? = nil, entitlements: [String: [String: String]]? = nil, fileName: String? = nil, hasOnDemandResources: Bool? = nil, hasPrerenderedIcon: Bool? = nil, hasSirikit: Bool? = nil, includesSymbols: Bool? = nil, isIosBuildMacAppStoreCompatible: Bool? = nil, locales: [String]? = nil, platformBuild: String? = nil, requiredCapabilities: [String]? = nil, sdkBuild: String? = nil, supportedArchitectures: [String]? = nil, usesLocationServices: Bool? = nil) {
             self.bundleId = bundleId
             self.bundleType = bundleType
             self.dSYMUrl = dSYMUrl

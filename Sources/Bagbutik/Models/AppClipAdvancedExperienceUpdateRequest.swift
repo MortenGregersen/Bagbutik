@@ -94,17 +94,17 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct Place: Codable {
-                public var categories: String?
+                @NullCodable public var categories: [String]?
                 @NullCodable public var displayPoint: DisplayPoint?
                 public var homePage: String?
                 @NullCodable public var mainAddress: MainAddress?
                 @NullCodable public var mapAction: MapAction?
-                public var names: String?
+                @NullCodable public var names: [String]?
                 @NullCodable public var phoneNumber: PhoneNumber?
                 public var placeId: String?
                 @NullCodable public var relationship: Relationship?
 
-                public init(categories: String? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: String? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
+                public init(categories: [String]? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: [String]? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
                     self.categories = categories
                     self.displayPoint = displayPoint
                     self.homePage = homePage
@@ -157,9 +157,9 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                         public var neighborhood: String?
                         public var postalCode: String?
                         public var stateProvince: String?
-                        public var streetAddress: String?
+                        @NullCodable public var streetAddress: [String]?
 
-                        public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: String? = nil) {
+                        public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: [String]? = nil) {
                             self.countryCode = countryCode
                             self.floor = floor
                             self.locality = locality
