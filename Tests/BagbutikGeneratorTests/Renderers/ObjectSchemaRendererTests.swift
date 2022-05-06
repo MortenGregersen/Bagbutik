@@ -398,7 +398,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testGetterForIncludedNonPagedResponse() throws {
         // Given
         let renderer = ObjectSchemaRenderer()
@@ -543,7 +543,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "data": .init(type: .arrayOfSchemaRef("Build")),
                 "included": .init(type: .arrayOfOneOf(
                     name: "Included",
-                    schema: .init(options: [.schemaRef("PrereleaseVersion"),
+                    schema: .init(options: [.schemaRef("SomethingOld"),
+                                            .schemaRef("PrereleaseVersion"),
                                             .schemaRef("BetaTester")])
                 ))
             ]
@@ -555,6 +556,21 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 name: "Relationships",
                 url: "some://url",
                 properties: [
+                    "somethingOld": .init(type: .schema(.init(
+                        name: "SomethingOld",
+                        url: "some://url",
+                        properties: [
+                            "data": .init(type: .arrayOfSubSchema(.init(
+                                name: "Data",
+                                url: "some://url",
+                                properties: [
+                                    "id": .init(type: .simple(.string)),
+                                    "type": .init(type: .constant("somethingOlds"))
+                                ]
+                            )))
+                        ],
+                        requiredProperties: ["id", "type"]
+                    )), deprecated: true),
                     "individualTesters": .init(type: .schema(.init(
                         name: "IndividualTesters",
                         url: "some://url",
@@ -588,6 +604,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 ]
             ))
         )
+        let somethingOldSchema = ObjectSchema(
+            name: "SomethingOld",
+            url: "some://url",
+            properties: ["type": .init(type: .constant("somethingOlds"))]
+        )
         let prereleaseVersionSchema = ObjectSchema(
             name: "PrereleaseVersion",
             url: "some://url",
@@ -602,7 +623,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [
             "Build": .object(buildSchema),
             "BetaTester": .object(betaTesterSchema),
-            "PrereleaseVersion": .object(prereleaseVersionSchema)
+            "PrereleaseVersion": .object(prereleaseVersionSchema),
+            "SomethingOld": .object(somethingOldSchema)
         ])
         // Then
         XCTAssertEqual(rendered, #"""
@@ -638,12 +660,15 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public enum Included: Codable {
                 case betaTester(BetaTester)
                 case prereleaseVersion(PrereleaseVersion)
+                case somethingOld(SomethingOld)
 
                 public init(from decoder: Decoder) throws {
                     if let betaTester = try? BetaTester(from: decoder) {
                         self = .betaTester(betaTester)
                     } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                         self = .prereleaseVersion(prereleaseVersion)
+                    } else if let somethingOld = try? SomethingOld(from: decoder) {
+                        self = .somethingOld(somethingOld)
                     } else {
                         throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                               debugDescription: "Unknown Included"))
@@ -655,6 +680,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     case let .betaTester(value):
                         try value.encode(to: encoder)
                     case let .prereleaseVersion(value):
+                        try value.encode(to: encoder)
+                    case let .somethingOld(value):
                         try value.encode(to: encoder)
                     }
                 }

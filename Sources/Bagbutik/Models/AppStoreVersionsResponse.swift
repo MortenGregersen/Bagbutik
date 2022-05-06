@@ -24,13 +24,6 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    public func getAgeRatingDeclaration(for appStoreVersion: AppStoreVersion) -> AgeRatingDeclaration? {
-        included?.compactMap { relationship -> AgeRatingDeclaration? in
-            guard case let .ageRatingDeclaration(ageRatingDeclaration) = relationship else { return nil }
-            return ageRatingDeclaration
-        }.first { $0.id == appStoreVersion.relationships?.ageRatingDeclaration?.data?.id }
-    }
-
     public func getApp(for appStoreVersion: AppStoreVersion) -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }

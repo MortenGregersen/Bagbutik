@@ -274,7 +274,7 @@ public class ObjectSchemaRenderer {
         guard case .object(let dataSchema) = otherSchemas[dataSchemaName],
               case .relationships(let relationshipsSchema) = dataSchema.relationshipsSchema else { return [] }
         return relationshipsSchema.properties.sorted(by: { $0.key < $1.key }).compactMap { relationship in
-            guard case .schema(let relationshipPropertySchema) = relationship.value.type else { return nil }
+            guard !relationship.value.deprecated, case .schema(let relationshipPropertySchema) = relationship.value.type else { return nil }
             let relationshipDataProperty = relationshipPropertySchema.properties["data"]
             let relationshipDataSchema: ObjectSchema
             let template: String

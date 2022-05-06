@@ -20,13 +20,6 @@ public struct AppStoreVersionResponse: Codable {
         self.links = links
     }
 
-    public func getAgeRatingDeclaration() -> AgeRatingDeclaration? {
-        included?.compactMap { relationship -> AgeRatingDeclaration? in
-            guard case let .ageRatingDeclaration(ageRatingDeclaration) = relationship else { return nil }
-            return ageRatingDeclaration
-        }.first { $0.id == data.relationships?.ageRatingDeclaration?.data?.id }
-    }
-
     public func getApp() -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }
