@@ -65,7 +65,7 @@ public struct CiProduct: Codable {
         /// The name of the Xcode Cloud product.
         public var name: String?
         /// A string that indicates whether the Xcode Cloud product is a framework or an app.
-        @NullCodable public var productType: ProductType?
+        public var productType: ProductType?
 
         public init(createdDate: Date? = nil, name: String? = nil, productType: ProductType? = nil) {
             self.createdDate = createdDate
@@ -86,9 +86,9 @@ public struct CiProduct: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
-        @NullCodable public var bundleId: BundleId?
-        @NullCodable public var primaryRepositories: PrimaryRepositories?
+        public var app: App?
+        public var bundleId: BundleId?
+        public var primaryRepositories: PrimaryRepositories?
 
         public init(app: App? = nil, bundleId: BundleId? = nil, primaryRepositories: PrimaryRepositories? = nil) {
             self.app = app
@@ -106,7 +106,7 @@ public struct CiProduct: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -195,7 +195,7 @@ public struct CiProduct: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -284,9 +284,9 @@ public struct CiProduct: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

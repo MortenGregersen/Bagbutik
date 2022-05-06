@@ -62,7 +62,7 @@ public struct BundleId: Codable {
     public struct Attributes: Codable {
         public var identifier: String?
         public var name: String?
-        @NullCodable public var platform: BundleIdPlatform?
+        public var platform: BundleIdPlatform?
         public var seedId: String?
 
         public init(identifier: String? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, seedId: String? = nil) {
@@ -80,9 +80,9 @@ public struct BundleId: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
-        @NullCodable public var bundleIdCapabilities: BundleIdCapabilities?
-        @NullCodable public var profiles: Profiles?
+        public var app: App?
+        public var bundleIdCapabilities: BundleIdCapabilities?
+        public var profiles: Profiles?
 
         public init(app: App? = nil, bundleIdCapabilities: BundleIdCapabilities? = nil, profiles: Profiles? = nil) {
             self.app = app
@@ -100,7 +100,7 @@ public struct BundleId: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -189,9 +189,9 @@ public struct BundleId: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -281,9 +281,9 @@ public struct BundleId: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

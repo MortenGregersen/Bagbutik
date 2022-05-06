@@ -64,9 +64,9 @@ public struct AppCustomProductPageLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalization/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appCustomProductPageVersion: AppCustomProductPageVersion?
-        @NullCodable public var appPreviewSets: AppPreviewSets?
-        @NullCodable public var appScreenshotSets: AppScreenshotSets?
+        public var appCustomProductPageVersion: AppCustomProductPageVersion?
+        public var appPreviewSets: AppPreviewSets?
+        public var appScreenshotSets: AppScreenshotSets?
 
         public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil, appPreviewSets: AppPreviewSets? = nil, appScreenshotSets: AppScreenshotSets? = nil) {
             self.appCustomProductPageVersion = appCustomProductPageVersion
@@ -84,7 +84,7 @@ public struct AppCustomProductPageLocalization: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -173,9 +173,9 @@ public struct AppCustomProductPageLocalization: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -265,9 +265,9 @@ public struct AppCustomProductPageLocalization: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

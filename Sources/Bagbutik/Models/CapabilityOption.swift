@@ -10,7 +10,7 @@ public struct CapabilityOption: Codable {
     public var description: String?
     public var enabled: Bool?
     public var enabledByDefault: Bool?
-    @NullCodable public var key: Key?
+    public var key: Key?
     public var name: String?
     public var supportsWildcard: Bool?
 

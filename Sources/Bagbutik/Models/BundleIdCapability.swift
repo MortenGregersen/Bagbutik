@@ -54,8 +54,8 @@ public struct BundleIdCapability: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var capabilityType: CapabilityType?
-        @NullCodable public var settings: [CapabilitySetting]?
+        public var capabilityType: CapabilityType?
+        public var settings: [CapabilitySetting]?
 
         public init(capabilityType: CapabilityType? = nil, settings: [CapabilitySetting]? = nil) {
             self.capabilityType = capabilityType

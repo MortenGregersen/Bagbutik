@@ -48,16 +48,16 @@ public struct AppEvent: Codable {
     }
 
     public struct Attributes: Codable {
-        @NullCodable public var archivedTerritorySchedules: [ArchivedTerritorySchedules]?
-        @NullCodable public var badge: Badge?
+        public var archivedTerritorySchedules: [ArchivedTerritorySchedules]?
+        public var badge: Badge?
         public var deepLink: String?
-        @NullCodable public var eventState: EventState?
+        public var eventState: EventState?
         public var primaryLocale: String?
-        @NullCodable public var priority: Priority?
-        @NullCodable public var purchaseRequirement: PurchaseRequirement?
-        @NullCodable public var purpose: Purpose?
+        public var priority: Priority?
+        public var purchaseRequirement: PurchaseRequirement?
+        public var purpose: Purpose?
         public var referenceName: String?
-        @NullCodable public var territorySchedules: [TerritorySchedules]?
+        public var territorySchedules: [TerritorySchedules]?
 
         public init(archivedTerritorySchedules: [ArchivedTerritorySchedules]? = nil, badge: Badge? = nil, deepLink: String? = nil, eventState: EventState? = nil, primaryLocale: String? = nil, priority: Priority? = nil, purchaseRequirement: PurchaseRequirement? = nil, purpose: Purpose? = nil, referenceName: String? = nil, territorySchedules: [TerritorySchedules]? = nil) {
             self.archivedTerritorySchedules = archivedTerritorySchedules
@@ -76,7 +76,7 @@ public struct AppEvent: Codable {
             public var eventEnd: Date?
             public var eventStart: Date?
             public var publishStart: Date?
-            @NullCodable public var territories: [String]?
+            public var territories: [String]?
 
             public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
                 self.eventEnd = eventEnd
@@ -133,7 +133,7 @@ public struct AppEvent: Codable {
             public var eventEnd: Date?
             public var eventStart: Date?
             public var publishStart: Date?
-            @NullCodable public var territories: [String]?
+            public var territories: [String]?
 
             public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
                 self.eventEnd = eventEnd
@@ -151,7 +151,7 @@ public struct AppEvent: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appevent/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var localizations: Localizations?
+        public var localizations: Localizations?
 
         public init(localizations: Localizations? = nil) {
             self.localizations = localizations
@@ -167,9 +167,9 @@ public struct AppEvent: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

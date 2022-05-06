@@ -10,11 +10,11 @@ public struct CiPullRequestStartCondition: Codable {
     /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
     public var autoCancel: Bool?
     /// The destination branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.
-    @NullCodable public var destination: CiBranchPatterns?
+    public var destination: CiBranchPatterns?
     /// The custom rule that determines whether Xcode Cloud starts a build or not based on a pull request’s changes to files.
-    @NullCodable public var filesAndFoldersRule: CiFilesAndFoldersRule?
+    public var filesAndFoldersRule: CiFilesAndFoldersRule?
     /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.
-    @NullCodable public var source: CiBranchPatterns?
+    public var source: CiBranchPatterns?
 
     public init(autoCancel: Bool? = nil, destination: CiBranchPatterns? = nil, filesAndFoldersRule: CiFilesAndFoldersRule? = nil, source: CiBranchPatterns? = nil) {
         self.autoCancel = autoCancel

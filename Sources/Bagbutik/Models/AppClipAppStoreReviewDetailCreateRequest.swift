@@ -63,7 +63,7 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// An array of invocation URLs for your App Clip.
-            @NullCodable public var invocationUrls: [String]?
+            public var invocationUrls: [String]?
 
             public init(invocationUrls: [String]? = nil) {
                 self.invocationUrls = invocationUrls

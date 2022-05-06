@@ -65,7 +65,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// The workflow’s actions.
             public let actions: [CiAction]
             /// A start condition that starts new builds for changes to a branch.
-            @NullCodable public var branchStartCondition: CiBranchStartCondition?
+            public var branchStartCondition: CiBranchStartCondition?
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public let clean: Bool
             /// The relative path to your Xcode project or workspace.
@@ -79,11 +79,11 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// The name of the workflow you want to create; for example, My New Workflow.
             public let name: String
             /// A start condition that starts new builds for changes to a pull request.
-            @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
+            public var pullRequestStartCondition: CiPullRequestStartCondition?
             /// A start condition that starts new builds based on a custom schedule.
-            @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
+            public var scheduledStartCondition: CiScheduledStartCondition?
             /// A start condition that starts new builds for changes to a tag.
-            @NullCodable public var tagStartCondition: CiTagStartCondition?
+            public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction], branchStartCondition: CiBranchStartCondition? = nil, clean: Bool, containerFilePath: String, description: String, isEnabled: Bool, isLockedForEditing: Bool? = nil, name: String, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
                 self.actions = actions

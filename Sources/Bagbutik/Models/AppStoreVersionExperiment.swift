@@ -52,7 +52,7 @@ public struct AppStoreVersionExperiment: Codable {
         public var name: String?
         public var reviewRequired: Bool?
         public var startDate: Date?
-        @NullCodable public var state: State?
+        public var state: State?
         public var trafficProportion: Int?
 
         public init(endDate: Date? = nil, name: String? = nil, reviewRequired: Bool? = nil, startDate: Date? = nil, state: State? = nil, trafficProportion: Int? = nil) {
@@ -84,8 +84,8 @@ public struct AppStoreVersionExperiment: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appStoreVersion: AppStoreVersion?
-        @NullCodable public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments?
+        public var appStoreVersion: AppStoreVersion?
+        public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments?
 
         public init(appStoreVersion: AppStoreVersion? = nil, appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments? = nil) {
             self.appStoreVersion = appStoreVersion
@@ -102,7 +102,7 @@ public struct AppStoreVersionExperiment: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -191,9 +191,9 @@ public struct AppStoreVersionExperiment: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

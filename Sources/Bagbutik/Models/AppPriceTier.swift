@@ -55,7 +55,7 @@ public struct AppPriceTier: Codable {
      */
     public struct Relationships: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        @NullCodable public var pricePoints: PricePoints? = nil
+        public var pricePoints: PricePoints? = nil
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(pricePoints: PricePoints? = nil) {
@@ -74,9 +74,9 @@ public struct AppPriceTier: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

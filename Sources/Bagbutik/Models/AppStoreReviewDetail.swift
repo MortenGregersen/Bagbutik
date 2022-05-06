@@ -88,8 +88,8 @@ public struct AppStoreReviewDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appStoreReviewAttachments: AppStoreReviewAttachments?
-        @NullCodable public var appStoreVersion: AppStoreVersion?
+        public var appStoreReviewAttachments: AppStoreReviewAttachments?
+        public var appStoreVersion: AppStoreVersion?
 
         public init(appStoreReviewAttachments: AppStoreReviewAttachments? = nil, appStoreVersion: AppStoreVersion? = nil) {
             self.appStoreReviewAttachments = appStoreReviewAttachments
@@ -106,9 +106,9 @@ public struct AppStoreReviewDetail: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -198,7 +198,7 @@ public struct AppStoreReviewDetail: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

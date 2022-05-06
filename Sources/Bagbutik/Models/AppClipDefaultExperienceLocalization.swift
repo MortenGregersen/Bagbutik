@@ -78,8 +78,8 @@ public struct AppClipDefaultExperienceLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
-        @NullCodable public var appClipHeaderImage: AppClipHeaderImage?
+        public var appClipDefaultExperience: AppClipDefaultExperience?
+        public var appClipHeaderImage: AppClipHeaderImage?
 
         public init(appClipDefaultExperience: AppClipDefaultExperience? = nil, appClipHeaderImage: AppClipHeaderImage? = nil) {
             self.appClipDefaultExperience = appClipDefaultExperience
@@ -96,7 +96,7 @@ public struct AppClipDefaultExperienceLocalization: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -185,7 +185,7 @@ public struct AppClipDefaultExperienceLocalization: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

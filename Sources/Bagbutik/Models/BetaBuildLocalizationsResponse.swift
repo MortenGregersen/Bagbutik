@@ -11,11 +11,11 @@ public struct BetaBuildLocalizationsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [BetaBuildLocalization]
     /// The included related resources.
-    @NullCodable public var included: [Build]?
+    public var included: [Build]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [BetaBuildLocalization], included: [Build]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

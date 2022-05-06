@@ -63,7 +63,7 @@ public struct App: Codable {
         public var availableInNewTerritories: Bool?
         /// The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.
         public var bundleId: String?
-        @NullCodable public var contentRightsDeclaration: ContentRightsDeclaration?
+        public var contentRightsDeclaration: ContentRightsDeclaration?
         public var isOrEverWasMadeForKids: Bool?
         /// The name of your app as it will appear in the App Store. The maximum length is 30 characters.
         public var name: String?
@@ -73,8 +73,8 @@ public struct App: Codable {
         public var sku: String?
         public var subscriptionStatusUrl: String?
         public var subscriptionStatusUrlForSandbox: String?
-        @NullCodable public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
-        @NullCodable public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
+        public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
+        public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
         public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: ContentRightsDeclaration? = nil, isOrEverWasMadeForKids: Bool? = nil, name: String? = nil, primaryLocale: String? = nil, sku: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil) {
             self.availableInNewTerritories = availableInNewTerritories
@@ -103,25 +103,25 @@ public struct App: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appClips: AppClips?
-        @NullCodable public var appCustomProductPages: AppCustomProductPages?
-        @NullCodable public var appEvents: AppEvents?
-        @NullCodable public var appInfos: AppInfos?
-        @NullCodable public var appStoreVersions: AppStoreVersions?
-        @NullCodable public var availableTerritories: AvailableTerritories?
-        @NullCodable public var betaAppLocalizations: BetaAppLocalizations?
-        @NullCodable public var betaAppReviewDetail: BetaAppReviewDetail?
-        @NullCodable public var betaGroups: BetaGroups?
-        @NullCodable public var betaLicenseAgreement: BetaLicenseAgreement?
-        @NullCodable public var builds: Builds?
-        @NullCodable public var ciProduct: CiProduct?
-        @NullCodable public var endUserLicenseAgreement: EndUserLicenseAgreement?
-        @NullCodable public var gameCenterEnabledVersions: GameCenterEnabledVersions?
-        @NullCodable public var inAppPurchases: InAppPurchases?
-        @NullCodable public var preOrder: PreOrder?
-        @NullCodable public var preReleaseVersions: PreReleaseVersions?
-        @NullCodable public var prices: Prices?
-        @NullCodable public var reviewSubmissions: ReviewSubmissions?
+        public var appClips: AppClips?
+        public var appCustomProductPages: AppCustomProductPages?
+        public var appEvents: AppEvents?
+        public var appInfos: AppInfos?
+        public var appStoreVersions: AppStoreVersions?
+        public var availableTerritories: AvailableTerritories?
+        public var betaAppLocalizations: BetaAppLocalizations?
+        public var betaAppReviewDetail: BetaAppReviewDetail?
+        public var betaGroups: BetaGroups?
+        public var betaLicenseAgreement: BetaLicenseAgreement?
+        public var builds: Builds?
+        public var ciProduct: CiProduct?
+        public var endUserLicenseAgreement: EndUserLicenseAgreement?
+        public var gameCenterEnabledVersions: GameCenterEnabledVersions?
+        public var inAppPurchases: InAppPurchases?
+        public var preOrder: PreOrder?
+        public var preReleaseVersions: PreReleaseVersions?
+        public var prices: Prices?
+        public var reviewSubmissions: ReviewSubmissions?
 
         public init(appClips: AppClips? = nil, appCustomProductPages: AppCustomProductPages? = nil, appEvents: AppEvents? = nil, appInfos: AppInfos? = nil, appStoreVersions: AppStoreVersions? = nil, availableTerritories: AvailableTerritories? = nil, betaAppLocalizations: BetaAppLocalizations? = nil, betaAppReviewDetail: BetaAppReviewDetail? = nil, betaGroups: BetaGroups? = nil, betaLicenseAgreement: BetaLicenseAgreement? = nil, builds: Builds? = nil, ciProduct: CiProduct? = nil, endUserLicenseAgreement: EndUserLicenseAgreement? = nil, gameCenterEnabledVersions: GameCenterEnabledVersions? = nil, inAppPurchases: InAppPurchases? = nil, preOrder: PreOrder? = nil, preReleaseVersions: PreReleaseVersions? = nil, prices: Prices? = nil, reviewSubmissions: ReviewSubmissions? = nil) {
             self.appClips = appClips
@@ -155,9 +155,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -247,9 +247,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -339,9 +339,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -431,9 +431,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -523,9 +523,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -615,9 +615,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -707,9 +707,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -799,7 +799,7 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -888,9 +888,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -980,7 +980,7 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -1069,9 +1069,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -1161,7 +1161,7 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -1250,7 +1250,7 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -1339,9 +1339,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -1431,9 +1431,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -1523,7 +1523,7 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -1612,9 +1612,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -1704,9 +1704,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -1796,9 +1796,9 @@ public struct App: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

@@ -102,9 +102,9 @@ public struct BetaGroup: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
-        @NullCodable public var betaTesters: BetaTesters?
-        @NullCodable public var builds: Builds?
+        public var app: App?
+        public var betaTesters: BetaTesters?
+        public var builds: Builds?
 
         public init(app: App? = nil, betaTesters: BetaTesters? = nil, builds: Builds? = nil) {
             self.app = app
@@ -122,7 +122,7 @@ public struct BetaGroup: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -211,9 +211,9 @@ public struct BetaGroup: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -303,9 +303,9 @@ public struct BetaGroup: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

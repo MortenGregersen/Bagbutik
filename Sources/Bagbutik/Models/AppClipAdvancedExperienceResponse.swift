@@ -10,7 +10,7 @@ public struct AppClipAdvancedExperienceResponse: Codable {
     /// The resource data.
     public let data: AppClipAdvancedExperience
     /// The included related resources.
-    @NullCodable public var included: [Included]?
+    public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

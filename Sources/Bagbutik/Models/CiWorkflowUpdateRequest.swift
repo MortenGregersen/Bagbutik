@@ -69,9 +69,9 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The workflow’s actions.
-            @NullCodable public var actions: [CiAction]?
+            public var actions: [CiAction]?
             /// The workflow’s start condition that starts new builds for changes to a branch.
-            @NullCodable public var branchStartCondition: CiBranchStartCondition?
+            public var branchStartCondition: CiBranchStartCondition?
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public var clean: Bool?
             /// The path to your Xcode project or workspace.
@@ -85,11 +85,11 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             /// The name of the workflow you want to create; for example, My Workflow.
             public var name: String?
             /// The workflow’s start condition for pull request changes.
-            @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
+            public var pullRequestStartCondition: CiPullRequestStartCondition?
             /// The workflow’s start condition that starts new builds on a custom schedule.
-            @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
+            public var scheduledStartCondition: CiScheduledStartCondition?
             /// The workflow’s start condition that starts new builds for changes to a tag.
-            @NullCodable public var tagStartCondition: CiTagStartCondition?
+            public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction]? = nil, branchStartCondition: CiBranchStartCondition? = nil, clean: Bool? = nil, containerFilePath: String? = nil, description: String? = nil, isEnabled: Bool? = nil, isLockedForEditing: Bool? = nil, name: String? = nil, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
                 self.actions = actions
@@ -113,8 +113,8 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var macOsVersion: MacOsVersion?
-            @NullCodable public var xcodeVersion: XcodeVersion?
+            public var macOsVersion: MacOsVersion?
+            public var xcodeVersion: XcodeVersion?
 
             public init(macOsVersion: MacOsVersion? = nil, xcodeVersion: XcodeVersion? = nil) {
                 self.macOsVersion = macOsVersion

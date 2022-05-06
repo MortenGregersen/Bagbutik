@@ -48,7 +48,7 @@ public struct AppCustomProductPageVersion: Codable {
     }
 
     public struct Attributes: Codable {
-        @NullCodable public var state: State?
+        public var state: State?
         public var version: String?
 
         public init(state: State? = nil, version: String? = nil) {
@@ -75,8 +75,8 @@ public struct AppCustomProductPageVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversion/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appCustomProductPage: AppCustomProductPage?
-        @NullCodable public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
+        public var appCustomProductPage: AppCustomProductPage?
+        public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
         public init(appCustomProductPage: AppCustomProductPage? = nil, appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil) {
             self.appCustomProductPage = appCustomProductPage
@@ -93,7 +93,7 @@ public struct AppCustomProductPageVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -182,9 +182,9 @@ public struct AppCustomProductPageVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

@@ -71,7 +71,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             public var copyright: String?
             public var downloadable: Bool?
             public var earliestReleaseDate: Date?
-            @NullCodable public var releaseType: AppStoreVersion.Attributes.ReleaseType?
+            public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
             public var usesIdfa: Bool? = nil
             public var versionString: String?
@@ -102,8 +102,8 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
-            @NullCodable public var build: Build?
+            public var appClipDefaultExperience: AppClipDefaultExperience?
+            public var build: Build?
 
             public init(appClipDefaultExperience: AppClipDefaultExperience? = nil, build: Build? = nil) {
                 self.appClipDefaultExperience = appClipDefaultExperience

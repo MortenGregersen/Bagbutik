@@ -61,7 +61,7 @@ public struct AppEncryptionDeclaration: Codable {
      */
     public struct Attributes: Codable {
         /// The approval state of your export compliance documentation.
-        @NullCodable public var appEncryptionDeclarationState: AppEncryptionDeclarationState?
+        public var appEncryptionDeclarationState: AppEncryptionDeclarationState?
         /// A Boolean value that indicates the intent to distribute your app on the French App Store.
         public var availableOnFrenchStore: Bool?
         /// A unique identifier that can be added to your app to associate it with a given declaration.
@@ -79,7 +79,7 @@ public struct AppEncryptionDeclaration: Codable {
         /// A Boolean value that indicates your app is exempt based on your use of encryption and the app's availability.
         public var exempt: Bool?
         /// The platform of the declaration.
-        @NullCodable public var platform: Platform?
+        public var platform: Platform?
         /// The date and time you submitted your declaration.
         public var uploadedDate: Date?
         /// A Boolean value that indicates whether your app uses, contains, or incorporates cryptography.
@@ -108,7 +108,7 @@ public struct AppEncryptionDeclaration: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
+        public var app: App?
 
         public init(app: App? = nil) {
             self.app = app
@@ -124,7 +124,7 @@ public struct AppEncryptionDeclaration: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

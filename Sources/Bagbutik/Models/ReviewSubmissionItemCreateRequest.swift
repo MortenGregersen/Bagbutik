@@ -50,10 +50,10 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var appCustomProductPageVersion: AppCustomProductPageVersion?
-            @NullCodable public var appEvent: AppEvent?
-            @NullCodable public var appStoreVersion: AppStoreVersion?
-            @NullCodable public var appStoreVersionExperiment: AppStoreVersionExperiment?
+            public var appCustomProductPageVersion: AppCustomProductPageVersion?
+            public var appEvent: AppEvent?
+            public var appStoreVersion: AppStoreVersion?
+            public var appStoreVersionExperiment: AppStoreVersionExperiment?
             public let reviewSubmission: ReviewSubmission
 
             public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil, appEvent: AppEvent? = nil, appStoreVersion: AppStoreVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperiment? = nil, reviewSubmission: ReviewSubmission) {

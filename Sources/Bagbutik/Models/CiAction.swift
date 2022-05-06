@@ -8,21 +8,21 @@ import Foundation
  */
 public struct CiAction: Codable {
     /// The type of the action.
-    @NullCodable public var actionType: CiActionType?
+    public var actionType: CiActionType?
     /// A type that indicates whether a build’s artifact is eligible for release on the App Store.
-    @NullCodable public var buildDistributionAudience: BuildAudienceType?
+    public var buildDistributionAudience: BuildAudienceType?
     /// A string that describes the destination Xcode Cloud uses for an action.
-    @NullCodable public var destination: Destination?
+    public var destination: Destination?
     /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
     public var isRequiredToPass: Bool?
     /// The name of the action; for example, archive or test.
     public var name: String?
     /// The platform Xcode Cloud uses for the action.
-    @NullCodable public var platform: Platform?
+    public var platform: Platform?
     /// The name of the scheme that Xcode Cloud uses to perform the action.
     public var scheme: String?
     /// An action’s test configuration. Only set this field for test actions.
-    @NullCodable public var testConfiguration: TestConfiguration?
+    public var testConfiguration: TestConfiguration?
 
     public init(actionType: CiActionType? = nil, buildDistributionAudience: BuildAudienceType? = nil, destination: Destination? = nil, isRequiredToPass: Bool? = nil, name: String? = nil, platform: Platform? = nil, scheme: String? = nil, testConfiguration: TestConfiguration? = nil) {
         self.actionType = actionType
@@ -56,8 +56,8 @@ public struct CiAction: Codable {
     }
 
     public struct TestConfiguration: Codable {
-        @NullCodable public var kind: Kind?
-        @NullCodable public var testDestinations: [CiTestDestination]?
+        public var kind: Kind?
+        public var testDestinations: [CiTestDestination]?
         public var testPlanName: String?
 
         public init(kind: Kind? = nil, testDestinations: [CiTestDestination]? = nil, testPlanName: String? = nil) {

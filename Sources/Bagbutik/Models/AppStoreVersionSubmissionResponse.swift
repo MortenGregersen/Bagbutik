@@ -10,7 +10,7 @@ public struct AppStoreVersionSubmissionResponse: Codable {
     /// The resource data.
     public let data: AppStoreVersionSubmission
     /// The included related resources.
-    @NullCodable public var included: [AppStoreVersion]?
+    public var included: [AppStoreVersion]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

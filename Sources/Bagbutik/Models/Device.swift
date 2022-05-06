@@ -55,11 +55,11 @@ public struct Device: Codable {
      */
     public struct Attributes: Codable {
         public var addedDate: Date?
-        @NullCodable public var deviceClass: DeviceClass?
+        public var deviceClass: DeviceClass?
         public var model: String?
         public var name: String?
-        @NullCodable public var platform: BundleIdPlatform?
-        @NullCodable public var status: Status?
+        public var platform: BundleIdPlatform?
+        public var status: Status?
         public var udid: String?
 
         public init(addedDate: Date? = nil, deviceClass: DeviceClass? = nil, model: String? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, status: Status? = nil, udid: String? = nil) {

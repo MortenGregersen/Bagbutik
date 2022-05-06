@@ -42,8 +42,8 @@ public struct AppCustomProductPageVersionInlineCreate: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioninlinecreate/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appCustomProductPage: AppCustomProductPage?
-        @NullCodable public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
+        public var appCustomProductPage: AppCustomProductPage?
+        public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
         public init(appCustomProductPage: AppCustomProductPage? = nil, appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil) {
             self.appCustomProductPage = appCustomProductPage

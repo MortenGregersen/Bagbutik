@@ -65,7 +65,7 @@ public struct ScmGitReference: Codable {
         /// A Boolean value that indicates whether the Git reference was deleted.
         public var isDeleted: Bool?
         /// A value that indicates whether the Git reference is a tag or a branch.
-        @NullCodable public var kind: CiGitRefKind?
+        public var kind: CiGitRefKind?
         /// The name of the Git reference.
         public var name: String?
 
@@ -84,7 +84,7 @@ public struct ScmGitReference: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var repository: Repository?
+        public var repository: Repository?
 
         public init(repository: Repository? = nil) {
             self.repository = repository
@@ -100,7 +100,7 @@ public struct ScmGitReference: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

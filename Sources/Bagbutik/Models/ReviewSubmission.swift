@@ -48,8 +48,8 @@ public struct ReviewSubmission: Codable {
     }
 
     public struct Attributes: Codable {
-        @NullCodable public var platform: Platform?
-        @NullCodable public var state: State?
+        public var platform: Platform?
+        public var state: State?
         public var submittedDate: Date?
 
         public init(platform: Platform? = nil, state: State? = nil, submittedDate: Date? = nil) {
@@ -76,9 +76,9 @@ public struct ReviewSubmission: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmission/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
-        @NullCodable public var appStoreVersionForReview: AppStoreVersionForReview?
-        @NullCodable public var items: Relationships?
+        public var app: App?
+        public var appStoreVersionForReview: AppStoreVersionForReview?
+        public var items: Relationships?
 
         public init(app: App? = nil, appStoreVersionForReview: AppStoreVersionForReview? = nil, items: Relationships? = nil) {
             self.app = app
@@ -96,7 +96,7 @@ public struct ReviewSubmission: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -185,7 +185,7 @@ public struct ReviewSubmission: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -274,9 +274,9 @@ public struct ReviewSubmission: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
