@@ -32,6 +32,15 @@ final class PropertyRendererTests: XCTestCase {
         // This is needed when relationships in create and update requests are cleared (eg. when removing subcategory in app info)
     }
     
+    func testNullCodableOnNonSimpleOptionalDataArray() throws {
+        // Given
+        let renderer = PropertyRenderer()
+        // When
+        let rendered = try renderer.render(id: "data", type: "[Data]", optional: true, isSimpleType: false)
+        // Then
+        XCTAssertEqual(rendered, "@NullCodable public var data: [Data]?")
+    }
+    
     func testNoNullCodableOnNonSimpleOptionalNotData() throws {
         // Given
         let renderer = PropertyRenderer()
