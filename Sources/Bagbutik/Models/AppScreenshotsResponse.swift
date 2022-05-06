@@ -11,11 +11,11 @@ public struct AppScreenshotsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppScreenshot]
     /// The included related resources.
-    @NullCodable public var included: [AppScreenshotSet]?
+    public var included: [AppScreenshotSet]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [AppScreenshot], included: [AppScreenshotSet]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

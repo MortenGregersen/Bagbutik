@@ -11,11 +11,11 @@ public struct CiMacOsVersionsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [CiMacOsVersion]
     /// The included related resources.
-    @NullCodable public var included: [CiXcodeVersion]?
+    public var included: [CiXcodeVersion]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [CiMacOsVersion], included: [CiXcodeVersion]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

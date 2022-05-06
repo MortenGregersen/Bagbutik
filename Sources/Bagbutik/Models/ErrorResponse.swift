@@ -8,7 +8,7 @@ import Foundation
  */
 public struct ErrorResponse: Codable {
     /// An array of one or more errors.
-    @NullCodable public var errors: [Errors]?
+    public var errors: [Errors]?
 
     public init(errors: [Errors]? = nil) {
         self.errors = errors
@@ -30,7 +30,7 @@ public struct ErrorResponse: Codable {
         /// The unique ID of a specific instance of an error, request, and response. Use this ID when providing feedback to or debugging issues with Apple.
         public var id: String?
         /// One of two possible types of values: source.parameter, provided when a query parameter produced the error, or source.JsonPointer, provided when a problem with the entity produced the error.
-        @NullCodable public var source: Source?
+        public var source: Source?
         /// The HTTP status code of the error. This status code usually matches the response's status code; however, if the request produces multiple errors, these two codes may differ.
         public let status: String
         /// A summary of the error. Do not use this field for programmatic error handling.

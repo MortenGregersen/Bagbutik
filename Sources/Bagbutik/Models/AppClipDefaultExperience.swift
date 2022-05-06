@@ -61,7 +61,7 @@ public struct AppClipDefaultExperience: Codable {
      */
     public struct Attributes: Codable {
         /// The call-to-action verb that appears on the App Clip card.
-        @NullCodable public var action: AppClipAction?
+        public var action: AppClipAction?
 
         public init(action: AppClipAction? = nil) {
             self.action = action
@@ -75,10 +75,10 @@ public struct AppClipDefaultExperience: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appClip: AppClip?
-        @NullCodable public var appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail?
-        @NullCodable public var appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations?
-        @NullCodable public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
+        public var appClip: AppClip?
+        public var appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail?
+        public var appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations?
+        public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
         public init(appClip: AppClip? = nil, appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail? = nil, appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations? = nil, releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
             self.appClip = appClip
@@ -97,7 +97,7 @@ public struct AppClipDefaultExperience: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -186,7 +186,7 @@ public struct AppClipDefaultExperience: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -275,9 +275,9 @@ public struct AppClipDefaultExperience: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -367,7 +367,7 @@ public struct AppClipDefaultExperience: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

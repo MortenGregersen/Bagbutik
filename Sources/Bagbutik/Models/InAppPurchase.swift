@@ -60,10 +60,10 @@ public struct InAppPurchase: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var inAppPurchaseType: InAppPurchaseType?
+        public var inAppPurchaseType: InAppPurchaseType?
         public var productId: String?
         public var referenceName: String?
-        @NullCodable public var state: State?
+        public var state: State?
 
         public init(inAppPurchaseType: InAppPurchaseType? = nil, productId: String? = nil, referenceName: String? = nil, state: State? = nil) {
             self.inAppPurchaseType = inAppPurchaseType
@@ -110,7 +110,7 @@ public struct InAppPurchase: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var apps: Apps?
+        public var apps: Apps?
 
         public init(apps: Apps? = nil) {
             self.apps = apps
@@ -126,9 +126,9 @@ public struct InAppPurchase: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

@@ -86,7 +86,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var appEncryptionDeclaration: AppEncryptionDeclaration?
+            public var appEncryptionDeclaration: AppEncryptionDeclaration?
 
             public init(appEncryptionDeclaration: AppEncryptionDeclaration? = nil) {
                 self.appEncryptionDeclaration = appEncryptionDeclaration

@@ -60,7 +60,7 @@ public struct AppScreenshotSet: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var screenshotDisplayType: ScreenshotDisplayType?
+        public var screenshotDisplayType: ScreenshotDisplayType?
 
         public init(screenshotDisplayType: ScreenshotDisplayType? = nil) {
             self.screenshotDisplayType = screenshotDisplayType
@@ -74,10 +74,10 @@ public struct AppScreenshotSet: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
-        @NullCodable public var appScreenshots: AppScreenshots?
-        @NullCodable public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
-        @NullCodable public var appStoreVersionLocalization: AppStoreVersionLocalization?
+        public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
+        public var appScreenshots: AppScreenshots?
+        public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
+        public var appStoreVersionLocalization: AppStoreVersionLocalization?
 
         public init(appCustomProductPageLocalization: AppCustomProductPageLocalization? = nil, appScreenshots: AppScreenshots? = nil, appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization? = nil, appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
             self.appCustomProductPageLocalization = appCustomProductPageLocalization
@@ -96,7 +96,7 @@ public struct AppScreenshotSet: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -185,9 +185,9 @@ public struct AppScreenshotSet: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -277,7 +277,7 @@ public struct AppScreenshotSet: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -366,7 +366,7 @@ public struct AppScreenshotSet: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

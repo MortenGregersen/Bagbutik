@@ -61,17 +61,17 @@ public struct AppClipHeaderImage: Codable {
      */
     public struct Attributes: Codable {
         /// The state of the App Clip card image asset you uploaded.
-        @NullCodable public var assetDeliveryState: AppMediaAssetState?
+        public var assetDeliveryState: AppMediaAssetState?
         /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
         public var fileName: String?
         /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
         public var fileSize: Int?
         /// The image asset that appears on the App Clip card of a default App Clip experience.
-        @NullCodable public var imageAsset: ImageAsset?
+        public var imageAsset: ImageAsset?
         /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
         public var sourceFileChecksum: String?
         /// Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.
-        @NullCodable public var uploadOperations: [UploadOperation]?
+        public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.assetDeliveryState = assetDeliveryState
@@ -90,7 +90,7 @@ public struct AppClipHeaderImage: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization?
+        public var appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization?
 
         public init(appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization? = nil) {
             self.appClipDefaultExperienceLocalization = appClipDefaultExperienceLocalization
@@ -106,7 +106,7 @@ public struct AppClipHeaderImage: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

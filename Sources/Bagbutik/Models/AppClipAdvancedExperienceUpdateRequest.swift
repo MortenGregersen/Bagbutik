@@ -10,7 +10,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The included related resources.
-    @NullCodable public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
+    public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
         self.data = data
@@ -72,15 +72,15 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The call-to-action verb that appears on the App Clip card.
-            @NullCodable public var action: AppClipAction?
+            public var action: AppClipAction?
             /// The business category of an advanced App Clip experience; for example, PARKING
-            @NullCodable public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
             /// The default language for the advanced App Clip experience.
-            @NullCodable public var defaultLanguage: AppClipAdvancedExperienceLanguage?
+            public var defaultLanguage: AppClipAdvancedExperienceLanguage?
             /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
             public var isPoweredBy: Bool?
             /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
-            @NullCodable public var place: Place?
+            public var place: Place?
             /// A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to true.
             public var removed: Bool?
 
@@ -94,15 +94,15 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct Place: Codable {
-                @NullCodable public var categories: [String]?
-                @NullCodable public var displayPoint: DisplayPoint?
+                public var categories: [String]?
+                public var displayPoint: DisplayPoint?
                 public var homePage: String?
-                @NullCodable public var mainAddress: MainAddress?
-                @NullCodable public var mapAction: MapAction?
-                @NullCodable public var names: [String]?
-                @NullCodable public var phoneNumber: PhoneNumber?
+                public var mainAddress: MainAddress?
+                public var mapAction: MapAction?
+                public var names: [String]?
+                public var phoneNumber: PhoneNumber?
                 public var placeId: String?
-                @NullCodable public var relationship: Relationship?
+                public var relationship: Relationship?
 
                 public init(categories: [String]? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: [String]? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
                     self.categories = categories
@@ -117,8 +117,8 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 public struct DisplayPoint: Codable {
-                    @NullCodable public var coordinates: Coordinates?
-                    @NullCodable public var source: Source?
+                    public var coordinates: Coordinates?
+                    public var source: Source?
 
                     public init(coordinates: Coordinates? = nil, source: Source? = nil) {
                         self.coordinates = coordinates
@@ -143,7 +143,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
 
                 public struct MainAddress: Codable {
                     public var fullAddress: String?
-                    @NullCodable public var structuredAddress: StructuredAddress?
+                    public var structuredAddress: StructuredAddress?
 
                     public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
                         self.fullAddress = fullAddress
@@ -157,7 +157,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                         public var neighborhood: String?
                         public var postalCode: String?
                         public var stateProvince: String?
-                        @NullCodable public var streetAddress: [String]?
+                        public var streetAddress: [String]?
 
                         public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: [String]? = nil) {
                             self.countryCode = countryCode
@@ -190,7 +190,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 public struct PhoneNumber: Codable {
                     public var intent: String?
                     public var number: String?
-                    @NullCodable public var type: PhoneNumberType?
+                    public var type: PhoneNumberType?
 
                     public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
                         self.intent = intent
@@ -221,9 +221,9 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var appClip: AppClip?
-            @NullCodable public var headerImage: HeaderImage?
-            @NullCodable public var localizations: Localizations?
+            public var appClip: AppClip?
+            public var headerImage: HeaderImage?
+            public var localizations: Localizations?
 
             public init(appClip: AppClip? = nil, headerImage: HeaderImage? = nil, localizations: Localizations? = nil) {
                 self.appClip = appClip

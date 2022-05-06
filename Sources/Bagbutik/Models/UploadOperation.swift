@@ -10,7 +10,7 @@ public struct UploadOperation: Codable {
     public var length: Int?
     public var method: String?
     public var offset: Int?
-    @NullCodable public var requestHeaders: [HttpHeader]?
+    public var requestHeaders: [HttpHeader]?
     public var url: String?
 
     public init(length: Int? = nil, method: String? = nil, offset: Int? = nil, requestHeaders: [HttpHeader]? = nil, url: String? = nil) {

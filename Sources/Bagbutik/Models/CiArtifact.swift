@@ -61,7 +61,7 @@ public struct CiArtifact: Codable {
         /// An integer value that represents the artifact’s file size.
         public var fileSize: Int?
         /// A string that describes the type of the artifact.
-        @NullCodable public var fileType: FileType?
+        public var fileType: FileType?
 
         public init(downloadUrl: String? = nil, fileName: String? = nil, fileSize: Int? = nil, fileType: FileType? = nil) {
             self.downloadUrl = downloadUrl

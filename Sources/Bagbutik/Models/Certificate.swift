@@ -55,11 +55,11 @@ public struct Certificate: Codable {
      */
     public struct Attributes: Codable {
         public var certificateContent: String?
-        @NullCodable public var certificateType: CertificateType?
+        public var certificateType: CertificateType?
         public var displayName: String?
         public var expirationDate: Date?
         public var name: String?
-        @NullCodable public var platform: BundleIdPlatform?
+        public var platform: BundleIdPlatform?
         public var serialNumber: String?
 
         public init(certificateContent: String? = nil, certificateType: CertificateType? = nil, displayName: String? = nil, expirationDate: Date? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, serialNumber: String? = nil) {

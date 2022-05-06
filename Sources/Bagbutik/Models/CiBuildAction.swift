@@ -61,17 +61,17 @@ public struct CiBuildAction: Codable {
      */
     public struct Attributes: Codable {
         /// The type of the build action.
-        @NullCodable public var actionType: CiActionType?
+        public var actionType: CiActionType?
         /// The status of the action.
-        @NullCodable public var completionStatus: CiCompletionStatus?
+        public var completionStatus: CiCompletionStatus?
         /// A string that indicates the progress of the build action.
-        @NullCodable public var executionProgress: CiExecutionProgress?
+        public var executionProgress: CiExecutionProgress?
         /// The date and time when Xcode Cloud finished performing the action.
         public var finishedDate: Date?
         /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
         public var isRequiredToPass: Bool?
         /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the action.
-        @NullCodable public var issueCounts: CiIssueCounts?
+        public var issueCounts: CiIssueCounts?
         /// The name of the build action; for example, Archive iOS.
         public var name: String?
         /// The date and time when Xcode Cloud started performing the action.
@@ -96,7 +96,7 @@ public struct CiBuildAction: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var buildRun: BuildRun?
+        public var buildRun: BuildRun?
 
         public init(buildRun: BuildRun? = nil) {
             self.buildRun = buildRun
@@ -112,7 +112,7 @@ public struct CiBuildAction: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

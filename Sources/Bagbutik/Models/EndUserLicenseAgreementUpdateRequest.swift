@@ -82,7 +82,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var territories: Territories?
+            public var territories: Territories?
 
             public init(territories: Territories? = nil) {
                 self.territories = territories

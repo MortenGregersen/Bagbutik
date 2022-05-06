@@ -11,11 +11,11 @@ public struct ScmPullRequestsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [ScmPullRequest]
     /// The included related resources.
-    @NullCodable public var included: [ScmRepository]?
+    public var included: [ScmRepository]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [ScmPullRequest], included: [ScmRepository]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

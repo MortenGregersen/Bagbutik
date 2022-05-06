@@ -8,9 +8,9 @@ import Foundation
  */
 public struct CiScheduledStartCondition: Codable {
     /// The schedule information you configure for a workflow that starts a new build based on a schedule.
-    @NullCodable public var schedule: Schedule?
+    public var schedule: Schedule?
     /// The source branch name and custom patterns you configure for a workflow that starts a new build on a schedule.
-    @NullCodable public var source: CiBranchPatterns?
+    public var source: CiBranchPatterns?
 
     public init(schedule: Schedule? = nil, source: CiBranchPatterns? = nil) {
         self.schedule = schedule
@@ -18,8 +18,8 @@ public struct CiScheduledStartCondition: Codable {
     }
 
     public struct Schedule: Codable {
-        @NullCodable public var days: Items?
-        @NullCodable public var frequency: Frequency?
+        public var days: Items?
+        public var frequency: Frequency?
         public var hour: Int?
         public var minute: Int?
         public var timezone: String?

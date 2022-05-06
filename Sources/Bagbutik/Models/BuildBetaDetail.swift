@@ -63,9 +63,9 @@ public struct BuildBetaDetail: Codable {
         /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
         public var autoNotifyEnabled: Bool?
         /// A state that indicates if the build is available for external testing.
-        @NullCodable public var externalBuildState: ExternalBetaState?
+        public var externalBuildState: ExternalBetaState?
         /// A state that indicates if the build is available for internal testing.
-        @NullCodable public var internalBuildState: InternalBetaState?
+        public var internalBuildState: InternalBetaState?
 
         public init(autoNotifyEnabled: Bool? = nil, externalBuildState: ExternalBetaState? = nil, internalBuildState: InternalBetaState? = nil) {
             self.autoNotifyEnabled = autoNotifyEnabled
@@ -81,7 +81,7 @@ public struct BuildBetaDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var build: Build?
+        public var build: Build?
 
         public init(build: Build? = nil) {
             self.build = build
@@ -97,7 +97,7 @@ public struct BuildBetaDetail: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

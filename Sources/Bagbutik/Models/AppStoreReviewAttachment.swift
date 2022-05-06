@@ -60,11 +60,11 @@ public struct AppStoreReviewAttachment: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var assetDeliveryState: AppMediaAssetState?
+        public var assetDeliveryState: AppMediaAssetState?
         public var fileName: String?
         public var fileSize: Int?
         public var sourceFileChecksum: String?
-        @NullCodable public var uploadOperations: [UploadOperation]?
+        public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.assetDeliveryState = assetDeliveryState
@@ -82,7 +82,7 @@ public struct AppStoreReviewAttachment: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appStoreReviewDetail: AppStoreReviewDetail?
+        public var appStoreReviewDetail: AppStoreReviewDetail?
 
         public init(appStoreReviewDetail: AppStoreReviewDetail? = nil) {
             self.appStoreReviewDetail = appStoreReviewDetail
@@ -98,7 +98,7 @@ public struct AppStoreReviewAttachment: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

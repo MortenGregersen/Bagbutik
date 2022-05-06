@@ -51,7 +51,7 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let appCustomProductPage: AppCustomProductPage
-            @NullCodable public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
+            public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
             public init(appCustomProductPage: AppCustomProductPage, appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil) {
                 self.appCustomProductPage = appCustomProductPage

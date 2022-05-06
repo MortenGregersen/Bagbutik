@@ -78,9 +78,9 @@ public struct AppPricePointV2: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
-        @NullCodable public var priceTier: PriceTier?
-        @NullCodable public var territory: Territory?
+        public var app: App?
+        public var priceTier: PriceTier?
+        public var territory: Territory?
 
         public init(app: App? = nil, priceTier: PriceTier? = nil, territory: Territory? = nil) {
             self.app = app
@@ -98,7 +98,7 @@ public struct AppPricePointV2: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -187,7 +187,7 @@ public struct AppPricePointV2: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -276,7 +276,7 @@ public struct AppPricePointV2: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

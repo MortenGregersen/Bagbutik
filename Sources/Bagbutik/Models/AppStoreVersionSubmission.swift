@@ -54,7 +54,7 @@ public struct AppStoreVersionSubmission: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appStoreVersion: AppStoreVersion?
+        public var appStoreVersion: AppStoreVersion?
 
         public init(appStoreVersion: AppStoreVersion? = nil) {
             self.appStoreVersion = appStoreVersion
@@ -70,7 +70,7 @@ public struct AppStoreVersionSubmission: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

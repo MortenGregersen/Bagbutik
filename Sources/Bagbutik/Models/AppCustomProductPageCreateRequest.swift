@@ -4,7 +4,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The included related resources.
-    @NullCodable public var included: [Included]?
+    public var included: [Included]?
 
     public init(data: Data, included: [Included]? = nil) {
         self.data = data
@@ -68,9 +68,9 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
-            @NullCodable public var appCustomProductPageVersions: AppCustomProductPageVersions?
-            @NullCodable public var appStoreVersionTemplate: AppStoreVersionTemplate?
-            @NullCodable public var customProductPageTemplate: CustomProductPageTemplate?
+            public var appCustomProductPageVersions: AppCustomProductPageVersions?
+            public var appStoreVersionTemplate: AppStoreVersionTemplate?
+            public var customProductPageTemplate: CustomProductPageTemplate?
 
             public init(app: App, appCustomProductPageVersions: AppCustomProductPageVersions? = nil, appStoreVersionTemplate: AppStoreVersionTemplate? = nil, customProductPageTemplate: CustomProductPageTemplate? = nil) {
                 self.app = app

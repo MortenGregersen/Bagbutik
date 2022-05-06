@@ -60,14 +60,14 @@ public struct AppScreenshot: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var assetDeliveryState: AppMediaAssetState?
+        public var assetDeliveryState: AppMediaAssetState?
         public var assetToken: String?
         public var assetType: String?
         public var fileName: String?
         public var fileSize: Int?
-        @NullCodable public var imageAsset: ImageAsset?
+        public var imageAsset: ImageAsset?
         public var sourceFileChecksum: String?
-        @NullCodable public var uploadOperations: [UploadOperation]?
+        public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, assetToken: String? = nil, assetType: String? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.assetDeliveryState = assetDeliveryState
@@ -88,7 +88,7 @@ public struct AppScreenshot: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appScreenshotSet: AppScreenshotSet?
+        public var appScreenshotSet: AppScreenshotSet?
 
         public init(appScreenshotSet: AppScreenshotSet? = nil) {
             self.appScreenshotSet = appScreenshotSet
@@ -104,7 +104,7 @@ public struct AppScreenshot: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

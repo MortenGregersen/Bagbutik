@@ -5,11 +5,11 @@ public struct AppStoreVersionExperimentsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppStoreVersionExperiment]
     /// The included related resources.
-    @NullCodable public var included: [Included]?
+    public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [AppStoreVersionExperiment], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

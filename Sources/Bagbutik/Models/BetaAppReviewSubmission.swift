@@ -61,7 +61,7 @@ public struct BetaAppReviewSubmission: Codable {
      */
     public struct Attributes: Codable {
         /// A state that indicates the current status of the beta app review submission.
-        @NullCodable public var betaReviewState: BetaReviewState?
+        public var betaReviewState: BetaReviewState?
         public var submittedDate: Date?
 
         public init(betaReviewState: BetaReviewState? = nil, submittedDate: Date? = nil) {
@@ -77,7 +77,7 @@ public struct BetaAppReviewSubmission: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var build: Build?
+        public var build: Build?
 
         public init(build: Build? = nil) {
             self.build = build
@@ -93,7 +93,7 @@ public struct BetaAppReviewSubmission: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

@@ -65,7 +65,7 @@ public struct BetaTester: Codable {
         /// The beta tester's first name.
         public var firstName: String?
         /// An invite type that indicates if a beta tester was invited by an email invite or used a TestFlight public link to join a beta test.
-        @NullCodable public var inviteType: BetaInviteType?
+        public var inviteType: BetaInviteType?
         /// The beta tester's last name.
         public var lastName: String?
 
@@ -84,9 +84,9 @@ public struct BetaTester: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var apps: Apps?
-        @NullCodable public var betaGroups: BetaGroups?
-        @NullCodable public var builds: Builds?
+        public var apps: Apps?
+        public var betaGroups: BetaGroups?
+        public var builds: Builds?
 
         public init(apps: Apps? = nil, betaGroups: BetaGroups? = nil, builds: Builds? = nil) {
             self.apps = apps
@@ -104,9 +104,9 @@ public struct BetaTester: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -196,9 +196,9 @@ public struct BetaTester: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -288,9 +288,9 @@ public struct BetaTester: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

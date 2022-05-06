@@ -60,13 +60,13 @@ public struct AppStoreVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var appStoreState: AppStoreVersionState?
+        public var appStoreState: AppStoreVersionState?
         public var copyright: String?
         public var createdDate: Date?
         public var downloadable: Bool?
         public var earliestReleaseDate: Date?
-        @NullCodable public var platform: Platform?
-        @NullCodable public var releaseType: ReleaseType?
+        public var platform: Platform?
+        public var releaseType: ReleaseType?
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var usesIdfa: Bool? = nil
         public var versionString: String?
@@ -110,17 +110,17 @@ public struct AppStoreVersion: Codable {
      */
     public struct Relationships: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        @NullCodable public var ageRatingDeclaration: AgeRatingDeclaration? = nil
-        @NullCodable public var app: App?
-        @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
-        @NullCodable public var appStoreReviewDetail: AppStoreReviewDetail?
-        @NullCodable public var appStoreVersionExperiments: AppStoreVersionExperiments?
-        @NullCodable public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
-        @NullCodable public var appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
-        @NullCodable public var appStoreVersionSubmission: AppStoreVersionSubmission?
-        @NullCodable public var build: Build?
-        @NullCodable public var idfaDeclaration: IdfaDeclaration?
-        @NullCodable public var routingAppCoverage: RoutingAppCoverage?
+        public var ageRatingDeclaration: AgeRatingDeclaration? = nil
+        public var app: App?
+        public var appClipDefaultExperience: AppClipDefaultExperience?
+        public var appStoreReviewDetail: AppStoreReviewDetail?
+        public var appStoreVersionExperiments: AppStoreVersionExperiments?
+        public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
+        public var appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
+        public var appStoreVersionSubmission: AppStoreVersionSubmission?
+        public var build: Build?
+        public var idfaDeclaration: IdfaDeclaration?
+        public var routingAppCoverage: RoutingAppCoverage?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionExperiments: AppStoreVersionExperiments? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, idfaDeclaration: IdfaDeclaration? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
@@ -160,7 +160,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -249,7 +249,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -338,7 +338,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -427,7 +427,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -516,9 +516,9 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -608,9 +608,9 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -700,7 +700,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -789,7 +789,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -878,7 +878,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -967,7 +967,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -1056,7 +1056,7 @@ public struct AppStoreVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

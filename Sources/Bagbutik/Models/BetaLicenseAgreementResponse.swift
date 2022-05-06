@@ -10,7 +10,7 @@ public struct BetaLicenseAgreementResponse: Codable {
     /// The resource data.
     public let data: BetaLicenseAgreement
     /// The included related resources.
-    @NullCodable public var included: [App]?
+    public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

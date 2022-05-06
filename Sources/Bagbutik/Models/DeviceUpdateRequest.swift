@@ -63,7 +63,7 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public var name: String?
-            @NullCodable public var status: Device.Attributes.Status?
+            public var status: Device.Attributes.Status?
 
             public init(name: String? = nil, status: Device.Attributes.Status? = nil) {
                 self.name = name

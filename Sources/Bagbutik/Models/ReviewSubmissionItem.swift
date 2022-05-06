@@ -48,7 +48,7 @@ public struct ReviewSubmissionItem: Codable {
     }
 
     public struct Attributes: Codable {
-        @NullCodable public var state: State?
+        public var state: State?
 
         public init(state: State? = nil) {
             self.state = state
@@ -70,10 +70,10 @@ public struct ReviewSubmissionItem: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitem/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appCustomProductPageVersion: AppCustomProductPageVersion?
-        @NullCodable public var appEvent: AppEvent?
-        @NullCodable public var appStoreVersion: AppStoreVersion?
-        @NullCodable public var appStoreVersionExperiment: AppStoreVersionExperiment?
+        public var appCustomProductPageVersion: AppCustomProductPageVersion?
+        public var appEvent: AppEvent?
+        public var appStoreVersion: AppStoreVersion?
+        public var appStoreVersionExperiment: AppStoreVersionExperiment?
 
         public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil, appEvent: AppEvent? = nil, appStoreVersion: AppStoreVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperiment? = nil) {
             self.appCustomProductPageVersion = appCustomProductPageVersion
@@ -92,7 +92,7 @@ public struct ReviewSubmissionItem: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -181,7 +181,7 @@ public struct ReviewSubmissionItem: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -270,7 +270,7 @@ public struct ReviewSubmissionItem: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -359,7 +359,7 @@ public struct ReviewSubmissionItem: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

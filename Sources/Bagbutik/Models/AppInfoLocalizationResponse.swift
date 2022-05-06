@@ -10,7 +10,7 @@ public struct AppInfoLocalizationResponse: Codable {
     /// The resource data.
     public let data: AppInfoLocalization
     /// The included related resources.
-    @NullCodable public var included: [AppInfo]?
+    public var included: [AppInfo]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

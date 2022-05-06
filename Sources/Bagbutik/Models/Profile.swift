@@ -63,10 +63,10 @@ public struct Profile: Codable {
         public var createdDate: Date?
         public var expirationDate: Date?
         public var name: String?
-        @NullCodable public var platform: BundleIdPlatform?
+        public var platform: BundleIdPlatform?
         public var profileContent: String?
-        @NullCodable public var profileState: ProfileState?
-        @NullCodable public var profileType: ProfileType?
+        public var profileState: ProfileState?
+        public var profileType: ProfileType?
         public var uuid: String?
 
         public init(createdDate: Date? = nil, expirationDate: Date? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, profileContent: String? = nil, profileState: ProfileState? = nil, profileType: ProfileType? = nil, uuid: String? = nil) {
@@ -110,9 +110,9 @@ public struct Profile: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var bundleId: BundleId?
-        @NullCodable public var certificates: Certificates?
-        @NullCodable public var devices: Devices?
+        public var bundleId: BundleId?
+        public var certificates: Certificates?
+        public var devices: Devices?
 
         public init(bundleId: BundleId? = nil, certificates: Certificates? = nil, devices: Devices? = nil) {
             self.bundleId = bundleId
@@ -130,7 +130,7 @@ public struct Profile: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -219,9 +219,9 @@ public struct Profile: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -311,9 +311,9 @@ public struct Profile: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

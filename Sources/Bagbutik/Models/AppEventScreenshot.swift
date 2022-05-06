@@ -48,13 +48,13 @@ public struct AppEventScreenshot: Codable {
     }
 
     public struct Attributes: Codable {
-        @NullCodable public var appEventAssetType: AppEventAssetType?
-        @NullCodable public var assetDeliveryState: AppMediaAssetState?
+        public var appEventAssetType: AppEventAssetType?
+        public var assetDeliveryState: AppMediaAssetState?
         public var assetToken: String?
         public var fileName: String?
         public var fileSize: Int?
-        @NullCodable public var imageAsset: ImageAsset?
-        @NullCodable public var uploadOperations: [UploadOperation]?
+        public var imageAsset: ImageAsset?
+        public var uploadOperations: [UploadOperation]?
 
         public init(appEventAssetType: AppEventAssetType? = nil, assetDeliveryState: AppMediaAssetState? = nil, assetToken: String? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, uploadOperations: [UploadOperation]? = nil) {
             self.appEventAssetType = appEventAssetType
@@ -74,7 +74,7 @@ public struct AppEventScreenshot: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appeventscreenshot/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appEventLocalization: AppEventLocalization?
+        public var appEventLocalization: AppEventLocalization?
 
         public init(appEventLocalization: AppEventLocalization? = nil) {
             self.appEventLocalization = appEventLocalization
@@ -90,7 +90,7 @@ public struct AppEventScreenshot: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

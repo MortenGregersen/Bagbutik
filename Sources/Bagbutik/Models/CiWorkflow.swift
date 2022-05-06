@@ -61,9 +61,9 @@ public struct CiWorkflow: Codable {
      */
     public struct Attributes: Codable {
         /// The actions that are part of the workflow.
-        @NullCodable public var actions: [CiAction]?
+        public var actions: [CiAction]?
         /// The workflow’s start condition that starts new builds for changes to a branch.
-        @NullCodable public var branchStartCondition: CiBranchStartCondition?
+        public var branchStartCondition: CiBranchStartCondition?
         /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
         public var clean: Bool?
         /// The relative path to your Xcode project or workspace.
@@ -79,11 +79,11 @@ public struct CiWorkflow: Codable {
         /// The name of the Xcode Cloud workflow; for example, My Workflow.
         public var name: String?
         /// The workflow’s start condition for pull request changes.
-        @NullCodable public var pullRequestStartCondition: CiPullRequestStartCondition?
+        public var pullRequestStartCondition: CiPullRequestStartCondition?
         /// The workflow’s start condition that starts new builds on a custom schedule.
-        @NullCodable public var scheduledStartCondition: CiScheduledStartCondition?
+        public var scheduledStartCondition: CiScheduledStartCondition?
         /// The workflow’s start condition that starts new builds for changes to a tag.
-        @NullCodable public var tagStartCondition: CiTagStartCondition?
+        public var tagStartCondition: CiTagStartCondition?
 
         public init(actions: [CiAction]? = nil, branchStartCondition: CiBranchStartCondition? = nil, clean: Bool? = nil, containerFilePath: String? = nil, description: String? = nil, isEnabled: Bool? = nil, isLockedForEditing: Bool? = nil, lastModifiedDate: Date? = nil, name: String? = nil, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
             self.actions = actions
@@ -108,10 +108,10 @@ public struct CiWorkflow: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var macOsVersion: MacOsVersion?
-        @NullCodable public var product: Product?
-        @NullCodable public var repository: Repository?
-        @NullCodable public var xcodeVersion: XcodeVersion?
+        public var macOsVersion: MacOsVersion?
+        public var product: Product?
+        public var repository: Repository?
+        public var xcodeVersion: XcodeVersion?
 
         public init(macOsVersion: MacOsVersion? = nil, product: Product? = nil, repository: Repository? = nil, xcodeVersion: XcodeVersion? = nil) {
             self.macOsVersion = macOsVersion
@@ -130,7 +130,7 @@ public struct CiWorkflow: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -219,7 +219,7 @@ public struct CiWorkflow: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -308,7 +308,7 @@ public struct CiWorkflow: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -397,7 +397,7 @@ public struct CiWorkflow: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

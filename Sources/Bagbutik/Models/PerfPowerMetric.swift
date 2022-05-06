@@ -55,8 +55,8 @@ public struct PerfPowerMetric: Codable {
      */
     public struct Attributes: Codable {
         public var deviceType: String?
-        @NullCodable public var metricType: MetricType?
-        @NullCodable public var platform: Platform?
+        public var metricType: MetricType?
+        public var platform: Platform?
 
         public init(deviceType: String? = nil, metricType: MetricType? = nil, platform: Platform? = nil) {
             self.deviceType = deviceType

@@ -54,7 +54,7 @@ public struct DiagnosticSignature: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var diagnosticType: DiagnosticType?
+        public var diagnosticType: DiagnosticType?
         public var signature: String?
         public var weight: Double?
 

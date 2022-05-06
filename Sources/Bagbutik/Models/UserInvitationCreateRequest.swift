@@ -92,7 +92,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var visibleApps: VisibleApps?
+            public var visibleApps: VisibleApps?
 
             public init(visibleApps: VisibleApps? = nil) {
                 self.visibleApps = visibleApps

@@ -62,12 +62,12 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var primaryCategory: PrimaryCategory?
-            @NullCodable public var primarySubcategoryOne: PrimarySubcategoryOne?
-            @NullCodable public var primarySubcategoryTwo: PrimarySubcategoryTwo?
-            @NullCodable public var secondaryCategory: SecondaryCategory?
-            @NullCodable public var secondarySubcategoryOne: SecondarySubcategoryOne?
-            @NullCodable public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
+            public var primaryCategory: PrimaryCategory?
+            public var primarySubcategoryOne: PrimarySubcategoryOne?
+            public var primarySubcategoryTwo: PrimarySubcategoryTwo?
+            public var secondaryCategory: SecondaryCategory?
+            public var secondarySubcategoryOne: SecondarySubcategoryOne?
+            public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
 
             public init(primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
                 self.primaryCategory = primaryCategory

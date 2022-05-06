@@ -73,7 +73,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
             /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
             public var provisioningAllowed: Bool?
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
-            @NullCodable public var roles: [UserRole]?
+            public var roles: [UserRole]?
 
             public init(allAppsVisible: Bool? = nil, provisioningAllowed: Bool? = nil, roles: [UserRole]? = nil) {
                 self.allAppsVisible = allAppsVisible
@@ -89,7 +89,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var visibleApps: VisibleApps?
+            public var visibleApps: VisibleApps?
 
             public init(visibleApps: VisibleApps? = nil) {
                 self.visibleApps = visibleApps

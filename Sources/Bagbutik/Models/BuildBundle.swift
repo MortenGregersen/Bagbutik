@@ -63,13 +63,13 @@ public struct BuildBundle: Codable {
         /// The bundle ID of the build bundle.
         public var bundleId: String?
         /// The type of the build bundle.
-        @NullCodable public var bundleType: BundleType?
+        public var bundleType: BundleType?
         /// The URL to the symbolication file for the app or App Clip.
         public var dSYMUrl: String?
         /// The protocols that the app uses to communicate with external accessory hardware. For more information, see UISupportedExternalAccessoryProtocols.
-        @NullCodable public var deviceProtocols: [String]?
+        public var deviceProtocols: [String]?
         /// Entitlement information for your app or App Clip.
-        @NullCodable public var entitlements: [String: [String: String]]?
+        public var entitlements: [String: [String: String]]?
         /// The name of the build bundle.
         public var fileName: String?
         /// A Boolean value that indicates whether the build bundle contains on-demand resources.
@@ -83,15 +83,15 @@ public struct BuildBundle: Codable {
         /// A Boolean value that indicates whether an iOS app included in the build bundle is included on the Mac App Store.
         public var isIosBuildMacAppStoreCompatible: Bool?
         /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
-        @NullCodable public var locales: [String]?
+        public var locales: [String]?
         /// The build number of the OS you used to build the app or App Clip.
         public var platformBuild: String?
         /// An array of capabilities that your app or App Clip requires.
-        @NullCodable public var requiredCapabilities: [String]?
+        public var requiredCapabilities: [String]?
         /// A string that identifies the SDK you used to build your app or App Clip.
         public var sdkBuild: String?
         /// An array of supported CPU architectures that your app or App Clip supports.
-        @NullCodable public var supportedArchitectures: [String]?
+        public var supportedArchitectures: [String]?
         /// A Boolean value that indicates whether the app or App Clip included in the build bundle uses location services.
         public var usesLocationServices: Bool?
 
@@ -128,10 +128,10 @@ public struct BuildBundle: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appClipDomainCacheStatus: AppClipDomainCacheStatus?
-        @NullCodable public var appClipDomainDebugStatus: AppClipDomainDebugStatus?
-        @NullCodable public var betaAppClipInvocations: BetaAppClipInvocations?
-        @NullCodable public var buildBundleFileSizes: BuildBundleFileSizes?
+        public var appClipDomainCacheStatus: AppClipDomainCacheStatus?
+        public var appClipDomainDebugStatus: AppClipDomainDebugStatus?
+        public var betaAppClipInvocations: BetaAppClipInvocations?
+        public var buildBundleFileSizes: BuildBundleFileSizes?
 
         public init(appClipDomainCacheStatus: AppClipDomainCacheStatus? = nil, appClipDomainDebugStatus: AppClipDomainDebugStatus? = nil, betaAppClipInvocations: BetaAppClipInvocations? = nil, buildBundleFileSizes: BuildBundleFileSizes? = nil) {
             self.appClipDomainCacheStatus = appClipDomainCacheStatus
@@ -150,7 +150,7 @@ public struct BuildBundle: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -239,7 +239,7 @@ public struct BuildBundle: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -328,9 +328,9 @@ public struct BuildBundle: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -420,9 +420,9 @@ public struct BuildBundle: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
