@@ -57,9 +57,9 @@ public struct CiIssue: Codable {
         /// A string representing the issue’s category; for example, the name of the build phase where the issue occurred.
         public var category: String?
         /// The file and line number where Xcode Cloud encountered an issue.
-        @NullCodable public var fileSource: FileLocation?
+        public var fileSource: FileLocation?
         /// A string that indicates what kind of issue Xcode Cloud encountered.
-        @NullCodable public var issueType: IssueType?
+        public var issueType: IssueType?
         /// Information about the issue that occurred.
         public var message: String?
 

@@ -10,7 +10,7 @@ public struct CiMacOsVersionResponse: Codable {
     /// The resource data.
     public let data: CiMacOsVersion
     /// The included related resources.
-    @NullCodable public var included: [CiXcodeVersion]?
+    public var included: [CiXcodeVersion]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

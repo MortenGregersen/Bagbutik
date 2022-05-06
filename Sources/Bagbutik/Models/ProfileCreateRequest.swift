@@ -80,7 +80,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         public struct Relationships: Codable {
             public let bundleId: BundleId
             public let certificates: Certificates
-            @NullCodable public var devices: Devices?
+            public var devices: Devices?
 
             public init(bundleId: BundleId, certificates: Certificates, devices: Devices? = nil) {
                 self.bundleId = bundleId

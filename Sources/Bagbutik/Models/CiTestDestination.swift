@@ -12,7 +12,7 @@ public struct CiTestDestination: Codable {
     /// The display name of the simulated device Xcode Cloud uses for a test action; for example, iPhone 12.
     public var deviceTypeName: String?
     /// A string that indicates whether a test destination is a simulated device or a Mac.
-    @NullCodable public var kind: CiTestDestinationKind?
+    public var kind: CiTestDestinationKind?
     /// A string that identifies the simulated environment Xcode Cloud uses for a test action.
     public var runtimeIdentifier: String?
     /// The name of the operating system of the simulated environment Xcode Cloud uses for a test action.

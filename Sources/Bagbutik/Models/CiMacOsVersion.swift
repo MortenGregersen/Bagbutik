@@ -78,7 +78,7 @@ public struct CiMacOsVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var xcodeVersions: XcodeVersions?
+        public var xcodeVersions: XcodeVersions?
 
         public init(xcodeVersions: XcodeVersions? = nil) {
             self.xcodeVersions = xcodeVersions
@@ -94,9 +94,9 @@ public struct CiMacOsVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

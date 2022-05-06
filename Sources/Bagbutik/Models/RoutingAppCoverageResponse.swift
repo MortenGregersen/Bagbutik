@@ -10,7 +10,7 @@ public struct RoutingAppCoverageResponse: Codable {
     /// The resource data.
     public let data: RoutingAppCoverage
     /// The included related resources.
-    @NullCodable public var included: [AppStoreVersion]?
+    public var included: [AppStoreVersion]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

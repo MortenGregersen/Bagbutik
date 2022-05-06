@@ -12,7 +12,7 @@ public struct ScmProviderType: Codable {
     /// A Boolean value that indicates whether it’s a self-hosted source code management provider.
     public var isOnPremise: Bool?
     /// A string that represents the kind of a Providers resource.
-    @NullCodable public var kind: Kind?
+    public var kind: Kind?
 
     public init(displayName: String? = nil, isOnPremise: Bool? = nil, kind: Kind? = nil) {
         self.displayName = displayName

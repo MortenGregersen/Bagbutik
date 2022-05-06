@@ -65,7 +65,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             public var copyright: String?
             public var earliestReleaseDate: Date?
             public let platform: Platform
-            @NullCodable public var releaseType: AppStoreVersion.Attributes.ReleaseType?
+            public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
             public var usesIdfa: Bool? = nil
             public let versionString: String
@@ -97,8 +97,8 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
-            @NullCodable public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
-            @NullCodable public var build: Build?
+            public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
+            public var build: Build?
 
             public init(app: App, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, build: Build? = nil) {
                 self.app = app

@@ -61,27 +61,27 @@ public struct CiBuildRun: Codable {
      */
     public struct Attributes: Codable {
         /// A string that indicates the reason for a canceled build.
-        @NullCodable public var cancelReason: CancelReason?
+        public var cancelReason: CancelReason?
         /// A string that indicates the status of a completed build.
-        @NullCodable public var completionStatus: CiCompletionStatus?
+        public var completionStatus: CiCompletionStatus?
         /// The date and time when Xcode Cloud created the build.
         public var createdDate: Date?
         /// Detailed information about the commit of a pull request build’s target branch. This value is only available to builds from pull requests.
-        @NullCodable public var destinationCommit: DestinationCommit?
+        public var destinationCommit: DestinationCommit?
         /// A string that indicates the progress of the build action.
-        @NullCodable public var executionProgress: CiExecutionProgress?
+        public var executionProgress: CiExecutionProgress?
         /// The date and time when Xcode Cloud completed the build.
         public var finishedDate: Date?
         /// A Boolean value that indicates whether the build was started by a change to a pull request.
         public var isPullRequestBuild: Bool?
         /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the build.
-        @NullCodable public var issueCounts: CiIssueCounts?
+        public var issueCounts: CiIssueCounts?
         /// The Xcode Cloud build number.
         public var number: Int?
         /// Detailed information about the commit of a pull request build’s source branch. This value is only available to builds from pull requests.
-        @NullCodable public var sourceCommit: SourceCommit?
+        public var sourceCommit: SourceCommit?
         /// A string that indicates what started the build.
-        @NullCodable public var startReason: StartReason?
+        public var startReason: StartReason?
         /// The date and time when Xcode Cloud started the build.
         public var startedDate: Date?
 
@@ -106,9 +106,9 @@ public struct CiBuildRun: Codable {
         }
 
         public struct DestinationCommit: Codable {
-            @NullCodable public var author: CiGitUser?
+            public var author: CiGitUser?
             public var commitSha: String?
-            @NullCodable public var committer: CiGitUser?
+            public var committer: CiGitUser?
             public var message: String?
             public var webUrl: String?
 
@@ -122,9 +122,9 @@ public struct CiBuildRun: Codable {
         }
 
         public struct SourceCommit: Codable {
-            @NullCodable public var author: CiGitUser?
+            public var author: CiGitUser?
             public var commitSha: String?
-            @NullCodable public var committer: CiGitUser?
+            public var committer: CiGitUser?
             public var message: String?
             public var webUrl: String?
 
@@ -154,12 +154,12 @@ public struct CiBuildRun: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var builds: Builds?
-        @NullCodable public var destinationBranch: DestinationBranch?
-        @NullCodable public var product: Product?
-        @NullCodable public var pullRequest: PullRequest?
-        @NullCodable public var sourceBranchOrTag: SourceBranchOrTag?
-        @NullCodable public var workflow: Workflow?
+        public var builds: Builds?
+        public var destinationBranch: DestinationBranch?
+        public var product: Product?
+        public var pullRequest: PullRequest?
+        public var sourceBranchOrTag: SourceBranchOrTag?
+        public var workflow: Workflow?
 
         public init(builds: Builds? = nil, destinationBranch: DestinationBranch? = nil, product: Product? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
             self.builds = builds
@@ -180,9 +180,9 @@ public struct CiBuildRun: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data
@@ -272,7 +272,7 @@ public struct CiBuildRun: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -361,7 +361,7 @@ public struct CiBuildRun: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -450,7 +450,7 @@ public struct CiBuildRun: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -539,7 +539,7 @@ public struct CiBuildRun: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -628,7 +628,7 @@ public struct CiBuildRun: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

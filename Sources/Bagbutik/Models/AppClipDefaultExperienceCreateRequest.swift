@@ -63,7 +63,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The call-to-action verb that appears on the App Clip card.
-            @NullCodable public var action: AppClipAction?
+            public var action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
                 self.action = action
@@ -78,8 +78,8 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let appClip: AppClip
-            @NullCodable public var appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate?
-            @NullCodable public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
+            public var appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate?
+            public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
             public init(appClip: AppClip, appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate? = nil, releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
                 self.appClip = appClip

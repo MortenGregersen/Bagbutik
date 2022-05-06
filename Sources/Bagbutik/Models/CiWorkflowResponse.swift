@@ -10,7 +10,7 @@ public struct CiWorkflowResponse: Codable {
     /// The resource data.
     public let data: CiWorkflow
     /// The included related resources.
-    @NullCodable public var included: [Included]?
+    public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

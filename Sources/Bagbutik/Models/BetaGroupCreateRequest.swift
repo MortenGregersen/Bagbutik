@@ -93,8 +93,8 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          */
         public struct Relationships: Codable {
             public let app: App
-            @NullCodable public var betaTesters: BetaTesters?
-            @NullCodable public var builds: Builds?
+            public var betaTesters: BetaTesters?
+            public var builds: Builds?
 
             public init(app: App, betaTesters: BetaTesters? = nil, builds: Builds? = nil) {
                 self.app = app

@@ -275,7 +275,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              <some://url>
              */
             public struct Relationships: Codable {
-                @NullCodable public var children: [Child]?
+                public var children: [Child]?
 
                 public init(children: [Child]? = nil) {
                     self.children = children
@@ -312,13 +312,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             /// The person's connection
-            @NullCodable public var connection: Connection?
+            public var connection: Connection?
             /// The person's name
             public var name: String?
             /// The person's pet
-            @NullCodable public var pet: Pet?
+            public var pet: Pet?
             /// The person's indentation preference
-            @NullCodable public var preference: Preference?
+            public var preference: Preference?
 
             public init(connection: Connection? = nil, name: String? = nil, pet: Pet? = nil, preference: Preference? = nil) {
                 self.connection = connection
@@ -473,8 +473,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         public struct BuildResponse: Codable {
-            @NullCodable public var data: Build?
-            @NullCodable public var included: [Included]?
+            public var data: Build?
+            public var included: [Included]?
 
             public init(data: Build? = nil, included: [Included]? = nil) {
                 self.data = data
@@ -608,8 +608,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct BuildsResponse: Codable {
             public typealias Data = Build
-            @NullCodable public var data: [Build]?
-            @NullCodable public var included: [Included]?
+            public var data: [Build]?
+            public var included: [Included]?
 
             public init(data: [Build]? = nil, included: [Included]? = nil) {
                 self.data = data
@@ -766,7 +766,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              <some://url>
              */
             public struct Relationships: Codable {
-                @NullCodable public var children: [Child]?
+                public var children: [Child]?
 
                 public init(children: [Child]? = nil) {
                     self.children = children
@@ -806,7 +806,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         public struct PhoneNumber: Codable {
             public var intent: String?
             public var number: String?
-            @NullCodable public var type: PhoneNumberType?
+            public var type: PhoneNumberType?
 
             public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
                 self.intent = intent

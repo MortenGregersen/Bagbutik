@@ -69,7 +69,7 @@ public struct User: Codable {
         /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
         public var provisioningAllowed: Bool?
         /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
-        @NullCodable public var roles: [UserRole]?
+        public var roles: [UserRole]?
         /// The user's Apple ID.
         public var username: String?
 
@@ -90,7 +90,7 @@ public struct User: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/user/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var visibleApps: VisibleApps?
+        public var visibleApps: VisibleApps?
 
         public init(visibleApps: VisibleApps? = nil) {
             self.visibleApps = visibleApps
@@ -106,9 +106,9 @@ public struct User: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

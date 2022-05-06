@@ -60,7 +60,7 @@ public struct AppCategory: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var platforms: [Platform]?
+        public var platforms: [Platform]?
 
         public init(platforms: [Platform]? = nil) {
             self.platforms = platforms
@@ -74,8 +74,8 @@ public struct AppCategory: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var parent: Parent?
-        @NullCodable public var subcategories: Subcategories?
+        public var parent: Parent?
+        public var subcategories: Subcategories?
 
         public init(parent: Parent? = nil, subcategories: Subcategories? = nil) {
             self.parent = parent
@@ -92,7 +92,7 @@ public struct AppCategory: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -181,9 +181,9 @@ public struct AppCategory: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

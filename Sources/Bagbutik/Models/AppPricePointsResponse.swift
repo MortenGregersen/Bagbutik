@@ -11,11 +11,11 @@ public struct AppPricePointsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppPricePoint]
     /// The included related resources.
-    @NullCodable public var included: [Included]?
+    public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [AppPricePoint], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

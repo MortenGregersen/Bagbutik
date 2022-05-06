@@ -84,7 +84,7 @@ public struct AppInfoLocalization: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appInfo: AppInfo?
+        public var appInfo: AppInfo?
 
         public init(appInfo: AppInfo? = nil) {
             self.appInfo = appInfo
@@ -100,7 +100,7 @@ public struct AppInfoLocalization: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

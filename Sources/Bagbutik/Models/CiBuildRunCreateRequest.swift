@@ -77,10 +77,10 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var buildRun: BuildRun?
-            @NullCodable public var pullRequest: PullRequest?
-            @NullCodable public var sourceBranchOrTag: SourceBranchOrTag?
-            @NullCodable public var workflow: Workflow?
+            public var buildRun: BuildRun?
+            public var pullRequest: PullRequest?
+            public var sourceBranchOrTag: SourceBranchOrTag?
+            public var workflow: Workflow?
 
             public init(buildRun: BuildRun? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
                 self.buildRun = buildRun

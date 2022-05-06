@@ -57,7 +57,7 @@ public struct CiXcodeVersion: Codable {
         /// The name of the Xcode version.
         public var name: String?
         /// A list of the Xcode version’s available test destinations.
-        @NullCodable public var testDestinations: [TestDestinations]?
+        public var testDestinations: [TestDestinations]?
         /// The Xcode version.
         public var version: String?
 
@@ -68,10 +68,10 @@ public struct CiXcodeVersion: Codable {
         }
 
         public struct TestDestinations: Codable {
-            @NullCodable public var availableRuntimes: [AvailableRuntimes]?
+            public var availableRuntimes: [AvailableRuntimes]?
             public var deviceTypeIdentifier: String?
             public var deviceTypeName: String?
-            @NullCodable public var kind: CiTestDestinationKind?
+            public var kind: CiTestDestinationKind?
 
             public init(availableRuntimes: [AvailableRuntimes]? = nil, deviceTypeIdentifier: String? = nil, deviceTypeName: String? = nil, kind: CiTestDestinationKind? = nil) {
                 self.availableRuntimes = availableRuntimes
@@ -99,7 +99,7 @@ public struct CiXcodeVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var macOsVersions: MacOsVersions?
+        public var macOsVersions: MacOsVersions?
 
         public init(macOsVersions: MacOsVersions? = nil) {
             self.macOsVersions = macOsVersions
@@ -115,9 +115,9 @@ public struct CiXcodeVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

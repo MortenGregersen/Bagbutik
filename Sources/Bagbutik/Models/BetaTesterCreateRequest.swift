@@ -83,8 +83,8 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var betaGroups: BetaGroups?
-            @NullCodable public var builds: Builds?
+            public var betaGroups: BetaGroups?
+            public var builds: Builds?
 
             public init(betaGroups: BetaGroups? = nil, builds: Builds? = nil) {
                 self.betaGroups = betaGroups

@@ -4,7 +4,7 @@ public struct AppEventScreenshotResponse: Codable {
     /// The resource data.
     public let data: AppEventScreenshot
     /// The included related resources.
-    @NullCodable public var included: [AppEventLocalization]?
+    public var included: [AppEventLocalization]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 

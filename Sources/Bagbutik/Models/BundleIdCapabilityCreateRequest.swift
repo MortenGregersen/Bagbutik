@@ -63,7 +63,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public let capabilityType: CapabilityType
-            @NullCodable public var settings: [CapabilitySetting]?
+            public var settings: [CapabilitySetting]?
 
             public init(capabilityType: CapabilityType, settings: [CapabilitySetting]? = nil) {
                 self.capabilityType = capabilityType

@@ -76,9 +76,9 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
-            @NullCodable public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
-            @NullCodable public var appStoreVersionLocalization: AppStoreVersionLocalization?
+            public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
+            public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
+            public var appStoreVersionLocalization: AppStoreVersionLocalization?
 
             public init(appCustomProductPageLocalization: AppCustomProductPageLocalization? = nil, appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization? = nil, appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
                 self.appCustomProductPageLocalization = appCustomProductPageLocalization

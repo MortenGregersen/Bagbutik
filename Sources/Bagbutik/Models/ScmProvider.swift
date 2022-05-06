@@ -55,7 +55,7 @@ public struct ScmProvider: Codable {
      */
     public struct Attributes: Codable {
         /// The source code management provider’s type.
-        @NullCodable public var scmProviderType: ScmProviderType?
+        public var scmProviderType: ScmProviderType?
         /// The URL of the source code management provider.
         public var url: String?
 

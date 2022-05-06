@@ -55,7 +55,7 @@ public struct AppStoreVersionPhasedRelease: Codable {
      */
     public struct Attributes: Codable {
         public var currentDayNumber: Int?
-        @NullCodable public var phasedReleaseState: PhasedReleaseState?
+        public var phasedReleaseState: PhasedReleaseState?
         public var startDate: Date?
         public var totalPauseDuration: Int?
 

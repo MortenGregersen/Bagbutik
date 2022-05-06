@@ -50,14 +50,14 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            @NullCodable public var badge: AppEvent.Attributes.Badge?
+            public var badge: AppEvent.Attributes.Badge?
             public var deepLink: String?
             public var primaryLocale: String?
-            @NullCodable public var priority: AppEvent.Attributes.Priority?
-            @NullCodable public var purchaseRequirement: AppEvent.Attributes.PurchaseRequirement?
-            @NullCodable public var purpose: AppEvent.Attributes.Purpose?
+            public var priority: AppEvent.Attributes.Priority?
+            public var purchaseRequirement: AppEvent.Attributes.PurchaseRequirement?
+            public var purpose: AppEvent.Attributes.Purpose?
             public var referenceName: String?
-            @NullCodable public var territorySchedules: [TerritorySchedules]?
+            public var territorySchedules: [TerritorySchedules]?
 
             public init(badge: AppEvent.Attributes.Badge? = nil, deepLink: String? = nil, primaryLocale: String? = nil, priority: AppEvent.Attributes.Priority? = nil, purchaseRequirement: AppEvent.Attributes.PurchaseRequirement? = nil, purpose: AppEvent.Attributes.Purpose? = nil, referenceName: String? = nil, territorySchedules: [TerritorySchedules]? = nil) {
                 self.badge = badge
@@ -74,7 +74,7 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
                 public var eventEnd: Date?
                 public var eventStart: Date?
                 public var publishStart: Date?
-                @NullCodable public var territories: [String]?
+                public var territories: [String]?
 
                 public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
                     self.eventEnd = eventEnd

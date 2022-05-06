@@ -72,7 +72,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var betaAppClipInvocation: BetaAppClipInvocation?
+        public var betaAppClipInvocation: BetaAppClipInvocation?
 
         public init(betaAppClipInvocation: BetaAppClipInvocation? = nil) {
             self.betaAppClipInvocation = betaAppClipInvocation

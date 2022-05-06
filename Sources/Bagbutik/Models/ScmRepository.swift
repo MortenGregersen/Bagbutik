@@ -87,8 +87,8 @@ public struct ScmRepository: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var defaultBranch: DefaultBranch?
-        @NullCodable public var scmProvider: ScmProvider?
+        public var defaultBranch: DefaultBranch?
+        public var scmProvider: ScmProvider?
 
         public init(defaultBranch: DefaultBranch? = nil, scmProvider: ScmProvider? = nil) {
             self.defaultBranch = defaultBranch
@@ -105,7 +105,7 @@ public struct ScmRepository: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -194,7 +194,7 @@ public struct ScmRepository: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

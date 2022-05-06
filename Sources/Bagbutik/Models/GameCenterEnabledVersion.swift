@@ -60,8 +60,8 @@ public struct GameCenterEnabledVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/attributes>
      */
     public struct Attributes: Codable {
-        @NullCodable public var iconAsset: ImageAsset?
-        @NullCodable public var platform: Platform?
+        public var iconAsset: ImageAsset?
+        public var platform: Platform?
         public var versionString: String?
 
         public init(iconAsset: ImageAsset? = nil, platform: Platform? = nil, versionString: String? = nil) {
@@ -78,8 +78,8 @@ public struct GameCenterEnabledVersion: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var app: App?
-        @NullCodable public var compatibleVersions: CompatibleVersions?
+        public var app: App?
+        public var compatibleVersions: CompatibleVersions?
 
         public init(app: App? = nil, compatibleVersions: CompatibleVersions? = nil) {
             self.app = app
@@ -96,7 +96,7 @@ public struct GameCenterEnabledVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data
@@ -185,9 +185,9 @@ public struct GameCenterEnabledVersion: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
             /// Paging information for data responses.
-            @NullCodable public var meta: PagingInformation?
+            public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
                 self.data = data

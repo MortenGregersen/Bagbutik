@@ -63,40 +63,40 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// Declaration for alcohol, tobacco, or drug use.
-            @NullCodable public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
+            public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
             /// Declaration for contests.
-            @NullCodable public var contests: AgeRatingDeclaration.Attributes.Contests?
+            public var contests: AgeRatingDeclaration.Attributes.Contests?
             /// Declaration for gambling, provided as a Boolean value.
             public var gambling: Bool?
             /// Declaration for gambling or contests, as a Boolean value.
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
             public var gamblingAndContests: Bool? = nil
             /// Declaration for simulated gambling.
-            @NullCodable public var gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated?
+            public var gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated?
             /// Declaration for horror or fear themed content.
-            @NullCodable public var horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes?
+            public var horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes?
             /// Declaration for the Kids Age Band value.
-            @NullCodable public var kidsAgeBand: KidsAgeBand?
+            public var kidsAgeBand: KidsAgeBand?
             /// Declaration for mature or suggestive themes.
-            @NullCodable public var matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes?
+            public var matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes?
             /// Declaration for medical or treatment-focused content.
-            @NullCodable public var medicalOrTreatmentInformation: AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation?
+            public var medicalOrTreatmentInformation: AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation?
             /// Declaration for profanity or crude humor.
-            @NullCodable public var profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor?
+            public var profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor?
             /// Declaration for a 17+ rating, provided as a Boolean value.
             public var seventeenPlus: Bool?
             /// Declaration for graphic sexual content and nudity.
-            @NullCodable public var sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity?
+            public var sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity?
             /// Declaration for sexual content or nudity.
-            @NullCodable public var sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity?
+            public var sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity?
             /// Declaration for unrestricted web access, such as with an embedded browser, provided as a Boolean value.
             public var unrestrictedWebAccess: Bool?
             /// Declaration for cartoon or fantasy violence.
-            @NullCodable public var violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy?
+            public var violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy?
             /// Declaration for realistic violence.
-            @NullCodable public var violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic?
+            public var violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic?
             /// Declaration for prolonged realistic or sadistic violence.
-            @NullCodable public var violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic?
+            public var violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic?
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: AgeRatingDeclaration.Attributes.Contests? = nil, gambling: Bool? = nil, gamblingAndContests: Bool? = nil, gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil, horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy? = nil, violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic? = nil) {

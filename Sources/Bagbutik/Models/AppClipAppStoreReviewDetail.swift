@@ -61,7 +61,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
      */
     public struct Attributes: Codable {
         /// An array of invocation URLs for your App Clip.
-        @NullCodable public var invocationUrls: [String]?
+        public var invocationUrls: [String]?
 
         public init(invocationUrls: [String]? = nil) {
             self.invocationUrls = invocationUrls
@@ -75,7 +75,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships>
      */
     public struct Relationships: Codable {
-        @NullCodable public var appClipDefaultExperience: AppClipDefaultExperience?
+        public var appClipDefaultExperience: AppClipDefaultExperience?
 
         public init(appClipDefaultExperience: AppClipDefaultExperience? = nil) {
             self.appClipDefaultExperience = appClipDefaultExperience
@@ -91,7 +91,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship's self-link.
-            @NullCodable public var links: Links?
+            public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
                 self.data = data

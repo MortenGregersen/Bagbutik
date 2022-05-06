@@ -11,11 +11,11 @@ public struct AppInfoLocalizationsResponse: Codable, PagedResponse {
     /// The resource data.
     public let data: [AppInfoLocalization]
     /// The included related resources.
-    @NullCodable public var included: [AppInfo]?
+    public var included: [AppInfo]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [AppInfoLocalization], included: [AppInfo]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

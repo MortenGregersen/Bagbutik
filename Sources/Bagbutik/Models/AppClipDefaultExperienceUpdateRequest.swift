@@ -69,7 +69,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             /// The call-to-action verb that appears on the App Clip card.
-            @NullCodable public var action: AppClipAction?
+            public var action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
                 self.action = action
@@ -83,7 +83,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            @NullCodable public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
+            public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
             public init(releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
                 self.releaseWithAppStoreVersion = releaseWithAppStoreVersion

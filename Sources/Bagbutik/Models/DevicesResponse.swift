@@ -13,7 +13,7 @@ public struct DevicesResponse: Codable, PagedResponse {
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
-    @NullCodable public var meta: PagingInformation?
+    public var meta: PagingInformation?
 
     public init(data: [Device], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
         self.data = data

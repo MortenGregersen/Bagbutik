@@ -7,7 +7,7 @@ internal class PropertyRenderer: Renderer {
             "deprecated": deprecated,
             "propertyType": deprecated || optional ? "var" : "let",
             "defaultValue": deprecated ? "nil" : "",
-            "nullCodable": !isSimpleType && optional
+            "nullCodable": id == "data" && (type == "Data" || type == "[Data]") && optional
         ])
     }
 
