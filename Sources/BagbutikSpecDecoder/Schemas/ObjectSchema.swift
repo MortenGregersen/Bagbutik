@@ -62,7 +62,6 @@ public struct ObjectSchema: Decodable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let requiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
         let properties: [String: Property]
         let propertiesContainer = try? container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
         properties = try propertiesContainer?.allKeys.reduce(into: [String: Property]()) { properties, key in
@@ -82,6 +81,16 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
+        let requiredProperties: [String] = try {
+            var decodedRequiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
+            if name == "BuildBundle" {
+                // HACK: In Apple's OpenAPI spec the `links` property on `BuildBundle` is marked as `required.
+                // But when requesting build bunldes from the API, the `links` property is missing in the response.
+                // Reported to Apple 27/5/22 as FB10029609.
+                decodedRequiredProperties.removeAll(where: { $0 == "links" })
+            }
+            return decodedRequiredProperties
+        }()
         let codingPathComponents = container.codingPath.components
         let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
         let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
