@@ -10,7 +10,7 @@ public struct BuildBundle: Codable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
-    public let links: ResourceLinks
+    public var links: ResourceLinks?
     /// The resource type.
     public var type: String { "buildBundles" }
     /// The resource's attributes.
@@ -18,7 +18,7 @@ public struct BuildBundle: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public let relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String, links: ResourceLinks? = nil, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -28,7 +28,7 @@ public struct BuildBundle: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
@@ -39,7 +39,7 @@ public struct BuildBundle: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
