@@ -256,23 +256,23 @@ public class OperationRenderer: Renderer {
             parametersDocumentations.append(" - Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
-            parameters.append("fields: [\(name).Field]? = nil")
+            parameters.append("fields: [\(wrapperName).Field]? = nil")
             parametersInit.append("fields: fields")
         }
         if filters.count > 0 {
-            parameters.append("filters: [\(name).Filter]? = nil")
+            parameters.append("filters: [\(wrapperName).Filter]? = nil")
             parametersInit.append("filters: filters")
         }
         if exists.count > 0 {
-            parameters.append("exists: [\(name).Exist]? = nil")
+            parameters.append("exists: [\(wrapperName).Exist]? = nil")
             parametersInit.append("exists: exists")
         }
         if includes.count > 0 {
-            parameters.append("includes: [\(name).Include]? = nil")
+            parameters.append("includes: [\(wrapperName).Include]? = nil")
             parametersInit.append("includes: includes")
         }
         if sorts.count > 0 {
-            parameters.append("sorts: [\(name).Sort]? = nil")
+            parameters.append("sorts: [\(wrapperName).Sort]? = nil")
             parametersInit.append("sorts: sorts")
         }
         if limits.count == 1 {
@@ -280,7 +280,7 @@ public class OperationRenderer: Renderer {
             parametersInit.append("limit: limit")
         }
         else if limits.count > 0 {
-            parameters.append("limits: [\(name).Limit]? = nil")
+            parameters.append("limits: [\(wrapperName).Limit]? = nil")
             parametersInit.append("limits: limits")
         }
 
