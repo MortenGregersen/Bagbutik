@@ -30,8 +30,8 @@ public enum Schema: Decodable, Equatable {
         let type = try container.decode(String.self, forKey: .type)
         if try container.decodeIfPresent([String].self, forKey: .enum) != nil { self = .enum(try EnumSchema(from: decoder)) }
         else if type == "object" { self = .object(try ObjectSchema(from: decoder)) }
-        else if type == "string" { self = .plainText(try PlainTextSchema(from: decoder)) }
         else if let binarySchema = try? BinarySchema(from: decoder) { self = .binary(binarySchema) }
+        else if type == "string" { self = .plainText(try PlainTextSchema(from: decoder)) }
         else { throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Schema type '\(type)' not known") }
     }
     

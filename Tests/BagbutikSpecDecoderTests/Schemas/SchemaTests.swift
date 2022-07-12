@@ -106,4 +106,23 @@ final class SchemaTests: XCTestCase {
             XCTAssertEqual(context.debugDescription, "Schema type not known")
         }
     }
+
+    func testDecodingPlainTextSchema() throws {
+        // Given
+        let json = #"""
+        {
+            "csv" : {
+                "type" : "string",
+            }
+        }
+        """#
+        // When
+        let schemas = try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)
+        // Then
+        guard let schema = schemas.values.first, case let .plainText(plainTextSchema) = schema else {
+            return XCTFail("Wrong schema type")
+        }
+        XCTAssertEqual(schema.name, "Csv")
+        XCTAssertEqual(plainTextSchema.name, "Csv")
+    }
 }
