@@ -21,12 +21,9 @@ public enum GetSubscriptionOfferCodeOneTimeUseCodeV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodeValues
-        case subscriptionOfferCodeOneTimeUseCodeValues([SubscriptionOfferCodeOneTimeUseCodeValues])
         /// The fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes
         case subscriptionOfferCodeOneTimeUseCodes([SubscriptionOfferCodeOneTimeUseCodes])
 
-        public enum SubscriptionOfferCodeOneTimeUseCodeValues: String, ParameterValue, CaseIterable {}
         public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, CaseIterable {
             case active
             case createdDate
