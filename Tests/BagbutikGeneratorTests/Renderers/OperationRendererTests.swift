@@ -13,7 +13,7 @@ final class OperationRendererTests: XCTestCase {
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
@@ -44,7 +44,7 @@ final class OperationRendererTests: XCTestCase {
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
         let operation = Operation(name: "listUsers", documentation: nil, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
@@ -72,7 +72,7 @@ final class OperationRendererTests: XCTestCase {
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, deprecated: true, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
@@ -116,7 +116,7 @@ final class OperationRendererTests: XCTestCase {
             .limit(name: "devices", documentation: "Maximum of included devices", maximum: 10)
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
@@ -249,7 +249,7 @@ final class OperationRendererTests: XCTestCase {
         let requestBody = RequestBody(name: "UserUpdateRequest", documentation: "User representation")
         let operation = Operation(name: "updateUser", documentation: documentation, method: .patch, requestBody: requestBody, successResponseType: "UpdateUserResponse", errorResponseType: "ErrorResponse")
         let parameters: [Path.Parameter] = [.init(name: "id", description: "Id of the user to update")]
-        let path = Path(path: "/users/{id}", info: .init(mainType: "User", isRelationship: false), operations: [operation], parameters: parameters)
+        let path = Path(path: "/users/{id}", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation], parameters: parameters)
         // When
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
@@ -283,7 +283,7 @@ final class OperationRendererTests: XCTestCase {
             .exists(name: "hair", type: .enum(type: "length", values: ["SHORT", "LONG"]), documentation: "description for hair")
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
             // Then
@@ -298,7 +298,7 @@ final class OperationRendererTests: XCTestCase {
             .include(type: .simple(type: .string))
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
             // Then
@@ -313,7 +313,7 @@ final class OperationRendererTests: XCTestCase {
             .sort(type: .simple(type: .string), documentation: "sorting")
         ]
         let operation = Operation(name: "listUsers", documentation: documentation, method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
-        let path = Path(path: "/users", info: .init(mainType: "User", isRelationship: false), operations: [operation])
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
         XCTAssertThrowsError(try OperationRenderer.operationContext(for: operation, in: path)) {
             // Then

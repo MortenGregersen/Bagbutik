@@ -173,7 +173,7 @@ public class Generator {
     private static func generateEndpoints(for path: Path) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
         try path.operations.map { operation in
             let name = operation.name.capitalizingFirstLetter()
-            let fileName = "\(name).swift"
+            let fileName = "\(path.info.version)\(name).swift"
             let renderedOperation = try OperationRenderer().render(operation: operation, in: path)
             return (name: name, fileName: fileName, contents: renderedOperation, hasDocumentation: operation.documentation != nil)
         }
