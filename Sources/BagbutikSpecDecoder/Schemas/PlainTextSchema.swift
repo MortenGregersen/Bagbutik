@@ -22,10 +22,6 @@ public struct PlainTextSchema: Decodable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
-        let type = try container.decode(String.self, forKey: .type)
-        guard type == "string" else {
-            throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Schema type is not 'string'")
-        }
         self.init(name: name,
                   url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components),
                   lookupDocumentation: Schema.Documentation.lookupDocumentation)

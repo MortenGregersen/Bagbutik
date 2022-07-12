@@ -23,10 +23,6 @@ public struct BinarySchema: Decodable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
-        let format = try container.decode(String.self, forKey: .format)
-        guard format == "binary" else {
-            throw DecodingError.dataCorruptedError(forKey: CodingKeys.format, in: container, debugDescription: "Schema format is not 'binary'")
-        }
         self.init(name: name,
                   url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components),
                   lookupDocumentation: Schema.Documentation.lookupDocumentation)

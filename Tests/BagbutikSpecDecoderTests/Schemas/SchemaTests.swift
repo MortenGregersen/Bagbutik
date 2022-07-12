@@ -103,7 +103,7 @@ final class SchemaTests: XCTestCase {
         // When
         XCTAssertThrowsError(try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)) {
             guard case let .dataCorrupted(context) = $0 as! DecodingError else { return XCTFail() }
-            XCTAssertEqual(context.debugDescription, "Schema type not known")
+            XCTAssertEqual(context.debugDescription, "Schema has format, but it is not 'binary'")
         }
     }
 

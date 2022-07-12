@@ -25,6 +25,7 @@ final class GeneratorTests: XCTestCase {
         "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
         "Gzip": .binary(.init(name: "Gzip", url: "other://url", lookupDocumentation: { _ in .rootSchema(summary: "Gzip response") })),
+        "Csv": .plainText(.init(name: "Csv", url: "other://url", lookupDocumentation: { _ in .rootSchema(summary: "Csv response") })),
     ]))
     
     func testGenerateAllSimple() async throws {
@@ -40,8 +41,9 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.itemsRemoved.sorted(), ["Endpoints", "Models"])
         XCTAssertEqual(fileManager.directoriesCreated.count, 4)
         XCTAssertEqual(fileManager.directoriesCreated.sorted(), ["Endpoints", "Models", "Relationships", "Users"])
-        XCTAssertEqual(fileManager.filesCreated.count, 5)
+        XCTAssertEqual(fileManager.filesCreated.count, 6)
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
+            "Csv.swift",
             "Gzip.swift",
             "ListUsers.swift",
             "ListVisibleAppIdsForUser.swift",
@@ -49,19 +51,20 @@ final class GeneratorTests: XCTestCase {
             "UsersResponse.swift",
         ])
         XCTAssertEqual(printer.printedLogs[0], "🔍 Loading spec file:///Users/steve/spec.json...")
-        XCTAssertEqual(printer.printedLogs[1...5].sorted(), [
+        XCTAssertEqual(printer.printedLogs[1...6].sorted(), [
             "⚡️ Generating endpoint ListUsers.swift...",
             "⚡️ Generating endpoint ListVisibleAppIdsForUser.swift...",
+            "⚡️ Generating model Csv...",
             "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(printer.printedLogs[6...8].sorted(), [
+        XCTAssertEqual(printer.printedLogs[7...9].sorted(), [
             "⚠️ Documentation missing for endpoint: \'ListVisibleAppIdsForUser\'",
             "⚠️ Documentation missing for model: \'ReplaceUsersResponse\'",
             "⚠️ Documentation missing for model: \'UsersResponse\' (some://url)",
         ])
-        XCTAssertEqual(printer.printedLogs[9], "🎉 Finished generating 2 endpoints and 3 models! 🎉")
+        XCTAssertEqual(printer.printedLogs[10], "🎉 Finished generating 2 endpoints and 4 models! 🎉")
     }
     
     func testInvalidSpecFileURL() async throws {
