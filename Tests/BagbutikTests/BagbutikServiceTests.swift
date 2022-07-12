@@ -27,7 +27,7 @@ final class BagbutikServiceTests: XCTestCase {
 
     func testRequest_PlainResponse() async throws {
         try setUpService()
-        let request: Request<AppResponse, ErrorResponse> = .getApp(id: "app-id")
+        let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(expectedResponse),
                                                                       type: .http(statusCode: 200))
@@ -46,7 +46,7 @@ final class BagbutikServiceTests: XCTestCase {
 
     func testRequest_EmptyResponse() async throws {
         try setUpService()
-        let request: Request<EmptyResponse, ErrorResponse> = .deleteBundleId(id: "some-id")
+        let request: Request<EmptyResponse, ErrorResponse> = .deleteBundleIdV1(id: "some-id")
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: Data(), type: .http(statusCode: 200))
         let response = try await service.request(request)
         XCTAssertEqual(response, EmptyResponse())
@@ -64,7 +64,7 @@ final class BagbutikServiceTests: XCTestCase {
             (statusCode: 418, error: .unknownHTTPError(statusCode: 418, data: data)),
         ]
         for response in responses {
-            let request: Request<AppsResponse, ErrorResponse> = .listApps()
+            let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
             mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .http(statusCode: response.statusCode))
             await XCTAssertAsyncThrowsError(try await service.request(request)) { error in
                 XCTAssertEqual(error as! ServiceError, response.error)
@@ -74,18 +74,18 @@ final class BagbutikServiceTests: XCTestCase {
 
     func testRequest_UnknownResponseType() async throws {
         try setUpService()
-        let request: Request<AppsResponse, ErrorResponse> = .listApps()
+        let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
         let data = Data("Test".utf8)
         mockURLSession.wrapInHTTPURLResponse = false
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: data, type: .url)
-        await XCTAssertAsyncThrowsError(try await service.request(.listApps())) { error in
+        await XCTAssertAsyncThrowsError(try await service.request(.listAppsV1())) { error in
             XCTAssertEqual(error as! ServiceError, .unknown(data: data))
         }
     }
 
     func testRequestAllPages() async throws {
         try setUpService()
-        let request: Request<AppsResponse, ErrorResponse> = .listApps()
+        let request: Request<AppsResponse, ErrorResponse> = .listAppsV1()
         let responses: [AppsResponse] = [
             .init(data: [.init(id: "app1", links: .init(self: ""))], links: .init(next: "https://next1", self: "")),
             .init(data: [.init(id: "app2", links: .init(self: ""))], links: .init(next: "https://next2", self: "")),
@@ -152,7 +152,7 @@ final class BagbutikServiceTests: XCTestCase {
     func testJWTRenewal() async throws {
         try setUpService(expiredJWT: true)
         XCTAssertTrue(service.jwt.isExpired)
-        let request: Request<AppResponse, ErrorResponse> = .getApp(id: "app-id")
+        let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(expectedResponse),
                                                                       type: .http(statusCode: 200))

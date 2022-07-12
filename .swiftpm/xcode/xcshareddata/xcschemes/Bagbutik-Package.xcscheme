@@ -23,6 +23,34 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "bagbutik-cli"
+               BuildableName = "bagbutik-cli"
+               BlueprintName = "bagbutik-cli"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikTests"
+               BuildableName = "BagbutikTests"
+               BlueprintName = "BagbutikTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
@@ -59,20 +87,6 @@
                BlueprintIdentifier = "BagbutikStringExtensionsTests"
                BuildableName = "BagbutikStringExtensionsTests"
                BlueprintName = "BagbutikStringExtensionsTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikTests"
-               BuildableName = "BagbutikTests"
-               BlueprintName = "BagbutikTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -140,20 +154,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "system-zlib"
-               BuildableName = "system-zlib"
-               BlueprintName = "system-zlib"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BagbutikPolyfill"
                BuildableName = "BagbutikPolyfill"
                BlueprintName = "BagbutikPolyfill"
@@ -168,23 +168,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "bagbutik"
-               BuildableName = "bagbutik"
-               BlueprintName = "bagbutik"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikTestHelpers"
-               BuildableName = "BagbutikTestHelpers"
-               BlueprintName = "BagbutikTestHelpers"
+               BlueprintIdentifier = "system-zlib"
+               BuildableName = "system-zlib"
+               BlueprintName = "system-zlib"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -197,6 +183,18 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikTests"
+               BuildableName = "BagbutikTests"
+               BlueprintName = "BagbutikTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
          <TestableReference
             skipped = "NO"
             parallelizable = "YES"
@@ -233,18 +231,6 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikTests"
-               BuildableName = "BagbutikTests"
-               BlueprintName = "BagbutikTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -261,9 +247,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "bagbutik"
-            BuildableName = "bagbutik"
-            BlueprintName = "bagbutik"
+            BlueprintIdentifier = "bagbutik-cli"
+            BuildableName = "bagbutik-cli"
+            BlueprintName = "bagbutik-cli"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -287,9 +273,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "bagbutik"
-            BuildableName = "bagbutik"
-            BlueprintName = "bagbutik"
+            BlueprintIdentifier = "bagbutik-cli"
+            BuildableName = "bagbutik-cli"
+            BlueprintName = "bagbutik-cli"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -164,7 +164,7 @@ public class OperationRenderer: Renderer {
     """
 
     internal static func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {
-        let name = operation.name.capitalizingFirstLetter()
+        let name = operation.name.capitalizingFirstLetter() + path.info.version
         let pathRange = NSRange(location: 0, length: path.path.utf16.count)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(in: path.path, options: [], range: pathRange, withTemplate: #"\\($1)"#)
 

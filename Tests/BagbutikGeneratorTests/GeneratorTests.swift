@@ -6,14 +6,14 @@ final class GeneratorTests: XCTestCase {
     let validSpecFileURL = URL(fileURLWithPath: "/Users/steve/spec.json")
     let validOutputDirURL = URL(fileURLWithPath: "/Users/steve/output")
     let testSpec = Spec(paths: [
-        "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", isRelationship: false), operations: [
+        "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
             .init(name: "listUsers",
                   documentation: .init(title: "List users", summary: "Get a list of users", url: "https://developer.apple.com"),
                   method: .get,
                   successResponseType: "UsersResponse",
                   errorResponseType: "ErrorResponse"),
         ]),
-        "/v1/users/{id}/relationships/visibleApps": Path(path: "/v1/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", isRelationship: true), operations: [
+        "/v1/users/{id}/relationships/visibleApps": Path(path: "/v2/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", version: "V2", isRelationship: true), operations: [
             .init(name: "listVisibleAppIdsForUser",
                   documentation: nil,
                   method: .get,
@@ -45,15 +45,16 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "Csv.swift",
             "Gzip.swift",
-            "ListUsers.swift",
-            "ListVisibleAppIdsForUser.swift",
+            "ListUsersV1.swift",
+            "ListVisibleAppIdsForUserV2.swift",
             "ReplaceUsersResponse.swift",
             "UsersResponse.swift",
+            
         ])
         XCTAssertEqual(printer.printedLogs[0], "🔍 Loading spec file:///Users/steve/spec.json...")
         XCTAssertEqual(printer.printedLogs[1...6].sorted(), [
-            "⚡️ Generating endpoint ListUsers.swift...",
-            "⚡️ Generating endpoint ListVisibleAppIdsForUser.swift...",
+            "⚡️ Generating endpoint ListUsersV1.swift...",
+            "⚡️ Generating endpoint ListVisibleAppIdsForUserV2.swift...",
             "⚡️ Generating model Csv...",
             "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
@@ -113,13 +114,13 @@ final class GeneratorTests: XCTestCase {
     func testFailedCreatingEndpoint() async throws {
         // Given
         let fileManager = MockFileManager()
-        fileManager.fileNameToFailCreating = "ListUsers.swift"
+        fileManager.fileNameToFailCreating = "ListUsersV1.swift"
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsers.swift"))
+            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsersV1.swift"))
         }
     }
     
