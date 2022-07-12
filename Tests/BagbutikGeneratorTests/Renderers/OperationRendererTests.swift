@@ -320,4 +320,66 @@ final class OperationRendererTests: XCTestCase {
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
         }
     }
+
+    func testDontRenderEmptyParameter() throws {
+        // Given
+        let renderer = OperationRenderer()
+        let parameters: [Parameter] = [
+            .fields(name: "subscriptionOfferCodeOneTimeUseCodes", type: .enum(type: "String", values: ["active", "createdDate", "expirationDate", "numberOfCodes", "offerCode", "values"]), deprecated: false, documentation: ""),
+            .fields(name: "subscriptionOfferCodeOneTimeUseCodeValues", type: .enum(type: "String", values: []), deprecated: false, documentation: ""),
+            .include(type: .enum(type: "String", values: ["offerCode"])),
+        ]
+        let operation = Operation(name: "getSubscriptionOfferCodeOneTimeUseCodes", method: .get, parameters: parameters, successResponseType: "SubscriptionOfferCodeOneTimeUseCodeResponse", errorResponseType: "ErrorResponse")
+        let pathParameters: [Path.Parameter] = [.init(name: "id", description: "Id of the user to update")]
+        let path = Path(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}", info: .init(mainType: "SubscriptionOfferCodeOneTimeUseCodes", version: "V1", isRelationship: false), operations: [operation], parameters: pathParameters)
+        // When
+        let rendered = try renderer.render(operation: operation, in: path)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public extension Request {
+            /**
+              # No overview available
+
+              - Parameter id: Id of the user to update
+              - Parameter fields: Fields to return for included related types
+              - Parameter includes: Relationship data to include in the response
+              - Returns: A `Request` with to send to an instance of `BagbutikService`
+             */
+            static func getSubscriptionOfferCodeOneTimeUseCodesV1(id: String,
+                                                                  fields: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Field]? = nil,
+                                                                  includes: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Include]? = nil) -> Request<SubscriptionOfferCodeOneTimeUseCodeResponse, ErrorResponse>
+            {
+                return .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                                                     includes: includes))
+            }
+        }
+
+        public enum GetSubscriptionOfferCodeOneTimeUseCodesV1 {
+            /**
+             Fields to return for included related types.
+             */
+            public enum Field: FieldParameter {
+                ///
+                case subscriptionOfferCodeOneTimeUseCodes([SubscriptionOfferCodeOneTimeUseCodes])
+
+                public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, CaseIterable {
+                    case active
+                    case createdDate
+                    case expirationDate
+                    case numberOfCodes
+                    case offerCode
+                    case values
+                }
+            }
+
+            /**
+             Relationship data to include in the response.
+             */
+            public enum Include: String, IncludeParameter {
+                case offerCode
+            }
+        }
+
+        """#)
+    }
 }

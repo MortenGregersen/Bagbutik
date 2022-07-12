@@ -66,6 +66,7 @@ public struct DiagnosticSignature: Codable {
 
         public enum DiagnosticType: String, Codable, CaseIterable {
             case diskWrites = "DISK_WRITES"
+            case hangs = "HANGS"
         }
     }
 }

@@ -48,8 +48,6 @@ public enum GetAppStoreVersionForBuildV1 {
         case apps([Apps])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
-        /// The fields to include for returned resources of type idfaDeclarations
-        case idfaDeclarations([IdfaDeclarations])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
@@ -145,13 +143,12 @@ public enum GetAppStoreVersionForBuildV1 {
             case build
             case copyright
             case createdDate
+            case customerReviews
             case downloadable
             case earliestReleaseDate
-            case idfaDeclaration
             case platform
             case releaseType
             case routingAppCoverage
-            case usesIdfa
             case versionString
         }
 
@@ -172,9 +169,11 @@ public enum GetAppStoreVersionForBuildV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviews
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
             case inAppPurchases
+            case inAppPurchasesV2
             case isOrEverWasMadeForKids
             case name
             case perfPowerMetrics
@@ -183,8 +182,11 @@ public enum GetAppStoreVersionForBuildV1 {
             case pricePoints
             case prices
             case primaryLocale
+            case promotedPurchases
             case reviewSubmissions
             case sku
+            case subscriptionGracePeriod
+            case subscriptionGroups
             case subscriptionStatusUrl
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
@@ -218,14 +220,6 @@ public enum GetAppStoreVersionForBuildV1 {
             case version
         }
 
-        public enum IdfaDeclarations: String, ParameterValue, CaseIterable {
-            case appStoreVersion
-            case attributesActionWithPreviousAd
-            case attributesAppInstallationToPreviousAd
-            case honorsLimitedAdTracking
-            case servesAds
-        }
-
         public enum RoutingAppCoverages: String, ParameterValue, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
@@ -241,7 +235,7 @@ public enum GetAppStoreVersionForBuildV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
+        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, routingAppCoverage
     }
 
     /**

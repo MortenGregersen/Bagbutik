@@ -48,6 +48,7 @@ public enum ListDiagnosticSignaturesForBuildV1 {
 
         public enum DiagnosticType: String, ParameterValue, CaseIterable {
             case diskWrites = "DISK_WRITES"
+            case hangs = "HANGS"
         }
     }
 }

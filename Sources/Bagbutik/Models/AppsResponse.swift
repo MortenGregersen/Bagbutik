@@ -172,16 +172,16 @@ public struct AppsResponse: Codable, PagedResponse {
         return gameCenterEnabledVersions
     }
 
-    public func getInAppPurchases(for app: App) -> [InAppPurchase] {
-        guard let inAppPurchaseIds = app.relationships?.inAppPurchases?.data?.map(\.id),
-              let inAppPurchases = included?.compactMap({ relationship -> InAppPurchase? in
-                  guard case let .inAppPurchase(inAppPurchase) = relationship else { return nil }
-                  return inAppPurchaseIds.contains(inAppPurchase.id) ? inAppPurchase : nil
+    public func getInAppPurchasesV2(for app: App) -> [InAppPurchase] {
+        guard let inAppPurchasesV2Ids = app.relationships?.inAppPurchasesV2?.data?.map(\.id),
+              let inAppPurchasesV2 = included?.compactMap({ relationship -> InAppPurchase? in
+                  guard case let .inAppPurchase(inAppPurchasesV2) = relationship else { return nil }
+                  return inAppPurchasesV2Ids.contains(inAppPurchasesV2.id) ? inAppPurchasesV2 : nil
               })
         else {
             return []
         }
-        return inAppPurchases
+        return inAppPurchasesV2
     }
 
     public func getPreOrder(for app: App) -> AppPreOrder? {
@@ -215,6 +215,18 @@ public struct AppsResponse: Codable, PagedResponse {
         return prices
     }
 
+    public func getPromotedPurchases(for app: App) -> [PromotedPurchase] {
+        guard let promotedPurchaseIds = app.relationships?.promotedPurchases?.data?.map(\.id),
+              let promotedPurchases = included?.compactMap({ relationship -> PromotedPurchase? in
+                  guard case let .promotedPurchase(promotedPurchase) = relationship else { return nil }
+                  return promotedPurchaseIds.contains(promotedPurchase.id) ? promotedPurchase : nil
+              })
+        else {
+            return []
+        }
+        return promotedPurchases
+    }
+
     public func getReviewSubmissions(for app: App) -> [ReviewSubmission] {
         guard let reviewSubmissionIds = app.relationships?.reviewSubmissions?.data?.map(\.id),
               let reviewSubmissions = included?.compactMap({ relationship -> ReviewSubmission? in
@@ -225,6 +237,25 @@ public struct AppsResponse: Codable, PagedResponse {
             return []
         }
         return reviewSubmissions
+    }
+
+    public func getSubscriptionGracePeriod(for app: App) -> SubscriptionGracePeriod? {
+        included?.compactMap { relationship -> SubscriptionGracePeriod? in
+            guard case let .subscriptionGracePeriod(subscriptionGracePeriod) = relationship else { return nil }
+            return subscriptionGracePeriod
+        }.first { $0.id == app.relationships?.subscriptionGracePeriod?.data?.id }
+    }
+
+    public func getSubscriptionGroups(for app: App) -> [SubscriptionGroup] {
+        guard let subscriptionGroupIds = app.relationships?.subscriptionGroups?.data?.map(\.id),
+              let subscriptionGroups = included?.compactMap({ relationship -> SubscriptionGroup? in
+                  guard case let .subscriptionGroup(subscriptionGroup) = relationship else { return nil }
+                  return subscriptionGroupIds.contains(subscriptionGroup.id) ? subscriptionGroup : nil
+              })
+        else {
+            return []
+        }
+        return subscriptionGroups
     }
 
     public enum Included: Codable {
@@ -244,8 +275,12 @@ public struct AppsResponse: Codable, PagedResponse {
         case endUserLicenseAgreement(EndUserLicenseAgreement)
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
         case inAppPurchase(InAppPurchase)
+        case inAppPurchaseV2(InAppPurchaseV2)
         case prereleaseVersion(PrereleaseVersion)
+        case promotedPurchase(PromotedPurchase)
         case reviewSubmission(ReviewSubmission)
+        case subscriptionGracePeriod(SubscriptionGracePeriod)
+        case subscriptionGroup(SubscriptionGroup)
         case territory(Territory)
 
         public init(from decoder: Decoder) throws {
@@ -281,10 +316,18 @@ public struct AppsResponse: Codable, PagedResponse {
                 self = .gameCenterEnabledVersion(gameCenterEnabledVersion)
             } else if let inAppPurchase = try? InAppPurchase(from: decoder) {
                 self = .inAppPurchase(inAppPurchase)
+            } else if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
+                self = .inAppPurchaseV2(inAppPurchaseV2)
             } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                 self = .prereleaseVersion(prereleaseVersion)
+            } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
+                self = .promotedPurchase(promotedPurchase)
             } else if let reviewSubmission = try? ReviewSubmission(from: decoder) {
                 self = .reviewSubmission(reviewSubmission)
+            } else if let subscriptionGracePeriod = try? SubscriptionGracePeriod(from: decoder) {
+                self = .subscriptionGracePeriod(subscriptionGracePeriod)
+            } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
+                self = .subscriptionGroup(subscriptionGroup)
             } else if let territory = try? Territory(from: decoder) {
                 self = .territory(territory)
             } else {
@@ -327,9 +370,17 @@ public struct AppsResponse: Codable, PagedResponse {
                 try value.encode(to: encoder)
             case let .inAppPurchase(value):
                 try value.encode(to: encoder)
+            case let .inAppPurchaseV2(value):
+                try value.encode(to: encoder)
             case let .prereleaseVersion(value):
                 try value.encode(to: encoder)
+            case let .promotedPurchase(value):
+                try value.encode(to: encoder)
             case let .reviewSubmission(value):
+                try value.encode(to: encoder)
+            case let .subscriptionGracePeriod(value):
+                try value.encode(to: encoder)
+            case let .subscriptionGroup(value):
                 try value.encode(to: encoder)
             case let .territory(value):
                 try value.encode(to: encoder)
