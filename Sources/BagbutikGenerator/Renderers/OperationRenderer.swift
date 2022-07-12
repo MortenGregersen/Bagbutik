@@ -80,7 +80,7 @@ public class OperationRenderer: Renderer {
     }
 
     {% if addWrapperStruct %}
-    public struct {{ wrapperName }} {
+    public struct {{ name }} {
         {% if fields %}
         /**
         Fields to return for included related types.
@@ -165,7 +165,6 @@ public class OperationRenderer: Renderer {
 
     internal static func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {
         let name = operation.name.capitalizingFirstLetter() + path.info.version
-        let wrapperName = path.info.version + operation.name.capitalizingFirstLetter()
         let pathRange = NSRange(location: 0, length: path.path.utf16.count)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(in: path.path, options: [], range: pathRange, withTemplate: #"\\($1)"#)
 
@@ -256,23 +255,23 @@ public class OperationRenderer: Renderer {
             parametersDocumentations.append(" - Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
-            parameters.append("fields: [\(wrapperName).Field]? = nil")
+            parameters.append("fields: [\(name).Field]? = nil")
             parametersInit.append("fields: fields")
         }
         if filters.count > 0 {
-            parameters.append("filters: [\(wrapperName).Filter]? = nil")
+            parameters.append("filters: [\(name).Filter]? = nil")
             parametersInit.append("filters: filters")
         }
         if exists.count > 0 {
-            parameters.append("exists: [\(wrapperName).Exist]? = nil")
+            parameters.append("exists: [\(name).Exist]? = nil")
             parametersInit.append("exists: exists")
         }
         if includes.count > 0 {
-            parameters.append("includes: [\(wrapperName).Include]? = nil")
+            parameters.append("includes: [\(name).Include]? = nil")
             parametersInit.append("includes: includes")
         }
         if sorts.count > 0 {
-            parameters.append("sorts: [\(wrapperName).Sort]? = nil")
+            parameters.append("sorts: [\(name).Sort]? = nil")
             parametersInit.append("sorts: sorts")
         }
         if limits.count == 1 {
@@ -280,7 +279,7 @@ public class OperationRenderer: Renderer {
             parametersInit.append("limit: limit")
         }
         else if limits.count > 0 {
-            parameters.append("limits: [\(wrapperName).Limit]? = nil")
+            parameters.append("limits: [\(name).Limit]? = nil")
             parametersInit.append("limits: limits")
         }
 
@@ -296,7 +295,6 @@ public class OperationRenderer: Renderer {
                 "successResponseType": operation.successResponseType,
                 "errorResponseType": operation.errorResponseType,
                 "addWrapperStruct": propertiesCount > 0,
-                "wrapperName": wrapperName,
                 "fields": fields.sorted(by: { $0.id < $1.id }),
                 "fieldSubschemas": fieldSubSchemas.sorted(by: { $0.0 < $1.0 }).map(\.value).joined(separator: "\n\n"),
                 "filters": filters.sorted(by: { $0.id < $1.id }),
