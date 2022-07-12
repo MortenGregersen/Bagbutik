@@ -14,18 +14,10 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupupdaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "betaGroups" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -55,22 +47,12 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /**
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betagroupupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var feedbackEnabled: Bool?
             public var iosBuildsAvailableForAppleSiliconMac: Bool?
-            /// The name for the beta group.
             public var name: String?
-            /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
             public var publicLinkEnabled: Bool?
-            /// The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.
             public var publicLinkLimit: Int?
-            /// A Boolean value that limits the number of testers who can join the beta group using the public link.
             public var publicLinkLimitEnabled: Bool?
 
             public init(feedbackEnabled: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, name: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {

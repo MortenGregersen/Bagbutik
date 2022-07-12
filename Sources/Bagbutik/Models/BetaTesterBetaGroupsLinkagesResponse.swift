@@ -24,7 +24,7 @@ public struct BetaTesterBetaGroupsLinkagesResponse: Codable, PagedResponse {
      The data element of the response body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbetagroupslinkagesresponse/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbetagroupslinkagesresponse/properties/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

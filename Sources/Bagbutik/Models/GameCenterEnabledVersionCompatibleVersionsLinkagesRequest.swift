@@ -18,7 +18,7 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable
      The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest/properties/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

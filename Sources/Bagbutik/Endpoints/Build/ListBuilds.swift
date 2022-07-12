@@ -87,13 +87,12 @@ public enum ListBuilds {
             case build
             case copyright
             case createdDate
+            case customerReviews
             case downloadable
             case earliestReleaseDate
-            case idfaDeclaration
             case platform
             case releaseType
             case routingAppCoverage
-            case usesIdfa
             case versionString
         }
 
@@ -114,9 +113,11 @@ public enum ListBuilds {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviews
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
             case inAppPurchases
+            case inAppPurchasesV2
             case isOrEverWasMadeForKids
             case name
             case perfPowerMetrics
@@ -125,8 +126,11 @@ public enum ListBuilds {
             case pricePoints
             case prices
             case primaryLocale
+            case promotedPurchases
             case reviewSubmissions
             case sku
+            case subscriptionGracePeriod
+            case subscriptionGroups
             case subscriptionStatusUrl
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion

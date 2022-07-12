@@ -47,20 +47,10 @@ public struct CiIssue: Codable {
         case attributes
     }
 
-    /**
-     The attributes that describe an Issues resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ciissue/attributes>
-     */
     public struct Attributes: Codable {
-        /// A string representing the issue’s category; for example, the name of the build phase where the issue occurred.
         public var category: String?
-        /// The file and line number where Xcode Cloud encountered an issue.
         public var fileSource: FileLocation?
-        /// A string that indicates what kind of issue Xcode Cloud encountered.
         public var issueType: IssueType?
-        /// Information about the issue that occurred.
         public var message: String?
 
         public init(category: String? = nil, fileSource: FileLocation? = nil, issueType: IssueType? = nil, message: String? = nil) {

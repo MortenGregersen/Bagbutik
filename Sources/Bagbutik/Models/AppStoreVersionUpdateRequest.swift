@@ -14,20 +14,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "appStoreVersions" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes?
-        /// The types and IDs of the related data to update.
+        ///
         public let relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -61,30 +53,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var copyright: String?
             public var downloadable: Bool?
             public var earliestReleaseDate: Date?
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
-            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var usesIdfa: Bool? = nil
             public var versionString: String?
-
-            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-            public init(copyright: String? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String? = nil) {
-                self.copyright = copyright
-                self.downloadable = downloadable
-                self.earliestReleaseDate = earliestReleaseDate
-                self.releaseType = releaseType
-                self.usesIdfa = usesIdfa
-                self.versionString = versionString
-            }
 
             public init(copyright: String? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, versionString: String? = nil) {
                 self.copyright = copyright
@@ -99,7 +73,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          The data and links that describe the relationship between the resources.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public var appClipDefaultExperience: AppClipDefaultExperience?
@@ -111,7 +85,6 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
 
             public struct AppClipDefaultExperience: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -122,7 +95,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/properties/data/properties/relationships/properties/appclipdefaultexperience/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -156,7 +129,6 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -167,7 +139,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/properties/data/properties/relationships/properties/build/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

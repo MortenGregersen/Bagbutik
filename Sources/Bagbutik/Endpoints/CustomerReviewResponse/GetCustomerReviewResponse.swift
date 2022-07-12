@@ -1,0 +1,41 @@
+public extension Request {
+    /**
+      # No overview available
+
+      - Parameter id: The id of the requested resource
+      - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
+      - Returns: A `Request` with to send to an instance of `BagbutikService`
+     */
+    static func getCustomerReviewResponse(id: String,
+                                          fields: [GetCustomerReviewResponse.Field]? = nil,
+                                          includes: [GetCustomerReviewResponse.Include]? = nil) -> Request<CustomerReviewResponseV1Response, ErrorResponse>
+    {
+        return .init(path: "/v1/customerReviewResponses/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                                includes: includes))
+    }
+}
+
+public enum GetCustomerReviewResponse {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type customerReviewResponses
+        case customerReviewResponses([CustomerReviewResponses])
+
+        public enum CustomerReviewResponses: String, ParameterValue, CaseIterable {
+            case lastModifiedDate
+            case responseBody
+            case review
+            case state
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case review
+    }
+}

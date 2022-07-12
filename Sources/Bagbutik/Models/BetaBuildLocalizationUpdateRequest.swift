@@ -14,18 +14,10 @@ public struct BetaBuildLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationupdaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "betaBuildLocalizations" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
@@ -55,14 +47,7 @@ public struct BetaBuildLocalizationUpdateRequest: Codable, RequestBody {
             case attributes
         }
 
-        /**
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// A field that describes changes and additions to a build and indicates features you would like your users to test.
             public var whatsNew: String?
 
             public init(whatsNew: String? = nil) {

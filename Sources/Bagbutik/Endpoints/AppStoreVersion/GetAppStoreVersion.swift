@@ -48,9 +48,8 @@ public enum GetAppStoreVersion {
         case appStoreVersions([AppStoreVersions])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
-        /// The fields to include for returned resources of type idfaDeclarations
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        case idfaDeclarations([IdfaDeclarations])
+        /// The fields to include for returned resources of type customerReviews
+        case customerReviews([CustomerReviews])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
@@ -146,13 +145,12 @@ public enum GetAppStoreVersion {
             case build
             case copyright
             case createdDate
+            case customerReviews
             case downloadable
             case earliestReleaseDate
-            case idfaDeclaration
             case platform
             case releaseType
             case routingAppCoverage
-            case usesIdfa
             case versionString
         }
 
@@ -183,12 +181,14 @@ public enum GetAppStoreVersion {
             case version
         }
 
-        public enum IdfaDeclarations: String, ParameterValue, CaseIterable {
-            case appStoreVersion
-            case attributesActionWithPreviousAd
-            case attributesAppInstallationToPreviousAd
-            case honorsLimitedAdTracking
-            case servesAds
+        public enum CustomerReviews: String, ParameterValue, CaseIterable {
+            case body
+            case createdDate
+            case rating
+            case response
+            case reviewerNickname
+            case territory
+            case title
         }
 
         public enum RoutingAppCoverages: String, ParameterValue, CaseIterable {
@@ -206,7 +206,7 @@ public enum GetAppStoreVersion {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, idfaDeclaration, routingAppCoverage
+        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, routingAppCoverage
     }
 
     /**

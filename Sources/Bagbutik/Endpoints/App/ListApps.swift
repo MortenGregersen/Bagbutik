@@ -65,18 +65,27 @@ public enum ListApps {
         case builds([Builds])
         /// The fields to include for returned resources of type ciProducts
         case ciProducts([CiProducts])
+        /// The fields to include for returned resources of type customerReviews
+        case customerReviews([CustomerReviews])
         /// The fields to include for returned resources of type endUserLicenseAgreements
         case endUserLicenseAgreements([EndUserLicenseAgreements])
         /// The fields to include for returned resources of type gameCenterEnabledVersions
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
         /// The fields to include for returned resources of type inAppPurchases
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case inAppPurchases([InAppPurchases])
         /// The fields to include for returned resources of type perfPowerMetrics
         case perfPowerMetrics([PerfPowerMetrics])
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
+        /// The fields to include for returned resources of type promotedPurchases
+        case promotedPurchases([PromotedPurchases])
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
+        /// The fields to include for returned resources of type subscriptionGracePeriods
+        case subscriptionGracePeriods([SubscriptionGracePeriods])
+        /// The fields to include for returned resources of type subscriptionGroups
+        case subscriptionGroups([SubscriptionGroups])
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
@@ -160,13 +169,12 @@ public enum ListApps {
             case build
             case copyright
             case createdDate
+            case customerReviews
             case downloadable
             case earliestReleaseDate
-            case idfaDeclaration
             case platform
             case releaseType
             case routingAppCoverage
-            case usesIdfa
             case versionString
         }
 
@@ -187,9 +195,11 @@ public enum ListApps {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviews
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
             case inAppPurchases
+            case inAppPurchasesV2
             case isOrEverWasMadeForKids
             case name
             case perfPowerMetrics
@@ -198,8 +208,11 @@ public enum ListApps {
             case pricePoints
             case prices
             case primaryLocale
+            case promotedPurchases
             case reviewSubmissions
             case sku
+            case subscriptionGracePeriod
+            case subscriptionGroups
             case subscriptionStatusUrl
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
@@ -289,6 +302,16 @@ public enum ListApps {
             case workflows
         }
 
+        public enum CustomerReviews: String, ParameterValue, CaseIterable {
+            case body
+            case createdDate
+            case rating
+            case response
+            case reviewerNickname
+            case territory
+            case title
+        }
+
         public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
             case agreementText
             case app
@@ -324,6 +347,16 @@ public enum ListApps {
             case version
         }
 
+        public enum PromotedPurchases: String, ParameterValue, CaseIterable {
+            case app
+            case enabled
+            case inAppPurchaseV2
+            case promotionImages
+            case state
+            case subscription
+            case visibleForAllUsers
+        }
+
         public enum ReviewSubmissions: String, ParameterValue, CaseIterable {
             case app
             case appStoreVersionForReview
@@ -333,6 +366,18 @@ public enum ListApps {
             case state
             case submitted
             case submittedDate
+        }
+
+        public enum SubscriptionGracePeriods: String, ParameterValue, CaseIterable {
+            case app
+            case optIn
+        }
+
+        public enum SubscriptionGroups: String, ParameterValue, CaseIterable {
+            case app
+            case referenceName
+            case subscriptionGroupLocalizations
+            case subscriptions
         }
 
         public enum Territories: String, ParameterValue, CaseIterable {
@@ -400,7 +445,7 @@ public enum ListApps {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClips, appCustomProductPages, appEvents, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, preOrder, preReleaseVersions, prices, reviewSubmissions
+        case appClips, appCustomProductPages, appEvents, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, inAppPurchasesV2, preOrder, preReleaseVersions, prices, promotedPurchases, reviewSubmissions, subscriptionGracePeriod, subscriptionGroups
     }
 
     /**
@@ -443,11 +488,17 @@ public enum ListApps {
         case gameCenterEnabledVersions(Int)
         /// Maximum number of related inAppPurchases returned (when they are included) - maximum 50
         case inAppPurchases(Int)
+        /// Maximum number of related inAppPurchasesV2 returned (when they are included) - maximum 50
+        case inAppPurchasesV2(Int)
         /// Maximum number of related preReleaseVersions returned (when they are included) - maximum 50
         case preReleaseVersions(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50
         case prices(Int)
+        /// Maximum number of related promotedPurchases returned (when they are included) - maximum 50
+        case promotedPurchases(Int)
         /// Maximum number of related reviewSubmissions returned (when they are included) - maximum 50
         case reviewSubmissions(Int)
+        /// Maximum number of related subscriptionGroups returned (when they are included) - maximum 50
+        case subscriptionGroups(Int)
     }
 }

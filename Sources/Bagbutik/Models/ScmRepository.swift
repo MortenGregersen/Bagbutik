@@ -53,22 +53,11 @@ public struct ScmRepository: Codable {
         case relationships
     }
 
-    /**
-     The attributes that describe a Repositories resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/attributes>
-     */
     public struct Attributes: Codable {
-        /// The Git repository’s URL for cloning it using HTTP.
         public var httpCloneUrl: String?
-        /// The date and time when Xcode Cloud last accessed the repository.
         public var lastAccessedDate: Date?
-        /// The name of the Git repository’s owner.
         public var ownerName: String?
-        /// The name of the Git repository.
         public var repositoryName: String?
-        /// The Git repository’s URL for cloning it using SSH.
         public var sshCloneUrl: String?
 
         public init(httpCloneUrl: String? = nil, lastAccessedDate: Date? = nil, ownerName: String? = nil, repositoryName: String? = nil, sshCloneUrl: String? = nil) {
@@ -80,12 +69,6 @@ public struct ScmRepository: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships>
-     */
     public struct Relationships: Codable {
         public var defaultBranch: DefaultBranch?
         public var scmProvider: ScmProvider?
@@ -95,16 +78,8 @@ public struct ScmRepository: Codable {
             self.scmProvider = scmProvider
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch>
-         */
         public struct DefaultBranch: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -112,16 +87,8 @@ public struct ScmRepository: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmGitReferences" }
 
                 public init(id: String) {
@@ -148,16 +115,8 @@ public struct ScmRepository: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -184,16 +143,8 @@ public struct ScmRepository: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider>
-         */
         public struct ScmProvider: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -201,16 +152,8 @@ public struct ScmRepository: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmProviders" }
 
                 public init(id: String) {
@@ -237,16 +180,8 @@ public struct ScmRepository: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

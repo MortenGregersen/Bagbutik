@@ -18,7 +18,7 @@ public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, RequestBod
      The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest/properties/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

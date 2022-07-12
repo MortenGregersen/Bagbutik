@@ -53,34 +53,17 @@ public struct ScmPullRequest: Codable, RequestBody {
         case relationships
     }
 
-    /**
-     The attributes that describe a Pull Requests resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/attributes>
-     */
     public struct Attributes: Codable {
-        /// The name of the pull request’s destination branch.
         public var destinationBranchName: String?
-        /// The name of the pull request’s destination repository. If the pull request is not for a fork, this is the same value as the source repository name.
         public var destinationRepositoryName: String?
-        /// The owner of the pull request’s destination repository.
         public var destinationRepositoryOwner: String?
-        /// A Boolean value that indicates whether the pull request is open or closed.
         public var isClosed: Bool?
-        /// A Boolean value that indicates whether the pull request is for a Git fork.
         public var isCrossRepository: Bool?
-        /// The pull request number.
         public var number: Int?
-        /// The name of the pull request’s source branch.
         public var sourceBranchName: String?
-        /// The name of the pull request’s source repository.
         public var sourceRepositoryName: String?
-        /// The owner of the pull request’s destination repository.
         public var sourceRepositoryOwner: String?
-        /// The pull request’s title.
         public var title: String?
-        /// The URL of the pull request.
         public var webUrl: String?
 
         public init(destinationBranchName: String? = nil, destinationRepositoryName: String? = nil, destinationRepositoryOwner: String? = nil, isClosed: Bool? = nil, isCrossRepository: Bool? = nil, number: Int? = nil, sourceBranchName: String? = nil, sourceRepositoryName: String? = nil, sourceRepositoryOwner: String? = nil, title: String? = nil, webUrl: String? = nil) {
@@ -99,10 +82,10 @@ public struct ScmPullRequest: Codable, RequestBody {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships to other resources that you can set with this request.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships>
+     <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/properties/relationships>
      */
     public struct Relationships: Codable {
         public var repository: Repository?
@@ -111,16 +94,8 @@ public struct ScmPullRequest: Codable, RequestBody {
             self.repository = repository
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository>
-         */
         public struct Repository: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -129,10 +104,10 @@ public struct ScmPullRequest: Codable, RequestBody {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of the resource that you're relating with the resource you're creating.
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/data>
+             <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/properties/relationships/properties/repository/properties/data>
              */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
@@ -164,16 +139,8 @@ public struct ScmPullRequest: Codable, RequestBody {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

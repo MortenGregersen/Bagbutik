@@ -14,18 +14,11 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "betaGroups" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,23 +48,13 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var feedbackEnabled: Bool?
             public var hasAccessToAllBuilds: Bool?
             public var isInternalGroup: Bool?
-            /// The name for the beta group.
             public let name: String
-            /// A Boolean value that indicates whether a public link is enabled. Enabling a link allows you to invite anyone outside of your team to beta test your app. When you share this link, testers will be able to install the beta version of your app on their devices in TestFlight and share the link with others.
             public var publicLinkEnabled: Bool?
-            /// The maximum number of testers that can join this beta group using the public link. Values must be between 1 and 10,000.
             public var publicLinkLimit: Int?
-            /// A Boolean value that limits the number of testers who can join the beta group using the public link.
             public var publicLinkLimitEnabled: Bool?
 
             public init(feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, isInternalGroup: Bool? = nil, name: String, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
@@ -89,7 +72,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let app: App
@@ -103,7 +86,6 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             }
 
             public struct App: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -114,7 +96,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships/app/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/properties/data/properties/relationships/properties/app/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -148,7 +130,6 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             }
 
             public struct BetaTesters: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -159,7 +140,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships/betatesters/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/properties/data/properties/relationships/properties/betatesters/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -193,7 +174,6 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             }
 
             public struct Builds: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -204,7 +184,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships/builds/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/properties/data/properties/relationships/properties/builds/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

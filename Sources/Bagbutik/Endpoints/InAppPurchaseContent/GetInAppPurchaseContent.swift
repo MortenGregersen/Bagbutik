@@ -1,0 +1,42 @@
+public extension Request {
+    /**
+      # No overview available
+
+      - Parameter id: The id of the requested resource
+      - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
+      - Returns: A `Request` with to send to an instance of `BagbutikService`
+     */
+    static func getInAppPurchaseContent(id: String,
+                                        fields: [GetInAppPurchaseContent.Field]? = nil,
+                                        includes: [GetInAppPurchaseContent.Include]? = nil) -> Request<InAppPurchaseContentResponse, ErrorResponse>
+    {
+        return .init(path: "/v1/inAppPurchaseContents/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                              includes: includes))
+    }
+}
+
+public enum GetInAppPurchaseContent {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type inAppPurchaseContents
+        case inAppPurchaseContents([InAppPurchaseContents])
+
+        public enum InAppPurchaseContents: String, ParameterValue, CaseIterable {
+            case fileName
+            case fileSize
+            case inAppPurchaseV2
+            case lastModifiedDate
+            case url
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case inAppPurchaseV2
+    }
+}

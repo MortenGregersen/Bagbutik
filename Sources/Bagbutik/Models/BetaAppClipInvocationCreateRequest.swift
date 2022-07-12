@@ -17,18 +17,11 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "betaAppClipInvocations" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -58,14 +51,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
             public let url: String
 
             public init(url: String) {
@@ -77,7 +63,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations
@@ -89,7 +75,6 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             }
 
             public struct BetaAppClipInvocationLocalizations: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -100,7 +85,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/properties/data/properties/relationships/properties/betaappclipinvocationlocalizations/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -134,7 +119,6 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             }
 
             public struct BuildBundle: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -145,7 +129,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/properties/data/properties/relationships/properties/buildbundle/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

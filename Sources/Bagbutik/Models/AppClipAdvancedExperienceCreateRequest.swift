@@ -17,18 +17,11 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appClipAdvancedExperiences" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -58,24 +51,12 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The call-to-action verb that appears on the App Clip card.
             public var action: AppClipAction?
-            /// The business category of an advanced App Clip experience; for example, PARKING
             public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
-            /// The default language for the advanced App Clip experience.
             public let defaultLanguage: AppClipAdvancedExperienceLanguage
-            /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
             public let isPoweredBy: Bool
-            /// The invocation URL of the advanced App Clip experience you’re creating.
             public let link: String
-            /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.
             public var place: Place?
 
             public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage, isPoweredBy: Bool, link: String, place: Place? = nil) {
@@ -212,7 +193,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let appClip: AppClip
@@ -226,7 +207,6 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct AppClip: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -237,7 +217,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/appclip/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/properties/data/properties/relationships/properties/appclip/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -271,7 +251,6 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct HeaderImage: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -282,7 +261,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/headerimage/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/properties/data/properties/relationships/properties/headerimage/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -316,7 +295,6 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             public struct Localizations: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -327,7 +305,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/localizations/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/properties/data/properties/relationships/properties/localizations/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

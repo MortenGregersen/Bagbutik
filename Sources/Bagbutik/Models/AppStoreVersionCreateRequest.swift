@@ -14,18 +14,11 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appStoreVersions" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,30 +48,12 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var copyright: String?
             public var earliestReleaseDate: Date?
             public let platform: Platform
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
-            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var usesIdfa: Bool? = nil
             public let versionString: String
-
-            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-            public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, usesIdfa: Bool? = nil, versionString: String) {
-                self.copyright = copyright
-                self.earliestReleaseDate = earliestReleaseDate
-                self.platform = platform
-                self.releaseType = releaseType
-                self.usesIdfa = usesIdfa
-                self.versionString = versionString
-            }
 
             public init(copyright: String? = nil, earliestReleaseDate: Date? = nil, platform: Platform, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, versionString: String) {
                 self.copyright = copyright
@@ -93,7 +68,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let app: App
@@ -107,7 +82,6 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct App: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -118,7 +92,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/properties/data/properties/relationships/properties/app/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -152,7 +126,6 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersionLocalizations: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -163,7 +136,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/appstoreversionlocalizations/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/properties/data/properties/relationships/properties/appstoreversionlocalizations/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -197,7 +170,6 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -208,7 +180,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/properties/data/properties/relationships/properties/build/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

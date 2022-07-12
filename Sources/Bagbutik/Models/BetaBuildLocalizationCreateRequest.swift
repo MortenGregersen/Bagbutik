@@ -14,18 +14,11 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "betaBuildLocalizations" }
-        /// The resource's attributes.
+        ///
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -55,16 +48,8 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The specified locale. Refer to Table 1 for possible values.
             public let locale: String
-            /// A field that describes changes and additions to a build and indicates features you would like your users to test.
             public var whatsNew: String?
 
             public init(locale: String, whatsNew: String? = nil) {
@@ -77,7 +62,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let build: Build
@@ -87,7 +72,6 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
             }
 
             public struct Build: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -98,7 +82,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/relationships/build/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/properties/data/properties/relationships/properties/build/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

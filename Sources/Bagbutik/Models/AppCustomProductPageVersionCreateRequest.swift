@@ -8,16 +8,9 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appCustomProductPageVersions" }
-        /// The relationships to other resources that you can set with this request.
+        ///
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -47,7 +40,7 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/data/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/properties/data/properties/relationships>
          */
         public struct Relationships: Codable {
             public let appCustomProductPage: AppCustomProductPage
@@ -59,7 +52,6 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct AppCustomProductPage: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -70,7 +62,7 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/data/relationships/appcustomproductpage/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/properties/data/properties/relationships/properties/appcustomproductpage/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -104,7 +96,6 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
             }
 
             public struct AppCustomProductPageLocalizations: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -115,7 +106,7 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/data/relationships/appcustomproductpagelocalizations/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/properties/data/properties/relationships/properties/appcustomproductpagelocalizations/properties/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

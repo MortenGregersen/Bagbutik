@@ -47,16 +47,8 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
         case relationships
     }
 
-    /**
-     The attributes that describe a Beta App Clip Invocation Localization Inline Creates resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/attributes>
-     */
     public struct Attributes: Codable {
-        /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
         public let locale: String
-        /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
         public let title: String
 
         public init(locale: String, title: String) {
@@ -65,12 +57,6 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships>
-     */
     public struct Relationships: Codable {
         public var betaAppClipInvocation: BetaAppClipInvocation?
 
@@ -78,30 +64,15 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
             self.betaAppClipInvocation = betaAppClipInvocation
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation>
-         */
         public struct BetaAppClipInvocation: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "betaAppClipInvocations" }
 
                 public init(id: String) {
