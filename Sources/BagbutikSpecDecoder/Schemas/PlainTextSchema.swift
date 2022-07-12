@@ -1,7 +1,7 @@
 import Foundation
 
-/// A representation of binary data
-public struct BinarySchema: Decodable, Equatable {
+/// A representation of plain text
+public struct PlainTextSchema: Decodable, Equatable {
     /// The name of the object
     public let name: String
     /// An url for the documentation for the object
@@ -9,9 +9,8 @@ public struct BinarySchema: Decodable, Equatable {
     /// The documentation for the obejct - if any
     public let documentation: Schema.Documentation?
     
-    private enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: CodingKey {
         case type
-        case format
     }
     
     internal init(name: String, url: String?, lookupDocumentation: (String) -> Schema.Documentation?) {

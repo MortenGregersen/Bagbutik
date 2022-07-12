@@ -103,7 +103,26 @@ final class SchemaTests: XCTestCase {
         // When
         XCTAssertThrowsError(try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)) {
             guard case let .dataCorrupted(context) = $0 as! DecodingError else { return XCTFail() }
-            XCTAssertEqual(context.debugDescription, "Schema type not known")
+            XCTAssertEqual(context.debugDescription, "Schema has format, but it is not 'binary'")
         }
+    }
+
+    func testDecodingPlainTextSchema() throws {
+        // Given
+        let json = #"""
+        {
+            "csv" : {
+                "type" : "string",
+            }
+        }
+        """#
+        // When
+        let schemas = try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)
+        // Then
+        guard let schema = schemas.values.first, case let .plainText(plainTextSchema) = schema else {
+            return XCTFail("Wrong schema type")
+        }
+        XCTAssertEqual(schema.name, "Csv")
+        XCTAssertEqual(plainTextSchema.name, "Csv")
     }
 }
