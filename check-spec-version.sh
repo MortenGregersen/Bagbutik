@@ -3,7 +3,7 @@
 # exit when any command fails
 set -e
 
-download_newest_spec_output=$(swift run bagbutik download-newest-spec)
+download_newest_spec_output=$(swift run bagbutik-cli download-newest-spec)
 echo "$download_newest_spec_output"
 
 if [[ $download_newest_spec_output =~ Spec\ file\ downloaded\ to\ (.+) ]]; then
@@ -33,7 +33,7 @@ else
     echo "No pull requests has been created for this version."
 fi
 
-generate_output=$(swift run bagbutik generate --spec-path $spec_file_path)
+generate_output=$(swift run bagbutik-cli generate --spec-path $spec_file_path)
 warnings=$(grep -zo "⚠️.*" <<< "$generate_output")
 
 rm $spec_file_path
