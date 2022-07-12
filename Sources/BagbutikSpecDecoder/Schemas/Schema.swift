@@ -8,6 +8,8 @@ public enum Schema: Decodable, Equatable {
     case object(ObjectSchema)
     /// A binary schema
     case binary(BinarySchema)
+    /// A plain text schema
+    case plainText(PlainTextSchema)
     
     /// The name of the schema
     public var name: String {
@@ -18,6 +20,8 @@ public enum Schema: Decodable, Equatable {
             return objectSchema.name
         case .binary(let binarySchema):
             return binarySchema.name
+        case .plainText(let plainTextSchema):
+            return plainTextSchema.name
         }
     }
     
@@ -26,8 +30,9 @@ public enum Schema: Decodable, Equatable {
         let type = try container.decode(String.self, forKey: .type)
         if try container.decodeIfPresent([String].self, forKey: .enum) != nil { self = .enum(try EnumSchema(from: decoder)) }
         else if type == "object" { self = .object(try ObjectSchema(from: decoder)) }
+        else if type == "string" { self = .plainText(try PlainTextSchema(from: decoder)) }
         else if let binarySchema = try? BinarySchema(from: decoder) { self = .binary(binarySchema) }
-        else { throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Schema type not known") }
+        else { throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Schema type '\(type)' not known") }
     }
     
     private enum CodingKeys: String, CodingKey {

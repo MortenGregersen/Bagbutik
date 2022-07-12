@@ -196,6 +196,10 @@ public class Generator {
             renderedSchema = try BinarySchemaRenderer().render(binarySchema: binarySchema)
             hasDocumentation = binarySchema.documentation != nil
             url = binarySchema.url
+        case .plainText(let plainTextSchema):
+            renderedSchema = try PlainTextSchemaRenderer().render(plainTextSchema: plainTextSchema)
+            hasDocumentation = plainTextSchema.documentation != nil
+            url = plainTextSchema.url
         }
         let contents = """
         import Foundation
