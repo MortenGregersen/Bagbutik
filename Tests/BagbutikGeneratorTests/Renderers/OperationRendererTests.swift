@@ -137,12 +137,12 @@ final class OperationRendererTests: XCTestCase {
               - Parameter limits: Number of resources to return
               - Returns: A `Request` with to send to an instance of `BagbutikService`
              */
-            static func listUsersV1(fields: [V1ListUsers.Field]? = nil,
-                                    filters: [V1ListUsers.Filter]? = nil,
-                                    exists: [V1ListUsers.Exist]? = nil,
-                                    includes: [V1ListUsers.Include]? = nil,
-                                    sorts: [V1ListUsers.Sort]? = nil,
-                                    limits: [V1ListUsers.Limit]? = nil) -> Request<UsersResponse, ErrorResponse>
+            static func listUsersV1(fields: [ListUsersV1.Field]? = nil,
+                                    filters: [ListUsersV1.Filter]? = nil,
+                                    exists: [ListUsersV1.Exist]? = nil,
+                                    includes: [ListUsersV1.Include]? = nil,
+                                    sorts: [ListUsersV1.Sort]? = nil,
+                                    limits: [ListUsersV1.Limit]? = nil) -> Request<UsersResponse, ErrorResponse>
             {
                 return .init(path: "/users", method: .get, parameters: .init(fields: fields,
                                                                              filters: filters,
@@ -153,7 +153,7 @@ final class OperationRendererTests: XCTestCase {
             }
         }
 
-        public enum V1ListUsers {
+        public enum ListUsersV1 {
             /**
              Fields to return for included related types.
              */
