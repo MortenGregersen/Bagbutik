@@ -43,11 +43,15 @@ public struct Path: Decodable {
         let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
 
         let pathComponents = path.components(separatedBy: "/")
-        let mainType = pathComponents.first { $0 != "v1" && $0 != "" }!
+        guard let version = pathComponents.first(where: { $0.count == 2 && $0[$0.startIndex].lowercased() == "v" }) else {
+            throw DecodingError.dataCorrupted(.init(codingPath: container.codingPath, debugDescription: "Version not found in path '\(path)'"))
+        }
+        let mainType = pathComponents
+            .first { $0 != version && $0 != "" }!
             .capitalizingFirstLetter()
             .singularized()
         let isRelationship = pathComponents.count > 4
-        let info = Info(mainType: mainType, isRelationship: isRelationship)
+        let info = Info(mainType: mainType, version: version.capitalizingFirstLetter(), isRelationship: isRelationship)
         self.init(path: path, info: info, operations: operations, parameters: parameters)
     }
 
@@ -55,6 +59,8 @@ public struct Path: Decodable {
     public struct Info: Equatable {
         /// The main type of the path
         public let mainType: String
+        /// The version of the path
+        public let version: String
         /// Is the path accessing a relationship
         public let isRelationship: Bool
     }
