@@ -90,13 +90,6 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         }.first { $0.id == appStoreVersion.relationships?.build?.data?.id }
     }
 
-    public func getIdfaDeclaration(for appStoreVersion: AppStoreVersion) -> IdfaDeclaration? {
-        included?.compactMap { relationship -> IdfaDeclaration? in
-            guard case let .idfaDeclaration(idfaDeclaration) = relationship else { return nil }
-            return idfaDeclaration
-        }.first { $0.id == appStoreVersion.relationships?.idfaDeclaration?.data?.id }
-    }
-
     public func getRoutingAppCoverage(for appStoreVersion: AppStoreVersion) -> RoutingAppCoverage? {
         included?.compactMap { relationship -> RoutingAppCoverage? in
             guard case let .routingAppCoverage(routingAppCoverage) = relationship else { return nil }
@@ -114,7 +107,6 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
         case build(Build)
-        case idfaDeclaration(IdfaDeclaration)
         case routingAppCoverage(RoutingAppCoverage)
 
         public init(from decoder: Decoder) throws {
@@ -136,8 +128,6 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
                 self = .appStoreVersionSubmission(appStoreVersionSubmission)
             } else if let build = try? Build(from: decoder) {
                 self = .build(build)
-            } else if let idfaDeclaration = try? IdfaDeclaration(from: decoder) {
-                self = .idfaDeclaration(idfaDeclaration)
             } else if let routingAppCoverage = try? RoutingAppCoverage(from: decoder) {
                 self = .routingAppCoverage(routingAppCoverage)
             } else {
@@ -165,8 +155,6 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
             case let .appStoreVersionSubmission(value):
                 try value.encode(to: encoder)
             case let .build(value):
-                try value.encode(to: encoder)
-            case let .idfaDeclaration(value):
                 try value.encode(to: encoder)
             case let .routingAppCoverage(value):
                 try value.encode(to: encoder)

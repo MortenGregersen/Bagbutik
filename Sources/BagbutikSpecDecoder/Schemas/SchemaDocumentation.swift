@@ -2481,6 +2481,7 @@ public extension Schema {
                     properties: ["currency": ""]
                 )
             ),
+            "TerritoryCode": .rootSchema(summary: "The App Store territory codes."),
             "TerritoryResponse": .rootSchema(summary: "A response that contains a single Territories resource."),
             "UploadOperation": .rootSchema(
                 summary: "Upload instructions for assets such as app previews and app screenshots.",

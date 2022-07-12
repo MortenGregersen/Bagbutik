@@ -50,9 +50,11 @@ public enum GetUserInvitationV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviews
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
             case inAppPurchases
+            case inAppPurchasesV2
             case isOrEverWasMadeForKids
             case name
             case perfPowerMetrics
@@ -61,8 +63,11 @@ public enum GetUserInvitationV1 {
             case pricePoints
             case prices
             case primaryLocale
+            case promotedPurchases
             case reviewSubmissions
             case sku
+            case subscriptionGracePeriod
+            case subscriptionGroups
             case subscriptionStatusUrl
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion

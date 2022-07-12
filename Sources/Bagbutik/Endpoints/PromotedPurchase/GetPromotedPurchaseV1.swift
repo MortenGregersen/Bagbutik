@@ -1,0 +1,62 @@
+public extension Request {
+    /**
+      # No overview available
+
+      - Parameter id: The id of the requested resource
+      - Parameter fields: Fields to return for included related types
+      - Parameter includes: Relationship data to include in the response
+      - Parameter limit: Maximum number of related promotionImages returned (when they are included) - maximum 50
+      - Returns: A `Request` with to send to an instance of `BagbutikService`
+     */
+    static func getPromotedPurchaseV1(id: String,
+                                      fields: [GetPromotedPurchaseV1.Field]? = nil,
+                                      includes: [GetPromotedPurchaseV1.Include]? = nil,
+                                      limit: Int? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
+    {
+        return .init(path: "/v1/promotedPurchases/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                          includes: includes,
+                                                                                          limit: limit))
+    }
+}
+
+public enum GetPromotedPurchaseV1 {
+    /**
+     Fields to return for included related types.
+     */
+    public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type promotedPurchaseImages
+        case promotedPurchaseImages([PromotedPurchaseImages])
+        /// The fields to include for returned resources of type promotedPurchases
+        case promotedPurchases([PromotedPurchases])
+
+        public enum PromotedPurchaseImages: String, ParameterValue, CaseIterable {
+            case assetToken
+            case assetType
+            case fileName
+            case fileSize
+            case imageAsset
+            case promotedPurchase
+            case sourceFileChecksum
+            case state
+            case uploadOperations
+            case uploaded
+        }
+
+        public enum PromotedPurchases: String, ParameterValue, CaseIterable {
+            case app
+            case enabled
+            case inAppPurchaseV2
+            case promotionImages
+            case state
+            case subscription
+            case visibleForAllUsers
+        }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case inAppPurchaseV2, promotionImages, subscription
+    }
+}

@@ -14,6 +14,7 @@ public extension Request {
       - Parameter limits: Number of resources to return
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listInAppPurchasesForAppV1(id: String,
                                            fields: [ListInAppPurchasesForAppV1.Field]? = nil,
                                            filters: [ListInAppPurchasesForAppV1.Filter]? = nil,
@@ -56,9 +57,11 @@ public enum ListInAppPurchasesForAppV1 {
             case bundleId
             case ciProduct
             case contentRightsDeclaration
+            case customerReviews
             case endUserLicenseAgreement
             case gameCenterEnabledVersions
             case inAppPurchases
+            case inAppPurchasesV2
             case isOrEverWasMadeForKids
             case name
             case perfPowerMetrics
@@ -67,8 +70,11 @@ public enum ListInAppPurchasesForAppV1 {
             case pricePoints
             case prices
             case primaryLocale
+            case promotedPurchases
             case reviewSubmissions
             case sku
+            case subscriptionGracePeriod
+            case subscriptionGroups
             case subscriptionStatusUrl
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
