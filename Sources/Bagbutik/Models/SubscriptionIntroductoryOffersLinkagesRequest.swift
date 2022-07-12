@@ -11,7 +11,7 @@ public struct SubscriptionIntroductoryOffersLinkagesRequest: Codable, RequestBod
      The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesrequest/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesrequest/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

@@ -47,6 +47,12 @@ public struct BuildIcon: Codable {
         case attributes
     }
 
+    /**
+     Attributes that describe a Build Icons resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildicon/attributes>
+     */
     public struct Attributes: Codable {
         public var iconAsset: ImageAsset?
         public var iconType: IconAssetType?

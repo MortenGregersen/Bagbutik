@@ -7,10 +7,18 @@ public struct SubscriptionOfferCodeOneTimeUseCodeUpdateRequest: Codable, Request
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodeonetimeusecodeupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "subscriptionOfferCodeOneTimeUseCodes" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {

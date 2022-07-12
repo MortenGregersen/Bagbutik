@@ -76,6 +76,12 @@ public struct PromotedPurchaseImage: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchaseimage/relationships>
+     */
     public struct Relationships: Codable {
         public var promotedPurchase: PromotedPurchase?
 
@@ -83,8 +89,16 @@ public struct PromotedPurchaseImage: Codable {
             self.promotedPurchase = promotedPurchase
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchaseimage/relationships/promotedpurchase>
+         */
         public struct PromotedPurchase: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -92,8 +106,16 @@ public struct PromotedPurchaseImage: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchaseimage/relationships/promotedpurchase/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "promotedPurchases" }
 
                 public init(id: String) {
@@ -120,8 +142,16 @@ public struct PromotedPurchaseImage: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/promotedpurchaseimage/relationships/promotedpurchase/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

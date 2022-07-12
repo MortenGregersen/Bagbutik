@@ -17,12 +17,20 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appClipAdvancedExperiences" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
-        ///
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -56,12 +64,24 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The call-to-action verb that appears on the App Clip card.
             public var action: AppClipAction?
+            /// The business category of an advanced App Clip experience; for example, PARKING
             public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
+            /// The default language for the advanced App Clip experience.
             public var defaultLanguage: AppClipAdvancedExperienceLanguage?
+            /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
             public var isPoweredBy: Bool?
+            /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
             public var place: Place?
+            /// A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to true.
             public var removed: Bool?
 
             public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, place: Place? = nil, removed: Bool? = nil) {
@@ -198,7 +218,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
          The data and links that describe the relationship between the resources.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public var appClip: AppClip?
@@ -212,6 +232,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct AppClip: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -222,7 +243,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/properties/data/properties/relationships/properties/appclip/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships/appclip/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -256,6 +277,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct HeaderImage: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -266,7 +288,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/properties/data/properties/relationships/properties/headerimage/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships/headerimage/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -300,6 +322,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public struct Localizations: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -310,7 +333,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/properties/data/properties/relationships/properties/localizations/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships/localizations/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

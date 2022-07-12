@@ -15,7 +15,7 @@ public struct SubscriptionIntroductoryOffersLinkagesResponse: Codable, PagedResp
      The data element of the response body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesresponse/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesresponse/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

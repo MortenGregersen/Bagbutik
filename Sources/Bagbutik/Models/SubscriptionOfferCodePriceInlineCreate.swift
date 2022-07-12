@@ -33,6 +33,12 @@ public struct SubscriptionOfferCodePriceInlineCreate: Codable {
         case relationships
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodepriceinlinecreate/relationships>
+     */
     public struct Relationships: Codable {
         public var subscriptionPricePoint: SubscriptionPricePoint?
         public var territory: Territory?
@@ -42,15 +48,30 @@ public struct SubscriptionOfferCodePriceInlineCreate: Codable {
             self.territory = territory
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodepriceinlinecreate/relationships/subscriptionpricepoint>
+         */
         public struct SubscriptionPricePoint: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodepriceinlinecreate/relationships/subscriptionpricepoint/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "subscriptionPricePoints" }
 
                 public init(id: String) {
@@ -78,15 +99,30 @@ public struct SubscriptionOfferCodePriceInlineCreate: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodepriceinlinecreate/relationships/territory>
+         */
         public struct Territory: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffercodepriceinlinecreate/relationships/territory/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "territories" }
 
                 public init(id: String) {

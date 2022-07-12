@@ -14,10 +14,18 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appInfos" }
-        ///
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, relationships: Relationships? = nil) {
@@ -51,7 +59,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
          The data and links that describe the relationship between the resources.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public var primaryCategory: PrimaryCategory?
@@ -71,6 +79,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct PrimaryCategory: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -81,7 +90,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships/properties/primarycategory/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/primarycategory/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -115,6 +124,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct PrimarySubcategoryOne: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -125,7 +135,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships/properties/primarysubcategoryone/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/primarysubcategoryone/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -159,6 +169,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct PrimarySubcategoryTwo: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -169,7 +180,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships/properties/primarysubcategorytwo/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/primarysubcategorytwo/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -203,6 +214,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct SecondaryCategory: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -213,7 +225,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships/properties/secondarycategory/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/secondarycategory/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -247,6 +259,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct SecondarySubcategoryOne: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -257,7 +270,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships/properties/secondarysubcategoryone/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/secondarysubcategoryone/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -291,6 +304,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             public struct SecondarySubcategoryTwo: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -301,7 +315,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/properties/data/properties/relationships/properties/secondarysubcategorytwo/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/secondarysubcategorytwo/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

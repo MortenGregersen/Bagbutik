@@ -8,11 +8,18 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes
-        ///
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -54,7 +61,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public let appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment
@@ -64,6 +71,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
             }
 
             public struct AppStoreVersionExperimentTreatment: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -74,7 +82,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest/properties/data/properties/relationships/properties/appstoreversionexperimenttreatment/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentlocalizationcreaterequest/data/relationships/appstoreversionexperimenttreatment/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

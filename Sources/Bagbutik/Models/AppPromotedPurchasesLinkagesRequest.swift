@@ -11,7 +11,7 @@ public struct AppPromotedPurchasesLinkagesRequest: Codable, RequestBody {
      The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesrequest/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesrequest/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

@@ -14,11 +14,18 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "betaAppClipInvocationLocalizations" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes
-        ///
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -48,8 +55,16 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
             public let locale: String
+            /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
             public let title: String
 
             public init(locale: String, title: String) {
@@ -62,7 +77,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public let betaAppClipInvocation: BetaAppClipInvocation
@@ -72,6 +87,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             }
 
             public struct BetaAppClipInvocation: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -82,7 +98,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/properties/data/properties/relationships/properties/betaappclipinvocation/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/relationships/betaappclipinvocation/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

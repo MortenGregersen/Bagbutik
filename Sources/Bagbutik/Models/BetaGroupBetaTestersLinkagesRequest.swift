@@ -18,7 +18,7 @@ public struct BetaGroupBetaTestersLinkagesRequest: Codable, RequestBody {
      The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbetatesterslinkagesrequest/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbetatesterslinkagesrequest/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

@@ -52,6 +52,12 @@ public struct InAppPurchasePrice: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships>
+     */
     public struct Relationships: Codable {
         public var inAppPurchasePricePoint: InAppPurchasePricePoint?
         public var territory: Territory?
@@ -61,8 +67,16 @@ public struct InAppPurchasePrice: Codable {
             self.territory = territory
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships/inapppurchasepricepoint>
+         */
         public struct InAppPurchasePricePoint: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -70,8 +84,16 @@ public struct InAppPurchasePrice: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships/inapppurchasepricepoint/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "inAppPurchasePricePoints" }
 
                 public init(id: String) {
@@ -98,8 +120,16 @@ public struct InAppPurchasePrice: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships/inapppurchasepricepoint/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -126,8 +156,16 @@ public struct InAppPurchasePrice: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships/territory>
+         */
         public struct Territory: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -135,8 +173,16 @@ public struct InAppPurchasePrice: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships/territory/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "territories" }
 
                 public init(id: String) {
@@ -163,8 +209,16 @@ public struct InAppPurchasePrice: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseprice/relationships/territory/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

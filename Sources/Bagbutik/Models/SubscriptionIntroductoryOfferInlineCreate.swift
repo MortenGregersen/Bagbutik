@@ -55,6 +55,12 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships>
+     */
     public struct Relationships: Codable {
         public var subscription: Subscription?
         public var subscriptionPricePoint: SubscriptionPricePoint?
@@ -66,15 +72,30 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
             self.territory = territory
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships/subscription>
+         */
         public struct Subscription: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships/subscription/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "subscriptions" }
 
                 public init(id: String) {
@@ -102,15 +123,30 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships/subscriptionpricepoint>
+         */
         public struct SubscriptionPricePoint: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships/subscriptionpricepoint/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "subscriptionPricePoints" }
 
                 public init(id: String) {
@@ -138,15 +174,30 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships/territory>
+         */
         public struct Territory: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferinlinecreate/relationships/territory/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "territories" }
 
                 public init(id: String) {

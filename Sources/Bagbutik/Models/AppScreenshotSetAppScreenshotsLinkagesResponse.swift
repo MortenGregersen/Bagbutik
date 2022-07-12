@@ -24,7 +24,7 @@ public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, PagedResp
      The data element of the response body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesresponse/properties/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesresponse/data>
      */
     public struct Data: Codable {
         /// The opaque resource ID that uniquely identifies the resource.

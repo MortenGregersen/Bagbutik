@@ -9,11 +9,18 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "subscriptionPromotionalOffers" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes
-        ///
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -63,7 +70,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public let prices: Prices
@@ -75,6 +82,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, RequestBody {
             }
 
             public struct Prices: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -85,7 +93,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/properties/data/properties/relationships/properties/prices/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/data/relationships/prices/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -119,6 +127,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, RequestBody {
             }
 
             public struct Subscription: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -129,7 +138,7 @@ public struct SubscriptionPromotionalOfferCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/properties/data/properties/relationships/properties/subscription/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionaloffercreaterequest/data/relationships/subscription/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

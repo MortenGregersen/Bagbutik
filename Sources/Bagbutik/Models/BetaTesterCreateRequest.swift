@@ -14,11 +14,18 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "betaTesters" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes
-        ///
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships?
 
         public init(attributes: Attributes, relationships: Relationships? = nil) {
@@ -48,9 +55,18 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The beta tester's email address, used for sending beta testing invitations.
             public let email: String
+            /// The beta tester's first name.
             public var firstName: String?
+            /// The beta tester's last name.
             public var lastName: String?
 
             public init(email: String, firstName: String? = nil, lastName: String? = nil) {
@@ -64,7 +80,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public var betaGroups: BetaGroups?
@@ -76,6 +92,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             }
 
             public struct BetaGroups: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -86,7 +103,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/properties/data/properties/relationships/properties/betagroups/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/betagroups/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -120,6 +137,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             }
 
             public struct Builds: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -130,7 +148,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/properties/data/properties/relationships/properties/builds/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/builds/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

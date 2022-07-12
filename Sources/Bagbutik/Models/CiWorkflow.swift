@@ -53,18 +53,36 @@ public struct CiWorkflow: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe a Workflows resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/attributes>
+     */
     public struct Attributes: Codable {
+        /// The actions that are part of the workflow.
         public var actions: [CiAction]?
+        /// The workflow’s start condition that starts new builds for changes to a branch.
         public var branchStartCondition: CiBranchStartCondition?
+        /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
         public var clean: Bool?
+        /// The relative path to your Xcode project or workspace.
         public var containerFilePath: String?
+        /// The workflow’s description.
         public var description: String?
+        /// A Boolean value that indicates whether the workflow is active or deactivated.
         public var isEnabled: Bool?
+        /// A Boolean value that indicates whether edits to the workflow are restricted.
         public var isLockedForEditing: Bool?
+        /// The date and time when the workflow was last modified.
         public var lastModifiedDate: Date?
+        /// The name of the Xcode Cloud workflow; for example, My Workflow.
         public var name: String?
+        /// The workflow’s start condition for pull request changes.
         public var pullRequestStartCondition: CiPullRequestStartCondition?
+        /// The workflow’s start condition that starts new builds on a custom schedule.
         public var scheduledStartCondition: CiScheduledStartCondition?
+        /// The workflow’s start condition that starts new builds for changes to a tag.
         public var tagStartCondition: CiTagStartCondition?
 
         public init(actions: [CiAction]? = nil, branchStartCondition: CiBranchStartCondition? = nil, clean: Bool? = nil, containerFilePath: String? = nil, description: String? = nil, isEnabled: Bool? = nil, isLockedForEditing: Bool? = nil, lastModifiedDate: Date? = nil, name: String? = nil, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
@@ -83,6 +101,12 @@ public struct CiWorkflow: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships>
+     */
     public struct Relationships: Codable {
         public var macOsVersion: MacOsVersion?
         public var product: Product?
@@ -96,8 +120,16 @@ public struct CiWorkflow: Codable {
             self.xcodeVersion = xcodeVersion
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion>
+         */
         public struct MacOsVersion: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -105,8 +137,16 @@ public struct CiWorkflow: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "ciMacOsVersions" }
 
                 public init(id: String) {
@@ -133,8 +173,16 @@ public struct CiWorkflow: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -161,8 +209,16 @@ public struct CiWorkflow: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product>
+         */
         public struct Product: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -170,8 +226,16 @@ public struct CiWorkflow: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "ciProducts" }
 
                 public init(id: String) {
@@ -198,8 +262,16 @@ public struct CiWorkflow: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -226,8 +298,16 @@ public struct CiWorkflow: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository>
+         */
         public struct Repository: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -235,8 +315,16 @@ public struct CiWorkflow: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "scmRepositories" }
 
                 public init(id: String) {
@@ -263,8 +351,16 @@ public struct CiWorkflow: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -291,8 +387,16 @@ public struct CiWorkflow: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion>
+         */
         public struct XcodeVersion: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -300,8 +404,16 @@ public struct CiWorkflow: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "ciXcodeVersions" }
 
                 public init(id: String) {
@@ -328,8 +440,16 @@ public struct CiWorkflow: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

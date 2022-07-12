@@ -53,12 +53,24 @@ public struct AppClipHeaderImage: Codable {
         case relationships
     }
 
+    /**
+     The attributes that describe the image that appears on the App Clip card of a default App Clip experience.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/attributes>
+     */
     public struct Attributes: Codable {
+        /// The state of the App Clip card image asset you uploaded.
         public var assetDeliveryState: AppMediaAssetState?
+        /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
         public var fileName: String?
+        /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
         public var fileSize: Int?
+        /// The image asset that appears on the App Clip card of a default App Clip experience.
         public var imageAsset: ImageAsset?
+        /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
         public var sourceFileChecksum: String?
+        /// Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.
         public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
@@ -71,6 +83,12 @@ public struct AppClipHeaderImage: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships>
+     */
     public struct Relationships: Codable {
         public var appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization?
 
@@ -78,8 +96,16 @@ public struct AppClipHeaderImage: Codable {
             self.appClipDefaultExperienceLocalization = appClipDefaultExperienceLocalization
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization>
+         */
         public struct AppClipDefaultExperienceLocalization: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -87,8 +113,16 @@ public struct AppClipHeaderImage: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appClipDefaultExperienceLocalizations" }
 
                 public init(id: String) {
@@ -115,8 +149,16 @@ public struct AppClipHeaderImage: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

@@ -52,6 +52,12 @@ public struct SubscriptionGroup: Codable {
         }
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships>
+     */
     public struct Relationships: Codable {
         public var subscriptionGroupLocalizations: SubscriptionGroupLocalizations?
         public var subscriptions: Subscriptions?
@@ -61,9 +67,18 @@ public struct SubscriptionGroup: Codable {
             self.subscriptions = subscriptions
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships/subscriptiongrouplocalizations>
+         */
         public struct SubscriptionGroupLocalizations: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
+            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -72,8 +87,16 @@ public struct SubscriptionGroup: Codable {
                 self.meta = meta
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships/subscriptiongrouplocalizations/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "subscriptionGroupLocalizations" }
 
                 public init(id: String) {
@@ -100,8 +123,16 @@ public struct SubscriptionGroup: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships/subscriptiongrouplocalizations/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -128,9 +159,18 @@ public struct SubscriptionGroup: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships/subscriptions>
+         */
         public struct Subscriptions: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
+            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -139,8 +179,16 @@ public struct SubscriptionGroup: Codable {
                 self.meta = meta
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships/subscriptions/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "subscriptions" }
 
                 public init(id: String) {
@@ -167,8 +215,16 @@ public struct SubscriptionGroup: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongroup/relationships/subscriptions/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

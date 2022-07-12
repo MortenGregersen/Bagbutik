@@ -38,6 +38,12 @@ public struct InAppPurchasePriceSchedule: Codable {
         case relationships
     }
 
+    /**
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships>
+     */
     public struct Relationships: Codable {
         public var inAppPurchase: InAppPurchase?
         public var manualPrices: ManualPrices?
@@ -47,8 +53,16 @@ public struct InAppPurchasePriceSchedule: Codable {
             self.manualPrices = manualPrices
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships/inapppurchase>
+         */
         public struct InAppPurchase: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -56,8 +70,16 @@ public struct InAppPurchasePriceSchedule: Codable {
                 self.links = links
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships/inapppurchase/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "inAppPurchases" }
 
                 public init(id: String) {
@@ -84,8 +106,16 @@ public struct InAppPurchasePriceSchedule: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships/inapppurchase/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -112,9 +142,18 @@ public struct InAppPurchasePriceSchedule: Codable {
             }
         }
 
+        /**
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships/manualprices>
+         */
         public struct ManualPrices: Codable {
+            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
+            /// The links to the related data and the relationship's self-link.
             public var links: Links?
+            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -123,8 +162,16 @@ public struct InAppPurchasePriceSchedule: Codable {
                 self.meta = meta
             }
 
+            /**
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships/manualprices/data>
+             */
             public struct Data: Codable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "inAppPurchasePrices" }
 
                 public init(id: String) {
@@ -151,8 +198,16 @@ public struct InAppPurchasePriceSchedule: Codable {
                 }
             }
 
+            /**
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedule/relationships/manualprices/links>
+             */
             public struct Links: Codable {
+                /// The link to the related data.
                 public var related: String?
+                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

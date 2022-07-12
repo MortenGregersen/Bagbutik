@@ -14,12 +14,20 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "ciWorkflows" }
-        ///
+        /// The resource's attributes.
         public let attributes: Attributes?
-        ///
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
@@ -53,17 +61,34 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The workflow’s actions.
             public var actions: [CiAction]?
+            /// The workflow’s start condition that starts new builds for changes to a branch.
             public var branchStartCondition: CiBranchStartCondition?
+            /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public var clean: Bool?
+            /// The path to your Xcode project or workspace.
             public var containerFilePath: String?
+            /// The workflow description.
             public var description: String?
+            /// A Boolean value that indicates whether the workflow is active or deactivated.
             public var isEnabled: Bool?
+            /// A Boolean value that indicates whether edits to the workflow are restricted.
             public var isLockedForEditing: Bool?
+            /// The name of the workflow you want to create; for example, My Workflow.
             public var name: String?
+            /// The workflow’s start condition for pull request changes.
             public var pullRequestStartCondition: CiPullRequestStartCondition?
+            /// The workflow’s start condition that starts new builds on a custom schedule.
             public var scheduledStartCondition: CiScheduledStartCondition?
+            /// The workflow’s start condition that starts new builds for changes to a tag.
             public var tagStartCondition: CiTagStartCondition?
 
             public init(actions: [CiAction]? = nil, branchStartCondition: CiBranchStartCondition? = nil, clean: Bool? = nil, containerFilePath: String? = nil, description: String? = nil, isEnabled: Bool? = nil, isLockedForEditing: Bool? = nil, name: String? = nil, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
@@ -85,7 +110,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          The data and links that describe the relationship between the resources.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public var macOsVersion: MacOsVersion?
@@ -97,6 +122,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             }
 
             public struct MacOsVersion: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -107,7 +133,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/properties/data/properties/relationships/properties/macosversion/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/macosversion/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -141,6 +167,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             }
 
             public struct XcodeVersion: Codable {
+                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -151,7 +178,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/properties/data/properties/relationships/properties/xcodeversion/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/xcodeversion/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.

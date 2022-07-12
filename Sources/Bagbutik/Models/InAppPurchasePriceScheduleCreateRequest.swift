@@ -9,9 +9,16 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    /**
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/data>
+     */
     public struct Data: Codable {
+        /// The resource type.
         public var type: String { "inAppPurchasePriceSchedules" }
-        ///
+        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -41,7 +48,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
          The relationships to other resources that you can set with this request.
 
          Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/properties/data/properties/relationships>
+         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
             public let inAppPurchase: InAppPurchase
@@ -53,6 +60,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
             }
 
             public struct InAppPurchase: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -63,7 +71,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/properties/data/properties/relationships/properties/inapppurchase/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/data/relationships/inapppurchase/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
@@ -97,6 +105,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
             }
 
             public struct ManualPrices: Codable {
+                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -107,7 +116,7 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/properties/data/properties/relationships/properties/manualprices/properties/data>
+                 <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceschedulecreaterequest/data/relationships/manualprices/data>
                  */
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
