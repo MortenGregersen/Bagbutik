@@ -1,5 +1,6 @@
 import Foundation
 
+/// The App Store territory codes.
 public enum TerritoryCode: String, Codable, CaseIterable {
     case abw = "ABW"
     case afg = "AFG"
