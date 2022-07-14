@@ -1,5 +1,6 @@
 import ArgumentParser
 import BagbutikGenerator
+import BagbutikDocsFetcher
 import BagbutikPolyfill
 import Foundation
 import Zip
@@ -12,7 +13,7 @@ import FoundationNetworking
 struct BagbutikCLI: AsyncParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: "A utility for downloading spec and generating models and endpoints.",
-        subcommands: [Generate.self, DownloadNewestSpec.self],
+        subcommands: [Generate.self, DownloadNewestDocs.self, DownloadNewestSpec.self],
         defaultSubcommand: Generate.self)
 
     struct Generate: AsyncParsableCommand {
@@ -34,6 +35,15 @@ struct BagbutikCLI: AsyncParsableCommand {
             }
             let outputDirURL = URL(fileURLWithPath: outputPath)
             try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
+        }
+    }
+    
+    struct DownloadNewestDocs: AsyncParsableCommand {
+        static var configuration = CommandConfiguration(abstract: "Download the newest documentation.")
+        
+        func run() async throws {
+            let specFileURL = try await downloadNewestSpec()
+            try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL)
         }
     }
 

@@ -7,13 +7,38 @@ public struct Spec: Decodable {
     /// The components contained in the spec
     public var components: Components
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        paths = try container.decode([String: Path].self, forKey: .paths)
+        components = try container.decode(Components.self, forKey: .components)
+    }
+
+    internal init(paths: [String: Path], components: Components) throws {
+        self.paths = paths
+        self.components = components
+    }
+
+    /**
+     Apply all known fixups to the spec.
+     
+     Right now it does the following:
+     - Adds include parameters which looks like they are forgotten in the spec.
+     - Flatten the schemas used in schemas for create request and update request.
+     - Applies manual patches for types not adhering to the general conventions of the spec.
+     */
+    public mutating func applyAllFixups() throws {
+        addForgottenIncludeParameters()
+        flattenIdenticalSchemas()
+        try applyManualPatches()
+    }
+
     /**
      Adds include parameters which looks like they are forgotten in the spec.
 
      This is done by adding the name of the properties in the Relationships on the response schema.
      Eg. ListAppInfosForApp doesn't list the different types of categories.
      */
-    public mutating func addForgottenIncludeParameters() {
+    internal mutating func addForgottenIncludeParameters() {
         paths.forEach { (pathKey: String, path: Path) in
             var path = path
             path.operations.forEach { operation in
@@ -51,7 +76,7 @@ public struct Spec: Decodable {
 
      Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
      */
-    public mutating func flattenIdenticalSchemas() {
+    internal mutating func flattenIdenticalSchemas() {
         paths.forEach { (pathKey: String, path: Path) in
             var path = path
             path.operations.forEach { operation in
@@ -63,7 +88,7 @@ public struct Spec: Decodable {
                               case .filter(let parameterName, let parameterValueType, let parameterRequired, let parameterDocumentation) = parameter,
                               case .enum(let type, let values) = parameterValueType,
                               case .object(let mainSchema) = components.schemas[path.info.mainType],
-                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+                              let mainAttributesSchema = mainSchema.subSchemas.compactMap(\.asAttributes).first,
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
                                   let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
@@ -92,7 +117,7 @@ public struct Spec: Decodable {
                     else { return }
                     targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
-                              let mainAttributesSchema = mainSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+                              let mainAttributesSchema = mainSchema.subSchemas.compactMap(\.asAttributes).first,
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
                                   return mainAttributesPropertySchema.name == targetDataAttributesPropertySchema.name
@@ -112,7 +137,7 @@ public struct Spec: Decodable {
 
      Eg. ErrorResponse has an OneOf with references to ErrorSourcePointer and ErrorSourceParameter, but these schemas have a different title, and have another name when generated.
      */
-    public mutating func applyManualPatches() throws {
+    internal mutating func applyManualPatches() throws {
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
@@ -137,6 +162,11 @@ public struct Spec: Decodable {
     public struct Components: Decodable {
         /// A list of schema names and their representation
         public var schemas: [String: Schema]
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case paths
+        case components
     }
 }
 

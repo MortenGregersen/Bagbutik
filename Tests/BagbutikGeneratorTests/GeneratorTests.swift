@@ -5,7 +5,7 @@ import XCTest
 final class GeneratorTests: XCTestCase {
     let validSpecFileURL = URL(fileURLWithPath: "/Users/steve/spec.json")
     let validOutputDirURL = URL(fileURLWithPath: "/Users/steve/output")
-    let testSpec = Spec(paths: [
+    let testSpec = try! Spec(paths: [
         "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
             .init(name: "listUsers",
                   documentation: .init(title: "List users", summary: "Get a list of users", url: "https://developer.apple.com"),

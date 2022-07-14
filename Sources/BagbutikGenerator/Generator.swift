@@ -60,9 +60,7 @@ public class Generator {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
             var spec = try JSONDecoder().decode(Spec.self, from: specData)
-            spec.addForgottenIncludeParameters()
-            spec.flattenIdenticalSchemas()
-            try spec.applyManualPatches()
+            try spec.applyAllFixups()
             return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
@@ -182,30 +180,25 @@ public class Generator {
     private static func generateModel(for schema: Schema, otherSchemas: [String: Schema]) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
         let renderedSchema: String
         let hasDocumentation: Bool
-        let url: String?
         switch schema {
         case .enum(let enumSchema):
             renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
             hasDocumentation = enumSchema.documentation != nil
-            url = enumSchema.url
         case .object(let objectSchema):
             renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema, otherSchemas: otherSchemas)
             hasDocumentation = objectSchema.documentation != nil
-            url = objectSchema.url
         case .binary(let binarySchema):
             renderedSchema = try BinarySchemaRenderer().render(binarySchema: binarySchema)
             hasDocumentation = binarySchema.documentation != nil
-            url = binarySchema.url
         case .plainText(let plainTextSchema):
             renderedSchema = try PlainTextSchemaRenderer().render(plainTextSchema: plainTextSchema)
             hasDocumentation = plainTextSchema.documentation != nil
-            url = plainTextSchema.url
         }
         let contents = """
         import Foundation
 
         \(renderedSchema)
         """
-        return (name: schema.name, contents: contents, hasDocumentation: hasDocumentation, url: url)
+        return (name: schema.name, contents: contents, hasDocumentation: hasDocumentation, url: schema.url)
     }
 }

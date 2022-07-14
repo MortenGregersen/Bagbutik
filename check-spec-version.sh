@@ -33,6 +33,7 @@ else
     echo "No pull requests has been created for this version."
 fi
 
+swift run bagbutik-cli download-newest-docs
 generate_output=$(swift run bagbutik-cli generate --spec-path $spec_file_path)
 warnings=$(grep -zo "⚠️.*" <<< "$generate_output")
 
