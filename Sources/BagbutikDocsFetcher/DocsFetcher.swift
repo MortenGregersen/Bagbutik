@@ -29,8 +29,8 @@ public enum DocsFetcherError: Error {
     case notFileUrl(FileURLType)
     /// The schema has no documentation URL
     case noDocumentationUrl(String)
-    /// The file could not be created
-    case couldNotCreateFile(String)
+    /// The documentation file could not be created
+    case couldNotCreateFile
 
     /// The type of the file URL
     public enum FileURLType {
@@ -73,69 +73,83 @@ public class DocsFetcher {
         self.print = print
     }
 
-    public func fetchAllDocs(specFileURL: URL) async throws {
+    public func fetchAllDocs(specFileURL: URL, outputDirURL: URL) async throws {
         guard specFileURL.isFileURL else { throw DocsFetcherError.notFileUrl(.specFileURL) }
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
         var identifierBySchemaName = [String: String]()
         var documentationById = [String: Documentation]()
-        for schemaName in ["App"] { // }, "AppResponse"] {
-            guard let schema = spec.components.schemas[schemaName] else { return }
-            let documentation = try await fetchDocs(for: schema)
-            identifierBySchemaName[schemaName] = documentation.id
+        for schema in spec.components.schemas.sorted(using: KeyPathComparator(\.key)).map(\.value) {
+            print("Fetching documentation for \(schema.name)")
+            let documentation = try await fetchDocumentation(for: schema)
+            identifierBySchemaName[schema.name] = documentation.id
             documentationById[documentation.id] = documentation
-            let subDocumentations = try await fetchDocs(for: documentation.subDocumentationIds)
+
+            let documentationIdsToFetch = documentation.subDocumentationIds
+                .filter { documentationId in !documentationById.keys.contains(where: { $0 == documentationId }) }
+            let subDocumentations = try await fetchDocumentation(for: documentationIdsToFetch)
             for subDocumentation in subDocumentations {
                 documentationById[subDocumentation.id] = subDocumentation
             }
         }
-        Swift.print(identifierBySchemaName)
-        Swift.print(documentationById)
+        print("Saving documentation to: \(outputDirURL.path)")
+        try fileManager.createDirectory(at: outputDirURL, withIntermediateDirectories: true, attributes: nil)
+        let documentationFileUrl = outputDirURL.appendingPathComponent("Documentation.json")
+        let schemaIndexFileUrl = outputDirURL.appendingPathComponent("SchemaIndex.json")
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        guard fileManager.createFile(atPath: documentationFileUrl.path, contents: try encoder.encode(documentationById), attributes: nil),
+              fileManager.createFile(atPath: schemaIndexFileUrl.path, contents: try encoder.encode(identifierBySchemaName), attributes: nil)
+        else {
+            throw DocsFetcherError.couldNotCreateFile
+        }
     }
 
-    private func fetchDocs(for schema: Schema) async throws -> Documentation {
+    private func fetchDocumentation(for schema: Schema) async throws -> Documentation {
         guard let urlString = schema.url else {
             throw DocsFetcherError.noDocumentationUrl(schema.name)
         }
-        let jsonUrlString = createJsonDocumentationUrl(fromUrl: urlString)
-        let url = URL(string: jsonUrlString)!
-        Swift.print("Fetching documentation from: ", url)
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return try JSONDecoder().decode(Documentation.self, from: data)
+        let jsonUrl = createJsonDocumentationUrl(fromUrl: urlString)
+        return try await fetchDocumentation(for: jsonUrl)
     }
 
-    private func fetchDocs(for documentationIds: [String]) async throws -> [Documentation] {
+    private func fetchDocumentation(for documentationIds: [String]) async throws -> [Documentation] {
         var documentations = [Documentation]()
         for documentationId in documentationIds {
-            let jsonUrlString = createJsonDocumentationUrl(fromId: documentationId)
-            let url = URL(string: jsonUrlString)!
-            Swift.print("Fetching documentation from: ", url)
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let documentation = try JSONDecoder().decode(Documentation.self, from: data)
+            let jsonUrl = createJsonDocumentationUrl(fromId: documentationId)
+            let documentation = try await fetchDocumentation(for: jsonUrl)
             documentations.append(documentation)
         }
         return documentations
     }
 
-    private func createJsonDocumentationUrl(fromUrl url: String) -> String {
-        url.replacingOccurrences(
-            of: "/documentation/",
-            with: "/tutorials/data/documentation/")
-            .appending(".json")
+    private func fetchDocumentation(for url: URL) async throws -> Documentation {
+        print("Fetching JSON documentation from: \(url)")
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode(Documentation.self, from: data)
     }
 
-    private func createJsonDocumentationUrl(fromId id: String) -> String {
-        id.replacingOccurrences(
-            of: "doc://com.apple.documentation/documentation",
-            with: "https://developer.apple.com/tutorials/data/documentation")
-            .appending(".json")
+    private func createJsonDocumentationUrl(fromUrl url: String) -> URL {
+        URL(string: url
+            .replacingOccurrences(
+                of: "/documentation/",
+                with: "/tutorials/data/documentation/")
+            .appending(".json"))!
+    }
+
+    private func createJsonDocumentationUrl(fromId id: String) -> URL {
+        URL(string: id
+            .replacingOccurrences(
+                of: "doc://com.apple.documentation/documentation",
+                with: "https://developer.apple.com/tutorials/data/documentation")
+            .appending(".json"))!
     }
 }
 
-enum Documentation: Decodable {
-    case `enum`(id: String, title: String, abstract: String, values: [String: String])
-    case object(id: String, title: String, abstract: String, properties: [Property])
+enum Documentation: Codable {
+    case `enum`(id: String, title: String, abstract: String?, values: [String: String])
+    case object(id: String, title: String, abstract: String?, properties: [Property])
 
     var id: String {
         switch self {
@@ -168,7 +182,7 @@ enum Documentation: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let id = try container.decode(Identifier.self, forKey: .identifier).url
         let metadata = try container.decode(Metadata.self, forKey: .metadata)
-        let abstract = try container.decode([Abstract].self, forKey: .abstract).first!.text
+        let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.first?.text
         let contentSections = try container.decode([ContentSection].self, forKey: .primaryContentSections)
         if metadata.symbolKind == "tdef" /* Enum */,
            let values: [String: String] = contentSections.compactMap({ contentSection in
@@ -187,23 +201,43 @@ enum Documentation: Decodable {
         }
     }
 
-    private struct Identifier: Decodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .enum(let id, let title, let abstract, let values):
+            try container.encode(Identifier(url: id), forKey: .identifier)
+            try container.encode(Metadata(title: title, symbolKind: "tdef"), forKey: .metadata)
+            if let abstract {
+                try container.encode([Abstract(text: abstract)], forKey: .abstract)
+            }
+            try container.encode([ContentSection.possibleValues(values)], forKey: .primaryContentSections)
+        case .object(let id, let title, let abstract, let properties):
+            try container.encode(Identifier(url: id), forKey: .identifier)
+            try container.encode(Metadata(title: title, symbolKind: "dict"), forKey: .metadata)
+            if let abstract {
+                try container.encode([Abstract(text: abstract)], forKey: .abstract)
+            }
+            try container.encode([ContentSection.properties(properties)], forKey: .primaryContentSections)
+        }
+    }
+
+    private struct Identifier: Codable {
         let url: String
     }
 
-    private struct Metadata: Decodable {
+    private struct Metadata: Codable {
         let title: String
         let symbolKind: String
     }
 
-    private struct Abstract: Decodable {
+    private struct Abstract: Codable {
         let text: String
     }
 
-    private enum ContentSection: Decodable {
+    private enum ContentSection: Codable {
         case possibleValues([String: String])
         case properties([Property])
-        case unknown
+        case unused
 
         private enum CodingKeys: CodingKey {
             case kind
@@ -218,35 +252,69 @@ enum Documentation: Decodable {
                 let values = try container
                     .decode([Value].self, forKey: .values)
                     .reduce(into: [String: String]()) { partialResult, value in
-                        guard let text = value.content.first?.text else { return }
-                        partialResult[value.name] = text
+                        partialResult[value.name] = value.content?.first?.text ?? ""
                     }
                 self = .possibleValues(values)
             } else if kind == "properties" {
                 let properties = try container.decode([Property].self, forKey: .items)
                 self = .properties(properties)
+            } else if kind == "content" || kind == "declarations" {
+                self = .unused
             } else {
-                self = .unknown
+                throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Unkown kind '\(kind)'")
             }
         }
 
-        private struct Value: Decodable {
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .possibleValues(let values):
+                try container.encode("possibleValues", forKey: .kind)
+                try container.encode(values.map { (key: String, value: String) in
+                    Value(name: key, content: [.init(type: "text", inlineContent: [.init(text: value)])])
+                }, forKey: .values)
+            case .properties(let properties):
+                try container.encode("properties", forKey: .kind)
+                try container.encode(properties, forKey: .items)
+            case .unused:
+                try container.encode("content", forKey: .kind)
+            }
+        }
+
+        private struct Value: Codable {
             let name: String
-            let content: [Content]
+            let content: [Content]?
         }
     }
 
-    struct Content: Decodable {
+    struct Content: Codable {
         let type: String
-        var text: String { inlineContent.first!.text }
         private let inlineContent: [InlineContent]
+        var text: String? {
+            if inlineContent.count > 1 {
+                return inlineContent.compactMap { $0.text ?? $0.code }.joined(separator: " ")
+            } else {
+                return inlineContent.first?.text ?? inlineContent.first?.code
+            }
+        }
 
-        private struct InlineContent: Decodable {
-            let text: String
+        init(type: String, inlineContent: [InlineContent]) {
+            self.type = type
+            self.inlineContent = inlineContent
+        }
+
+        struct InlineContent: Codable {
+            let text: String?
+            let code: String?
+
+            init(text: String? = nil, code: String? = nil) {
+                self.text = text
+                self.code = code
+            }
         }
     }
 
-    struct Property: Decodable {
+    struct Property: Codable {
         let name: String
         let type: PropertyType
         let required: Bool
@@ -263,16 +331,19 @@ enum Documentation: Decodable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.name = try container.decode(String.self, forKey: CodingKeys.name)
             let types = try container.decode([PropertyType].self, forKey: CodingKeys.type)
+                .filter { $0.text != "[" && $0.text != "]" }
             guard types.count == 1 else { throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Multiple types for '\(name)'") }
             self.type = types.first!
             self.required = try container.decodeIfPresent(Bool.self, forKey: CodingKeys.required) ?? false
-            let contents = try container.decodeIfPresent([Content].self, forKey: CodingKeys.content) ?? []
+            let contents = (try container.decodeIfPresent([Content].self, forKey: CodingKeys.content) ?? [])
+                .filter { $0.text != nil }
             guard contents.count <= 1 else { throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(name)'") }
             self.content = contents.first
         }
 
-        struct PropertyType: Decodable {
+        struct PropertyType: Codable {
             let kind: String
+            let text: String
             let identifier: String?
         }
     }

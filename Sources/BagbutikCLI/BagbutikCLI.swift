@@ -41,9 +41,22 @@ struct BagbutikCLI: AsyncParsableCommand {
     struct DownloadNewestDocs: AsyncParsableCommand {
         static var configuration = CommandConfiguration(abstract: "Download the newest documentation.")
         
+        @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
+        var specPath: String?
+        
+        @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
+        var outputPath = "./"
+        
         func run() async throws {
-            let specFileURL = try await downloadNewestSpec()
-            try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL)
+            let specFileURL: URL
+            if let specPath = specPath {
+                specFileURL = URL(fileURLWithPath: specPath)
+            } else {
+                print("No path to a spec is supplied. Will download the newest version from Apple.")
+                specFileURL = try await downloadNewestSpec()
+            }
+            let outputDirURL = URL(fileURLWithPath: outputPath)
+            try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)
         }
     }
 
