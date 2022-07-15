@@ -84,7 +84,7 @@ public class DocsFetcher {
         print("Saving documentation to: \(documentationFileUrl.path)")
         print("Saving schema mapping to: \(schemaIndexFileUrl.path)")
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         guard fileManager.createFile(atPath: documentationFileUrl.path, contents: try encoder.encode(documentationById), attributes: nil),
               fileManager.createFile(atPath: schemaIndexFileUrl.path, contents: try encoder.encode(identifierBySchemaName), attributes: nil)
         else {

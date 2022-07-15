@@ -182,7 +182,7 @@ public enum Documentation: Codable {
                 return inlineContent.first?.text ?? inlineContent.first?.code
             }
         }
-        
+
         init(text: String) {
             type = "text"
             inlineContent = [.init(text: text)]
@@ -236,6 +236,14 @@ public enum Documentation: Codable {
                 .filter { $0.text != nil }
             guard contents.count <= 1 else { throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(name)'") }
             content = contents.first
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(name, forKey: .name)
+            try container.encode([type], forKey: .type)
+            try container.encode(required, forKey: .required)
+            try container.encode([content], forKey: .content)
         }
 
         struct PropertyType: Codable {
