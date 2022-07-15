@@ -37,7 +37,7 @@ let package = Package(
             name: "BagbutikCLI",
             dependencies: [
                 "BagbutikGenerator",
-                "BagbutikDocsFetcher",
+                "BagbutikDocsCollector",
                 "BagbutikPolyfill",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "Zip"
@@ -45,12 +45,13 @@ let package = Package(
         .target(
             name: "BagbutikGenerator",
             dependencies: [
+                "BagbutikDocsCollector",
                 "BagbutikSpecDecoder",
                 "BagbutikStringExtensions",
                 "StencilSwiftKit",
                 "SwiftFormat"
             ]),
-        .target(name: "BagbutikDocsFetcher", dependencies: ["BagbutikSpecDecoder"]),
+        .target(name: "BagbutikDocsCollector", dependencies: ["BagbutikSpecDecoder"]),
         .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikStringExtensions"),
         .target(name: "BagbutikPolyfill"),

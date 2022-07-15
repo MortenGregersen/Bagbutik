@@ -148,10 +148,8 @@ public struct Spec: Decodable {
         else {
             throw SpecError.unexpectedErrorResponseSource(components.schemas["ErrorResponse"])
         }
-        sourceOneOfSchema.options.remove(at: pointerIndex)
-        sourceOneOfSchema.options.insert(.schemaRef("JsonPointer"), at: pointerIndex)
-        sourceOneOfSchema.options.remove(at: parameterIndex)
-        sourceOneOfSchema.options.insert(.schemaRef("Parameter"), at: parameterIndex)
+        sourceOneOfSchema.options[pointerIndex] = .schemaRef("JsonPointer")
+        sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
         errorSchema.properties["source"] = sourceProperty
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)

@@ -1,6 +1,6 @@
 import ArgumentParser
+import BagbutikDocsCollector
 import BagbutikGenerator
-import BagbutikDocsFetcher
 import BagbutikPolyfill
 import Foundation
 import Zip
@@ -25,6 +25,9 @@ struct BagbutikCLI: AsyncParsableCommand {
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
         var outputPath = "./Sources/Bagbutik"
 
+        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a Documentation.json and a SchemaIndex.json.")
+        var documentationPath = "./"
+
         mutating func run() async throws {
             let specFileURL: URL
             if let specPath = specPath {
@@ -34,19 +37,20 @@ struct BagbutikCLI: AsyncParsableCommand {
                 specFileURL = try await downloadNewestSpec()
             }
             let outputDirURL = URL(fileURLWithPath: outputPath)
-            try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
+            let documentationDirURL = URL(fileURLWithPath: documentationPath)
+            try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)
         }
     }
-    
+
     struct DownloadNewestDocs: AsyncParsableCommand {
         static var configuration = CommandConfiguration(abstract: "Download the newest documentation.")
-        
+
         @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
         var specPath: String?
-        
+
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
         var outputPath = "./"
-        
+
         func run() async throws {
             let specFileURL: URL
             if let specPath = specPath {

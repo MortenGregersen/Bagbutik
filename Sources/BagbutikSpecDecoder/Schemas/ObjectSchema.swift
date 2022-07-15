@@ -7,7 +7,7 @@ public struct ObjectSchema: Decodable, Equatable {
     /// An url for the documentation for the object
     public let url: String
     /// The documentation for the obejct - if any
-    public let documentation: Schema.Documentation?
+    public var documentation: ObjectDocumentation?
     /// The properties for the obejct
     public var properties: [String: Property]
     /// A list of properties that is required (always available)
@@ -50,10 +50,9 @@ public struct ObjectSchema: Decodable, Equatable {
         case deprecated
     }
 
-    internal init(name: String, url: String, documentation: Schema.Documentation? = nil, properties: [String: Property] = [:], requiredProperties: [String] = [], attributesSchema: SubSchema? = nil, relationshipsSchema: SubSchema? = nil) {
+    internal init(name: String, url: String, properties: [String: Property] = [:], requiredProperties: [String] = [], attributesSchema: SubSchema? = nil, relationshipsSchema: SubSchema? = nil) {
         self.name = name
         self.url = url
-        self.documentation = documentation
         self.properties = properties
         self.requiredProperties = requiredProperties
         self.attributesSchema = attributesSchema
@@ -93,7 +92,6 @@ public struct ObjectSchema: Decodable, Equatable {
         }()
         let codingPathComponents = container.codingPath.components
         let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
-        let documentation = Self.getDocumentation(forSchemaNamed: name, codingPathComponents: codingPathComponents)
         var attributesSchema, relationshipsSchema: SubSchema?
         let attributes = try? propertiesContainer?.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
         if let attributes = attributes, attributes.properties.count > 0 {
@@ -103,77 +101,6 @@ public struct ObjectSchema: Decodable, Equatable {
            relationships.properties.count > 0 {
             relationshipsSchema = .relationships(relationships)
         }
-        self.init(name: name, url: url, documentation: documentation, properties: properties, requiredProperties: requiredProperties, attributesSchema: attributesSchema, relationshipsSchema: relationshipsSchema)
-    }
-
-    internal static func getDocumentation(forSchemaNamed name: String,
-                                          codingPathComponents: [String],
-                                          lookupDocumentation: (String) -> Schema.Documentation?
-                                              = Schema.Documentation.lookupDocumentation(forSchemaNamed:))
-        -> Schema.Documentation?
-    {
-        let relationshipsName = "Relationships"
-        let attributesName = "Attributes"
-        let dataName = "Data"
-        let linksName = "Links"
-        let rootSchemaDocumentation = lookupDocumentation(codingPathComponents[0])
-        if codingPathComponents.count == 1 {
-            return rootSchemaDocumentation
-        } else if case .rootSchema(_, _, _, let possibleAttributes) = rootSchemaDocumentation,
-                  let attributes = possibleAttributes,
-                  codingPathComponents.count == 2, name == attributesName {
-            return .attributes(attributes)
-        } else if codingPathComponents.count >= 2, codingPathComponents[1] == relationshipsName {
-            if codingPathComponents.count == 2 {
-                return .relationships
-            } else if codingPathComponents.count == 3 {
-                return .relationship
-            } else {
-                if name == dataName {
-                    return .relationshipData
-                } else if name == linksName {
-                    return .relationshipLinks
-                }
-            }
-            return nil
-        } else if codingPathComponents[0].hasSuffix("Request") {
-            let isUpdateRequest = codingPathComponents[0].hasSuffix("UpdateRequest")
-            if codingPathComponents[0].hasSuffix("LinkagesRequest"), name == dataName {
-                return .linkagesRequestData
-            } else if codingPathComponents.count == 2, name == dataName {
-                return isUpdateRequest ? .updateRequestData : .createRequestData
-            } else if case .createRequest(_, let possibleAttributes) = rootSchemaDocumentation,
-                      let attributes = possibleAttributes,
-                      codingPathComponents.count == 3, name == attributesName {
-                return .createRequestDataAttributes(attributes)
-            } else if case .updateRequest(_, let possibleAttributes) = rootSchemaDocumentation,
-                      let attributes = possibleAttributes,
-                      codingPathComponents.count == 3, name == attributesName {
-                return .updateRequestDataAttributes(attributes)
-            } else if name == relationshipsName {
-                return isUpdateRequest ? .updateRequestDataRelationships : .createRequestDataRelationships
-            } else if codingPathComponents.count >= 4, codingPathComponents[3] == name {
-                return isUpdateRequest ? .updateRequestDataRelationship : .createRequestDataRelationship
-            } else if codingPathComponents.count >= 5, name == dataName {
-                return isUpdateRequest ? .updateRequestDataRelationshipData : .createRequestDataRelationshipData
-            }
-            return nil
-        } else if codingPathComponents[0].hasSuffix("LinkagesResponse"), name == dataName {
-            return .linkagesResponseData
-        } else if codingPathComponents[0] == "ErrorResponse" {
-            var pathComponents = codingPathComponents
-                .filter { $0 != "Items" &&
-                    $0 != "Source" &&
-                    $0 != "OneOf" &&
-                    !$0.hasPrefix("Index ")
-                }
-            if pathComponents.last != name {
-                pathComponents.append(name)
-            }
-            return lookupDocumentation(pathComponents.joined(separator: "."))
-        } else if codingPathComponents[0] == "PagingInformation" {
-            return lookupDocumentation(codingPathComponents.joined(separator: "."))
-        }
-        return nil
+        self.init(name: name, url: url, properties: properties, requiredProperties: requiredProperties, attributesSchema: attributesSchema, relationshipsSchema: relationshipsSchema)
     }
 }

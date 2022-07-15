@@ -9,7 +9,7 @@ public struct EnumSchema: Decodable, Equatable {
     /// An url for the documentation for the enum
     public let url: String?
     /// The documentation for the enum - if any
-    public let documentation: Schema.Documentation?
+    public var documentation: EnumDocumentation?
     /// The enum's cases
     public let cases: [EnumCase]
 
@@ -28,21 +28,11 @@ public struct EnumSchema: Decodable, Equatable {
         - caseValues: Values for the enum's cases
      */
     public init(name: String, type: String, url: String? = nil, caseValues: [String]) {
-        self.init(name: name,
-                  type: type,
-                  url: url,
-                  caseValues: caseValues,
-                  lookupDocumentation: Schema.Documentation.lookupDocumentation)
-    }
-
-    internal init(name: String, type: String, url: String?, caseValues: [String], lookupDocumentation: (String) -> Schema.Documentation?) {
         self.name = name
         self.type = type
         self.url = url
-        let documentation = lookupDocumentation(name)
-        self.documentation = documentation
         let cases = caseValues.map {
-            EnumCase(id: $0.camelCased(with: "_"), value: $0, documentation: documentation?.properties[$0])
+            EnumCase(id: $0.camelCased(with: "_"), value: $0)
         }
         if name == "BundleIdPlatform", !cases.contains(where: { $0.value == "UNIVERSAL" }) {
             // HACK: Apple's OpenAPI spec doesn't include 'Universal' App IDs. Reported to Apple 21/1/21 as FB8977648.

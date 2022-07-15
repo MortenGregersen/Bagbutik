@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import SwiftFormat
 
@@ -29,10 +30,24 @@ public class EnumSchemaRenderer: Renderer {
     """
 
     private func enumContext(for enumSchema: EnumSchema, additionalProtocol: String) -> [String: Any] {
-        return ["name": enumSchema.name,
-                "documentation": enumSchema.documentation?.summary ?? "",
-                "rawType": enumSchema.type.capitalized,
-                "additionalProtocol": additionalProtocol,
-                "cases": enumSchema.cases]
+        [
+            "name": enumSchema.name,
+            "documentation": enumSchema.documentation?.abstract ?? "",
+            "rawType": enumSchema.type.capitalized,
+            "additionalProtocol": additionalProtocol,
+            "cases": enumSchema.cases.map {
+                DocumentedEnumCase(enumCase: $0, description: enumSchema.documentation?.cases[$0.id])
+            }
+        ]
+    }
+
+    private struct DocumentedEnumCase {
+        let enumCase: EnumCase
+        let description: String?
+
+        init(enumCase: EnumCase, description: String?) {
+            self.enumCase = enumCase
+            self.description = description
+        }
     }
 }

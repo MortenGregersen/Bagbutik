@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 
@@ -36,6 +37,8 @@ public enum GeneratorError: Error {
         case specFileURL
         /// The URL for the output directory
         case outputDirURL
+        /// The URL for the documentation directory
+        case documentationDirUrl
     }
 }
 
@@ -53,6 +56,7 @@ internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 public class Generator {
     private let loadSpec: LoadSpec
     private let fileManager: GeneratorFileManager
+    private let docsLoader = DocsLoader()
     private let print: (String) -> Void
 
     /// Initialize a new generator
@@ -78,12 +82,17 @@ public class Generator {
      - Parameters:
         - specFileURL: The file URL to load the spec from
         - outputDirURL: The file URL for the directory where the generated code should be saved
+        - documentationDirURL: The file URL for the directory containing the fetched documentation
      */
-    public func generateAll(specFileURL: URL, outputDirURL: URL) async throws {
+    public func generateAll(specFileURL: URL, outputDirURL: URL, documentationDirURL: URL) async throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
+        guard documentationDirURL.isFileURL else { throw GeneratorError.notFileUrl(.documentationDirUrl) }
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
+
+        print("🔍 Loading docs \(documentationDirURL)...")
+        try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
 
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
         try removeChildren(at: endpointsDirURL)
@@ -115,41 +124,23 @@ public class Generator {
 
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
-        let modelsMissingDocumentation: [(name: String, url: String?)] = try await withThrowingTaskGroup(of: (name: String, url: String?)?.self) { taskGroup in
+        await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
-                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas)
+                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
                     let fileURL = modelsDirURL.appendingPathComponent(fileName)
                     self.print("⚡️ Generating model \(model.name)...")
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
                         throw GeneratorError.couldNotCreateFile(fileName)
                     }
-                    if !model.hasDocumentation {
-                        return (name: model.name, url: model.url)
-                    }
-                    return nil
                 }
             }
-            var modelsMissingDocumentation = [(name: String, url: String?)]()
-            for try await value in taskGroup {
-                if let value = value {
-                    modelsMissingDocumentation.append(value)
-                }
-            }
-            return modelsMissingDocumentation
         }
 
         endpointsMissingDocumentation.sorted().forEach { endpointName in
             // Remember to change check-spec-version script if the wording here is changed.
             print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
-        }
-
-        modelsMissingDocumentation.sorted(by: { $0.name < $1.name }).forEach { model in
-            // Remember to change check-spec-version script if the wording here is changed.
-            var log = "⚠️ Documentation missing for model: '\(model.name)'"
-            if let url = model.url { log += " (\(url))" }
-            print(log)
         }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
@@ -177,28 +168,25 @@ public class Generator {
         }
     }
 
-    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema]) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
+    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+        throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
-        let hasDocumentation: Bool
         switch schema {
         case .enum(let enumSchema):
             renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
-            hasDocumentation = enumSchema.documentation != nil
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema, otherSchemas: otherSchemas)
-            hasDocumentation = objectSchema.documentation != nil
+            renderedSchema = try ObjectSchemaRenderer(docsLoader: docsLoader)
+                .render(objectSchema: objectSchema, otherSchemas: otherSchemas)
         case .binary(let binarySchema):
             renderedSchema = try BinarySchemaRenderer().render(binarySchema: binarySchema)
-            hasDocumentation = binarySchema.documentation != nil
         case .plainText(let plainTextSchema):
             renderedSchema = try PlainTextSchemaRenderer().render(plainTextSchema: plainTextSchema)
-            hasDocumentation = plainTextSchema.documentation != nil
         }
         let contents = """
         import Foundation
 
         \(renderedSchema)
         """
-        return (name: schema.name, contents: contents, hasDocumentation: hasDocumentation, url: schema.url)
+        return (name: schema.name, contents: contents, url: schema.url)
     }
 }

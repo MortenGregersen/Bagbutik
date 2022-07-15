@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 import Stencil
@@ -6,6 +7,12 @@ import SwiftFormat
 
 /// A renderer which renders object schemas
 public class ObjectSchemaRenderer {
+    let docsLoader: DocsLoader
+
+    public init(docsLoader: DocsLoader) {
+        self.docsLoader = docsLoader
+    }
+
     /**
      Render a object schema
 
@@ -64,19 +71,17 @@ public class ObjectSchemaRenderer {
     }
     """
     private static let objectTemplate = #"""
-    {% if summary %}/**
-      {{ summary }}
+    {% if abstract %}/**
+      {{ abstract }}
 
       Full documentation:
-      <{{ url }}>{% if discussion %}
-
-      {{ discussion }}{% endif %}
+      <{{ url }}>
     */
-    {% elif summary %}/// {{ summary }}
+    {% elif abstract %}/// {{ abstract }}
     {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %}{% if isPagedResponse %}, PagedResponse{% endif %} {
         {% if pagedDataSchemaRef %}public typealias Data = {{ pagedDataSchemaRef }}{%
         endif %}{% for property in properties %}
-        {% if property.documentation %}/// {{ property.documentation }}
+        {% if property.documentation %}/// {{ property.documentation.description }}
         {% else %}{%
         endif %}{{ property.rendered }}{%
         endfor %}{%
@@ -178,8 +183,8 @@ public class ObjectSchemaRenderer {
             encodableProperties.append(CodableProperty(name: PropertyName(idealName: name), type: type, optional: relationshipsOptional))
         }
         let decodableProperties = encodableProperties.filter { $0.name.idealName != "type" }
-        let attributesDocumentation = objectSchema.documentation?.properties["attributes"] ?? ""
-        let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"] ?? ""
+        let attributesDocumentation = objectSchema.documentation?.properties["attributes"]
+        let relationshipsDocumentation = objectSchema.documentation?.properties["relationships"]
         var deprecatedPublicInitParameterList = ""
         if initParameters.contains(where: \.value.deprecated) {
             deprecatedPublicInitParameterList = createParameterList(from: initParameters, requiredProperties: objectSchema.requiredProperties)
@@ -192,56 +197,61 @@ public class ObjectSchemaRenderer {
         }
         let hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
         let includedGetters = createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas)
-        return ["name": objectSchema.name,
-                "summary": objectSchema.documentation?.summary ?? "",
-                "url": objectSchema.url,
-                "discussion": objectSchema.documentation?.discussion ?? "",
-                "isRequest": objectSchema.name.hasSuffix("Request"),
-                "isPagedResponse": isPagedResponse,
-                "pagedDataSchemaRef": pagedDataSchemaRef,
-                "properties": sortedProperties.map { property -> RenderProperty in
-                    let rendered: String
-                    switch property.value.type {
-                    case .constant(let value):
-                        rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
-                    default:
-                        rendered = try! PropertyRenderer().render(id: PropertyName(idealName: property.key).safeName,
-                                                                  type: property.value.type.description,
-                                                                  optional: !objectSchema.requiredProperties.contains(property.key),
-                                                                  isSimpleType: property.value.type.isSimple,
-                                                                  deprecated: property.value.deprecated)
-                    }
-                    let propertyDocumentation = objectSchema.documentation?.properties[property.key]
-                    return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
-                },
-                "deprecatedPublicInitParameterList": deprecatedPublicInitParameterList,
-                "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
-                "publicInitParameterList": publicInitParameterList,
-                "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
-                "needsCustomCoding": hasTypeConstant || sortedProperties.contains(where: { PropertyName(idealName: $0.key).hasDifferentSafeName }),
-                "hasTypeConstant": hasTypeConstant,
-                "codingKeys": codingKeys,
-                "encodableProperties": encodableProperties,
-                "decodableProperties": decodableProperties,
-                "hasAttributes": hasAttributes,
-                "attributesDocumentation": attributesDocumentation,
-                "attributesOptional": attributesOptional,
-                "hasRelationships": hasRelationships,
-                "relationshipsDocumentation": relationshipsDocumentation,
-                "relationshipsOptional": relationshipsOptional,
-                "includedGetters": includedGetters,
-                "subSchemas": subSchemas.map { subSchema -> String in
-                    switch subSchema {
-                    case .objectSchema(let objectSchema),
-                         .attributes(let objectSchema),
-                         .relationships(let objectSchema):
-                        return try! render(objectSchema: objectSchema, otherSchemas: otherSchemas)
-                    case .enumSchema(let enumSchema):
-                        return try! EnumSchemaRenderer().render(enumSchema: enumSchema)
-                    case .oneOf(let name, let oneOfSchema):
-                        return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema)
-                    }
-                }]
+        var context: [String: Any] =
+            ["name": objectSchema.name,
+             "abstract": objectSchema.documentation?.abstract ?? "",
+             "url": objectSchema.url,
+             "isRequest": objectSchema.name.hasSuffix("Request"),
+             "isPagedResponse": isPagedResponse,
+             "pagedDataSchemaRef": pagedDataSchemaRef,
+             "properties": sortedProperties.map { property -> RenderProperty in
+                 let rendered: String
+                 switch property.value.type {
+                 case .constant(let value):
+                     rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
+                 default:
+                     rendered = try! PropertyRenderer().render(id: PropertyName(idealName: property.key).safeName,
+                                                               type: property.value.type.description,
+                                                               optional: !objectSchema.requiredProperties.contains(property.key),
+                                                               isSimpleType: property.value.type.isSimple,
+                                                               deprecated: property.value.deprecated)
+                 }
+                 let propertyDocumentation = objectSchema.documentation?.properties[property.key]
+                 return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
+             },
+             "deprecatedPublicInitParameterList": deprecatedPublicInitParameterList,
+             "deprecatedPublicInitPropertyNames": initParameters.map { PropertyName(idealName: $0.key) },
+             "publicInitParameterList": publicInitParameterList,
+             "publicInitPropertyNames": initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) },
+             "needsCustomCoding": hasTypeConstant || sortedProperties.contains(where: { PropertyName(idealName: $0.key).hasDifferentSafeName }),
+             "hasTypeConstant": hasTypeConstant,
+             "codingKeys": codingKeys,
+             "encodableProperties": encodableProperties,
+             "decodableProperties": decodableProperties,
+             "hasAttributes": hasAttributes,
+             "attributesOptional": attributesOptional,
+             "hasRelationships": hasRelationships,
+             "relationshipsOptional": relationshipsOptional,
+             "includedGetters": includedGetters,
+             "subSchemas": subSchemas.map { subSchema -> String in
+                 switch subSchema {
+                 case .objectSchema(let objectSchema),
+                      .attributes(let objectSchema),
+                      .relationships(let objectSchema):
+                     return try! render(objectSchema: objectSchema, otherSchemas: otherSchemas)
+                 case .enumSchema(let enumSchema):
+                     return try! EnumSchemaRenderer().render(enumSchema: enumSchema)
+                 case .oneOf(let name, let oneOfSchema):
+                     return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema)
+                 }
+             }]
+        if let attributesDocumentation {
+            context["attributesDocumentation"] = attributesDocumentation
+        }
+        if let relationshipsDocumentation {
+            context["relationshipsDocumentation"] = relationshipsDocumentation
+        }
+        return context
     }
 
     private func createParameterList(from parameters: [Dictionary<String, Property>.Element], requiredProperties: [String]) -> String {
@@ -317,7 +327,7 @@ public class ObjectSchemaRenderer {
 
     private struct RenderProperty {
         let rendered: String
-        let documentation: String?
+        let documentation: PropertyDocumentation?
         let deprecated: Bool
     }
 

@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import SwiftFormat
 
@@ -29,6 +30,6 @@ public class PlainTextSchemaRenderer: Renderer {
     """
 
     private func plainTextSchemaContext(for plainTextSchema: PlainTextSchema) -> [String: Any] {
-        ["name": plainTextSchema.name, "documentation": plainTextSchema.documentation?.summary ?? ""]
+        ["name": plainTextSchema.name, "documentation": plainTextSchema.documentation?.abstract ?? ""]
     }
 }

@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import SwiftFormat
 
@@ -29,6 +30,6 @@ public class BinarySchemaRenderer: Renderer {
     """
 
     private func binarySchemaContext(for binarySchema: BinarySchema) -> [String: Any] {
-        ["name": binarySchema.name, "documentation": binarySchema.documentation?.summary ?? ""]
+        ["name": binarySchema.name, "documentation": binarySchema.documentation?.abstract ?? ""]
     }
 }

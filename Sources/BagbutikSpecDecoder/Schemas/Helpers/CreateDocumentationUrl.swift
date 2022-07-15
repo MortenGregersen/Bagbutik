@@ -2,6 +2,8 @@ internal func createDocumentationUrl(forSchemaNamed name: String, withCodingPath
     var urlPathComponents = codingPathComponents
         .filter { $0 != "Items" &&
             $0 != "Source" &&
+            $0 != "ErrorSourcePointer" &&
+            $0 != "ErrorSourceParameter" && 
             $0 != "OneOf" &&
             !$0.hasPrefix("Index ")
         }
