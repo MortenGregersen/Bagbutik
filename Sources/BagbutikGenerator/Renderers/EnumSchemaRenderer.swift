@@ -4,6 +4,12 @@ import SwiftFormat
 
 /// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
+    let docsLoader: DocsLoader
+
+    public init(docsLoader: DocsLoader) {
+        self.docsLoader = docsLoader
+    }
+
     /**
      Render an enum schema
 
@@ -13,7 +19,7 @@ public class EnumSchemaRenderer: Renderer {
      - Returns: The rendered enum schema
      */
     public func render(enumSchema: EnumSchema, additionalProtocol: String = "Codable") throws -> String {
-        let context = enumContext(for: enumSchema, additionalProtocol: additionalProtocol)
+        let context = try enumContext(for: enumSchema, additionalProtocol: additionalProtocol)
         let rendered = try environment.renderTemplate(string: template, context: context)
         return try SwiftFormat.format(rendered)
     }
@@ -29,25 +35,21 @@ public class EnumSchemaRenderer: Renderer {
     }
     """
 
-    private func enumContext(for enumSchema: EnumSchema, additionalProtocol: String) -> [String: Any] {
-        [
+    private func enumContext(for enumSchema: EnumSchema, additionalProtocol: String) throws -> [String: Any] {
+        var documentation: EnumDocumentation?
+        if let url = enumSchema.url, case .enum(let enumDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url) {
+            documentation = enumDocumentation
+        }
+        return [
             "name": enumSchema.name,
-            "documentation": enumSchema.documentation?.abstract ?? "",
+            "documentation": documentation?.abstract ?? "",
             "rawType": enumSchema.type.capitalized,
             "additionalProtocol": additionalProtocol,
             "cases": enumSchema.cases.map {
-                DocumentedEnumCase(enumCase: $0, description: enumSchema.documentation?.cases[$0.id])
+                var enumCase = $0
+                enumCase.documentation = documentation?.cases[$0.value]
+                return enumCase
             }
         ]
-    }
-
-    private struct DocumentedEnumCase {
-        let enumCase: EnumCase
-        let description: String?
-
-        init(enumCase: EnumCase, description: String?) {
-            self.enumCase = enumCase
-            self.description = description
-        }
     }
 }

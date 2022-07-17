@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 import Stencil
@@ -18,6 +19,12 @@ extension OperationRendererError: Equatable {}
 
 /// A renderer which renders operations
 public class OperationRenderer: Renderer {
+    let docsLoader: DocsLoader
+
+    public init(docsLoader: DocsLoader) {
+        self.docsLoader = docsLoader
+    }
+
     /**
      Render an operation
 
@@ -27,7 +34,7 @@ public class OperationRenderer: Renderer {
      - Returns: The rendered operation
      */
     public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
-        let context = try Self.operationContext(for: operation, in: path)
+        let context = try operationContext(for: operation, in: path)
         let rendered = try environment.renderTemplate(string: template, context: context)
         return try SwiftFormat.format(rendered)
     }
@@ -163,7 +170,7 @@ public class OperationRenderer: Renderer {
     {% endif %}
     """
 
-    internal static func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {
+    internal func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {
         let name = operation.name.capitalizingFirstLetter() + path.info.version
         let pathRange = NSRange(location: 0, length: path.path.utf16.count)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(in: path.path, options: [], range: pathRange, withTemplate: #"\\($1)"#)
@@ -189,8 +196,8 @@ public class OperationRenderer: Renderer {
                     if values.count > 0 {
                         let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                         let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
-                        let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
-                                                                        additionalProtocol: "ParameterValue")
+                        let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema,
+                                                                                              additionalProtocol: "ParameterValue")
                         fieldSubSchemas[name] = rendered
                         fields.append(EnumCase(id: name, value: enumName, deprecated: deprecated, documentation: documentation))
                     }
@@ -202,7 +209,7 @@ public class OperationRenderer: Renderer {
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
-                    let rendered = try! EnumSchemaRenderer().render(enumSchema: enumSchema,
+                    let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema,
                                                                     additionalProtocol: "ParameterValue")
                     filterSubSchemas[name] = rendered
                     filters.append(EnumCase(id: name, value: enumName, documentation: documentation))

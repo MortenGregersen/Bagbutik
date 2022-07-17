@@ -6,8 +6,6 @@ public struct ObjectSchema: Decodable, Equatable {
     public let name: String
     /// An url for the documentation for the object
     public let url: String
-    /// The documentation for the obejct - if any
-    public var documentation: ObjectDocumentation?
     /// The properties for the obejct
     public var properties: [String: Property]
     /// A list of properties that is required (always available)
@@ -15,7 +13,6 @@ public struct ObjectSchema: Decodable, Equatable {
     /// A list of schemas derived from the properties and special sub schemas
     public var subSchemas: [SubSchema] {
         var subSchemas = [SubSchema]()
-        subSchemas.append(contentsOf: [attributesSchema, relationshipsSchema].compactMap { $0 })
         subSchemas.append(contentsOf: properties.compactMap { _, property in
             switch property.type {
             case .arrayOfSubSchema(let schema), .schema(let schema):
@@ -31,11 +28,6 @@ public struct ObjectSchema: Decodable, Equatable {
         return subSchemas.sorted(by: { $0.name < $1.name })
     }
 
-    /// A schema for Attributes
-    public var attributesSchema: SubSchema?
-    /// A schema for Relationships
-    public var relationshipsSchema: SubSchema?
-
     private enum CodingKeys: String, CodingKey {
         case type
         case title
@@ -50,13 +42,11 @@ public struct ObjectSchema: Decodable, Equatable {
         case deprecated
     }
 
-    internal init(name: String, url: String, properties: [String: Property] = [:], requiredProperties: [String] = [], attributesSchema: SubSchema? = nil, relationshipsSchema: SubSchema? = nil) {
+    internal init(name: String, url: String, properties: [String: Property] = [:], requiredProperties: [String] = []) {
         self.name = name
         self.url = url
         self.properties = properties
         self.requiredProperties = requiredProperties
-        self.attributesSchema = attributesSchema
-        self.relationshipsSchema = relationshipsSchema
     }
 
     public init(from decoder: Decoder) throws {
@@ -65,8 +55,6 @@ public struct ObjectSchema: Decodable, Equatable {
         let propertiesContainer = try? container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .properties)
         properties = try propertiesContainer?.allKeys.reduce(into: [String: Property]()) { properties, key in
             guard let propertiesContainer = propertiesContainer else { return }
-            guard key.stringValue != CodingKeys.attributes.stringValue,
-                  key.stringValue != CodingKeys.relationships.stringValue else { return }
             guard let propertyType = try? propertiesContainer.decode(PropertyType.self, forKey: key) else {
                 throw DecodingError.dataCorruptedError(forKey: key, in: propertiesContainer, debugDescription: "Property type not known")
             }
@@ -92,15 +80,6 @@ public struct ObjectSchema: Decodable, Equatable {
         }()
         let codingPathComponents = container.codingPath.components
         let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
-        var attributesSchema, relationshipsSchema: SubSchema?
-        let attributes = try? propertiesContainer?.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "attributes")!)
-        if let attributes = attributes, attributes.properties.count > 0 {
-            attributesSchema = .attributes(attributes)
-        }
-        if let relationships = try? propertiesContainer?.decodeIfPresent(ObjectSchema.self, forKey: DynamicCodingKeys(stringValue: "relationships")!),
-           relationships.properties.count > 0 {
-            relationshipsSchema = .relationships(relationships)
-        }
-        self.init(name: name, url: url, properties: properties, requiredProperties: requiredProperties, attributesSchema: attributesSchema, relationshipsSchema: relationshipsSchema)
+        self.init(name: name, url: url, properties: properties, requiredProperties: requiredProperties)
     }
 }

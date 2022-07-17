@@ -1,3 +1,4 @@
+@testable import BagbutikDocsCollector
 @testable import BagbutikGenerator
 import BagbutikSpecDecoder
 import XCTest
@@ -5,8 +6,13 @@ import XCTest
 final class EnumSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
-        let renderer = EnumSchemaRenderer()
-        let schema = EnumSchema(name: "Platform", type: "string", caseValues: ["MAC_OS", "IOS", "TV_OS"])
+        let docsLoader = DocsLoader(documentationById: ["/platform": .enum(.init(id: "/platform", title: "Platform", abstract: "Strings that represent Apple operating systems.", cases: [
+            "MAC_OS": "A string that represents macOS.",
+            "IOS": "A string that represents iOS.",
+            "TV_OS": "A string that represents tvOS."
+        ]))])
+        let renderer = EnumSchemaRenderer(docsLoader: docsLoader)
+        let schema = EnumSchema(name: "Platform", type: "string", url: "/platform", caseValues: ["MAC_OS", "IOS", "TV_OS"])
         // When
         let rendered = try renderer.render(enumSchema: schema)
         // Then
@@ -26,7 +32,7 @@ final class EnumSchemaRendererTests: XCTestCase {
 
     func testRenderWithAdditionalProtocol() throws {
         // Given
-        let renderer = EnumSchemaRenderer()
+        let renderer = EnumSchemaRenderer(docsLoader: DocsLoader())
         let schema = EnumSchema(name: "AppCategories", type: "string", caseValues: ["parent", "platforms", "subcategories"])
         // When
         let rendered = try renderer.render(enumSchema: schema, additionalProtocol: "ParameterValue")

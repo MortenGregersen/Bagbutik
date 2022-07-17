@@ -20,7 +20,7 @@ public struct Spec: Decodable {
 
     /**
      Apply all known fixups to the spec.
-     
+
      Right now it does the following:
      - Adds include parameters which looks like they are forgotten in the spec.
      - Flatten the schemas used in schemas for create request and update request.
@@ -54,7 +54,7 @@ public struct Spec: Decodable {
                     dataSchemaName = theDataSchemaName
                 } else { return }
                 guard case .object(let dataSchema) = components.schemas[dataSchemaName],
-                      case .relationships(let dataRelationshipsSchema) = dataSchema.relationshipsSchema
+                      case .schema(let dataRelationshipsSchema) = dataSchema.properties["relationships"]?.type
                 else { return }
                 let includeNamesFromResponse = dataRelationshipsSchema.properties.map(\.key)
                 operation.parameters?.forEach { parameter in
@@ -88,7 +88,7 @@ public struct Spec: Decodable {
                               case .filter(let parameterName, let parameterValueType, let parameterRequired, let parameterDocumentation) = parameter,
                               case .enum(let type, let values) = parameterValueType,
                               case .object(let mainSchema) = components.schemas[path.info.mainType],
-                              let mainAttributesSchema = mainSchema.subSchemas.compactMap(\.asAttributes).first,
+                              case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
                                   let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
@@ -113,11 +113,11 @@ public struct Spec: Decodable {
                     guard case .object(let mainSchema) = components.schemas[mainSchemaName],
                           let targetDataProperty = targetSchema.properties["data"],
                           case .schema(var targetDataSchema) = targetDataProperty.type,
-                          case .attributes(var targetDataAttributesSchema) = targetDataSchema.attributesSchema
+                          case .schema(var targetDataAttributesSchema) = targetDataSchema.properties["attributes"]?.type
                     else { return }
                     targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
-                              let mainAttributesSchema = mainSchema.subSchemas.compactMap(\.asAttributes).first,
+                              case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
                                   return mainAttributesPropertySchema.name == targetDataAttributesPropertySchema.name
@@ -125,7 +125,7 @@ public struct Spec: Decodable {
                               }) else { return }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
                     }
-                    targetDataSchema.attributesSchema = .attributes(targetDataAttributesSchema)
+                    targetDataSchema.properties["attributes"]?.type = .schema(targetDataAttributesSchema)
                     targetSchema.properties["data"] = .init(type: .schema(targetDataSchema), deprecated: targetDataProperty.deprecated)
                     components.schemas[targetSchemaName] = .object(targetSchema)
                 }
@@ -175,11 +175,3 @@ public enum SpecError: Error {
 }
 
 extension SpecError: Equatable {}
-
-private extension SubSchema {
-    /// Match the sub schema as an Attributes schema and return it if it is
-    var asAttributes: ObjectSchema? {
-        guard case .attributes(let attributesSchema) = self else { return nil }
-        return attributesSchema
-    }
-}

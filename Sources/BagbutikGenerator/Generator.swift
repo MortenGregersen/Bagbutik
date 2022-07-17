@@ -56,7 +56,7 @@ internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 public class Generator {
     private let loadSpec: LoadSpec
     private let fileManager: GeneratorFileManager
-    private let docsLoader = DocsLoader()
+    private let docsLoader: DocsLoader
     private let print: (String) -> Void
 
     /// Initialize a new generator
@@ -67,12 +67,13 @@ public class Generator {
             try spec.applyAllFixups()
             return spec
         }
-        self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
+        self.init(loadSpec: loadSpec, fileManager: FileManager.default, docsLoader: DocsLoader(), print: { Swift.print($0) })
     }
 
-    internal init(loadSpec: @escaping LoadSpec, fileManager: GeneratorFileManager, print: @escaping (String) -> Void) {
+    internal init(loadSpec: @escaping LoadSpec, fileManager: GeneratorFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
         self.loadSpec = loadSpec
         self.fileManager = fileManager
+        self.docsLoader = docsLoader
         self.print = print
     }
 
@@ -102,7 +103,7 @@ public class Generator {
                     var endpointsMissingDocumentation = [String]()
                     let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
                     try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
-                    try Self.generateEndpoints(for: path).forEach { endpoint in
+                    try Self.generateEndpoints(for: path, docsLoader: self.docsLoader).forEach { endpoint in
                         let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
                         self.print("⚡️ Generating endpoint \(endpoint.fileName)...")
                         guard self.fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
@@ -124,18 +125,19 @@ public class Generator {
 
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
-        await withThrowingTaskGroup(of: Void.self) { taskGroup in
+        try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
+                    self.print("⚡️ Generating model \(schema.name)...")
                     let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
                     let fileURL = modelsDirURL.appendingPathComponent(fileName)
-                    self.print("⚡️ Generating model \(model.name)...")
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
                         throw GeneratorError.couldNotCreateFile(fileName)
                     }
                 }
             }
+            for try await _ in taskGroup {}
         }
 
         endpointsMissingDocumentation.sorted().forEach { endpointName in
@@ -159,11 +161,11 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateEndpoints(for path: Path) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
+    private static func generateEndpoints(for path: Path, docsLoader: DocsLoader) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
         try path.operations.map { operation in
             let name = operation.name.capitalizingFirstLetter()
             let fileName = "\(name)\(path.info.version).swift"
-            let renderedOperation = try OperationRenderer().render(operation: operation, in: path)
+            let renderedOperation = try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)
             return (name: name, fileName: fileName, contents: renderedOperation, hasDocumentation: operation.documentation != nil)
         }
     }
@@ -173,14 +175,17 @@ public class Generator {
         let renderedSchema: String
         switch schema {
         case .enum(let enumSchema):
-            renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
+            renderedSchema = try EnumSchemaRenderer(docsLoader: docsLoader)
+                .render(enumSchema: enumSchema)
         case .object(let objectSchema):
             renderedSchema = try ObjectSchemaRenderer(docsLoader: docsLoader)
                 .render(objectSchema: objectSchema, otherSchemas: otherSchemas)
         case .binary(let binarySchema):
-            renderedSchema = try BinarySchemaRenderer().render(binarySchema: binarySchema)
+            renderedSchema = try BinarySchemaRenderer(docsLoader: docsLoader)
+                .render(binarySchema: binarySchema)
         case .plainText(let plainTextSchema):
-            renderedSchema = try PlainTextSchemaRenderer().render(plainTextSchema: plainTextSchema)
+            renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
+                .render(plainTextSchema: plainTextSchema)
         }
         let contents = """
         import Foundation
