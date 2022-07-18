@@ -71,9 +71,11 @@ public class DocsFetcher {
             identifierBySchemaName[schema.name] = documentation.id
             documentationById[documentation.id] = documentation
 
-            let documentationIdsToFetch = documentation.subDocumentationIds
-                .filter { documentationId in !documentationById.keys.contains(where: { $0 == documentationId }) }
-            let subDocumentations = try await fetchDocumentation(for: documentationIdsToFetch)
+            let documentationIdAlreadyFetched: (String) -> Bool = { documentationId in
+                !documentationById.keys.contains(where: { $0 == documentationId })
+            }
+            let documentationIdsToFetch = documentation.subDocumentationIds.filter(documentationIdAlreadyFetched)
+            let subDocumentations = try await fetchDocumentation(for: documentationIdsToFetch, documentationIdAlreadyFetched: documentationIdAlreadyFetched)
             for subDocumentation in subDocumentations {
                 documentationById[subDocumentation.id] = subDocumentation
             }
@@ -100,12 +102,15 @@ public class DocsFetcher {
         return try await fetchDocumentation(for: jsonUrl)
     }
 
-    private func fetchDocumentation(for documentationIds: [String]) async throws -> [Documentation] {
+    private func fetchDocumentation(for documentationIds: [String], documentationIdAlreadyFetched: (String) -> Bool) async throws -> [Documentation] {
         var documentations = [Documentation]()
         for documentationId in documentationIds {
             let jsonUrl = createJsonDocumentationUrl(fromId: documentationId)
             let documentation = try await fetchDocumentation(for: jsonUrl)
+            let subDocumentations = try await fetchDocumentation(for: documentation.subDocumentationIds,
+                                                                 documentationIdAlreadyFetched: documentationIdAlreadyFetched)
             documentations.append(documentation)
+            documentations.append(contentsOf: subDocumentations)
         }
         return documentations
     }
