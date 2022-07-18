@@ -149,7 +149,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [
                 "id": .init(required: true, description: "The unique id for the person"),
                 "firstName": .init(required: true, description: "The firstname of the person"),
-                "lastName": .init(required: false, description: "The lastname of the person"),
+                "lastName": .init(required: false, description: ""),
                 "self": .init(required: false, description: "A reference to the person")
             ], subDocumentationIds: []))]
         )
@@ -176,7 +176,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public let firstName: String
             /// The unique id for the person
             public var id: String { "person" }
-            /// The lastname of the person
             public var lastName: String?
             /// A reference to the person
             public var itself: String?

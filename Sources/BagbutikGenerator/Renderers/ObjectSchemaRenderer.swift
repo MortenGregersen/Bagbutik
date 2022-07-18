@@ -81,7 +81,7 @@ public class ObjectSchemaRenderer {
     {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %}{% if isPagedResponse %}, PagedResponse{% endif %} {
         {% if pagedDataSchemaRef %}public typealias Data = {{ pagedDataSchemaRef }}{%
         endif %}{% for property in properties %}
-        {% if property.documentation %}/// {{ property.documentation.description }}
+        {% if property.documentation.description %}/// {{ property.documentation.description }}
         {% else %}{%
         endif %}{{ property.rendered }}{%
         endfor %}
