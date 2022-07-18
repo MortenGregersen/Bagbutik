@@ -71,14 +71,16 @@ public class DocsFetcher {
             identifierBySchemaName[schema.name] = documentation.id
             documentationById[documentation.id] = documentation
 
-            let documentationIdAlreadyFetched: (String) -> Bool = { documentationId in
+            let documentationIdNotFetched: (String) -> Bool = { documentationId in
                 !documentationById.keys.contains(where: { $0 == documentationId })
             }
-            let documentationIdsToFetch = documentation.subDocumentationIds.filter(documentationIdAlreadyFetched)
-            let subDocumentations = try await fetchDocumentation(for: documentationIdsToFetch, documentationIdAlreadyFetched: documentationIdAlreadyFetched)
-            for subDocumentation in subDocumentations {
-                documentationById[subDocumentation.id] = subDocumentation
-            }
+            let documentationIdsToFetch = documentation.subDocumentationIds.filter(documentationIdNotFetched)
+            try await fetchDocumentation(
+                for: documentationIdsToFetch,
+                documentationIdNotFetched: documentationIdNotFetched,
+                didFetchDocumentation: { subDocumentation in
+                    documentationById[subDocumentation.id] = subDocumentation
+                })
         }
         try fileManager.createDirectory(at: outputDirURL, withIntermediateDirectories: true, attributes: nil)
         let documentationFileUrl = outputDirURL.appendingPathComponent(DocsFilename.documentation.filename)
@@ -102,17 +104,18 @@ public class DocsFetcher {
         return try await fetchDocumentation(for: jsonUrl)
     }
 
-    private func fetchDocumentation(for documentationIds: [String], documentationIdAlreadyFetched: (String) -> Bool) async throws -> [Documentation] {
-        var documentations = [Documentation]()
+    private func fetchDocumentation(for documentationIds: [String],
+                                    documentationIdNotFetched: (String) -> Bool,
+                                    didFetchDocumentation: (Documentation) -> Void) async throws {
         for documentationId in documentationIds {
             let jsonUrl = createJsonDocumentationUrl(fromId: documentationId)
             let documentation = try await fetchDocumentation(for: jsonUrl)
-            let subDocumentations = try await fetchDocumentation(for: documentation.subDocumentationIds,
-                                                                 documentationIdAlreadyFetched: documentationIdAlreadyFetched)
-            documentations.append(documentation)
-            documentations.append(contentsOf: subDocumentations)
+            didFetchDocumentation(documentation)
+            try await fetchDocumentation(
+                for: documentation.subDocumentationIds.filter { $0 != documentationId }.filter(documentationIdNotFetched),
+                documentationIdNotFetched: documentationIdNotFetched,
+                didFetchDocumentation: didFetchDocumentation)
         }
-        return documentations
     }
 
     private func fetchDocumentation(for url: URL) async throws -> Documentation {
