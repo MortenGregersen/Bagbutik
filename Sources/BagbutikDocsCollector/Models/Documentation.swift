@@ -87,8 +87,11 @@ public enum Documentation: Codable {
         }
         let contentSections = try container.decode([ContentSection].self, forKey: .primaryContentSections)
         let discussion = contentSections.compactMap { contentSection -> String? in
-            guard case .discussion(let content) = contentSection else { return nil }
-            return formatContent(content)
+            guard case .discussion(let contents) = contentSection else { return nil }
+            return contents
+                .compactMap { formatContent($0) }
+                .filter { $0.lengthOfBytes(using: .utf8) > 0 }
+                .joined(separator: "\n")
         }.first
         if metadata.symbolKind == "tdef" /* Enum */ {
             let values: [String: String] = contentSections.compactMap { contentSection -> [String: String]? in
@@ -139,7 +142,7 @@ public enum Documentation: Codable {
             contentSections.append(ContentSection.properties(properties))
         }
         if let discussion {
-            contentSections.append(.discussion(.init(text: discussion)))
+            contentSections.append(.discussion([.init(text: discussion)]))
         }
         try container.encode(contentSections, forKey: .primaryContentSections)
     }
@@ -179,7 +182,7 @@ public enum Documentation: Codable {
     private enum ContentSection: Codable {
         case possibleValues([String: Content])
         case properties([Property])
-        case discussion(Content)
+        case discussion([Content])
         case unused
 
         private enum CodingKeys: CodingKey {
@@ -203,13 +206,13 @@ public enum Documentation: Codable {
                 let properties = try container.decode([Property].self, forKey: .items)
                 self = .properties(properties)
             } else if kind == "content" {
-                guard let content = try container
+                let contents = try container
                     .decode([Content].self, forKey: .content)
-                    .filter({ $0.type != "heading" })
-                    .first else {
+                    .filter { $0.type != "heading" }
+                guard contents.count > 0 else {
                     throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Content section of kind '\(kind)' has no content")
                 }
-                self = .discussion(content)
+                self = .discussion(contents)
             } else if kind == "declarations" {
                 self = .unused
             } else {
@@ -228,9 +231,9 @@ public enum Documentation: Codable {
             case .properties(let properties):
                 try container.encode("properties", forKey: .kind)
                 try container.encode(properties, forKey: .items)
-            case .discussion(let content):
+            case .discussion(let contents):
                 try container.encode("content", forKey: .kind)
-                try container.encode([content], forKey: .content)
+                try container.encode(contents, forKey: .content)
             case .unused:
                 try container.encode("content", forKey: .kind)
             }
@@ -257,10 +260,28 @@ public enum Documentation: Codable {
         let type: String
         let inlineContent: [InlineContent]
 
+        private enum CodingKeys: CodingKey {
+            case type
+            case inlineContent
+            case code
+        }
+
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             type = try container.decode(String.self, forKey: .type)
-            inlineContent = try container.decodeIfPresent([InlineContent].self, forKey: .inlineContent) ?? []
+            if let inlineContent = try container.decodeIfPresent([InlineContent].self, forKey: .inlineContent) {
+                self.inlineContent = inlineContent
+            } else if type == "codeListing", let code = try container.decodeIfPresent([String].self, forKey: .code)?.first {
+                inlineContent = [.text("```\n\(code)\n```")]
+            } else {
+                inlineContent = try container.decodeIfPresent([InlineContent].self, forKey: .inlineContent) ?? []
+            }
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode("paragraph", forKey: .type)
+            try container.encode(inlineContent, forKey: .inlineContent)
         }
 
         init(text: String) {
