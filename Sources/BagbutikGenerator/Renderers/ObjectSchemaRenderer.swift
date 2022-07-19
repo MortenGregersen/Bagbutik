@@ -75,9 +75,10 @@ public class ObjectSchemaRenderer {
       {{ abstract }}
 
       Full documentation:
-      <{{ url }}>
+      <{{ url }}>{% if discussion %}
+
+      {{ discussion }}{% endif %}
     */
-    {% elif abstract %}/// {{ abstract }}
     {% endif %}public struct {{ name|upperFirstLetter }}: Codable{% if isRequest %}, RequestBody{% endif %}{% if isPagedResponse %}, PagedResponse{% endif %} {
         {% if pagedDataSchemaRef %}public typealias Data = {{ pagedDataSchemaRef }}{%
         endif %}{% for property in properties %}
@@ -179,6 +180,7 @@ public class ObjectSchemaRenderer {
             "name": objectSchema.name,
             "abstract": documentation?.abstract ?? "",
             "url": objectSchema.url,
+            "discussion": documentation?.discussion ?? "",
             "isRequest": objectSchema.name.hasSuffix("Request"),
             "isPagedResponse": isPagedResponse,
             "pagedDataSchemaRef": pagedDataSchemaRef,
