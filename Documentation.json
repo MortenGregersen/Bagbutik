@@ -81862,7 +81862,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The protocols that the app uses to communicate with external accessory hardware. For more information, see .",
+                    "text" : "The protocols that the app uses to communicate with external accessory hardware. For more information, see [UISupportedExternalAccessoryProtocols](https:\/\/developer.apple.com\/documentation\/bundleresources\/information_property_list\/uisupportedexternalaccessoryprotocols).",
                     "type" : "text"
                   }
                 ],
@@ -92386,7 +92386,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Xcode Cloud canceled the build because you manually canceled an ongoing build or because you enabled the Auto-cancel Builds setting for a workflow. For more information about the Auto-cancel Builds setting, see .",
+                    "text" : "Xcode Cloud canceled the build because you manually canceled an ongoing build or because you enabled the Auto-cancel Builds setting for a workflow. For more information about the Auto-cancel Builds setting, see [Xcode Cloud workflow reference](https:\/\/developer.apple.com\/documentation\/xcode\/xcode-cloud-workflow-reference).",
                     "type" : "text"
                   }
                 ],
@@ -92414,7 +92414,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The Xcode Cloud build failed; for example, if you configure the Required to Pass setting for a test action and a unit test fails. For more information, see Add a Test Action in .",
+                    "text" : "The Xcode Cloud build failed; for example, if you configure the Required to Pass setting for a test action and a unit test fails. For more information, see Add a Test Action in [Configuring your Xcode Cloud workflow’s actions](https:\/\/developer.apple.com\/documentation\/xcode\/configuring-your-xcode-cloud-workflow-s-actions).",
                     "type" : "text"
                   }
                 ],
@@ -96166,7 +96166,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Tests failed that you marked as expected to fail with .",
+                    "text" : "Tests failed that you marked as expected to fail with [XCTExpectFailure](https:\/\/developer.apple.com\/documentation\/xctest\/3726077-xctexpectfailure).",
                     "type" : "text"
                   }
                 ],
@@ -105425,7 +105425,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "Use the `code` parameter for programmatic error handling. See  for more information. For more information about using the `source` parameter, see .",
+                "text" : "Use the `code` parameter for programmatic error handling. See [Parsing the Error Response Code](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/interpreting_and_handling_errors\/parsing_the_error_response_code) for more information. For more information about using the `source` parameter, see [Pinpointing the Location of Errors](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/interpreting_and_handling_errors\/pinpointing_the_location_of_errors).",
                 "type" : "text"
               }
             ],
@@ -116623,7 +116623,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "For more information about metric types, see .",
+                    "text" : "For more information about metric types, see [MetricCategory](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/metriccategory).",
                     "type" : "text"
                   }
                 ],

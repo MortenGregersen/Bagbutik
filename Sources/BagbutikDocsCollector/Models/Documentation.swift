@@ -77,7 +77,7 @@ public enum Documentation: Codable {
                             .replacingOccurrences(of: ".", with: "/")
                             .capitalizingFirstLetter()
                         partialResult.append("``\(formattedReference)``")
-                    case .link:
+                    case .symbol, .article, .link:
                         partialResult.append("[\(reference.title)](\(reference.url))")
                     case .none:
                         break
@@ -168,13 +168,20 @@ public enum Documentation: Codable {
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             title = try container.decode(String.self, forKey: .title)
-            url = try container.decode(String.self, forKey: .url)
             let roleString = try container.decodeIfPresent(String.self, forKey: .role)
             role = Role(rawValue: roleString ?? "")
+            let url = try container.decode(String.self, forKey: .url)
+            if role == .symbol || role == .article {
+                self.url = "https://developer.apple.com" + url
+            } else {
+                self.url = url
+            }
         }
 
         enum Role: String, Codable {
             case dictionarySymbol
+            case symbol
+            case article
             case link
         }
     }

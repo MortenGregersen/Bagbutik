@@ -66,7 +66,7 @@ public struct BuildBundle: Codable {
         public var bundleType: BundleType?
         /// The URL to the symbolication file for the app or App Clip.
         public var dSYMUrl: String?
-        /// The protocols that the app uses to communicate with external accessory hardware. For more information, see .
+        /// The protocols that the app uses to communicate with external accessory hardware. For more information, see [UISupportedExternalAccessoryProtocols](https://developer.apple.com/documentation/bundleresources/information_property_list/uisupportedexternalaccessoryprotocols).
         public var deviceProtocols: [String]?
         /// Entitlement information for your app or App Clip.
         public var entitlements: [String: [String: String]]?

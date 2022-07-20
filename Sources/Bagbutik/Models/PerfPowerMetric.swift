@@ -52,7 +52,7 @@ public struct PerfPowerMetric: Codable {
     public struct Attributes: Codable {
         /// A string that represents the device type.
         public var deviceType: String?
-        /// For more information about metric types, see .
+        /// For more information about metric types, see [MetricCategory](https://developer.apple.com/documentation/appstoreconnectapi/metriccategory).
         public var metricType: MetricType?
         public var platform: Platform?
 
