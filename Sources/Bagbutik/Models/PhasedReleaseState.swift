@@ -1,6 +1,13 @@
 import Foundation
 
-/// String that represents the progress of a phased release for an app version.
+/**
+   String that represents the progress of a phased release for an app version.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/phasedreleasestate>
+
+   For more information about phased releases including pausing an update, see [Release a version update in phases](https://help.apple.com/app-store-connect/#/dev3d65fcee1).
+ */
 public enum PhasedReleaseState: String, Codable, CaseIterable {
     /// The phased release hasn’t started.
     case inactive = "INACTIVE"

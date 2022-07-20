@@ -1,6 +1,11 @@
 import Foundation
 
-/// Literal values that represent types of signing certificates.
+/**
+   Literal values that represent types of signing certificates.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/certificatetype>
+ */
 public enum CertificateType: String, Codable, CaseIterable {
     case iOSDevelopment = "IOS_DEVELOPMENT"
     case iOSDistribution = "IOS_DISTRIBUTION"

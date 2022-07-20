@@ -14,7 +14,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
         let docsLoader = DocsLoader(documentationById: ["/person": .object(
-            .init(id: "/person", title: "Person", abstract: nil, properties: [:], subDocumentationIds: []))]
+            .init(id: "/person", title: "Person", abstract: nil, discussion: nil, properties: [:], subDocumentationIds: []))]
         )
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
@@ -38,7 +38,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlainDocumented() throws {
         // Given
         let docsLoader = DocsLoader(documentationById: ["some://url": .object(
-            .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: ["name": .init(required: false, description: "The person's name")], subDocumentationIds: []))]
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: "What is a person?", properties: ["name": .init(required: false, description: "The person's name")], subDocumentationIds: []))]
         )
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
@@ -53,6 +53,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
          Full documentation:
          <some://url>
+
+         What is a person?
          */
         public struct Person: Codable {
             /// The person's name
@@ -69,7 +71,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlainDocumentedDeprecated() throws {
         // Given
         let docsLoader = DocsLoader(documentationById: ["some://url": .object(
-            .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                 "age": .init(required: false, description: "The person's age"),
                 "name": .init(required: false, description: "The person's name")
             ], subDocumentationIds: []))]
@@ -113,7 +115,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderRequest() throws {
         // Given
         let docsLoader = DocsLoader(documentationById: ["some://url": .object(
-            .init(id: "/personcreaterequest", title: "PersonCreateRequest", abstract: "The data for a request to create a person.", properties: [
+            .init(id: "/personcreaterequest", title: "PersonCreateRequest", abstract: "The data for a request to create a person.", discussion: nil, properties: [
                 "name": .init(required: false, description: "The person's name")
             ], subDocumentationIds: []))]
         )
@@ -146,7 +148,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderSpecialPropertyTypes() throws {
         // Given
         let docsLoader = DocsLoader(documentationById: ["some://url": .object(
-            .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                 "id": .init(required: true, description: "The unique id for the person"),
                 "firstName": .init(required: true, description: "The firstname of the person"),
                 "lastName": .init(required: false, description: ""),
@@ -216,7 +218,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderWithAttributes() throws {
         // Given
         let docsLoader = DocsLoader(documentationById: ["some://url": .object(
-            .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                 "attributes": .init(required: true, description: "The resource's attributes."),
             ], subDocumentationIds: []))]
         )
@@ -241,13 +243,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable {
+            public var name: String?
             /// The resource's attributes.
             public var attributes: Attributes?
-            public var name: String?
 
-            public init(attributes: Attributes? = nil, name: String? = nil) {
-                self.attributes = attributes
+            public init(name: String? = nil, attributes: Attributes? = nil) {
                 self.name = name
+                self.attributes = attributes
             }
 
             public struct Attributes: Codable {
@@ -266,11 +268,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(documentationById: [
             "some://url": .object(
-                .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [
+                .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                     "relationships": .init(required: true, description: "The resource's relationships."),
                 ], subDocumentationIds: [])),
             "some://url/relationships": .object(
-                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", properties: [:], subDocumentationIds: []))
+                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let relationshipsSchema = ObjectSchema(name: "Relationships",
@@ -324,7 +326,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(documentationById: [
             "some://url": .object(
-                .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [
+                .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                     "name": .init(required: false, description: "The person's name"),
                     "pet": .init(required: false, description: "The person's pet"),
                     "preference": .init(required: false, description: "The person's indentation preference"),
@@ -740,11 +742,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(documentationById: [
             "some://url": .object(
-                .init(id: "/person", title: "Person", abstract: "A person with a name.", properties: [:], subDocumentationIds: [])),
+                .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [:], subDocumentationIds: [])),
             "some://url/attributes": .object(
-                .init(id: "/person/attributes", title: "Attributes", abstract: "Attributes for a Person", properties: ["age": .init(required: false, description: "The person's age")], subDocumentationIds: [])),
+                .init(id: "/person/attributes", title: "Attributes", abstract: "Attributes for a Person", discussion: nil, properties: ["age": .init(required: false, description: "The person's age")], subDocumentationIds: [])),
             "some://url/relationships": .object(
-                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", properties: [:], subDocumentationIds: []))
+                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let attributesSchema = ObjectSchema(name: "Attributes",
@@ -773,23 +775,23 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             public var age: Int?
-            public let attributes: Attributes
             public let name: String
-            public var relationships: Relationships?
             public var type: String { "person" }
+            public let attributes: Attributes
+            public var relationships: Relationships?
 
-            public init(age: Int? = nil, attributes: Attributes, name: String, relationships: Relationships? = nil) {
+            public init(age: Int? = nil, name: String, attributes: Attributes, relationships: Relationships? = nil) {
                 self.age = age
-                self.attributes = attributes
                 self.name = name
+                self.attributes = attributes
                 self.relationships = relationships
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 age = try container.decodeIfPresent(Int.self, forKey: .age)
-                attributes = try container.decode(Attributes.self, forKey: .attributes)
                 name = try container.decode(String.self, forKey: .name)
+                attributes = try container.decode(Attributes.self, forKey: .attributes)
                 relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
                 if try container.decode(String.self, forKey: .type) != type {
                     throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -799,18 +801,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encodeIfPresent(age, forKey: .age)
-                try container.encode(attributes, forKey: .attributes)
                 try container.encode(name, forKey: .name)
-                try container.encodeIfPresent(relationships, forKey: .relationships)
                 try container.encode(type, forKey: .type)
+                try container.encode(attributes, forKey: .attributes)
+                try container.encodeIfPresent(relationships, forKey: .relationships)
             }
 
             private enum CodingKeys: String, CodingKey {
                 case age
-                case attributes
                 case name
-                case relationships
                 case type
+                case attributes
+                case relationships
             }
 
             /**

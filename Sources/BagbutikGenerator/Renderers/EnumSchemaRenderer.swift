@@ -25,8 +25,15 @@ public class EnumSchemaRenderer: Renderer {
     }
 
     private let template = """
-    {% if documentation %}/// {{ documentation }}
-    {% endif %}public enum {{ name }}: {{ rawType }}, {{ additionalProtocol }}, CaseIterable {
+        {% if abstract %}/**
+          {{ abstract }}
+
+          Full documentation:
+          <{{ url }}>{% if discussion %}
+
+          {{ discussion }}{% endif %}
+        */
+        {% endif %}public enum {{ name }}: {{ rawType }}, {{ additionalProtocol }}, CaseIterable {
         {% for case in cases %}
         {% if case.documentation %}/// {{ case.documentation }}
         {% else %}{%
@@ -42,7 +49,9 @@ public class EnumSchemaRenderer: Renderer {
         }
         return [
             "name": enumSchema.name,
-            "documentation": documentation?.abstract ?? "",
+            "abstract": documentation?.abstract ?? "",
+            "url": enumSchema.url ?? "",
+            "discussion": documentation?.discussion ?? "",
             "rawType": enumSchema.type.capitalized,
             "additionalProtocol": additionalProtocol,
             "cases": enumSchema.cases.map {

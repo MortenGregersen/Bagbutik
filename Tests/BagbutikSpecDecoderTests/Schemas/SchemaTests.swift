@@ -21,7 +21,8 @@ final class SchemaTests: XCTestCase {
         // When
         let schemas = try jsonDecoder.decode([String: Schema].self, from: json.data(using: .utf8)!)
         // Then
-        guard let schema = schemas.values.first, case let .object(objectSchema) = schema else {
+        guard let schema = schemas.values.first,
+              case .object(let objectSchema) = schema else {
             return XCTFail("Wrong schema type")
         }
         XCTAssertEqual(schema.name, "ObjectSchema")

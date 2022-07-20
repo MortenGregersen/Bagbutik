@@ -1,6 +1,11 @@
 import Foundation
 
-/// A string that represents the completion status of an Xcode Cloud build.
+/**
+   A string that represents the completion status of an Xcode Cloud build.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/cicompletionstatus>
+ */
 public enum CiCompletionStatus: String, Codable, CaseIterable {
     /// Xcode Cloud successfully completed a build.
     case succeeded = "SUCCEEDED"

@@ -1,6 +1,13 @@
 import Foundation
 
-/// Strings that represent user roles and permissions in App Store Connect.
+/**
+   Strings that represent user roles and permissions in App Store Connect.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/userrole>
+
+   For more information about roles and permissions, see [Program Roles](https://developer.apple.com/support/roles/).
+ */
 public enum UserRole: String, Codable, CaseIterable {
     /// Role that serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.
     case admin = "ADMIN"

@@ -1,6 +1,11 @@
 import Foundation
 
-/// Categories of metric reports for apps that you distribute through the App Store.
+/**
+   Categories of metric reports for apps that you distribute through the App Store.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/metriccategory>
+ */
 public enum MetricCategory: String, Codable, CaseIterable {
     /// The number of seconds per hour that the main thread of the app is unresponsive for more than 250ms, which is the maximum amount of time an app can respond to a typical user event before the user perceives it as slow.
     case hang = "HANG"

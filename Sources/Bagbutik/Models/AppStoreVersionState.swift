@@ -1,6 +1,11 @@
 import Foundation
 
-/// String that represents the state of an app version in the App Store.
+/**
+   String that represents the state of an app version in the App Store.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate>
+ */
 public enum AppStoreVersionState: String, Codable, CaseIterable {
     case accepted = "ACCEPTED"
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"

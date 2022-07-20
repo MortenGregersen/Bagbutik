@@ -1,6 +1,11 @@
 import Foundation
 
-/// A string that indicates the payment mode of a subscription offer.
+/**
+   A string that indicates the payment mode of a subscription offer.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffermode>
+ */
 public enum SubscriptionOfferMode: String, Codable, CaseIterable {
     /// A constant that indicates a subscription offer is billed over multiple billing periods.
     case payAsYouGo = "PAY_AS_YOU_GO"
