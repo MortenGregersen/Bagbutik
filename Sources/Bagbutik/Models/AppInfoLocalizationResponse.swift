@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationresponse>
  */
 public struct AppInfoLocalizationResponse: Codable {
-    /// The resource data.
     public let data: AppInfoLocalization
-    /// The included related resources.
     public var included: [AppInfo]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppInfoLocalization, included: [AppInfo]? = nil, links: DocumentLinks) {

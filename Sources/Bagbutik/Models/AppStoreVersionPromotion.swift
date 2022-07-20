@@ -1,11 +1,8 @@
 import Foundation
 
 public struct AppStoreVersionPromotion: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public let links: ResourceLinks
-    /// The resource type.
     public var type: String { "appStoreVersionPromotions" }
 
     public init(id: String, links: ResourceLinks) {

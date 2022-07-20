@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
  */
 public struct BetaAppClipInvocation: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocations resource.
     public let id: String
     /// Navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "betaAppClipInvocations" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the Beta App Clip Invocations resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -69,12 +69,13 @@ public struct BetaAppClipInvocation: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the Beta App Clip Invocations resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships>
      */
     public struct Relationships: Codable {
+        /// The related Beta App Clip Invocation Localizations resource.
         public var betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations?
 
         public init(betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations? = nil) {
@@ -82,17 +83,17 @@ public struct BetaAppClipInvocation: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data, links, and paging information that describe the relationship between the Beta App Clip Invocations and the Beta App Clip Invocation Localizations resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations>
          */
         public struct BetaAppClipInvocationLocalizations: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Beta App Clip Invocation Localizations resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -102,13 +103,13 @@ public struct BetaAppClipInvocation: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Beta App Clip Invocation Localizations resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "betaAppClipInvocationLocalizations" }
@@ -138,15 +139,15 @@ public struct BetaAppClipInvocation: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Beta App Clip Invocation Localizations resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

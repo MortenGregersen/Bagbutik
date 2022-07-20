@@ -11,16 +11,8 @@ public struct SubscriptionIntroductoryOffersLinkagesResponse: Codable, PagedResp
         self.meta = meta
     }
 
-    /**
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionintroductoryofferslinkagesresponse/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "subscriptionIntroductoryOffers" }
 
         public init(id: String) {

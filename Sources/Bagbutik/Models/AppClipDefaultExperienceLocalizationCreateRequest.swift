@@ -23,9 +23,9 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "appClipDefaultExperienceLocalizations" }
-        /// The resource's attributes.
+        /// The attributes that describes the request that creates a Default App Clip Experience Localizations resource.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -56,7 +56,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
         }
 
         /**
-         Attributes that you set that describe the new resource.
+         The attributes you set that describe the Default App Clip Experience Localizations resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/attributes>
@@ -80,14 +80,21 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related Default App Clip Experiences resource.
             public let appClipDefaultExperience: AppClipDefaultExperience
 
             public init(appClipDefaultExperience: AppClipDefaultExperience) {
                 self.appClipDefaultExperience = appClipDefaultExperience
             }
 
+            /**
+             The relationship to the Default App Clip Experiences resource you set with the request that creates a Default App Clip Experience Localizations resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/relationships/appclipdefaultexperience>
+             */
             public struct AppClipDefaultExperience: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /// The ID and type of the related Default App Clip Experiences resource.
                 public let data: Data
 
                 public init(data: Data) {
@@ -95,13 +102,13 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
                 }
 
                 /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
+                 The type and ID of the Default App Clip Experiences resource that you’re relating with the Default App Clip Experience Localizations resource you’re creating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationcreaterequest/data/relationships/appclipdefaultexperience/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "appClipDefaultExperiences" }

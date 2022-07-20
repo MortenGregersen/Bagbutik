@@ -10,7 +10,6 @@ public struct UsersResponse: Codable, PagedResponse {
     public typealias Data = User
     /// The resource data.
     public let data: [User]
-    /// The included related resources.
     public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

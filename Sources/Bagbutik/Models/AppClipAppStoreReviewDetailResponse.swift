@@ -9,7 +9,7 @@ import Foundation
 public struct AppClipAppStoreReviewDetailResponse: Codable {
     /// The resource data.
     public let data: AppClipAppStoreReviewDetail
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [AppClipDefaultExperience]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

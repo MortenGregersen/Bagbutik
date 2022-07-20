@@ -9,9 +9,9 @@ import Foundation
 public struct CiMacOsVersionResponse: Codable {
     /// The resource data.
     public let data: CiMacOsVersion
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [CiXcodeVersion]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiMacOsVersion, included: [CiXcodeVersion]? = nil, links: DocumentLinks) {

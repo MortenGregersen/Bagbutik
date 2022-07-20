@@ -10,7 +10,7 @@ public struct AppPriceTiersResponse: Codable, PagedResponse {
     public typealias Data = AppPriceTier
     /// The resource data.
     public let data: [AppPriceTier]
-    /// The included related resources.
+    /// The requested relationship data. Note: `AppPricePoint` is deprecated.
     public var included: [AppPricePoint]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

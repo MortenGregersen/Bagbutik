@@ -1,11 +1,8 @@
 import Foundation
 
 public struct AppStoreVersionExperimentTreatmentLocalizationResponse: Codable {
-    /// The resource data.
     public let data: AppStoreVersionExperimentTreatmentLocalization
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppStoreVersionExperimentTreatmentLocalization, included: [Included]? = nil, links: DocumentLinks) {

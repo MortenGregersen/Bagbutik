@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction>
  */
 public struct CiBuildAction: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Build Actions resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "ciBuildActions" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the Build Actions resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -72,7 +72,7 @@ public struct CiBuildAction: Codable {
         public var isRequiredToPass: Bool?
         /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the action.
         public var issueCounts: CiIssueCounts?
-        /// The name of the build action; for example, Archive iOS.
+        /// The name of the build action; for example, `Archive iOS`.
         public var name: String?
         /// The date and time when Xcode Cloud started performing the action.
         public var startedDate: Date?
@@ -90,12 +90,13 @@ public struct CiBuildAction: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the Build Actions resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships>
      */
     public struct Relationships: Codable {
+        /// The data and links that describe the relationship between the Build Actions and the Build Runs resources.
         public var buildRun: BuildRun?
 
         public init(buildRun: BuildRun? = nil) {
@@ -103,15 +104,15 @@ public struct CiBuildAction: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Actions and Build Runs resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun>
          */
         public struct BuildRun: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Build Runs resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -120,13 +121,13 @@ public struct CiBuildAction: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Build Runs resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Build Runs resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "ciBuildRuns" }
@@ -156,15 +157,15 @@ public struct CiBuildAction: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Build Runs resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

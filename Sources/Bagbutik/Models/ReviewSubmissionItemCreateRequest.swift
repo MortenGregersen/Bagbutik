@@ -1,23 +1,14 @@
 import Foundation
 
 public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "reviewSubmissionItems" }
-        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -43,12 +34,6 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public var appCustomProductPageVersion: AppCustomProductPageVersion?
             public var appEvent: AppEvent?
@@ -65,23 +50,14 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             }
 
             public struct AppCustomProductPageVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships/appcustomproductpageversion/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appCustomProductPageVersions" }
 
                     public init(id: String) {
@@ -110,23 +86,14 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             }
 
             public struct AppEvent: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships/appevent/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appEvents" }
 
                     public init(id: String) {
@@ -155,23 +122,14 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships/appstoreversion/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersions" }
 
                     public init(id: String) {
@@ -200,23 +158,14 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersionExperiment: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships/appstoreversionexperiment/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersionExperiments" }
 
                     public init(id: String) {
@@ -245,23 +194,14 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             }
 
             public struct ReviewSubmission: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/reviewsubmissionitemcreaterequest/data/relationships/reviewsubmission/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "reviewSubmissions" }
 
                     public init(id: String) {

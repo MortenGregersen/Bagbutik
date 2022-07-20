@@ -14,7 +14,7 @@ public struct AppPriceTier: Codable {
     /// The resource type.
     public var type: String { "appPriceTiers" }
     /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, relationships: Relationships? = nil) {
         self.id = id
@@ -71,11 +71,8 @@ public struct AppPriceTier: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships/pricepoints>
          */
         public struct PricePoints: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -91,9 +88,7 @@ public struct AppPriceTier: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships/pricepoints/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appPricePoints" }
 
                 public init(id: String) {
@@ -127,9 +122,7 @@ public struct AppPriceTier: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/apppricetier/relationships/pricepoints/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

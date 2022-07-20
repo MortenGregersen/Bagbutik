@@ -2,13 +2,9 @@ import Foundation
 
 public struct AppStoreVersionExperimentTreatmentLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppStoreVersionExperimentTreatmentLocalization
-    /// The resource data.
     public let data: [AppStoreVersionExperimentTreatmentLocalization]
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppStoreVersionExperimentTreatmentLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

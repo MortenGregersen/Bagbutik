@@ -1,25 +1,15 @@
 import Foundation
 
 public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appStoreVersionExperimentTreatments" }
-        /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -59,12 +49,6 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, RequestB
             }
         }
 
-        /**
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public let appStoreVersionExperiment: AppStoreVersionExperiment
 
@@ -73,23 +57,14 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, RequestB
             }
 
             public struct AppStoreVersionExperiment: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperimenttreatmentcreaterequest/data/relationships/appstoreversionexperiment/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersionExperiments" }
 
                     public init(id: String) {

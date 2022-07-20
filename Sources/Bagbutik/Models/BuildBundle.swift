@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>
  */
 public struct BuildBundle: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
     /// Navigational links that include the self-link.
     public var links: ResourceLinks?
     /// The resource type.
     public var type: String { "buildBundles" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the Build Bundles resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks? = nil, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -66,7 +66,7 @@ public struct BuildBundle: Codable {
         public var bundleType: BundleType?
         /// The URL to the symbolication file for the app or App Clip.
         public var dSYMUrl: String?
-        /// The protocols that the app uses to communicate with external accessory hardware. For more information, see UISupportedExternalAccessoryProtocols.
+        /// The protocols that the app uses to communicate with external accessory hardware. For more information, see .
         public var deviceProtocols: [String]?
         /// Entitlement information for your app or App Clip.
         public var entitlements: [String: [String: String]]?
@@ -82,7 +82,7 @@ public struct BuildBundle: Codable {
         public var includesSymbols: Bool?
         /// A Boolean value that indicates whether an iOS app included in the build bundle is included on the Mac App Store.
         public var isIosBuildMacAppStoreCompatible: Bool?
-        /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
+        /// The specified locale. Refer to ``BetaAppLocalizationCreateRequest/Data/Attributes`` for possible values.
         public var locales: [String]?
         /// The build number of the OS you used to build the app or App Clip.
         public var platformBuild: String?
@@ -122,15 +122,19 @@ public struct BuildBundle: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the Build Bundles resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships>
      */
     public struct Relationships: Codable {
+        /// The related App Clip Domain Cache Statuses resource.
         public var appClipDomainCacheStatus: AppClipDomainCacheStatus?
+        /// The related App Clip Domain Debug Statuses resource.
         public var appClipDomainDebugStatus: AppClipDomainDebugStatus?
+        /// The related Beta App Clip Invocations resource.
         public var betaAppClipInvocations: BetaAppClipInvocations?
+        /// The related Build Bundle File Sizes resource.
         public var buildBundleFileSizes: BuildBundleFileSizes?
 
         public init(appClipDomainCacheStatus: AppClipDomainCacheStatus? = nil, appClipDomainDebugStatus: AppClipDomainDebugStatus? = nil, betaAppClipInvocations: BetaAppClipInvocations? = nil, buildBundleFileSizes: BuildBundleFileSizes? = nil) {
@@ -141,15 +145,15 @@ public struct BuildBundle: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Bundles and the App Clip Domain Cache Statuses resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus>
          */
         public struct AppClipDomainCacheStatus: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related App Clip Domain Cache Status resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -158,13 +162,13 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related App Clip Domain Cache Status resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related App Clip Domain Cache Statuses resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "appClipDomainStatuses" }
@@ -194,15 +198,15 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The type and ID of a related App Clip Domain Cache Status resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -230,15 +234,15 @@ public struct BuildBundle: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Bundles and the App Clip Domain Debug Statuses resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus>
          */
         public struct AppClipDomainDebugStatus: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related App Clip Domain Debug Status resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -247,13 +251,13 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related App Clip Domain Debug Status resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related App Clip Domain Debug Statuses resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "appClipDomainStatuses" }
@@ -283,15 +287,15 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The type and ID of a related App Clip Domain Debug Status resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -319,17 +323,17 @@ public struct BuildBundle: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data, links, and paging information that describe the relationship between the Build Bundles and the Beta App Clip Invocations resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations>
          */
         public struct BetaAppClipInvocations: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Beta App Clip Invocations resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -339,13 +343,13 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Beta App Clip Invocations resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "betaAppClipInvocations" }
@@ -375,15 +379,15 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The type and ID of a related Beta App Clip Invocations resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -411,17 +415,17 @@ public struct BuildBundle: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data, links, and paging information that describe the relationship between the Build Bundles and the Build Bundle File Sizes resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes>
          */
         public struct BuildBundleFileSizes: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Build Bundle File Sizes resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -431,13 +435,13 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Build Bundle File Sizes resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Build Bundle File Sizes resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "buildBundleFileSizes" }
@@ -467,15 +471,15 @@ public struct BuildBundle: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The type and ID of a related Build Bundle File Sizes resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

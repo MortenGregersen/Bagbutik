@@ -1,16 +1,11 @@
 import Foundation
 
 public struct AppStoreVersionExperiment: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public let links: ResourceLinks
-    /// The resource type.
     public var type: String { "appStoreVersionExperiments" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var attributes: Attributes?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -77,12 +72,6 @@ public struct AppStoreVersionExperiment: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships>
-     */
     public struct Relationships: Codable {
         public var appStoreVersion: AppStoreVersion?
         public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments?
@@ -92,16 +81,8 @@ public struct AppStoreVersionExperiment: Codable {
             self.appStoreVersionExperimentTreatments = appStoreVersionExperimentTreatments
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships/appstoreversion>
-         */
         public struct AppStoreVersion: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -109,16 +90,8 @@ public struct AppStoreVersionExperiment: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships/appstoreversion/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appStoreVersions" }
 
                 public init(id: String) {
@@ -145,16 +118,8 @@ public struct AppStoreVersionExperiment: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships/appstoreversion/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -181,18 +146,9 @@ public struct AppStoreVersionExperiment: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships/appstoreversionexperimenttreatments>
-         */
         public struct AppStoreVersionExperimentTreatments: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -201,16 +157,8 @@ public struct AppStoreVersionExperiment: Codable {
                 self.meta = meta
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships/appstoreversionexperimenttreatments/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appStoreVersionExperimentTreatments" }
 
                 public init(id: String) {
@@ -237,16 +185,8 @@ public struct AppStoreVersionExperiment: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionexperiment/relationships/appstoreversionexperimenttreatments/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

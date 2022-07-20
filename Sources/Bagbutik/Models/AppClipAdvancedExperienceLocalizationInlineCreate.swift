@@ -7,12 +7,12 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate>
  */
 public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Localization Inline Creates resource.
     public var id: String?
     /// The resource type.
     public var type: String { "appClipAdvancedExperienceLocalizations" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Advanced App Clip Experience Localization Inline Creates resource.
+    public var attributes: Attributes?
 
     public init(id: String? = nil, attributes: Attributes? = nil) {
         self.id = id

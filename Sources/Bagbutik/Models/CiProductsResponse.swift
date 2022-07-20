@@ -10,11 +10,11 @@ public struct CiProductsResponse: Codable, PagedResponse {
     public typealias Data = CiProduct
     /// The resource data.
     public let data: [CiProduct]
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiProduct], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

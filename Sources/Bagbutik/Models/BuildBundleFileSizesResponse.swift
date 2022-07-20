@@ -12,7 +12,7 @@ public struct BuildBundleFileSizesResponse: Codable, PagedResponse {
     public let data: [BuildBundleFileSize]
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [BuildBundleFileSize], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

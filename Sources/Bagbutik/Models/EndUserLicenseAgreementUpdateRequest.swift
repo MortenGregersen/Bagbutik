@@ -7,7 +7,6 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest>
  */
 public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -21,14 +20,10 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "endUserLicenseAgreements" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var attributes: Attributes?
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -88,8 +83,13 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
                 self.territories = territories
             }
 
+            /**
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships/territories>
+             */
             public struct Territories: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -103,9 +103,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships/territories/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "territories" }
 
                     public init(id: String) {

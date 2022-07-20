@@ -1,7 +1,7 @@
 import Foundation
 
 /**
- A response that contains a single App Price Tiers resource.
+ A response that contains a single App Price Tier resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricetierresponse>
@@ -9,7 +9,7 @@ import Foundation
 public struct AppPriceTierResponse: Codable {
     /// The resource data.
     public let data: AppPriceTier
-    /// The included related resources.
+    /// The requested relationship data. Note: `AppPricePoint` is deprecated.
     public var included: [AppPricePoint]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

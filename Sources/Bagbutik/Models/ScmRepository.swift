@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository>
  */
 public struct ScmRepository: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Repositories resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "scmRepositories" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the Repositories resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -81,13 +81,15 @@ public struct ScmRepository: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the Repositories resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships>
      */
     public struct Relationships: Codable {
+        /// The Git repository’s default branch.
         public var defaultBranch: DefaultBranch?
+        /// The related Providers resource.
         public var scmProvider: ScmProvider?
 
         public init(defaultBranch: DefaultBranch? = nil, scmProvider: ScmProvider? = nil) {
@@ -96,15 +98,15 @@ public struct ScmRepository: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Repositories resource and the Git References resource that represents the default branch.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch>
          */
         public struct DefaultBranch: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Git References resource that represents the default branch.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -113,13 +115,13 @@ public struct ScmRepository: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Git References resource that represents the repository’s default branch.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Git References resource that represents the default branch.
                 public let id: String
                 /// The resource type.
                 public var type: String { "scmGitReferences" }
@@ -149,15 +151,15 @@ public struct ScmRepository: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Git References resource that represents the default branch and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -185,15 +187,15 @@ public struct ScmRepository: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Repositories and the Source Code Management Provider resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider>
          */
         public struct ScmProvider: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Providers resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -202,13 +204,13 @@ public struct ScmRepository: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Providers resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Providers resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "scmProviders" }
@@ -238,15 +240,15 @@ public struct ScmRepository: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Providers resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

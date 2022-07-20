@@ -7,7 +7,6 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesrequest>
  */
 public struct AppPreviewSetAppPreviewsLinkagesRequest: Codable, RequestBody {
-    /// The object types and IDs of the related resources.
     public let data: [Data]
 
     public init(data: [Data]) {
@@ -21,9 +20,7 @@ public struct AppPreviewSetAppPreviewsLinkagesRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesrequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "appPreviews" }
 
         public init(id: String) {

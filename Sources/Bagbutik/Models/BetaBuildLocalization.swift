@@ -14,9 +14,9 @@ public struct BetaBuildLocalization: Codable {
     /// The resource type.
     public var type: String { "betaBuildLocalizations" }
     /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
     /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -58,9 +58,11 @@ public struct BetaBuildLocalization: Codable {
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/attributes>
+
+     Table 1 lists allowed locale values.
      */
     public struct Attributes: Codable {
-        /// The specified locale. Refer to Table 1 for possible values.
+        /// The specified locale. Refer to  for possible values.
         public var locale: String?
         /// A field that describes changes and additions to a build and indicates features you would like your users to test.
         public var whatsNew: String?
@@ -91,9 +93,7 @@ public struct BetaBuildLocalization: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build>
          */
         public struct Build: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -144,9 +144,7 @@ public struct BetaBuildLocalization: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

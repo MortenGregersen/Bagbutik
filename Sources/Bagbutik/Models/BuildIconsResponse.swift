@@ -8,11 +8,8 @@ import Foundation
  */
 public struct BuildIconsResponse: Codable, PagedResponse {
     public typealias Data = BuildIcon
-    /// The resource data.
     public let data: [BuildIcon]
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BuildIcon], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

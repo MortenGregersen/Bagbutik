@@ -10,6 +10,6 @@ public enum CiTestStatus: String, Codable, CaseIterable {
     case mixed = "MIXED"
     /// Xcode Cloud skipped some tests.
     case skipped = "SKIPPED"
-    /// Tests failed that you marked as expected to fail with [XCTExpectFailure](https://developer.apple.com/documentation/xctest/3726077-xctexpectfailure).
+    /// Tests failed that you marked as expected to fail with .
     case expectedFailure = "EXPECTED_FAILURE"
 }

@@ -14,9 +14,9 @@ public struct User: Codable {
     /// The resource type.
     public var type: String { "users" }
     /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
     /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -103,11 +103,8 @@ public struct User: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/user/relationships/visibleapps>
          */
         public struct VisibleApps: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -159,9 +156,7 @@ public struct User: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/user/relationships/visibleapps/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

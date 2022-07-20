@@ -154,7 +154,15 @@ public class ObjectSchemaRenderer {
             documentation = objectDocumentation
         }
         let subSchemas = objectSchema.subSchemas
-        let sortedProperties = objectSchema.properties.sorted { $0.key < $1.key }
+        let sortedProperties = objectSchema.properties.sorted {
+            // To avoid breaking the public initializer parameter order from version 2.0,
+            // the `attributes` and `relationships` properties has to be last
+            if $1.key == "relationships" { return true }
+            else if $0.key == "relationships" { return false }
+            else if $1.key == "attributes" { return true }
+            else if $0.key == "attributes" { return false }
+            else { return $0.key < $1.key }
+        }
         let initParameters = sortedProperties.filter { !$0.value.type.isConstant }
         let codingKeys = sortedProperties.map { PropertyName(idealName: $0.key) }
         let encodableProperties = sortedProperties.map {

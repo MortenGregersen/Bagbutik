@@ -9,7 +9,7 @@ import Foundation
 public struct BetaAppClipInvocationResponse: Codable {
     /// The resource data.
     public let data: BetaAppClipInvocation
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [BetaAppClipInvocationLocalization]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

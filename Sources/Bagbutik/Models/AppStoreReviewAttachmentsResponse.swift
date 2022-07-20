@@ -8,13 +8,9 @@ import Foundation
  */
 public struct AppStoreReviewAttachmentsResponse: Codable, PagedResponse {
     public typealias Data = AppStoreReviewAttachment
-    /// The resource data.
     public let data: [AppStoreReviewAttachment]
-    /// The included related resources.
     public var included: [AppStoreReviewDetail]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppStoreReviewAttachment], included: [AppStoreReviewDetail]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

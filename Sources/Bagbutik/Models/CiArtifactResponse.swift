@@ -9,7 +9,7 @@ import Foundation
 public struct CiArtifactResponse: Codable {
     /// The resource data.
     public let data: CiArtifact
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiArtifact, links: DocumentLinks) {

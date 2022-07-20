@@ -10,7 +10,7 @@ public struct AppPricePointsV2Response: Codable, PagedResponse {
     public typealias Data = AppPricePointV2
     /// The resource data.
     public let data: [AppPricePointV2]
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

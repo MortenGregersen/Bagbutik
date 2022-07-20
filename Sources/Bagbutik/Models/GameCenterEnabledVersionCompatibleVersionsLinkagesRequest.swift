@@ -7,7 +7,6 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest>
  */
 public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable, RequestBody {
-    /// The object types and IDs of the related resources.
     public let data: [Data]
 
     public init(data: [Data]) {
@@ -21,9 +20,7 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "gameCenterEnabledVersions" }
 
         public init(id: String) {

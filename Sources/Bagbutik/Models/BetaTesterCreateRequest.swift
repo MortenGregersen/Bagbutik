@@ -25,8 +25,8 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
         public var type: String { "betaTesters" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
-        public let relationships: Relationships?
+        /// The types and IDs of the related data to update.
+        public var relationships: Relationships?
 
         public init(attributes: Attributes, relationships: Relationships? = nil) {
             self.attributes = attributes
@@ -91,8 +91,13 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                 self.builds = builds
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/betagroups>
+             */
             public struct BetaGroups: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -136,8 +141,13 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/builds>
+             */
             public struct Builds: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {

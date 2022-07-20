@@ -8,7 +8,7 @@ import Foundation
  */
 public struct DiagnosticSignaturesResponse: Codable, PagedResponse {
     public typealias Data = DiagnosticSignature
-    /// The resource data.
+    /// An array of diagnostic signatures.
     public let data: [DiagnosticSignature]
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

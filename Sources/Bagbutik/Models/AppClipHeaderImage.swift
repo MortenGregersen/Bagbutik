@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>
  */
 public struct AppClipHeaderImage: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an App Clip Header Images resource.
     public let id: String
     /// Navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "appClipHeaderImages" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the App Clip Header Images resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -84,12 +84,13 @@ public struct AppClipHeaderImage: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the App Clip Header Images resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships>
      */
     public struct Relationships: Codable {
+        /// The related Default App Clip Experience Localizations resource.
         public var appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization?
 
         public init(appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization? = nil) {
@@ -97,15 +98,15 @@ public struct AppClipHeaderImage: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the App Clip Header Images and the Default App Clip Experiences resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization>
          */
         public struct AppClipDefaultExperienceLocalization: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Default App Clip Experience Localizations resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -114,13 +115,13 @@ public struct AppClipHeaderImage: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Default App Clip Experience Localizations resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "appClipDefaultExperienceLocalizations" }
@@ -150,15 +151,15 @@ public struct AppClipHeaderImage: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Default App Clip Experience Localizations resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

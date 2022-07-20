@@ -10,11 +10,11 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
     public typealias Data = ScmRepository
     /// The resource data.
     public let data: [ScmRepository]
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [ScmRepository], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

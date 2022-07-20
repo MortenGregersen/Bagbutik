@@ -1,11 +1,17 @@
 import Foundation
 
-/// String that represents the app's age rating as it will appear on the App Store in Brazil for all platforms.
+/// String that represents the app's age rating as it appears on the App Store in Brazil for all platforms.
 public enum BrazilAgeRating: String, Codable, CaseIterable {
+    /// A literal that represents the rating L.
     case l = "L"
+    /// A literal that represents the rating 10.
     case ten = "TEN"
+    /// A literal that represents the rating 12.
     case twelve = "TWELVE"
+    /// A literal that represents the rating 14.
     case fourteen = "FOURTEEN"
+    /// A literal that represents the rating 16.
     case sixteen = "SIXTEEN"
+    /// A literal that represents the rating 18.
     case eighteen = "EIGHTEEN"
 }

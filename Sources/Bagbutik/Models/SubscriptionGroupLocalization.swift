@@ -4,10 +4,8 @@ public struct SubscriptionGroupLocalization: Codable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptionGroupLocalizations" }
-    ///
-    public let attributes: Attributes?
-    ///
-    public let relationships: Relationships?
+    public var attributes: Attributes?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -65,12 +63,6 @@ public struct SubscriptionGroupLocalization: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalization/relationships>
-     */
     public struct Relationships: Codable {
         public var subscriptionGroup: SubscriptionGroup?
 
@@ -78,16 +70,8 @@ public struct SubscriptionGroupLocalization: Codable {
             self.subscriptionGroup = subscriptionGroup
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalization/relationships/subscriptiongroup>
-         */
         public struct SubscriptionGroup: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -95,16 +79,8 @@ public struct SubscriptionGroupLocalization: Codable {
                 self.links = links
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalization/relationships/subscriptiongroup/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "subscriptionGroups" }
 
                 public init(id: String) {
@@ -131,16 +107,8 @@ public struct SubscriptionGroupLocalization: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/subscriptiongrouplocalization/relationships/subscriptiongroup/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

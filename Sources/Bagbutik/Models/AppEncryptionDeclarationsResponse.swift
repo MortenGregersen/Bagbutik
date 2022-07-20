@@ -10,7 +10,6 @@ public struct AppEncryptionDeclarationsResponse: Codable, PagedResponse {
     public typealias Data = AppEncryptionDeclaration
     /// The resource data.
     public let data: [AppEncryptionDeclaration]
-    /// The included related resources.
     public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

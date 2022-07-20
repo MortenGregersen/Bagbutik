@@ -23,7 +23,7 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "betaTesterInvitations" }
-        /// The relationships to other resources that you can set with this request.
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -64,8 +64,13 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                 self.betaTester = betaTester
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/app>
+             */
             public struct App: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -109,8 +114,13 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/betatester>
+             */
             public struct BetaTester: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {

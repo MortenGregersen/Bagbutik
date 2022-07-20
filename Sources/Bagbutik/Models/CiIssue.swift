@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>
  */
 public struct CiIssue: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an Issues resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "ciIssues" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Issues resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id
@@ -54,7 +54,7 @@ public struct CiIssue: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/ciissue/attributes>
      */
     public struct Attributes: Codable {
-        /// A string representing the issue’s category; for example, the name of the build phase where the issue occurred.
+        /// ​A string representing the issue’s category; for example, the name of the build phase where the issue occurred.
         public var category: String?
         /// The file and line number where Xcode Cloud encountered an issue.
         public var fileSource: FileLocation?

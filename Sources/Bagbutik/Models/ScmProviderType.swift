@@ -7,7 +7,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovidertype>
  */
 public struct ScmProviderType: Codable {
-    /// The source code management provider’s display name; for example, Bitbucket Server.
+    /// The source code management provider’s display name; for example, `Bitbucket Server`.
     public var displayName: String?
     /// A Boolean value that indicates whether it’s a self-hosted source code management provider.
     public var isOnPremise: Bool?

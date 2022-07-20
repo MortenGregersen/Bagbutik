@@ -1,11 +1,8 @@
 import Foundation
 
 public struct ReviewSubmissionItemResponse: Codable {
-    /// The resource data.
     public let data: ReviewSubmissionItem
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: ReviewSubmissionItem, included: [Included]? = nil, links: DocumentLinks) {

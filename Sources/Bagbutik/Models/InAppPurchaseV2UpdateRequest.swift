@@ -7,19 +7,10 @@ public struct InAppPurchaseV2UpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasev2updaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "inAppPurchases" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
+        public var attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
             self.id = id

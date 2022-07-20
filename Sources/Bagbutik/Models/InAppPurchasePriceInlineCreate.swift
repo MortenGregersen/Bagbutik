@@ -3,10 +3,8 @@ import Foundation
 public struct InAppPurchasePriceInlineCreate: Codable {
     public var id: String?
     public var type: String { "inAppPurchasePrices" }
-    ///
-    public let attributes: Attributes?
-    ///
-    public let relationships: Relationships?
+    public var attributes: Attributes?
+    public var relationships: Relationships?
 
     public init(id: String? = nil, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -47,12 +45,6 @@ public struct InAppPurchasePriceInlineCreate: Codable {
         }
     }
 
-    /**
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceinlinecreate/relationships>
-     */
     public struct Relationships: Codable {
         public var inAppPurchasePricePoint: InAppPurchasePricePoint?
         public var inAppPurchaseV2: InAppPurchaseV2?
@@ -62,30 +54,15 @@ public struct InAppPurchasePriceInlineCreate: Codable {
             self.inAppPurchaseV2 = inAppPurchaseV2
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceinlinecreate/relationships/inapppurchasepricepoint>
-         */
         public struct InAppPurchasePricePoint: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceinlinecreate/relationships/inapppurchasepricepoint/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "inAppPurchasePricePoints" }
 
                 public init(id: String) {
@@ -113,30 +90,15 @@ public struct InAppPurchasePriceInlineCreate: Codable {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceinlinecreate/relationships/inapppurchasev2>
-         */
         public struct InAppPurchaseV2: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
                 self.data = data
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasepriceinlinecreate/relationships/inapppurchasev2/data>
-             */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "inAppPurchases" }
 
                 public init(id: String) {

@@ -23,9 +23,9 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "appClipHeaderImages" }
-        /// The resource's attributes.
+        /// The attributes that describes the request that creates an App Clip Header Images resource.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -56,7 +56,7 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes that you set that describe the new resource.
+         The attributes you set that describe the new App Clip Header Images resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/attributes>
@@ -80,14 +80,21 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related Default App Clip Experience Localizations resource.
             public let appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization
 
             public init(appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization) {
                 self.appClipDefaultExperienceLocalization = appClipDefaultExperienceLocalization
             }
 
+            /**
+             The relationship to the Default App Clip Experience Localizations resource you set with the request that creates an App Clip Header Images resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/relationships/appclipdefaultexperiencelocalization>
+             */
             public struct AppClipDefaultExperienceLocalization: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /// The ID and type of the related Default App Clip Experience Localizations resource.
                 public let data: Data
 
                 public init(data: Data) {
@@ -95,13 +102,13 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
+                 The type and ID of the Default App Clip Localizations resource that you’re relating with the App Clip Header Images resource you’re creating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/relationships/appclipdefaultexperiencelocalization/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "appClipDefaultExperienceLocalizations" }

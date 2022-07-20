@@ -10,9 +10,9 @@ public struct ScmProvidersResponse: Codable, PagedResponse {
     public typealias Data = ScmProvider
     /// The resource data.
     public let data: [ScmProvider]
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [ScmProvider], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

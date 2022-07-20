@@ -10,7 +10,6 @@ public struct BetaLicenseAgreementsResponse: Codable, PagedResponse {
     public typealias Data = BetaLicenseAgreement
     /// The resource data.
     public let data: [BetaLicenseAgreement]
-    /// The included related resources.
     public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

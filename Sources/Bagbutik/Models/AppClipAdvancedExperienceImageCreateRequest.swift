@@ -23,7 +23,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "appClipAdvancedExperienceImages" }
-        /// The resource's attributes.
+        /// The attributes that describe the request that creates an Advanced App Clip Experience Images resource.
         public let attributes: Attributes
 
         public init(attributes: Attributes) {
@@ -50,7 +50,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
         }
 
         /**
-         Attributes that you set that describe the new resource.
+         The attributes you set that describe the new Advanced App Clip Experience Images resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest/data/attributes>

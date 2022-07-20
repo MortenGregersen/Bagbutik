@@ -21,9 +21,7 @@ public struct CertificateCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/certificatecreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "certificates" }
-        /// The resource's attributes.
         public let attributes: Attributes
 
         public init(attributes: Attributes) {

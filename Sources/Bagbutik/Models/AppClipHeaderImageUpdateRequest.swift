@@ -21,12 +21,12 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
         public var type: String { "appClipHeaderImages" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
+        /// The attributes that describe the request that updates an App Clip Header Images resource.
+        public var attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
             self.id = id
@@ -56,7 +56,7 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes whose values you're changing as part of the update request.
+         The attributes you set that describe the updated App Clip Header Images resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageupdaterequest/data/attributes>

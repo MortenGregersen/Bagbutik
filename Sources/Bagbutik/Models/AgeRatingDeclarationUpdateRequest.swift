@@ -7,7 +7,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest>
  */
 public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
-    /// The resource data.
+    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {
@@ -25,8 +25,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
         public let id: String
         /// The resource type.
         public var type: String { "ageRatingDeclarations" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
+        /// The attributes you change as part of the update request.
+        public var attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
             self.id = id
@@ -60,6 +60,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest/data/attributes>
+
+         For more information about app ratings, see [App ratings](https://help.apple.com/app-store-connect/#/dev269f11291).
          */
         public struct Attributes: Codable {
             /// Declaration for alcohol, tobacco, or drug use.

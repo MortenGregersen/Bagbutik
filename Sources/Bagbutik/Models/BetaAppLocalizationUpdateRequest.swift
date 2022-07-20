@@ -26,7 +26,7 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
         /// The resource type.
         public var type: String { "betaAppLocalizations" }
         /// The resource's attributes.
-        public let attributes: Attributes?
+        public var attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
             self.id = id

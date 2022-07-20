@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun>
  */
 public struct CiBuildRun: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Build Runs resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "ciBuildRuns" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the Build Runs resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -105,11 +105,22 @@ public struct CiBuildRun: Codable {
             case manuallyByUser = "MANUALLY_BY_USER"
         }
 
+        /**
+         The latest commit of a pull request’s target branch or the source commit for builds that aren’t pull request builds.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/attributes/destinationcommit>
+         */
         public struct DestinationCommit: Codable {
+            /// The author of the commit.
             public var author: CiGitUser?
+            /// The commit hash.
             public var commitSha: String?
+            /// The commit’s Git committer.
             public var committer: CiGitUser?
+            /// The commit message.
             public var message: String?
+            /// The commit URL.
             public var webUrl: String?
 
             public init(author: CiGitUser? = nil, commitSha: String? = nil, committer: CiGitUser? = nil, message: String? = nil, webUrl: String? = nil) {
@@ -121,11 +132,22 @@ public struct CiBuildRun: Codable {
             }
         }
 
+        /**
+         The latest commit of a Git branch or tag, or of a pull request’s source branch.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/attributes/sourcecommit>
+         */
         public struct SourceCommit: Codable {
+            /// The author of the commit.
             public var author: CiGitUser?
+            /// The commit hash.
             public var commitSha: String?
+            /// The commit’s Git committer.
             public var committer: CiGitUser?
+            /// The commit message.
             public var message: String?
+            /// The commit URL.
             public var webUrl: String?
 
             public init(author: CiGitUser? = nil, commitSha: String? = nil, committer: CiGitUser? = nil, message: String? = nil, webUrl: String? = nil) {
@@ -148,17 +170,23 @@ public struct CiBuildRun: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the Build Runs resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships>
      */
     public struct Relationships: Codable {
+        /// The data and links that describe the relationship between the Build Runs and the Builds resources.
         public var builds: Builds?
+        /// The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the destination branch.
         public var destinationBranch: DestinationBranch?
+        /// The data and links that describe the relationship between the Build Runs and the Products resources.
         public var product: Product?
+        /// The data and links that describe the relationship between the Build Runs and the Pull Requests resources.
         public var pullRequest: PullRequest?
+        /// The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the source branch or tag.
         public var sourceBranchOrTag: SourceBranchOrTag?
+        /// The data and links that describe the relationship between the Build Runs and the Workflows resources.
         public var workflow: Workflow?
 
         public init(builds: Builds? = nil, destinationBranch: DestinationBranch? = nil, product: Product? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
@@ -171,17 +199,17 @@ public struct CiBuildRun: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data, links, and paging information that describe the relationship between the Build Runs and the Builds resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds>
          */
         public struct Builds: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Builds resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -191,13 +219,13 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Builds resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Builds resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "builds" }
@@ -227,15 +255,15 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Builds resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -263,15 +291,15 @@ public struct CiBuildRun: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the destination branch.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch>
          */
         public struct DestinationBranch: Codable {
-            /// The type and ID of a related resource.
+            /// The ID of the related Git References resource that represents the destination branch.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -280,13 +308,13 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Git References resource that represents the build run’s destination branch.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Git References resource that represents the destination branch.
                 public let id: String
                 /// The resource type.
                 public var type: String { "scmGitReferences" }
@@ -316,15 +344,15 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Git References resource that represents the destination branch and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -352,15 +380,15 @@ public struct CiBuildRun: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Runs and the Products resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product>
          */
         public struct Product: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Products resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -369,13 +397,13 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Products resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "ciProducts" }
@@ -405,15 +433,15 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Products resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -441,15 +469,15 @@ public struct CiBuildRun: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Runs and the Pull Requests resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest>
          */
         public struct PullRequest: Codable, RequestBody {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Pull Requests resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -458,13 +486,13 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Pull Requests resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Pull Requests resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "scmPullRequests" }
@@ -494,15 +522,15 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Pull Requests resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -530,15 +558,15 @@ public struct CiBuildRun: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Runs and the Git References resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag>
          */
         public struct SourceBranchOrTag: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Git References resource that represents the source branch or tag.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -547,13 +575,13 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Git References resource that represents the source branch or tag.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Git References resource that represents the source branch or tag.
                 public let id: String
                 /// The resource type.
                 public var type: String { "scmGitReferences" }
@@ -583,15 +611,15 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Git References resource that represents the source branch or tag and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -619,15 +647,15 @@ public struct CiBuildRun: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Build Runs and the Workflows resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow>
          */
         public struct Workflow: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Workflows resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -636,13 +664,13 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Workflows resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Workflows resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "ciWorkflows" }
@@ -672,15 +700,15 @@ public struct CiBuildRun: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Workflows resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

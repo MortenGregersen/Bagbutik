@@ -10,7 +10,6 @@ public struct BetaAppLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = BetaAppLocalization
     /// The resource data.
     public let data: [BetaAppLocalization]
-    /// The included related resources.
     public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

@@ -7,18 +7,9 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricecreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "subscriptionPrices" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The relationships to other resources that you can set with this request.
+        public var attributes: Attributes?
         public let relationships: Relationships
 
         public init(attributes: Attributes? = nil, relationships: Relationships) {
@@ -58,12 +49,6 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
             }
         }
 
-        /**
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricecreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public let subscription: Subscription
             public let subscriptionPricePoint: SubscriptionPricePoint
@@ -76,23 +61,14 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
             }
 
             public struct Subscription: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricecreaterequest/data/relationships/subscription/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptions" }
 
                     public init(id: String) {
@@ -121,23 +97,14 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
             }
 
             public struct SubscriptionPricePoint: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricecreaterequest/data/relationships/subscriptionpricepoint/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptionPricePoints" }
 
                     public init(id: String) {
@@ -166,23 +133,14 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
             }
 
             public struct Territory: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpricecreaterequest/data/relationships/territory/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "territories" }
 
                     public init(id: String) {

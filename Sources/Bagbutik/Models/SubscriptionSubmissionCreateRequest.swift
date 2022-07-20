@@ -7,16 +7,8 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionsubmissioncreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "subscriptionSubmissions" }
-        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -42,12 +34,6 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionsubmissioncreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public let subscription: Subscription
 
@@ -56,23 +42,14 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
             }
 
             public struct Subscription: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionsubmissioncreaterequest/data/relationships/subscription/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptions" }
 
                     public init(id: String) {

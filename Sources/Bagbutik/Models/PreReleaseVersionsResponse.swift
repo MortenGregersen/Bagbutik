@@ -10,7 +10,6 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
     public typealias Data = PrereleaseVersion
     /// The resource data.
     public let data: [PrereleaseVersion]
-    /// The included related resources.
     public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

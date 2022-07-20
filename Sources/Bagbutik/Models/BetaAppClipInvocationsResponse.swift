@@ -10,11 +10,11 @@ public struct BetaAppClipInvocationsResponse: Codable, PagedResponse {
     public typealias Data = BetaAppClipInvocation
     /// The resource data.
     public let data: [BetaAppClipInvocation]
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [BetaAppClipInvocationLocalization]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaAppClipInvocation], included: [BetaAppClipInvocationLocalization]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

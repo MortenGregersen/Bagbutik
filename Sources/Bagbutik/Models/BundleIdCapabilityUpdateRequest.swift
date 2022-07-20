@@ -21,12 +21,9 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilityupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "bundleIdCapabilities" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
+        public var attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
             self.id = id

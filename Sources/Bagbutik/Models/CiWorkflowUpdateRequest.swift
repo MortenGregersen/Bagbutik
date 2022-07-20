@@ -15,20 +15,20 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
     }
 
     /**
-     The data element of the request body.
+     The data element of the request you use to update an Xcode Cloud workflow.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
         public var type: String { "ciWorkflows" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
+        /// The attributes that describe the request that updates a Workflows resource.
+        public var attributes: Attributes?
         /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -62,7 +62,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes whose values you're changing as part of the update request.
+         The attributes of the Workflows resource you’re changing with the update request.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/attributes>
@@ -82,7 +82,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             public var isEnabled: Bool?
             /// A Boolean value that indicates whether edits to the workflow are restricted.
             public var isLockedForEditing: Bool?
-            /// The name of the workflow you want to create; for example, My Workflow.
+            /// The name of the workflow you want to create; for example, `My Workflow`.
             public var name: String?
             /// The workflow’s start condition for pull request changes.
             public var pullRequestStartCondition: CiPullRequestStartCondition?
@@ -107,13 +107,15 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The relationships to other resources that you can set with this request.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related macOS Versions resource.
             public var macOsVersion: MacOsVersion?
+            /// The related Xcode Versions resource.
             public var xcodeVersion: XcodeVersion?
 
             public init(macOsVersion: MacOsVersion? = nil, xcodeVersion: XcodeVersion? = nil) {
@@ -121,8 +123,14 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                 self.xcodeVersion = xcodeVersion
             }
 
+            /**
+             The relationship to the macOS Versions resource you can set with the request that updates a Workflows resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/macosversion>
+             */
             public struct MacOsVersion: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The ID and type of the related macOS Versions resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -130,13 +138,13 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
+                 The type and ID of the macOS Versions resource that you’re relating with the Workflows resource you’re updating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/macosversion/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "ciMacOsVersions" }
@@ -166,8 +174,14 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationship to the Xcode Versions resource you can set with the request that updates a Workflows resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/xcodeversion>
+             */
             public struct XcodeVersion: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The ID and type of the related Xcode Versions resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -175,13 +189,13 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
+                 The type and ID of the Xcode Versions resource that you’re relating with the Workflows resource you’re updating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/xcodeversion/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "ciXcodeVersions" }

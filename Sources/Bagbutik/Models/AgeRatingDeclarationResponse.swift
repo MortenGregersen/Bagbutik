@@ -7,9 +7,9 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationresponse>
  */
 public struct AgeRatingDeclarationResponse: Codable {
-    /// The resource data.
+    /// The data structure that represents the Age Rating Declarations resource.
     public let data: AgeRatingDeclaration
-    /// Navigational links that include the self-link.
+    /// Navigational links including the self-link and links to the related data.
     public let links: DocumentLinks
 
     public init(data: AgeRatingDeclaration, links: DocumentLinks) {

@@ -25,7 +25,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
         public var type: String { "betaGroups" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -102,8 +102,13 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 self.builds = builds
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships/app>
+             */
             public struct App: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -147,8 +152,13 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships/betatesters>
+             */
             public struct BetaTesters: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -192,8 +202,13 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest/data/relationships/builds>
+             */
             public struct Builds: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {

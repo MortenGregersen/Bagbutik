@@ -25,8 +25,8 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
         public var type: String { "userInvitations" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
-        public let relationships: Relationships?
+        /// The types and IDs of the related data to update.
+        public var relationships: Relationships?
 
         public init(attributes: Attributes, relationships: Relationships? = nil) {
             self.attributes = attributes
@@ -98,8 +98,13 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
                 self.visibleApps = visibleApps
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data/relationships/visibleapps>
+             */
             public struct VisibleApps: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {

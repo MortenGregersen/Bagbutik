@@ -7,14 +7,10 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/territory>
  */
 public struct Territory: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public let links: ResourceLinks
-    /// The resource type.
     public var type: String { "territories" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

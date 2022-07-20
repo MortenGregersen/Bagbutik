@@ -6,7 +6,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/pageddocumentlinks>
 
- All the response data constitutes a document.
+ All the response data constitutes multiple *documents.*
  */
 public struct PagedDocumentLinks: Codable {
     /// The link to the first page of documents.

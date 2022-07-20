@@ -7,7 +7,6 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest>
  */
 public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -21,12 +20,9 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appScreenshotSets" }
-        /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
-        public let relationships: Relationships?
+        public var relationships: Relationships?
 
         public init(attributes: Attributes, relationships: Relationships? = nil) {
             self.attributes = attributes
@@ -87,23 +83,14 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
             }
 
             public struct AppCustomProductPageLocalization: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships/appcustomproductpagelocalization/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appCustomProductPageLocalizations" }
 
                     public init(id: String) {
@@ -132,23 +119,14 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
             }
 
             public struct AppStoreVersionExperimentTreatmentLocalization: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships/appstoreversionexperimenttreatmentlocalization/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
 
                     public init(id: String) {
@@ -176,8 +154,13 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships/appstoreversionlocalization>
+             */
             public struct AppStoreVersionLocalization: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -191,9 +174,7 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships/appstoreversionlocalization/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersionLocalizations" }
 
                     public init(id: String) {

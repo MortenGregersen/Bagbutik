@@ -7,9 +7,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest>
  */
 public struct AppUpdateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
-    /// The included related resources.
     public var included: [AppPriceInlineCreate]?
 
     public init(data: Data, included: [AppPriceInlineCreate]? = nil) {
@@ -24,14 +22,10 @@ public struct AppUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "apps" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var attributes: Attributes?
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -107,8 +101,13 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 self.prices = prices
             }
 
+            /**
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/availableterritories>
+             */
             public struct AvailableTerritories: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -122,9 +121,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/availableterritories/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "territories" }
 
                     public init(id: String) {
@@ -152,8 +149,13 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/prices>
+             */
             public struct Prices: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -167,9 +169,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/prices/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appPrices" }
 
                     public init(id: String) {
