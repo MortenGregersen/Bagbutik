@@ -227,10 +227,10 @@ public enum Documentation: Codable {
                 try container.encode("possibleValues", forKey: .kind)
                 try container.encode(values.map { (key: String, value: Content) in
                     Value(name: key, content: [value])
-                }, forKey: .values)
+                }.sorted(using: KeyPathComparator(\.name)), forKey: .values)
             case .properties(let properties):
                 try container.encode("properties", forKey: .kind)
-                try container.encode(properties, forKey: .items)
+                try container.encode(properties.sorted(using: KeyPathComparator(\.name)), forKey: .items)
             case .discussion(let contents):
                 try container.encode("content", forKey: .kind)
                 try container.encode(contents, forKey: .content)
