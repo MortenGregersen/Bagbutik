@@ -66,8 +66,7 @@ final class GeneratorTests: XCTestCase {
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(printer.printedLogs[8], "⚠️ Documentation missing for endpoint: \'ListVisibleAppIdsForUser\'")
-        XCTAssertEqual(printer.printedLogs[9], "🎉 Finished generating 2 endpoints and 4 models! 🎉")
+        XCTAssertEqual(printer.printedLogs[8], "🎉 Finished generating 2 endpoints and 4 models! 🎉")
     }
     
     func testInvalidSpecFileURL() async throws {
