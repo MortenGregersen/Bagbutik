@@ -29,7 +29,7 @@ public class DocsLoader {
     }
 
     public func loadDocs(documentationDirURL: URL) throws {
-        let operationDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
+        let operationDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
         let identifierBySchemaNameData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
         let schemaDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         let jsonDecoder = JSONDecoder()
@@ -67,6 +67,10 @@ public class DocsLoader {
         guard let operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = operationDocumentationById[operationId] else { return nil }
         return documentation
+    }
+
+    public func createUrlForOperation(withId operationId: String) -> String {
+        return "https://developer.apple.com/documentation/appstoreconnectapi/" + OperationMapping.allMappings[operationId]!
     }
 
     private func createDocumentationId(fromUrl url: String) -> String {

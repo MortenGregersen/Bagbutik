@@ -13,8 +13,6 @@ public struct Operation: Decodable, Equatable {
     public let id: String
     /// The name of the operation
     public let name: String
-    /// The documentation for the operation
-    public var documentation: OperationDocumentation?
     /// The HTTP method used when executing the operation
     public let method: HTTPMethod
     /// Tells if the operation is deprecated
@@ -56,7 +54,6 @@ public struct Operation: Decodable, Equatable {
      - Parameters:
         - id: The id of the operation
         - name: The name of the operation
-        - documentation: The documentation for the operation
         - method: The HTTP method used when executing the operation
         - parameters: The different kind of parameters that can be sent with the operation
         - requestBody: Information about the object that can be sent as request body

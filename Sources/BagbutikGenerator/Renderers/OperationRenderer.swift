@@ -43,12 +43,14 @@ public class OperationRenderer: Renderer {
     private let template = """
     public extension Request {
         /**
-         {% if documentation %}# {{ documentation.title }}
-         {{ documentation.summary }}
-
+         {% if title %}# {{ title }}
+         {% endif %}{% if abstract %}{{ abstract }}
+    
+         {% endif %}
          Full documentation:
-         <{{ documentation.url }}>{%
-         else %}# No overview available{% endif %}
+         <{{ url }}>{% if discussion %}
+
+         {{ discussion }}{% endif %}
 
         {% for parametersDocumentation in parametersDocumentations %}
         {{ parametersDocumentation }}{%
@@ -171,6 +173,8 @@ public class OperationRenderer: Renderer {
     """
 
     internal func operationContext(for operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> [String: Any] {
+        let documentation = try docsLoader.resolveDocumentationForOperation(withId: operation.id)
+        let url = docsLoader.createUrlForOperation(withId: operation.id)
         let name = operation.name.capitalizingFirstLetter() + path.info.version
         let pathRange = NSRange(location: 0, length: path.path.utf16.count)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(in: path.path, options: [], range: pathRange, withTemplate: #"\\($1)"#)
@@ -196,8 +200,8 @@ public class OperationRenderer: Renderer {
                     if values.count > 0 {
                         let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                         let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
-                        let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema,
-                                                                                              additionalProtocol: "ParameterValue")
+                        let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
+                            .render(enumSchema: enumSchema, additionalProtocol: "ParameterValue")
                         fieldSubSchemas[name] = rendered
                         fields.append(EnumCase(id: name, value: enumName, deprecated: deprecated, documentation: documentation))
                     }
@@ -209,8 +213,8 @@ public class OperationRenderer: Renderer {
                 case .enum(let type, let values):
                     let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
-                    let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema,
-                                                                    additionalProtocol: "ParameterValue")
+                    let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
+                        .render(enumSchema: enumSchema, additionalProtocol: "ParameterValue")
                     filterSubSchemas[name] = rendered
                     filters.append(EnumCase(id: name, value: enumName, documentation: documentation))
                 }
@@ -298,7 +302,10 @@ public class OperationRenderer: Renderer {
         } + (limits.count > 1 ? limits.count : 0)
         return ["name": name,
                 "deprecated": operation.deprecated,
-                "documentation": operation.documentation as Any,
+                "title": documentation?.title ?? "",
+                "abstract": documentation?.abstract ?? "",
+                "url": url,
+                "discussion": documentation?.discussion ?? "",
                 "path": interpolatablePath,
                 "method": operation.method.rawValue,
                 "successResponseType": operation.successResponseType,
