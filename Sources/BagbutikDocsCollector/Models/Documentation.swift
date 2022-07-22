@@ -343,7 +343,7 @@ public enum Documentation: Codable {
                 try container.encode("query", forKey: .source)
                 try container.encode(parameters.sorted(using: KeyPathComparator(\.name)), forKey: .items)
             case .restBody(let contents):
-                try container.encode("content", forKey: .kind)
+                try container.encode("restBody", forKey: .kind)
                 try container.encode(contents ?? [], forKey: .content)
             case .restResponses(let responses):
                 try container.encode("restResponses", forKey: .kind)
