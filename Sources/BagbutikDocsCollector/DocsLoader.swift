@@ -1,3 +1,4 @@
+import BagbutikSpecDecoder
 import Foundation
 
 /// Errors that can occur when loading docs
@@ -8,8 +9,9 @@ public enum DocsLoaderError: Error {
 
 public class DocsLoader {
     private let loadFile: (URL) throws -> Data
+    internal var operationDocumentationById: [String: OperationDocumentation]?
     internal var identifierBySchemaName: [String: String]?
-    internal var documentationById: [String: Documentation]?
+    internal var schemaDocumentationById: [String: Documentation]?
 
     public convenience init() {
         self.init(loadFile: { url in try Data(contentsOf: url) })
@@ -19,39 +21,51 @@ public class DocsLoader {
         self.loadFile = loadFile
     }
 
-    internal convenience init(identifierBySchemaName: [String: String]? = nil, documentationById: [String: Documentation]? = nil) {
+    internal convenience init(operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
         self.init()
+        self.operationDocumentationById = operationDocumentationById
         self.identifierBySchemaName = identifierBySchemaName
-        self.documentationById = documentationById
+        self.schemaDocumentationById = schemaDocumentationById
     }
 
     public func loadDocs(documentationDirURL: URL) throws {
+        let operationDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
         let identifierBySchemaNameData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
-        let documentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
+        let schemaDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         let jsonDecoder = JSONDecoder()
+        self.operationDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: operationDocumentationByIdData).mapValues { documentation in
+            guard case .operation(let operationDocumentation) = documentation else { fatalError("Parsed documentation is not for operation") }
+            return operationDocumentation
+        }
         self.identifierBySchemaName = try jsonDecoder.decode([String: String].self, from: identifierBySchemaNameData)
-        self.documentationById = try jsonDecoder.decode([String: Documentation].self, from: documentationByIdData)
+        self.schemaDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: schemaDocumentationByIdData)
     }
 
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
-        guard let identifierBySchemaName, let documentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let identifierBySchemaName, let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let identifier = identifierBySchemaName[schemaName],
-              let documentation = documentationById[identifier] else {
+              let documentation = schemaDocumentationById[identifier] else {
             return nil
         }
         return documentation
     }
 
     public func resolveDocumentationForSchema(withDocsUrl docsUrl: String) throws -> Documentation? {
-        guard let documentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         let identifier = self.createDocumentationId(fromUrl: docsUrl)
-        guard let documentation = documentationById[identifier] else { return nil }
+        guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }
 
     public func resolveDocumentationForSchema(withId identifier: String) throws -> Documentation? {
-        guard let documentationById else { throw DocsLoaderError.documentationNotLoaded }
-        guard let documentation = documentationById[identifier] else { return nil }
+        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let documentation = schemaDocumentationById[identifier] else { return nil }
+        return documentation
+    }
+
+    public func resolveDocumentationForOperation(withId operationId: String) throws -> OperationDocumentation? {
+        guard let operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let documentation = operationDocumentationById[operationId] else { return nil }
         return documentation
     }
 

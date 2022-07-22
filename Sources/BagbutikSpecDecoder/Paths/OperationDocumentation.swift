@@ -1,4 +1,4 @@
-public struct OperationDocumentation: Equatable {
+public struct OperationDocumentation: Codable, Equatable {
     public let id: String
     public let title: String
     public let abstract: String?
@@ -20,7 +20,7 @@ public struct OperationDocumentation: Equatable {
     }
 }
 
-public struct ResponseDocumentation: Equatable {
+public struct ResponseDocumentation: Codable, Equatable {
     public let status: Int
     public let reason: String
     public let description: String?

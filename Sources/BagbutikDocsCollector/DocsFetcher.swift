@@ -64,13 +64,13 @@ public class DocsFetcher {
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
-        var documentationByOperationId = [String: Documentation]()
+        var operationDocumentationById = [String: Documentation]()
         let operationIds = spec.paths.values.map(\.operations).flatMap { $0 }.map(\.id).sorted()
         for operationId in operationIds {
             if let operationUrl = createJsonDocumentationUrl(fromOperationId: operationId) {
                 print("Fetching documentation for operation '\(operationId)'")
                 let documentation = try await fetchDocumentation(for: operationUrl)
-                documentationByOperationId[operationId] = documentation
+                operationDocumentationById[operationId] = documentation
             } else {
                 print("⚠️ Documenation URL missing for operation: '\(operationId)'")
             }
@@ -81,22 +81,22 @@ public class DocsFetcher {
         }
 
         var identifierBySchemaName = [String: String]()
-        var documentationById = [String: Documentation]()
+        var schemaDocumentationById = [String: Documentation]()
         for schema in spec.components.schemas.sorted(using: KeyPathComparator(\.key)).map(\.value) {
             print("Fetching documentation for schema '\(schema.name)'")
             let documentation = try await fetchDocumentation(for: schema)
             identifierBySchemaName[schema.name] = documentation.id
-            documentationById[documentation.id] = documentation
+            schemaDocumentationById[documentation.id] = documentation
 
             let documentationIdNotFetched: (String) -> Bool = { documentationId in
-                !documentationById.keys.contains(where: { $0 == documentationId })
+                !schemaDocumentationById.keys.contains(where: { $0 == documentationId })
             }
             let documentationIdsToFetch = documentation.subDocumentationIds.filter(documentationIdNotFetched)
             try await fetchDocumentation(
                 for: documentationIdsToFetch,
                 documentationIdNotFetched: documentationIdNotFetched,
                 didFetchDocumentation: { subDocumentation in
-                    documentationById[subDocumentation.id] = subDocumentation
+                    schemaDocumentationById[subDocumentation.id] = subDocumentation
                 })
         }
         try fileManager.createDirectory(at: outputDirURL, withIntermediateDirectories: true, attributes: nil)
@@ -108,8 +108,8 @@ public class DocsFetcher {
         print("Saving schema mapping to: \(schemaMappingFileUrl.path)")
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        guard fileManager.createFile(atPath: operationDocumentationFileUrl.path, contents: try encoder.encode(documentationByOperationId), attributes: nil),
-              fileManager.createFile(atPath: schemaDocumentationFileUrl.path, contents: try encoder.encode(documentationById), attributes: nil),
+        guard fileManager.createFile(atPath: operationDocumentationFileUrl.path, contents: try encoder.encode(operationDocumentationById), attributes: nil),
+              fileManager.createFile(atPath: schemaDocumentationFileUrl.path, contents: try encoder.encode(schemaDocumentationById), attributes: nil),
               fileManager.createFile(atPath: schemaMappingFileUrl.path, contents: try encoder.encode(identifierBySchemaName), attributes: nil)
         else {
             throw DocsFetcherError.couldNotCreateFile
