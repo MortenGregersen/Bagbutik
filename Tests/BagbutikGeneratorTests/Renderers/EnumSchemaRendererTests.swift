@@ -6,7 +6,7 @@ import XCTest
 final class EnumSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["/platform": .enum(.init(id: "/platform", title: "Platform", abstract: "Strings that represent Apple operating systems.", discussion: "All platforms are nice...", cases: [
+        let docsLoader = DocsLoader(schemaDocumentationById: ["/platform": .enum(.init(id: "/platform", title: "Platform", abstract: "Strings that represent Apple operating systems.", discussion: "All platforms are nice...", cases: [
             "MAC_OS": "A string that represents macOS.",
             "IOS": "A string that represents iOS.",
             "TV_OS": "A string that represents tvOS."

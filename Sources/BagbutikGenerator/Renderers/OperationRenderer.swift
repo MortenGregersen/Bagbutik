@@ -43,10 +43,10 @@ public class OperationRenderer: Renderer {
     private let template = """
     public extension Request {
         /**
-         {% if title %}# {{ title }}
-         {% endif %}{% if abstract %}{{ abstract }}
-    
+         # {{ title }}
+         {% if abstract %}{{ abstract }}
          {% endif %}
+    
          Full documentation:
          <{{ url }}>{% if discussion %}
 
@@ -302,7 +302,7 @@ public class OperationRenderer: Renderer {
         } + (limits.count > 1 ? limits.count : 0)
         return ["name": name,
                 "deprecated": operation.deprecated,
-                "title": documentation?.title ?? "",
+                "title": documentation?.title ?? "No overview available",
                 "abstract": documentation?.abstract ?? "",
                 "url": url,
                 "discussion": documentation?.discussion ?? "",

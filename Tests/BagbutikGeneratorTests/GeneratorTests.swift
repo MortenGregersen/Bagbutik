@@ -9,15 +9,15 @@ final class GeneratorTests: XCTestCase {
     let validDocumentationDirURL = URL(fileURLWithPath: "/Users/steve/documentation")
     let testSpec = try! Spec(paths: [
         "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
-            .init(name: "listUsers",
-                  documentation: .init(title: "List users", summary: "Get a list of users", url: "https://developer.apple.com"),
+            .init(id: "apps-get_collection",
+                  name: "listUsers",
                   method: .get,
                   successResponseType: "UsersResponse",
                   errorResponseType: "ErrorResponse"),
         ]),
         "/v1/users/{id}/relationships/visibleApps": Path(path: "/v2/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", version: "V2", isRelationship: true), operations: [
-            .init(name: "listVisibleAppIdsForUser",
-                  documentation: nil,
+            .init(id: "apps-get_collection",
+                  name: "listVisibleAppIdsForUser",
                   method: .get,
                   successResponseType: "UserVisibleAppsLinkagesResponse",
                   errorResponseType: "ErrorResponse"),

@@ -4,16 +4,9 @@
 import XCTest
 
 final class ObjectSchemaRendererTests: XCTestCase {
-    var docsLoader: DocsLoader!
-
-    override func setUp() async throws {
-        try await super.setUp()
-        docsLoader = DocsLoader()
-    }
-
     func testRenderPlain() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["/person": .object(
+        let docsLoader = DocsLoader(schemaDocumentationById: ["/person": .object(
             .init(id: "/person", title: "Person", abstract: nil, discussion: nil, properties: [:], subDocumentationIds: []))]
         )
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
@@ -37,7 +30,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderPlainDocumented() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["some://url": .object(
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: "What is a person?", properties: ["name": .init(required: false, description: "The person's name")], subDocumentationIds: []))]
         )
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
@@ -70,7 +63,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderPlainDocumentedDeprecated() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["some://url": .object(
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                 "age": .init(required: false, description: "The person's age"),
                 "name": .init(required: false, description: "The person's name")
@@ -114,7 +107,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderRequest() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["some://url": .object(
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/personcreaterequest", title: "PersonCreateRequest", abstract: "The data for a request to create a person.", discussion: nil, properties: [
                 "name": .init(required: false, description: "The person's name")
             ], subDocumentationIds: []))]
@@ -147,7 +140,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderSpecialPropertyTypes() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["some://url": .object(
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                 "id": .init(required: true, description: "The unique id for the person"),
                 "firstName": .init(required: true, description: "The firstname of the person"),
@@ -217,7 +210,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderWithAttributes() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: ["some://url": .object(
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                 "attributes": .init(required: true, description: "The resource's attributes."),
             ], subDocumentationIds: []))]
@@ -266,7 +259,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderWithRelationships() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: [
+        let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
                 .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                     "relationships": .init(required: true, description: "The resource's relationships."),
@@ -324,7 +317,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderSubSchemas() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: [
+        let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
                 .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
                     "name": .init(required: false, description: "The person's name"),
@@ -415,7 +408,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testPagedResponse() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: [:])
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "PersonsResponse",
                                   url: "some://url",
@@ -442,7 +435,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testGetterForIncludedNonPagedResponse() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: [:])
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(
             name: "BuildResponse",
@@ -577,7 +570,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testGetterForIncludedPagedResponse() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: [:])
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(
             name: "BuildsResponse",
@@ -740,7 +733,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderCustomCoding() throws {
         // Given
-        let docsLoader = DocsLoader(documentationById: [
+        let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
                 .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [:], subDocumentationIds: [])),
             "some://url/attributes": .object(
@@ -870,7 +863,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         }
         """
         let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["phoneNumber"]!
-        let docsLoader = DocsLoader(documentationById: [:])
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
