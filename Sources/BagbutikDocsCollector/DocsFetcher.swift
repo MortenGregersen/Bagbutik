@@ -30,8 +30,9 @@ extension DocsFetcherError: Equatable {}
 internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 public enum DocsFilename: String {
-    case mapping = "SchemaIndex.json"
-    case documentation = "Documentation.json"
+    case schemaMapping = "SchemaIndex.json"
+    case schemaDocumentation = "SchemaDocumentation.json"
+    case operationDocumentation = "OperationDocumentation.json"
 
     var filename: String { rawValue }
 }
@@ -63,10 +64,22 @@ public class DocsFetcher {
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
+        var documentationByOperationId = [String: Documentation]()
+        let operationIds = spec.paths.values.map(\.operations).flatMap { $0 }.map(\.id).sorted()
+        for operationId in operationIds {
+            if let operationUrl = createJsonDocumentationUrl(fromOperationId: operationId) {
+                print("Fetching documentation for operation '\(operationId)'")
+                let documentation = try await fetchDocumentation(for: operationUrl)
+                documentationByOperationId[operationId] = documentation
+            } else {
+                print("⚠️ Documenation URL missing for operation: '\(operationId)'")
+            }
+        }
+
         var identifierBySchemaName = [String: String]()
         var documentationById = [String: Documentation]()
         for schema in spec.components.schemas.sorted(using: KeyPathComparator(\.key)).map(\.value) {
-            print("Fetching documentation for \(schema.name)")
+            print("Fetching documentation for schema '\(schema.name)'")
             let documentation = try await fetchDocumentation(for: schema)
             identifierBySchemaName[schema.name] = documentation.id
             documentationById[documentation.id] = documentation
@@ -83,14 +96,17 @@ public class DocsFetcher {
                 })
         }
         try fileManager.createDirectory(at: outputDirURL, withIntermediateDirectories: true, attributes: nil)
-        let documentationFileUrl = outputDirURL.appendingPathComponent(DocsFilename.documentation.filename)
-        let schemaIndexFileUrl = outputDirURL.appendingPathComponent(DocsFilename.mapping.filename)
-        print("Saving documentation to: \(documentationFileUrl.path)")
-        print("Saving schema mapping to: \(schemaIndexFileUrl.path)")
+        let operationDocumentationFileUrl = outputDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename)
+        let schemaDocumentationFileUrl = outputDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename)
+        let schemaMappingFileUrl = outputDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename)
+        print("Saving operation documentation to: \(operationDocumentationFileUrl.path)")
+        print("Saving schema documentation to: \(schemaDocumentationFileUrl.path)")
+        print("Saving schema mapping to: \(schemaMappingFileUrl.path)")
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        guard fileManager.createFile(atPath: documentationFileUrl.path, contents: try encoder.encode(documentationById), attributes: nil),
-              fileManager.createFile(atPath: schemaIndexFileUrl.path, contents: try encoder.encode(identifierBySchemaName), attributes: nil)
+        guard fileManager.createFile(atPath: operationDocumentationFileUrl.path, contents: try encoder.encode(documentationByOperationId), attributes: nil),
+              fileManager.createFile(atPath: schemaDocumentationFileUrl.path, contents: try encoder.encode(documentationById), attributes: nil),
+              fileManager.createFile(atPath: schemaMappingFileUrl.path, contents: try encoder.encode(identifierBySchemaName), attributes: nil)
         else {
             throw DocsFetcherError.couldNotCreateFile
         }
@@ -108,7 +124,7 @@ public class DocsFetcher {
                                     documentationIdNotFetched: (String) -> Bool,
                                     didFetchDocumentation: (Documentation) -> Void) async throws {
         for documentationId in documentationIds {
-            let jsonUrl = createJsonDocumentationUrl(fromId: documentationId)
+            let jsonUrl = createJsonDocumentationUrl(fromDocId: documentationId)
             let documentation = try await fetchDocumentation(for: jsonUrl)
             didFetchDocumentation(documentation)
             try await fetchDocumentation(
@@ -132,11 +148,16 @@ public class DocsFetcher {
             .appending(".json"))!
     }
 
-    private func createJsonDocumentationUrl(fromId id: String) -> URL {
+    private func createJsonDocumentationUrl(fromDocId id: String) -> URL {
         URL(string: id
             .replacingOccurrences(
                 of: "doc://com.apple.documentation/documentation",
                 with: "https://developer.apple.com/tutorials/data/documentation")
             .appending(".json"))!
+    }
+
+    private func createJsonDocumentationUrl(fromOperationId operationId: String) -> URL? {
+        guard let urlPath = OperationMapping.allMappings[operationId]?.appending(".json") else { return nil }
+        return URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/" + urlPath)!
     }
 }

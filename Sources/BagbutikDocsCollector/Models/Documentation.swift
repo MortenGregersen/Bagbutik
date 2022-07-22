@@ -4,12 +4,15 @@ import Foundation
 public enum Documentation: Codable {
     case `enum`(EnumDocumentation)
     case object(ObjectDocumentation)
+    case operation(OperationDocumentation)
 
     var id: String {
         switch self {
         case .enum(let documentation):
             return documentation.id
         case .object(let documentation):
+            return documentation.id
+        case .operation(let documentation):
             return documentation.id
         }
     }
@@ -20,6 +23,8 @@ public enum Documentation: Codable {
             return documentation.title
         case .object(let documentation):
             return documentation.title
+        case .operation(let documentation):
+            return documentation.title
         }
     }
 
@@ -28,6 +33,8 @@ public enum Documentation: Codable {
         case .enum(let documentation):
             return documentation.abstract
         case .object(let documentation):
+            return documentation.abstract
+        case .operation(let documentation):
             return documentation.abstract
         }
     }
@@ -38,6 +45,8 @@ public enum Documentation: Codable {
             return documentation.discussion
         case .object(let documentation):
             return documentation.discussion
+        case .operation(let documentation):
+            return documentation.discussion
         }
     }
 
@@ -47,6 +56,8 @@ public enum Documentation: Codable {
             return []
         case .object(let documentation):
             return documentation.subDocumentationIds
+        case .operation:
+            return []
         }
     }
 
@@ -110,7 +121,47 @@ public enum Documentation: Codable {
             let subDocumentationIds = properties
                 .filter { $0.type.kind == "typeIdentifier" }
                 .compactMap(\.type.identifier)
-            self = .object(.init(id: id, title: metadata.title, abstract: abstract, discussion: discussion, properties: propertyDocumentations, subDocumentationIds: subDocumentationIds))
+            self = .object(.init(id: id,
+                                 title: metadata.title,
+                                 abstract: abstract,
+                                 discussion: discussion,
+                                 properties: propertyDocumentations,
+                                 subDocumentationIds: subDocumentationIds))
+        } else if metadata.symbolKind == "operation" || metadata.symbolKind == "httpGet" || metadata.symbolKind == "httpPatch" || metadata.symbolKind == "httpPost" || metadata.symbolKind == "httpDelete" /* Operation */ {
+            let pathParameters: [String: String] = (contentSections.compactMap { contentSection -> [Parameter]? in
+                guard case .pathParameters(let parameters) = contentSection else { return nil }
+                return parameters
+            }.first ?? []).reduce(into: [:]) { partialResult, parameter in
+                partialResult[parameter.name] = formatContent(parameter.content) ?? ""
+            }
+            let queryParameters: [String: String] = (contentSections.compactMap { contentSection -> [Parameter]? in
+                guard case .queryParameters(let parameters) = contentSection else { return nil }
+                return parameters
+            }.first ?? []).reduce(into: [:]) { partialResult, parameter in
+                partialResult[parameter.name] = formatContent(parameter.content) ?? ""
+            }
+            let body = contentSections.compactMap { contentSection -> String? in
+                guard case .restBody(let contents) = contentSection else { return nil }
+                return contents?
+                    .compactMap { formatContent($0) }
+                    .filter { $0.lengthOfBytes(using: .utf8) > 0 }
+                    .joined(separator: "\n")
+            }.first
+            let responses: [Response] = contentSections.compactMap { contentSection in
+                guard case .restResponses(let responses) = contentSection else { return nil }
+                return responses
+            }.first ?? []
+            let responseDocumentations: [ResponseDocumentation] = responses.map {
+                ResponseDocumentation(status: $0.status, reason: $0.reason, description: formatContent($0.content))
+            }
+            self = .operation(.init(id: id,
+                                    title: metadata.title,
+                                    abstract: abstract,
+                                    discussion: discussion,
+                                    pathParameters: pathParameters,
+                                    queryParameters: queryParameters,
+                                    body: body,
+                                    responses: responseDocumentations))
         } else {
             throw DecodingError.dataCorruptedError(forKey: .metadata, in: container, debugDescription: "Unknown symbol kind: \(metadata.symbolKind)")
         }
@@ -140,6 +191,27 @@ public enum Documentation: Codable {
                 partialResult.append(property)
             }
             contentSections.append(ContentSection.properties(properties))
+        case .operation(let documentation):
+            try container.encode(Metadata(title: documentation.title, symbolKind: "operation"), forKey: .metadata)
+            let pathParameters = documentation.pathParameters.map { keyValue in
+                Parameter(name: keyValue.key, content: .init(text: keyValue.value))
+            }
+            if pathParameters.count > 0 {
+                contentSections.append(.pathParameters(pathParameters))
+            }
+            let queryParameters = documentation.queryParameters.map { keyValue in
+                Parameter(name: keyValue.key, content: .init(text: keyValue.value))
+            }
+            if queryParameters.count > 0 {
+                contentSections.append(.queryParameters(queryParameters))
+            }
+            if let body = documentation.body.map({ Content(text: $0) }) {
+                contentSections.append(.restBody([body]))
+            }
+            contentSections.append(.restResponses(documentation.responses.map { response in
+                let content = response.description.map { Content(text: $0) }
+                return Response(status: response.status, reason: response.reason, content: content)
+            }))
         }
         if let discussion {
             contentSections.append(.discussion([.init(text: discussion)]))
@@ -171,7 +243,7 @@ public enum Documentation: Codable {
             let roleString = try container.decodeIfPresent(String.self, forKey: .role)
             role = Role(rawValue: roleString ?? "")
             let url = try container.decode(String.self, forKey: .url)
-            if role == .symbol || role == .article {
+            if role == .symbol || role == .article {
                 self.url = "https://developer.apple.com" + url
             } else {
                 self.url = url
@@ -190,10 +262,15 @@ public enum Documentation: Codable {
         case possibleValues([String: Content])
         case properties([Property])
         case discussion([Content])
+        case pathParameters([Parameter])
+        case queryParameters([Parameter])
+        case restBody([Content]?)
+        case restResponses([Response])
         case unused
 
         private enum CodingKeys: CodingKey {
             case kind
+            case source
             case values
             case items
             case content
@@ -220,7 +297,23 @@ public enum Documentation: Codable {
                     throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Content section of kind '\(kind)' has no content")
                 }
                 self = .discussion(contents)
-            } else if kind == "declarations" {
+            } else if kind == "restParameters" {
+                let source = try container.decode(String.self, forKey: .source)
+                let parameters = try container.decode([Parameter].self, forKey: .items)
+                if source == "path" {
+                    self = .pathParameters(parameters)
+                } else if source == "query" {
+                    self = .queryParameters(parameters)
+                } else {
+                    throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Content section of kind '\(kind)' has unknown parameter source")
+                }
+            } else if kind == "restBody" {
+                let contents = try container.decodeIfPresent([Content].self, forKey: .content)
+                self = .restBody(contents)
+            } else if kind == "restResponses" {
+                let responses = try container.decode([Response].self, forKey: .items)
+                self = .restResponses(responses)
+            } else if kind == "declarations" || kind == "restEndpoint" {
                 self = .unused
             } else {
                 throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Unkown kind '\(kind)'")
@@ -241,6 +334,20 @@ public enum Documentation: Codable {
             case .discussion(let contents):
                 try container.encode("content", forKey: .kind)
                 try container.encode(contents, forKey: .content)
+            case .pathParameters(let parameters):
+                try container.encode("restParameters", forKey: .kind)
+                try container.encode("path", forKey: .source)
+                try container.encode(parameters.sorted(using: KeyPathComparator(\.name)), forKey: .items)
+            case .queryParameters(let parameters):
+                try container.encode("restParameters", forKey: .kind)
+                try container.encode("query", forKey: .source)
+                try container.encode(parameters.sorted(using: KeyPathComparator(\.name)), forKey: .items)
+            case .restBody(let contents):
+                try container.encode("content", forKey: .kind)
+                try container.encode(contents ?? [], forKey: .content)
+            case .restResponses(let responses):
+                try container.encode("restResponses", forKey: .kind)
+                try container.encode(responses.sorted(using: KeyPathComparator(\.status)), forKey: .items)
             case .unused:
                 try container.encode("content", forKey: .kind)
             }
@@ -389,6 +496,77 @@ public enum Documentation: Codable {
             let kind: String
             let text: String
             let identifier: String?
+        }
+    }
+
+    public struct Parameter: Codable {
+        let name: String
+        let content: Content?
+
+        enum CodingKeys: CodingKey {
+            case name
+            case content
+        }
+
+        init(name: String, content: Content?) {
+            self.name = name
+            self.content = content
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            name = try container.decode(String.self, forKey: .name)
+            let contents = (try container.decodeIfPresent([Content].self, forKey: .content) ?? [])
+                .filter { $0.inlineContent.count > 0 }
+            guard contents.count <= 1 || contents.allSatisfy({ $0.type == "paragraph" }) else {
+                throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(name)'")
+            }
+            if contents.count > 1 {
+                content = Content(type: contents.first!.type, inlineContent: contents.flatMap(\.inlineContent))
+            } else {
+                content = contents.first
+            }
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(name, forKey: .name)
+            try container.encode([content], forKey: .content)
+        }
+    }
+
+    public struct Response: Codable {
+        let status: Int
+        let reason: String
+        let content: Content?
+
+        enum CodingKeys: CodingKey {
+            case status
+            case reason
+            case content
+        }
+
+        init(status: Int, reason: String, content: Content?) {
+            self.status = status
+            self.reason = reason
+            self.content = content
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            status = try container.decode(Int.self, forKey: .status)
+            reason = try container.decode(String.self, forKey: .reason)
+            let contents = (try container.decodeIfPresent([Content].self, forKey: .content) ?? [])
+                .filter { $0.inlineContent.count > 0 }
+            guard contents.count <= 1 else { throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(status)'") }
+            content = contents.first
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(status, forKey: .status)
+            try container.encode(reason, forKey: .reason)
+            try container.encode([content], forKey: .content)
         }
     }
 }

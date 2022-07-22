@@ -26,8 +26,8 @@ public class DocsLoader {
     }
 
     public func loadDocs(documentationDirURL: URL) throws {
-        let identifierBySchemaNameData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.mapping.filename))
-        let documentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.documentation.filename))
+        let identifierBySchemaNameData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
+        let documentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         let jsonDecoder = JSONDecoder()
         self.identifierBySchemaName = try jsonDecoder.decode([String: String].self, from: identifierBySchemaNameData)
         self.documentationById = try jsonDecoder.decode([String: Documentation].self, from: documentationByIdData)
