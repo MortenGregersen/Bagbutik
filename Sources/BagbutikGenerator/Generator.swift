@@ -97,10 +97,9 @@ public class Generator {
 
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
         try removeChildren(at: endpointsDirURL)
-        let endpointsMissingDocumentation: [String] = try await withThrowingTaskGroup(of: [String].self, returning: [String].self) { taskGroup in
+        try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
-                    var endpointsMissingDocumentation = [String]()
                     let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
                     try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
                     try Self.generateEndpoints(for: path, docsLoader: self.docsLoader).forEach { endpoint in
@@ -109,18 +108,10 @@ public class Generator {
                         guard self.fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
                             throw GeneratorError.couldNotCreateFile(endpoint.fileName)
                         }
-                        if !endpoint.hasDocumentation {
-                            endpointsMissingDocumentation.append(endpoint.name)
-                        }
                     }
-                    return endpointsMissingDocumentation
                 }
             }
-            var endpointsMissingDocumentation = [String]()
-            for try await value in taskGroup {
-                endpointsMissingDocumentation += value
-            }
-            return endpointsMissingDocumentation
+            for try await _ in taskGroup {}
         }
 
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
@@ -140,11 +131,6 @@ public class Generator {
             for try await _ in taskGroup {}
         }
 
-        endpointsMissingDocumentation.sorted().forEach { endpointName in
-            // Remember to change check-spec-version script if the wording here is changed.
-            print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
-        }
-
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
         let modelsCount = spec.components.schemas.count
         print("🎉 Finished generating \(operationsCount) endpoints and \(modelsCount) models! 🎉")
@@ -161,12 +147,12 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateEndpoints(for path: Path, docsLoader: DocsLoader) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
+    private static func generateEndpoints(for path: Path, docsLoader: DocsLoader) throws -> [(name: String, fileName: String, contents: String)] {
         try path.operations.map { operation in
             let name = operation.name.capitalizingFirstLetter()
             let fileName = "\(name)\(path.info.version).swift"
             let renderedOperation = try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)
-            return (name: name, fileName: fileName, contents: renderedOperation, hasDocumentation: operation.documentation != nil)
+            return (name: name, fileName: fileName, contents: renderedOperation)
         }
     }
 
