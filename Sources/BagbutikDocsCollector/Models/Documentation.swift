@@ -489,7 +489,9 @@ public enum Documentation: Codable {
             try container.encode(name, forKey: .name)
             try container.encode([type], forKey: .type)
             try container.encode(required, forKey: .required)
-            try container.encode([content], forKey: .content)
+            if let content {
+                try container.encode([content], forKey: .content)
+            }
         }
 
         struct PropertyType: Codable {
@@ -531,7 +533,9 @@ public enum Documentation: Codable {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(name, forKey: .name)
-            try container.encode([content], forKey: .content)
+            if let content {
+                try container.encode([content], forKey: .content)
+            }
         }
     }
 
@@ -566,7 +570,9 @@ public enum Documentation: Codable {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(status, forKey: .status)
             try container.encode(reason, forKey: .reason)
-            try container.encode([content], forKey: .content)
+            if let content {
+                try container.encode([content], forKey: .content)
+            }
         }
     }
 }
