@@ -82,7 +82,7 @@ public class DocsFetcher {
 
         var identifierBySchemaName = [String: String]()
         var schemaDocumentationById = [String: Documentation]()
-        for schema in spec.components.schemas.sorted(using: KeyPathComparator(\.key)).map(\.value) {
+        for schema in spec.components.schemas.sorted(by: { $0.key < $1.key }).map(\.value) {
             print("Fetching documentation for schema '\(schema.name)'")
             let documentation = try await fetchDocumentation(for: schema)
             identifierBySchemaName[schema.name] = documentation.id

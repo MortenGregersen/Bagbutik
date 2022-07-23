@@ -327,27 +327,27 @@ public enum Documentation: Codable {
                 try container.encode("possibleValues", forKey: .kind)
                 try container.encode(values.map { (key: String, value: Content) in
                     Value(name: key, content: [value])
-                }.sorted(using: KeyPathComparator(\.name)), forKey: .values)
+                }.sorted(by: { $0.name < $1.name }), forKey: .values)
             case .properties(let properties):
                 try container.encode("properties", forKey: .kind)
-                try container.encode(properties.sorted(using: KeyPathComparator(\.name)), forKey: .items)
+                try container.encode(properties.sorted(by: { $0.name < $1.name }), forKey: .items)
             case .discussion(let contents):
                 try container.encode("content", forKey: .kind)
                 try container.encode(contents, forKey: .content)
             case .pathParameters(let parameters):
                 try container.encode("restParameters", forKey: .kind)
                 try container.encode("path", forKey: .source)
-                try container.encode(parameters.sorted(using: KeyPathComparator(\.name)), forKey: .items)
+                try container.encode(parameters.sorted(by: { $0.name < $1.name }), forKey: .items)
             case .queryParameters(let parameters):
                 try container.encode("restParameters", forKey: .kind)
                 try container.encode("query", forKey: .source)
-                try container.encode(parameters.sorted(using: KeyPathComparator(\.name)), forKey: .items)
+                try container.encode(parameters.sorted(by: { $0.name < $1.name }), forKey: .items)
             case .restBody(let contents):
                 try container.encode("restBody", forKey: .kind)
                 try container.encode(contents ?? [], forKey: .content)
             case .restResponses(let responses):
                 try container.encode("restResponses", forKey: .kind)
-                try container.encode(responses.sorted(using: KeyPathComparator(\.status)), forKey: .items)
+                try container.encode(responses.sorted(by: { $0.status < $1.status }), forKey: .items)
             case .unused:
                 try container.encode("content", forKey: .kind)
             }
