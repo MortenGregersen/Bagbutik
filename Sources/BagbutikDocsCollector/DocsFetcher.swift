@@ -1,5 +1,10 @@
+import BagbutikPolyfill
 import BagbutikSpecDecoder
 import Foundation
+#if canImport(FoundationNetworking)
+// Linux support
+import FoundationNetworking
+#endif
 
 /// Errors that can occur when fetching docs
 public enum DocsFetcherError: Error {
