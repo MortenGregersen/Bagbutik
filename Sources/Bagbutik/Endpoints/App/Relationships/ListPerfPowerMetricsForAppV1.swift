@@ -3,7 +3,7 @@ public extension Request {
       # Get Power and Performance Metrics for an App
       Get the performance and power metrics data for the most recent version of an app.
 
-      The example below requests iOS app launch metrics on all iPhones for the most-recent app versions. To get metrics for a specific app version instead, use the  endpoint.
+      The example below requests iOS app launch metrics on all iPhones for the most-recent app versions. To get metrics for a specific app version instead, use the [Get Power and Performance Metrics for a Build](https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_a_build) endpoint.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_an_app>

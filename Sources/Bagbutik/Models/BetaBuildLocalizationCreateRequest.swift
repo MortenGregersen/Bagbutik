@@ -64,7 +64,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
          Table 1 lists allowed locale values.
          */
         public struct Attributes: Codable {
-            /// The specified locale. Refer to  for possible values.
+            /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalizationcreaterequest/data/attributes#3073798) for possible values.
             public let locale: String
             /// A field that describes changes and additions to a build and indicates features you would like your users to test.
             public var whatsNew: String?

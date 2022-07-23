@@ -3,7 +3,7 @@ public extension Request {
       # Get Power and Performance Metrics for a Build
       Get the performance and power metrics data for a specific build.
 
-      The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the  endpoint.
+      The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_an_app) endpoint.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_a_build>

@@ -291,7 +291,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "Use this endpoint to retrieve the list of available App Store categories and subcategories. Associate an app with categories using the  endpoint.\nThe first example retrieves the full category and subcategory hierarchy in one request. The second example retrieves just the top-level categories for macOS apps.",
+                "text" : "Use this endpoint to retrieve the list of available App Store categories and subcategories. Associate an app with categories using the [Modify an App Info](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/modify_an_app_info) endpoint.\nThe first example retrieves the full category and subcategory hierarchy in one request. The second example retrieves just the top-level categories for macOS apps.",
                 "type" : "text"
               }
             ],
@@ -3211,20 +3211,6 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[apps]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
             "name" : "fields[appStoreReviewDetails]"
           },
           {
@@ -3274,6 +3260,20 @@
               {
                 "inlineContent" : [
                   {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[appStoreVersionSubmissions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
                     "text" : "Additional fields to include for each App Store Versions resource returned by the response.",
                     "type" : "text"
                   }
@@ -3295,7 +3295,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionSubmissions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -4974,7 +4974,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviews]"
+            "name" : "fields[appPreviewSets]"
           },
           {
             "content" : [
@@ -4988,7 +4988,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviewSets]"
+            "name" : "fields[appPreviews]"
           },
           {
             "content" : [
@@ -5186,7 +5186,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshots]"
+            "name" : "fields[appScreenshotSets]"
           },
           {
             "content" : [
@@ -5200,7 +5200,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshotSets]"
+            "name" : "fields[appScreenshots]"
           },
           {
             "content" : [
@@ -5689,7 +5689,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appCustomProductPages]"
+            "name" : "fields[appCustomProductPageVersions]"
           },
           {
             "content" : [
@@ -5703,7 +5703,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appCustomProductPageVersions]"
+            "name" : "fields[appCustomProductPages]"
           },
           {
             "content" : [
@@ -5924,7 +5924,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appCustomProductPages]"
+            "name" : "fields[appCustomProductPageVersions]"
           },
           {
             "content" : [
@@ -5938,7 +5938,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appCustomProductPageVersions]"
+            "name" : "fields[appCustomProductPages]"
           },
           {
             "content" : [
@@ -7661,20 +7661,6 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appEvents]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
             "name" : "fields[appEventScreenshots]"
           },
           {
@@ -7690,6 +7676,20 @@
               }
             ],
             "name" : "fields[appEventVideoClips]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[appEvents]"
           },
           {
             "content" : [
@@ -8373,7 +8373,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "Use this endpoint to add localized app information for a new locale. Be sure to use  to add the same locale to the version as well.",
+                "text" : "Use this endpoint to add localized app information for a new locale. Be sure to use [Create an App Store Version Localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/create_an_app_store_version_localization) to add the same locale to the version as well.",
                 "type" : "text"
               }
             ],
@@ -9224,7 +9224,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "For request and response examples for reading an age rating declaration, see .",
+                "text" : "For request and response examples for reading an age rating declaration, see [GET \/v1\/appInfos\/{id}\/ageRatingDeclaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get_v1_appinfos_id_ageratingdeclaration).",
                 "type" : "text"
               }
             ],
@@ -10961,7 +10961,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviews]"
+            "name" : "fields[appPreviewSets]"
           },
           {
             "content" : [
@@ -10975,7 +10975,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviewSets]"
+            "name" : "fields[appPreviews]"
           },
           {
             "content" : [
@@ -11488,7 +11488,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviews]"
+            "name" : "fields[appPreviewSets]"
           },
           {
             "content" : [
@@ -11502,7 +11502,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviewSets]"
+            "name" : "fields[appPreviews]"
           },
           {
             "content" : [
@@ -12144,7 +12144,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Using the deprecated resource `appPricePoints` to get the customer price and proceeds may not provide accurate price information for your app. Use  to get price information for an app and a tier.",
+                    "text" : "Using the deprecated resource `appPricePoints` to get the customer price and proceeds may not provide accurate price information for your app. Use [List All Price Points for an App](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_all_price_points_for_an_app) to get price information for an app and a tier.",
                     "type" : "text"
                   }
                 ],
@@ -12323,7 +12323,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Using `appPricePoints` to get the customer price and proceeds that correspond to a price tier may not provide accurate information for your app. Use  to get accurate information for a specific app.",
+                    "text" : "Using `appPricePoints` to get the customer price and proceeds that correspond to a price tier may not provide accurate information for your app. Use [List All Price Points for an App](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_all_price_points_for_an_app) to get accurate information for a specific app.",
                     "type" : "text"
                   }
                 ],
@@ -12881,7 +12881,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appCustomProductPages]"
+            "name" : "fields[appCustomProductPageVersions]"
           },
           {
             "content" : [
@@ -12895,7 +12895,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appCustomProductPageVersions]"
+            "name" : "fields[appCustomProductPages]"
           },
           {
             "content" : [
@@ -13424,7 +13424,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Deprecated. To get age rating declarations, use   instead.",
+                    "text" : "Deprecated. To get age rating declarations, use  [GET \/v1\/appInfos\/{id}\/ageRatingDeclaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get_v1_appinfos_id_ageratingdeclaration) instead.",
                     "type" : "text"
                   }
                 ],
@@ -13446,20 +13446,6 @@
               }
             ],
             "name" : "fields[appClipDefaultExperiences]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Fields to return for included related types.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -13522,6 +13508,20 @@
               {
                 "inlineContent" : [
                   {
+                    "text" : "Fields to return for included related types.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[appStoreVersionSubmissions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
                     "text" : "Fields to return for included related types. Note: `ageRatingDeclaration` is deprecated.",
                     "type" : "text"
                   }
@@ -13543,7 +13543,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionSubmissions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -14792,7 +14792,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The opaque resource ID that uniquely identifies the `apps` resource that represents your app. For more information, see .",
+                    "text" : "The opaque resource ID that uniquely identifies the `apps` resource that represents your app. For more information, see [Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/app_store\/apps).",
                     "type" : "text"
                   }
                 ],
@@ -15446,7 +15446,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[apps]"
+            "name" : "fields[appStoreVersions]"
           },
           {
             "content" : [
@@ -15460,7 +15460,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -15978,7 +15978,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "limit[inAppPurchases]"
+            "name" : "limit[inAppPurchasesV2]"
           },
           {
             "content" : [
@@ -15992,7 +15992,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "limit[inAppPurchasesV2]"
+            "name" : "limit[inAppPurchases]"
           },
           {
             "content" : [
@@ -16262,20 +16262,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Fields to return for included related types.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[apps]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "",
                     "type" : "text"
                   }
@@ -16284,6 +16270,20 @@
               }
             ],
             "name" : "fields[appStoreVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Fields to return for included related types.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -16689,7 +16689,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "limit[inAppPurchases]"
+            "name" : "limit[inAppPurchasesV2]"
           },
           {
             "content" : [
@@ -16703,7 +16703,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "limit[inAppPurchasesV2]"
+            "name" : "limit[inAppPurchases]"
           },
           {
             "content" : [
@@ -17318,7 +17318,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The resource ID that uniquely identifies the app to return metrics data for. Obtain the app resource ID from the  response.",
+                    "text" : "The resource ID that uniquely identifies the app to return metrics data for. Obtain the app resource ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_apps) response.",
                     "type" : "text"
                   }
                 ],
@@ -17438,7 +17438,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "The example below requests iOS app launch metrics on all iPhones for the most-recent app versions. To get metrics for a specific app version instead, use the  endpoint.",
+                "text" : "The example below requests iOS app launch metrics on all iPhones for the most-recent app versions. To get metrics for a specific app version instead, use the [Get Power and Performance Metrics for a Build](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get_power_and_performance_metrics_for_a_build) endpoint.",
                 "type" : "text"
               }
             ],
@@ -17939,7 +17939,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPrices]"
+            "name" : "fields[appPriceTiers]"
           },
           {
             "content" : [
@@ -17953,7 +17953,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPriceTiers]"
+            "name" : "fields[appPrices]"
           },
           {
             "content" : [
@@ -18060,7 +18060,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "Use this endpoint to retrieve the price schedule for an app, including the current price and any scheduled future price changes.\nThe current price has a `null` start date. Each additional price has a start date that indicates the date when the price will take effect around the world. See  to determine the price the customer sees and the related proceeds in each App Store territory.",
+                "text" : "Use this endpoint to retrieve the price schedule for an app, including the current price and any scheduled future price changes.\nThe current price has a `null` start date. Each additional price has a start date that indicates the date when the price will take effect around the world. See [List All Price Points for an App](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_all_price_points_for_an_app) to determine the price the customer sees and the related proceeds in each App Store territory.",
                 "type" : "text"
               }
             ],
@@ -18409,7 +18409,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[apps]"
+            "name" : "fields[appStoreVersions]"
           },
           {
             "content" : [
@@ -18423,7 +18423,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -19343,7 +19343,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshots]"
+            "name" : "fields[appScreenshotSets]"
           },
           {
             "content" : [
@@ -19357,7 +19357,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshotSets]"
+            "name" : "fields[appScreenshots]"
           },
           {
             "content" : [
@@ -19870,7 +19870,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshots]"
+            "name" : "fields[appScreenshotSets]"
           },
           {
             "content" : [
@@ -19884,7 +19884,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshotSets]"
+            "name" : "fields[appScreenshots]"
           },
           {
             "content" : [
@@ -20713,20 +20713,6 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionExperiments]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
             "name" : "fields[appStoreVersionExperimentTreatmentLocalizations]"
           },
           {
@@ -20742,6 +20728,20 @@
               }
             ],
             "name" : "fields[appStoreVersionExperimentTreatments]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[appStoreVersionExperiments]"
           },
           {
             "content" : [
@@ -20948,7 +20948,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionExperiments]"
+            "name" : "fields[appStoreVersionExperimentTreatments]"
           },
           {
             "content" : [
@@ -20962,7 +20962,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionExperimentTreatments]"
+            "name" : "fields[appStoreVersionExperiments]"
           },
           {
             "content" : [
@@ -21132,7 +21132,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviews]"
+            "name" : "fields[appPreviewSets]"
           },
           {
             "content" : [
@@ -21146,7 +21146,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviewSets]"
+            "name" : "fields[appPreviews]"
           },
           {
             "content" : [
@@ -21344,7 +21344,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshots]"
+            "name" : "fields[appScreenshotSets]"
           },
           {
             "content" : [
@@ -21358,7 +21358,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshotSets]"
+            "name" : "fields[appScreenshots]"
           },
           {
             "content" : [
@@ -22243,7 +22243,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviews]"
+            "name" : "fields[appPreviewSets]"
           },
           {
             "content" : [
@@ -22257,7 +22257,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appPreviewSets]"
+            "name" : "fields[appPreviews]"
           },
           {
             "content" : [
@@ -22493,7 +22493,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshots]"
+            "name" : "fields[appScreenshotSets]"
           },
           {
             "content" : [
@@ -22507,7 +22507,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appScreenshotSets]"
+            "name" : "fields[appScreenshots]"
           },
           {
             "content" : [
@@ -22754,7 +22754,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "Use this endpoint to add localized version information for a new locale. Be sure to use  to add the same locale to the version as well.",
+                "text" : "Use this endpoint to add localized version information for a new locale. Be sure to use [Create an App Info Localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/create_an_app_info_localization) to add the same locale to the version as well.",
                 "type" : "text"
               }
             ],
@@ -24305,7 +24305,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionExperiments]"
+            "name" : "fields[appStoreVersionExperimentTreatments]"
           },
           {
             "content" : [
@@ -24319,7 +24319,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionExperimentTreatments]"
+            "name" : "fields[appStoreVersionExperiments]"
           },
           {
             "content" : [
@@ -24695,7 +24695,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersions]"
+            "name" : "fields[appStoreVersionSubmissions]"
           },
           {
             "content" : [
@@ -24709,7 +24709,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionSubmissions]"
+            "name" : "fields[appStoreVersions]"
           },
           {
             "content" : [
@@ -25194,7 +25194,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The opaque resource ID that uniquely identifies the `appStoreVersions` resource that represents a version of your app. For more information, see .",
+                    "text" : "The opaque resource ID that uniquely identifies the `appStoreVersions` resource that represents a version of your app. For more information, see [App Store Versions](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/app_store\/app_metadata\/app_store_versions).",
                     "type" : "text"
                   }
                 ],
@@ -25541,7 +25541,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Deprecated. To get age rating declarations, use   instead.",
+                    "text" : "Deprecated. To get age rating declarations, use  [GET \/v1\/appInfos\/{id}\/ageRatingDeclaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get_v1_appinfos_id_ageratingdeclaration) instead.",
                     "type" : "text"
                   }
                 ],
@@ -25625,20 +25625,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Fields to return for included related types. Note: `ageRatingDeclaration` is deprecated.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appStoreVersions]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "Fields to return for included related types.",
                     "type" : "text"
                   }
@@ -25647,6 +25633,20 @@
               }
             ],
             "name" : "fields[appStoreVersionSubmissions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Fields to return for included related types. Note: `ageRatingDeclaration` is deprecated.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[appStoreVersions]"
           },
           {
             "content" : [
@@ -30648,20 +30648,6 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "filter[publicLink]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Attributes, relationships, and IDs by which to filter.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
             "name" : "filter[publicLinkEnabled]"
           },
           {
@@ -30677,6 +30663,20 @@
               }
             ],
             "name" : "filter[publicLinkLimitEnabled]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Attributes, relationships, and IDs by which to filter.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "filter[publicLink]"
           },
           {
             "content" : [
@@ -35100,20 +35100,6 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[apps]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
             "name" : "fields[appStoreReviewDetails]"
           },
           {
@@ -35170,6 +35156,20 @@
                 "type" : "paragraph"
               }
             ],
+            "name" : "fields[appStoreVersionSubmissions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
             "name" : "fields[appStoreVersions]"
           },
           {
@@ -35184,7 +35184,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersionSubmissions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -35861,7 +35861,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The resource ID that uniquely identifies the build to return metrics data for. Obtain the build resource ID from the  response.",
+                    "text" : "The resource ID that uniquely identifies the build to return metrics data for. Obtain the build resource ID from the [List Builds](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_builds) response.",
                     "type" : "text"
                   }
                 ],
@@ -36027,20 +36027,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Fields to return for included related types.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[apps]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "",
                     "type" : "text"
                   }
@@ -36049,6 +36035,20 @@
               }
             ],
             "name" : "fields[appStoreVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Fields to return for included related types.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -36181,20 +36181,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Attributes, relationships, and IDs by which to filter.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "filter[app]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "",
                     "type" : "text"
                   }
@@ -36203,6 +36189,20 @@
               }
             ],
             "name" : "filter[appStoreVersion]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Attributes, relationships, and IDs by which to filter.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "filter[app]"
           },
           {
             "content" : [
@@ -36570,20 +36570,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Fields to return for included related types.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[apps]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "",
                     "type" : "text"
                   }
@@ -36592,6 +36578,20 @@
               }
             ],
             "name" : "fields[appStoreVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Fields to return for included related types.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -37422,7 +37422,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The resource ID that uniquely identifies the build to return metrics data for. Obtain the build resource ID from the  response.",
+                    "text" : "The resource ID that uniquely identifies the build to return metrics data for. Obtain the build resource ID from the [List Builds](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_builds) response.",
                     "type" : "text"
                   }
                 ],
@@ -37542,7 +37542,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the  endpoint.",
+                "text" : "The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get_power_and_performance_metrics_for_an_app) endpoint.",
                 "type" : "text"
               }
             ],
@@ -40287,7 +40287,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "The example request below retrieves detailed information about an action Xcode Cloud performed. It also requests detailed information about the action’s build by including the  resource in the query. Use the information provided in the response to display information on a dashboard or to access additional information; for example, information about other actions Xcode Cloud performed during the build.",
+                "text" : "The example request below retrieves detailed information about an action Xcode Cloud performed. It also requests detailed information about the action’s build by including the [Build Runs](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/xcode_cloud_workflows_and_builds\/build_runs) resource in the query. Use the information provided in the response to display information on a dashboard or to access additional information; for example, information about other actions Xcode Cloud performed during the build.",
                 "type" : "text"
               }
             ],
@@ -40835,7 +40835,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[apps]"
+            "name" : "fields[appStoreVersions]"
           },
           {
             "content" : [
@@ -40849,7 +40849,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -40982,20 +40982,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Filter the returned builds using the ID of the related Apps resource.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "filter[app]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "Filter the returned builds using the ID of the related App Store Versions resource.",
                     "type" : "text"
                   }
@@ -41004,6 +40990,20 @@
               }
             ],
             "name" : "filter[appStoreVersion]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "Filter the returned builds using the ID of the related Apps resource.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "filter[app]"
           },
           {
             "content" : [
@@ -42624,7 +42624,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[apps]"
+            "name" : "fields[appStoreVersions]"
           },
           {
             "content" : [
@@ -42638,7 +42638,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[appStoreVersions]"
+            "name" : "fields[apps]"
           },
           {
             "content" : [
@@ -43009,20 +43009,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The number of included Apps resources to return if the in-app purchases relationship is included.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "limit[inAppPurchases]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "",
                     "type" : "text"
                   }
@@ -43031,6 +43017,20 @@
               }
             ],
             "name" : "limit[inAppPurchasesV2]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "The number of included Apps resources to return if the in-app purchases relationship is included.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[inAppPurchases]"
           },
           {
             "content" : [
@@ -46534,7 +46534,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The opaque resource ID that uniquely identifies a `customerReviews` resource that represents a customer review. For more information, see .",
+                    "text" : "The opaque resource ID that uniquely identifies a `customerReviews` resource that represents a customer review. For more information, see [Customer Reviews](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/app_store\/customer_reviews).",
                     "type" : "text"
                   }
                 ],
@@ -47130,7 +47130,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The resource ID that uniquely identifies a diagnostic signature. Obtain the diagnostic signature resource ID from the  response.",
+                    "text" : "The resource ID that uniquely identifies a diagnostic signature. Obtain the diagnostic signature resource ID from the [List All Diagnostic Signatures for a Build](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_all_diagnostic_signatures_for_a_build) response.",
                     "type" : "text"
                   }
                 ],
@@ -49240,7 +49240,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[inAppPurchasePrices]"
+            "name" : "fields[inAppPurchasePriceSchedules]"
           },
           {
             "content" : [
@@ -49254,7 +49254,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[inAppPurchasePriceSchedules]"
+            "name" : "fields[inAppPurchasePrices]"
           },
           {
             "content" : [
@@ -49919,7 +49919,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[inAppPurchasePrices]"
+            "name" : "fields[inAppPurchasePriceSchedules]"
           },
           {
             "content" : [
@@ -49933,7 +49933,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[inAppPurchasePriceSchedules]"
+            "name" : "fields[inAppPurchasePrices]"
           },
           {
             "content" : [
@@ -53885,7 +53885,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Frequency of the report to download. For a list of values, see  below.",
+                    "text" : "Frequency of the report to download. For a list of values, see [Allowed Values Based on Sales Report Type](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/sales_and_finance_reports\/download_sales_and_trends_reports#3022173) below.",
                     "type" : "text"
                   }
                 ],
@@ -53913,7 +53913,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The report sub type to download. For a list of values, see  below.",
+                    "text" : "The report sub type to download. For a list of values, see [Allowed Values Based on Sales Report Type](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/sales_and_finance_reports\/download_sales_and_trends_reports#3022173) below.",
                     "type" : "text"
                   }
                 ],
@@ -53955,7 +53955,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The version of the report. For a list of values, see  below.",
+                    "text" : "The version of the report. For a list of values, see [Allowed Values Based on Sales Report Type](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/sales_and_finance_reports\/download_sales_and_trends_reports#3022173) below.",
                     "type" : "text"
                   }
                 ],
@@ -57557,7 +57557,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[subscriptionOfferCodeOneTimeUseCodes]"
+            "name" : "fields[subscriptionOfferCodeOneTimeUseCodeValues]"
           },
           {
             "content" : [
@@ -57571,7 +57571,7 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[subscriptionOfferCodeOneTimeUseCodeValues]"
+            "name" : "fields[subscriptionOfferCodeOneTimeUseCodes]"
           },
           {
             "content" : [

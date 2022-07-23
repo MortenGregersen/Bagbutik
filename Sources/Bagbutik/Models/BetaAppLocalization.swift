@@ -66,7 +66,7 @@ public struct BetaAppLocalization: Codable {
         public var description: String?
         /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
         public var feedbackEmail: String?
-        /// The specified locale. Refer to  for possible values.
+        /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_app_localizations/betaapplocalization/attributes#3042220) for possible values.
         public var locale: String?
         /// A URL with information about your app. This URL is visible to testers in the TestFlight app.
         public var marketingUrl: String?

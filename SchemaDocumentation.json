@@ -66498,7 +66498,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The specified locale. Refer to  for possible values. ",
+                    "text" : "The specified locale. Refer to [Table 1](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/prerelease_versions_and_beta_testers\/beta_app_localizations\/betaapplocalization\/attributes#3042220) for possible values. ",
                     "type" : "text"
                   }
                 ],
@@ -67016,7 +67016,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The specified locale. Refer to  for possible values. ",
+                    "text" : "The specified locale. Refer to [Table 1](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/prerelease_versions_and_beta_testers\/beta_app_localizations\/betaapplocalizationcreaterequest\/data\/attributes#3080183) for possible values. ",
                     "type" : "text"
                   }
                 ],
@@ -69760,7 +69760,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The specified locale. Refer to  for possible values. ",
+                    "text" : "The specified locale. Refer to [Table 1](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/prerelease_versions_and_beta_testers\/beta_build_localizations\/betabuildlocalization\/attributes#3042206) for possible values. ",
                     "type" : "text"
                   }
                 ],
@@ -70194,7 +70194,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The specified locale. Refer to  for possible values. ",
+                    "text" : "The specified locale. Refer to [Table 1](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/prerelease_versions_and_beta_testers\/beta_build_localizations\/betabuildlocalizationcreaterequest\/data\/attributes#3073798) for possible values. ",
                     "type" : "text"
                   }
                 ],
@@ -81862,14 +81862,14 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The protocols that the app uses to communicate with external accessory hardware. For more information, see [UISupportedExternalAccessoryProtocols](https:\/\/developer.apple.com\/documentation\/bundleresources\/information_property_list\/uisupportedexternalaccessoryprotocols).",
+                    "text" : "The URL to the symbolication file for the app or App Clip.",
                     "type" : "text"
                   }
                 ],
                 "type" : "paragraph"
               }
             ],
-            "name" : "deviceProtocols",
+            "name" : "dSYMUrl",
             "required" : false,
             "type" : [
               {
@@ -81883,14 +81883,14 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The URL to the symbolication file for the app or App Clip.",
+                    "text" : "The protocols that the app uses to communicate with external accessory hardware. For more information, see [UISupportedExternalAccessoryProtocols](https:\/\/developer.apple.com\/documentation\/bundleresources\/information_property_list\/uisupportedexternalaccessoryprotocols).",
                     "type" : "text"
                   }
                 ],
                 "type" : "paragraph"
               }
             ],
-            "name" : "dSYMUrl",
+            "name" : "deviceProtocols",
             "required" : false,
             "type" : [
               {
@@ -89886,14 +89886,14 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "The date and time when Xcode Cloud started the build.",
+                    "text" : "A string that indicates what started the build.",
                     "type" : "text"
                   }
                 ],
                 "type" : "paragraph"
               }
             ],
-            "name" : "startedDate",
+            "name" : "startReason",
             "required" : false,
             "type" : [
               {
@@ -89907,14 +89907,14 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "A string that indicates what started the build.",
+                    "text" : "The date and time when Xcode Cloud started the build.",
                     "type" : "text"
                   }
                 ],
                 "type" : "paragraph"
               }
             ],
-            "name" : "startReason",
+            "name" : "startedDate",
             "required" : false,
             "type" : [
               {
