@@ -4,9 +4,10 @@ import Foundation
 import FoundationNetworking
 #endif
 
+private let baseUrl = URL(string: "https://api.appstoreconnect.apple.com")!
+
 /// A description of a request. This will internally be mapped to a real URL request.
 public struct Request<ResponseType, ErrorResponseType> {
-    private static var baseUrl: URL { URL(string: "https://api.appstoreconnect.apple.com")! }
     /// The path of the endpoint.
     public let path: String
     /// The HTTP method to use for the request.
@@ -56,7 +57,7 @@ public struct Request<ResponseType, ErrorResponseType> {
                 URLQueryItem(name: $0.key, value: $0.value)
             }
         }
-        let url = urlComponents.url(relativeTo: Self.baseUrl)!
+        let url = urlComponents.url(relativeTo: baseUrl)!
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         if let requestBody = requestBody {
