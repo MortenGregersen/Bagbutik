@@ -47,7 +47,7 @@ public class DocsFetcher {
     private let fileManager: TestableFileManager
     private let print: (String) -> Void
 
-    /// Initialize a new generator
+    /// Initialize a new docs fetcher
     public convenience init() {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
