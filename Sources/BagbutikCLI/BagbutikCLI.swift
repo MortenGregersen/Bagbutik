@@ -25,7 +25,7 @@ struct BagbutikCLI: AsyncParsableCommand {
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
         var outputPath = "./Sources/Bagbutik"
 
-        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a Documentation.json and a SchemaIndex.json.")
+        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a \(DocsFilename.operationDocumentation.filename), a \(DocsFilename.schemaDocumentation.filename) and a \(DocsFilename.schemaMapping.filename).")
         var documentationPath = "./"
 
         mutating func run() async throws {

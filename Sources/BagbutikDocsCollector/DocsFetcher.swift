@@ -34,7 +34,7 @@ public enum DocsFilename: String {
     case schemaDocumentation = "SchemaDocumentation.json"
     case operationDocumentation = "OperationDocumentation.json"
 
-    var filename: String { rawValue }
+    public var filename: String { rawValue }
 }
 
 public class DocsFetcher {
