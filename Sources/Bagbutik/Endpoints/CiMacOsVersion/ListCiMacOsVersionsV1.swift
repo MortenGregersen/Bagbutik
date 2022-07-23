@@ -3,10 +3,10 @@ public extension Request {
       # List All macOS Versions Available in Xcode Cloud
       List all macOS versions available to Xcode Cloud workflows.
 
+      The example request below lists macOS versions available to Xcode Cloud workflows. Use the information provided in the response to read additional data; for example, Xcode version information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_macos_versions_available_in_xcode_cloud>
-
-      The example request below lists macOS versions available to Xcode Cloud workflows. Use the information provided in the response to read additional data; for example, Xcode version information.
 
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response

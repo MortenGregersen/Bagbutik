@@ -3,10 +3,10 @@ public extension Request {
       # List All Test Results for an Xcode Cloud Test Action
       List all test results for a specific test action Xcode Cloud performed as part of a build.
 
+      The example request below lists the test results for an Xcode Cloud build that performed a test action. Use the information provided in the response to display test results on a dashboard, create a new task for a failing test in your issue tracker, and so on.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_test_results_for_an_xcode_cloud_test_action>
-
-      The example request below lists the test results for an Xcode Cloud build that performed a test action. Use the information provided in the response to display test results on a dashboard, create a new task for a failing test in your issue tracker, and so on.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

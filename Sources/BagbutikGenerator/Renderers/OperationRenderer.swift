@@ -47,14 +47,12 @@ public class OperationRenderer: Renderer {
          {% if abstract %}{{ abstract }}
          {% endif %}
 
-         Full documentation:
-         <{{ url }}>
-
          {% if discussion %}
          {{ discussion }}
 
+         {% endif %}Full documentation:
+         <{{ url }}>
 
-         {% endif %}
          {% for parametersDocumentation in parametersDocumentations %}
          {{ parametersDocumentation }}{%
          endfor %}

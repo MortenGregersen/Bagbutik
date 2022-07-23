@@ -3,10 +3,10 @@ public extension Request {
       # Read Git Repository Information
       Get information about a Git repository that Xcode Cloud can access.
 
+      The example request below retrieves information about a specific Git repository that Xcode Cloud can access. Use the data provided in the response to read additional information; for example, pull request information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_git_repository_information>
-
-      The example request below retrieves information about a specific Git repository that Xcode Cloud can access. Use the data provided in the response to read additional information; for example, pull request information.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

@@ -3,10 +3,10 @@ public extension Request {
       # Read the Repository Information for an Xcode Cloud Workflow
       Get information about the Git repository of a specific Xcode Cloud workflow.
 
+      The example request below retrieves information about an Xcode Cloud workflow’s repository. Use the data provided in the response to read additional information; for example, pull request information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_repository_information_for_an_xcode_cloud_workflow>
-
-      The example request below retrieves information about an Xcode Cloud workflow’s repository. Use the data provided in the response to read additional information; for example, pull request information.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

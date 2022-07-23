@@ -3,10 +3,10 @@ public extension Request {
       # Read Xcode Cloud Workflow Information
       Get information about a specific Xcode Cloud workflow.
 
+      The example request below accesses information about an Xcode Cloud workflow. Display the workflow data provided in the response on a dashboard or use it to read additional information; for example, detailed data about builds Xcode Cloud performed.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_workflow_information>
-
-      The example request below accesses information about an Xcode Cloud workflow. Display the workflow data provided in the response on a dashboard or use it to read additional information; for example, detailed data about builds Xcode Cloud performed.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

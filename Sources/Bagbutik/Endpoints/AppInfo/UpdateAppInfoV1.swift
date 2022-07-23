@@ -3,10 +3,10 @@ public extension Request {
       # Modify an App Info
       Update the App Store categories and sub-categories for your app.
 
+      Use this endpoint to modify the primary and secondary categories and subcategories for an app.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_info>
-
-      Use this endpoint to modify the primary and secondary categories and subcategories for an app.
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: AppInfo representation

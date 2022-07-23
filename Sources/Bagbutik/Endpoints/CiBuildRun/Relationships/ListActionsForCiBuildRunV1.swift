@@ -3,10 +3,10 @@ public extension Request {
       # List All Actions for an Xcode Cloud Build
       List all actions Xcode Cloud performed during a specific build.
 
+      The example request below lists actions Xcode Cloud performed during a specific build. Use the information provided in the response to display detailed action information on a dashboard or to read additional data; for example, test results.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_actions_for_an_xcode_cloud_build>
-
-      The example request below lists actions Xcode Cloud performed during a specific build. Use the information provided in the response to display detailed action information on a dashboard or to read additional data; for example, test results.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

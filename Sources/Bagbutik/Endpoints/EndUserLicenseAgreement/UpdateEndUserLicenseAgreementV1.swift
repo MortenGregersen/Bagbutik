@@ -3,12 +3,12 @@ public extension Request {
       # Modify an End User License Agreement
       Update the text or territories for your custom end user license agreement.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_end_user_license_agreement>
-
       Use this endpoint to change the license agreement text or associate the agreement with different App Store territories.
       In the following example the request contains a blank value for the `agreementText` attribute. Replace that attribute value with your actual agreement text.
       If you change the territories relationship, the new territories replace the original territories.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_end_user_license_agreement>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: EndUserLicenseAgreement representation

@@ -3,10 +3,10 @@ public extension Request {
       # Read Test Result Information
       Get a specific test result Xcode Cloud created when it performed a build with a test action.
 
+      The example request below retrieves result information for a test Xcode Cloud performed. Use the data provided in the response to display test result information on a dashboard, create reports, or create a new issue in your issue tracker for a failing test.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_test_result_information>
-
-      The example request below retrieves result information for a test Xcode Cloud performed. Use the data provided in the response to display test result information on a dashboard, create reports, or create a new issue in your issue tracker for a failing test.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

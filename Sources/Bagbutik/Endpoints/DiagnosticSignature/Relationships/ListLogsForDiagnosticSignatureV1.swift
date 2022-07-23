@@ -3,10 +3,10 @@ public extension Request {
       # Download Logs for a Diagnostic Signature
       Get the anonymized backtrace logs associated with a specific diagnostic signature.
 
+      The example below requests a single disk write diagnostic log for a specific signature.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/download_logs_for_a_diagnostic_signature>
-
-      The example below requests a single disk write diagnostic log for a specific signature.
 
       - Parameter id: The id of the requested resource
       - Parameter limit: Maximum resources per page - maximum 200

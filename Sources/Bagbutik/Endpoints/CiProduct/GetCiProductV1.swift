@@ -3,10 +3,10 @@ public extension Request {
       # Read Xcode Cloud Product Information
       Get information about a specific Xcode Cloud product.
 
+      The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_product_information>
-
-      The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

@@ -3,10 +3,10 @@ public extension Request {
       # Read App Info Information
       Read App Store information including your App Store state, age ratings, Brazil age rating, and kids' age band.
 
+      For request and response examples for reading an age rating declaration, see .
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_information>
-
-      For request and response examples for reading an age rating declaration, see .
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
