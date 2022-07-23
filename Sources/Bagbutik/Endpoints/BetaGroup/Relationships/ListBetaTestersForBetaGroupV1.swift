@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # List All Beta Testers in a BetaGroup
+      # List All Beta Testers in a Beta Group
       Get a list of beta testers contained in a specific beta group.
 
       Full documentation:

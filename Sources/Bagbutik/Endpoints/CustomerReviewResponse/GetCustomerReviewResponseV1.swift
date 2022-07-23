@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Customer Review Response Information
+      Get information about a specific response you wrote to a customer review, including the response content and its state.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_customer_review_response_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

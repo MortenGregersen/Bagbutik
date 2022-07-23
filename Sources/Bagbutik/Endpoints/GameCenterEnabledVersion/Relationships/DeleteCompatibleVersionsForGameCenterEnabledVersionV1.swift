@@ -1,7 +1,6 @@
 public extension Request {
     /**
       # Remove Compatible Versions from a Game Center Enabled Version
-      Remove the compatible versions from a Game Center enabled version.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/remove_compatible_versions_from_a_game_center_enabled_version>

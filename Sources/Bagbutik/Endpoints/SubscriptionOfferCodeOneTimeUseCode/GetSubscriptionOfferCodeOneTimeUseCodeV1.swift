@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read One-Time Use Offer Code Information
+      Get details about a specific one-time use offer code for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_one-time_use_offer_code_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

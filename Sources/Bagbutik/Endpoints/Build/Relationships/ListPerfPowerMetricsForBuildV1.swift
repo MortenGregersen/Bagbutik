@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_a_build>
 
+      The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the  endpoint.
+
       - Parameter id: The id of the requested resource
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Returns: A `Request` with to send to an instance of `BagbutikService`
@@ -39,9 +41,7 @@ public enum ListPerfPowerMetricsForBuildV1 {
             case termination = "TERMINATION"
         }
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
         }
     }

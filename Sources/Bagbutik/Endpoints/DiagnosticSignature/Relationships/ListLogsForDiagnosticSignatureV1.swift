@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/download_logs_for_a_diagnostic_signature>
 
+      The example below requests a single disk write diagnostic log for a specific signature.
+
       - Parameter id: The id of the requested resource
       - Parameter limit: Maximum resources per page - maximum 200
       - Returns: A `Request` with to send to an instance of `BagbutikService`

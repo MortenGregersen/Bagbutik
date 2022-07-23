@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appEvents/{id}/localizations
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appevents_id_localizations>

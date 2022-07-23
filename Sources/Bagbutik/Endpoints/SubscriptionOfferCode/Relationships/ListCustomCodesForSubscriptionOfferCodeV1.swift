@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Custom Offer Codes for an Auto-Renewable Subscription
+      Get details about a custom code for a specific subscription offer for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_custom_offer_codes_for_an_auto-renewable_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

@@ -6,6 +6,9 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_end_user_license_agreement>
 
+      Use this endpoint to associate a custom license agreement with an app in the specified App Store territories. Any other territories will use the standard Apple-provided license agreement.
+      In the following example the request contains a blank value for the `agreementText` attribute. Replace that attribute value with your actual agreement text.
+
       - Parameter requestBody: EndUserLicenseAgreement representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */

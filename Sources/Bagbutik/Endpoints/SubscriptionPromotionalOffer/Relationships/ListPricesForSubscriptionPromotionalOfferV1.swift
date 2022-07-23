@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Promotional Offer Prices for a Subscription
+      Get a list of prices of a promotional offer for an auto-renewable subscription, for a specified territory.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promotional_offer_prices_for_a_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

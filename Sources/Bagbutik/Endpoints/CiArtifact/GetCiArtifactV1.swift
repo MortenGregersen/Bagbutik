@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_artifact_information>
 
+      The example request below retrieves detailed information about a specific artifact Xcode Cloud created when it performed a build. Use the information provided to download the artifact and store it on your own servers. Note that the returned download URL is only valid for a limited amount of time.
+
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Returns: A `Request` with to send to an instance of `BagbutikService`

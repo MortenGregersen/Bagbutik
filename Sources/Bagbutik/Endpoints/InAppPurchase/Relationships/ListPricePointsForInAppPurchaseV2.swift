@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Price Points for an In-App Purchase
+      Get a list of possible price points for an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_price_points_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

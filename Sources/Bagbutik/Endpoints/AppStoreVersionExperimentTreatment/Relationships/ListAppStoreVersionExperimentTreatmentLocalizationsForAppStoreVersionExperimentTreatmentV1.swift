@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appStoreVersionExperimentTreatments/{id}/appStoreVersionExperimentTreatmentLocalizations
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperimenttreatments_id_appstoreversionexperimenttreatmentlocalizations>

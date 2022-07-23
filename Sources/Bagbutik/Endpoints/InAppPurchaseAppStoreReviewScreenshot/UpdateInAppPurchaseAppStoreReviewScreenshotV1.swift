@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Commit a Review Screenshot for an In-App Purchase
+      Commit an uploaded image asset as a review screenshot for an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/commit_a_review_screenshot_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: InAppPurchaseAppStoreReviewScreenshot representation

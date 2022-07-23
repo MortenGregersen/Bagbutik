@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete an App Custom Product Page Localization
+      Delete localized metadata that you configured for a custom product page.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appcustomproductpagelocalizations_id>

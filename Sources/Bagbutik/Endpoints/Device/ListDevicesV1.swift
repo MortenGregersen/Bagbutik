@@ -58,11 +58,8 @@ public enum ListDevicesV1 {
         /// Filter by attribute 'udid'
         case udid([String])
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
         }
     }

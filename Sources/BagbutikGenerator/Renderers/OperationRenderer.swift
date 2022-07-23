@@ -46,37 +46,40 @@ public class OperationRenderer: Renderer {
          # {{ title }}
          {% if abstract %}{{ abstract }}
          {% endif %}
-    
+
          Full documentation:
-         <{{ url }}>{% if discussion %}
+         <{{ url }}>
 
-         {{ discussion }}{% endif %}
+         {% if discussion %}
+         {{ discussion }}
 
-        {% for parametersDocumentation in parametersDocumentations %}
-        {{ parametersDocumentation }}{%
-        endfor %}
-        {{ parametersDocumentation }}
-        {% if fields.count > 0 %}
+
+         {% endif %}
+         {% for parametersDocumentation in parametersDocumentations %}
+         {{ parametersDocumentation }}{%
+         endfor %}
+         {{ parametersDocumentation }}
+         {% if fields.count > 0 %}
          - Parameter fields: Fields to return for included related types
-        {% endif %}
-        {% if filters.count > 0 %}
+         {% endif %}
+         {% if filters.count > 0 %}
          - Parameter filters: Attributes, relationships, and IDs by which to filter
-        {% endif %}
-        {% if exists.count > 0 %}
+         {% endif %}
+         {% if exists.count > 0 %}
          - Parameter exists: Attributes, relationships, and IDs to check for existence
-        {% endif %}
-        {% if includes.count > 0 %}
+         {% endif %}
+         {% if includes.count > 0 %}
          - Parameter includes: Relationship data to include in the response
-        {% endif %}
-        {% if sorts.count > 0 %}
+         {% endif %}
+         {% if sorts.count > 0 %}
          - Parameter sorts: Attributes by which to sort
-        {% endif %}
-        {% if limits.count == 1 %}
+         {% endif %}
+         {% if limits.count == 1 %}
          - Parameter limit: {{ limits[0].documentation }} - maximum {{ limits[0].maximum }}
-        {% endif %}
-        {% if limits.count > 1 %}
+         {% endif %}
+         {% if limits.count > 1 %}
          - Parameter limits: Number of resources to return
-        {% endif %}
+         {% endif %}
          - Returns: A `Request` with to send to an instance of `BagbutikService`
         */{% if deprecated %}
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future."){% endif %}
@@ -261,11 +264,11 @@ public class OperationRenderer: Renderer {
         var parametersDocumentations = [String]()
         path.parameters?.forEach { pathParameter in
             parameters.append("\(pathParameter.name): String")
-            parametersDocumentations.append(" - Parameter \(pathParameter.name): \(pathParameter.description.capitalizingFirstLetter())")
+            parametersDocumentations.append("- Parameter \(pathParameter.name): \(pathParameter.description.capitalizingFirstLetter())")
         }
         if let requestBody = operation.requestBody {
             parameters.append("requestBody: \(requestBody.name)")
-            parametersDocumentations.append(" - Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
+            parametersDocumentations.append("- Parameter requestBody: \(requestBody.documentation.capitalizingFirstLetter())")
         }
         if fields.count > 0 {
             parameters.append("fields: [\(name).Field]? = nil")
@@ -305,7 +308,7 @@ public class OperationRenderer: Renderer {
                 "title": documentation?.title ?? "No overview available",
                 "abstract": documentation?.abstract ?? "",
                 "url": url,
-                "discussion": documentation?.discussion ?? "",
+                "discussion": documentation?.discussion?.split(separator: "\n").joined(separator: "\n     ") ?? "",
                 "path": interpolatablePath,
                 "method": operation.method.rawValue,
                 "successResponseType": operation.successResponseType,

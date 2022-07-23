@@ -57,7 +57,6 @@ public enum ListCertificatesV1 {
         /// Filter by attribute 'serialNumber'
         case serialNumber([String])
 
-        /// Literal values that represent types of signing certificates.
         public enum CertificateType: String, ParameterValue, CaseIterable {
             case iOSDevelopment = "IOS_DEVELOPMENT"
             case iOSDistribution = "IOS_DISTRIBUTION"

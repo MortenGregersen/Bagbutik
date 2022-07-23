@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Price Point Information
+      Get details about a specific subscription price point.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_price_point_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

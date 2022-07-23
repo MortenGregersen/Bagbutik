@@ -1,10 +1,13 @@
 public extension Request {
     /**
       # List All Prices for an App
-      Get current price tier of an app and any future planned price changes.
+      Get the current price tier of an app and any future scheduled price changes.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_prices_for_an_app>
+
+      Use this endpoint to retrieve the price schedule for an app, including the current price and any scheduled future price changes.
+      The current price has a `null` start date. Each additional price has a start date that indicates the date when the price will take effect around the world. See  to determine the price the customer sees and the related proceeds in each App Store territory.
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

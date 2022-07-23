@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Modify a Subscription Group Localization
+      Update a specific localized display name and optional custom app name for a subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_subscription_group_localization>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: SubscriptionGroupLocalization representation

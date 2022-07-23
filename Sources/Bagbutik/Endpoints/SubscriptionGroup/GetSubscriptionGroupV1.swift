@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Group Information
+      Get the details of a specific subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

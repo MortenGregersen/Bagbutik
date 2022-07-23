@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete an In-App Purchase
+      Delete a specific in-app purchase from your app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`

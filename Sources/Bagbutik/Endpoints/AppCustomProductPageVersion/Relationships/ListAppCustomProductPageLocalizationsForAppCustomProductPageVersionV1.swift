@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appCustomProductPageVersions/{id}/appCustomProductPageLocalizations
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpageversions_id_appcustomproductpagelocalizations>

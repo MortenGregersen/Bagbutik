@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Promotional Offer Information
+      Get details about a specific promotional offer for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_promotional_offer_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

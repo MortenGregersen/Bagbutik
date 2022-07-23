@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Modify an In-App Purchase
+      Update the reference name of a specific in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: InAppPurchase representation

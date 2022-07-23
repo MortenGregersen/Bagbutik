@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_pull_request_information>
 
+      The example request below retrieves information about a specific pull request. For example, use the data provided in the response to display pull request information on a custom dashboard.
+
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response

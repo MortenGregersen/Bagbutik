@@ -1,7 +1,7 @@
 public extension Request {
     /**
       # Read the Routing App Coverage Information of an App Store Version
-      Get the routing app coverage file that is associated with a specific App Store version.
+      Get the routing app coverage file that is associated with a specific App Store version
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_routing_app_coverage_information_of_an_app_store_version>

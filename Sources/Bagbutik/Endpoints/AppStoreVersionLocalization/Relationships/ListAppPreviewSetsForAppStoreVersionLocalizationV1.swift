@@ -104,7 +104,6 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
         /// Filter by attribute 'previewType'
         case previewType([PreviewType])
 
-        /// String that represents the display type of an app preview.
         public enum PreviewType: String, ParameterValue, CaseIterable {
             case iPhone65 = "IPHONE_65"
             case iPhone58 = "IPHONE_58"

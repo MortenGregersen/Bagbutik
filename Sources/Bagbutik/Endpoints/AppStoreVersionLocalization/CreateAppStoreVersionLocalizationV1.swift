@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_version_localization>
 
+      Use this endpoint to add localized version information for a new locale. Be sure to use  to add the same locale to the version as well.
+
       - Parameter requestBody: AppStoreVersionLocalization representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */

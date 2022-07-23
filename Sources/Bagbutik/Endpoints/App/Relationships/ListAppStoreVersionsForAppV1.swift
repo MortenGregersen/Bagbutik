@@ -269,13 +269,9 @@ public enum ListAppStoreVersionsForAppV1 {
             case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
         }
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
     }

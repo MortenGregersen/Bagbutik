@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/download_finance_reports>
 
+      For more information see [Finance reports](https://help.apple.com/app-store-connect/#/dev716cf3a0d).
+
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */

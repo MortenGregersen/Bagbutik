@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Create an Auto-Renewable Subscription
+      Create an auto-renewable subscription for your app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/create_an_auto-renewable_subscription>
 
       - Parameter requestBody: Subscription representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`

@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete an App Event Screenshot
+      Delete a specific screenshot from an in-app event.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appeventscreenshots_id>

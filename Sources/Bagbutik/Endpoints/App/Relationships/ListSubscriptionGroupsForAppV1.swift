@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscription Groups for an App
+      Get a list of subscription groups for a specific app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_groups_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

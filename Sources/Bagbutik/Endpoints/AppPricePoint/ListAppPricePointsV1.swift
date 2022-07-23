@@ -6,6 +6,9 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_app_price_points>
 
+      Use this endpoint to retrieve the customer price and proceeds earned for each App Store price point in the currency of any App Store territory.
+      The data returned by this endpoint is equivalent to the information you find when you log in to App Store Connect and view [All Prices and Currencies](https://appstoreconnect.apple.com/apps/pricingmatrix).
+
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response

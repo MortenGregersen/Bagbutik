@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete Prices from a Subscription
+      Delete a scheduled subscription price change for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/delete_prices_from_a_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: List of related linkages

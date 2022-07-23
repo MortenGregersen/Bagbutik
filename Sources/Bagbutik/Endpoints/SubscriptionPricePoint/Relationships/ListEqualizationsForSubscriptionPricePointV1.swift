@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscription Price Point Equalizations
+      Get a list of subscription price points and their equivalent in a specified currency.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_price_point_equalizations>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

@@ -1,7 +1,6 @@
 public extension Request {
     /**
       # Replace All Compatible Versions for a Game Center Enabled Version
-      Replace the compatible version for a Game Center enabled version.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/replace_all_compatible_versions_for_a_game_center_enabled_version>

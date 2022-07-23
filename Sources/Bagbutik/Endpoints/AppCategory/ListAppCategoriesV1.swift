@@ -6,6 +6,9 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_app_categories>
 
+      Use this endpoint to retrieve the list of available App Store categories and subcategories. Associate an app with categories using the  endpoint.
+      The first example retrieves the full category and subcategory hierarchy in one request. The second example retrieves just the top-level categories for macOS apps.
+
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter exists: Attributes, relationships, and IDs to check for existence

@@ -1,7 +1,6 @@
 public extension Request {
     /**
       # Add Compatible Versions to a Game Center Enabled Version
-      Add compatible versions to a Game Center enabled version.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/add_compatible_versions_to_a_game_center_enabled_version>

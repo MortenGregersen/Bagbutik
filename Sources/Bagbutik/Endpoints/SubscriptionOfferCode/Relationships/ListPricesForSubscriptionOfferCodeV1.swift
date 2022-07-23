@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscription Offer Code Prices
+      Get a list of price tiers for a subscription offer code.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_offer_code_prices>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

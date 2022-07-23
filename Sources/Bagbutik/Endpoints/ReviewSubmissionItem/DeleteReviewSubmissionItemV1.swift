@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Remove a Review Submission Item
+      Remove a specific item from a review submission.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_reviewsubmissionitems_id>

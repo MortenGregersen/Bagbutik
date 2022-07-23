@@ -1,7 +1,7 @@
 public extension Request {
     /**
       # List App Price Tiers
-      List all app price tiers available in App Store Connect, including related price points.
+      List all app price tiers available in App Store Connect.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_app_price_tiers>

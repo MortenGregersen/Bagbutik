@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete a Treatment for an App Store Version Experiment
+      Delete metadata that you configured for an App Store Version experiment.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appstoreversionexperimenttreatments_id>

@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Custom Product Pages for an App
+      Get a list of all custom product pages for a specific app.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_appcustomproductpages>

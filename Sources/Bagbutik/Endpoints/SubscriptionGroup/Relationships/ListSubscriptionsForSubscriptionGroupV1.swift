@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscriptions for a Subscription Group
+      Get a list of all auto-renewable subscriptions in a subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscriptions_for_a_subscription_group>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

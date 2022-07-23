@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Customer Reviews for an App
+      Get a list of customer reviews for a specific app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
@@ -65,7 +69,6 @@ public enum ListCustomerReviewsForAppV1 {
         /// Filter by attribute 'territory'
         case territory([Territory])
 
-        /// The data structure that represents a Territories resource.
         public enum Territory: String, ParameterValue, CaseIterable {
             case abw = "ABW"
             case afg = "AFG"

@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete an App Event Video Clip
+      Delete a specific video clip from an in-app event.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appeventvideoclips_id>

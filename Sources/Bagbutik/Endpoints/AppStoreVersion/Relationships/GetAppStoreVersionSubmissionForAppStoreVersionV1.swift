@@ -1,7 +1,6 @@
 public extension Request {
     /**
       # Read the App Store Version Submission Information of an App Store Version
-      Get the submission information that is attached to a specific App Store version.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_submission_information_of_an_app_store_version>

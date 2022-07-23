@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # PATCH /v1/reviewSubmissions/{id}
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_reviewsubmissions_id>

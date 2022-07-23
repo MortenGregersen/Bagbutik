@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Localizations for an Auto-Renewable Subscription
+      Get a list of the subscription localizations for a specific auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_localizations_for_an_auto-renewable_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

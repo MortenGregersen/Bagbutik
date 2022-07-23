@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_info>
 
+      Use this endpoint to modify the primary and secondary categories and subcategories for an app.
+
       - Parameter id: The id of the requested resource
       - Parameter requestBody: AppInfo representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`

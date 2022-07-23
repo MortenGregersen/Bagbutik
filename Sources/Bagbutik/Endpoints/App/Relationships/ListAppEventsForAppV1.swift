@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/apps/{id}/appEvents
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_appEvents>

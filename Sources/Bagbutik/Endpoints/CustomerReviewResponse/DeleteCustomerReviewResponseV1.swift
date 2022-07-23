@@ -1,6 +1,12 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete a Response to a Customer Review
+      Delete a specific response you wrote to a customer review.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_response_to_a_customer_review>
+
+      Deletions of responses don’t take effect instantly in the App Store. Allow some time for the deletion to take effect.
 
       - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`

@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Modify an Auto-Renewable Subscription
+      Update a specific auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_auto-renewable_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: Subscription representation

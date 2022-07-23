@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appScreenshotSets
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperimenttreatmentlocalizations_id_appscreenshotsets>
@@ -102,7 +102,6 @@ public enum ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizati
         /// Filter by attribute 'screenshotDisplayType'
         case screenshotDisplayType([ScreenshotDisplayType])
 
-        /// String that represents the display type of an app screenshot.
         public enum ScreenshotDisplayType: String, ParameterValue, CaseIterable {
             case appIphone65 = "APP_IPHONE_65"
             case appIphone58 = "APP_IPHONE_58"

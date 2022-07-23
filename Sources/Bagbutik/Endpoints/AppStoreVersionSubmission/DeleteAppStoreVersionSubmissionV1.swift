@@ -6,6 +6,8 @@ public extension Request {
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_store_version_submission>
 
+      Use this endpoint to remove a version from App Review. This request fails with an appropriate error if the app can't be removed from review. For more information, see [Remove a version from review](https://help.apple.com/app-store-connect/#/dev04f55d711).
+
       - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`
      */

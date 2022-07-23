@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Grace Period Value
+      Get the Boolean value that represents the subscription grace period opt-in state.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_grace_period_value>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

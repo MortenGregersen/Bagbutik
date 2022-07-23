@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete an App Event Localization
+      Delete localized metadata that you configured for an in-app event.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appeventlocalizations_id>

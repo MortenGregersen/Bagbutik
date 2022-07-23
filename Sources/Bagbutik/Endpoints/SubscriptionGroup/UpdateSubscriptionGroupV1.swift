@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Modify a Subscription Group
+      Update the reference name for a specific subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_subscription_group>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: SubscriptionGroup representation

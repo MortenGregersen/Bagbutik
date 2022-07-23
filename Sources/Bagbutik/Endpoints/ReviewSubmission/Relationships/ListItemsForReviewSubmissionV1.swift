@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/reviewSubmissions/{id}/items
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions_id_items>

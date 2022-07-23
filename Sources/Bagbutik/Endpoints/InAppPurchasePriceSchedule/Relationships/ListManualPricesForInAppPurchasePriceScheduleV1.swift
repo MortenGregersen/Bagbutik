@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Price Information for an In-App Purchase Price Schedule
+      Get information about a set price or prices for an in-app purchase price schedule.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_price_information_for_an_in-app_purchase_price_schedule>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

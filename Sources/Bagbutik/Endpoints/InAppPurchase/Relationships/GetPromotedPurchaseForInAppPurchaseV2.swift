@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Promoted Purchase Information for an In-App Purchase
+      Get details about the promoted purchase of an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_promoted_purchase_information_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

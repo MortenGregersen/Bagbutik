@@ -4,7 +4,9 @@ public extension Request {
       Release an approved version of your app to the App Store.
 
       Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/manually_release_an_app_store_approved_version_of_your_app?changes=latest_minor>
+      <https://developer.apple.com/documentation/appstoreconnectapi/manually_release_an_app_store_approved_version_of_your_app>
+
+      When you submit your app for review, if itʼs approved and the status changes to Pending Developer Release, then you can release a version. For more information about app review, see [Submit Your App for Review](https://help.apple.com/app-store-connect/#/dev301cb2b3e). For more information about manually releasing versions, see [Manually Release a Version](https://help.apple.com/app-store-connect/#/devabbb787a6). For more information about app status, see [App Statuses](https://help.apple.com/app-store-connect/#/dev18557d60e).
 
       - Parameter requestBody: AppStoreVersionReleaseRequest representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`

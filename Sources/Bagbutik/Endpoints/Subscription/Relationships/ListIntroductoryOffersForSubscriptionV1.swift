@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Introductory Offers for a Subscription
+      Get a list of introductory offers for a specific auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_introductory_offers_for_a_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

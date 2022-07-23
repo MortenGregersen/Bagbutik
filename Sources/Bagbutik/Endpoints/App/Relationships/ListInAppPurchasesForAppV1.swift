@@ -1,10 +1,10 @@
 public extension Request {
     /**
-      # List All In-App Purchases for an App
+      # List All In-App Purchases for an App V1
       List the in-app purchases that are available for your app.
 
       Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app>
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app_v1>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

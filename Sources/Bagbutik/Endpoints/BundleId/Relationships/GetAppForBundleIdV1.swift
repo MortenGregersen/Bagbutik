@@ -1,7 +1,6 @@
 public extension Request {
     /**
       # Read the App Information of a Bundle ID
-      Get the app information from a specific bundle ID.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_bundle_id>

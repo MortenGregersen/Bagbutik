@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Remove a Promoted Purchase
+      Remove a promotion for an in-app purchase or auto-renewable subscription from the App Store listing.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/remove_a_promoted_purchase>
 
       - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`

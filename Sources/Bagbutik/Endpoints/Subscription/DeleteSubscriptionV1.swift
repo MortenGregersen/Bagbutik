@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete a Subscription
+      Delete a specific auto-renewable subscription that you configured for an app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_subscription>
 
       - Parameter id: The id of the requested resource
       - Returns: A `Request` with to send to an instance of `BagbutikService`

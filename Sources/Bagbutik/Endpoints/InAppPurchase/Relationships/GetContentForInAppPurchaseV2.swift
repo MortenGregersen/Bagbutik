@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Content Information for an In-App Purchase
+      Get the details about hosted content for an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_content_information_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

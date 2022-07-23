@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Create an Introductory Offer
+      Create an introductory offer for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/create_an_introductory_offer>
 
       - Parameter requestBody: SubscriptionIntroductoryOffer representation
       - Returns: A `Request` with to send to an instance of `BagbutikService`

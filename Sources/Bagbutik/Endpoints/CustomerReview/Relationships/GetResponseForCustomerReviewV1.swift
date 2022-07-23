@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Get a Customer Review Response
+      Get the response to a specific customer review.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/get_a_customer_review_response>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

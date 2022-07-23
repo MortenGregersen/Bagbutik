@@ -79,7 +79,6 @@ public enum ListBetaAppReviewSubmissionsV1 {
         /// Filter by id(s) of related 'build'
         case build([String])
 
-        /// String that indicates the review state of a beta app.
         public enum BetaReviewState: String, ParameterValue, CaseIterable {
             case waitingForReview = "WAITING_FOR_REVIEW"
             case inReview = "IN_REVIEW"

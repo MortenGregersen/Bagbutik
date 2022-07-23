@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Promoted Purchases for an App
+      Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promoted_purchases_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

@@ -1,6 +1,7 @@
 public extension Request {
     /**
-      # No overview available
+      # Delete an App Event
+      Delete an in-app event and its related metadata.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appevents_id>

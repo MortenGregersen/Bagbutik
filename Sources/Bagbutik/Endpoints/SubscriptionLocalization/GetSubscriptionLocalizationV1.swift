@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Localization Information
+      Get the specific localized metadata for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_localization_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

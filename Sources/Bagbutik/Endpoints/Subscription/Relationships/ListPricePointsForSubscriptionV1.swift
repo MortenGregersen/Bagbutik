@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Price Points for a Subscription
+      Get a list of price points for an auto-renewable subscription by territory.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_price_points_for_a_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types

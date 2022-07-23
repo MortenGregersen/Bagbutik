@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # POST /v1/reviewSubmissions
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_reviewsubmissions>
