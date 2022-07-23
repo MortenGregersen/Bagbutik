@@ -12,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listMacOsVersionsForCiXcodeVersionV1(id: String,
                                                      fields: [ListMacOsVersionsForCiXcodeVersionV1.Field]? = nil,

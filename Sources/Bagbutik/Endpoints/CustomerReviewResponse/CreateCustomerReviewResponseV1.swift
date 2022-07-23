@@ -10,7 +10,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_or_update_a_response_to_a_customer_review>
 
       - Parameter requestBody: CustomerReviewResponse representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createCustomerReviewResponseV1(requestBody: CustomerReviewResponseV1CreateRequest) -> Request<CustomerReviewResponseV1Response, ErrorResponse> {
         return .init(path: "/v1/customerReviewResponses", method: .post, requestBody: requestBody)

@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaLicenseAgreementsV1(fields: [ListBetaLicenseAgreementsV1.Field]? = nil,
                                             filters: [ListBetaLicenseAgreementsV1.Filter]? = nil,

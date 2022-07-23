@@ -9,7 +9,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionExperimentTreatmentV1(id: String,
                                                         fields: [GetAppStoreVersionExperimentTreatmentV1.Field]? = nil,

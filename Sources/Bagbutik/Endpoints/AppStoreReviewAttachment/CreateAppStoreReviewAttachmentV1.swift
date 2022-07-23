@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_review_attachment>
 
       - Parameter requestBody: AppStoreReviewAttachment representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreReviewAttachmentV1(requestBody: AppStoreReviewAttachmentCreateRequest) -> Request<AppStoreReviewAttachmentResponse, ErrorResponse> {
         return .init(path: "/v1/appStoreReviewAttachments", method: .post, requestBody: requestBody)

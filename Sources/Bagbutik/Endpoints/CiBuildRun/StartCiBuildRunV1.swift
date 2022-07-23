@@ -9,7 +9,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/start_a_build>
 
       - Parameter requestBody: CiBuildRun representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func startCiBuildRunV1(requestBody: CiBuildRunCreateRequest) -> Request<CiBuildRunResponse, ErrorResponse> {
         return .init(path: "/v1/ciBuildRuns", method: .post, requestBody: requestBody)

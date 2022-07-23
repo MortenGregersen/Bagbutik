@@ -9,7 +9,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listReviewSubmissionsV1(fields: [ListReviewSubmissionsV1.Field]? = nil,
                                         filters: [ListReviewSubmissionsV1.Filter]? = nil,

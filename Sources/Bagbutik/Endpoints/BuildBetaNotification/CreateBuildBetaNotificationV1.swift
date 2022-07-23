@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/send_notification_of_an_available_build>
 
       - Parameter requestBody: BuildBetaNotification representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBuildBetaNotificationV1(requestBody: BuildBetaNotificationCreateRequest) -> Request<BuildBetaNotificationResponse, ErrorResponse> {
         return .init(path: "/v1/buildBetaNotifications", method: .post, requestBody: requestBody)

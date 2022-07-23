@@ -9,7 +9,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/download_finance_reports>
 
       - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getFinanceReportsV1(filters: [GetFinanceReportsV1.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
         return .init(path: "/v1/financeReports", method: .get, parameters: .init(filters: filters))

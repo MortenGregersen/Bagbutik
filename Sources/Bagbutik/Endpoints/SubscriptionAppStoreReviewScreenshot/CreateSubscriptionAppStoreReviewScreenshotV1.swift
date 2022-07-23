@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_review_screenshot_for_an_auto-renewable_subscription>
 
       - Parameter requestBody: SubscriptionAppStoreReviewScreenshot representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createSubscriptionAppStoreReviewScreenshotV1(requestBody: SubscriptionAppStoreReviewScreenshotCreateRequest) -> Request<SubscriptionAppStoreReviewScreenshotResponse, ErrorResponse> {
         return .init(path: "/v1/subscriptionAppStoreReviewScreenshots", method: .post, requestBody: requestBody)

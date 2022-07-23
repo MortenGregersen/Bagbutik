@@ -12,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listDiagnosticSignaturesForBuildV1(id: String,
                                                    fields: [ListDiagnosticSignaturesForBuildV1.Field]? = nil,

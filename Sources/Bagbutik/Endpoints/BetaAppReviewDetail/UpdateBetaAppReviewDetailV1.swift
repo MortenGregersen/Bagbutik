@@ -8,7 +8,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: BetaAppReviewDetail representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateBetaAppReviewDetailV1(id: String,
                                             requestBody: BetaAppReviewDetailUpdateRequest) -> Request<BetaAppReviewDetailResponse, ErrorResponse>

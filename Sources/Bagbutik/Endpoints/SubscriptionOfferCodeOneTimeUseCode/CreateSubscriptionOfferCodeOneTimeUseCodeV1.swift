@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_one-time_use_offer_codes>
 
       - Parameter requestBody: SubscriptionOfferCodeOneTimeUseCode representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createSubscriptionOfferCodeOneTimeUseCodeV1(requestBody: SubscriptionOfferCodeOneTimeUseCodeCreateRequest) -> Request<SubscriptionOfferCodeOneTimeUseCodeResponse, ErrorResponse> {
         return .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes", method: .post, requestBody: requestBody)

@@ -8,7 +8,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: AppScreenshot representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAppScreenshotV1(id: String,
                                       requestBody: AppScreenshotUpdateRequest) -> Request<AppScreenshotResponse, ErrorResponse>

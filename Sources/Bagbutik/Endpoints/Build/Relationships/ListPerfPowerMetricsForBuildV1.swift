@@ -10,7 +10,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPerfPowerMetricsForBuildV1(id: String,
                                                filters: [ListPerfPowerMetricsForBuildV1.Filter]? = nil) -> Request<XcodeMetrics, ErrorResponse>

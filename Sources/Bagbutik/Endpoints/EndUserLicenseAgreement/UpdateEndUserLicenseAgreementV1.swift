@@ -12,7 +12,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: EndUserLicenseAgreement representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateEndUserLicenseAgreementV1(id: String,
                                                 requestBody: EndUserLicenseAgreementUpdateRequest) -> Request<EndUserLicenseAgreementResponse, ErrorResponse>

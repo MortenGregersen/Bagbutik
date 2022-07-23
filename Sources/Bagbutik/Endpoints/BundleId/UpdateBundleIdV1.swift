@@ -8,7 +8,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: BundleId representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateBundleIdV1(id: String,
                                  requestBody: BundleIdUpdateRequest) -> Request<BundleIdResponse, ErrorResponse>

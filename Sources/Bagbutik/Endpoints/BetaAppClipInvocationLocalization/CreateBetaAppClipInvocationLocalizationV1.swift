@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_localized_metadata_for_a_beta_app_clip_invocation>
 
       - Parameter requestBody: BetaAppClipInvocationLocalization representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBetaAppClipInvocationLocalizationV1(requestBody: BetaAppClipInvocationLocalizationCreateRequest) -> Request<BetaAppClipInvocationLocalizationResponse, ErrorResponse> {
         return .init(path: "/v1/betaAppClipInvocationLocalizations", method: .post, requestBody: requestBody)

@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_subscription_localization>
 
       - Parameter id: The id of the requested resource
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteSubscriptionLocalizationV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
         return .init(path: "/v1/subscriptionLocalizations/\(id)", method: .delete)

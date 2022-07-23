@@ -78,7 +78,7 @@ public class OperationRenderer: Renderer {
          {% if limits.count > 1 %}
          - Parameter limits: Number of resources to return
          {% endif %}
-         - Returns: A `Request` with to send to an instance of `BagbutikService`
+         - Returns: A ``Request`` to send to an instance of ``BagbutikService``
         */{% if deprecated %}
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future."){% endif %}
         public static func {{ name|lowerFirstLetter }}({{ parameters }}) -> Request<{{ successResponseType }}, {{ errorResponseType }}> {

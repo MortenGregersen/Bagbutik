@@ -11,7 +11,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBundleIdsV1(fields: [ListBundleIdsV1.Field]? = nil,
                                 filters: [ListBundleIdsV1.Filter]? = nil,

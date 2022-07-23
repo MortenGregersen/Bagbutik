@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/get_the_build_id_for_an_app_store_version>
 
       - Parameter id: The id of the requested resource
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildIdsForAppStoreVersionV1(id: String) -> Request<AppStoreVersionBuildLinkageResponse, ErrorResponse> {
         return .init(path: "/v1/appStoreVersions/\(id)/relationships/build", method: .get)

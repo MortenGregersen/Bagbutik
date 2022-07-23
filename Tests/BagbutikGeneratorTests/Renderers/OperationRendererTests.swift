@@ -26,13 +26,13 @@ final class OperationRendererTests: XCTestCase {
               # Documentation title
               Documentation summary
 
+              Documentation discussion
+
               Full documentation:
               <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
         
-              Documentation discussion
-
               - Parameter limit: Maximum resources per page - maximum 200
-              - Returns: A `Request` with to send to an instance of `BagbutikService`
+              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
                 return .init(path: "/users", method: .get, parameters: .init(limit: limit))
@@ -63,7 +63,7 @@ final class OperationRendererTests: XCTestCase {
               <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
 
               - Parameter limit: Maximum resources per page - maximum 200
-              - Returns: A `Request` with to send to an instance of `BagbutikService`
+              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
                 return .init(path: "/users", method: .get, parameters: .init(limit: limit))
@@ -94,7 +94,7 @@ final class OperationRendererTests: XCTestCase {
               <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
 
               - Parameter limit: Maximum resources per page - maximum 200
-              - Returns: A `Request` with to send to an instance of `BagbutikService`
+              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
@@ -136,10 +136,10 @@ final class OperationRendererTests: XCTestCase {
               # Documentation title
               Documentation summary
 
+              Documentation discussion
+
               Full documentation:
               <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
-        
-              Documentation discussion
 
               - Parameter fields: Fields to return for included related types
               - Parameter filters: Attributes, relationships, and IDs by which to filter
@@ -147,7 +147,7 @@ final class OperationRendererTests: XCTestCase {
               - Parameter includes: Relationship data to include in the response
               - Parameter sorts: Attributes by which to sort
               - Parameter limits: Number of resources to return
-              - Returns: A `Request` with to send to an instance of `BagbutikService`
+              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(fields: [ListUsersV1.Field]? = nil,
                                     filters: [ListUsersV1.Filter]? = nil,
@@ -273,14 +273,14 @@ final class OperationRendererTests: XCTestCase {
               # Documentation title
               Documentation summary
 
+              Documentation discussion
+
               Full documentation:
               <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
         
-              Documentation discussion
-
               - Parameter id: Id of the user to update
               - Parameter requestBody: User representation
-              - Returns: A `Request` with to send to an instance of `BagbutikService`
+              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func updateUserV1(id: String,
                                      requestBody: UserUpdateRequest) -> Request<UpdateUserResponse, ErrorResponse>
@@ -366,15 +366,15 @@ final class OperationRendererTests: XCTestCase {
               # Documentation title
               Documentation summary
 
+              Documentation discussion
+
               Full documentation:
               <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
-
-              Documentation discussion
 
               - Parameter id: Id of the user to update
               - Parameter fields: Fields to return for included related types
               - Parameter includes: Relationship data to include in the response
-              - Returns: A `Request` with to send to an instance of `BagbutikService`
+              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func getSubscriptionOfferCodeOneTimeUseCodesV1(id: String,
                                                                   fields: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Field]? = nil,

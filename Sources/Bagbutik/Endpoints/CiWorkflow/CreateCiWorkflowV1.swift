@@ -9,7 +9,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_workflow>
 
       - Parameter requestBody: CiWorkflow representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createCiWorkflowV1(requestBody: CiWorkflowCreateRequest) -> Request<CiWorkflowResponse, ErrorResponse> {
         return .init(path: "/v1/ciWorkflows", method: .post, requestBody: requestBody)

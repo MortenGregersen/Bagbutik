@@ -9,7 +9,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_version>
 
       - Parameter requestBody: AppStoreVersion representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreVersionV1(requestBody: AppStoreVersionCreateRequest) -> Request<AppStoreVersionResponse, ErrorResponse> {
         return .init(path: "/v1/appStoreVersions", method: .post, requestBody: requestBody)

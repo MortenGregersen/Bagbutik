@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_review_screenshot_for_an_auto-renewable_subscription>
 
       - Parameter id: The id of the requested resource
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteSubscriptionAppStoreReviewScreenshotV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
         return .init(path: "/v1/subscriptionAppStoreReviewScreenshots/\(id)", method: .delete)

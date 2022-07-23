@@ -10,7 +10,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_end_user_license_agreement>
 
       - Parameter requestBody: EndUserLicenseAgreement representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createEndUserLicenseAgreementV1(requestBody: EndUserLicenseAgreementCreateRequest) -> Request<EndUserLicenseAgreementResponse, ErrorResponse> {
         return .init(path: "/v1/endUserLicenseAgreements", method: .post, requestBody: requestBody)

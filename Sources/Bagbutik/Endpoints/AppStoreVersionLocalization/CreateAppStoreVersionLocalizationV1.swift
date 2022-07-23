@@ -9,7 +9,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_version_localization>
 
       - Parameter requestBody: AppStoreVersionLocalization representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreVersionLocalizationV1(requestBody: AppStoreVersionLocalizationCreateRequest) -> Request<AppStoreVersionLocalizationResponse, ErrorResponse> {
         return .init(path: "/v1/appStoreVersionLocalizations", method: .post, requestBody: requestBody)

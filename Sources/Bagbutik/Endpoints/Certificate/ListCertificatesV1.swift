@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter sorts: Attributes by which to sort
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCertificatesV1(fields: [ListCertificatesV1.Field]? = nil,
                                    filters: [ListCertificatesV1.Filter]? = nil,

@@ -13,7 +13,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCustomerReviewsForAppStoreVersionV1(id: String,
                                                         fields: [ListCustomerReviewsForAppStoreVersionV1.Field]? = nil,

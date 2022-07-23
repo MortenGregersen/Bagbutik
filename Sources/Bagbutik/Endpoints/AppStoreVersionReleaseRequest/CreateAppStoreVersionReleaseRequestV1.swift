@@ -9,7 +9,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/manually_release_an_app_store_approved_version_of_your_app>
 
       - Parameter requestBody: AppStoreVersionReleaseRequest representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreVersionReleaseRequestV1(requestBody: AppStoreVersionReleaseRequestCreateRequest) -> Request<AppStoreVersionReleaseRequestResponse, ErrorResponse> {
         return .init(path: "/v1/appStoreVersionReleaseRequests", method: .post, requestBody: requestBody)

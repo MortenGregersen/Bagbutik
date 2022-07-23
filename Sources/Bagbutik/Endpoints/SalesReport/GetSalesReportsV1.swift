@@ -10,7 +10,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/download_sales_and_trends_reports>
 
       - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSalesReportsV1(filters: [GetSalesReportsV1.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
         return .init(path: "/v1/salesReports", method: .get, parameters: .init(filters: filters))

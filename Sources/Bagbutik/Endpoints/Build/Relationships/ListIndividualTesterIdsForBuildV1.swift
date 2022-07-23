@@ -8,7 +8,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listIndividualTesterIdsForBuildV1(id: String,
                                                   limit: Int? = nil) -> Request<BuildIndividualTestersLinkagesResponse, ErrorResponse>

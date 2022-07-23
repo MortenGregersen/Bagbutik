@@ -13,7 +13,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: AgeRatingDeclaration representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateAgeRatingDeclarationV1(id: String,
                                              requestBody: AgeRatingDeclarationUpdateRequest) -> Request<AgeRatingDeclarationResponse, ErrorResponse>

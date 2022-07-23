@@ -8,7 +8,7 @@ public extension Request {
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: InAppPurchaseLocalization representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateInAppPurchaseLocalizationV1(id: String,
                                                   requestBody: InAppPurchaseLocalizationUpdateRequest) -> Request<InAppPurchaseLocalizationResponse, ErrorResponse>
