@@ -9,8 +9,7 @@ jobs:
     name: Check for new spec
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.0.0
-    - uses: fwal/setup-swift@v1.14.0 # Until GitHub Actions has Swift >= 5.6 as default
+    - uses: actions/checkout@v3
     - name: Check for new spec
       run: ./check-spec-version.sh
       env:
