@@ -445,7 +445,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "included": .init(type: .arrayOfOneOf(
                     name: "Included",
                     schema: .init(options: [.schemaRef("PrereleaseVersion"),
-                                            .schemaRef("BetaTester")])
+                                            .schemaRef("BetaTester"),
+                                            .objectSchema(.init(name: "App", url: "some://included-url"))])
                 ))
             ]
         )
@@ -536,11 +537,14 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public enum Included: Codable {
+                case app(App)
                 case betaTester(BetaTester)
                 case prereleaseVersion(PrereleaseVersion)
 
                 public init(from decoder: Decoder) throws {
-                    if let betaTester = try? BetaTester(from: decoder) {
+                    if let app = try? App(from: decoder) {
+                        self = .app(app)
+                    } else if let betaTester = try? BetaTester(from: decoder) {
                         self = .betaTester(betaTester)
                     } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                         self = .prereleaseVersion(prereleaseVersion)
@@ -552,6 +556,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
                 public func encode(to encoder: Encoder) throws {
                     switch self {
+                    case let .app(value):
+                        try value.encode(to: encoder)
                     case let .betaTester(value):
                         try value.encode(to: encoder)
                     case let .prereleaseVersion(value):

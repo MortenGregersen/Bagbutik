@@ -161,7 +161,7 @@ public class ObjectSchemaRenderer {
             else if $0.key == "relationships" { return false }
             else if $1.key == "attributes" { return true }
             else if $0.key == "attributes" { return false }
-            else { return $0.key < $1.key }
+            return $0.key < $1.key
         }
         let initParameters = sortedProperties.filter { !$0.value.type.isConstant }
         let codingKeys = sortedProperties.map { PropertyName(idealName: $0.key) }
@@ -276,12 +276,7 @@ public class ObjectSchemaRenderer {
             guard case .constant(let relationshipType) = relationshipDataSchema.properties["type"]?.type,
                   case .arrayOfOneOf(_, let includedOneOf) = includedProperty.type
             else { return nil }
-            let includedSchemaNames = includedOneOf.options.compactMap { option -> String? in
-                if case .schemaRef(let includedSchemaName) = option {
-                    return includedSchemaName
-                }
-                return nil
-            }
+            let includedSchemaNames = includedOneOf.options.map(\.schemaName)
             guard let includedSchemaName = includedSchemaNames.compactMap({ includedSchemaName -> String? in
                 if case .object(let includedSchema) = otherSchemas[includedSchemaName],
                    case .constant(let includedType) = includedSchema.properties["type"]?.type,

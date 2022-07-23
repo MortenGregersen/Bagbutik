@@ -9,7 +9,8 @@ final class OperationRendererTests: XCTestCase {
     func testRenderSimple() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
+                    .init(status: 200, reason: "OK", description: nil)])]
         )
         let renderer = OperationRenderer(docsLoader: docsLoader)
         let parameters: [Parameter] = [
