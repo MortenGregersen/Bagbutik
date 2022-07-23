@@ -52,7 +52,9 @@ public class DocsFetcher {
         let loadSpec: LoadSpec = { fileUrl in
             let specData = try Data(contentsOf: fileUrl)
             var spec = try JSONDecoder().decode(Spec.self, from: specData)
-            try spec.applyAllFixups()
+            spec.addForgottenIncludeParameters()
+            spec.flattenIdenticalSchemas()
+            try spec.applyManualPatches()
             return spec
         }
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })

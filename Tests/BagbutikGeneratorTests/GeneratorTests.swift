@@ -180,7 +180,9 @@ final class GeneratorTests: XCTestCase {
         private(set) var printedLogs = [String]()
         
         func print(string: String) {
-            printedLogs.append(string)
+            DispatchQueue.main.async {
+                self.printedLogs.append(string)
+            }
         }
     }
 }

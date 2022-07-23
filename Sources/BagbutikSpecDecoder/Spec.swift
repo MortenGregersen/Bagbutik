@@ -19,26 +19,12 @@ public struct Spec: Decodable {
     }
 
     /**
-     Apply all known fixups to the spec.
-
-     Right now it does the following:
-     - Adds include parameters which looks like they are forgotten in the spec.
-     - Flatten the schemas used in schemas for create request and update request.
-     - Applies manual patches for types not adhering to the general conventions of the spec.
-     */
-    public mutating func applyAllFixups() throws {
-        addForgottenIncludeParameters()
-        flattenIdenticalSchemas()
-        try applyManualPatches()
-    }
-
-    /**
      Adds include parameters which looks like they are forgotten in the spec.
 
      This is done by adding the name of the properties in the Relationships on the response schema.
      Eg. ListAppInfosForApp doesn't list the different types of categories.
      */
-    internal mutating func addForgottenIncludeParameters() {
+    public mutating func addForgottenIncludeParameters() {
         paths.forEach { (pathKey: String, path: Path) in
             var path = path
             path.operations.forEach { operation in
@@ -76,7 +62,7 @@ public struct Spec: Decodable {
 
      Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
      */
-    internal mutating func flattenIdenticalSchemas() {
+    public mutating func flattenIdenticalSchemas() {
         paths.forEach { (pathKey: String, path: Path) in
             var path = path
             path.operations.forEach { operation in
@@ -137,7 +123,7 @@ public struct Spec: Decodable {
 
      Eg. ErrorResponse has an OneOf with references to ErrorSourcePointer and ErrorSourceParameter, but these schemas have a different title, and have another name when generated.
      */
-    internal mutating func applyManualPatches() throws {
+    public mutating func applyManualPatches() throws {
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
