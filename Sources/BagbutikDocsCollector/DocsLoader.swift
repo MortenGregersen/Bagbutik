@@ -42,7 +42,10 @@ public class DocsLoader {
     }
 
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
-        guard let identifierBySchemaName, let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let identifierBySchemaName = identifierBySchemaName,
+              let schemaDocumentationById = schemaDocumentationById else {
+            throw DocsLoaderError.documentationNotLoaded
+        }
         guard let identifier = identifierBySchemaName[schemaName],
               let documentation = schemaDocumentationById[identifier] else {
             return nil
@@ -51,26 +54,26 @@ public class DocsLoader {
     }
 
     public func resolveDocumentationForSchema(withDocsUrl docsUrl: String) throws -> Documentation? {
-        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let schemaDocumentationById = schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         let identifier = self.createDocumentationId(fromUrl: docsUrl)
         guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }
 
     public func resolveDocumentationForSchema(withId identifier: String) throws -> Documentation? {
-        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let schemaDocumentationById = schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }
 
     public func resolveDocumentationForOperation(withId operationId: String) throws -> OperationDocumentation? {
-        guard let operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let operationDocumentationById = operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = operationDocumentationById[operationId] else { return nil }
         return documentation
     }
 
     public func createUrlForOperation(withId operationId: String) -> String {
-        return "https://developer.apple.com/documentation/appstoreconnectapi/" + OperationMapping.allMappings[operationId]!
+        "https://developer.apple.com/documentation/appstoreconnectapi/" + OperationMapping.allMappings[operationId]!
     }
 
     private func createDocumentationId(fromUrl url: String) -> String {

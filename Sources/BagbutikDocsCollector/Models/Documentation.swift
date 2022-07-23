@@ -79,7 +79,7 @@ public enum Documentation: Codable {
             content?.inlineContent.reduce(into: "") { partialResult, inlineContent in
                 switch inlineContent {
                 case .text(let text):
-                    partialResult.append(text)
+                    partialResult?.append(text)
                 case .reference(let identifier):
                     guard let reference = references?[identifier] else { return }
                     switch reference.role {
@@ -87,9 +87,9 @@ public enum Documentation: Codable {
                         let formattedReference = reference.title
                             .replacingOccurrences(of: ".", with: "/")
                             .capitalizingFirstLetter()
-                        partialResult.append("``\(formattedReference)``")
+                        partialResult?.append("``\(formattedReference)``")
                     case .symbol, .article, .link:
-                        partialResult.append("[\(reference.title)](\(reference.url))")
+                        partialResult?.append("[\(reference.title)](\(reference.url))")
                     case .none:
                         break
                     }
@@ -170,7 +170,7 @@ public enum Documentation: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(Identifier(url: id), forKey: .identifier)
-        if let abstract {
+        if let abstract = abstract {
             try container.encode([Abstract(text: abstract)], forKey: .abstract)
         }
         var contentSections = [ContentSection]()
@@ -213,7 +213,7 @@ public enum Documentation: Codable {
                 return Response(status: response.status, reason: response.reason, content: content)
             }))
         }
-        if let discussion {
+        if let discussion = discussion {
             contentSections.append(.discussion([.init(text: discussion)]))
         }
         try container.encode(contentSections, forKey: .primaryContentSections)
@@ -489,7 +489,7 @@ public enum Documentation: Codable {
             try container.encode(name, forKey: .name)
             try container.encode([type], forKey: .type)
             try container.encode(required, forKey: .required)
-            if let content {
+            if let content = content {
                 try container.encode([content], forKey: .content)
             }
         }
@@ -533,7 +533,7 @@ public enum Documentation: Codable {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(name, forKey: .name)
-            if let content {
+            if let content = content {
                 try container.encode([content], forKey: .content)
             }
         }
@@ -570,7 +570,7 @@ public enum Documentation: Codable {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(status, forKey: .status)
             try container.encode(reason, forKey: .reason)
-            if let content {
+            if let content = content {
                 try container.encode([content], forKey: .content)
             }
         }

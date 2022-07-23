@@ -54,9 +54,9 @@ public class EnumSchemaRenderer: Renderer {
             "discussion": documentation?.discussion ?? "",
             "rawType": enumSchema.type.capitalized,
             "additionalProtocol": additionalProtocol,
-            "cases": enumSchema.cases.map {
-                var enumCase = $0
-                enumCase.documentation = documentation?.cases[$0.value]
+            "cases": enumSchema.cases.map { enumCase -> EnumCase in
+                var enumCase = enumCase
+                enumCase.documentation = documentation?.cases[enumCase.value]
                 return enumCase
             }
         ]
