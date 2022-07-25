@@ -12,31 +12,21 @@ public class PlainTextSchemaRenderer: Renderer {
      - Returns: The rendered plain text schema
      */
     public func render(plainTextSchema: PlainTextSchema) throws -> String {
-        let context = try plainTextSchemaContext(for: plainTextSchema)
-        let rendered = try environment.renderTemplate(string: template, context: context)
+        var rendered = """
+        public struct \(plainTextSchema.name): PlainTextResponse {
+            public let text: String
+
+            public static func from(text: String) -> \(plainTextSchema.name) {
+                return Self.init(text: text)
+            }
+        }
+        
+        """
+        if let url = plainTextSchema.url,
+           case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
+           let abstract = objectDocumentation.abstract {
+            rendered = "/// \(abstract)\n" + rendered
+        }
         return try SwiftFormat.format(rendered)
-    }
-
-    private let template = """
-    {% if documentation %}/// {{ documentation }}
-    {% endif %}public struct {{ name }}: PlainTextResponse {
-        public let text: String
-
-        public static func from(text: String) -> {{ name }} {
-            return Self.init(text: text)
-        }
-    }
-
-    """
-
-    private func plainTextSchemaContext(for plainTextSchema: PlainTextSchema) throws -> [String: Any] {
-        var documentation: ObjectDocumentation?
-        if let url = plainTextSchema.url, case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url) {
-            documentation = objectDocumentation
-        }
-        return [
-            "name": plainTextSchema.name,
-            "documentation": documentation?.abstract ?? ""
-        ]
     }
 }
