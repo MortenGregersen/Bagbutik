@@ -25,7 +25,7 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
         public var type: String { "betaAppLocalizations" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -60,13 +60,15 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationcreaterequest/data/attributes>
+
+         Table 1 lists allowed locale values.
          */
         public struct Attributes: Codable {
             /// A description of your app that highlights features and functionality.
             public var description: String?
             /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
             public var feedbackEmail: String?
-            /// The specified locale. Refer to Table 1 for possible values.
+            /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_app_localizations/betaapplocalizationcreaterequest/data/attributes#3080183) for possible values.
             public let locale: String
             /// A URL with information about your app. This URL is visible to testers in the TestFlight app.
             public var marketingUrl: String?
@@ -98,8 +100,13 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
                 self.app = app
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationcreaterequest/data/relationships/app>
+             */
             public struct App: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {

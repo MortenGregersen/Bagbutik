@@ -9,7 +9,7 @@ import Foundation
 public struct CiTestResultResponse: Codable {
     /// The resource data.
     public let data: CiTestResult
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiTestResult, links: DocumentLinks) {

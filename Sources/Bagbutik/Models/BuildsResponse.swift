@@ -10,7 +10,6 @@ public struct BuildsResponse: Codable, PagedResponse {
     public typealias Data = Build
     /// The resource data.
     public let data: [Build]
-    /// The included related resources.
     public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

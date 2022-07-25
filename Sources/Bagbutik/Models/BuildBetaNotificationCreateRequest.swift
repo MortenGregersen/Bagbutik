@@ -23,7 +23,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "buildBetaNotifications" }
-        /// The relationships to other resources that you can set with this request.
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -62,8 +62,13 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships/build>
+             */
             public struct Build: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -79,7 +84,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
                 public struct Data: Codable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
+                    /// The types and IDs of the related data to update.
                     public var type: String { "builds" }
 
                     public init(id: String) {

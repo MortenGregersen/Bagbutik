@@ -1,12 +1,16 @@
 public extension Request {
     /**
-      # No overview available
+      # Read In-App Purchase Price Schedule Information
+      Get information about a specific scheduled price change for an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_price_schedule_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related manualPrices returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getInAppPurchasePriceScheduleV1(id: String,
                                                 fields: [GetInAppPurchasePriceScheduleV1.Field]? = nil,

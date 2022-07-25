@@ -1,13 +1,17 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Offer Codes for a Subscription
+      Get a list of subscription offer codes for a specific auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_offer_codes_for_a_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listOfferCodesForSubscriptionV1(id: String,
                                                 fields: [ListOfferCodesForSubscriptionV1.Field]? = nil,

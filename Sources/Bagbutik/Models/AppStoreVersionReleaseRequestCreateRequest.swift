@@ -7,7 +7,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest>
  */
 public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
-    /// The resource data.
+    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {
@@ -21,9 +21,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appStoreVersionReleaseRequests" }
-        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -62,8 +60,13 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                 self.appStoreVersion = appStoreVersion
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion>
+             */
             public struct AppStoreVersion: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -77,9 +80,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersions" }
 
                     public init(id: String) {

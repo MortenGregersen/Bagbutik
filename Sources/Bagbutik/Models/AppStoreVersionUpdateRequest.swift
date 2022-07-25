@@ -7,7 +7,6 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest>
  */
 public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -21,14 +20,10 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "appStoreVersions" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var attributes: Attributes?
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -90,6 +85,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related Default App Clip Experiences resource.
             public var appClipDefaultExperience: AppClipDefaultExperience?
             public var build: Build?
 
@@ -98,8 +94,14 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            /**
+             The relationship to the Default App Clip Default Experiences resource you set with the request that updates the App Store Versions resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience>
+             */
             public struct AppClipDefaultExperience: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The ID and type of the related Default App Clip Experiences resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -107,13 +109,13 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
+                 The type and ID of the Default App Clip Experiences resource that you’re relating with the App Store Versions resource you’re updating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "appClipDefaultExperiences" }
@@ -143,8 +145,13 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build>
+             */
             public struct Build: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -158,9 +165,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {

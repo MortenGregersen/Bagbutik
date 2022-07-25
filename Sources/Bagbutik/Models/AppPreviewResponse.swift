@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewresponse>
  */
 public struct AppPreviewResponse: Codable {
-    /// The resource data.
     public let data: AppPreview
-    /// The included related resources.
     public var included: [AppPreviewSet]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppPreview, included: [AppPreviewSet]? = nil, links: DocumentLinks) {

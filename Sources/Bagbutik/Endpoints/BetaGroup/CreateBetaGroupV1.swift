@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_beta_group>
 
       - Parameter requestBody: BetaGroup representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBetaGroupV1(requestBody: BetaGroupCreateRequest) -> Request<BetaGroupResponse, ErrorResponse> {
         return .init(path: "/v1/betaGroups", method: .post, requestBody: requestBody)

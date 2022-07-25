@@ -1,15 +1,15 @@
 import Foundation
 
 /**
- A response body that contains a list of related resource IDs.
+ A response body that contains the ID of a single related resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse>
  */
 public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
-    /// The resource data.
+    /// The object types and IDs of the related resources.
     public let data: Data
-    /// Navigational links that include the self-link.
+    /// Navigational links including the self-link and links to the related data.
     public let links: DocumentLinks
 
     public init(data: Data, links: DocumentLinks) {
@@ -17,8 +17,16 @@ public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
         self.links = links
     }
 
+    /**
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse/data>
+     */
     public struct Data: Codable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appEncryptionDeclarations" }
 
         public init(id: String) {

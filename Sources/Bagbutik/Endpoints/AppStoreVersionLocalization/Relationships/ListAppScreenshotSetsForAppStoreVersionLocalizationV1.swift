@@ -11,7 +11,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppScreenshotSetsForAppStoreVersionLocalizationV1(id: String,
                                                                       fields: [ListAppScreenshotSetsForAppStoreVersionLocalizationV1.Field]? = nil,
@@ -103,7 +103,6 @@ public enum ListAppScreenshotSetsForAppStoreVersionLocalizationV1 {
         /// Filter by attribute 'screenshotDisplayType'
         case screenshotDisplayType([ScreenshotDisplayType])
 
-        /// String that represents the display type of an app screenshot.
         public enum ScreenshotDisplayType: String, ParameterValue, CaseIterable {
             case appIphone65 = "APP_IPHONE_65"
             case appIphone58 = "APP_IPHONE_58"

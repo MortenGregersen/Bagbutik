@@ -14,9 +14,9 @@ public struct BetaAppLocalization: Codable {
     /// The resource type.
     public var type: String { "betaAppLocalizations" }
     /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
     /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -58,13 +58,15 @@ public struct BetaAppLocalization: Codable {
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization/attributes>
+
+     Table 1 lists allowed locale values.
      */
     public struct Attributes: Codable {
         /// A description of your app that highlights features and functionality.
         public var description: String?
         /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.
         public var feedbackEmail: String?
-        /// The specified locale. Refer to Table 1 for possible values.
+        /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_app_localizations/betaapplocalization/attributes#3042220) for possible values.
         public var locale: String?
         /// A URL with information about your app. This URL is visible to testers in the TestFlight app.
         public var marketingUrl: String?
@@ -103,9 +105,7 @@ public struct BetaAppLocalization: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization/relationships/app>
          */
         public struct App: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -156,9 +156,7 @@ public struct BetaAppLocalization: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization/relationships/app/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

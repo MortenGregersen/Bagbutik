@@ -2,13 +2,9 @@ import Foundation
 
 public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
     public typealias Data = ReviewSubmissionItem
-    /// The resource data.
     public let data: [ReviewSubmissionItem]
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [ReviewSubmissionItem], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

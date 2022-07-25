@@ -8,13 +8,9 @@ import Foundation
  */
 public struct AppScreenshotSetsResponse: Codable, PagedResponse {
     public typealias Data = AppScreenshotSet
-    /// The resource data.
     public let data: [AppScreenshotSet]
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppScreenshotSet], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

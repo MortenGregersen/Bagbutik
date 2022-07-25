@@ -1,10 +1,14 @@
 public extension Request {
     /**
-      # No overview available
+      # Modify an Auto-Renewable Subscription
+      Update a specific auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_auto-renewable_subscription>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: Subscription representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateSubscriptionV1(id: String,
                                      requestBody: SubscriptionUpdateRequest) -> Request<SubscriptionResponse, ErrorResponse>

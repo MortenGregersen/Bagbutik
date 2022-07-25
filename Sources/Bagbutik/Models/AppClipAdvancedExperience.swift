@@ -7,16 +7,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience>
  */
 public struct AppClipAdvancedExperience: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experiences resource.
     public let id: String
     /// Navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "appClipAdvancedExperiences" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The attributes that describe the Advanced App Clip Experiences resource.
+    public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -62,7 +62,7 @@ public struct AppClipAdvancedExperience: Codable {
     public struct Attributes: Codable {
         /// The call-to-action verb that appears on the App Clip card.
         public var action: AppClipAction?
-        /// The business category of an advanced App Clip experience; for example, PARKING
+        /// The business category of an advanced App Clip experience; for example, `PARKING`
         public var businessCategory: BusinessCategory?
         /// The default language for the advanced App Clip experience.
         public var defaultLanguage: AppClipAdvancedExperienceLanguage?
@@ -72,11 +72,11 @@ public struct AppClipAdvancedExperience: Codable {
         public var link: String?
         /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from location-based suggestions from Siri Suggestions and the Maps app.
         public var place: Place?
-        /// A string that describes a place’s match status with Points of Interest (POI) in Apple Maps. PENDING indicates that Apple Maps is currently matching the place to a POI. MATCHED indicates that the provided place information matched a POI, and NO_MATCH indicates that the place doesn’t match a POI in Apple Maps or is in a location not supported by Apple Maps.
+        /// A string that describes a place’s match status with Points of Interest (POI) in Apple Maps. `PENDING` indicates that Apple Maps is currently matching the place to a POI. `MATCHED` indicates that the provided place information matched a POI, and `NO_MATCH` indicates that the place doesn’t match a POI in Apple Maps or is in a location not supported by Apple Maps.
         public var placeStatus: PlaceStatus?
-        /// A string that describes the status of an advanced App Clip experience. RECEIVED indicates that users can invoke this experience, DEACTIVATED indicates that the experience is deactivated and users can’t launch the App Clip with this invocation, and APP_TRANSFER_IN_PROGRESS indicates that the experience is part of an app that’s currently transferred to another developer.
+        /// A string that describes the status of an advanced App Clip experience. `RECEIVED` indicates that users can invoke this experience, `DEACTIVATED` indicates that the experience is deactivated and users can’t launch the App Clip with this invocation, and `APP_TRANSFER_IN_PROGRESS` indicates that the experience is part of an app that’s currently transferred to another developer.
         public var status: Status?
-        /// The build version of the App Clip as an integer value; for example, 1234.
+        /// The build version of the App Clip as an integer value; for example, `1234`.
         public var version: Int?
 
         public init(action: AppClipAction? = nil, businessCategory: BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, link: String? = nil, place: Place? = nil, placeStatus: PlaceStatus? = nil, status: Status? = nil, version: Int? = nil) {
@@ -121,15 +121,30 @@ public struct AppClipAdvancedExperience: Codable {
             case transit = "TRANSIT"
         }
 
+        /**
+         The place information of an advanced App Clip experience.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place>
+         */
         public struct Place: Codable {
+            /// A list of categories for a place in Apple Maps you associate with the Advanced App Clip experience.
             public var categories: [String]?
+            /// Coordinates of a place in Apple Maps you associate with an advanced App Clip experience.
             public var displayPoint: DisplayPoint?
+            /// The optional website URL for a place.
             public var homePage: String?
+            /// The main address of a place in Apple Maps. This value is required if you don’t provide coordinates for a place.
             public var mainAddress: MainAddress?
+            /// A string that describes the intent behind an App Clip invocation from location-based suggestions from Siri Suggestions and the Maps app.
             public var mapAction: MapAction?
+            /// An array of names as strings for a place in Apple Maps.
             public var names: [String]?
+            /// The phone number that’s associated with a place in Apple Maps as a string.
             public var phoneNumber: PhoneNumber?
+            /// An opaque ID that uniquely identifies a place. If you previously created a place in Apple Maps for the place you associate with your advanced App Clip experience, use its ID instead of creating a new ID.
             public var placeId: String?
+            /// A navigational link to related data and included resource types and IDs.
             public var relationship: Relationship?
 
             public init(categories: [String]? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: [String]? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
@@ -144,8 +159,16 @@ public struct AppClipAdvancedExperience: Codable {
                 self.relationship = relationship
             }
 
+            /**
+             A point-based representation of a place in Apple Maps.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/displaypoint>
+             */
             public struct DisplayPoint: Codable {
+                /// The GPS coordinates of a place in Apple Maps you associate with the Advanced App Clip experience.
                 public var coordinates: Coordinates?
+                /// A string that describes the means by which you captured the data for a display point.
                 public var source: Source?
 
                 public init(coordinates: Coordinates? = nil, source: Source? = nil) {
@@ -153,8 +176,16 @@ public struct AppClipAdvancedExperience: Codable {
                     self.source = source
                 }
 
+                /**
+                 The coordinates for a point of interest or business in Apple Maps.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/displaypoint/coordinates>
+                 */
                 public struct Coordinates: Codable {
+                    /// A number that represents the latitude of GPS coordinates of a place in Apple Maps.
                     public var latitude: Double?
+                    /// A number that represents the longitude of GPS coordinates of a place in Apple Maps.
                     public var longitude: Double?
 
                     public init(latitude: Double? = nil, longitude: Double? = nil) {
@@ -169,8 +200,16 @@ public struct AppClipAdvancedExperience: Codable {
                 }
             }
 
+            /**
+             The main address for a point of interest or business in Apple Maps.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/mainaddress>
+             */
             public struct MainAddress: Codable {
+                /// The address of a place in Apple Maps as a string.
                 public var fullAddress: String?
+                /// The structured address of a place in Apple Maps.
                 public var structuredAddress: StructuredAddress?
 
                 public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
@@ -178,13 +217,26 @@ public struct AppClipAdvancedExperience: Codable {
                     self.structuredAddress = structuredAddress
                 }
 
+                /**
+                 The structured address information for a point of interest or business in Apple Maps.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/mainaddress/structuredaddress>
+                 */
                 public struct StructuredAddress: Codable {
+                    /// The country code of a place in Apple Maps you associate with the Advanced App Clip experience.
                     public var countryCode: String?
+                    /// The identifier of a floor in a building.
                     public var floor: String?
+                    /// The official locality component of a postal address; for example, a city or town.
                     public var locality: String?
+                    /// The sub-locality component of a postal address; for example, a borough, county, or municipality.
                     public var neighborhood: String?
+                    /// The mail sorting code associated with a postal address.
                     public var postalCode: String?
+                    /// The province component of a postal address; for example, a state or territory.
                     public var stateProvince: String?
+                    /// The officially recognized address used by a postal delivery address. It includes — when applicable — a street name, street suffix, building, house, or suite identifiers.
                     public var streetAddress: [String]?
 
                     public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: [String]? = nil) {
@@ -215,9 +267,18 @@ public struct AppClipAdvancedExperience: Codable {
                 case theaterNowPlaying = "THEATER_NOW_PLAYING"
             }
 
+            /**
+             The phone number of a point of interest or business in Apple Maps.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/attributes/place/phonenumber>
+             */
             public struct PhoneNumber: Codable {
+                /// A string that describes the operational purpose of the phone number; for example `Customer Service` or `Help Desk`
                 public var intent: String?
+                /// The phone number as a string.
                 public var number: String?
+                /// The resource type.
                 public var type: PhoneNumberType?
 
                 public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
@@ -255,14 +316,17 @@ public struct AppClipAdvancedExperience: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships of the Advanced App Clip Experiences resource you included in the request and those on which you can operate.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships>
      */
     public struct Relationships: Codable {
+        /// The related App Clips resource.
         public var appClip: AppClip?
+        /// The related Advanced App Clip Experience Images resource.
         public var headerImage: HeaderImage?
+        /// The related Advanced App Clip Experience Localizations resource.
         public var localizations: Localizations?
 
         public init(appClip: AppClip? = nil, headerImage: HeaderImage? = nil, localizations: Localizations? = nil) {
@@ -272,15 +336,15 @@ public struct AppClipAdvancedExperience: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Advanced App Clip Experiences and the App Clips resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip>
          */
         public struct AppClip: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related App Clips resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -289,13 +353,13 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related App Clips resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related App Clips resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "appClips" }
@@ -325,15 +389,15 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related App Clips resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -361,15 +425,15 @@ public struct AppClipAdvancedExperience: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data and links that describe the relationship between the Advanced App Clip Experiences and the App Clip Header Images resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage>
          */
         public struct HeaderImage: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related App Clip Header Images resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -378,13 +442,13 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Header Images resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Images resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "appClipAdvancedExperienceImages" }
@@ -414,15 +478,15 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related App Clip Header Images resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -450,17 +514,17 @@ public struct AppClipAdvancedExperience: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data, links, and paging information that describe the relationship between the Advanced App Clip Experiences and the Localizations resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations>
          */
         public struct Localizations: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Advanced App Clip Experience Localizations resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -470,13 +534,13 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Localizations resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "appClipAdvancedExperienceLocalizations" }
@@ -506,15 +570,15 @@ public struct AppClipAdvancedExperience: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Advanced App Clip Experience Localizations resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

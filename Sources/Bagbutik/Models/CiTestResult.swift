@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresult>
  */
 public struct CiTestResult: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Test Results resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "ciTestResults" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Test Results resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id
@@ -76,11 +76,22 @@ public struct CiTestResult: Codable {
             self.status = status
         }
 
+        /**
+         The results of a test action Xcode Cloud performed using a specific test destination.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/citestresult/attributes/destinationtestresults>
+         */
         public struct DestinationTestResults: Codable {
+            /// The name of the simulated device used for tests.
             public var deviceName: String?
+            /// The time it took to perform a test on a specific simulated device.
             public var duration: Double?
+            /// The OS version of the simulated device that Xcode Cloud used to run a test.
             public var osVersion: String?
+            /// The status of a test for a specific simulated device.
             public var status: CiTestStatus?
+            /// The unique identifier of a test result for a specific simulated device.
             public var uuid: String?
 
             public init(deviceName: String? = nil, duration: Double? = nil, osVersion: String? = nil, status: CiTestStatus? = nil, uuid: String? = nil) {

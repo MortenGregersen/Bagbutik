@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appEvents/{id}
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appevents_id>
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related localizations returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEventV1(id: String,
                               fields: [GetAppEventV1.Field]? = nil,

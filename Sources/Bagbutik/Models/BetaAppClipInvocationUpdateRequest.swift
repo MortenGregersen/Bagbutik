@@ -21,12 +21,12 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
         public var type: String { "betaAppClipInvocations" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
+        /// The attributes that describe the request that updates a Beta App Clip Invocations resource.
+        public var attributes: Attributes?
 
         public init(id: String, attributes: Attributes? = nil) {
             self.id = id
@@ -56,7 +56,7 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes whose values you're changing as part of the update request.
+         The attributes you set that describe the updated Beta App Clip Invocations resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest/data/attributes>

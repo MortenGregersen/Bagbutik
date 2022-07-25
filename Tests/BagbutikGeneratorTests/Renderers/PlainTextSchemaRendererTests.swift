@@ -1,3 +1,4 @@
+@testable import BagbutikDocsCollector
 @testable import BagbutikGenerator
 @testable import BagbutikSpecDecoder
 import XCTest
@@ -5,10 +6,12 @@ import XCTest
 final class PlainTextSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
-        let renderer = PlainTextSchemaRenderer()
-        let schema = PlainTextSchema(name: "Csv", url: "some://url") { _ in
-            .rootSchema(summary: "Some summary")
-        }
+        let docsLoader = DocsLoader(schemaDocumentationById: [
+            "some://url": .object(
+                .init(id: "/csv", title: "Csv", abstract: "Some summary", discussion: nil, properties: [:], subDocumentationIds: []))
+        ])
+        let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader)
+        let schema = PlainTextSchema(name: "Csv", url: "some://url")
         // When
         let rendered = try renderer.render(plainTextSchema: schema)
         // Then
@@ -27,8 +30,9 @@ final class PlainTextSchemaRendererTests: XCTestCase {
 
     func testRender_NoDocumenation() throws {
         // Given
-        let renderer = PlainTextSchemaRenderer()
-        let schema = PlainTextSchema(name: "Csv", url: "some://url") { _ in nil }
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader)
+        let schema = PlainTextSchema(name: "Csv", url: "some://url")
         // When
         let rendered = try renderer.render(plainTextSchema: schema)
         // Then

@@ -1,7 +1,7 @@
 import Foundation
 
 /**
- A response that contains a single App Prices resource.
+ A response that contains a single App Price resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppriceresponse>
@@ -9,7 +9,7 @@ import Foundation
 public struct AppPriceResponse: Codable {
     /// The resource data.
     public let data: AppPrice
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

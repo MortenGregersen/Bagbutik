@@ -7,7 +7,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkagerequest>
  */
 public struct BuildAppEncryptionDeclarationLinkageRequest: Codable, RequestBody {
-    /// The object types and IDs of the related resources.
+    /// The types and IDs of related resources.
     public let data: Data
 
     public init(data: Data) {

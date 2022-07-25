@@ -10,9 +10,9 @@ public struct CiArtifactsResponse: Codable, PagedResponse {
     public typealias Data = CiArtifact
     /// The resource data.
     public let data: [CiArtifact]
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiArtifact], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

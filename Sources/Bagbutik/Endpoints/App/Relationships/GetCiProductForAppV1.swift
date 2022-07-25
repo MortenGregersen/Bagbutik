@@ -3,6 +3,8 @@ public extension Request {
       # Read the Xcode Cloud Product for an App
       Get the Xcode Cloud product information for an app you build with Xcode Cloud.
 
+      The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_xcode_cloud_product_for_an_app>
 
@@ -10,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related primaryRepositories returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiProductForAppV1(id: String,
                                      fields: [GetCiProductForAppV1.Field]? = nil,

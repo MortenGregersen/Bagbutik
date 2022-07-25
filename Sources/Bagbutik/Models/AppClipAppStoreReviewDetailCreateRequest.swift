@@ -23,9 +23,9 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "appClipAppStoreReviewDetails" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The relationships to other resources that you can set with this request.
+        /// The attributes that describe the request that creates an App Clip App Store Review Details resource.
+        public var attributes: Attributes?
+        /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes? = nil, relationships: Relationships) {
@@ -56,7 +56,7 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes that you set that describe the new resource.
+         The attributes you set that describe the new App Clip App Store Review Details resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest/data/attributes>
@@ -77,14 +77,21 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related Default App Clip Experiences resource.
             public let appClipDefaultExperience: AppClipDefaultExperience
 
             public init(appClipDefaultExperience: AppClipDefaultExperience) {
                 self.appClipDefaultExperience = appClipDefaultExperience
             }
 
+            /**
+             The relationship to the Default App Clip Experiences resource you set with the request that creates an App Clip App Store Review Details resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest/data/relationships/appclipdefaultexperience>
+             */
             public struct AppClipDefaultExperience: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /// The ID and type of the related Default App Clip Experiences resource.
                 public let data: Data
 
                 public init(data: Data) {
@@ -92,13 +99,13 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
+                 The type and ID of the Default App Clip Experiences resource that you’re relating with the App Clip App Store Review Details resource you’re creating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest/data/relationships/appclipdefaultexperience/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "appClipDefaultExperiences" }

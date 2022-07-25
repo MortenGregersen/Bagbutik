@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/assign_the_app_encryption_declaration_for_a_build>
 
       - Parameter id: The id of the requested resource
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEncryptionDeclarationIdsForBuildV1(id: String) -> Request<BuildAppEncryptionDeclarationLinkageResponse, ErrorResponse> {
         return .init(path: "/v1/builds/\(id)/relationships/appEncryptionDeclaration", method: .get)

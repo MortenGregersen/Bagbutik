@@ -4,7 +4,7 @@ import Foundation
  An object that contains the query parameter that produced the error.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/errorsourceparameter/parameter>
+ <https://developer.apple.com/documentation/appstoreconnectapi/parameter>
  */
 public struct Parameter: Codable {
     /// The query parameter that produced the error.

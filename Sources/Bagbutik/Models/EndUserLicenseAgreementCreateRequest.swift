@@ -7,7 +7,6 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest>
  */
 public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -21,11 +20,8 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "endUserLicenseAgreements" }
-        /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -84,8 +80,13 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 self.territories = territories
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/app>
+             */
             public struct App: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -99,9 +100,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/app/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "apps" }
 
                     public init(id: String) {
@@ -129,8 +128,13 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/territories>
+             */
             public struct Territories: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -144,9 +148,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/territories/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "territories" }
 
                     public init(id: String) {

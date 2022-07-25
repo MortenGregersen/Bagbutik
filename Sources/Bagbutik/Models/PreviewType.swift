@@ -1,6 +1,11 @@
 import Foundation
 
-/// String that represents the display type of an app preview.
+/**
+   String that represents the display type of an app preview.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/previewtype>
+ */
 public enum PreviewType: String, Codable, CaseIterable {
     case iPhone65 = "IPHONE_65"
     case iPhone58 = "IPHONE_58"

@@ -7,7 +7,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkagerequest>
  */
 public struct AppStoreVersionAppClipDefaultExperienceLinkageRequest: Codable, RequestBody {
-    /// The object types and IDs of the related resources.
+    /// The types and IDs of related resources.
     public let data: Data
 
     public init(data: Data) {
@@ -21,7 +21,7 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageRequest: Codable, Re
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkagerequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
         public var type: String { "appClipDefaultExperiences" }

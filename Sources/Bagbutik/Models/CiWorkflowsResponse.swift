@@ -10,11 +10,11 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
     public typealias Data = CiWorkflow
     /// The resource data.
     public let data: [CiWorkflow]
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiWorkflow], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

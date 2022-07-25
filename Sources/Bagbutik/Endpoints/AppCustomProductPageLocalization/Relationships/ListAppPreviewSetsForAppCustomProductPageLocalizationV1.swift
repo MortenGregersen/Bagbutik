@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appCustomProductPageLocalizations/{id}/appPreviewSets
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id_apppreviewsets>
@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppPreviewSetsForAppCustomProductPageLocalizationV1(id: String,
                                                                         fields: [ListAppPreviewSetsForAppCustomProductPageLocalizationV1.Field]? = nil,
@@ -103,7 +103,6 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
         /// Filter by attribute 'previewType'
         case previewType([PreviewType])
 
-        /// String that represents the display type of an app preview.
         public enum PreviewType: String, ParameterValue, CaseIterable {
             case iPhone65 = "IPHONE_65"
             case iPhone58 = "IPHONE_58"

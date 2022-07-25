@@ -27,9 +27,9 @@ final class EnumSchemaTests: XCTestCase {
         let enumSchema = try JSONDecoder().decode([String: EnumSchema].self, from: jsonString.data(using: .utf8)!).values.first!
         XCTAssertEqual(enumSchema.type, "string")
         XCTAssertEqual(enumSchema.cases, [
-            EnumCase(id: "iOS", value: "IOS", documentation: "A string that represents iOS."),
-            EnumCase(id: "macOS", value: "MAC_OS", documentation: "A string that represents macOS."),
-            EnumCase(id: "tvOS", value: "TV_OS", documentation: "A string that represents tvOS.")
+            EnumCase(id: "iOS", value: "IOS"),
+            EnumCase(id: "macOS", value: "MAC_OS"),
+            EnumCase(id: "tvOS", value: "TV_OS")
         ])
         XCTAssertEqual(enumSchema.name, "Platform")
     }
@@ -46,8 +46,8 @@ final class EnumSchemaTests: XCTestCase {
         let enumSchema = try JSONDecoder().decode([String: EnumSchema].self, from: jsonString.data(using: .utf8)!).values.first!
         XCTAssertEqual(enumSchema.type, "string")
         XCTAssertEqual(enumSchema.cases, [
-            EnumCase(id: "iOS", value: "IOS", documentation: "A string that represents iOS."),
-            EnumCase(id: "macOS", value: "MAC_OS", documentation: "A string that represents macOS."),
+            EnumCase(id: "iOS", value: "IOS"),
+            EnumCase(id: "macOS", value: "MAC_OS"),
             EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS.")
         ])
         XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
@@ -65,9 +65,9 @@ final class EnumSchemaTests: XCTestCase {
         let enumSchema = try JSONDecoder().decode([String: EnumSchema].self, from: jsonString.data(using: .utf8)!).values.first!
         XCTAssertEqual(enumSchema.type, "string")
         XCTAssertEqual(enumSchema.cases, [
-            EnumCase(id: "iOS", value: "IOS", documentation: "A string that represents iOS."),
-            EnumCase(id: "macOS", value: "MAC_OS", documentation: "A string that represents macOS."),
-            EnumCase(id: "universal", value: "UNIVERSAL", documentation: nil),
+            EnumCase(id: "iOS", value: "IOS"),
+            EnumCase(id: "macOS", value: "MAC_OS"),
+            EnumCase(id: "universal", value: "UNIVERSAL"),
         ])
         XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
     }

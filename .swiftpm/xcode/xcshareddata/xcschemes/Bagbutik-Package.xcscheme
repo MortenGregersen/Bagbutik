@@ -112,6 +112,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikDocsFetcher"
+               BuildableName = "BagbutikDocsFetcher"
+               BlueprintName = "BagbutikDocsFetcher"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BagbutikSpecDecoder"
                BuildableName = "BagbutikSpecDecoder"
                BlueprintName = "BagbutikSpecDecoder"
@@ -171,6 +185,20 @@
                BlueprintIdentifier = "system-zlib"
                BuildableName = "system-zlib"
                BlueprintName = "system-zlib"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BagbutikDocsCollector"
+               BuildableName = "BagbutikDocsCollector"
+               BlueprintName = "BagbutikDocsCollector"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>

@@ -11,16 +11,8 @@ public struct SubscriptionPricesLinkagesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    /**
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesresponse/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "subscriptionPrices" }
 
         public init(id: String) {

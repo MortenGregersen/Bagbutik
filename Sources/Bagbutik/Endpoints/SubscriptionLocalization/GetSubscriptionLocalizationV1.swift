@@ -1,11 +1,15 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Localization Information
+      Get the specific localized metadata for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_localization_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionLocalizationV1(id: String,
                                               fields: [GetSubscriptionLocalizationV1.Field]? = nil,

@@ -12,7 +12,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildsForCiBuildRunV1(id: String,
                                           fields: [ListBuildsForCiBuildRunV1.Field]? = nil,

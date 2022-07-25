@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate>
  */
 public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization Inline Create resource.
     public var id: String?
     /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
-    /// The resource's attributes.
+    /// The attributes that describe the Beta App Clip Invocation Localization Inline Creates resource.
     public let attributes: Attributes
-    /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    /// The navigational links to related data and included resource types and IDs.
+    public var relationships: Relationships?
 
     public init(id: String? = nil, attributes: Attributes, relationships: Relationships? = nil) {
         self.id = id
@@ -54,7 +54,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/attributes>
      */
     public struct Attributes: Codable {
-        /// The specified locale. Refer to BetaAppLocalizationCreateRequest.Data.Attributes for possible values.
+        /// The specified locale. Refer to ``BetaAppLocalizationCreateRequest/Data/Attributes`` for possible values.
         public let locale: String
         /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
         public let title: String
@@ -66,12 +66,13 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
     }
 
     /**
-     The relationships you included in the request and those on which you can operate.
+     The relationships to other resources that you can set when you create a new Beta App Clip Invocation Localization Inline Creates resource.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships>
      */
     public struct Relationships: Codable {
+        /// The related Beta App Clip Invocations resource.
         public var betaAppClipInvocation: BetaAppClipInvocation?
 
         public init(betaAppClipInvocation: BetaAppClipInvocation? = nil) {
@@ -79,13 +80,13 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The relationship to the Beta App Clip Invocations resource you can set when you create a Beta App Clip Invocation Localizations resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation>
          */
         public struct BetaAppClipInvocation: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Beta App Clip Invocations resource.
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -93,13 +94,13 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of the Beta App Clip Invocations resource that you’re relating with the Beta App Clip Invocation Localizations resource you’re creating.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "betaAppClipInvocations" }

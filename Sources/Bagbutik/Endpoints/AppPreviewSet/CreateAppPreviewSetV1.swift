@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_preview_set>
 
       - Parameter requestBody: AppPreviewSet representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppPreviewSetV1(requestBody: AppPreviewSetCreateRequest) -> Request<AppPreviewSetResponse, ErrorResponse> {
         return .init(path: "/v1/appPreviewSets", method: .post, requestBody: requestBody)

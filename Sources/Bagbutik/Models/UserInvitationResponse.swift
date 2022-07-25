@@ -9,7 +9,6 @@ import Foundation
 public struct UserInvitationResponse: Codable {
     /// The resource data.
     public let data: UserInvitation
-    /// The included related resources.
     public var included: [App]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

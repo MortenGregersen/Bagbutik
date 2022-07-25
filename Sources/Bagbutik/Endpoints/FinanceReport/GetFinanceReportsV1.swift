@@ -3,11 +3,13 @@ public extension Request {
       # Download Finance Reports
       Download finance reports filtered by your specified criteria.
 
+      For more information see [Finance reports](https://help.apple.com/app-store-connect/#/dev716cf3a0d).
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/download_finance_reports>
 
       - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getFinanceReportsV1(filters: [GetFinanceReportsV1.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
         return .init(path: "/v1/financeReports", method: .get, parameters: .init(filters: filters))

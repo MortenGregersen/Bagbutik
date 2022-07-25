@@ -7,24 +7,21 @@ public struct BinarySchema: Decodable, Equatable {
     /// An url for the documentation for the object
     public let url: String?
     /// The documentation for the obejct - if any
-    public let documentation: Schema.Documentation?
+    public var documentation: ObjectDocumentation?
     
     private enum CodingKeys: String, CodingKey {
         case type
         case format
     }
     
-    internal init(name: String, url: String?, lookupDocumentation: (String) -> Schema.Documentation?) {
+    internal init(name: String, url: String?) {
         self.name = name
         self.url = url
-        self.documentation = lookupDocumentation(name)
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
-        self.init(name: name,
-                  url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components),
-                  lookupDocumentation: Schema.Documentation.lookupDocumentation)
+        self.init(name: name, url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components))
     }
 }

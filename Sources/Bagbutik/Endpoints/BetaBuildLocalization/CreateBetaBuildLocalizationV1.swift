@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_a_beta_build_localization>
 
       - Parameter requestBody: BetaBuildLocalization representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createBetaBuildLocalizationV1(requestBody: BetaBuildLocalizationCreateRequest) -> Request<BetaBuildLocalizationResponse, ErrorResponse> {
         return .init(path: "/v1/betaBuildLocalizations", method: .post, requestBody: requestBody)

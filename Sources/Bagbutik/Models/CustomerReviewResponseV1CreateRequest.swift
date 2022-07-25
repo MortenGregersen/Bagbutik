@@ -1,6 +1,13 @@
 import Foundation
 
+/**
+ The request body to use to create a response to a customer review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest>
+ */
 public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
+    /// The resource data for your customer review response.
     public let data: Data
 
     public init(data: Data) {
@@ -8,7 +15,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
     }
 
     /**
-     The data element of the request body.
+     The data element of the request body for creating a response to a customer review.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data>
@@ -16,9 +23,9 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "customerReviewResponses" }
-        /// The resource's attributes.
+        /// The attributes of the customer review response, including its text content.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -48,7 +55,14 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
             case relationships
         }
 
+        /**
+         The attributes of the customer review response, including its text content.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// The text of your response to the customer review.
             public let responseBody: String
 
             public init(responseBody: String) {
@@ -57,20 +71,27 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
         }
 
         /**
-         The relationships to other resources that you can set with this request.
+         The data and links that describe the relationship between the resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The customer review related to the response you’re creating.
             public let review: Review
 
             public init(review: Review) {
                 self.review = review
             }
 
+            /**
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships/review>
+             */
             public struct Review: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /// The type and ID of a resource that you’re relating with the resource you’re updating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -78,13 +99,13 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
+                 The type and ID of a resource that you’re relating with the resource you’re updating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships/review/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the `customerReviews` resource that you’re responding to.
                     public let id: String
                     /// The resource type.
                     public var type: String { "customerReviews" }

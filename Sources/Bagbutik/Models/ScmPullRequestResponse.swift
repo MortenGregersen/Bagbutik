@@ -9,9 +9,9 @@ import Foundation
 public struct ScmPullRequestResponse: Codable {
     /// The resource data.
     public let data: ScmPullRequest
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [ScmRepository]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: ScmPullRequest, included: [ScmRepository]? = nil, links: DocumentLinks) {

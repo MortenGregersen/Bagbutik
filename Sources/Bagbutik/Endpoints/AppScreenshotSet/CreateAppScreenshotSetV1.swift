@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_screenshot_set>
 
       - Parameter requestBody: AppScreenshotSet representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppScreenshotSetV1(requestBody: AppScreenshotSetCreateRequest) -> Request<AppScreenshotSetResponse, ErrorResponse> {
         return .init(path: "/v1/appScreenshotSets", method: .post, requestBody: requestBody)

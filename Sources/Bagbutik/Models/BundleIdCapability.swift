@@ -14,7 +14,7 @@ public struct BundleIdCapability: Codable {
     /// The resource type.
     public var type: String { "bundleIdCapabilities" }
     /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # List All Beta Testers in a BetaGroup
+      # List All Beta Testers in a Beta Group
       Get a list of beta testers contained in a specific beta group.
 
       Full documentation:
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaTestersForBetaGroupV1(id: String,
                                               fields: [ListBetaTestersForBetaGroupV1.Field]? = nil,

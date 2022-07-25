@@ -12,7 +12,7 @@ public struct CertificatesResponse: Codable, PagedResponse {
     public let data: [Certificate]
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// Paging information
     public var meta: PagingInformation?
 
     public init(data: [Certificate], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

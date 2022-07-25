@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppEncryptionDeclarationsV1(fields: [ListAppEncryptionDeclarationsV1.Field]? = nil,
                                                 filters: [ListAppEncryptionDeclarationsV1.Filter]? = nil,
@@ -104,13 +104,9 @@ public enum ListAppEncryptionDeclarationsV1 {
         /// Filter by attribute 'platform'
         case platform([Platform])
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
     }

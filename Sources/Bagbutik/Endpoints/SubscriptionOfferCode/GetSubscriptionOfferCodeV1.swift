@@ -1,12 +1,16 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Offer Code Information
+      Get details about a specific subscription offer that has offer codes for an auto-renewable subscription.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_offer_code_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionOfferCodeV1(id: String,
                                            fields: [GetSubscriptionOfferCodeV1.Field]? = nil,

@@ -2,13 +2,9 @@ import Foundation
 
 public struct AppCustomProductPageLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppCustomProductPageLocalization
-    /// The resource data.
     public let data: [AppCustomProductPageLocalization]
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppCustomProductPageLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

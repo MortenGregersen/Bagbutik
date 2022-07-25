@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage>
  */
 public struct AppClipAdvancedExperienceImage: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Images resource.
     public let id: String
     /// Navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "appClipAdvancedExperienceImages" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Advanced App Clip Experience Images resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

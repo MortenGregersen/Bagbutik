@@ -13,8 +13,8 @@ public struct AgeRatingDeclaration: Codable {
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "ageRatingDeclarations" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// Attributes that describe this Age Rating Declarations resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

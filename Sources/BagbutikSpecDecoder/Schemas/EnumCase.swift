@@ -7,7 +7,7 @@ public struct EnumCase: Equatable {
     /// Tells if the case is deprecated
     public let deprecated: Bool
     /// The documentation for the case - if any
-    public let documentation: String?
+    public var documentation: String?
 
     /**
      Initialize a new case

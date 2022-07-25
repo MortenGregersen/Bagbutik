@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>
  */
 public struct AppStoreVersionResponse: Codable {
-    /// The resource data.
     public let data: AppStoreVersion
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppStoreVersion, included: [Included]? = nil, links: DocumentLinks) {

@@ -1,8 +1,15 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import SwiftFormat
 
 /// A renderer which renders plain text schemas
 public class PlainTextSchemaRenderer: Renderer {
+    let docsLoader: DocsLoader
+
+    public init(docsLoader: DocsLoader) {
+        self.docsLoader = docsLoader
+    }
+
     /**
      Render an plain text schema
 
@@ -11,7 +18,7 @@ public class PlainTextSchemaRenderer: Renderer {
      - Returns: The rendered plain text schema
      */
     public func render(plainTextSchema: PlainTextSchema) throws -> String {
-        let context = plainTextSchemaContext(for: plainTextSchema)
+        let context = try plainTextSchemaContext(for: plainTextSchema)
         let rendered = try environment.renderTemplate(string: template, context: context)
         return try SwiftFormat.format(rendered)
     }
@@ -28,7 +35,14 @@ public class PlainTextSchemaRenderer: Renderer {
 
     """
 
-    private func plainTextSchemaContext(for plainTextSchema: PlainTextSchema) -> [String: Any] {
-        ["name": plainTextSchema.name, "documentation": plainTextSchema.documentation?.summary ?? ""]
+    private func plainTextSchemaContext(for plainTextSchema: PlainTextSchema) throws -> [String: Any] {
+        var documentation: ObjectDocumentation?
+        if let url = plainTextSchema.url, case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url) {
+            documentation = objectDocumentation
+        }
+        return [
+            "name": plainTextSchema.name,
+            "documentation": documentation?.abstract ?? ""
+        ]
     }
 }

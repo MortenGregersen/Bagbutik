@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>
  */
 public struct AppClipDomainStatus: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an App Clip Domain Statuses resource.
     public let id: String
     /// Navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "appClipDomainStatuses" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the App Clip Domain Statuses resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id
@@ -64,10 +64,20 @@ public struct AppClipDomainStatus: Codable {
             self.lastUpdatedDate = lastUpdatedDate
         }
 
+        /**
+         Domains you associated with your App Clip.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus/attributes/domains>
+         */
         public struct Domains: Codable {
+            /// A domain you associated with your app or App Clip.
             public var domain: String?
+            /// A string that describes an issue that occurred when App Store Connect tried to validate the status of an associated domain.
             public var errorCode: ErrorCode?
+            /// A Boolean value that indicates whether App Store Connect was able to verify the configuration of the associated domain.
             public var isValid: Bool?
+            /// The date when App Store Connect last verified the status of an associated domain.
             public var lastUpdatedDate: Date?
 
             public init(domain: String? = nil, errorCode: ErrorCode? = nil, isValid: Bool? = nil, lastUpdatedDate: Date? = nil) {

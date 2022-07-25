@@ -21,14 +21,14 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        /// The attributes that describe the request that updates a Default App Clip Experiences resource.
+        public var attributes: Attributes?
+        /// The navigational links to related data and included resource types and IDs.
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -62,7 +62,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes whose values you're changing as part of the update request.
+         The attributes you set that describe the new Default App Clip Experiences resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/attributes>
@@ -77,20 +77,27 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The relationships to other resources that you can set with this request.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related App Store Versions resource.
             public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
             public init(releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
                 self.releaseWithAppStoreVersion = releaseWithAppStoreVersion
             }
 
+            /**
+             The relationship to the App Store Versions resource you set with the request that updates a Default App Clip Experiences resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships/releasewithappstoreversion>
+             */
             public struct ReleaseWithAppStoreVersion: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
+                /// The ID and type of the related App Store Versions resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -98,13 +105,13 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
+                 The type and ID of the App Store Versions resource that you’re relating with the Default App Clip Experiences resource you’re updating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships/releasewithappstoreversion/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related App Store Versions resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "appStoreVersions" }

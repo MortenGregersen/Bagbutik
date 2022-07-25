@@ -3,6 +3,8 @@ public extension Request {
       # Read Xcode Version Information
       Get information about a specific Xcode version that’s available to Xcode Cloud workflows.
 
+      The example request below accesses detailed information for a specific Xcode version available to Xcode Cloud workflows. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard or to read additional information; for example, macOS version information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_version_information>
 
@@ -10,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related macOsVersions returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiXcodeVersionV1(id: String,
                                     fields: [GetCiXcodeVersionV1.Field]? = nil,

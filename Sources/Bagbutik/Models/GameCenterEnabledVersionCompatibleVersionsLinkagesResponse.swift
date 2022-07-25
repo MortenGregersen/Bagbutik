@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesresponse>
  */
 public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codable, PagedResponse {
-    /// The resource data.
     public let data: [Data]
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [Data], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
@@ -27,9 +24,7 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codabl
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesresponse/data>
      */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "gameCenterEnabledVersions" }
 
         public init(id: String) {

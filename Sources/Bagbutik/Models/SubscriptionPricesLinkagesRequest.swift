@@ -7,16 +7,8 @@ public struct SubscriptionPricesLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpriceslinkagesrequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "subscriptionPrices" }
 
         public init(id: String) {

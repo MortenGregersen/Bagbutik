@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointresponse>
  */
 public struct AppPricePointResponse: Codable {
-    /// The resource data.
     public let data: AppPricePoint
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppPricePoint, included: [Included]? = nil, links: DocumentLinks) {

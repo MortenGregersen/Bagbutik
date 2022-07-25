@@ -25,6 +25,20 @@ public enum Schema: Decodable, Equatable {
         }
     }
     
+    /// The documentation URL for the schema
+    public var url: String? {
+        switch self {
+        case .enum(let enumSchema):
+            return enumSchema.url
+        case .object(let objectSchema):
+            return objectSchema.url
+        case .binary(let binarySchema):
+            return binarySchema.url
+        case .plainText(let plainTextSchema):
+            return plainTextSchema.url
+        }
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)

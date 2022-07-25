@@ -1,11 +1,15 @@
 public extension Request {
     /**
-      # No overview available
+      # Read In-App Purchase Localization Information
+      Get the display name and description for a specific locale for an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_localization_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getInAppPurchaseLocalizationV1(id: String,
                                                fields: [GetInAppPurchaseLocalizationV1.Field]? = nil,

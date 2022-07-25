@@ -10,9 +10,9 @@ public struct CiIssuesResponse: Codable, PagedResponse {
     public typealias Data = CiIssue
     /// The resource data.
     public let data: [CiIssue]
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiIssue], links: PagedDocumentLinks, meta: PagingInformation? = nil) {

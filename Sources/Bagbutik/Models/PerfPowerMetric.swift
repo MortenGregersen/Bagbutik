@@ -1,20 +1,16 @@
 import Foundation
 
 /**
- The data structure that represents the Power and Performance Metrics resource.
+ Unused.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric>
  */
 public struct PerfPowerMetric: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public let links: ResourceLinks
-    /// The resource type.
     public var type: String { "perfPowerMetrics" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id
@@ -54,7 +50,9 @@ public struct PerfPowerMetric: Codable {
      <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric/attributes>
      */
     public struct Attributes: Codable {
+        /// A string that represents the device type.
         public var deviceType: String?
+        /// For more information about metric types, see [MetricCategory](https://developer.apple.com/documentation/appstoreconnectapi/metriccategory).
         public var metricType: MetricType?
         public var platform: Platform?
 
@@ -74,9 +72,7 @@ public struct PerfPowerMetric: Codable {
             case termination = "TERMINATION"
         }
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, Codable, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
         }
     }

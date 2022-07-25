@@ -1,11 +1,15 @@
 public extension Request {
     /**
-      # No overview available
+      # Get Promoted Purchase Image Information
+      Get information about a specific image for a promoted in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/get_promoted_purchase_image_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPromotedPurchaseImageV1(id: String,
                                            fields: [GetPromotedPurchaseImageV1.Field]? = nil,

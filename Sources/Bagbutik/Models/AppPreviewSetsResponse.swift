@@ -8,13 +8,9 @@ import Foundation
  */
 public struct AppPreviewSetsResponse: Codable, PagedResponse {
     public typealias Data = AppPreviewSet
-    /// The resource data.
     public let data: [AppPreviewSet]
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppPreviewSet], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

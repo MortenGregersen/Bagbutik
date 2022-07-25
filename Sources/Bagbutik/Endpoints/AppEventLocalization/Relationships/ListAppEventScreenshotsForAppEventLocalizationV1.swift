@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appEventLocalizations/{id}/appEventScreenshots
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventlocalizations_id_appeventscreenshots>
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppEventScreenshotsForAppEventLocalizationV1(id: String,
                                                                  fields: [ListAppEventScreenshotsForAppEventLocalizationV1.Field]? = nil,

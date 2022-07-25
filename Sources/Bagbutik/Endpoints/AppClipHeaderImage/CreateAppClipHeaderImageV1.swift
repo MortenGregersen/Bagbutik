@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_clip_card_image_for_a_default_app_clip_experience>
 
       - Parameter requestBody: AppClipHeaderImage representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppClipHeaderImageV1(requestBody: AppClipHeaderImageCreateRequest) -> Request<AppClipHeaderImageResponse, ErrorResponse> {
         return .init(path: "/v1/appClipHeaderImages", method: .post, requestBody: requestBody)

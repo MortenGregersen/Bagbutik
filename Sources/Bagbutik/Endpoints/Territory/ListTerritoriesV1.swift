@@ -8,7 +8,7 @@ public extension Request {
 
       - Parameter fields: Fields to return for included related types
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listTerritoriesV1(fields: [ListTerritoriesV1.Field]? = nil,
                                   limit: Int? = nil) -> Request<TerritoriesResponse, ErrorResponse>

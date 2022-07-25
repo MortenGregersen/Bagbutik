@@ -11,7 +11,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppPreviewSetsForAppStoreVersionLocalizationV1(id: String,
                                                                    fields: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Field]? = nil,
@@ -104,7 +104,6 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
         /// Filter by attribute 'previewType'
         case previewType([PreviewType])
 
-        /// String that represents the display type of an app preview.
         public enum PreviewType: String, ParameterValue, CaseIterable {
             case iPhone65 = "IPHONE_65"
             case iPhone58 = "IPHONE_58"

@@ -25,7 +25,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
         public var type: String { "betaBuildLocalizations" }
         /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -60,9 +60,11 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/attributes>
+
+         Table 1 lists allowed locale values.
          */
         public struct Attributes: Codable {
-            /// The specified locale. Refer to Table 1 for possible values.
+            /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalizationcreaterequest/data/attributes#3073798) for possible values.
             public let locale: String
             /// A field that describes changes and additions to a build and indicates features you would like your users to test.
             public var whatsNew: String?
@@ -86,8 +88,13 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/relationships/build>
+             */
             public struct Build: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {

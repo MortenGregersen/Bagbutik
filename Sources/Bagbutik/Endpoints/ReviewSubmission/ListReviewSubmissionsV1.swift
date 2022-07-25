@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/reviewSubmissions
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions>
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listReviewSubmissionsV1(fields: [ListReviewSubmissionsV1.Field]? = nil,
                                         filters: [ListReviewSubmissionsV1.Filter]? = nil,
@@ -69,13 +69,9 @@ public enum ListReviewSubmissionsV1 {
         /// Filter by attribute 'state'
         case state([ReviewSubmission.Attributes.State])
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
     }

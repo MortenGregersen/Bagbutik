@@ -9,9 +9,9 @@ import Foundation
 public struct CiProductResponse: Codable {
     /// The resource data.
     public let data: CiProduct
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiProduct, included: [Included]? = nil, links: DocumentLinks) {

@@ -21,11 +21,8 @@ public struct ProfileCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "profiles" }
-        /// The resource's attributes.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -88,8 +85,13 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 self.devices = devices
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/bundleid>
+             */
             public struct BundleId: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {
@@ -103,9 +105,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/bundleid/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "bundleIds" }
 
                     public init(id: String) {
@@ -133,8 +133,13 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/certificates>
+             */
             public struct Certificates: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -148,9 +153,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/certificates/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "certificates" }
 
                     public init(id: String) {
@@ -178,8 +181,13 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/devices>
+             */
             public struct Devices: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -193,9 +201,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/devices/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "devices" }
 
                     public init(id: String) {

@@ -9,7 +9,7 @@ import Foundation
 public struct AppClipHeaderImageResponse: Codable {
     /// The resource data.
     public let data: AppClipHeaderImage
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [AppClipDefaultExperienceLocalization]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

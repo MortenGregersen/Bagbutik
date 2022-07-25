@@ -7,14 +7,10 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/buildicon>
  */
 public struct BuildIcon: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public let links: ResourceLinks
-    /// The resource type.
     public var type: String { "buildIcons" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

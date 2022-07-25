@@ -720,7 +720,7 @@ final class SpecTests: XCTestCase {
         spec.flattenIdenticalSchemas()
         guard case .object(let profileCreateRequest) = spec.components.schemas["ProfileCreateRequest"],
               case .schema(let dataSchema) = profileCreateRequest.properties["data"]?.type,
-              let dataAttributesSchema = dataSchema.subSchemas.compactMap({ $0.asAttributes }).first,
+              case .objectSchema(let dataAttributesSchema) = dataSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
               case .schemaRef(let typeSchemaRef) = dataAttributesSchema.properties["profileType"]?.type
         else {
             XCTFail(); return
@@ -837,13 +837,5 @@ final class SpecTests: XCTestCase {
         XCTAssertThrowsError(try spec.applyManualPatches()) { error in
             XCTAssertEqual(error as! SpecError, .unexpectedErrorResponseSource(spec.components.schemas["ErrorResponse"]))
         }
-    }
-}
-
-private extension SubSchema {
-    /// Match the sub schema as an Attributes schema and return it if it is
-    var asAttributes: ObjectSchema? {
-        guard case .attributes(let attributesSchema) = self else { return nil }
-        return attributesSchema
     }
 }

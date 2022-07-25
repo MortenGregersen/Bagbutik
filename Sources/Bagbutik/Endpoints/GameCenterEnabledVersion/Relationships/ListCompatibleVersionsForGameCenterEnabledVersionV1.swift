@@ -1,7 +1,6 @@
 public extension Request {
     /**
       # List All Compatible Versions for a Game Center Enabled Version
-      Get a list of compatible versions associated with a Game Center enabled version.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_compatible_versions_for_a_game_center_enabled_version>
@@ -12,7 +11,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCompatibleVersionsForGameCenterEnabledVersionV1(id: String,
                                                                     fields: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Field]? = nil,
@@ -102,13 +101,9 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
         /// Filter by attribute 'versionString'
         case versionString([String])
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
     }

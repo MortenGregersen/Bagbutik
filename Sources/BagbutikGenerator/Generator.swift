@@ -1,3 +1,4 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 
@@ -36,6 +37,8 @@ public enum GeneratorError: Error {
         case specFileURL
         /// The URL for the output directory
         case outputDirURL
+        /// The URL for the documentation directory
+        case documentationDirUrl
     }
 }
 
@@ -53,6 +56,7 @@ internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 public class Generator {
     private let loadSpec: LoadSpec
     private let fileManager: GeneratorFileManager
+    private let docsLoader: DocsLoader
     private let print: (String) -> Void
 
     /// Initialize a new generator
@@ -65,12 +69,13 @@ public class Generator {
             try spec.applyManualPatches()
             return spec
         }
-        self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
+        self.init(loadSpec: loadSpec, fileManager: FileManager.default, docsLoader: DocsLoader(), print: { Swift.print($0) })
     }
 
-    internal init(loadSpec: @escaping LoadSpec, fileManager: GeneratorFileManager, print: @escaping (String) -> Void) {
+    internal init(loadSpec: @escaping LoadSpec, fileManager: GeneratorFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
         self.loadSpec = loadSpec
         self.fileManager = fileManager
+        self.docsLoader = docsLoader
         self.print = print
     }
 
@@ -80,78 +85,52 @@ public class Generator {
      - Parameters:
         - specFileURL: The file URL to load the spec from
         - outputDirURL: The file URL for the directory where the generated code should be saved
+        - documentationDirURL: The file URL for the directory containing the fetched documentation
      */
-    public func generateAll(specFileURL: URL, outputDirURL: URL) async throws {
+    public func generateAll(specFileURL: URL, outputDirURL: URL, documentationDirURL: URL) async throws {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
+        guard documentationDirURL.isFileURL else { throw GeneratorError.notFileUrl(.documentationDirUrl) }
         print("🔍 Loading spec \(specFileURL)...")
         let spec = try loadSpec(specFileURL)
 
+        print("🔍 Loading docs \(documentationDirURL)...")
+        try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
+
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
         try removeChildren(at: endpointsDirURL)
-        let endpointsMissingDocumentation: [String] = try await withThrowingTaskGroup(of: [String].self, returning: [String].self) { taskGroup in
+        try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
-                    var endpointsMissingDocumentation = [String]()
                     let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
                     try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
-                    try Self.generateEndpoints(for: path).forEach { endpoint in
+                    try Self.generateEndpoints(for: path, docsLoader: self.docsLoader).forEach { endpoint in
                         let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
                         self.print("⚡️ Generating endpoint \(endpoint.fileName)...")
                         guard self.fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
                             throw GeneratorError.couldNotCreateFile(endpoint.fileName)
                         }
-                        if !endpoint.hasDocumentation {
-                            endpointsMissingDocumentation.append(endpoint.name)
-                        }
                     }
-                    return endpointsMissingDocumentation
                 }
             }
-            var endpointsMissingDocumentation = [String]()
-            for try await value in taskGroup {
-                endpointsMissingDocumentation += value
-            }
-            return endpointsMissingDocumentation
+            for try await _ in taskGroup {}
         }
 
         let modelsDirURL = outputDirURL.appendingPathComponent("Models")
         try removeChildren(at: modelsDirURL)
-        let modelsMissingDocumentation: [(name: String, url: String?)] = try await withThrowingTaskGroup(of: (name: String, url: String?)?.self) { taskGroup in
+        try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
-                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas)
+                    self.print("⚡️ Generating model \(schema.name)...")
+                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
                     let fileURL = modelsDirURL.appendingPathComponent(fileName)
-                    self.print("⚡️ Generating model \(model.name)...")
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
                         throw GeneratorError.couldNotCreateFile(fileName)
                     }
-                    if !model.hasDocumentation {
-                        return (name: model.name, url: model.url)
-                    }
-                    return nil
                 }
             }
-            var modelsMissingDocumentation = [(name: String, url: String?)]()
-            for try await value in taskGroup {
-                if let value = value {
-                    modelsMissingDocumentation.append(value)
-                }
-            }
-            return modelsMissingDocumentation
-        }
-
-        endpointsMissingDocumentation.sorted().forEach { endpointName in
-            // Remember to change check-spec-version script if the wording here is changed.
-            print("⚠️ Documentation missing for endpoint: '\(endpointName)'")
-        }
-
-        modelsMissingDocumentation.sorted(by: { $0.name < $1.name }).forEach { model in
-            // Remember to change check-spec-version script if the wording here is changed.
-            var log = "⚠️ Documentation missing for model: '\(model.name)'"
-            if let url = model.url { log += " (\(url))" }
-            print(log)
+            for try await _ in taskGroup {}
         }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
@@ -170,42 +149,37 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateEndpoints(for path: Path) throws -> [(name: String, fileName: String, contents: String, hasDocumentation: Bool)] {
+    private static func generateEndpoints(for path: Path, docsLoader: DocsLoader) throws -> [(name: String, fileName: String, contents: String)] {
         try path.operations.map { operation in
             let name = operation.name.capitalizingFirstLetter()
             let fileName = "\(name)\(path.info.version).swift"
-            let renderedOperation = try OperationRenderer().render(operation: operation, in: path)
-            return (name: name, fileName: fileName, contents: renderedOperation, hasDocumentation: operation.documentation != nil)
+            let renderedOperation = try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)
+            return (name: name, fileName: fileName, contents: renderedOperation)
         }
     }
 
-    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema]) throws -> (name: String, contents: String, hasDocumentation: Bool, url: String?) {
+    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+        throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
-        let hasDocumentation: Bool
-        let url: String?
         switch schema {
         case .enum(let enumSchema):
-            renderedSchema = try EnumSchemaRenderer().render(enumSchema: enumSchema)
-            hasDocumentation = enumSchema.documentation != nil
-            url = enumSchema.url
+            renderedSchema = try EnumSchemaRenderer(docsLoader: docsLoader)
+                .render(enumSchema: enumSchema)
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer().render(objectSchema: objectSchema, otherSchemas: otherSchemas)
-            hasDocumentation = objectSchema.documentation != nil
-            url = objectSchema.url
+            renderedSchema = try ObjectSchemaRenderer(docsLoader: docsLoader)
+                .render(objectSchema: objectSchema, otherSchemas: otherSchemas)
         case .binary(let binarySchema):
-            renderedSchema = try BinarySchemaRenderer().render(binarySchema: binarySchema)
-            hasDocumentation = binarySchema.documentation != nil
-            url = binarySchema.url
+            renderedSchema = try BinarySchemaRenderer(docsLoader: docsLoader)
+                .render(binarySchema: binarySchema)
         case .plainText(let plainTextSchema):
-            renderedSchema = try PlainTextSchemaRenderer().render(plainTextSchema: plainTextSchema)
-            hasDocumentation = plainTextSchema.documentation != nil
-            url = plainTextSchema.url
+            renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
+                .render(plainTextSchema: plainTextSchema)
         }
         let contents = """
         import Foundation
 
         \(renderedSchema)
         """
-        return (name: schema.name, contents: contents, hasDocumentation: hasDocumentation, url: url)
+        return (name: schema.name, contents: contents, url: schema.url)
     }
 }

@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetresponse>
  */
 public struct AppScreenshotSetResponse: Codable {
-    /// The resource data.
     public let data: AppScreenshotSet
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppScreenshotSet, included: [Included]? = nil, links: DocumentLinks) {

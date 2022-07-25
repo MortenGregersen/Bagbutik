@@ -1,3 +1,4 @@
+@testable import BagbutikDocsCollector
 @testable import BagbutikGenerator
 @testable import BagbutikSpecDecoder
 import XCTest
@@ -5,7 +6,10 @@ import XCTest
 final class ObjectSchemaRendererTests: XCTestCase {
     func testRenderPlain() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: ["/person": .object(
+            .init(id: "/person", title: "Person", abstract: nil, discussion: nil, properties: [:], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
@@ -26,11 +30,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderPlainDocumented() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: "What is a person?", properties: ["name": .init(required: false, description: "The person's name")], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name.",
-                                                             properties: ["name": "The person's name"]),
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
@@ -41,6 +46,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
          Full documentation:
          <some://url>
+
+         What is a person?
          */
         public struct Person: Codable {
             /// The person's name
@@ -56,12 +63,15 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderPlainDocumentedDeprecated() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
+                "age": .init(required: false, description: "The person's age"),
+                "name": .init(required: false, description: "The person's name")
+            ], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name.",
-                                                             properties: ["name": "The person's name",
-                                                                          "age": "The person's age"]),
                                   properties: ["name": .init(type: .simple(.string), deprecated: true),
                                                "age": .init(type: .simple(.integer), deprecated: false)])
         // When
@@ -97,11 +107,14 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderRequest() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/personcreaterequest", title: "PersonCreateRequest", abstract: "The data for a request to create a person.", discussion: nil, properties: [
+                "name": .init(required: false, description: "The person's name")
+            ], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "PersonCreateRequest",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "The data for a request to create a person.",
-                                                             properties: ["name": "The person's name"]),
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
@@ -127,14 +140,17 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderSpecialPropertyTypes() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
+                "id": .init(required: true, description: "The unique id for the person"),
+                "firstName": .init(required: true, description: "The firstname of the person"),
+                "lastName": .init(required: false, description: ""),
+                "self": .init(required: false, description: "A reference to the person")
+            ], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name.",
-                                                             properties: ["firstName": "The firstname of the person",
-                                                                          "lastName": "The lastname of the person",
-                                                                          "self": "A reference to the person",
-                                                                          "id": "The unique id for the person"]),
                                   properties: ["firstName": .init(type: .simple(.init(type: "string"))),
                                                "lastName": .init(type: .simple(.init(type: "string"))),
                                                "self": .init(type: .simple(.init(type: "string"))),
@@ -155,7 +171,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public let firstName: String
             /// The unique id for the person
             public var id: String { "person" }
-            /// The lastname of the person
             public var lastName: String?
             /// A reference to the person
             public var itself: String?
@@ -195,15 +210,21 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderWithAttributes() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
+                "attributes": .init(required: true, description: "The resource's attributes."),
+            ], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let attributesSchema = ObjectSchema(name: "Attributes",
-                                            url: "some://url",
+                                            url: "some://url/attributes",
                                             properties: ["age": .init(type: .simple(.init(type: "integer")))])
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name."),
-                                  properties: ["name": .init(type: .simple(.init(type: "string")))],
-                                  attributesSchema: .attributes(attributesSchema))
+                                  properties: [
+                                      "name": .init(type: .simple(.init(type: "string"))),
+                                      "attributes": .init(type: .schema(attributesSchema))
+                                  ])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
@@ -217,7 +238,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         public struct Person: Codable {
             public var name: String?
             /// The resource's attributes.
-            public let attributes: Attributes?
+            public var attributes: Attributes?
 
             public init(name: String? = nil, attributes: Attributes? = nil) {
                 self.name = name
@@ -238,16 +259,24 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderWithRelationships() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [
+            "some://url": .object(
+                .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
+                    "relationships": .init(required: true, description: "The resource's relationships."),
+                ], subDocumentationIds: [])),
+            "some://url/relationships": .object(
+                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
+        ])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let relationshipsSchema = ObjectSchema(name: "Relationships",
-                                               url: "some://url",
-                                               documentation: .relationships,
+                                               url: "some://url/relationships",
                                                properties: ["children": .init(type: .arrayOfSchemaRef("Child"))])
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name."),
-                                  properties: ["name": .init(type: .simple(.init(type: "string")))],
-                                  relationshipsSchema: .relationships(relationshipsSchema))
+                                  properties: [
+                                      "name": .init(type: .simple(.init(type: "string"))),
+                                      "relationships": .init(type: .schema(relationshipsSchema))
+                                  ])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
@@ -260,8 +289,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
          */
         public struct Person: Codable {
             public var name: String?
-            /// Navigational links to related data and included resource types and IDs.
-            public let relationships: Relationships?
+            /// The resource's relationships.
+            public var relationships: Relationships?
 
             public init(name: String? = nil, relationships: Relationships? = nil) {
                 self.name = name
@@ -272,7 +301,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              The relationships you included in the request and those on which you can operate.
 
              Full documentation:
-             <some://url>
+             <some://url/relationships>
              */
             public struct Relationships: Codable {
                 public var children: [Child]?
@@ -288,16 +317,20 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderSubSchemas() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [
+            "some://url": .object(
+                .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
+                    "name": .init(required: false, description: "The person's name"),
+                    "pet": .init(required: false, description: "The person's pet"),
+                    "preference": .init(required: false, description: "The person's indentation preference"),
+                    "connection": .init(required: false, description: "The person's connection")
+                ], subDocumentationIds: []))
+        ])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name.",
-                                                             properties: ["name": "The person's name",
-                                                                          "pet": "The person's pet",
-                                                                          "preference": "The person's indentation preference",
-                                                                          "connection": "The person's connection"]),
                                   properties: ["name": .init(type: .simple(.init(type: "string"))),
-                                               "pet": .init(type: .schema(.init(name: "Pet", url: "some://url", properties: ["name": .init(type: .simple(.init(type: "string")))]))),
+                                               "pet": .init(type: .schema(.init(name: "Pet", url: "some://url/pet", properties: ["name": .init(type: .simple(.init(type: "string")))]))),
                                                "preference": .init(type: .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"]))),
                                                "connection": .init(type: .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])))])
         // When
@@ -375,7 +408,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testPagedResponse() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(name: "PersonsResponse",
                                   url: "some://url",
                                   properties: ["data": .init(type: .arrayOfSchemaRef("Person")),
@@ -401,7 +435,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testGetterForIncludedNonPagedResponse() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(
             name: "BuildResponse",
             url: "some://url",
@@ -410,14 +445,15 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "included": .init(type: .arrayOfOneOf(
                     name: "Included",
                     schema: .init(options: [.schemaRef("PrereleaseVersion"),
-                                            .schemaRef("BetaTester")])
+                                            .schemaRef("BetaTester"),
+                                            .objectSchema(.init(name: "App", url: "some://included-url"))])
                 ))
             ]
         )
         let buildSchema = ObjectSchema(
             name: "Build",
             url: "some://url",
-            relationshipsSchema: .relationships(.init(
+            properties: ["relationships": .init(type: .schema(.init(
                 name: "Relationships",
                 url: "some://url",
                 properties: [
@@ -452,7 +488,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         requiredProperties: ["id", "type"]
                     )))
                 ]
-            ))
+            )))]
         )
         let prereleaseVersionSchema = ObjectSchema(
             name: "PrereleaseVersion",
@@ -501,11 +537,14 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public enum Included: Codable {
+                case app(App)
                 case betaTester(BetaTester)
                 case prereleaseVersion(PrereleaseVersion)
 
                 public init(from decoder: Decoder) throws {
-                    if let betaTester = try? BetaTester(from: decoder) {
+                    if let app = try? App(from: decoder) {
+                        self = .app(app)
+                    } else if let betaTester = try? BetaTester(from: decoder) {
                         self = .betaTester(betaTester)
                     } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
                         self = .prereleaseVersion(prereleaseVersion)
@@ -517,6 +556,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
                 public func encode(to encoder: Encoder) throws {
                     switch self {
+                    case let .app(value):
+                        try value.encode(to: encoder)
                     case let .betaTester(value):
                         try value.encode(to: encoder)
                     case let .prereleaseVersion(value):
@@ -535,7 +576,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testGetterForIncludedPagedResponse() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let schema = ObjectSchema(
             name: "BuildsResponse",
             url: "some://url",
@@ -552,7 +594,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let buildSchema = ObjectSchema(
             name: "Build",
             url: "some://url",
-            relationshipsSchema: .relationships(.init(
+            properties: ["relationships": .init(type: .schema(.init(
                 name: "Relationships",
                 url: "some://url",
                 properties: [
@@ -602,7 +644,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         requiredProperties: ["id", "type"]
                     )))
                 ]
-            ))
+            )))]
         )
         let somethingOldSchema = ObjectSchema(
             name: "SomethingOld",
@@ -697,25 +739,29 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
     func testRenderCustomCoding() throws {
         // Given
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [
+            "some://url": .object(
+                .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [:], subDocumentationIds: [])),
+            "some://url/attributes": .object(
+                .init(id: "/person/attributes", title: "Attributes", abstract: "Attributes for a Person", discussion: nil, properties: ["age": .init(required: false, description: "The person's age")], subDocumentationIds: [])),
+            "some://url/relationships": .object(
+                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
+        ])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         let attributesSchema = ObjectSchema(name: "Attributes",
-                                            url: "some://url",
-                                            documentation: .attributes(.init(summary: "Attributes for a Person",
-                                                                             properties: ["age": "The person's age"])),
+                                            url: "some://url/attributes",
                                             properties: ["age": .init(type: .simple(.init(type: "integer")))])
         let relationshipsSchema = ObjectSchema(name: "Relationships",
-                                               url: "some://url",
-                                               documentation: .relationships,
+                                               url: "some://url/relationships",
                                                properties: ["children": .init(type: .arrayOfSchemaRef("Child"))])
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  documentation: .rootSchema(summary: "A person with a name."),
                                   properties: ["name": .init(type: .simple(.init(type: "string"))),
                                                "age": .init(type: .simple(.init(type: "integer"))),
-                                               "type": .init(type: .constant("person"))],
-                                  requiredProperties: ["name", "attributes"],
-                                  attributesSchema: .attributes(attributesSchema),
-                                  relationshipsSchema: .relationships(relationshipsSchema))
+                                               "type": .init(type: .constant("person")),
+                                               "attributes": .init(type: .schema(attributesSchema)),
+                                               "relationships": .init(type: .schema(relationshipsSchema))],
+                                  requiredProperties: ["name", "attributes"])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
@@ -729,12 +775,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
         public struct Person: Codable {
             public var age: Int?
             public let name: String
-            /// The resource type.
             public var type: String { "person" }
-            /// The resource's attributes.
             public let attributes: Attributes
-            /// Navigational links to related data and included resource types and IDs.
-            public let relationships: Relationships?
+            public var relationships: Relationships?
 
             public init(age: Int? = nil, name: String, attributes: Attributes, relationships: Relationships? = nil) {
                 self.age = age
@@ -775,7 +818,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              Attributes for a Person
 
              Full documentation:
-             <some://url>
+             <some://url/attributes>
              */
             public struct Attributes: Codable {
                 /// The person's age
@@ -790,7 +833,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              The relationships you included in the request and those on which you can operate.
 
              Full documentation:
-             <some://url>
+             <some://url/relationships>
              */
             public struct Relationships: Codable {
                 public var children: [Child]?
@@ -805,6 +848,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     }
 
     func testRenderWithCustomTypeProperty() throws {
+        // Given
         let json = """
         {
             "phoneNumber" : {
@@ -825,7 +869,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         }
         """
         let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["phoneNumber"]!
-        let renderer = ObjectSchemaRenderer()
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then

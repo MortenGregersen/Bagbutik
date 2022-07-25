@@ -1,12 +1,16 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Localizations for an In-App Purchase
+      Get a list of localized display names and descriptions for a specific in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_localizations_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listInAppPurchaseLocalizationsForInAppPurchaseV2(id: String,
                                                                  fields: [ListInAppPurchaseLocalizationsForInAppPurchaseV2.Field]? = nil,

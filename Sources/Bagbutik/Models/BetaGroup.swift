@@ -14,9 +14,9 @@ public struct BetaGroup: Codable {
     /// The resource type.
     public var type: String { "betaGroups" }
     /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
     /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -119,9 +119,7 @@ public struct BetaGroup: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/app>
          */
         public struct App: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -172,9 +170,7 @@ public struct BetaGroup: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/app/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -208,11 +204,8 @@ public struct BetaGroup: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/betatesters>
          */
         public struct BetaTesters: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -264,9 +257,7 @@ public struct BetaGroup: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/betatesters/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -300,11 +291,8 @@ public struct BetaGroup: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/builds>
          */
         public struct Builds: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -356,9 +344,7 @@ public struct BetaGroup: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/builds/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

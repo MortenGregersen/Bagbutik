@@ -8,10 +8,6 @@ public indirect enum SubSchema: Equatable {
     case enumSchema(EnumSchema)
     /// An one of schema
     case oneOf(name: String, schema: OneOfSchema)
-    /// An attributes schema
-    case attributes(ObjectSchema)
-    /// A relationships schema
-    case relationships(ObjectSchema)
     
     /// The name of the schema
     public var name: String {
@@ -22,10 +18,6 @@ public indirect enum SubSchema: Equatable {
             return enumSchema.name
         case .oneOf(let name, _):
             return name
-        case .attributes:
-            return "Attributes"
-        case .relationships:
-            return "Relationships"
         }
     }
 }

@@ -21,9 +21,7 @@ public struct DeviceCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "devices" }
-        /// The resource's attributes.
         public let attributes: Attributes
 
         public init(attributes: Attributes) {

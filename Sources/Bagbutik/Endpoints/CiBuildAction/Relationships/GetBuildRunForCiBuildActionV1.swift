@@ -3,6 +3,8 @@ public extension Request {
       # Read the Xcode Cloud Build Information for a Build Action
       Get Xcode Cloud build information for a given build action.
 
+      The example request below retrieves detailed information for a specific action Xcode Cloud performed. Use the data provided in the response to display detailed build information on a dashboard or to access related information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_xcode_cloud_build_information_for_a_build_action>
 
@@ -10,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related builds returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildRunForCiBuildActionV1(id: String,
                                               fields: [GetBuildRunForCiBuildActionV1.Field]? = nil,

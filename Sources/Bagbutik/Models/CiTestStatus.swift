@@ -1,6 +1,11 @@
 import Foundation
 
-/// A string that represents test status information.
+/**
+   A string that represents test status information.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/citeststatus>
+ */
 public enum CiTestStatus: String, Codable, CaseIterable {
     /// The tests passed.
     case success = "SUCCESS"
@@ -10,6 +15,6 @@ public enum CiTestStatus: String, Codable, CaseIterable {
     case mixed = "MIXED"
     /// Xcode Cloud skipped some tests.
     case skipped = "SKIPPED"
-    /// Tests failed that you marked as expected to fail with [XCTExpectFailure](https://developer.apple.com/documentation/xctest/3726077-xctexpectfailure).
+    /// Tests failed that you marked as expected to fail with [XCTExpectFailure](https://developer.apple.com/documentation/xctest/3726077-xctexpectfailure).
     case expectedFailure = "EXPECTED_FAILURE"
 }

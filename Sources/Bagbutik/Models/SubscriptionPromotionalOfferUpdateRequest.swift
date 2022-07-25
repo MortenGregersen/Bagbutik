@@ -9,19 +9,10 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionalofferupdaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "subscriptionPromotionalOffers" }
-        /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var relationships: Relationships?
 
         public init(id: String, relationships: Relationships? = nil) {
             self.id = id
@@ -50,12 +41,6 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
             case relationships
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionalofferupdaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public var prices: Prices?
 
@@ -64,23 +49,14 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
             }
 
             public struct Prices: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionpromotionalofferupdaterequest/data/relationships/prices/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptionPromotionalOfferPrices" }
 
                     public init(id: String) {

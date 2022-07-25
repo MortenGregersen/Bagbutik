@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
  */
 public struct CiArtifact: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies an Artifacts resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "ciArtifacts" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Artifacts resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

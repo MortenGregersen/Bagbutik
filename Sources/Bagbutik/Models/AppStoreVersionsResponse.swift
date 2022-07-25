@@ -8,13 +8,9 @@ import Foundation
  */
 public struct AppStoreVersionsResponse: Codable, PagedResponse {
     public typealias Data = AppStoreVersion
-    /// The resource data.
     public let data: [AppStoreVersion]
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppStoreVersion], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

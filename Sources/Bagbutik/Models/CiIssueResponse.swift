@@ -9,7 +9,7 @@ import Foundation
 public struct CiIssueResponse: Codable {
     /// The resource data.
     public let data: CiIssue
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiIssue, links: DocumentLinks) {

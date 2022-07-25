@@ -4,8 +4,7 @@ public struct SubscriptionGracePeriod: Codable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptionGracePeriods" }
-    ///
-    public let attributes: Attributes?
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

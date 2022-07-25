@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovider>
  */
 public struct ScmProvider: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Providers resource.
     public let id: String
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "scmProviders" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Providers resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

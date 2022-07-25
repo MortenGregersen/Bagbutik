@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/reviewSubmissions/{id}
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions_id>
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related items returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getReviewSubmissionV1(id: String,
                                       fields: [GetReviewSubmissionV1.Field]? = nil,

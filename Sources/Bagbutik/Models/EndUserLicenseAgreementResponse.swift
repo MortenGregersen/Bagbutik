@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>
  */
 public struct EndUserLicenseAgreementResponse: Codable {
-    /// The resource data.
     public let data: EndUserLicenseAgreement
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: EndUserLicenseAgreement, included: [Included]? = nil, links: DocumentLinks) {

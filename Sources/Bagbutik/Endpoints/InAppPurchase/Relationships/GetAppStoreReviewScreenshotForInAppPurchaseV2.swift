@@ -1,11 +1,15 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Review Screenshot Information for an In-App Purchase
+      Get information about a review screenshot for a specific in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_review_screenshot_information_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreReviewScreenshotForInAppPurchaseV2(id: String,
                                                               fields: [GetAppStoreReviewScreenshotForInAppPurchaseV2.Field]? = nil,

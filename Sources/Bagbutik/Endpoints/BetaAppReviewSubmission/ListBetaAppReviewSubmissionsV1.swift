@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaAppReviewSubmissionsV1(fields: [ListBetaAppReviewSubmissionsV1.Field]? = nil,
                                                filters: [ListBetaAppReviewSubmissionsV1.Filter]? = nil,
@@ -79,7 +79,6 @@ public enum ListBetaAppReviewSubmissionsV1 {
         /// Filter by id(s) of related 'build'
         case build([String])
 
-        /// String that indicates the review state of a beta app.
         public enum BetaReviewState: String, ParameterValue, CaseIterable {
             case waitingForReview = "WAITING_FOR_REVIEW"
             case inReview = "IN_REVIEW"

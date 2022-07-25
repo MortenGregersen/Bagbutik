@@ -3,13 +3,15 @@ public extension Request {
       # List All Issues for a Build Action
       List all issues that occurred for a specific action that Xcode Cloud performed as part of a build.
 
+      The example request below lists all issues Xcode Cloud encountered when it performed a build. Use the information provided in the response to display issue information on a dashboard, generate reports, automatically create tasks in your issue tracker, and so on.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_issues_for_a_build_action>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listIssuesForCiBuildActionV1(id: String,
                                              fields: [ListIssuesForCiBuildActionV1.Field]? = nil,

@@ -3,6 +3,8 @@ public extension Request {
       # List Available macOS Versions for an Xcode Version
       List all macOS versions available in Xcode Cloud that support a specific Xcode version.
 
+      The example request below lists macOS versions available for a specific Xcode version. Use the information provided in the response to update workflows, build dashboards, and more.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_available_macos_versions_for_an_xcode_version>
 
@@ -10,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listMacOsVersionsForCiXcodeVersionV1(id: String,
                                                      fields: [ListMacOsVersionsForCiXcodeVersionV1.Field]? = nil,

@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Customer Reviews for an App Store Version
+      Get a list of customer reviews for a specific version of your app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app_store_version>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
@@ -9,7 +13,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCustomerReviewsForAppStoreVersionV1(id: String,
                                                         fields: [ListCustomerReviewsForAppStoreVersionV1.Field]? = nil,
@@ -65,7 +69,6 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
         /// Filter by attribute 'territory'
         case territory([Territory])
 
-        /// The data structure that represents a Territories resource.
         public enum Territory: String, ParameterValue, CaseIterable {
             case abw = "ABW"
             case afg = "AFG"

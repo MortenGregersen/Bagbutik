@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # List All Builds for a BetaGroup
+      # List All Builds for a Beta Group
       Get a list of builds associated with a specific beta group.
 
       Full documentation:
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildsForBetaGroupV1(id: String,
                                          fields: [ListBuildsForBetaGroupV1.Field]? = nil,

@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscriptions for a Subscription Group
+      Get a list of all auto-renewable subscriptions in a subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscriptions_for_a_subscription_group>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
@@ -8,7 +12,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listSubscriptionsForSubscriptionGroupV1(id: String,
                                                         fields: [ListSubscriptionsForSubscriptionGroupV1.Field]? = nil,

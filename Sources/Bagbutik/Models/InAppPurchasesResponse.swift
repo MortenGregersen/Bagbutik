@@ -8,13 +8,9 @@ import Foundation
  */
 public struct InAppPurchasesResponse: Codable, PagedResponse {
     public typealias Data = InAppPurchase
-    /// The resource data.
     public let data: [InAppPurchase]
-    /// The included related resources.
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [InAppPurchase], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {

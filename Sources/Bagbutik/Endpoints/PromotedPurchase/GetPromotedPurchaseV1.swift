@@ -1,12 +1,16 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Promoted Purchase Information
+      Get details about a specific promoted in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_promoted_purchase_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related promotionImages returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPromotedPurchaseV1(id: String,
                                       fields: [GetPromotedPurchaseV1.Field]? = nil,

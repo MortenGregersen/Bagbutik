@@ -1,10 +1,14 @@
 public extension Request {
     /**
-      # No overview available
+      # Modify a Subscription Group
+      Update the reference name for a specific subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_subscription_group>
 
       - Parameter id: The id of the requested resource
       - Parameter requestBody: SubscriptionGroup representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateSubscriptionGroupV1(id: String,
                                           requestBody: SubscriptionGroupUpdateRequest) -> Request<SubscriptionGroupResponse, ErrorResponse>

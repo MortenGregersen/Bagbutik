@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appCustomProductPageLocalizations/{id}/appScreenshotSets
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id_appscreenshotsets>
@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppScreenshotSetsForAppCustomProductPageLocalizationV1(id: String,
                                                                            fields: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Field]? = nil,
@@ -102,7 +102,6 @@ public enum ListAppScreenshotSetsForAppCustomProductPageLocalizationV1 {
         /// Filter by attribute 'screenshotDisplayType'
         case screenshotDisplayType([ScreenshotDisplayType])
 
-        /// String that represents the display type of an app screenshot.
         public enum ScreenshotDisplayType: String, ParameterValue, CaseIterable {
             case appIphone65 = "APP_IPHONE_65"
             case appIphone58 = "APP_IPHONE_58"

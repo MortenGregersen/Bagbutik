@@ -3,6 +3,9 @@ public extension Request {
       # List App Categories
       List all categories on the App Store, including the category and subcategory hierarchy.
 
+      Use this endpoint to retrieve the list of available App Store categories and subcategories. Associate an app with categories using the [Modify an App Info](https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_info) endpoint.
+      The first example retrieves the full category and subcategory hierarchy in one request. The second example retrieves just the top-level categories for macOS apps.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_app_categories>
 
@@ -11,7 +14,7 @@ public extension Request {
       - Parameter exists: Attributes, relationships, and IDs to check for existence
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppCategoriesV1(fields: [ListAppCategoriesV1.Field]? = nil,
                                     filters: [ListAppCategoriesV1.Filter]? = nil,

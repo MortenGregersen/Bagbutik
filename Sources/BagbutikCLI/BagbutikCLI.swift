@@ -1,4 +1,5 @@
 import ArgumentParser
+import BagbutikDocsCollector
 import BagbutikGenerator
 import BagbutikPolyfill
 import Foundation
@@ -12,7 +13,7 @@ import FoundationNetworking
 struct BagbutikCLI: AsyncParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: "A utility for downloading spec and generating models and endpoints.",
-        subcommands: [Generate.self, DownloadNewestSpec.self],
+        subcommands: [Generate.self, DownloadNewestDocs.self, DownloadNewestSpec.self],
         defaultSubcommand: Generate.self)
 
     struct Generate: AsyncParsableCommand {
@@ -24,6 +25,9 @@ struct BagbutikCLI: AsyncParsableCommand {
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
         var outputPath = "./Sources/Bagbutik"
 
+        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a \(DocsFilename.operationDocumentation.filename), a \(DocsFilename.schemaDocumentation.filename) and a \(DocsFilename.schemaMapping.filename).")
+        var documentationPath = "./"
+
         mutating func run() async throws {
             let specFileURL: URL
             if let specPath = specPath {
@@ -33,7 +37,30 @@ struct BagbutikCLI: AsyncParsableCommand {
                 specFileURL = try await downloadNewestSpec()
             }
             let outputDirURL = URL(fileURLWithPath: outputPath)
-            try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL)
+            let documentationDirURL = URL(fileURLWithPath: documentationPath)
+            try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)
+        }
+    }
+
+    struct DownloadNewestDocs: AsyncParsableCommand {
+        static var configuration = CommandConfiguration(abstract: "Download the newest documentation.")
+
+        @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
+        var specPath: String?
+
+        @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
+        var outputPath = "./"
+
+        func run() async throws {
+            let specFileURL: URL
+            if let specPath = specPath {
+                specFileURL = URL(fileURLWithPath: specPath)
+            } else {
+                print("No path to a spec is supplied. Will download the newest version from Apple.")
+                specFileURL = try await downloadNewestSpec()
+            }
+            let outputDirURL = URL(fileURLWithPath: outputPath)
+            try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)
         }
     }
 

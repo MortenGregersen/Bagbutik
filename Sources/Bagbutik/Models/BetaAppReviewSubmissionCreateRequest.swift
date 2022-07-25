@@ -23,7 +23,7 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "betaAppReviewSubmissions" }
-        /// The relationships to other resources that you can set with this request.
+        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -62,8 +62,13 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            /**
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest/data/relationships/build>
+             */
             public struct Build: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
                 public let data: Data
 
                 public init(data: Data) {

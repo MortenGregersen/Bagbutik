@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appCustomProductPages/{id}/appCustomProductPageVersions
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id_appcustomproductpageversions>
@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppCustomProductPageVersionsForAppCustomProductPageV1(id: String,
                                                                           fields: [ListAppCustomProductPageVersionsForAppCustomProductPageV1.Field]? = nil,

@@ -1,11 +1,8 @@
 import Foundation
 
 public struct AppCustomProductPageVersionResponse: Codable {
-    /// The resource data.
     public let data: AppCustomProductPageVersion
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppCustomProductPageVersion, included: [Included]? = nil, links: DocumentLinks) {

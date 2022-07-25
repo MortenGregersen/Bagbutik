@@ -11,7 +11,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppStoreVersionsForAppV1(id: String,
                                              fields: [ListAppStoreVersionsForAppV1.Field]? = nil,
@@ -269,13 +269,9 @@ public enum ListAppStoreVersionsForAppV1 {
             case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
         }
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
     }

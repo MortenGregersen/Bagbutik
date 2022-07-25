@@ -11,7 +11,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPreReleaseVersionsV1(fields: [ListPreReleaseVersionsV1.Field]? = nil,
                                          filters: [ListPreReleaseVersionsV1.Filter]? = nil,
@@ -141,13 +141,9 @@ public enum ListPreReleaseVersionsV1 {
             case valid = "VALID"
         }
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
-            /// A string that represents tvOS.
             case tvOS = "TV_OS"
         }
     }

@@ -14,9 +14,9 @@ public struct Build: Codable {
     /// The resource type.
     public var type: String { "builds" }
     /// The resource's attributes.
-    public let attributes: Attributes?
+    public var attributes: Attributes?
     /// Navigational links to related data and included resource types and IDs.
-    public let relationships: Relationships?
+    public var relationships: Relationships?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
         self.id = id
@@ -62,7 +62,7 @@ public struct Build: Codable {
     public struct Attributes: Codable {
         public var buildAudienceType: BuildAudienceType?
         public var computedMinMacOsVersion: String?
-        /// The date and time the build will auto-expire and no longer be available for testing.
+        /// The date and time the build  will auto-expire and no longer be available for testing.
         public var expirationDate: Date?
         /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
         public var expired: Bool?
@@ -116,6 +116,7 @@ public struct Build: Codable {
         public var betaBuildLocalizations: BetaBuildLocalizations?
         public var betaGroups: BetaGroups?
         public var buildBetaDetail: BuildBetaDetail?
+        /// The related Build Bundles resource.
         public var buildBundles: BuildBundles?
         public var icons: Icons?
         public var individualTesters: IndividualTesters?
@@ -142,9 +143,7 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/app>
          */
         public struct App: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -195,9 +194,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/app/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -231,9 +228,7 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appencryptiondeclaration>
          */
         public struct AppEncryptionDeclaration: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -284,9 +279,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appencryptiondeclaration/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -320,9 +313,7 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion>
          */
         public struct AppStoreVersion: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -337,9 +328,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appStoreVersions" }
 
                 public init(id: String) {
@@ -373,9 +362,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -409,9 +396,7 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betaappreviewsubmission>
          */
         public struct BetaAppReviewSubmission: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -462,9 +447,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betaappreviewsubmission/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -498,11 +481,8 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations>
          */
         public struct BetaBuildLocalizations: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -554,9 +534,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -590,11 +568,9 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups>
          */
         public struct BetaGroups: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// Paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -603,12 +579,6 @@ public struct Build: Codable {
                 self.meta = meta
             }
 
-            /**
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups/data>
-             */
             public struct Data: Codable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
@@ -639,16 +609,8 @@ public struct Build: Codable {
                 }
             }
 
-            /**
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -682,9 +644,7 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbetadetail>
          */
         public struct BuildBetaDetail: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -735,9 +695,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbetadetail/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -765,17 +723,17 @@ public struct Build: Codable {
         }
 
         /**
-         The data and links that describe the relationship between the resources.
+         The data, links, and paging information that describe the relationship between the Builds and the Build Bundles resources.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles>
          */
         public struct BuildBundles: Codable {
-            /// The type and ID of a related resource.
+            /// The ID and type of the related Build Bundles resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
+            /// Navigational links that include the self-link.
             public var links: Links?
-            /// Paging information for data responses.
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -785,13 +743,13 @@ public struct Build: Codable {
             }
 
             /**
-             The type and ID of a related resource.
+             The type and ID of a related Build Bundles resource.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
+                /// The opaque resource ID that uniquely identifies the related Build Bundles resource.
                 public let id: String
                 /// The resource type.
                 public var type: String { "buildBundles" }
@@ -821,15 +779,15 @@ public struct Build: Codable {
             }
 
             /**
-             The links to the related data and the relationship's self-link.
+             The links to the related Build Bundles resource and the relationship’s self-link.
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
+                /// The link to related data.
                 public var related: String?
-                /// The relationship's self-link
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -863,11 +821,8 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons>
          */
         public struct Icons: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -883,9 +838,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons/data>
              */
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "buildIcons" }
 
                 public init(id: String) {
@@ -919,9 +872,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -955,11 +906,8 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/individualtesters>
          */
         public struct IndividualTesters: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: [Data]?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
-            /// Paging information for data responses.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
@@ -1011,9 +959,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/individualtesters/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {
@@ -1047,9 +993,7 @@ public struct Build: Codable {
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/prereleaseversion>
          */
         public struct PreReleaseVersion: Codable {
-            /// The type and ID of a related resource.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship's self-link.
             public var links: Links?
 
             public init(data: Data? = nil, links: Links? = nil) {
@@ -1100,9 +1044,7 @@ public struct Build: Codable {
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/prereleaseversion/links>
              */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relationship's self-link
                 public var itself: String?
 
                 public init(related: String? = nil, self itself: String? = nil) {

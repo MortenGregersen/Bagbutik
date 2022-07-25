@@ -7,7 +7,7 @@ public extension Request {
       <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_version_phased_release>
 
       - Parameter requestBody: AppStoreVersionPhasedRelease representation
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppStoreVersionPhasedReleaseV1(requestBody: AppStoreVersionPhasedReleaseCreateRequest) -> Request<AppStoreVersionPhasedReleaseResponse, ErrorResponse> {
         return .init(path: "/v1/appStoreVersionPhasedReleases", method: .post, requestBody: requestBody)

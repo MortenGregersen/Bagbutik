@@ -26,9 +26,9 @@ public struct UserUpdateRequest: Codable, RequestBody {
         /// The resource type.
         public var type: String { "users" }
         /// The resource's attributes.
-        public let attributes: Attributes?
+        public var attributes: Attributes?
         /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -95,8 +95,13 @@ public struct UserUpdateRequest: Codable, RequestBody {
                 self.visibleApps = visibleApps
             }
 
+            /**
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships/visibleapps>
+             */
             public struct VisibleApps: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {

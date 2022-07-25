@@ -9,21 +9,11 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "subscriptions" }
-        /// The resource's attributes.
-        public let attributes: Attributes?
-        /// The types and IDs of the related data to update.
-        public let relationships: Relationships?
+        public var attributes: Attributes?
+        public var relationships: Relationships?
 
         public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
             self.id = id
@@ -74,12 +64,6 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             }
         }
 
-        /**
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public var introductoryOffers: IntroductoryOffers?
             public var prices: Prices?
@@ -92,23 +76,14 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             }
 
             public struct IntroductoryOffers: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest/data/relationships/introductoryoffers/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptionIntroductoryOffers" }
 
                     public init(id: String) {
@@ -137,23 +112,14 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             }
 
             public struct Prices: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest/data/relationships/prices/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptionPrices" }
 
                     public init(id: String) {
@@ -182,23 +148,14 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             }
 
             public struct PromotionalOffers: Codable {
-                /// The type and ID of a resource that you're relating with the resource you're updating.
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
                     self.data = data
                 }
 
-                /**
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionupdaterequest/data/relationships/promotionaloffers/data>
-                 */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "subscriptionPromotionalOffers" }
 
                     public init(id: String) {

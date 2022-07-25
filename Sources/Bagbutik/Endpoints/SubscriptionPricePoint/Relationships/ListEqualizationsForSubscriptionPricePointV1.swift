@@ -1,13 +1,17 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscription Price Point Equalizations
+      Get a list of subscription price points and their equivalent in a specified currency.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_price_point_equalizations>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 40000
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listEqualizationsForSubscriptionPricePointV1(id: String,
                                                              fields: [ListEqualizationsForSubscriptionPricePointV1.Field]? = nil,

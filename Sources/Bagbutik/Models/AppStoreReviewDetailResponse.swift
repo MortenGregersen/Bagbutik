@@ -7,11 +7,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailresponse>
  */
 public struct AppStoreReviewDetailResponse: Codable {
-    /// The resource data.
     public let data: AppStoreReviewDetail
-    /// The included related resources.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppStoreReviewDetail, included: [Included]? = nil, links: DocumentLinks) {

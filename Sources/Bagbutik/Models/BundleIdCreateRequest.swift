@@ -21,9 +21,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data>
      */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "bundleIds" }
-        /// The resource's attributes.
         public let attributes: Attributes
 
         public init(attributes: Attributes) {

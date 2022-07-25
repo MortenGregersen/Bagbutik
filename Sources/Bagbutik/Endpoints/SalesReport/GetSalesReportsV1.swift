@@ -3,11 +3,14 @@ public extension Request {
       # Download Sales and Trends Reports
       Download sales and trends reports filtered by your specified criteria.
 
+      For more information, see [Sales and Trends reports](https://help.apple.com/itc/appssalesandtrends/#/itc37a18bcbf).
+      Each sales report type has specific valid values for `reportType`, `reportSubType`, `frequency`, and `version`. Using other values results in an error. For more details on each report type, see [About Reports](https://help.apple.com/itc/appssalesandtrends/#/itc37a18bcbf).
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/download_sales_and_trends_reports>
 
       - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSalesReportsV1(filters: [GetSalesReportsV1.Filter]? = nil) -> Request<Gzip, ErrorResponse> {
         return .init(path: "/v1/salesReports", method: .get, parameters: .init(filters: filters))

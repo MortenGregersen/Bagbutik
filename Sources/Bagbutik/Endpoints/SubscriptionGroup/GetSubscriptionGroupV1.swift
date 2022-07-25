@@ -1,12 +1,16 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Subscription Group Information
+      Get the details of a specific subscription group.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_information>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionGroupV1(id: String,
                                        fields: [GetSubscriptionGroupV1.Field]? = nil,

@@ -9,9 +9,9 @@ import Foundation
 public struct CiBuildRunResponse: Codable {
     /// The resource data.
     public let data: CiBuildRun
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiBuildRun, included: [Included]? = nil, links: DocumentLinks) {

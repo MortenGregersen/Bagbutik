@@ -1,6 +1,10 @@
 public extension Request {
     /**
-      # No overview available
+      # List All In-App Purchases for an App
+      Get a list of the in-app purchases for a specific app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
@@ -8,7 +12,7 @@ public extension Request {
       - Parameter includes: Relationship data to include in the response
       - Parameter sorts: Attributes by which to sort
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listInAppPurchasesV2ForAppV1(id: String,
                                              fields: [ListInAppPurchasesV2ForAppV1.Field]? = nil,

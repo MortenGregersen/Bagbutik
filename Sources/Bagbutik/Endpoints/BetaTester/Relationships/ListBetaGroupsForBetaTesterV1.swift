@@ -9,7 +9,7 @@ public extension Request {
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaGroupsForBetaTesterV1(id: String,
                                               fields: [ListBetaGroupsForBetaTesterV1.Field]? = nil,

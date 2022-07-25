@@ -7,14 +7,14 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>
  */
 public struct BuildBundleFileSize: Codable {
-    /// The opaque resource ID that uniquely identifies the resource.
+    /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
     /// Navigational links that include the self-link.
     public let links: ResourceLinks
     /// The resource type.
     public var type: String { "buildBundleFileSizes" }
-    /// The resource's attributes.
-    public let attributes: Attributes?
+    /// The attributes that describe the Build Bundle File Sizes resource.
+    public var attributes: Attributes?
 
     public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
         self.id = id

@@ -10,7 +10,6 @@ public struct BetaAppReviewSubmissionsResponse: Codable, PagedResponse {
     public typealias Data = BetaAppReviewSubmission
     /// The resource data.
     public let data: [BetaAppReviewSubmission]
-    /// The included related resources.
     public var included: [Build]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

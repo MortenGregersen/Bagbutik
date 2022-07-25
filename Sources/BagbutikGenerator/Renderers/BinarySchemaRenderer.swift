@@ -1,8 +1,15 @@
+import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import SwiftFormat
 
 /// A renderer which renders binary schemas
 public class BinarySchemaRenderer: Renderer {
+    let docsLoader: DocsLoader
+
+    public init(docsLoader: DocsLoader) {
+        self.docsLoader = docsLoader
+    }
+    
     /**
      Render an binary schema
 
@@ -11,7 +18,7 @@ public class BinarySchemaRenderer: Renderer {
      - Returns: The rendered binary schema
      */
     public func render(binarySchema: BinarySchema) throws -> String {
-        let context = binarySchemaContext(for: binarySchema)
+        let context = try binarySchemaContext(for: binarySchema)
         let rendered = try environment.renderTemplate(string: template, context: context)
         return try SwiftFormat.format(rendered)
     }
@@ -28,7 +35,14 @@ public class BinarySchemaRenderer: Renderer {
 
     """
 
-    private func binarySchemaContext(for binarySchema: BinarySchema) -> [String: Any] {
-        ["name": binarySchema.name, "documentation": binarySchema.documentation?.summary ?? ""]
+    private func binarySchemaContext(for binarySchema: BinarySchema) throws -> [String: Any] {
+        var documentation: ObjectDocumentation?
+        if let url = binarySchema.url, case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url) {
+            documentation = objectDocumentation
+        }
+        return [
+            "name": binarySchema.name,
+            "documentation": documentation?.abstract ?? ""
+        ]
     }
 }

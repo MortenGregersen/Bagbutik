@@ -4,12 +4,12 @@ public extension Request {
       Get a list of beta groups associated with a specific app.
 
       Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_beta_groups_for_an_appapps-betaGroups-get_to_many_related>
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_beta_groups_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaGroupsForAppV1(id: String,
                                        fields: [ListBetaGroupsForAppV1.Field]? = nil,

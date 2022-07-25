@@ -10,7 +10,7 @@ public struct BundleIdsResponse: Codable, PagedResponse {
     public typealias Data = BundleId
     /// The resource data.
     public let data: [BundleId]
-    /// The included related resources.
+    /// The requested relationship data.
     public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

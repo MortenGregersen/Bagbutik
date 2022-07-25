@@ -1,12 +1,16 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Promoted Purchases for an App
+      Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promoted_purchases_for_an_app>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPromotedPurchasesForAppV1(id: String,
                                               fields: [ListPromotedPurchasesForAppV1.Field]? = nil,

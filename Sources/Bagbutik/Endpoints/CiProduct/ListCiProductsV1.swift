@@ -3,6 +3,8 @@ public extension Request {
       # List All Xcode Cloud Products
       Get a list of all products you created in Xcode Cloud.
 
+      The example request below lists ten Xcode Cloud products and sorts the list using the `latestBuildCreatedDate` attribute. Use the information provided in the response to display data about your Xcode Cloud products on a dashboard or to read additional information; for example, workflow information.
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_cloud_products>
 
@@ -10,7 +12,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCiProductsV1(fields: [ListCiProductsV1.Field]? = nil,
                                  filters: [ListCiProductsV1.Filter]? = nil,

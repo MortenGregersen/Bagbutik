@@ -3,6 +3,8 @@ public extension Request {
       # Read App Info Information
       Read App Store information including your App Store state, age ratings, Brazil age rating, and kids' age band.
 
+      For request and response examples for reading an age rating declaration, see [GET /v1/appInfos/{id}/ageRatingDeclaration](https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appinfos_id_ageratingdeclaration).
+
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_information>
 
@@ -10,7 +12,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum number of related appInfoLocalizations returned (when they are included) - maximum 50
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppInfoV1(id: String,
                              fields: [GetAppInfoV1.Field]? = nil,

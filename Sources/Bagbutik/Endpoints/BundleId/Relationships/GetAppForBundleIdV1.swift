@@ -1,14 +1,13 @@
 public extension Request {
     /**
       # Read the App Information of a Bundle ID
-      Get the app information from a specific bundle ID.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_bundle_id>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBundleIdV1(id: String,
                                     fields: [GetAppForBundleIdV1.Field]? = nil) -> Request<AppResponse, ErrorResponse>

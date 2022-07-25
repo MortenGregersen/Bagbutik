@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter sorts: Attributes by which to sort
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listDevicesV1(fields: [ListDevicesV1.Field]? = nil,
                               filters: [ListDevicesV1.Filter]? = nil,
@@ -58,11 +58,8 @@ public enum ListDevicesV1 {
         /// Filter by attribute 'udid'
         case udid([String])
 
-        /// Strings that represent Apple operating systems.
         public enum Platform: String, ParameterValue, CaseIterable {
-            /// A string that represents iOS.
             case iOS = "IOS"
-            /// A string that represents macOS.
             case macOS = "MAC_OS"
         }
     }

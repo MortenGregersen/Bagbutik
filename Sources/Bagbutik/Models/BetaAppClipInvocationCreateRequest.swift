@@ -9,7 +9,7 @@ import Foundation
 public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
     /// The resource data.
     public let data: Data
-    /// The included related resources.
+    /// The relationship data to include in the response.
     public var included: [BetaAppClipInvocationLocalizationInlineCreate]?
 
     public init(data: Data, included: [BetaAppClipInvocationLocalizationInlineCreate]? = nil) {
@@ -26,9 +26,9 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         /// The resource type.
         public var type: String { "betaAppClipInvocations" }
-        /// The resource's attributes.
+        /// The attributes that describes the request that creates a Beta App Clip Invocations resource.
         public let attributes: Attributes
-        /// The relationships to other resources that you can set with this request.
+        /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes, relationships: Relationships) {
@@ -59,7 +59,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
         }
 
         /**
-         Attributes that you set that describe the new resource.
+         The attributes you set that describe the new Beta App Clip Invocations resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/attributes>
@@ -80,7 +80,9 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships>
          */
         public struct Relationships: Codable {
+            /// The related Beta App Clip Invocation Localizations resource.
             public let betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations
+            /// The related Build Bundles resource.
             public let buildBundle: BuildBundle
 
             public init(betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations, buildBundle: BuildBundle) {
@@ -88,8 +90,14 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 self.buildBundle = buildBundle
             }
 
+            /**
+             The relationship to the Beta App Clip Invocation Localizations resource you set with the request that creates a Beta App Clip Invocations resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations>
+             */
             public struct BetaAppClipInvocationLocalizations: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /// The ID and type of the related Beta App Clip Invocation Localizations resource.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -97,13 +105,13 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
+                 The type and ID of the Beta App Clip Invocation Localizations resource that you’re relating with the Beta App Clip Invocations resource you’re creating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "betaAppClipInvocationLocalizations" }
@@ -133,8 +141,14 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 }
             }
 
+            /**
+             The relationship to the Build Bundles resource you set with the request that creates a Beta App Clip Invocations resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle>
+             */
             public struct BuildBundle: Codable {
-                /// The type and ID of the resource that you're relating with the resource you're creating.
+                /// The ID and type of the related Build Bundles resource.
                 public let data: Data
 
                 public init(data: Data) {
@@ -142,13 +156,13 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
-                 The type and ID of the resource that you're relating with the resource you're creating.
+                 The type and ID of the Build Bundles resource that you’re relating with the Beta App Clip Invocations resource you’re creating.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle/data>
                  */
                 public struct Data: Codable {
-                    /// The opaque resource ID that uniquely identifies the resource.
+                    /// The opaque resource ID that uniquely identifies the related Build Bundles resource.
                     public let id: String
                     /// The resource type.
                     public var type: String { "buildBundles" }

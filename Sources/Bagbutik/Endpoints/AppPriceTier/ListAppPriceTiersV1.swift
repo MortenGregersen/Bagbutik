@@ -1,7 +1,7 @@
 public extension Request {
     /**
       # List App Price Tiers
-      List all app price tiers available in App Store Connect, including related price points.
+      List all app price tiers available in App Store Connect.
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/list_app_price_tiers>
@@ -10,7 +10,7 @@ public extension Request {
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppPriceTiersV1(fields: [ListAppPriceTiersV1.Field]? = nil,
                                     filters: [ListAppPriceTiersV1.Filter]? = nil,

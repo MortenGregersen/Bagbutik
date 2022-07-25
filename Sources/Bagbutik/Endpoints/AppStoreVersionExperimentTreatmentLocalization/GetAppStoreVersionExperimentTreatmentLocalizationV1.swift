@@ -1,6 +1,6 @@
 public extension Request {
     /**
-      # No overview available
+      # GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}
 
       Full documentation:
       <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperimenttreatmentlocalizations_id>
@@ -9,7 +9,7 @@ public extension Request {
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
       - Parameter limits: Number of resources to return
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionExperimentTreatmentLocalizationV1(id: String,
                                                                     fields: [GetAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,

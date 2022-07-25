@@ -1,6 +1,11 @@
 import Foundation
 
-/// The data structure that represents the language you configure for an advanced App Clip experience.
+/**
+   The data structure that represents the language you configure for an advanced App Clip experience.
+
+   Full documentation:
+   <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelanguage>
+ */
 public enum AppClipAdvancedExperienceLanguage: String, Codable, CaseIterable {
     case ar = "AR"
     case ca = "CA"

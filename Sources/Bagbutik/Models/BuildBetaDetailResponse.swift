@@ -9,7 +9,6 @@ import Foundation
 public struct BuildBetaDetailResponse: Codable {
     /// The resource data.
     public let data: BuildBetaDetail
-    /// The included related resources.
     public var included: [Build]?
     /// Navigational links that include the self-link.
     public let links: DocumentLinks

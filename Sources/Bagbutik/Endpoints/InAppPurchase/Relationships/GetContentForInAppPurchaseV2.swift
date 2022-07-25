@@ -1,11 +1,15 @@
 public extension Request {
     /**
-      # No overview available
+      # Read Content Information for an In-App Purchase
+      Get the details about hosted content for an in-app purchase.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/read_content_information_for_an_in-app_purchase>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter includes: Relationship data to include in the response
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getContentForInAppPurchaseV2(id: String,
                                              fields: [GetContentForInAppPurchaseV2.Field]? = nil,

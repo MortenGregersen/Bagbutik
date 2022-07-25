@@ -7,16 +7,8 @@ public struct AppPromotedPurchasesLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppromotedpurchaseslinkagesrequest/data>
-     */
     public struct Data: Codable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "promotedPurchases" }
 
         public init(id: String) {

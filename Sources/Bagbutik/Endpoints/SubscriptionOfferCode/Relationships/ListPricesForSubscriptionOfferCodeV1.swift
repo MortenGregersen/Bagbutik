@@ -1,13 +1,17 @@
 public extension Request {
     /**
-      # No overview available
+      # List All Subscription Offer Code Prices
+      Get a list of price tiers for a subscription offer code.
+
+      Full documentation:
+      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_offer_code_prices>
 
       - Parameter id: The id of the requested resource
       - Parameter fields: Fields to return for included related types
       - Parameter filters: Attributes, relationships, and IDs by which to filter
       - Parameter includes: Relationship data to include in the response
       - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A `Request` with to send to an instance of `BagbutikService`
+      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPricesForSubscriptionOfferCodeV1(id: String,
                                                      fields: [ListPricesForSubscriptionOfferCodeV1.Field]? = nil,

@@ -7,9 +7,9 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbetatesterslinkagesresponse>
  */
 public struct BetaGroupBetaTestersLinkagesResponse: Codable, PagedResponse {
-    /// The resource data.
+    /// The object types and IDs of the related resources.
     public let data: [Data]
-    /// Navigational links that include the self-link.
+    /// Navigational links including the self-link and links to the related data.
     public let links: PagedDocumentLinks
     /// Paging information.
     public var meta: PagingInformation?
