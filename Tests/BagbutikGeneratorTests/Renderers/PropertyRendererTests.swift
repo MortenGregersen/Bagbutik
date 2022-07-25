@@ -1,10 +1,11 @@
+import BagbutikDocsCollector
 @testable import BagbutikGenerator
 import XCTest
 
 final class PropertyRendererTests: XCTestCase {
     func testRenderNonReservedButOptional() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "name", type: "string", optional: true, isSimpleType: true)
         // Then
@@ -13,16 +14,16 @@ final class PropertyRendererTests: XCTestCase {
 
     func testRenderReservedButNotOptional() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "required", type: "bool", optional: false, isSimpleType: true)
         // Then
         XCTAssertEqual(rendered, "public let `required`: Bool")
     }
-    
+
     func testNullCodableOnNonSimpleOptionalData() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "data", type: "Data", optional: true, isSimpleType: false)
         // Then
@@ -31,28 +32,28 @@ final class PropertyRendererTests: XCTestCase {
         // If this is not done, the JSONEncoder will leave out optionals from the JSON instead.
         // This is needed when relationships in create and update requests are cleared (eg. when removing subcategory in app info)
     }
-    
+
     func testNullCodableOnNonSimpleOptionalDataArray() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "data", type: "[Data]", optional: true, isSimpleType: false)
         // Then
         XCTAssertEqual(rendered, "@NullCodable public var data: [Data]?")
     }
-    
+
     func testNoNullCodableOnNonSimpleOptionalNotData() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "device", type: "Device", optional: true, isSimpleType: false)
         // Then
         XCTAssertEqual(rendered, "public var device: Device?")
     }
-    
+
     func testNoNullCodableOnNonSimpleNotOptional() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "device", type: "Device", optional: false, isSimpleType: false)
         // Then
@@ -61,7 +62,7 @@ final class PropertyRendererTests: XCTestCase {
 
     func testRenderDeprecated() throws {
         // Given
-        let renderer = PropertyRenderer()
+        let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
         let rendered = try renderer.render(id: "name", type: "string", optional: true, isSimpleType: true, deprecated: true)
         // Then

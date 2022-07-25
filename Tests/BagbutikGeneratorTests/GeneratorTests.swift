@@ -161,7 +161,9 @@ final class GeneratorTests: XCTestCase {
         var fileNameToFailCreating: String?
         
         func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws {
-            directoriesCreated.append(url.lastPathComponent)
+            DispatchQueue.main.async {
+                self.directoriesCreated.append(url.lastPathComponent)
+            }
         }
         
         func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool {

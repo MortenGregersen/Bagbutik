@@ -19,12 +19,6 @@ extension OperationRendererError: Equatable {}
 
 /// A renderer which renders operations
 public class OperationRenderer: Renderer {
-    let docsLoader: DocsLoader
-
-    public init(docsLoader: DocsLoader) {
-        self.docsLoader = docsLoader
-    }
-
     /**
      Render an operation
 

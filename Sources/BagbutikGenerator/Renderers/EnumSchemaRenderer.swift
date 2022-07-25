@@ -4,12 +4,6 @@ import SwiftFormat
 
 /// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
-    let docsLoader: DocsLoader
-
-    public init(docsLoader: DocsLoader) {
-        self.docsLoader = docsLoader
-    }
-
     /**
      Render an enum schema
 

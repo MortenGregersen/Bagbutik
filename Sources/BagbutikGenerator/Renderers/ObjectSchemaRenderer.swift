@@ -198,11 +198,12 @@ public class ObjectSchemaRenderer {
                 case .constant(let value):
                     rendered = try! environment.renderTemplate(name: "constantTemplate", context: ["id": property.key, "value": value])
                 default:
-                    rendered = try! PropertyRenderer().render(id: PropertyName(idealName: property.key).safeName,
-                                                              type: property.value.type.description,
-                                                              optional: !objectSchema.requiredProperties.contains(property.key),
-                                                              isSimpleType: property.value.type.isSimple,
-                                                              deprecated: property.value.deprecated)
+                    rendered = try! PropertyRenderer(docsLoader: docsLoader)
+                        .render(id: PropertyName(idealName: property.key).safeName,
+                                type: property.value.type.description,
+                                optional: !objectSchema.requiredProperties.contains(property.key),
+                                isSimpleType: property.value.type.isSimple,
+                                deprecated: property.value.deprecated)
                 }
                 let propertyDocumentation = documentation?.properties[property.key]
                 return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)

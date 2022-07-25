@@ -4,12 +4,6 @@ import SwiftFormat
 
 /// A renderer which renders plain text schemas
 public class PlainTextSchemaRenderer: Renderer {
-    let docsLoader: DocsLoader
-
-    public init(docsLoader: DocsLoader) {
-        self.docsLoader = docsLoader
-    }
-
     /**
      Render an plain text schema
 
