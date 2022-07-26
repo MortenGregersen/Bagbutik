@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Price Tier Information
-      Read available app price tiers.
+     # Read App Price Tier Information
+     Read available app price tiers.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_price_tier_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_price_tier_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related pricePoints returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related pricePoints returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppPriceTierV1(id: String,
                                   fields: [GetAppPriceTierV1.Field]? = nil,
                                   includes: [GetAppPriceTierV1.Include]? = nil,
                                   limit: Int? = nil) -> Request<AppPriceTierResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appPriceTiers/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                      includes: includes,
-                                                                                      limit: limit))
+        .init(path: "/v1/appPriceTiers/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                               includes: includes,
+                                                                               limit: limit))
     }
 }
 

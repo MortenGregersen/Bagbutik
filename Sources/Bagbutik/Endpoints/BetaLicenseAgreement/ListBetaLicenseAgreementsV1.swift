@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List Beta License Agreements
-      Find and list beta license agreements for all apps.
+     # List Beta License Agreements
+     Find and list beta license agreements for all apps.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_license_agreements>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_license_agreements>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaLicenseAgreementsV1(fields: [ListBetaLicenseAgreementsV1.Field]? = nil,
                                             filters: [ListBetaLicenseAgreementsV1.Filter]? = nil,
                                             includes: [ListBetaLicenseAgreementsV1.Include]? = nil,
                                             limit: Int? = nil) -> Request<BetaLicenseAgreementsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaLicenseAgreements", method: .get, parameters: .init(fields: fields,
-                                                                                        filters: filters,
-                                                                                        includes: includes,
-                                                                                        limit: limit))
+        .init(path: "/v1/betaLicenseAgreements", method: .get, parameters: .init(fields: fields,
+                                                                                 filters: filters,
+                                                                                 includes: includes,
+                                                                                 limit: limit))
     }
 }
 

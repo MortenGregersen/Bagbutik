@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List Beta App Review Submissions
-      Find and list beta app review submissions for all builds.
+     # List Beta App Review Submissions
+     Find and list beta app review submissions for all builds.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_app_review_submissions>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_app_review_submissions>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaAppReviewSubmissionsV1(fields: [ListBetaAppReviewSubmissionsV1.Field]? = nil,
                                                filters: [ListBetaAppReviewSubmissionsV1.Filter]? = nil,
                                                includes: [ListBetaAppReviewSubmissionsV1.Include]? = nil,
                                                limit: Int? = nil) -> Request<BetaAppReviewSubmissionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaAppReviewSubmissions", method: .get, parameters: .init(fields: fields,
-                                                                                           filters: filters,
-                                                                                           includes: includes,
-                                                                                           limit: limit))
+        .init(path: "/v1/betaAppReviewSubmissions", method: .get, parameters: .init(fields: fields,
+                                                                                    filters: filters,
+                                                                                    includes: includes,
+                                                                                    limit: limit))
     }
 }
 
@@ -71,7 +71,7 @@ public enum ListBetaAppReviewSubmissionsV1 {
     /**
      Attributes, relationships, and IDs by which to filter.
 
-     Required: build
+     Required: `build`
      */
     public enum Filter: FilterParameter {
         /// Filter by attribute 'betaReviewState'

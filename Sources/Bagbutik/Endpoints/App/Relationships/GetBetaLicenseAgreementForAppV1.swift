@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the Beta License Agreement of an App
-      Get the beta license agreement for a specific app.
+     # Read the Beta License Agreement of an App
+     Get the beta license agreement for a specific app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_beta_license_agreement_of_an_app>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_beta_license_agreement_of_an_app>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBetaLicenseAgreementForAppV1(id: String,
                                                 fields: [GetBetaLicenseAgreementForAppV1.Field]? = nil) -> Request<BetaLicenseAgreementResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/betaLicenseAgreement", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/apps/\(id)/betaLicenseAgreement", method: .get, parameters: .init(fields: fields))
     }
 }
 

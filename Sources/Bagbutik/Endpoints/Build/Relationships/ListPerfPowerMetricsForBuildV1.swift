@@ -1,21 +1,21 @@
 public extension Request {
     /**
-      # Get Power and Performance Metrics for a Build
-      Get the performance and power metrics data for a specific build.
+     # Get Power and Performance Metrics for a Build
+     Get the performance and power metrics data for a specific build.
 
-      The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_an_app) endpoint.
+     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_an_app) endpoint.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_a_build>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_a_build>
 
-      - Parameter id: The id of the requested resource
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPerfPowerMetricsForBuildV1(id: String,
                                                filters: [ListPerfPowerMetricsForBuildV1.Filter]? = nil) -> Request<XcodeMetrics, ErrorResponse>
     {
-        return .init(path: "/v1/builds/\(id)/perfPowerMetrics", method: .get, parameters: .init(filters: filters))
+        .init(path: "/v1/builds/\(id)/perfPowerMetrics", method: .get, parameters: .init(filters: filters))
     }
 }
 

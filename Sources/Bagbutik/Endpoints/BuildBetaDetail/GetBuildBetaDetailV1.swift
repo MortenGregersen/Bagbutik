@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read Build Beta Detail Information
-      Get a specific build beta details resource.
+     # Read Build Beta Detail Information
+     Get a specific build beta details resource.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_build_beta_detail_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_build_beta_detail_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildBetaDetailV1(id: String,
                                      fields: [GetBuildBetaDetailV1.Field]? = nil,
                                      includes: [GetBuildBetaDetailV1.Include]? = nil) -> Request<BuildBetaDetailResponse, ErrorResponse>
     {
-        return .init(path: "/v1/buildBetaDetails/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                         includes: includes))
+        .init(path: "/v1/buildBetaDetails/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                  includes: includes))
     }
 }
 

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List all Repositories for a Source Code Management Provider
-      List all Git repositories for a specific source code management provider you connected to Xcode Cloud.
+     # List all Repositories for a Source Code Management Provider
+     List all Git repositories for a specific source code management provider you connected to Xcode Cloud.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_repositories_for_a_source_code_management_provider>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_repositories_for_a_source_code_management_provider>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listRepositoriesForScmProviderV1(id: String,
                                                  fields: [ListRepositoriesForScmProviderV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                  includes: [ListRepositoriesForScmProviderV1.Include]? = nil,
                                                  limit: Int? = nil) -> Request<ScmRepositoriesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/scmProviders/\(id)/repositories", method: .get, parameters: .init(fields: fields,
-                                                                                                  filters: filters,
-                                                                                                  includes: includes,
-                                                                                                  limit: limit))
+        .init(path: "/v1/scmProviders/\(id)/repositories", method: .get, parameters: .init(fields: fields,
+                                                                                           filters: filters,
+                                                                                           includes: includes,
+                                                                                           limit: limit))
     }
 }
 
@@ -77,6 +77,7 @@ public enum ListRepositoriesForScmProviderV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case defaultBranch, scmProvider
+        case defaultBranch
+        case scmProvider
     }
 }

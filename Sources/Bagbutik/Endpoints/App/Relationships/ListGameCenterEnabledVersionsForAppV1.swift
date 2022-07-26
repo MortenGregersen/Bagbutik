@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Game Center Enabled Versions for an App
+     # List All Game Center Enabled Versions for an App
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_game_center_enabled_versions_for_an_app>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_game_center_enabled_versions_for_an_app>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listGameCenterEnabledVersionsForAppV1(id: String,
                                                       fields: [ListGameCenterEnabledVersionsForAppV1.Field]? = nil,
@@ -20,11 +20,11 @@ public extension Request {
                                                       sorts: [ListGameCenterEnabledVersionsForAppV1.Sort]? = nil,
                                                       limits: [ListGameCenterEnabledVersionsForAppV1.Limit]? = nil) -> Request<GameCenterEnabledVersionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/gameCenterEnabledVersions", method: .get, parameters: .init(fields: fields,
-                                                                                                       filters: filters,
-                                                                                                       includes: includes,
-                                                                                                       sorts: sorts,
-                                                                                                       limits: limits))
+        .init(path: "/v1/apps/\(id)/gameCenterEnabledVersions", method: .get, parameters: .init(fields: fields,
+                                                                                                filters: filters,
+                                                                                                includes: includes,
+                                                                                                sorts: sorts,
+                                                                                                limits: limits))
     }
 }
 
@@ -110,7 +110,8 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, compatibleVersions
+        case app
+        case compatibleVersions
     }
 
     /**
@@ -125,9 +126,9 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related compatibleVersions returned (when they are included) - maximum 50
         case compatibleVersions(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

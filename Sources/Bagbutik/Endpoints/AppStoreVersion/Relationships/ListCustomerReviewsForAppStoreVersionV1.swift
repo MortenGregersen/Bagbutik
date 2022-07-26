@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # List All Customer Reviews for an App Store Version
-      Get a list of customer reviews for a specific version of your app.
+     # List All Customer Reviews for an App Store Version
+     Get a list of customer reviews for a specific version of your app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app_store_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app_store_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter exists: Attributes, relationships, and IDs to check for existence
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter exists: Attributes, relationships, and IDs to check for existence
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCustomerReviewsForAppStoreVersionV1(id: String,
                                                         fields: [ListCustomerReviewsForAppStoreVersionV1.Field]? = nil,
@@ -23,12 +23,12 @@ public extension Request {
                                                         sorts: [ListCustomerReviewsForAppStoreVersionV1.Sort]? = nil,
                                                         limit: Int? = nil) -> Request<CustomerReviewsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/customerReviews", method: .get, parameters: .init(fields: fields,
-                                                                                                         filters: filters,
-                                                                                                         exists: exists,
-                                                                                                         includes: includes,
-                                                                                                         sorts: sorts,
-                                                                                                         limit: limit))
+        .init(path: "/v1/appStoreVersions/\(id)/customerReviews", method: .get, parameters: .init(fields: fields,
+                                                                                                  filters: filters,
+                                                                                                  exists: exists,
+                                                                                                  includes: includes,
+                                                                                                  sorts: sorts,
+                                                                                                  limit: limit))
     }
 }
 

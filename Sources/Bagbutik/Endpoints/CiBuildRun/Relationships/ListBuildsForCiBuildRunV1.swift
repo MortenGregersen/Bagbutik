@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # List All Builds Xcode Cloud Created in App Store Connect
-      List All App Store Connect and TestFlight Builds when it performed a build.
+     # List All Builds Xcode Cloud Created in App Store Connect
+     List All App Store Connect and TestFlight Builds when it performed a build.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_xcode_cloud_created_in_app_store_connect>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_xcode_cloud_created_in_app_store_connect>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildsForCiBuildRunV1(id: String,
                                           fields: [ListBuildsForCiBuildRunV1.Field]? = nil,
@@ -21,11 +21,11 @@ public extension Request {
                                           sorts: [ListBuildsForCiBuildRunV1.Sort]? = nil,
                                           limits: [ListBuildsForCiBuildRunV1.Limit]? = nil) -> Request<BuildsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciBuildRuns/\(id)/builds", method: .get, parameters: .init(fields: fields,
-                                                                                           filters: filters,
-                                                                                           includes: includes,
-                                                                                           sorts: sorts,
-                                                                                           limits: limits))
+        .init(path: "/v1/ciBuildRuns/\(id)/builds", method: .get, parameters: .init(fields: fields,
+                                                                                    filters: filters,
+                                                                                    includes: includes,
+                                                                                    sorts: sorts,
+                                                                                    limits: limits))
     }
 }
 
@@ -311,7 +311,17 @@ public enum ListBuildsForCiBuildRunV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, betaGroups, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
+        case app
+        case appEncryptionDeclaration
+        case appStoreVersion
+        case betaAppReviewSubmission
+        case betaBuildLocalizations
+        case betaGroups
+        case buildBetaDetail
+        case buildBundles
+        case icons
+        case individualTesters
+        case preReleaseVersion
     }
 
     /**
@@ -330,17 +340,17 @@ public enum ListBuildsForCiBuildRunV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
-        /// Maximum number of related individualTesters returned (when they are included) - maximum 50
-        case individualTesters(Int)
-        /// Maximum number of related betaGroups returned (when they are included) - maximum 50
-        case betaGroups(Int)
         /// Maximum number of related betaBuildLocalizations returned (when they are included) - maximum 50
         case betaBuildLocalizations(Int)
-        /// Maximum number of related icons returned (when they are included) - maximum 50
-        case icons(Int)
+        /// Maximum number of related betaGroups returned (when they are included) - maximum 50
+        case betaGroups(Int)
         /// Maximum number of related buildBundles returned (when they are included) - maximum 50
         case buildBundles(Int)
+        /// Maximum number of related icons returned (when they are included) - maximum 50
+        case icons(Int)
+        /// Maximum number of related individualTesters returned (when they are included) - maximum 50
+        case individualTesters(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

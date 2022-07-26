@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Advanced App Clip Experiences for an App Clip
-      Get all advanced App Clip experiences for an App Clip.
+     # List All Advanced App Clip Experiences for an App Clip
+     Get all advanced App Clip experiences for an App Clip.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_advanced_app_clip_experiences_for_an_app_clip>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_advanced_app_clip_experiences_for_an_app_clip>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppClipAdvancedExperiencesForAppClipV1(id: String,
                                                            fields: [ListAppClipAdvancedExperiencesForAppClipV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                            includes: [ListAppClipAdvancedExperiencesForAppClipV1.Include]? = nil,
                                                            limits: [ListAppClipAdvancedExperiencesForAppClipV1.Limit]? = nil) -> Request<AppClipAdvancedExperiencesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClips/\(id)/appClipAdvancedExperiences", method: .get, parameters: .init(fields: fields,
-                                                                                                            filters: filters,
-                                                                                                            includes: includes,
-                                                                                                            limits: limits))
+        .init(path: "/v1/appClips/\(id)/appClipAdvancedExperiences", method: .get, parameters: .init(fields: fields,
+                                                                                                     filters: filters,
+                                                                                                     includes: includes,
+                                                                                                     limits: limits))
     }
 }
 
@@ -114,7 +114,9 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClip, headerImage, localizations
+        case appClip
+        case headerImage
+        case localizations
     }
 
     /**

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Price Points for an In-App Purchase
-      Get a list of possible price points for an in-app purchase.
+     # List All Price Points for an In-App Purchase
+     Get a list of possible price points for an in-app purchase.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_price_points_for_an_in-app_purchase>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_price_points_for_an_in-app_purchase>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPricePointsForInAppPurchaseV2(id: String,
                                                   fields: [ListPricePointsForInAppPurchaseV2.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                   includes: [ListPricePointsForInAppPurchaseV2.Include]? = nil,
                                                   limit: Int? = nil) -> Request<InAppPurchasePricePointsResponse, ErrorResponse>
     {
-        return .init(path: "/v2/inAppPurchases/\(id)/pricePoints", method: .get, parameters: .init(fields: fields,
-                                                                                                   filters: filters,
-                                                                                                   includes: includes,
-                                                                                                   limit: limit))
+        .init(path: "/v2/inAppPurchases/\(id)/pricePoints", method: .get, parameters: .init(fields: fields,
+                                                                                            filters: filters,
+                                                                                            includes: includes,
+                                                                                            limit: limit))
     }
 }
 

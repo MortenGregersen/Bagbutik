@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Introductory Offers for a Subscription
-      Get a list of introductory offers for a specific auto-renewable subscription.
+     # List All Introductory Offers for a Subscription
+     Get a list of introductory offers for a specific auto-renewable subscription.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_introductory_offers_for_a_subscription>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_introductory_offers_for_a_subscription>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listIntroductoryOffersForSubscriptionV1(id: String,
                                                         fields: [ListIntroductoryOffersForSubscriptionV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                         includes: [ListIntroductoryOffersForSubscriptionV1.Include]? = nil,
                                                         limit: Int? = nil) -> Request<SubscriptionIntroductoryOffersResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptions/\(id)/introductoryOffers", method: .get, parameters: .init(fields: fields,
-                                                                                                         filters: filters,
-                                                                                                         includes: includes,
-                                                                                                         limit: limit))
+        .init(path: "/v1/subscriptions/\(id)/introductoryOffers", method: .get, parameters: .init(fields: fields,
+                                                                                                  filters: filters,
+                                                                                                  includes: includes,
+                                                                                                  limit: limit))
     }
 }
 
@@ -97,6 +97,8 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case subscription, subscriptionPricePoint, territory
+        case subscription
+        case subscriptionPricePoint
+        case territory
     }
 }

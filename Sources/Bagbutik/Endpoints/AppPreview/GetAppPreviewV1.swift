@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read App Preview Information
-      Get information about an app preview and its upload and processing status.
+     # Read App Preview Information
+     Get information about an app preview and its upload and processing status.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_preview_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_preview_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppPreviewV1(id: String,
                                 fields: [GetAppPreviewV1.Field]? = nil,
                                 includes: [GetAppPreviewV1.Include]? = nil) -> Request<AppPreviewResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appPreviews/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                    includes: includes))
+        .init(path: "/v1/appPreviews/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                             includes: includes))
     }
 }
 

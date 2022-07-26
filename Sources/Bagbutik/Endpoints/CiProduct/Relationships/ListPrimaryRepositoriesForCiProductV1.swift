@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Primary Git Repositories for an Xcode Cloud Product
-      List all primary Git repositories for a specific Xcode Cloud product.
+     # List All Primary Git Repositories for an Xcode Cloud Product
+     List all primary Git repositories for a specific Xcode Cloud product.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_primary_git_repositories_for_an_xcode_cloud_product>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_primary_git_repositories_for_an_xcode_cloud_product>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPrimaryRepositoriesForCiProductV1(id: String,
                                                       fields: [ListPrimaryRepositoriesForCiProductV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                       includes: [ListPrimaryRepositoriesForCiProductV1.Include]? = nil,
                                                       limit: Int? = nil) -> Request<ScmRepositoriesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciProducts/\(id)/primaryRepositories", method: .get, parameters: .init(fields: fields,
-                                                                                                       filters: filters,
-                                                                                                       includes: includes,
-                                                                                                       limit: limit))
+        .init(path: "/v1/ciProducts/\(id)/primaryRepositories", method: .get, parameters: .init(fields: fields,
+                                                                                                filters: filters,
+                                                                                                includes: includes,
+                                                                                                limit: limit))
     }
 }
 
@@ -77,6 +77,7 @@ public enum ListPrimaryRepositoriesForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case defaultBranch, scmProvider
+        case defaultBranch
+        case scmProvider
     }
 }

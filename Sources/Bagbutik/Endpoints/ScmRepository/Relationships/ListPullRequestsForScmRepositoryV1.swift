@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All Pull Requests for a Repository
-      List all pull requests for a specific repository that Xcode Cloud can access.
+     # List All Pull Requests for a Repository
+     List all pull requests for a specific repository that Xcode Cloud can access.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_pull_requests_for_a_repository>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_pull_requests_for_a_repository>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPullRequestsForScmRepositoryV1(id: String,
                                                    fields: [ListPullRequestsForScmRepositoryV1.Field]? = nil,
                                                    includes: [ListPullRequestsForScmRepositoryV1.Include]? = nil,
                                                    limit: Int? = nil) -> Request<ScmPullRequestsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/scmRepositories/\(id)/pullRequests", method: .get, parameters: .init(fields: fields,
-                                                                                                     includes: includes,
-                                                                                                     limit: limit))
+        .init(path: "/v1/scmRepositories/\(id)/pullRequests", method: .get, parameters: .init(fields: fields,
+                                                                                              includes: includes,
+                                                                                              limit: limit))
     }
 }
 

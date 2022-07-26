@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read Beta Build Localization Information
-      Get a specific beta build localization resource.
+     # Read Beta Build Localization Information
+     Get a specific beta build localization resource.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_build_localization_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_build_localization_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBetaBuildLocalizationV1(id: String,
                                            fields: [GetBetaBuildLocalizationV1.Field]? = nil,
                                            includes: [GetBetaBuildLocalizationV1.Include]? = nil) -> Request<BetaBuildLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaBuildLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                               includes: includes))
+        .init(path: "/v1/betaBuildLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                        includes: includes))
     }
 }
 

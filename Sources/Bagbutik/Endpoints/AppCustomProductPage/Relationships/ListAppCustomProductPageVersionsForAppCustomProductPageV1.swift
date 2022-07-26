@@ -1,16 +1,16 @@
 public extension Request {
     /**
-      # GET /v1/appCustomProductPages/{id}/appCustomProductPageVersions
+     # GET /v1/appCustomProductPages/{id}/appCustomProductPageVersions
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id_appcustomproductpageversions>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id_appcustomproductpageversions>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppCustomProductPageVersionsForAppCustomProductPageV1(id: String,
                                                                           fields: [ListAppCustomProductPageVersionsForAppCustomProductPageV1.Field]? = nil,
@@ -18,10 +18,10 @@ public extension Request {
                                                                           includes: [ListAppCustomProductPageVersionsForAppCustomProductPageV1.Include]? = nil,
                                                                           limits: [ListAppCustomProductPageVersionsForAppCustomProductPageV1.Limit]? = nil) -> Request<AppCustomProductPageVersionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appCustomProductPages/\(id)/appCustomProductPageVersions", method: .get, parameters: .init(fields: fields,
-                                                                                                                           filters: filters,
-                                                                                                                           includes: includes,
-                                                                                                                           limits: limits))
+        .init(path: "/v1/appCustomProductPages/\(id)/appCustomProductPageVersions", method: .get, parameters: .init(fields: fields,
+                                                                                                                    filters: filters,
+                                                                                                                    includes: includes,
+                                                                                                                    limits: limits))
     }
 }
 
@@ -86,16 +86,17 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPage, appCustomProductPageLocalizations
+        case appCustomProductPage
+        case appCustomProductPageLocalizations
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appCustomProductPageLocalizations returned (when they are included) - maximum 50
         case appCustomProductPageLocalizations(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

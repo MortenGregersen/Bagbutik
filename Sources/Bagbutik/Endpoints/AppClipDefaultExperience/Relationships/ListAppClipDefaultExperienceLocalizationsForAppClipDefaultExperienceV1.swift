@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # Read Localization Information for a Default App Clip Experience
-      Get localized metadata that appears on the App Clip card for a specific default App Clip experience.
+     # Read Localization Information for a Default App Clip Experience
+     Get localized metadata that appears on the App Clip card for a specific default App Clip experience.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_localization_information_for_a_default_app_clip_experience>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_localization_information_for_a_default_app_clip_experience>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppClipDefaultExperienceLocalizationsForAppClipDefaultExperienceV1(id: String,
                                                                                        fields: [ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperienceV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                                                        includes: [ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperienceV1.Include]? = nil,
                                                                                        limit: Int? = nil) -> Request<AppClipDefaultExperienceLocalizationsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClipDefaultExperiences/\(id)/appClipDefaultExperienceLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                                                        filters: filters,
-                                                                                                                                        includes: includes,
-                                                                                                                                        limit: limit))
+        .init(path: "/v1/appClipDefaultExperiences/\(id)/appClipDefaultExperienceLocalizations", method: .get, parameters: .init(fields: fields,
+                                                                                                                                 filters: filters,
+                                                                                                                                 includes: includes,
+                                                                                                                                 limit: limit))
     }
 }
 
@@ -78,6 +78,7 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClipDefaultExperience, appClipHeaderImage
+        case appClipDefaultExperience
+        case appClipHeaderImage
     }
 }

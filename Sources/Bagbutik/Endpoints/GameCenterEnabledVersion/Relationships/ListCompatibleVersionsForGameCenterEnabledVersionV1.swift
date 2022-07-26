@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Compatible Versions for a Game Center Enabled Version
+     # List All Compatible Versions for a Game Center Enabled Version
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_compatible_versions_for_a_game_center_enabled_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_compatible_versions_for_a_game_center_enabled_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCompatibleVersionsForGameCenterEnabledVersionV1(id: String,
                                                                     fields: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Field]? = nil,
@@ -20,11 +20,11 @@ public extension Request {
                                                                     sorts: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Sort]? = nil,
                                                                     limits: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Limit]? = nil) -> Request<GameCenterEnabledVersionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/gameCenterEnabledVersions/\(id)/compatibleVersions", method: .get, parameters: .init(fields: fields,
-                                                                                                                     filters: filters,
-                                                                                                                     includes: includes,
-                                                                                                                     sorts: sorts,
-                                                                                                                     limits: limits))
+        .init(path: "/v1/gameCenterEnabledVersions/\(id)/compatibleVersions", method: .get, parameters: .init(fields: fields,
+                                                                                                              filters: filters,
+                                                                                                              includes: includes,
+                                                                                                              sorts: sorts,
+                                                                                                              limits: limits))
     }
 }
 
@@ -112,7 +112,8 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, compatibleVersions
+        case app
+        case compatibleVersions
     }
 
     /**
@@ -127,9 +128,9 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related compatibleVersions returned (when they are included) - maximum 50
         case compatibleVersions(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

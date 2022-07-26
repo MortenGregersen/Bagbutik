@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List Invited Users
-      Get a list of pending invitations to join your team.
+     # List Invited Users
+     Get a list of pending invitations to join your team.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_invited_users>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_invited_users>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listUserInvitationsV1(fields: [ListUserInvitationsV1.Field]? = nil,
                                       filters: [ListUserInvitationsV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                                       sorts: [ListUserInvitationsV1.Sort]? = nil,
                                       limits: [ListUserInvitationsV1.Limit]? = nil) -> Request<UserInvitationsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/userInvitations", method: .get, parameters: .init(fields: fields,
-                                                                                  filters: filters,
-                                                                                  includes: includes,
-                                                                                  sorts: sorts,
-                                                                                  limits: limits))
+        .init(path: "/v1/userInvitations", method: .get, parameters: .init(fields: fields,
+                                                                           filters: filters,
+                                                                           includes: includes,
+                                                                           sorts: sorts,
+                                                                           limits: limits))
     }
 }
 

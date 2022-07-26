@@ -1,20 +1,20 @@
 public extension Request {
     /**
-      # Read the Age Rating Declaration Information of an App Store Version
-      Get the age-related information declared for your app.
+     # Read the Age Rating Declaration Information of an App Store Version
+     Get the age-related information declared for your app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_age_rating_declaration_information_of_an_app_store_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_age_rating_declaration_information_of_an_app_store_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAgeRatingDeclarationForAppStoreVersionV1(id: String,
                                                             fields: [GetAgeRatingDeclarationForAppStoreVersionV1.Field]? = nil) -> Request<AgeRatingDeclarationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/ageRatingDeclaration", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/appStoreVersions/\(id)/ageRatingDeclaration", method: .get, parameters: .init(fields: fields))
     }
 }
 

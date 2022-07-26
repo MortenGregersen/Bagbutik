@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # GET /v1/appStoreVersionExperiments/{id}
+     # GET /v1/appStoreVersionExperiments/{id}
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperiments_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperiments_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appStoreVersionExperimentTreatments returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appStoreVersionExperimentTreatments returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionExperimentV1(id: String,
                                                fields: [GetAppStoreVersionExperimentV1.Field]? = nil,
                                                includes: [GetAppStoreVersionExperimentV1.Include]? = nil,
                                                limit: Int? = nil) -> Request<AppStoreVersionExperimentResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersionExperiments/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                   includes: includes,
-                                                                                                   limit: limit))
+        .init(path: "/v1/appStoreVersionExperiments/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                            includes: includes,
+                                                                                            limit: limit))
     }
 }
 
@@ -58,6 +58,7 @@ public enum GetAppStoreVersionExperimentV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appStoreVersion, appStoreVersionExperimentTreatments
+        case appStoreVersion
+        case appStoreVersionExperimentTreatments
     }
 }

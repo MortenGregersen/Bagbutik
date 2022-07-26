@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read the App Store Review Details Resource Information of an App Store Version
-      Get the details you provide to App Review so they can test your app.
+     # Read the App Store Review Details Resource Information of an App Store Version
+     Get the details you provide to App Review so they can test your app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_review_details_resource_information_of_an_app_store_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_review_details_resource_information_of_an_app_store_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appStoreReviewAttachments returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appStoreReviewAttachments returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreReviewDetailForAppStoreVersionV1(id: String,
                                                             fields: [GetAppStoreReviewDetailForAppStoreVersionV1.Field]? = nil,
                                                             includes: [GetAppStoreReviewDetailForAppStoreVersionV1.Include]? = nil,
                                                             limit: Int? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/appStoreReviewDetail", method: .get, parameters: .init(fields: fields,
-                                                                                                              includes: includes,
-                                                                                                              limit: limit))
+        .init(path: "/v1/appStoreVersions/\(id)/appStoreReviewDetail", method: .get, parameters: .init(fields: fields,
+                                                                                                       includes: includes,
+                                                                                                       limit: limit))
     }
 }
 
@@ -85,6 +85,7 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appStoreReviewAttachments, appStoreVersion
+        case appStoreReviewAttachments
+        case appStoreVersion
     }
 }

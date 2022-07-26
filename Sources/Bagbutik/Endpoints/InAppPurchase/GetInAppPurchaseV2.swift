@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read In-App Purchase Information
-      Get information about an in-app purchase.
+     # Read In-App Purchase Information
+     Get information about an in-app purchase.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getInAppPurchaseV2(id: String,
                                    fields: [GetInAppPurchaseV2.Field]? = nil,
                                    includes: [GetInAppPurchaseV2.Include]? = nil,
                                    limits: [GetInAppPurchaseV2.Limit]? = nil) -> Request<InAppPurchaseV2Response, ErrorResponse>
     {
-        return .init(path: "/v2/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes,
-                                                                                       limits: limits))
+        .init(path: "/v2/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                includes: includes,
+                                                                                limits: limits))
     }
 }
 
@@ -118,7 +118,12 @@ public enum GetInAppPurchaseV2 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appStoreReviewScreenshot, content, iapPriceSchedule, inAppPurchaseLocalizations, pricePoints, promotedPurchase
+        case appStoreReviewScreenshot
+        case content
+        case iapPriceSchedule
+        case inAppPurchaseLocalizations
+        case pricePoints
+        case promotedPurchase
     }
 
     /**

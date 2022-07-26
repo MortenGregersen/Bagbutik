@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # List All Subscription Groups for an App
-      Get a list of subscription groups for a specific app.
+     # List All Subscription Groups for an App
+     Get a list of subscription groups for a specific app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_groups_for_an_app>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_groups_for_an_app>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listSubscriptionGroupsForAppV1(id: String,
                                                fields: [ListSubscriptionGroupsForAppV1.Field]? = nil,
@@ -21,11 +21,11 @@ public extension Request {
                                                sorts: [ListSubscriptionGroupsForAppV1.Sort]? = nil,
                                                limits: [ListSubscriptionGroupsForAppV1.Limit]? = nil) -> Request<SubscriptionGroupsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/subscriptionGroups", method: .get, parameters: .init(fields: fields,
-                                                                                                filters: filters,
-                                                                                                includes: includes,
-                                                                                                sorts: sorts,
-                                                                                                limits: limits))
+        .init(path: "/v1/apps/\(id)/subscriptionGroups", method: .get, parameters: .init(fields: fields,
+                                                                                         filters: filters,
+                                                                                         includes: includes,
+                                                                                         sorts: sorts,
+                                                                                         limits: limits))
     }
 }
 
@@ -104,7 +104,8 @@ public enum ListSubscriptionGroupsForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case subscriptionGroupLocalizations, subscriptions
+        case subscriptionGroupLocalizations
+        case subscriptions
     }
 
     /**
@@ -121,9 +122,9 @@ public enum ListSubscriptionGroupsForAppV1 {
     public enum Limit: LimitParameter {
         /// Maximum resources per page - maximum 200
         case limit(Int)
-        /// Maximum number of related subscriptions returned (when they are included) - maximum 50
-        case subscriptions(Int)
         /// Maximum number of related subscriptionGroupLocalizations returned (when they are included) - maximum 50
         case subscriptionGroupLocalizations(Int)
+        /// Maximum number of related subscriptions returned (when they are included) - maximum 50
+        case subscriptions(Int)
     }
 }

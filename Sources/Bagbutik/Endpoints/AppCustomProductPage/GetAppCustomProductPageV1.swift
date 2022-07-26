@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # GET /v1/appCustomProductPages/{id}
+     # GET /v1/appCustomProductPages/{id}
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appCustomProductPageVersions returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appCustomProductPageVersions returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppCustomProductPageV1(id: String,
                                           fields: [GetAppCustomProductPageV1.Field]? = nil,
                                           includes: [GetAppCustomProductPageV1.Include]? = nil,
                                           limit: Int? = nil) -> Request<AppCustomProductPageResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appCustomProductPages/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                              includes: includes,
-                                                                                              limit: limit))
+        .init(path: "/v1/appCustomProductPages/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                       includes: includes,
+                                                                                       limit: limit))
     }
 }
 
@@ -54,6 +54,7 @@ public enum GetAppCustomProductPageV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appCustomProductPageVersions
+        case app
+        case appCustomProductPageVersions
     }
 }

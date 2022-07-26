@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Default App Clip Experiences for an App Clip
-      Get all default App Clip experiences for an App Clip.
+     # List All Default App Clip Experiences for an App Clip
+     Get all default App Clip experiences for an App Clip.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_default_app_clip_experiences_for_an_app_clip>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_default_app_clip_experiences_for_an_app_clip>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter exists: Attributes, relationships, and IDs to check for existence
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter exists: Attributes, relationships, and IDs to check for existence
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppClipDefaultExperiencesForAppClipV1(id: String,
                                                           fields: [ListAppClipDefaultExperiencesForAppClipV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                           includes: [ListAppClipDefaultExperiencesForAppClipV1.Include]? = nil,
                                                           limits: [ListAppClipDefaultExperiencesForAppClipV1.Limit]? = nil) -> Request<AppClipDefaultExperiencesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClips/\(id)/appClipDefaultExperiences", method: .get, parameters: .init(fields: fields,
-                                                                                                           exists: exists,
-                                                                                                           includes: includes,
-                                                                                                           limits: limits))
+        .init(path: "/v1/appClips/\(id)/appClipDefaultExperiences", method: .get, parameters: .init(fields: fields,
+                                                                                                    exists: exists,
+                                                                                                    includes: includes,
+                                                                                                    limits: limits))
     }
 }
 
@@ -105,16 +105,19 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClip, appClipAppStoreReviewDetail, appClipDefaultExperienceLocalizations, releaseWithAppStoreVersion
+        case appClip
+        case appClipAppStoreReviewDetail
+        case appClipDefaultExperienceLocalizations
+        case releaseWithAppStoreVersion
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) - maximum 50
         case appClipDefaultExperienceLocalizations(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

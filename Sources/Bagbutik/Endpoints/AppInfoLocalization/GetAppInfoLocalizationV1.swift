@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read App Info Localization Information
-      Read localized app-level information.
+     # Read App Info Localization Information
+     Read localized app-level information.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_localization_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_localization_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppInfoLocalizationV1(id: String,
                                          fields: [GetAppInfoLocalizationV1.Field]? = nil,
                                          includes: [GetAppInfoLocalizationV1.Include]? = nil) -> Request<AppInfoLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appInfoLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes))
+        .init(path: "/v1/appInfoLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                      includes: includes))
     }
 }
 

@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read Build Information
-      Get information about a specific build.
+     # Read Build Information
+     Get information about a specific build.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_build_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_build_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildV1(id: String,
                            fields: [GetBuildV1.Field]? = nil,
                            includes: [GetBuildV1.Include]? = nil,
                            limits: [GetBuildV1.Limit]? = nil) -> Request<BuildResponse, ErrorResponse>
     {
-        return .init(path: "/v1/builds/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                               includes: includes,
-                                                                               limits: limits))
+        .init(path: "/v1/builds/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                        includes: includes,
+                                                                        limits: limits))
     }
 }
 
@@ -220,7 +220,17 @@ public enum GetBuildV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, betaGroups, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
+        case app
+        case appEncryptionDeclaration
+        case appStoreVersion
+        case betaAppReviewSubmission
+        case betaBuildLocalizations
+        case betaGroups
+        case buildBetaDetail
+        case buildBundles
+        case icons
+        case individualTesters
+        case preReleaseVersion
     }
 
     /**

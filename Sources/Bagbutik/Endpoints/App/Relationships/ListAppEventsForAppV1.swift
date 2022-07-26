@@ -1,16 +1,16 @@
 public extension Request {
     /**
-      # GET /v1/apps/{id}/appEvents
+     # GET /v1/apps/{id}/appEvents
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_appEvents>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_appEvents>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppEventsForAppV1(id: String,
                                       fields: [ListAppEventsForAppV1.Field]? = nil,
@@ -18,10 +18,10 @@ public extension Request {
                                       includes: [ListAppEventsForAppV1.Include]? = nil,
                                       limits: [ListAppEventsForAppV1.Limit]? = nil) -> Request<AppEventsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/appEvents", method: .get, parameters: .init(fields: fields,
-                                                                                       filters: filters,
-                                                                                       includes: includes,
-                                                                                       limits: limits))
+        .init(path: "/v1/apps/\(id)/appEvents", method: .get, parameters: .init(fields: fields,
+                                                                                filters: filters,
+                                                                                includes: includes,
+                                                                                limits: limits))
     }
 }
 

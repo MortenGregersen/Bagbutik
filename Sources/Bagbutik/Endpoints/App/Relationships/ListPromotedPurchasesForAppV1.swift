@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All Promoted Purchases for an App
-      Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
+     # List All Promoted Purchases for an App
+     Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promoted_purchases_for_an_app>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promoted_purchases_for_an_app>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPromotedPurchasesForAppV1(id: String,
                                               fields: [ListPromotedPurchasesForAppV1.Field]? = nil,
                                               includes: [ListPromotedPurchasesForAppV1.Include]? = nil,
                                               limits: [ListPromotedPurchasesForAppV1.Limit]? = nil) -> Request<PromotedPurchasesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/promotedPurchases", method: .get, parameters: .init(fields: fields,
-                                                                                               includes: includes,
-                                                                                               limits: limits))
+        .init(path: "/v1/apps/\(id)/promotedPurchases", method: .get, parameters: .init(fields: fields,
+                                                                                        includes: includes,
+                                                                                        limits: limits))
     }
 }
 
@@ -103,7 +103,9 @@ public enum ListPromotedPurchasesForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case inAppPurchaseV2, promotionImages, subscription
+        case inAppPurchaseV2
+        case promotionImages
+        case subscription
     }
 
     /**

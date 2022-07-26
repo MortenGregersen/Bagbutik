@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the App Information of a Prerelease Version
-      Get the app information for a specific prerelease version.
+     # Read the App Information of a Prerelease Version
+     Get the app information for a specific prerelease version.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_prerelease_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_prerelease_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForPreReleaseVersionV1(id: String,
                                              fields: [GetAppForPreReleaseVersionV1.Field]? = nil) -> Request<AppResponse, ErrorResponse>
     {
-        return .init(path: "/v1/preReleaseVersions/\(id)/app", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/preReleaseVersions/\(id)/app", method: .get, parameters: .init(fields: fields))
     }
 }
 

@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # List All In-App Purchases for an App V1
-      List the in-app purchases that are available for your app.
+     # List All In-App Purchases for an App V1
+     List the in-app purchases that are available for your app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app_v1>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app_v1>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listInAppPurchasesForAppV1(id: String,
@@ -22,11 +22,11 @@ public extension Request {
                                            sorts: [ListInAppPurchasesForAppV1.Sort]? = nil,
                                            limits: [ListInAppPurchasesForAppV1.Limit]? = nil) -> Request<InAppPurchasesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/inAppPurchases", method: .get, parameters: .init(fields: fields,
-                                                                                            filters: filters,
-                                                                                            includes: includes,
-                                                                                            sorts: sorts,
-                                                                                            limits: limits))
+        .init(path: "/v1/apps/\(id)/inAppPurchases", method: .get, parameters: .init(fields: fields,
+                                                                                     filters: filters,
+                                                                                     includes: includes,
+                                                                                     sorts: sorts,
+                                                                                     limits: limits))
     }
 }
 
@@ -131,9 +131,9 @@ public enum ListInAppPurchasesForAppV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related apps returned (when they are included) - maximum 50
         case apps(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

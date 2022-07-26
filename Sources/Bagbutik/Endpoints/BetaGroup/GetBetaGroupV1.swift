@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read Beta Group Information
-      Get a specific beta group.
+     # Read Beta Group Information
+     Get a specific beta group.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_group_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_group_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBetaGroupV1(id: String,
                                fields: [GetBetaGroupV1.Field]? = nil,
                                includes: [GetBetaGroupV1.Include]? = nil,
                                limits: [GetBetaGroupV1.Limit]? = nil) -> Request<BetaGroupResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaGroups/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                   includes: includes,
-                                                                                   limits: limits))
+        .init(path: "/v1/betaGroups/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                            includes: includes,
+                                                                            limits: limits))
     }
 }
 
@@ -137,7 +137,9 @@ public enum GetBetaGroupV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, betaTesters, builds
+        case app
+        case betaTesters
+        case builds
     }
 
     /**

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List and Download Profiles
-      Find and list provisioning profiles and download their data.
+     # List and Download Profiles
+     Find and list provisioning profiles and download their data.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_and_download_profiles>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_and_download_profiles>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listProfilesV1(fields: [ListProfilesV1.Field]? = nil,
                                filters: [ListProfilesV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                                sorts: [ListProfilesV1.Sort]? = nil,
                                limits: [ListProfilesV1.Limit]? = nil) -> Request<ProfilesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/profiles", method: .get, parameters: .init(fields: fields,
-                                                                           filters: filters,
-                                                                           includes: includes,
-                                                                           sorts: sorts,
-                                                                           limits: limits))
+        .init(path: "/v1/profiles", method: .get, parameters: .init(fields: fields,
+                                                                    filters: filters,
+                                                                    includes: includes,
+                                                                    sorts: sorts,
+                                                                    limits: limits))
     }
 }
 
@@ -105,7 +105,9 @@ public enum ListProfilesV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case bundleId, certificates, devices
+        case bundleId
+        case certificates
+        case devices
     }
 
     /**
@@ -126,11 +128,11 @@ public enum ListProfilesV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related certificates returned (when they are included) - maximum 50
         case certificates(Int)
         /// Maximum number of related devices returned (when they are included) - maximum 50
         case devices(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

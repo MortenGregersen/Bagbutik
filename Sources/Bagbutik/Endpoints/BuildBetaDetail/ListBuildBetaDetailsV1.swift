@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List Build Beta Details
-      Find and list build beta details for all builds.
+     # List Build Beta Details
+     Find and list build beta details for all builds.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_build_beta_details>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_build_beta_details>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildBetaDetailsV1(fields: [ListBuildBetaDetailsV1.Field]? = nil,
                                        filters: [ListBuildBetaDetailsV1.Filter]? = nil,
                                        includes: [ListBuildBetaDetailsV1.Include]? = nil,
                                        limit: Int? = nil) -> Request<BuildBetaDetailsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/buildBetaDetails", method: .get, parameters: .init(fields: fields,
-                                                                                   filters: filters,
-                                                                                   includes: includes,
-                                                                                   limit: limit))
+        .init(path: "/v1/buildBetaDetails", method: .get, parameters: .init(fields: fields,
+                                                                            filters: filters,
+                                                                            includes: includes,
+                                                                            limit: limit))
     }
 }
 

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List Bundle IDs
-      Find and list bundle IDs that are registered to your team.
+     # List Bundle IDs
+     Find and list bundle IDs that are registered to your team.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_bundle_ids>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_bundle_ids>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBundleIdsV1(fields: [ListBundleIdsV1.Field]? = nil,
                                 filters: [ListBundleIdsV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                                 sorts: [ListBundleIdsV1.Sort]? = nil,
                                 limits: [ListBundleIdsV1.Limit]? = nil) -> Request<BundleIdsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/bundleIds", method: .get, parameters: .init(fields: fields,
-                                                                            filters: filters,
-                                                                            includes: includes,
-                                                                            sorts: sorts,
-                                                                            limits: limits))
+        .init(path: "/v1/bundleIds", method: .get, parameters: .init(fields: fields,
+                                                                     filters: filters,
+                                                                     includes: includes,
+                                                                     sorts: sorts,
+                                                                     limits: limits))
     }
 }
 
@@ -138,7 +138,9 @@ public enum ListBundleIdsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, bundleIdCapabilities, profiles
+        case app
+        case bundleIdCapabilities
+        case profiles
     }
 
     /**
@@ -161,10 +163,10 @@ public enum ListBundleIdsV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related bundleIdCapabilities returned (when they are included) - maximum 50
         case bundleIdCapabilities(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
         /// Maximum number of related profiles returned (when they are included) - maximum 50
         case profiles(Int)
     }

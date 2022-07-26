@@ -1,16 +1,16 @@
 public extension Request {
     /**
-      # GET /v1/apps/{id}/reviewSubmissions
+     # GET /v1/apps/{id}/reviewSubmissions
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_reviewSubmissions>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_reviewSubmissions>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listReviewSubmissionsForAppV1(id: String,
                                               fields: [ListReviewSubmissionsForAppV1.Field]? = nil,
@@ -18,10 +18,10 @@ public extension Request {
                                               includes: [ListReviewSubmissionsForAppV1.Include]? = nil,
                                               limits: [ListReviewSubmissionsForAppV1.Limit]? = nil) -> Request<ReviewSubmissionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/reviewSubmissions", method: .get, parameters: .init(fields: fields,
-                                                                                               filters: filters,
-                                                                                               includes: includes,
-                                                                                               limits: limits))
+        .init(path: "/v1/apps/\(id)/reviewSubmissions", method: .get, parameters: .init(fields: fields,
+                                                                                        filters: filters,
+                                                                                        includes: includes,
+                                                                                        limits: limits))
     }
 }
 
@@ -155,16 +155,18 @@ public enum ListReviewSubmissionsForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appStoreVersionForReview, items
+        case app
+        case appStoreVersionForReview
+        case items
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related items returned (when they are included) - maximum 50
         case items(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read Promoted Purchase Information
-      Get details about a specific promoted in-app purchase.
+     # Read Promoted Purchase Information
+     Get details about a specific promoted in-app purchase.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_promoted_purchase_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_promoted_purchase_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related promotionImages returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related promotionImages returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPromotedPurchaseV1(id: String,
                                       fields: [GetPromotedPurchaseV1.Field]? = nil,
                                       includes: [GetPromotedPurchaseV1.Include]? = nil,
                                       limit: Int? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
     {
-        return .init(path: "/v1/promotedPurchases/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                          includes: includes,
-                                                                                          limit: limit))
+        .init(path: "/v1/promotedPurchases/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                   includes: includes,
+                                                                                   limit: limit))
     }
 }
 
@@ -61,6 +61,8 @@ public enum GetPromotedPurchaseV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case inAppPurchaseV2, promotionImages, subscription
+        case inAppPurchaseV2
+        case promotionImages
+        case subscription
     }
 }

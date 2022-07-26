@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the Build Information of an App Store Version
-      Get the build that is attached to a specific App Store version.
+     # Read the Build Information of an App Store Version
+     Get the build that is attached to a specific App Store version.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_build_information_of_an_app_store_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_build_information_of_an_app_store_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildForAppStoreVersionV1(id: String,
                                              fields: [GetBuildForAppStoreVersionV1.Field]? = nil) -> Request<BuildResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/build", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/appStoreVersions/\(id)/build", method: .get, parameters: .init(fields: fields))
     }
 }
 

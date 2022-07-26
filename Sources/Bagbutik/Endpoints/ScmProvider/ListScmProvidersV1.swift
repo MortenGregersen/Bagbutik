@@ -1,20 +1,20 @@
 public extension Request {
     /**
-      # List All Source Code Management Providers
-      List all source code management providers you connected to Xcode Cloud.
+     # List All Source Code Management Providers
+     List all source code management providers you connected to Xcode Cloud.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_source_code_management_providers>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_source_code_management_providers>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listScmProvidersV1(fields: [ListScmProvidersV1.Field]? = nil,
                                    limit: Int? = nil) -> Request<ScmProvidersResponse, ErrorResponse>
     {
-        return .init(path: "/v1/scmProviders", method: .get, parameters: .init(fields: fields,
-                                                                               limit: limit))
+        .init(path: "/v1/scmProviders", method: .get, parameters: .init(fields: fields,
+                                                                        limit: limit))
     }
 }
 

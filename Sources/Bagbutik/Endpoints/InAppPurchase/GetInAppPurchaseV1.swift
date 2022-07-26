@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read In-App Purchase Information
-      Get information about an in-app purchase.
+     # Read In-App Purchase Information
+     Get information about an in-app purchase.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related apps returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related apps returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getInAppPurchaseV1(id: String,
                                    fields: [GetInAppPurchaseV1.Field]? = nil,
                                    includes: [GetInAppPurchaseV1.Include]? = nil,
                                    limit: Int? = nil) -> Request<InAppPurchaseResponse, ErrorResponse>
     {
-        return .init(path: "/v1/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes,
-                                                                                       limit: limit))
+        .init(path: "/v1/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                includes: includes,
+                                                                                limit: limit))
     }
 }
 

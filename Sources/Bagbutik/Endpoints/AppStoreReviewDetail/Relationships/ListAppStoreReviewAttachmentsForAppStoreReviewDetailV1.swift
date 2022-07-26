@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All Review Attachments for an App Store Review Detail
-      List all the App Store review attachments you include with a version when you submit it for App Review.
+     # List All Review Attachments for an App Store Review Detail
+     List all the App Store review attachments you include with a version when you submit it for App Review.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_review_attachments_for_an_app_store_review_detail>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_review_attachments_for_an_app_store_review_detail>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppStoreReviewAttachmentsForAppStoreReviewDetailV1(id: String,
                                                                        fields: [ListAppStoreReviewAttachmentsForAppStoreReviewDetailV1.Field]? = nil,
                                                                        includes: [ListAppStoreReviewAttachmentsForAppStoreReviewDetailV1.Include]? = nil,
                                                                        limit: Int? = nil) -> Request<AppStoreReviewAttachmentsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreReviewDetails/\(id)/appStoreReviewAttachments", method: .get, parameters: .init(fields: fields,
-                                                                                                                        includes: includes,
-                                                                                                                        limit: limit))
+        .init(path: "/v1/appStoreReviewDetails/\(id)/appStoreReviewAttachments", method: .get, parameters: .init(fields: fields,
+                                                                                                                 includes: includes,
+                                                                                                                 limit: limit))
     }
 }
 

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List Builds
-      Find and list builds for all apps in App Store Connect.
+     # List Builds
+     Find and list builds for all apps in App Store Connect.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_builds>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_builds>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildsV1(fields: [ListBuildsV1.Field]? = nil,
                              filters: [ListBuildsV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                              sorts: [ListBuildsV1.Sort]? = nil,
                              limits: [ListBuildsV1.Limit]? = nil) -> Request<BuildsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/builds", method: .get, parameters: .init(fields: fields,
-                                                                         filters: filters,
-                                                                         includes: includes,
-                                                                         sorts: sorts,
-                                                                         limits: limits))
+        .init(path: "/v1/builds", method: .get, parameters: .init(fields: fields,
+                                                                  filters: filters,
+                                                                  includes: includes,
+                                                                  sorts: sorts,
+                                                                  limits: limits))
     }
 }
 
@@ -274,7 +274,17 @@ public enum ListBuildsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appEncryptionDeclaration, appStoreVersion, betaAppReviewSubmission, betaBuildLocalizations, betaGroups, buildBetaDetail, buildBundles, icons, individualTesters, preReleaseVersion
+        case app
+        case appEncryptionDeclaration
+        case appStoreVersion
+        case betaAppReviewSubmission
+        case betaBuildLocalizations
+        case betaGroups
+        case buildBetaDetail
+        case buildBundles
+        case icons
+        case individualTesters
+        case preReleaseVersion
     }
 
     /**
@@ -293,8 +303,6 @@ public enum ListBuildsV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related betaBuildLocalizations returned (when they are included) - maximum 50
         case betaBuildLocalizations(Int)
         /// Maximum number of related betaGroups returned (when they are included) - maximum 50
@@ -305,5 +313,7 @@ public enum ListBuildsV1 {
         case icons(Int)
         /// Maximum number of related individualTesters returned (when they are included) - maximum 50
         case individualTesters(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Promotional Offer Prices for a Subscription
-      Get a list of prices of a promotional offer for an auto-renewable subscription, for a specified territory.
+     # List All Promotional Offer Prices for a Subscription
+     Get a list of prices of a promotional offer for an auto-renewable subscription, for a specified territory.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promotional_offer_prices_for_a_subscription>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promotional_offer_prices_for_a_subscription>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPricesForSubscriptionPromotionalOfferV1(id: String,
                                                             fields: [ListPricesForSubscriptionPromotionalOfferV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                             includes: [ListPricesForSubscriptionPromotionalOfferV1.Include]? = nil,
                                                             limit: Int? = nil) -> Request<SubscriptionPromotionalOfferPricesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptionPromotionalOffers/\(id)/prices", method: .get, parameters: .init(fields: fields,
-                                                                                                             filters: filters,
-                                                                                                             includes: includes,
-                                                                                                             limit: limit))
+        .init(path: "/v1/subscriptionPromotionalOffers/\(id)/prices", method: .get, parameters: .init(fields: fields,
+                                                                                                      filters: filters,
+                                                                                                      includes: includes,
+                                                                                                      limit: limit))
     }
 }
 
@@ -69,6 +69,7 @@ public enum ListPricesForSubscriptionPromotionalOfferV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case subscriptionPricePoint, territory
+        case subscriptionPricePoint
+        case territory
     }
 }

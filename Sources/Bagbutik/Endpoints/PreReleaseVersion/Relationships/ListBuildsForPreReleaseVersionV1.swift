@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # List All Builds of a Prerelease Version
-      Get a list of builds of a specific prerelease version.
+     # List All Builds of a Prerelease Version
+     Get a list of builds of a specific prerelease version.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_of_a_prerelease_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_of_a_prerelease_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildsForPreReleaseVersionV1(id: String,
                                                  fields: [ListBuildsForPreReleaseVersionV1.Field]? = nil,
                                                  limit: Int? = nil) -> Request<BuildsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/preReleaseVersions/\(id)/builds", method: .get, parameters: .init(fields: fields,
-                                                                                                  limit: limit))
+        .init(path: "/v1/preReleaseVersions/\(id)/builds", method: .get, parameters: .init(fields: fields,
+                                                                                           limit: limit))
     }
 }
 

@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # Read the App Information of a Bundle ID
+     # Read the App Information of a Bundle ID
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_bundle_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_bundle_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBundleIdV1(id: String,
                                     fields: [GetAppForBundleIdV1.Field]? = nil) -> Request<AppResponse, ErrorResponse>
     {
-        return .init(path: "/v1/bundleIds/\(id)/app", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/bundleIds/\(id)/app", method: .get, parameters: .init(fields: fields))
     }
 }
 

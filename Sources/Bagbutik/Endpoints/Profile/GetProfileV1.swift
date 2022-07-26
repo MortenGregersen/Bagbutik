@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read and Download Profile Information
-      Get information for a specific provisioning profile and download its data.
+     # Read and Download Profile Information
+     Get information for a specific provisioning profile and download its data.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_and_download_profile_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_and_download_profile_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getProfileV1(id: String,
                              fields: [GetProfileV1.Field]? = nil,
                              includes: [GetProfileV1.Include]? = nil,
                              limits: [GetProfileV1.Limit]? = nil) -> Request<ProfileResponse, ErrorResponse>
     {
-        return .init(path: "/v1/profiles/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                 includes: includes,
-                                                                                 limits: limits))
+        .init(path: "/v1/profiles/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                          includes: includes,
+                                                                          limits: limits))
     }
 }
 
@@ -87,7 +87,9 @@ public enum GetProfileV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case bundleId, certificates, devices
+        case bundleId
+        case certificates
+        case devices
     }
 
     /**

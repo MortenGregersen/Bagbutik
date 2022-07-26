@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read Prerelease Version Information
-      Get information about a specific prerelease version.
+     # Read Prerelease Version Information
+     Get information about a specific prerelease version.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_prerelease_version_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_prerelease_version_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related builds returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related builds returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPreReleaseVersionV1(id: String,
                                        fields: [GetPreReleaseVersionV1.Field]? = nil,
                                        includes: [GetPreReleaseVersionV1.Include]? = nil,
                                        limit: Int? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/preReleaseVersions/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                           includes: includes,
-                                                                                           limit: limit))
+        .init(path: "/v1/preReleaseVersions/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                    includes: includes,
+                                                                                    limit: limit))
     }
 }
 
@@ -115,6 +115,7 @@ public enum GetPreReleaseVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, builds
+        case app
+        case builds
     }
 }

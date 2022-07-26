@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Clip Information
-      Get a specific App Clip.
+     # Read App Clip Information
+     Get a specific App Clip.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_clip_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_clip_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appClipDefaultExperiences returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appClipDefaultExperiences returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppClipV1(id: String,
                              fields: [GetAppClipV1.Field]? = nil,
                              includes: [GetAppClipV1.Include]? = nil,
                              limit: Int? = nil) -> Request<AppClipResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClips/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                 includes: includes,
-                                                                                 limit: limit))
+        .init(path: "/v1/appClips/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                          includes: includes,
+                                                                          limit: limit))
     }
 }
 
@@ -72,6 +72,7 @@ public enum GetAppClipV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appClipDefaultExperiences
+        case app
+        case appClipDefaultExperiences
     }
 }

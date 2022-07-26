@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read Localization Information of a Default App Clip Experience
-      Get localized metadata that appears on the App Clip card of a specific default App Clip experience.
+     # Read Localization Information of a Default App Clip Experience
+     Get localized metadata that appears on the App Clip card of a specific default App Clip experience.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_localization_information_of_a_default_app_clip_experience>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_localization_information_of_a_default_app_clip_experience>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppClipDefaultExperienceLocalizationV1(id: String,
                                                           fields: [GetAppClipDefaultExperienceLocalizationV1.Field]? = nil,
                                                           includes: [GetAppClipDefaultExperienceLocalizationV1.Include]? = nil) -> Request<AppClipDefaultExperienceLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClipDefaultExperienceLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                              includes: includes))
+        .init(path: "/v1/appClipDefaultExperienceLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                                       includes: includes))
     }
 }
 
@@ -53,6 +53,7 @@ public enum GetAppClipDefaultExperienceLocalizationV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClipDefaultExperience, appClipHeaderImage
+        case appClipDefaultExperience
+        case appClipHeaderImage
     }
 }

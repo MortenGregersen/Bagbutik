@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All App Info Localizations for an App Info
-      Get a list of localized, app-level information for an app.
+     # List All App Info Localizations for an App Info
+     Get a list of localized, app-level information for an app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_info_localizations_for_an_app_info>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_info_localizations_for_an_app_info>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppInfoLocalizationsForAppInfoV1(id: String,
                                                      fields: [ListAppInfoLocalizationsForAppInfoV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                      includes: [ListAppInfoLocalizationsForAppInfoV1.Include]? = nil,
                                                      limit: Int? = nil) -> Request<AppInfoLocalizationsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appInfos/\(id)/appInfoLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                      filters: filters,
-                                                                                                      includes: includes,
-                                                                                                      limit: limit))
+        .init(path: "/v1/appInfos/\(id)/appInfoLocalizations", method: .get, parameters: .init(fields: fields,
+                                                                                               filters: filters,
+                                                                                               includes: includes,
+                                                                                               limit: limit))
     }
 }
 

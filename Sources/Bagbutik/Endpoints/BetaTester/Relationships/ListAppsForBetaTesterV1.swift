@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # List All Apps for a Beta Tester
-      Get a list of apps that a beta tester can test.
+     # List All Apps for a Beta Tester
+     Get a list of apps that a beta tester can test.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_apps_for_a_beta_tester>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_apps_for_a_beta_tester>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppsForBetaTesterV1(id: String,
                                         fields: [ListAppsForBetaTesterV1.Field]? = nil,
                                         limit: Int? = nil) -> Request<AppsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaTesters/\(id)/apps", method: .get, parameters: .init(fields: fields,
-                                                                                         limit: limit))
+        .init(path: "/v1/betaTesters/\(id)/apps", method: .get, parameters: .init(fields: fields,
+                                                                                  limit: limit))
     }
 }
 

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Xcode Cloud Builds for a Workflow
-      List all builds Xcode Cloud performed for a specific workflow.
+     # List All Xcode Cloud Builds for a Workflow
+     List all builds Xcode Cloud performed for a specific workflow.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_cloud_builds_for_a_workflow>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_cloud_builds_for_a_workflow>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBuildRunsForCiWorkflowV1(id: String,
                                              fields: [ListBuildRunsForCiWorkflowV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                              includes: [ListBuildRunsForCiWorkflowV1.Include]? = nil,
                                              limits: [ListBuildRunsForCiWorkflowV1.Limit]? = nil) -> Request<CiBuildRunsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciWorkflows/\(id)/buildRuns", method: .get, parameters: .init(fields: fields,
-                                                                                              filters: filters,
-                                                                                              includes: includes,
-                                                                                              limits: limits))
+        .init(path: "/v1/ciWorkflows/\(id)/buildRuns", method: .get, parameters: .init(fields: fields,
+                                                                                       filters: filters,
+                                                                                       includes: includes,
+                                                                                       limits: limits))
     }
 }
 
@@ -163,16 +163,21 @@ public enum ListBuildRunsForCiWorkflowV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case builds, destinationBranch, product, pullRequest, sourceBranchOrTag, workflow
+        case builds
+        case destinationBranch
+        case product
+        case pullRequest
+        case sourceBranchOrTag
+        case workflow
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related builds returned (when they are included) - maximum 50
         case builds(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

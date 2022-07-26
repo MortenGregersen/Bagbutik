@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List Beta Build Localizations
-      Find and list beta build localizations currently associated with apps.
+     # List Beta Build Localizations
+     Find and list beta build localizations currently associated with apps.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_build_localizations>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_build_localizations>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaBuildLocalizationsV1(fields: [ListBetaBuildLocalizationsV1.Field]? = nil,
                                              filters: [ListBetaBuildLocalizationsV1.Filter]? = nil,
                                              includes: [ListBetaBuildLocalizationsV1.Include]? = nil,
                                              limit: Int? = nil) -> Request<BetaBuildLocalizationsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaBuildLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                         filters: filters,
-                                                                                         includes: includes,
-                                                                                         limit: limit))
+        .init(path: "/v1/betaBuildLocalizations", method: .get, parameters: .init(fields: fields,
+                                                                                  filters: filters,
+                                                                                  includes: includes,
+                                                                                  limit: limit))
     }
 }
 

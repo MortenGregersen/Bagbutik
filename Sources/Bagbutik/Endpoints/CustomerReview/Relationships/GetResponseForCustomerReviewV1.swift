@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Get a Customer Review Response
-      Get the response to a specific customer review.
+     # Get a Customer Review Response
+     Get the response to a specific customer review.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_a_customer_review_response>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_a_customer_review_response>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getResponseForCustomerReviewV1(id: String,
                                                fields: [GetResponseForCustomerReviewV1.Field]? = nil,
                                                includes: [GetResponseForCustomerReviewV1.Include]? = nil) -> Request<CustomerReviewResponseV1Response, ErrorResponse>
     {
-        return .init(path: "/v1/customerReviews/\(id)/response", method: .get, parameters: .init(fields: fields,
-                                                                                                 includes: includes))
+        .init(path: "/v1/customerReviews/\(id)/response", method: .get, parameters: .init(fields: fields,
+                                                                                          includes: includes))
     }
 }
 

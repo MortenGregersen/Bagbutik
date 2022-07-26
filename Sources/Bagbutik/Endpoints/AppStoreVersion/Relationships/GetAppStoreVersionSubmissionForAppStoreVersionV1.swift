@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read the App Store Version Submission Information of an App Store Version
+     # Read the App Store Version Submission Information of an App Store Version
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_submission_information_of_an_app_store_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_submission_information_of_an_app_store_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppStoreVersionSubmissionForAppStoreVersionV1(id: String,
                                                                  fields: [GetAppStoreVersionSubmissionForAppStoreVersionV1.Field]? = nil,
                                                                  includes: [GetAppStoreVersionSubmissionForAppStoreVersionV1.Include]? = nil) -> Request<AppStoreVersionSubmissionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionSubmission", method: .get, parameters: .init(fields: fields,
-                                                                                                                   includes: includes))
+        .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionSubmission", method: .get, parameters: .init(fields: fields,
+                                                                                                            includes: includes))
     }
 }
 

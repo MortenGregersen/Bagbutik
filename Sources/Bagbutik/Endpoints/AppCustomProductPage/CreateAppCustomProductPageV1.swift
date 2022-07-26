@@ -1,14 +1,14 @@
 public extension Request {
     /**
-      # POST /v1/appCustomProductPages
+     # POST /v1/appCustomProductPages
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appcustomproductpages>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appcustomproductpages>
 
-      - Parameter requestBody: AppCustomProductPage representation
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter requestBody: AppCustomProductPage representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func createAppCustomProductPageV1(requestBody: AppCustomProductPageCreateRequest) -> Request<AppCustomProductPageResponse, ErrorResponse> {
-        return .init(path: "/v1/appCustomProductPages", method: .post, requestBody: requestBody)
+        .init(path: "/v1/appCustomProductPages", method: .post, requestBody: requestBody)
     }
 }
