@@ -10,7 +10,8 @@ final class OperationRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
-                    .init(status: 200, reason: "OK", description: nil)])]
+                    .init(status: 200, reason: "OK", description: nil)
+                ])]
         )
         let renderer = OperationRenderer(docsLoader: docsLoader)
         let parameters: [Parameter] = [
@@ -24,19 +25,19 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public extension Request {
             /**
-              # Documentation title
-              Documentation summary
+             # Documentation title
+             Documentation summary
 
-              Documentation discussion
+             Documentation discussion
 
-              Full documentation:
-              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
-        
-              - Parameter limit: Maximum resources per page - maximum 200
-              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+
+             - Parameter limit: Maximum resources per page - maximum 200
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
-                return .init(path: "/users", method: .get, parameters: .init(limit: limit))
+                .init(path: "/users", method: .get, parameters: .init(limit: limit))
             }
         }
 
@@ -58,16 +59,16 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public extension Request {
             /**
-              # No overview available
-        
-              Full documentation:
-              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             # No overview available
 
-              - Parameter limit: Maximum resources per page - maximum 200
-              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+
+             - Parameter limit: Maximum resources per page - maximum 200
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
-                return .init(path: "/users", method: .get, parameters: .init(limit: limit))
+                .init(path: "/users", method: .get, parameters: .init(limit: limit))
             }
         }
 
@@ -89,17 +90,17 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public extension Request {
             /**
-              # No overview available
-        
-              Full documentation:
-              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             # No overview available
 
-              - Parameter limit: Maximum resources per page - maximum 200
-              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+
+             - Parameter limit: Maximum resources per page - maximum 200
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
             static func listUsersV1(limit: Int? = nil) -> Request<UsersResponse, ErrorResponse> {
-                return .init(path: "/users", method: .get, parameters: .init(limit: limit))
+                .init(path: "/users", method: .get, parameters: .init(limit: limit))
             }
         }
 
@@ -134,21 +135,21 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public extension Request {
             /**
-              # Documentation title
-              Documentation summary
+             # Documentation title
+             Documentation summary
 
-              Documentation discussion
+             Documentation discussion
 
-              Full documentation:
-              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
 
-              - Parameter fields: Fields to return for included related types
-              - Parameter filters: Attributes, relationships, and IDs by which to filter
-              - Parameter exists: Attributes, relationships, and IDs to check for existence
-              - Parameter includes: Relationship data to include in the response
-              - Parameter sorts: Attributes by which to sort
-              - Parameter limits: Number of resources to return
-              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             - Parameter fields: Fields to return for included related types
+             - Parameter filters: Attributes, relationships, and IDs by which to filter
+             - Parameter exists: Attributes, relationships, and IDs to check for existence
+             - Parameter includes: Relationship data to include in the response
+             - Parameter sorts: Attributes by which to sort
+             - Parameter limits: Number of resources to return
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func listUsersV1(fields: [ListUsersV1.Field]? = nil,
                                     filters: [ListUsersV1.Filter]? = nil,
@@ -157,12 +158,12 @@ final class OperationRendererTests: XCTestCase {
                                     sorts: [ListUsersV1.Sort]? = nil,
                                     limits: [ListUsersV1.Limit]? = nil) -> Request<UsersResponse, ErrorResponse>
             {
-                return .init(path: "/users", method: .get, parameters: .init(fields: fields,
-                                                                             filters: filters,
-                                                                             exists: exists,
-                                                                             includes: includes,
-                                                                             sorts: sorts,
-                                                                             limits: limits))
+                .init(path: "/users", method: .get, parameters: .init(fields: fields,
+                                                                      filters: filters,
+                                                                      exists: exists,
+                                                                      includes: includes,
+                                                                      sorts: sorts,
+                                                                      limits: limits))
             }
         }
 
@@ -193,7 +194,7 @@ final class OperationRendererTests: XCTestCase {
             /**
              Attributes, relationships, and IDs by which to filter.
 
-             Required: devices.properties
+             Required: `devices.properties`
              */
             public enum Filter: FilterParameter {
                 /// Filter by device properties
@@ -228,7 +229,8 @@ final class OperationRendererTests: XCTestCase {
              Relationship data to include in the response.
              */
             public enum Include: String, IncludeParameter {
-                case devices, glasses
+                case devices
+                case glasses
             }
 
             /**
@@ -245,10 +247,10 @@ final class OperationRendererTests: XCTestCase {
              Number of included related resources to return.
              */
             public enum Limit: LimitParameter {
-                /// Maximum of users - maximum 200
-                case limit(Int)
                 /// Maximum of included devices - maximum 10
                 case devices(Int)
+                /// Maximum of users - maximum 200
+                case limit(Int)
             }
         }
 
@@ -271,22 +273,22 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public extension Request {
             /**
-              # Documentation title
-              Documentation summary
+             # Documentation title
+             Documentation summary
 
-              Documentation discussion
+             Documentation discussion
 
-              Full documentation:
-              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
-        
-              - Parameter id: Id of the user to update
-              - Parameter requestBody: User representation
-              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+
+             - Parameter id: Id of the user to update
+             - Parameter requestBody: User representation
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func updateUserV1(id: String,
                                      requestBody: UserUpdateRequest) -> Request<UpdateUserResponse, ErrorResponse>
             {
-                return .init(path: "/users/\(id)", method: .patch, requestBody: requestBody)
+                .init(path: "/users/\(id)", method: .patch, requestBody: requestBody)
             }
         }
 
@@ -304,7 +306,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).operationContext(for: operation, in: path)) {
+        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfExists(name: "hair"))
         }
@@ -321,7 +323,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).operationContext(for: operation, in: path)) {
+        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfInclude)
         }
@@ -338,7 +340,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).operationContext(for: operation, in: path)) {
+        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
         }
@@ -364,25 +366,25 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public extension Request {
             /**
-              # Documentation title
-              Documentation summary
+             # Documentation title
+             Documentation summary
 
-              Documentation discussion
+             Documentation discussion
 
-              Full documentation:
-              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
 
-              - Parameter id: Id of the user to update
-              - Parameter fields: Fields to return for included related types
-              - Parameter includes: Relationship data to include in the response
-              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             - Parameter id: Id of the user to update
+             - Parameter fields: Fields to return for included related types
+             - Parameter includes: Relationship data to include in the response
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
             static func getSubscriptionOfferCodeOneTimeUseCodesV1(id: String,
                                                                   fields: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Field]? = nil,
                                                                   includes: [GetSubscriptionOfferCodeOneTimeUseCodesV1.Include]? = nil) -> Request<SubscriptionOfferCodeOneTimeUseCodeResponse, ErrorResponse>
             {
-                return .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                                     includes: includes))
+                .init(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                                              includes: includes))
             }
         }
 
