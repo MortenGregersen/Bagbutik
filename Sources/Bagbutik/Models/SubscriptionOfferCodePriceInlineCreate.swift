@@ -5,7 +5,9 @@ public struct SubscriptionOfferCodePriceInlineCreate: Codable {
     public var type: String { "subscriptionOfferCodePrices" }
     public var relationships: Relationships?
 
-    public init(id: String? = nil, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.relationships = relationships
     }
@@ -28,15 +30,17 @@ public struct SubscriptionOfferCodePriceInlineCreate: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case id
-        case type
         case relationships
+        case type
     }
 
     public struct Relationships: Codable {
         public var subscriptionPricePoint: SubscriptionPricePoint?
         public var territory: Territory?
 
-        public init(subscriptionPricePoint: SubscriptionPricePoint? = nil, territory: Territory? = nil) {
+        public init(subscriptionPricePoint: SubscriptionPricePoint? = nil,
+                    territory: Territory? = nil)
+        {
             self.subscriptionPricePoint = subscriptionPricePoint
             self.territory = territory
         }

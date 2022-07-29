@@ -7,7 +7,11 @@ public struct AppStoreVersionExperiment: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct AppStoreVersionExperiment: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -50,7 +54,13 @@ public struct AppStoreVersionExperiment: Codable {
         public var state: State?
         public var trafficProportion: Int?
 
-        public init(endDate: Date? = nil, name: String? = nil, reviewRequired: Bool? = nil, startDate: Date? = nil, state: State? = nil, trafficProportion: Int? = nil) {
+        public init(endDate: Date? = nil,
+                    name: String? = nil,
+                    reviewRequired: Bool? = nil,
+                    startDate: Date? = nil,
+                    state: State? = nil,
+                    trafficProportion: Int? = nil)
+        {
             self.endDate = endDate
             self.name = name
             self.reviewRequired = reviewRequired
@@ -76,7 +86,9 @@ public struct AppStoreVersionExperiment: Codable {
         public var appStoreVersion: AppStoreVersion?
         public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments?
 
-        public init(appStoreVersion: AppStoreVersion? = nil, appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments? = nil) {
+        public init(appStoreVersion: AppStoreVersion? = nil,
+                    appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments? = nil)
+        {
             self.appStoreVersion = appStoreVersion
             self.appStoreVersionExperimentTreatments = appStoreVersionExperimentTreatments
         }
@@ -85,7 +97,9 @@ public struct AppStoreVersionExperiment: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -122,7 +136,9 @@ public struct AppStoreVersionExperiment: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -140,8 +156,8 @@ public struct AppStoreVersionExperiment: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -151,7 +167,10 @@ public struct AppStoreVersionExperiment: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -189,7 +208,9 @@ public struct AppStoreVersionExperiment: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -207,8 +228,8 @@ public struct AppStoreVersionExperiment: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperienceUpdateRequest
  The request body you use to update an advanced App Clip experience.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
     /// The relationship data to include in the response.
     public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
-    public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
 
     /**
+     # AppClipAdvancedExperienceUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -33,7 +37,10 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
         /// The navigational links to related data and included resource types and IDs.
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -58,13 +65,14 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # AppClipAdvancedExperienceUpdateRequest.Data.Attributes
          The attributes you set that describe the Advanced App Clip Experiences resource.
 
          Full documentation:
@@ -84,7 +92,13 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             /// A Boolean value that indicates whether you want to delete an advanced App Clip experience. To delete the advanced App Clip experience, set it to `true`.
             public var removed: Bool?
 
-            public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage? = nil, isPoweredBy: Bool? = nil, place: Place? = nil, removed: Bool? = nil) {
+            public init(action: AppClipAction? = nil,
+                        businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil,
+                        defaultLanguage: AppClipAdvancedExperienceLanguage? = nil,
+                        isPoweredBy: Bool? = nil,
+                        place: Place? = nil,
+                        removed: Bool? = nil)
+            {
                 self.action = action
                 self.businessCategory = businessCategory
                 self.defaultLanguage = defaultLanguage
@@ -94,6 +108,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAdvancedExperienceUpdateRequest.Data.Attributes.Place
              The place information of an advanced App Clip experience you create with this request.
 
              Full documentation:
@@ -119,7 +134,16 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 /// A navigational link to related data and included resource types and IDs.
                 public var relationship: Relationship?
 
-                public init(categories: [String]? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: [String]? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
+                public init(categories: [String]? = nil,
+                            displayPoint: DisplayPoint? = nil,
+                            homePage: String? = nil,
+                            mainAddress: MainAddress? = nil,
+                            mapAction: MapAction? = nil,
+                            names: [String]? = nil,
+                            phoneNumber: PhoneNumber? = nil,
+                            placeId: String? = nil,
+                            relationship: Relationship? = nil)
+                {
                     self.categories = categories
                     self.displayPoint = displayPoint
                     self.homePage = homePage
@@ -132,6 +156,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceUpdateRequest.Data.Attributes.Place.DisplayPoint
                  A point-based representation of a place in Apple Maps.
 
                  Full documentation:
@@ -143,12 +168,15 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     /// A string that describes the means by which you captured the data for a display point.
                     public var source: Source?
 
-                    public init(coordinates: Coordinates? = nil, source: Source? = nil) {
+                    public init(coordinates: Coordinates? = nil,
+                                source: Source? = nil)
+                    {
                         self.coordinates = coordinates
                         self.source = source
                     }
 
                     /**
+                     # AppClipAdvancedExperienceUpdateRequest.Data.Attributes.Place.DisplayPoint.Coordinates
                      The coordinates for a point of interest or business in Apple Maps.
 
                      Full documentation:
@@ -160,7 +188,9 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                         /// A number that represents the longitude of GPS coordinates of a place in Apple Maps.
                         public var longitude: Double?
 
-                        public init(latitude: Double? = nil, longitude: Double? = nil) {
+                        public init(latitude: Double? = nil,
+                                    longitude: Double? = nil)
+                        {
                             self.latitude = latitude
                             self.longitude = longitude
                         }
@@ -173,6 +203,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceUpdateRequest.Data.Attributes.Place.MainAddress
                  The main address for a point of interest or business in Apple Maps.
 
                  Full documentation:
@@ -184,12 +215,15 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     /// The structured address of a place in Apple Maps.
                     public var structuredAddress: StructuredAddress?
 
-                    public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
+                    public init(fullAddress: String? = nil,
+                                structuredAddress: StructuredAddress? = nil)
+                    {
                         self.fullAddress = fullAddress
                         self.structuredAddress = structuredAddress
                     }
 
                     /**
+                     # AppClipAdvancedExperienceUpdateRequest.Data.Attributes.Place.MainAddress.StructuredAddress
                      The structured address information for a point of interest or business in Apple Maps.
 
                      Full documentation:
@@ -211,7 +245,14 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                         /// The officially recognized address used by a postal delivery address. It includes — when applicable — a street name, street suffix, building, house, or suite identifiers.
                         public var streetAddress: [String]?
 
-                        public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: [String]? = nil) {
+                        public init(countryCode: String? = nil,
+                                    floor: String? = nil,
+                                    locality: String? = nil,
+                                    neighborhood: String? = nil,
+                                    postalCode: String? = nil,
+                                    stateProvince: String? = nil,
+                                    streetAddress: [String]? = nil)
+                        {
                             self.countryCode = countryCode
                             self.floor = floor
                             self.locality = locality
@@ -240,6 +281,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceUpdateRequest.Data.Attributes.Place.PhoneNumber
                  The phone number of a point of interest or business in Apple Maps.
 
                  Full documentation:
@@ -253,7 +295,10 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     /// The resource type.
                     public var type: PhoneNumberType?
 
-                    public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
+                    public init(intent: String? = nil,
+                                number: String? = nil,
+                                type: PhoneNumberType? = nil)
+                    {
                         self.intent = intent
                         self.number = number
                         self.type = type
@@ -276,6 +321,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppClipAdvancedExperienceUpdateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -289,13 +335,17 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             /// The related Advanced App Clip Experience Localizations resource.
             public var localizations: Localizations?
 
-            public init(appClip: AppClip? = nil, headerImage: HeaderImage? = nil, localizations: Localizations? = nil) {
+            public init(appClip: AppClip? = nil,
+                        headerImage: HeaderImage? = nil,
+                        localizations: Localizations? = nil)
+            {
                 self.appClip = appClip
                 self.headerImage = headerImage
                 self.localizations = localizations
             }
 
             /**
+             # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.AppClip
              The relationship to the App Clips resource you set with the request that updates an Advanced App Clip Experiences resource.
 
              Full documentation:
@@ -310,6 +360,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.AppClip.Data
                  The type and ID of the App Clips resource that you’re relating with the Advanced App Clip Experiences resource you’re updating.
 
                  Full documentation:
@@ -347,6 +398,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.HeaderImage
              The relationship to the App Clip Header Images resource you set with the request that updates an Advanced App Clip Experiences resource.
 
              Full documentation:
@@ -361,6 +413,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.HeaderImage.Data
                  The type and ID of the App Clip Header Images resource that you’re relating with the Advanced App Clip Experiences resource you’re updating.
 
                  Full documentation:
@@ -398,6 +451,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.Localizations
              The relationship to the Advanced App Clip Experience Localizations resource you set with the request that updates an Advanced App Clip Experiences resource.
 
              Full documentation:
@@ -412,6 +466,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.Localizations.Data
                  The type and ID of the Advanced App Clip Experience Localizations resource that you’re relating with the Advanced App Clip Experiences resource you’re updating.
 
                  Full documentation:

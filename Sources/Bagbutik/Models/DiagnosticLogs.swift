@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # diagnosticLogs
  A response containing log data for a diagnostic signature.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct DiagnosticLogs: Codable {
     /// The version of the App Store Connect API.
     public var version: String?
 
-    public init(productData: [ProductData]? = nil, version: String? = nil) {
+    public init(productData: [ProductData]? = nil,
+                version: String? = nil)
+    {
         self.productData = productData
         self.version = version
     }
 
     /**
+     # diagnosticLogs.ProductData
      The logs and insights for a diagnostic signature.
 
      Full documentation:
@@ -31,13 +35,17 @@ public struct DiagnosticLogs: Codable {
         /// The opaque resource ID that uniquely identifies a diagnostic signature.
         public var signatureId: String?
 
-        public init(diagnosticInsights: [DiagnosticInsights]? = nil, diagnosticLogs: [DiagnosticLogs]? = nil, signatureId: String? = nil) {
+        public init(diagnosticInsights: [DiagnosticInsights]? = nil,
+                    diagnosticLogs: [DiagnosticLogs]? = nil,
+                    signatureId: String? = nil)
+        {
             self.diagnosticInsights = diagnosticInsights
             self.diagnosticLogs = diagnosticLogs
             self.signatureId = signatureId
         }
 
         /**
+         # diagnosticLogs.ProductData.DiagnosticInsights
          Information about an insight including a descriptive string, category, and URL.
 
          Full documentation:
@@ -51,7 +59,10 @@ public struct DiagnosticLogs: Codable {
             /// A URL to documentation that provides guidance about the insight.
             public var insightsURL: String?
 
-            public init(insightsCategory: String? = nil, insightsString: String? = nil, insightsURL: String? = nil) {
+            public init(insightsCategory: String? = nil,
+                        insightsString: String? = nil,
+                        insightsURL: String? = nil)
+            {
                 self.insightsCategory = insightsCategory
                 self.insightsString = insightsString
                 self.insightsURL = insightsURL
@@ -59,6 +70,7 @@ public struct DiagnosticLogs: Codable {
         }
 
         /**
+         # diagnosticLogs.ProductData.DiagnosticLogs
          The call stack representation and metadata of the diagnostic log.
 
          Full documentation:
@@ -70,12 +82,15 @@ public struct DiagnosticLogs: Codable {
             /// Information about the diagnostic log the system captured.
             public var diagnosticMetaData: DiagnosticMetaData?
 
-            public init(callStackTree: [CallStackTree]? = nil, diagnosticMetaData: DiagnosticMetaData? = nil) {
+            public init(callStackTree: [CallStackTree]? = nil,
+                        diagnosticMetaData: DiagnosticMetaData? = nil)
+            {
                 self.callStackTree = callStackTree
                 self.diagnosticMetaData = diagnosticMetaData
             }
 
             /**
+             # diagnosticLogs.ProductData.DiagnosticLogs.CallStackTree
              The call stack representation of the diagnostic logs for single or multiple threads.
 
              Full documentation:
@@ -87,12 +102,15 @@ public struct DiagnosticLogs: Codable {
                 /// The call stack representation of the diagnostic log.
                 public var callStacks: [CallStacks]?
 
-                public init(callStackPerThread: Bool? = nil, callStacks: [CallStacks]? = nil) {
+                public init(callStackPerThread: Bool? = nil,
+                            callStacks: [CallStacks]? = nil)
+                {
                     self.callStackPerThread = callStackPerThread
                     self.callStacks = callStacks
                 }
 
                 /**
+                 # diagnosticLogs.ProductData.DiagnosticLogs.CallStackTree.CallStacks
                  The root call stack frames of the diagnostic log.
 
                  Full documentation:
@@ -109,6 +127,7 @@ public struct DiagnosticLogs: Codable {
             }
 
             /**
+             # diagnosticLogs.ProductData.DiagnosticLogs.DiagnosticMetaData
              Information about the diagnostic log including app version and build information, event details, OS, device type, and platform, and disk writes.
 
              Full documentation:
@@ -134,7 +153,16 @@ public struct DiagnosticLogs: Codable {
                 /// The raw quantity of disk writes. Used for the `DISK_WRITES` diagnostic type.
                 public var writesCaused: String?
 
-                public init(appVersion: String? = nil, buildVersion: String? = nil, bundleId: String? = nil, deviceType: String? = nil, event: String? = nil, eventDetail: String? = nil, osVersion: String? = nil, platformArchitecture: String? = nil, writesCaused: String? = nil) {
+                public init(appVersion: String? = nil,
+                            buildVersion: String? = nil,
+                            bundleId: String? = nil,
+                            deviceType: String? = nil,
+                            event: String? = nil,
+                            eventDetail: String? = nil,
+                            osVersion: String? = nil,
+                            platformArchitecture: String? = nil,
+                            writesCaused: String? = nil)
+                {
                     self.appVersion = appVersion
                     self.buildVersion = buildVersion
                     self.bundleId = bundleId

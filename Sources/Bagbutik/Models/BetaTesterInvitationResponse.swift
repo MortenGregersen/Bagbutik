@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaTesterInvitationResponse
  A response that contains a single Beta Tester Invitations resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct BetaTesterInvitationResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: BetaTesterInvitation, links: DocumentLinks) {
+    public init(data: BetaTesterInvitation,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiWorkflow
  The data structure that represents a Workflows resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct CiWorkflow: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct CiWorkflow: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # CiWorkflow.Attributes
      The attributes that describe a Workflows resource.
 
      Full documentation:
@@ -85,7 +91,19 @@ public struct CiWorkflow: Codable {
         /// The workflow’s start condition that starts new builds for changes to a tag.
         public var tagStartCondition: CiTagStartCondition?
 
-        public init(actions: [CiAction]? = nil, branchStartCondition: CiBranchStartCondition? = nil, clean: Bool? = nil, containerFilePath: String? = nil, description: String? = nil, isEnabled: Bool? = nil, isLockedForEditing: Bool? = nil, lastModifiedDate: Date? = nil, name: String? = nil, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
+        public init(actions: [CiAction]? = nil,
+                    branchStartCondition: CiBranchStartCondition? = nil,
+                    clean: Bool? = nil,
+                    containerFilePath: String? = nil,
+                    description: String? = nil,
+                    isEnabled: Bool? = nil,
+                    isLockedForEditing: Bool? = nil,
+                    lastModifiedDate: Date? = nil,
+                    name: String? = nil,
+                    pullRequestStartCondition: CiPullRequestStartCondition? = nil,
+                    scheduledStartCondition: CiScheduledStartCondition? = nil,
+                    tagStartCondition: CiTagStartCondition? = nil)
+        {
             self.actions = actions
             self.branchStartCondition = branchStartCondition
             self.clean = clean
@@ -102,6 +120,7 @@ public struct CiWorkflow: Codable {
     }
 
     /**
+     # CiWorkflow.Relationships
      The relationships of the Workflows resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -117,7 +136,11 @@ public struct CiWorkflow: Codable {
         /// The related Xcode Versions resource.
         public var xcodeVersion: XcodeVersion?
 
-        public init(macOsVersion: MacOsVersion? = nil, product: Product? = nil, repository: Repository? = nil, xcodeVersion: XcodeVersion? = nil) {
+        public init(macOsVersion: MacOsVersion? = nil,
+                    product: Product? = nil,
+                    repository: Repository? = nil,
+                    xcodeVersion: XcodeVersion? = nil)
+        {
             self.macOsVersion = macOsVersion
             self.product = product
             self.repository = repository
@@ -125,6 +148,7 @@ public struct CiWorkflow: Codable {
         }
 
         /**
+         # CiWorkflow.Relationships.MacOsVersion
          The data and links that describe the relationship between the Workflows and the macOS Versions resources.
 
          Full documentation:
@@ -136,12 +160,15 @@ public struct CiWorkflow: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiWorkflow.Relationships.MacOsVersion.Data
              The type and ID of a related macOS Versions resource.
 
              Full documentation:
@@ -178,6 +205,7 @@ public struct CiWorkflow: Codable {
             }
 
             /**
+             # CiWorkflow.Relationships.MacOsVersion.Links
              The links to the related macOS Versions resource and the relationship’s self-link.
 
              Full documentation:
@@ -189,7 +217,9 @@ public struct CiWorkflow: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -207,13 +237,14 @@ public struct CiWorkflow: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiWorkflow.Relationships.Product
          The data and links that describe the relationship between the Workflows and the Products resources.
 
          Full documentation:
@@ -225,12 +256,15 @@ public struct CiWorkflow: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiWorkflow.Relationships.Product.Data
              The type and ID of a related Products resource.
 
              Full documentation:
@@ -267,6 +301,7 @@ public struct CiWorkflow: Codable {
             }
 
             /**
+             # CiWorkflow.Relationships.Product.Links
              The links to the related Products resource and the relationship’s self-link.
 
              Full documentation:
@@ -278,7 +313,9 @@ public struct CiWorkflow: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -296,13 +333,14 @@ public struct CiWorkflow: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiWorkflow.Relationships.Repository
          The data and links that describe the relationship between the Workflows and the Repositories resources.
 
          Full documentation:
@@ -314,12 +352,15 @@ public struct CiWorkflow: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiWorkflow.Relationships.Repository.Data
              The type and ID of a related Repositories resource.
 
              Full documentation:
@@ -356,6 +397,7 @@ public struct CiWorkflow: Codable {
             }
 
             /**
+             # CiWorkflow.Relationships.Repository.Links
              The links to the related Repositories resource and the relationship’s self-link.
 
              Full documentation:
@@ -367,7 +409,9 @@ public struct CiWorkflow: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -385,13 +429,14 @@ public struct CiWorkflow: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiWorkflow.Relationships.XcodeVersion
          The data and links that describe the relationship between the Workflows and the Xcode Versions resources.
 
          Full documentation:
@@ -403,12 +448,15 @@ public struct CiWorkflow: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiWorkflow.Relationships.XcodeVersion.Data
              The type and ID of a related Xcode Versions resource.
 
              Full documentation:
@@ -445,6 +493,7 @@ public struct CiWorkflow: Codable {
             }
 
             /**
+             # CiWorkflow.Relationships.XcodeVersion.Links
              The links to the related Xcode Versions resource and the relationship’s self-link.
 
              Full documentation:
@@ -456,7 +505,9 @@ public struct CiWorkflow: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -474,8 +525,8 @@ public struct CiWorkflow: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPreviewUpdateRequest
  The request body you use to update an App Preview.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppPreviewUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
         public var type: String { "appPreviews" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -46,12 +50,13 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppPreviewUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -62,7 +67,10 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?
 
-            public init(previewFrameTimeCode: String? = nil, sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
+            public init(previewFrameTimeCode: String? = nil,
+                        sourceFileChecksum: String? = nil,
+                        uploaded: Bool? = nil)
+            {
                 self.previewFrameTimeCode = previewFrameTimeCode
                 self.sourceFileChecksum = sourceFileChecksum
                 self.uploaded = uploaded

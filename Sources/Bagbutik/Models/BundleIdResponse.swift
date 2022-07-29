@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleIdResponse
  A response that contains a single Bundle IDs resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct BundleIdResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: BundleId, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: BundleId,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

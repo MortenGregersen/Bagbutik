@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperienceCreateRequest
  The request body you use to create an advanced App Clip experience.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
     /// The relationship data to include in the response.
     public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
-    public init(data: Data, included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [AppClipAdvancedExperienceLocalizationInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
 
     /**
+     # AppClipAdvancedExperienceCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -31,7 +35,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
         /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -53,12 +59,13 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppClipAdvancedExperienceCreateRequest.Data.Attributes
          The attributes you set that describe the new Advanced App Clip Experiences resource.
 
          Full documentation:
@@ -78,7 +85,13 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.
             public var place: Place?
 
-            public init(action: AppClipAction? = nil, businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil, defaultLanguage: AppClipAdvancedExperienceLanguage, isPoweredBy: Bool, link: String, place: Place? = nil) {
+            public init(action: AppClipAction? = nil,
+                        businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory? = nil,
+                        defaultLanguage: AppClipAdvancedExperienceLanguage,
+                        isPoweredBy: Bool,
+                        link: String,
+                        place: Place? = nil)
+            {
                 self.action = action
                 self.businessCategory = businessCategory
                 self.defaultLanguage = defaultLanguage
@@ -88,6 +101,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place
              The place information of an advanced App Clip experience you create with this request.
 
              Full documentation:
@@ -113,7 +127,16 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 /// A navigational link to related data and included resource types and IDs.
                 public var relationship: Relationship?
 
-                public init(categories: [String]? = nil, displayPoint: DisplayPoint? = nil, homePage: String? = nil, mainAddress: MainAddress? = nil, mapAction: MapAction? = nil, names: [String]? = nil, phoneNumber: PhoneNumber? = nil, placeId: String? = nil, relationship: Relationship? = nil) {
+                public init(categories: [String]? = nil,
+                            displayPoint: DisplayPoint? = nil,
+                            homePage: String? = nil,
+                            mainAddress: MainAddress? = nil,
+                            mapAction: MapAction? = nil,
+                            names: [String]? = nil,
+                            phoneNumber: PhoneNumber? = nil,
+                            placeId: String? = nil,
+                            relationship: Relationship? = nil)
+                {
                     self.categories = categories
                     self.displayPoint = displayPoint
                     self.homePage = homePage
@@ -126,6 +149,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.DisplayPoint
                  A point-based representation of a place in Apple Maps.
 
                  Full documentation:
@@ -137,12 +161,15 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     /// A string that describes the means by which you captured the data for a display point.
                     public var source: Source?
 
-                    public init(coordinates: Coordinates? = nil, source: Source? = nil) {
+                    public init(coordinates: Coordinates? = nil,
+                                source: Source? = nil)
+                    {
                         self.coordinates = coordinates
                         self.source = source
                     }
 
                     /**
+                     # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.DisplayPoint.Coordinates
                      The coordinates for a point of interest or business in Apple Maps.
 
                      Full documentation:
@@ -154,7 +181,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                         /// A number that represents the longitude of GPS coordinates of a place in Apple Maps.
                         public var longitude: Double?
 
-                        public init(latitude: Double? = nil, longitude: Double? = nil) {
+                        public init(latitude: Double? = nil,
+                                    longitude: Double? = nil)
+                        {
                             self.latitude = latitude
                             self.longitude = longitude
                         }
@@ -167,6 +196,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.MainAddress
                  The main address for a point of interest or business in Apple Maps.
 
                  Full documentation:
@@ -178,12 +208,15 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     /// The structured address of a place in Apple Maps.
                     public var structuredAddress: StructuredAddress?
 
-                    public init(fullAddress: String? = nil, structuredAddress: StructuredAddress? = nil) {
+                    public init(fullAddress: String? = nil,
+                                structuredAddress: StructuredAddress? = nil)
+                    {
                         self.fullAddress = fullAddress
                         self.structuredAddress = structuredAddress
                     }
 
                     /**
+                     # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.MainAddress.StructuredAddress
                      The structured address information for a point of interest or business in Apple Maps.
 
                      Full documentation:
@@ -205,7 +238,14 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                         /// The officially recognized address used by a postal delivery address. It includes — when applicable — a street name, street suffix, building, house, or suite identifiers.
                         public var streetAddress: [String]?
 
-                        public init(countryCode: String? = nil, floor: String? = nil, locality: String? = nil, neighborhood: String? = nil, postalCode: String? = nil, stateProvince: String? = nil, streetAddress: [String]? = nil) {
+                        public init(countryCode: String? = nil,
+                                    floor: String? = nil,
+                                    locality: String? = nil,
+                                    neighborhood: String? = nil,
+                                    postalCode: String? = nil,
+                                    stateProvince: String? = nil,
+                                    streetAddress: [String]? = nil)
+                        {
                             self.countryCode = countryCode
                             self.floor = floor
                             self.locality = locality
@@ -234,6 +274,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.PhoneNumber
                  The phone number of a point of interest or business in Apple Maps.
 
                  Full documentation:
@@ -247,7 +288,10 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     /// The resource type.
                     public var type: PhoneNumberType?
 
-                    public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
+                    public init(intent: String? = nil,
+                                number: String? = nil,
+                                type: PhoneNumberType? = nil)
+                    {
                         self.intent = intent
                         self.number = number
                         self.type = type
@@ -270,6 +314,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppClipAdvancedExperienceCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -283,13 +328,17 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             /// The related Advanced App Clip Experience Localizations resource.
             public let localizations: Localizations
 
-            public init(appClip: AppClip, headerImage: HeaderImage, localizations: Localizations) {
+            public init(appClip: AppClip,
+                        headerImage: HeaderImage,
+                        localizations: Localizations)
+            {
                 self.appClip = appClip
                 self.headerImage = headerImage
                 self.localizations = localizations
             }
 
             /**
+             # AppClipAdvancedExperienceCreateRequest.Data.Relationships.AppClip
              The relationship to the App Clips resource you set with the request that creates an Advanced App Clip Experiences resource.
 
              Full documentation:
@@ -304,6 +353,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceCreateRequest.Data.Relationships.AppClip.Data
                  The type and ID of the App Clips resource that you’re relating with the Advanced App Clip Experiences resource you’re creating.
 
                  Full documentation:
@@ -341,6 +391,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAdvancedExperienceCreateRequest.Data.Relationships.HeaderImage
              The relationship to the App Clip Header Images resource you set with the request that creates an Advanced App Clip Experiences resource.
 
              Full documentation:
@@ -355,6 +406,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceCreateRequest.Data.Relationships.HeaderImage.Data
                  The type and ID of the App Clip Header Images resource that you’re relating with the Advanced App Clip Experiences resource you’re creating.
 
                  Full documentation:
@@ -392,6 +444,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAdvancedExperienceCreateRequest.Data.Relationships.Localizations
              The relationship to the Advanced App Clip Experience Localizations resource you set with the request that creates an Advanced App Clip Experiences resource.
 
              Full documentation:
@@ -406,6 +459,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAdvancedExperienceCreateRequest.Data.Relationships.Localizations.Data
                  The type and ID of the Advanced App Clips Experience Localizations resource that you’re relating with the Advanced App Clip Experiences resource you’re creating.
 
                  Full documentation:

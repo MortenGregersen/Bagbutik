@@ -6,7 +6,10 @@ public struct AppInlineCreate: Codable {
     public let attributes: Attributes
     public var relationships: Relationships?
 
-    public init(id: String? = nil, attributes: Attributes, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                attributes: Attributes,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.attributes = attributes
         self.relationships = relationships
@@ -31,10 +34,10 @@ public struct AppInlineCreate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id
-        case type
         case attributes
+        case id
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -42,7 +45,10 @@ public struct AppInlineCreate: Codable {
         public let primaryLocale: String
         public let sku: String
 
-        public init(bundleId: String, primaryLocale: String, sku: String) {
+        public init(bundleId: String,
+                    primaryLocale: String,
+                    sku: String)
+        {
             self.bundleId = bundleId
             self.primaryLocale = primaryLocale
             self.sku = sku
@@ -53,7 +59,9 @@ public struct AppInlineCreate: Codable {
         public var appInfos: AppInfos?
         public var appStoreVersions: AppStoreVersions?
 
-        public init(appInfos: AppInfos? = nil, appStoreVersions: AppStoreVersions? = nil) {
+        public init(appInfos: AppInfos? = nil,
+                    appStoreVersions: AppStoreVersions? = nil)
+        {
             self.appInfos = appInfos
             self.appStoreVersions = appStoreVersions
         }

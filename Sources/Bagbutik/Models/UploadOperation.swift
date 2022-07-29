@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UploadOperation
  Upload instructions for assets such as app previews and app screenshots.
 
  Full documentation:
@@ -13,7 +14,12 @@ public struct UploadOperation: Codable {
     public var requestHeaders: [HttpHeader]?
     public var url: String?
 
-    public init(length: Int? = nil, method: String? = nil, offset: Int? = nil, requestHeaders: [HttpHeader]? = nil, url: String? = nil) {
+    public init(length: Int? = nil,
+                method: String? = nil,
+                offset: Int? = nil,
+                requestHeaders: [HttpHeader]? = nil,
+                url: String? = nil)
+    {
         self.length = length
         self.method = method
         self.offset = offset

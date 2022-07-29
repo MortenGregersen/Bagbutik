@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaTesterAppsLinkagesRequest
  A request body you use to remove an app from a beta tester.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaTesterAppsLinkagesRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaTesterAppsLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

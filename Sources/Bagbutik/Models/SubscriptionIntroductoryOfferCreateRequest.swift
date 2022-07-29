@@ -4,7 +4,9 @@ public struct SubscriptionIntroductoryOfferCreateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [SubscriptionPricePointInlineCreate]?
 
-    public init(data: Data, included: [SubscriptionPricePointInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [SubscriptionPricePointInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -14,7 +16,9 @@ public struct SubscriptionIntroductoryOfferCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -36,9 +40,9 @@ public struct SubscriptionIntroductoryOfferCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -48,7 +52,12 @@ public struct SubscriptionIntroductoryOfferCreateRequest: Codable, RequestBody {
             public let offerMode: SubscriptionOfferMode
             public var startDate: String?
 
-            public init(duration: SubscriptionOfferDuration, endDate: String? = nil, numberOfPeriods: Int, offerMode: SubscriptionOfferMode, startDate: String? = nil) {
+            public init(duration: SubscriptionOfferDuration,
+                        endDate: String? = nil,
+                        numberOfPeriods: Int,
+                        offerMode: SubscriptionOfferMode,
+                        startDate: String? = nil)
+            {
                 self.duration = duration
                 self.endDate = endDate
                 self.numberOfPeriods = numberOfPeriods
@@ -62,7 +71,10 @@ public struct SubscriptionIntroductoryOfferCreateRequest: Codable, RequestBody {
             public var subscriptionPricePoint: SubscriptionPricePoint?
             public var territory: Territory?
 
-            public init(subscription: Subscription, subscriptionPricePoint: SubscriptionPricePoint? = nil, territory: Territory? = nil) {
+            public init(subscription: Subscription,
+                        subscriptionPricePoint: SubscriptionPricePoint? = nil,
+                        territory: Territory? = nil)
+            {
                 self.subscription = subscription
                 self.subscriptionPricePoint = subscriptionPricePoint
                 self.territory = territory

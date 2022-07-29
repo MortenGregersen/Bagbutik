@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperienceLocalizationCreateRequest
  The request body you use to create a Default App Clip Experience Localization.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
     }
 
     /**
+     # AppClipDefaultExperienceLocalizationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
         /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppClipDefaultExperienceLocalizationCreateRequest.Data.Attributes
          The attributes you set that describe the Default App Clip Experience Localizations resource.
 
          Full documentation:
@@ -67,13 +72,16 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
             /// The subtitle that appears on the App Clip card for the default App Clip experience.
             public var subtitle: String?
 
-            public init(locale: String, subtitle: String? = nil) {
+            public init(locale: String,
+                        subtitle: String? = nil)
+            {
                 self.locale = locale
                 self.subtitle = subtitle
             }
         }
 
         /**
+         # AppClipDefaultExperienceLocalizationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -88,6 +96,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
             }
 
             /**
+             # AppClipDefaultExperienceLocalizationCreateRequest.Data.Relationships.AppClipDefaultExperience
              The relationship to the Default App Clip Experiences resource you set with the request that creates a Default App Clip Experience Localizations resource.
 
              Full documentation:
@@ -102,6 +111,7 @@ public struct AppClipDefaultExperienceLocalizationCreateRequest: Codable, Reques
                 }
 
                 /**
+                 # AppClipDefaultExperienceLocalizationCreateRequest.Data.Relationships.AppClipDefaultExperience.Data
                  The type and ID of the Default App Clip Experiences resource that you’re relating with the Default App Clip Experience Localizations resource you’re creating.
 
                  Full documentation:

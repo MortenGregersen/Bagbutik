@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationLocalizationCreateRequest
  The request body you use to create a Beta App Clip Localization.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
     }
 
     /**
+     # BetaAppClipInvocationLocalizationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
         /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BetaAppClipInvocationLocalizationCreateRequest.Data.Attributes
          The attributes you set that describe the new Beta App Clip Invocation Localizations resource.
 
          Full documentation:
@@ -67,13 +72,16 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
             public let title: String
 
-            public init(locale: String, title: String) {
+            public init(locale: String,
+                        title: String)
+            {
                 self.locale = locale
                 self.title = title
             }
         }
 
         /**
+         # BetaAppClipInvocationLocalizationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -88,6 +96,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             }
 
             /**
+             # BetaAppClipInvocationLocalizationCreateRequest.Data.Relationships.BetaAppClipInvocation
              The relationship to the Beta App Clip Invocations resource you set with the request that creates a Beta App Clip Invocation Localizations resource.
 
              Full documentation:
@@ -102,6 +111,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
                 }
 
                 /**
+                 # BetaAppClipInvocationLocalizationCreateRequest.Data.Relationships.BetaAppClipInvocation.Data
                  The type and ID of the Beta App Clip Invocations resource that you’re relating with the Beta App Clip Invocation Localizations resource you’re creating.
 
                  Full documentation:

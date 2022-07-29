@@ -1,12 +1,13 @@
 import Foundation
 
 /**
+ # PagedDocumentLinks
  Links related to the response document, including paging links.
+
+ All the response data constitutes multiple *documents.*
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/pageddocumentlinks>
-
- All the response data constitutes multiple *documents.*
  */
 public struct PagedDocumentLinks: Codable {
     /// The link to the first page of documents.
@@ -16,7 +17,10 @@ public struct PagedDocumentLinks: Codable {
     /// The link that produced the current document.
     public let itself: String
 
-    public init(first: String? = nil, next: String? = nil, self itself: String) {
+    public init(first: String? = nil,
+                next: String? = nil,
+                self itself: String)
+    {
         self.first = first
         self.next = next
         self.itself = itself
@@ -38,7 +42,7 @@ public struct PagedDocumentLinks: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case first
-        case next
         case itself = "self"
+        case next
     }
 }

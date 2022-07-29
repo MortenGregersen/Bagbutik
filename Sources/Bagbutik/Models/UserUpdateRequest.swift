@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UserUpdateRequest
  The request body you use to update a User.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # UserUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -30,7 +32,10 @@ public struct UserUpdateRequest: Codable, RequestBody {
         /// The types and IDs of the related data to update.
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -55,13 +60,14 @@ public struct UserUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # UserUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -75,7 +81,10 @@ public struct UserUpdateRequest: Codable, RequestBody {
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
             public var roles: [UserRole]?
 
-            public init(allAppsVisible: Bool? = nil, provisioningAllowed: Bool? = nil, roles: [UserRole]? = nil) {
+            public init(allAppsVisible: Bool? = nil,
+                        provisioningAllowed: Bool? = nil,
+                        roles: [UserRole]? = nil)
+            {
                 self.allAppsVisible = allAppsVisible
                 self.provisioningAllowed = provisioningAllowed
                 self.roles = roles
@@ -83,6 +92,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
         }
 
         /**
+         # UserUpdateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -96,6 +106,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # UserUpdateRequest.Data.Relationships.VisibleApps
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -109,6 +120,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # UserUpdateRequest.Data.Relationships.VisibleApps.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:

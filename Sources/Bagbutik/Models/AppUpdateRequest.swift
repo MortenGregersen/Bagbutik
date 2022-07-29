@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppUpdateRequest
  The request body you use to update an App Update.
 
  Full documentation:
@@ -10,12 +11,15 @@ public struct AppUpdateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [AppPriceInlineCreate]?
 
-    public init(data: Data, included: [AppPriceInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [AppPriceInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
 
     /**
+     # AppUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -27,7 +31,10 @@ public struct AppUpdateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -52,13 +59,14 @@ public struct AppUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # AppUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -74,7 +82,15 @@ public struct AppUpdateRequest: Codable, RequestBody {
             public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
             public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
-            public init(availableInNewTerritories: Bool? = nil, bundleId: String? = nil, contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil, primaryLocale: String? = nil, subscriptionStatusUrl: String? = nil, subscriptionStatusUrlForSandbox: String? = nil, subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil, subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil) {
+            public init(availableInNewTerritories: Bool? = nil,
+                        bundleId: String? = nil,
+                        contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil,
+                        primaryLocale: String? = nil,
+                        subscriptionStatusUrl: String? = nil,
+                        subscriptionStatusUrlForSandbox: String? = nil,
+                        subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
+                        subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
+            {
                 self.availableInNewTerritories = availableInNewTerritories
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
@@ -87,6 +103,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppUpdateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -96,12 +113,15 @@ public struct AppUpdateRequest: Codable, RequestBody {
             public var availableTerritories: AvailableTerritories?
             public var prices: Prices?
 
-            public init(availableTerritories: AvailableTerritories? = nil, prices: Prices? = nil) {
+            public init(availableTerritories: AvailableTerritories? = nil,
+                        prices: Prices? = nil)
+            {
                 self.availableTerritories = availableTerritories
                 self.prices = prices
             }
 
             /**
+             # AppUpdateRequest.Data.Relationships.AvailableTerritories
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -115,6 +135,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppUpdateRequest.Data.Relationships.AvailableTerritories.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
@@ -150,6 +171,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppUpdateRequest.Data.Relationships.Prices
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -163,6 +185,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppUpdateRequest.Data.Relationships.Prices.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:

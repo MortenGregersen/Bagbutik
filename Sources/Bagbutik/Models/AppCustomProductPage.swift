@@ -7,7 +7,11 @@ public struct AppCustomProductPage: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct AppCustomProductPage: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -47,7 +51,10 @@ public struct AppCustomProductPage: Codable {
         public var url: String?
         public var visible: Bool?
 
-        public init(name: String? = nil, url: String? = nil, visible: Bool? = nil) {
+        public init(name: String? = nil,
+                    url: String? = nil,
+                    visible: Bool? = nil)
+        {
             self.name = name
             self.url = url
             self.visible = visible
@@ -58,7 +65,9 @@ public struct AppCustomProductPage: Codable {
         public var app: App?
         public var appCustomProductPageVersions: AppCustomProductPageVersions?
 
-        public init(app: App? = nil, appCustomProductPageVersions: AppCustomProductPageVersions? = nil) {
+        public init(app: App? = nil,
+                    appCustomProductPageVersions: AppCustomProductPageVersions? = nil)
+        {
             self.app = app
             self.appCustomProductPageVersions = appCustomProductPageVersions
         }
@@ -67,7 +76,9 @@ public struct AppCustomProductPage: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -104,7 +115,9 @@ public struct AppCustomProductPage: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -122,8 +135,8 @@ public struct AppCustomProductPage: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -133,7 +146,10 @@ public struct AppCustomProductPage: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -171,7 +187,9 @@ public struct AppCustomProductPage: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -189,8 +207,8 @@ public struct AppCustomProductPage: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiMacOsVersionResponse
  A response that contains a single macOS Versions resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct CiMacOsVersionResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: CiMacOsVersion, included: [CiXcodeVersion]? = nil, links: DocumentLinks) {
+    public init(data: CiMacOsVersion,
+                included: [CiXcodeVersion]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

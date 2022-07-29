@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppInfoLocalizationResponse
  A response that contains a single App Info Localizations resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppInfoLocalizationResponse: Codable {
     public var included: [AppInfo]?
     public let links: DocumentLinks
 
-    public init(data: AppInfoLocalization, included: [AppInfo]? = nil, links: DocumentLinks) {
+    public init(data: AppInfoLocalization,
+                included: [AppInfo]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

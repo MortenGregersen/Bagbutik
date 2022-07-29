@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationLocalization
  The data structure that represents a Beta App Clip Invocation Localizations resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct BetaAppClipInvocationLocalization: Codable {
     /// The attributes that describe the Beta App Clip Invocation Localizations resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct BetaAppClipInvocationLocalization: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # BetaAppClipInvocationLocalization.Attributes
      The attributes that describe a Beta App Clip Invocation Localizations resource.
 
      Full documentation:
@@ -59,7 +64,9 @@ public struct BetaAppClipInvocationLocalization: Codable {
         /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
         public var title: String?
 
-        public init(locale: String? = nil, title: String? = nil) {
+        public init(locale: String? = nil,
+                    title: String? = nil)
+        {
             self.locale = locale
             self.title = title
         }

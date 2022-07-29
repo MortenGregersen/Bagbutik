@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPreviewSetResponse
  A response that contains a single App Preview Sets resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppPreviewSetResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppPreviewSet, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppPreviewSet,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -30,15 +30,17 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
             public let appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment
 
-            public init(appStoreVersion: AppStoreVersion, appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment) {
+            public init(appStoreVersion: AppStoreVersion,
+                        appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment)
+            {
                 self.appStoreVersion = appStoreVersion
                 self.appStoreVersionExperimentTreatment = appStoreVersionExperimentTreatment
             }

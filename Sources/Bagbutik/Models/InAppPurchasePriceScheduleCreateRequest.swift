@@ -4,7 +4,9 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [InAppPurchasePriceInlineCreate]?
 
-    public init(data: Data, included: [InAppPurchasePriceInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [InAppPurchasePriceInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -32,15 +34,17 @@ public struct InAppPurchasePriceScheduleCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         public struct Relationships: Codable {
             public let inAppPurchase: InAppPurchase
             public let manualPrices: ManualPrices
 
-            public init(inAppPurchase: InAppPurchase, manualPrices: ManualPrices) {
+            public init(inAppPurchase: InAppPurchase,
+                        manualPrices: ManualPrices)
+            {
                 self.inAppPurchase = inAppPurchase
                 self.manualPrices = manualPrices
             }

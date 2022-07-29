@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # Parameter
  An object that contains the query parameter that produced the error.
 
  Full documentation:

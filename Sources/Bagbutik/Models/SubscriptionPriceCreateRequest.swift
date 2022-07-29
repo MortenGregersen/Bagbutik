@@ -12,7 +12,9 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public let relationships: Relationships
 
-        public init(attributes: Attributes? = nil, relationships: Relationships) {
+        public init(attributes: Attributes? = nil,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,16 +36,18 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
             public var preserveCurrentPrice: Bool?
             public var startDate: String?
 
-            public init(preserveCurrentPrice: Bool? = nil, startDate: String? = nil) {
+            public init(preserveCurrentPrice: Bool? = nil,
+                        startDate: String? = nil)
+            {
                 self.preserveCurrentPrice = preserveCurrentPrice
                 self.startDate = startDate
             }
@@ -54,7 +58,10 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
             public let subscriptionPricePoint: SubscriptionPricePoint
             public var territory: Territory?
 
-            public init(subscription: Subscription, subscriptionPricePoint: SubscriptionPricePoint, territory: Territory? = nil) {
+            public init(subscription: Subscription,
+                        subscriptionPricePoint: SubscriptionPricePoint,
+                        territory: Territory? = nil)
+            {
                 self.subscription = subscription
                 self.subscriptionPricePoint = subscriptionPricePoint
                 self.territory = territory

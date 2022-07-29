@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   String that represents the display type of an app screenshot.
+ # ScreenshotDisplayType
+ String that represents the display type of an app screenshot.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>
  */
 public enum ScreenshotDisplayType: String, Codable, CaseIterable {
     case appIphone65 = "APP_IPHONE_65"

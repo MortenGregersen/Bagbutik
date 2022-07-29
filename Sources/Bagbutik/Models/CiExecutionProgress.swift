@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   A string that represents the progress of an ongoing Xcode Cloud build.
+ # CiExecutionProgress
+ A string that represents the progress of an ongoing Xcode Cloud build.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/ciexecutionprogress>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciexecutionprogress>
  */
 public enum CiExecutionProgress: String, Codable, CaseIterable {
     /// Xcode Cloud hasn’t started the build.

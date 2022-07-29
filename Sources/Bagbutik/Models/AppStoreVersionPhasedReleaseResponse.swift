@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionPhasedReleaseResponse
  A response that contains a single App Store Version Phased Releases resource.
 
  Full documentation:
@@ -10,7 +11,9 @@ public struct AppStoreVersionPhasedReleaseResponse: Codable {
     public let data: AppStoreVersionPhasedRelease
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersionPhasedRelease, links: DocumentLinks) {
+    public init(data: AppStoreVersionPhasedRelease,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

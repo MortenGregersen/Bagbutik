@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmProviderResponse
  A response that contains a single Providers resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct ScmProviderResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: ScmProvider, links: DocumentLinks) {
+    public init(data: ScmProvider,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

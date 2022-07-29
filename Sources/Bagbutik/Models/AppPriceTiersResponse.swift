@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPriceTiersResponse
  A response that contains a list of App Price Tier resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct AppPriceTiersResponse: Codable, PagedResponse {
     public typealias Data = AppPriceTier
+
     /// The resource data.
     public let data: [AppPriceTier]
     /// The requested relationship data. Note: `AppPricePoint` is deprecated.
@@ -17,7 +19,11 @@ public struct AppPriceTiersResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [AppPriceTier], included: [AppPricePoint]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppPriceTier],
+                included: [AppPricePoint]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

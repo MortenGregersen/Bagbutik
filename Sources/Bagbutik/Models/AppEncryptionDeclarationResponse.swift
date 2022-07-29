@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppEncryptionDeclarationResponse
  A response that contains a single App Encryption Declarations resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct AppEncryptionDeclarationResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppEncryptionDeclaration, included: [App]? = nil, links: DocumentLinks) {
+    public init(data: AppEncryptionDeclaration,
+                included: [App]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

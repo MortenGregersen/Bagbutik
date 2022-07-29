@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAppStoreReviewDetailUpdateRequest
  The request body you use to update App Clip information that you provide to App Store Review.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppClipAppStoreReviewDetailUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
         /// The attributes that describe the request that updates an App Clip App Store Review Details resource.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppClipAppStoreReviewDetailUpdateRequest.Data.Attributes
          The attributes you set that describe the updated App Clip App Store Review Details resource.
 
          Full documentation:

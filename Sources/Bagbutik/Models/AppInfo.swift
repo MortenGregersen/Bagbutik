@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppInfo
  The data structure that represent an App Infos resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct AppInfo: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct AppInfo: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppInfo.Attributes
      Attributes that describe an App Infos resource.
 
      Full documentation:
@@ -69,7 +75,11 @@ public struct AppInfo: Codable {
         /// A Made for Kids app’s age band.
         public var kidsAgeBand: KidsAgeBand?
 
-        public init(appStoreAgeRating: AppStoreAgeRating? = nil, appStoreState: AppStoreVersionState? = nil, brazilAgeRating: BrazilAgeRating? = nil, kidsAgeBand: KidsAgeBand? = nil) {
+        public init(appStoreAgeRating: AppStoreAgeRating? = nil,
+                    appStoreState: AppStoreVersionState? = nil,
+                    brazilAgeRating: BrazilAgeRating? = nil,
+                    kidsAgeBand: KidsAgeBand? = nil)
+        {
             self.appStoreAgeRating = appStoreAgeRating
             self.appStoreState = appStoreState
             self.brazilAgeRating = brazilAgeRating
@@ -78,6 +88,7 @@ public struct AppInfo: Codable {
     }
 
     /**
+     # AppInfo.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -94,7 +105,16 @@ public struct AppInfo: Codable {
         public var secondarySubcategoryOne: SecondarySubcategoryOne?
         public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
 
-        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appInfoLocalizations: AppInfoLocalizations? = nil, primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
+        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil,
+                    app: App? = nil,
+                    appInfoLocalizations: AppInfoLocalizations? = nil,
+                    primaryCategory: PrimaryCategory? = nil,
+                    primarySubcategoryOne: PrimarySubcategoryOne? = nil,
+                    primarySubcategoryTwo: PrimarySubcategoryTwo? = nil,
+                    secondaryCategory: SecondaryCategory? = nil,
+                    secondarySubcategoryOne: SecondarySubcategoryOne? = nil,
+                    secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil)
+        {
             self.ageRatingDeclaration = ageRatingDeclaration
             self.app = app
             self.appInfoLocalizations = appInfoLocalizations
@@ -107,6 +127,7 @@ public struct AppInfo: Codable {
         }
 
         /**
+         # AppInfo.Relationships.AgeRatingDeclaration
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -116,12 +137,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.AgeRatingDeclaration.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -156,6 +180,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.AgeRatingDeclaration.Links
              The links to the related data and the relationship’s self-link.
 
              Full documentation:
@@ -165,7 +190,9 @@ public struct AppInfo: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -183,13 +210,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -199,12 +227,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -241,6 +272,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -252,7 +284,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -270,13 +304,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.AppInfoLocalizations
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -287,13 +322,17 @@ public struct AppInfo: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppInfo.Relationships.AppInfoLocalizations.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -330,6 +369,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.AppInfoLocalizations.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -341,7 +381,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -359,13 +401,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.PrimaryCategory
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -375,12 +418,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.PrimaryCategory.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -417,6 +463,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.PrimaryCategory.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -428,7 +475,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -446,13 +495,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.PrimarySubcategoryOne
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -462,12 +512,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.PrimarySubcategoryOne.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -504,6 +557,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.PrimarySubcategoryOne.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -515,7 +569,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -533,13 +589,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.PrimarySubcategoryTwo
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -549,12 +606,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.PrimarySubcategoryTwo.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -591,6 +651,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.PrimarySubcategoryTwo.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -602,7 +663,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -620,13 +683,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.SecondaryCategory
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -636,12 +700,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.SecondaryCategory.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -678,6 +745,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.SecondaryCategory.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -689,7 +757,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -707,13 +777,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.SecondarySubcategoryOne
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -723,12 +794,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.SecondarySubcategoryOne.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -765,6 +839,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.SecondarySubcategoryOne.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -776,7 +851,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -794,13 +871,14 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppInfo.Relationships.SecondarySubcategoryTwo
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -810,12 +888,15 @@ public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppInfo.Relationships.SecondarySubcategoryTwo.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -852,6 +933,7 @@ public struct AppInfo: Codable {
             }
 
             /**
+             # AppInfo.Relationships.SecondarySubcategoryTwo.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -863,7 +945,9 @@ public struct AppInfo: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -881,8 +965,8 @@ public struct AppInfo: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

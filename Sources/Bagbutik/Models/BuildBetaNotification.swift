@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildBetaNotification
  The data structure that represents a Build Beta Notifications resource.
 
  Full documentation:
@@ -14,7 +15,9 @@ public struct BuildBetaNotification: Codable {
     /// The resource type.
     public var type: String { "buildBetaNotifications" }
 
-    public init(id: String, links: ResourceLinks) {
+    public init(id: String,
+                links: ResourceLinks)
+    {
         self.id = id
         self.links = links
     }

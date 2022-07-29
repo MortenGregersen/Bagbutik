@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperienceLocalization
  The data structure that represents a Default App Clip Experience Localizations resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct AppClipDefaultExperienceLocalization: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct AppClipDefaultExperienceLocalization: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppClipDefaultExperienceLocalization.Attributes
      The attributes that describe a Default App Clip Experience Localizations resource.
 
      Full documentation:
@@ -65,13 +71,16 @@ public struct AppClipDefaultExperienceLocalization: Codable {
         /// The subtitle that appears on the App Clip card for the default App Clip experience.
         public var subtitle: String?
 
-        public init(locale: String? = nil, subtitle: String? = nil) {
+        public init(locale: String? = nil,
+                    subtitle: String? = nil)
+        {
             self.locale = locale
             self.subtitle = subtitle
         }
     }
 
     /**
+     # AppClipDefaultExperienceLocalization.Relationships
      The relationships of the Default App Clip Experience Localizations resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -83,12 +92,15 @@ public struct AppClipDefaultExperienceLocalization: Codable {
         /// The related App Clip Header Images resource.
         public var appClipHeaderImage: AppClipHeaderImage?
 
-        public init(appClipDefaultExperience: AppClipDefaultExperience? = nil, appClipHeaderImage: AppClipHeaderImage? = nil) {
+        public init(appClipDefaultExperience: AppClipDefaultExperience? = nil,
+                    appClipHeaderImage: AppClipHeaderImage? = nil)
+        {
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appClipHeaderImage = appClipHeaderImage
         }
 
         /**
+         # AppClipDefaultExperienceLocalization.Relationships.AppClipDefaultExperience
          The data and links that describe the relationship between the Default App Clip Experience Localizations and the Default App Clip Experiences resources.
 
          Full documentation:
@@ -100,12 +112,15 @@ public struct AppClipDefaultExperienceLocalization: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppClipDefaultExperienceLocalization.Relationships.AppClipDefaultExperience.Data
              The type and ID of a related Default App Clip Experience Localizations resource.
 
              Full documentation:
@@ -142,6 +157,7 @@ public struct AppClipDefaultExperienceLocalization: Codable {
             }
 
             /**
+             # AppClipDefaultExperienceLocalization.Relationships.AppClipDefaultExperience.Links
              The links to the related Default App Clip Experiences resource and the relationship’s self-link.
 
              Full documentation:
@@ -153,7 +169,9 @@ public struct AppClipDefaultExperienceLocalization: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -171,13 +189,14 @@ public struct AppClipDefaultExperienceLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppClipDefaultExperienceLocalization.Relationships.AppClipHeaderImage
          The data and links that describe the relationship between the Default App Clip Experience Localizations and the App Clip Header Images resources.
 
          Full documentation:
@@ -189,12 +208,15 @@ public struct AppClipDefaultExperienceLocalization: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppClipDefaultExperienceLocalization.Relationships.AppClipHeaderImage.Data
              The type and ID of a related App Clip Header Images resource.
 
              Full documentation:
@@ -231,6 +253,7 @@ public struct AppClipDefaultExperienceLocalization: Codable {
             }
 
             /**
+             # AppClipDefaultExperienceLocalization.Relationships.AppClipHeaderImage.Links
              The links to the related App Clip Header Images resource and the relationship’s self-link.
 
              Full documentation:
@@ -242,7 +265,9 @@ public struct AppClipDefaultExperienceLocalization: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -260,8 +285,8 @@ public struct AppClipDefaultExperienceLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

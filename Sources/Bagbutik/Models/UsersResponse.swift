@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UsersResponse
  A response that contains a list of Users resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct UsersResponse: Codable, PagedResponse {
     public typealias Data = User
+
     /// The resource data.
     public let data: [User]
     public var included: [App]?
@@ -16,7 +18,11 @@ public struct UsersResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [User], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [User],
+                included: [App]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

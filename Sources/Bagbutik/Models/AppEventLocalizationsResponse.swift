@@ -2,12 +2,17 @@ import Foundation
 
 public struct AppEventLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppEventLocalization
+
     public let data: [AppEventLocalization]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppEventLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppEventLocalization],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionAppClipDefaultExperienceLinkageResponse
  A response that contains the ID of a single related Default App Clip Experiences resource.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: Data, links: DocumentLinks) {
+    public init(data: Data,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }
 
     /**
+     # AppStoreVersionAppClipDefaultExperienceLinkageResponse.Data
      The data element of the response body.
 
      Full documentation:

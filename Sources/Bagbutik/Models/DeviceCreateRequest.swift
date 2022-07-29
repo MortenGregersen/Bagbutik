@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # DeviceCreateRequest
  The request body you use to create a Device.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct DeviceCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # DeviceCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -43,11 +45,12 @@ public struct DeviceCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
+            case type
         }
 
         /**
+         # DeviceCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -58,7 +61,10 @@ public struct DeviceCreateRequest: Codable, RequestBody {
             public let platform: BundleIdPlatform
             public let udid: String
 
-            public init(name: String, platform: BundleIdPlatform, udid: String) {
+            public init(name: String,
+                        platform: BundleIdPlatform,
+                        udid: String)
+            {
                 self.name = name
                 self.platform = platform
                 self.udid = udid

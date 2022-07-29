@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppScreenshotSetsResponse
  A response that contains a list of App Screenshot Set resources.
 
  Full documentation:
@@ -8,12 +9,17 @@ import Foundation
  */
 public struct AppScreenshotSetsResponse: Codable, PagedResponse {
     public typealias Data = AppScreenshotSet
+
     public let data: [AppScreenshotSet]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppScreenshotSet], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppScreenshotSet],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -12,7 +12,9 @@ public struct AppEventLocalizationUpdateRequest: Codable, RequestBody {
         public var type: String { "appEventLocalizations" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,9 +36,9 @@ public struct AppEventLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
@@ -44,7 +46,10 @@ public struct AppEventLocalizationUpdateRequest: Codable, RequestBody {
             public var name: String?
             public var shortDescription: String?
 
-            public init(longDescription: String? = nil, name: String? = nil, shortDescription: String? = nil) {
+            public init(longDescription: String? = nil,
+                        name: String? = nil,
+                        shortDescription: String? = nil)
+            {
                 self.longDescription = longDescription
                 self.name = name
                 self.shortDescription = shortDescription

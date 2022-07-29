@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationLocalizationInlineCreate
  The data structure that represents a Beta App Clip Invocation Localization Inline Creates resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String? = nil, attributes: Attributes, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                attributes: Attributes,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.attributes = attributes
         self.relationships = relationships
@@ -41,13 +45,14 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id
-        case type
         case attributes
+        case id
         case relationships
+        case type
     }
 
     /**
+     # BetaAppClipInvocationLocalizationInlineCreate.Attributes
      The attributes that describe a Beta App Clip Invocation Localization Inline Creates resource.
 
      Full documentation:
@@ -59,13 +64,16 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
         /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
         public let title: String
 
-        public init(locale: String, title: String) {
+        public init(locale: String,
+                    title: String)
+        {
             self.locale = locale
             self.title = title
         }
     }
 
     /**
+     # BetaAppClipInvocationLocalizationInlineCreate.Relationships
      The relationships to other resources that you can set when you create a new Beta App Clip Invocation Localization Inline Creates resource.
 
      Full documentation:
@@ -80,6 +88,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
         }
 
         /**
+         # BetaAppClipInvocationLocalizationInlineCreate.Relationships.BetaAppClipInvocation
          The relationship to the Beta App Clip Invocations resource you can set when you create a Beta App Clip Invocation Localizations resource.
 
          Full documentation:
@@ -94,6 +103,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
             }
 
             /**
+             # BetaAppClipInvocationLocalizationInlineCreate.Relationships.BetaAppClipInvocation.Data
              The type and ID of the Beta App Clip Invocations resource that you’re relating with the Beta App Clip Invocation Localizations resource you’re creating.
 
              Full documentation:

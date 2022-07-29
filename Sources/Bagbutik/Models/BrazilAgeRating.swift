@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   String that represents the app's age rating as it appears on the App Store in Brazil for all platforms.
+ # BrazilAgeRating
+ String that represents the app's age rating as it appears on the App Store in Brazil for all platforms.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/brazilagerating>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/brazilagerating>
  */
 public enum BrazilAgeRating: String, Codable, CaseIterable {
     /// A literal that represents the rating L.

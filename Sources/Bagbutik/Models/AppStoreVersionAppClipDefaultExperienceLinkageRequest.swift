@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionAppClipDefaultExperienceLinkageRequest
  The request body you use to attach a default App Clip experience to an App Store version.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageRequest: Codable, Re
     }
 
     /**
+     # AppStoreVersionAppClipDefaultExperienceLinkageRequest.Data
      The data element of the request body.
 
      Full documentation:

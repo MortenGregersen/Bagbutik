@@ -12,7 +12,9 @@ public struct InAppPurchaseV2UpdateRequest: Codable, RequestBody {
         public var type: String { "inAppPurchases" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,9 +36,9 @@ public struct InAppPurchaseV2UpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
@@ -45,7 +47,11 @@ public struct InAppPurchaseV2UpdateRequest: Codable, RequestBody {
             public var name: String?
             public var reviewNote: String?
 
-            public init(availableInAllTerritories: Bool? = nil, familySharable: Bool? = nil, name: String? = nil, reviewNote: String? = nil) {
+            public init(availableInAllTerritories: Bool? = nil,
+                        familySharable: Bool? = nil,
+                        name: String? = nil,
+                        reviewNote: String? = nil)
+            {
                 self.availableInAllTerritories = availableInAllTerritories
                 self.familySharable = familySharable
                 self.name = name

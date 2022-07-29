@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionLocalization
  The data structure that represent an App Store Version Localizations resource.
 
  Full documentation:
@@ -13,7 +14,11 @@ public struct AppStoreVersionLocalization: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,14 +46,15 @@ public struct AppStoreVersionLocalization: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppStoreVersionLocalization.Attributes
      Attributes that describe an App Store Version Localizations resource.
 
      Full documentation:
@@ -63,7 +69,14 @@ public struct AppStoreVersionLocalization: Codable {
         public var supportUrl: String?
         public var whatsNew: String?
 
-        public init(description: String? = nil, keywords: String? = nil, locale: String? = nil, marketingUrl: String? = nil, promotionalText: String? = nil, supportUrl: String? = nil, whatsNew: String? = nil) {
+        public init(description: String? = nil,
+                    keywords: String? = nil,
+                    locale: String? = nil,
+                    marketingUrl: String? = nil,
+                    promotionalText: String? = nil,
+                    supportUrl: String? = nil,
+                    whatsNew: String? = nil)
+        {
             self.description = description
             self.keywords = keywords
             self.locale = locale
@@ -75,6 +88,7 @@ public struct AppStoreVersionLocalization: Codable {
     }
 
     /**
+     # AppStoreVersionLocalization.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -85,13 +99,17 @@ public struct AppStoreVersionLocalization: Codable {
         public var appScreenshotSets: AppScreenshotSets?
         public var appStoreVersion: AppStoreVersion?
 
-        public init(appPreviewSets: AppPreviewSets? = nil, appScreenshotSets: AppScreenshotSets? = nil, appStoreVersion: AppStoreVersion? = nil) {
+        public init(appPreviewSets: AppPreviewSets? = nil,
+                    appScreenshotSets: AppScreenshotSets? = nil,
+                    appStoreVersion: AppStoreVersion? = nil)
+        {
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
             self.appStoreVersion = appStoreVersion
         }
 
         /**
+         # AppStoreVersionLocalization.Relationships.AppPreviewSets
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -102,13 +120,17 @@ public struct AppStoreVersionLocalization: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppStoreVersionLocalization.Relationships.AppPreviewSets.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -143,6 +165,7 @@ public struct AppStoreVersionLocalization: Codable {
             }
 
             /**
+             # AppStoreVersionLocalization.Relationships.AppPreviewSets.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -152,7 +175,9 @@ public struct AppStoreVersionLocalization: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -170,13 +195,14 @@ public struct AppStoreVersionLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersionLocalization.Relationships.AppScreenshotSets
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -187,13 +213,17 @@ public struct AppStoreVersionLocalization: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppStoreVersionLocalization.Relationships.AppScreenshotSets.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -228,6 +258,7 @@ public struct AppStoreVersionLocalization: Codable {
             }
 
             /**
+             # AppStoreVersionLocalization.Relationships.AppScreenshotSets.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -237,7 +268,9 @@ public struct AppStoreVersionLocalization: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -255,13 +288,14 @@ public struct AppStoreVersionLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersionLocalization.Relationships.AppStoreVersion
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -271,12 +305,15 @@ public struct AppStoreVersionLocalization: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersionLocalization.Relationships.AppStoreVersion.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -311,6 +348,7 @@ public struct AppStoreVersionLocalization: Codable {
             }
 
             /**
+             # AppStoreVersionLocalization.Relationships.AppStoreVersion.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -320,7 +358,9 @@ public struct AppStoreVersionLocalization: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -338,8 +378,8 @@ public struct AppStoreVersionLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

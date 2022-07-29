@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleId
  The data structure that represents a Bundle IDs resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BundleId: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct BundleId: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BundleId.Attributes
      Attributes that describe a Bundle IDs resource.
 
      Full documentation:
@@ -65,7 +71,11 @@ public struct BundleId: Codable {
         public var platform: BundleIdPlatform?
         public var seedId: String?
 
-        public init(identifier: String? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, seedId: String? = nil) {
+        public init(identifier: String? = nil,
+                    name: String? = nil,
+                    platform: BundleIdPlatform? = nil,
+                    seedId: String? = nil)
+        {
             self.identifier = identifier
             self.name = name
             self.platform = platform
@@ -74,6 +84,7 @@ public struct BundleId: Codable {
     }
 
     /**
+     # BundleId.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -84,13 +95,17 @@ public struct BundleId: Codable {
         public var bundleIdCapabilities: BundleIdCapabilities?
         public var profiles: Profiles?
 
-        public init(app: App? = nil, bundleIdCapabilities: BundleIdCapabilities? = nil, profiles: Profiles? = nil) {
+        public init(app: App? = nil,
+                    bundleIdCapabilities: BundleIdCapabilities? = nil,
+                    profiles: Profiles? = nil)
+        {
             self.app = app
             self.bundleIdCapabilities = bundleIdCapabilities
             self.profiles = profiles
         }
 
         /**
+         # BundleId.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -100,12 +115,15 @@ public struct BundleId: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BundleId.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -140,6 +158,7 @@ public struct BundleId: Codable {
             }
 
             /**
+             # BundleId.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -149,7 +168,9 @@ public struct BundleId: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -167,13 +188,14 @@ public struct BundleId: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BundleId.Relationships.BundleIdCapabilities
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -184,13 +206,17 @@ public struct BundleId: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BundleId.Relationships.BundleIdCapabilities.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -225,6 +251,7 @@ public struct BundleId: Codable {
             }
 
             /**
+             # BundleId.Relationships.BundleIdCapabilities.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -234,7 +261,9 @@ public struct BundleId: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -252,13 +281,14 @@ public struct BundleId: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BundleId.Relationships.Profiles
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -269,13 +299,17 @@ public struct BundleId: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BundleId.Relationships.Profiles.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -310,6 +344,7 @@ public struct BundleId: Codable {
             }
 
             /**
+             # BundleId.Relationships.Profiles.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -319,7 +354,9 @@ public struct BundleId: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -337,8 +374,8 @@ public struct BundleId: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # EndUserLicenseAgreementUpdateRequest
  The request body you use to update an End User License Agreement.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # EndUserLicenseAgreementUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -25,7 +27,10 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -50,13 +55,14 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # EndUserLicenseAgreementUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -71,6 +77,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
         }
 
         /**
+         # EndUserLicenseAgreementUpdateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -84,6 +91,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # EndUserLicenseAgreementUpdateRequest.Data.Relationships.Territories
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -97,6 +105,7 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # EndUserLicenseAgreementUpdateRequest.Data.Relationships.Territories.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:

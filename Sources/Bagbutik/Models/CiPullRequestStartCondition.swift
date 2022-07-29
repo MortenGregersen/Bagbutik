@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiPullRequestStartCondition
  Settings for a start condition that starts a build if a pull request changes.
 
  Full documentation:
@@ -16,7 +17,11 @@ public struct CiPullRequestStartCondition: Codable {
     /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.
     public var source: CiBranchPatterns?
 
-    public init(autoCancel: Bool? = nil, destination: CiBranchPatterns? = nil, filesAndFoldersRule: CiFilesAndFoldersRule? = nil, source: CiBranchPatterns? = nil) {
+    public init(autoCancel: Bool? = nil,
+                destination: CiBranchPatterns? = nil,
+                filesAndFoldersRule: CiFilesAndFoldersRule? = nil,
+                source: CiBranchPatterns? = nil)
+    {
         self.autoCancel = autoCancel
         self.destination = destination
         self.filesAndFoldersRule = filesAndFoldersRule

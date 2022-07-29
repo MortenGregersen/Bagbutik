@@ -7,7 +7,11 @@ public struct PromotedPurchaseImage: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct PromotedPurchaseImage: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -52,7 +56,15 @@ public struct PromotedPurchaseImage: Codable {
         public var state: State?
         public var uploadOperations: [UploadOperation]?
 
-        public init(assetToken: String? = nil, assetType: String? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, state: State? = nil, uploadOperations: [UploadOperation]? = nil) {
+        public init(assetToken: String? = nil,
+                    assetType: String? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    imageAsset: ImageAsset? = nil,
+                    sourceFileChecksum: String? = nil,
+                    state: State? = nil,
+                    uploadOperations: [UploadOperation]? = nil)
+        {
             self.assetToken = assetToken
             self.assetType = assetType
             self.fileName = fileName
@@ -85,7 +97,9 @@ public struct PromotedPurchaseImage: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -122,7 +136,9 @@ public struct PromotedPurchaseImage: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -140,8 +156,8 @@ public struct PromotedPurchaseImage: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

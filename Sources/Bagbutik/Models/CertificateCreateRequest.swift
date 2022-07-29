@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CertificateCreateRequest
  The request body you use to create a Certificate.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct CertificateCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # CertificateCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -43,11 +45,12 @@ public struct CertificateCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
+            case type
         }
 
         /**
+         # CertificateCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -57,7 +60,9 @@ public struct CertificateCreateRequest: Codable, RequestBody {
             public let certificateType: CertificateType
             public let csrContent: String
 
-            public init(certificateType: CertificateType, csrContent: String) {
+            public init(certificateType: CertificateType,
+                        csrContent: String)
+            {
                 self.certificateType = certificateType
                 self.csrContent = csrContent
             }

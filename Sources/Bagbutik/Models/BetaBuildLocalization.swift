@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaBuildLocalization
  The data structure that represents a Beta Build Localizations resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BetaBuildLocalization: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,20 +51,21 @@ public struct BetaBuildLocalization: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BetaBuildLocalization.Attributes
      Attributes that describe a Beta Build Localizations resource.
+
+     Table 1 lists allowed locale values.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/attributes>
-
-     Table 1 lists allowed locale values.
      */
     public struct Attributes: Codable {
         /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalization/attributes#3042206) for possible values.
@@ -67,13 +73,16 @@ public struct BetaBuildLocalization: Codable {
         /// A field that describes changes and additions to a build and indicates features you would like your users to test.
         public var whatsNew: String?
 
-        public init(locale: String? = nil, whatsNew: String? = nil) {
+        public init(locale: String? = nil,
+                    whatsNew: String? = nil)
+        {
             self.locale = locale
             self.whatsNew = whatsNew
         }
     }
 
     /**
+     # BetaBuildLocalization.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -87,6 +96,7 @@ public struct BetaBuildLocalization: Codable {
         }
 
         /**
+         # BetaBuildLocalization.Relationships.Build
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -96,12 +106,15 @@ public struct BetaBuildLocalization: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BetaBuildLocalization.Relationships.Build.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -138,6 +151,7 @@ public struct BetaBuildLocalization: Codable {
             }
 
             /**
+             # BetaBuildLocalization.Relationships.Build.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -147,7 +161,9 @@ public struct BetaBuildLocalization: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -165,8 +181,8 @@ public struct BetaBuildLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

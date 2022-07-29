@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmPullRequestResponse
  A response that contains a single Pull Requests resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct ScmPullRequestResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: ScmPullRequest, included: [ScmRepository]? = nil, links: DocumentLinks) {
+    public init(data: ScmPullRequest,
+                included: [ScmRepository]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppInfoResponse
  A response that contains a single App Infos resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct AppInfoResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppInfo, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppInfo,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

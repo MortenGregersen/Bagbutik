@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPriceResponse
  A response that contains a single App Price resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct AppPriceResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppPrice, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppPrice,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

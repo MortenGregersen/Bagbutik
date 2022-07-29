@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiWorkflowsResponse
  A response that contains a list of Workflows resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct CiWorkflowsResponse: Codable, PagedResponse {
     public typealias Data = CiWorkflow
+
     /// The resource data.
     public let data: [CiWorkflow]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [CiWorkflow], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [CiWorkflow],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

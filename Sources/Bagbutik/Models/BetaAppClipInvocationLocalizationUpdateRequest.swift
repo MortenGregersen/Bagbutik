@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationLocalizationUpdateRequest
  The request body you use to update localized text that appears on the App Clip card for testers.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
     }
 
     /**
+     # BetaAppClipInvocationLocalizationUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
         /// The attributes that describe the request that updates a Beta App Clip Localizations resource.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BetaAppClipInvocationLocalizationUpdateRequest.Data.Attributes
          The attributes you set that describe the updated Beta App Clip Invocation Localizations resource.
 
          Full documentation:

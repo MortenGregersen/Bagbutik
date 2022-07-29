@@ -30,8 +30,8 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         public struct Relationships: Codable {
@@ -41,7 +41,12 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             public var appStoreVersionExperiment: AppStoreVersionExperiment?
             public let reviewSubmission: ReviewSubmission
 
-            public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil, appEvent: AppEvent? = nil, appStoreVersion: AppStoreVersion? = nil, appStoreVersionExperiment: AppStoreVersionExperiment? = nil, reviewSubmission: ReviewSubmission) {
+            public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil,
+                        appEvent: AppEvent? = nil,
+                        appStoreVersion: AppStoreVersion? = nil,
+                        appStoreVersionExperiment: AppStoreVersionExperiment? = nil,
+                        reviewSubmission: ReviewSubmission)
+            {
                 self.appCustomProductPageVersion = appCustomProductPageVersion
                 self.appEvent = appEvent
                 self.appStoreVersion = appStoreVersion

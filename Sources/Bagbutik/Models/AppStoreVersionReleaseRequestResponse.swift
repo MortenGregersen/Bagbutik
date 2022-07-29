@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionReleaseRequestResponse
  A response that contains a single App Store Version Release Request resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct AppStoreVersionReleaseRequestResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersionReleaseRequest, links: DocumentLinks) {
+    public init(data: AppStoreVersionReleaseRequest,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaTesterBuildsLinkagesResponse
  A response body that contains a list of related resource IDs.
 
  Full documentation:
@@ -14,13 +15,17 @@ public struct BetaTesterBuildsLinkagesResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [Data], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [Data],
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.links = links
         self.meta = meta
     }
 
     /**
+     # BetaTesterBuildsLinkagesResponse.Data
      The data element of the response body.
 
      Full documentation:

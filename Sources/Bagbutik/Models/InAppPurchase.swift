@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # InAppPurchase
  The data structure that represents the In-App Purchases resource.
 
  Full documentation:
@@ -13,7 +14,11 @@ public struct InAppPurchase: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,14 +46,15 @@ public struct InAppPurchase: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # InAppPurchase.Attributes
      Attributes that describe an In-App Purchases resource.
 
      Full documentation:
@@ -60,7 +66,11 @@ public struct InAppPurchase: Codable {
         public var referenceName: String?
         public var state: State?
 
-        public init(inAppPurchaseType: InAppPurchaseType? = nil, productId: String? = nil, referenceName: String? = nil, state: State? = nil) {
+        public init(inAppPurchaseType: InAppPurchaseType? = nil,
+                    productId: String? = nil,
+                    referenceName: String? = nil,
+                    state: State? = nil)
+        {
             self.inAppPurchaseType = inAppPurchaseType
             self.productId = productId
             self.referenceName = referenceName
@@ -99,6 +109,7 @@ public struct InAppPurchase: Codable {
     }
 
     /**
+     # InAppPurchase.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -112,6 +123,7 @@ public struct InAppPurchase: Codable {
         }
 
         /**
+         # InAppPurchase.Relationships.Apps
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -122,13 +134,17 @@ public struct InAppPurchase: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # InAppPurchase.Relationships.Apps.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -163,6 +179,7 @@ public struct InAppPurchase: Codable {
             }
 
             /**
+             # InAppPurchase.Relationships.Apps.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -172,7 +189,9 @@ public struct InAppPurchase: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -190,8 +209,8 @@ public struct InAppPurchase: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

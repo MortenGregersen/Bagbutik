@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppInfoLocalizationCreateRequest
  The request body you use to create an App Info Localization.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppInfoLocalizationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -46,12 +50,13 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppInfoLocalizationCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -65,7 +70,13 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
             public var privacyPolicyUrl: String?
             public var subtitle: String?
 
-            public init(locale: String, name: String? = nil, privacyChoicesUrl: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
+            public init(locale: String,
+                        name: String? = nil,
+                        privacyChoicesUrl: String? = nil,
+                        privacyPolicyText: String? = nil,
+                        privacyPolicyUrl: String? = nil,
+                        subtitle: String? = nil)
+            {
                 self.locale = locale
                 self.name = name
                 self.privacyChoicesUrl = privacyChoicesUrl
@@ -76,6 +87,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppInfoLocalizationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -89,6 +101,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoLocalizationCreateRequest.Data.Relationships.AppInfo
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -102,6 +115,7 @@ public struct AppInfoLocalizationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoLocalizationCreateRequest.Data.Relationships.AppInfo.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

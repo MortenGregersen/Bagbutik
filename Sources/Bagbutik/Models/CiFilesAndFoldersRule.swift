@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiFilesAndFoldersRule
  Settings Xcode Cloud uses to determine whether a change should start a new build or not.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct CiFilesAndFoldersRule: Codable {
     /// A string that indicates whether a workflow’s start condition’s Files and Folders setting should start a new build or not for a change.
     public var mode: Mode?
 
-    public init(matchers: [CiStartConditionFileMatcher]? = nil, mode: Mode? = nil) {
+    public init(matchers: [CiStartConditionFileMatcher]? = nil,
+                mode: Mode? = nil)
+    {
         self.matchers = matchers
         self.mode = mode
     }

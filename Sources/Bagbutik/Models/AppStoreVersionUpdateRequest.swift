@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionUpdateRequest
  The request body you use to update an App Store Version.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppStoreVersionUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -25,7 +27,10 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -50,13 +55,14 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # AppStoreVersionUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -69,7 +75,12 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
             public var versionString: String?
 
-            public init(copyright: String? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, releaseType: AppStoreVersion.Attributes.ReleaseType? = nil, versionString: String? = nil) {
+            public init(copyright: String? = nil,
+                        downloadable: Bool? = nil,
+                        earliestReleaseDate: Date? = nil,
+                        releaseType: AppStoreVersion.Attributes.ReleaseType? = nil,
+                        versionString: String? = nil)
+            {
                 self.copyright = copyright
                 self.downloadable = downloadable
                 self.earliestReleaseDate = earliestReleaseDate
@@ -79,6 +90,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppStoreVersionUpdateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -89,12 +101,15 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             public var appClipDefaultExperience: AppClipDefaultExperience?
             public var build: Build?
 
-            public init(appClipDefaultExperience: AppClipDefaultExperience? = nil, build: Build? = nil) {
+            public init(appClipDefaultExperience: AppClipDefaultExperience? = nil,
+                        build: Build? = nil)
+            {
                 self.appClipDefaultExperience = appClipDefaultExperience
                 self.build = build
             }
 
             /**
+             # AppStoreVersionUpdateRequest.Data.Relationships.AppClipDefaultExperience
              The relationship to the Default App Clip Default Experiences resource you set with the request that updates the App Store Versions resource.
 
              Full documentation:
@@ -109,6 +124,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppStoreVersionUpdateRequest.Data.Relationships.AppClipDefaultExperience.Data
                  The type and ID of the Default App Clip Experiences resource that you’re relating with the App Store Versions resource you’re updating.
 
                  Full documentation:
@@ -146,6 +162,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppStoreVersionUpdateRequest.Data.Relationships.Build
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -159,6 +176,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppStoreVersionUpdateRequest.Data.Relationships.Build.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:

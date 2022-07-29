@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPrice
  The data structure that represents an App Price resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct AppPrice: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.relationships = relationships
@@ -43,11 +47,12 @@ public struct AppPrice: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case links
-        case type
         case relationships
+        case type
     }
 
     /**
+     # AppPrice.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -57,12 +62,15 @@ public struct AppPrice: Codable {
         public var app: App?
         public var priceTier: PriceTier?
 
-        public init(app: App? = nil, priceTier: PriceTier? = nil) {
+        public init(app: App? = nil,
+                    priceTier: PriceTier? = nil)
+        {
             self.app = app
             self.priceTier = priceTier
         }
 
         /**
+         # AppPrice.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -72,12 +80,15 @@ public struct AppPrice: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppPrice.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -112,6 +123,7 @@ public struct AppPrice: Codable {
             }
 
             /**
+             # AppPrice.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -121,7 +133,9 @@ public struct AppPrice: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -139,13 +153,14 @@ public struct AppPrice: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppPrice.Relationships.PriceTier
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -155,12 +170,15 @@ public struct AppPrice: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppPrice.Relationships.PriceTier.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -195,6 +213,7 @@ public struct AppPrice: Codable {
             }
 
             /**
+             # AppPrice.Relationships.PriceTier.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -204,7 +223,9 @@ public struct AppPrice: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -222,8 +243,8 @@ public struct AppPrice: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

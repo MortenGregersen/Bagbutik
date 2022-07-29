@@ -12,7 +12,9 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -48,7 +50,14 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
             public var reviewNote: String?
             public var subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod?
 
-            public init(availableInAllTerritories: Bool? = nil, familySharable: Bool? = nil, groupLevel: Int? = nil, name: String, productId: String, reviewNote: String? = nil, subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod? = nil) {
+            public init(availableInAllTerritories: Bool? = nil,
+                        familySharable: Bool? = nil,
+                        groupLevel: Int? = nil,
+                        name: String,
+                        productId: String,
+                        reviewNote: String? = nil,
+                        subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod? = nil)
+            {
                 self.availableInAllTerritories = availableInAllTerritories
                 self.familySharable = familySharable
                 self.groupLevel = groupLevel

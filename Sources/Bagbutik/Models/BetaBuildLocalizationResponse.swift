@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaBuildLocalizationResponse
  A response that contains a single Beta Build Localizations resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct BetaBuildLocalizationResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: BetaBuildLocalization, included: [Build]? = nil, links: DocumentLinks) {
+    public init(data: BetaBuildLocalization,
+                included: [Build]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

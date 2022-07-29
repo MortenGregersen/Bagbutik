@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   String that represents a build's availability for external testing.
+ # ExternalBetaState
+ String that represents a build's availability for external testing.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/externalbetastate>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/externalbetastate>
  */
 public enum ExternalBetaState: String, Codable, CaseIterable {
     case processing = "PROCESSING"

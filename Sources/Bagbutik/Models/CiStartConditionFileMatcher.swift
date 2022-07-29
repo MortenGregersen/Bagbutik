@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiStartConditionFileMatcher
  The data structure that represents a Start Condition File Matchers resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct CiStartConditionFileMatcher: Codable {
     /// The filename you configure for a custom start condition’s Files and Folders setting.
     public var fileName: String?
 
-    public init(directory: String? = nil, fileExtension: String? = nil, fileName: String? = nil) {
+    public init(directory: String? = nil,
+                fileExtension: String? = nil,
+                fileName: String? = nil)
+    {
         self.directory = directory
         self.fileExtension = fileExtension
         self.fileName = fileName

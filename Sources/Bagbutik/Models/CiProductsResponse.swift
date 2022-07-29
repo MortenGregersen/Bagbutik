@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiProductsResponse
  A response that contains a list of Products resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct CiProductsResponse: Codable, PagedResponse {
     public typealias Data = CiProduct
+
     /// The resource data.
     public let data: [CiProduct]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct CiProductsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [CiProduct], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [CiProduct],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBuildActionResponse
  A response that contains a single Build Actions resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct CiBuildActionResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: CiBuildAction, included: [CiBuildRun]? = nil, links: DocumentLinks) {
+    public init(data: CiBuildAction,
+                included: [CiBuildRun]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # MetricsInsight
  Results of an analysis of metric data for a single metric category for your app.
 
  Full documentation:
@@ -26,7 +27,16 @@ public struct MetricsInsight: Codable {
     /// A human-readable description of the trend.
     public var summaryString: String?
 
-    public init(highImpact: Bool? = nil, latestVersion: String? = nil, maxLatestVersionValue: Double? = nil, metric: String? = nil, metricCategory: MetricCategory? = nil, populations: [Populations]? = nil, referenceVersions: String? = nil, subSystemLabel: String? = nil, summaryString: String? = nil) {
+    public init(highImpact: Bool? = nil,
+                latestVersion: String? = nil,
+                maxLatestVersionValue: Double? = nil,
+                metric: String? = nil,
+                metricCategory: MetricCategory? = nil,
+                populations: [Populations]? = nil,
+                referenceVersions: String? = nil,
+                subSystemLabel: String? = nil,
+                summaryString: String? = nil)
+    {
         self.highImpact = highImpact
         self.latestVersion = latestVersion
         self.maxLatestVersionValue = maxLatestVersionValue
@@ -39,6 +49,7 @@ public struct MetricsInsight: Codable {
     }
 
     /**
+     # MetricsInsight.Populations
      The value of a metric for a device type on the latest app version, and its percent change as compared with previous app versions.
 
      Full documentation:
@@ -58,7 +69,13 @@ public struct MetricsInsight: Codable {
         /// A human-readable description of the metric and population.
         public var summaryString: String?
 
-        public init(deltaPercentage: Double? = nil, device: String? = nil, latestVersionValue: Double? = nil, percentile: String? = nil, referenceAverageValue: Double? = nil, summaryString: String? = nil) {
+        public init(deltaPercentage: Double? = nil,
+                    device: String? = nil,
+                    latestVersionValue: Double? = nil,
+                    percentile: String? = nil,
+                    referenceAverageValue: Double? = nil,
+                    summaryString: String? = nil)
+        {
             self.deltaPercentage = deltaPercentage
             self.device = device
             self.latestVersionValue = latestVersionValue

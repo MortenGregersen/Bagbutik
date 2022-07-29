@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppLocalization
  The data structure that represents a Beta App Localizations resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BetaAppLocalization: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,20 +51,21 @@ public struct BetaAppLocalization: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BetaAppLocalization.Attributes
      Attributes that describe a Beta App Localizations resource.
+
+     Table 1 lists allowed locale values.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization/attributes>
-
-     Table 1 lists allowed locale values.
      */
     public struct Attributes: Codable {
         /// A description of your app that highlights features and functionality.
@@ -75,7 +81,13 @@ public struct BetaAppLocalization: Codable {
         /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
         public var tvOsPrivacyPolicy: String?
 
-        public init(description: String? = nil, feedbackEmail: String? = nil, locale: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
+        public init(description: String? = nil,
+                    feedbackEmail: String? = nil,
+                    locale: String? = nil,
+                    marketingUrl: String? = nil,
+                    privacyPolicyUrl: String? = nil,
+                    tvOsPrivacyPolicy: String? = nil)
+        {
             self.description = description
             self.feedbackEmail = feedbackEmail
             self.locale = locale
@@ -86,6 +98,7 @@ public struct BetaAppLocalization: Codable {
     }
 
     /**
+     # BetaAppLocalization.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -99,6 +112,7 @@ public struct BetaAppLocalization: Codable {
         }
 
         /**
+         # BetaAppLocalization.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -108,12 +122,15 @@ public struct BetaAppLocalization: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BetaAppLocalization.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -150,6 +167,7 @@ public struct BetaAppLocalization: Codable {
             }
 
             /**
+             # BetaAppLocalization.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -159,7 +177,9 @@ public struct BetaAppLocalization: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -177,8 +197,8 @@ public struct BetaAppLocalization: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

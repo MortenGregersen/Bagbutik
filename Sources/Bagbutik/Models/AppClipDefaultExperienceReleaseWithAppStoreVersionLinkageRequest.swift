@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest
  The request body you use to relate a released App Store version with a default App Clip experience.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: 
     }
 
     /**
+     # AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest.Data
      The data element of the request body.
 
      Full documentation:

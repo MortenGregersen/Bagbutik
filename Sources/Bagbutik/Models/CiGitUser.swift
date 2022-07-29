@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiGitUser
  The data structure that represents a Git Users resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct CiGitUser: Codable {
     /// The name of the Git user.
     public var displayName: String?
 
-    public init(avatarUrl: String? = nil, displayName: String? = nil) {
+    public init(avatarUrl: String? = nil,
+                displayName: String? = nil)
+    {
         self.avatarUrl = avatarUrl
         self.displayName = displayName
     }

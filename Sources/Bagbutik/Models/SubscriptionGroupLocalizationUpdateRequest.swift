@@ -12,7 +12,9 @@ public struct SubscriptionGroupLocalizationUpdateRequest: Codable, RequestBody {
         public var type: String { "subscriptionGroupLocalizations" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,16 +36,18 @@ public struct SubscriptionGroupLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
             public var customAppName: String?
             public var name: String?
 
-            public init(customAppName: String? = nil, name: String? = nil) {
+            public init(customAppName: String? = nil,
+                        name: String? = nil)
+            {
                 self.customAppName = customAppName
                 self.name = name
             }

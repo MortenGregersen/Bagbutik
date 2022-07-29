@@ -12,7 +12,9 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -44,7 +46,10 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
             public let fileName: String
             public let fileSize: Int
 
-            public init(appEventAssetType: AppEventAssetType, fileName: String, fileSize: Int) {
+            public init(appEventAssetType: AppEventAssetType,
+                        fileName: String,
+                        fileSize: Int)
+            {
                 self.appEventAssetType = appEventAssetType
                 self.fileName = fileName
                 self.fileSize = fileSize

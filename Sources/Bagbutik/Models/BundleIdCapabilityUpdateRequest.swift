@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleIdCapabilityUpdateRequest
  The request body you use to update a Bundle ID Capability.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BundleIdCapabilityUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -25,7 +27,9 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
         public var type: String { "bundleIdCapabilities" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -47,12 +51,13 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BundleIdCapabilityUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -62,7 +67,9 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
             public var capabilityType: CapabilityType?
             public var settings: [CapabilitySetting]?
 
-            public init(capabilityType: CapabilityType? = nil, settings: [CapabilitySetting]? = nil) {
+            public init(capabilityType: CapabilityType? = nil,
+                        settings: [CapabilitySetting]? = nil)
+            {
                 self.capabilityType = capabilityType
                 self.settings = settings
             }

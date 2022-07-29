@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiIssue
  The data structure that represents an Issues resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct CiIssue: Codable {
     /// The attributes that describe the Issues resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct CiIssue: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # CiIssue.Attributes
      The attributes that describe an Issues resource.
 
      Full documentation:
@@ -63,7 +68,11 @@ public struct CiIssue: Codable {
         /// Information about the issue that occurred.
         public var message: String?
 
-        public init(category: String? = nil, fileSource: FileLocation? = nil, issueType: IssueType? = nil, message: String? = nil) {
+        public init(category: String? = nil,
+                    fileSource: FileLocation? = nil,
+                    issueType: IssueType? = nil,
+                    message: String? = nil)
+        {
             self.category = category
             self.fileSource = fileSource
             self.issueType = issueType

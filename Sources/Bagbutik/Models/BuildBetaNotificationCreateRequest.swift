@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildBetaNotificationCreateRequest
  The request body you use to create a Build Beta Notification.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BuildBetaNotificationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -45,11 +47,12 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         /**
+         # BuildBetaNotificationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -63,6 +66,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BuildBetaNotificationCreateRequest.Data.Relationships.Build
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -76,6 +80,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BuildBetaNotificationCreateRequest.Data.Relationships.Build.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionLocalizationUpdateRequest
  The request body you use to update an App Store Version Localization
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppStoreVersionLocalizationUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
         public var type: String { "appStoreVersionLocalizations" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -46,12 +50,13 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppStoreVersionLocalizationUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -65,7 +70,13 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
             public var supportUrl: String?
             public var whatsNew: String?
 
-            public init(description: String? = nil, keywords: String? = nil, marketingUrl: String? = nil, promotionalText: String? = nil, supportUrl: String? = nil, whatsNew: String? = nil) {
+            public init(description: String? = nil,
+                        keywords: String? = nil,
+                        marketingUrl: String? = nil,
+                        promotionalText: String? = nil,
+                        supportUrl: String? = nil,
+                        whatsNew: String? = nil)
+            {
                 self.description = description
                 self.keywords = keywords
                 self.marketingUrl = marketingUrl

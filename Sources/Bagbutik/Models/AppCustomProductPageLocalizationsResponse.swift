@@ -2,12 +2,17 @@ import Foundation
 
 public struct AppCustomProductPageLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppCustomProductPageLocalization
+
     public let data: [AppCustomProductPageLocalization]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppCustomProductPageLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppCustomProductPageLocalization],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBuildAction
  The data structure that represents a Build Actions resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct CiBuildAction: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct CiBuildAction: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # CiBuildAction.Attributes
      The attributes that describe a Build Actions resource.
 
      Full documentation:
@@ -77,7 +83,15 @@ public struct CiBuildAction: Codable {
         /// The date and time when Xcode Cloud started performing the action.
         public var startedDate: Date?
 
-        public init(actionType: CiActionType? = nil, completionStatus: CiCompletionStatus? = nil, executionProgress: CiExecutionProgress? = nil, finishedDate: Date? = nil, isRequiredToPass: Bool? = nil, issueCounts: CiIssueCounts? = nil, name: String? = nil, startedDate: Date? = nil) {
+        public init(actionType: CiActionType? = nil,
+                    completionStatus: CiCompletionStatus? = nil,
+                    executionProgress: CiExecutionProgress? = nil,
+                    finishedDate: Date? = nil,
+                    isRequiredToPass: Bool? = nil,
+                    issueCounts: CiIssueCounts? = nil,
+                    name: String? = nil,
+                    startedDate: Date? = nil)
+        {
             self.actionType = actionType
             self.completionStatus = completionStatus
             self.executionProgress = executionProgress
@@ -90,6 +104,7 @@ public struct CiBuildAction: Codable {
     }
 
     /**
+     # CiBuildAction.Relationships
      The relationships of the Build Actions resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -104,6 +119,7 @@ public struct CiBuildAction: Codable {
         }
 
         /**
+         # CiBuildAction.Relationships.BuildRun
          The data and links that describe the relationship between the Build Actions and Build Runs resources.
 
          Full documentation:
@@ -115,12 +131,15 @@ public struct CiBuildAction: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiBuildAction.Relationships.BuildRun.Data
              The type and ID of a related Build Runs resource.
 
              Full documentation:
@@ -157,6 +176,7 @@ public struct CiBuildAction: Codable {
             }
 
             /**
+             # CiBuildAction.Relationships.BuildRun.Links
              The links to the related Build Runs resource and the relationship’s self-link.
 
              Full documentation:
@@ -168,7 +188,9 @@ public struct CiBuildAction: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -186,8 +208,8 @@ public struct CiBuildAction: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

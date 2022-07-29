@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppScreenshotSet
  The data structure that represent an App Screenshot Sets resource.
 
  Full documentation:
@@ -13,7 +14,11 @@ public struct AppScreenshotSet: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,14 +46,15 @@ public struct AppScreenshotSet: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppScreenshotSet.Attributes
      Attributes that describe an App Screenshot Sets resource.
 
      Full documentation:
@@ -63,6 +69,7 @@ public struct AppScreenshotSet: Codable {
     }
 
     /**
+     # AppScreenshotSet.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -74,7 +81,11 @@ public struct AppScreenshotSet: Codable {
         public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
         public var appStoreVersionLocalization: AppStoreVersionLocalization?
 
-        public init(appCustomProductPageLocalization: AppCustomProductPageLocalization? = nil, appScreenshots: AppScreenshots? = nil, appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization? = nil, appStoreVersionLocalization: AppStoreVersionLocalization? = nil) {
+        public init(appCustomProductPageLocalization: AppCustomProductPageLocalization? = nil,
+                    appScreenshots: AppScreenshots? = nil,
+                    appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization? = nil,
+                    appStoreVersionLocalization: AppStoreVersionLocalization? = nil)
+        {
             self.appCustomProductPageLocalization = appCustomProductPageLocalization
             self.appScreenshots = appScreenshots
             self.appStoreVersionExperimentTreatmentLocalization = appStoreVersionExperimentTreatmentLocalization
@@ -85,7 +96,9 @@ public struct AppScreenshotSet: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -122,7 +135,9 @@ public struct AppScreenshotSet: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -140,13 +155,14 @@ public struct AppScreenshotSet: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppScreenshotSet.Relationships.AppScreenshots
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -157,13 +173,17 @@ public struct AppScreenshotSet: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppScreenshotSet.Relationships.AppScreenshots.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -198,6 +218,7 @@ public struct AppScreenshotSet: Codable {
             }
 
             /**
+             # AppScreenshotSet.Relationships.AppScreenshots.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -207,7 +228,9 @@ public struct AppScreenshotSet: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -225,8 +248,8 @@ public struct AppScreenshotSet: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -235,7 +258,9 @@ public struct AppScreenshotSet: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -272,7 +297,9 @@ public struct AppScreenshotSet: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -290,13 +317,14 @@ public struct AppScreenshotSet: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppScreenshotSet.Relationships.AppStoreVersionLocalization
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -306,12 +334,15 @@ public struct AppScreenshotSet: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppScreenshotSet.Relationships.AppStoreVersionLocalization.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -346,6 +377,7 @@ public struct AppScreenshotSet: Codable {
             }
 
             /**
+             # AppScreenshotSet.Relationships.AppStoreVersionLocalization.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -355,7 +387,9 @@ public struct AppScreenshotSet: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -373,8 +407,8 @@ public struct AppScreenshotSet: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

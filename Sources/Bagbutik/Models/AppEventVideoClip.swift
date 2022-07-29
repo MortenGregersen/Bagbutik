@@ -7,7 +7,11 @@ public struct AppEventVideoClip: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct AppEventVideoClip: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -52,7 +56,15 @@ public struct AppEventVideoClip: Codable {
         public var uploadOperations: [UploadOperation]?
         public var videoUrl: String?
 
-        public init(appEventAssetType: AppEventAssetType? = nil, assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, previewFrameTimeCode: String? = nil, previewImage: ImageAsset? = nil, uploadOperations: [UploadOperation]? = nil, videoUrl: String? = nil) {
+        public init(appEventAssetType: AppEventAssetType? = nil,
+                    assetDeliveryState: AppMediaAssetState? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    previewFrameTimeCode: String? = nil,
+                    previewImage: ImageAsset? = nil,
+                    uploadOperations: [UploadOperation]? = nil,
+                    videoUrl: String? = nil)
+        {
             self.appEventAssetType = appEventAssetType
             self.assetDeliveryState = assetDeliveryState
             self.fileName = fileName
@@ -75,7 +87,9 @@ public struct AppEventVideoClip: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -112,7 +126,9 @@ public struct AppEventVideoClip: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -130,8 +146,8 @@ public struct AppEventVideoClip: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

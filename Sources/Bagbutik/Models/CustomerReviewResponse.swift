@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CustomerReviewResponse
  A response that contains a single Customer Review resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct CustomerReviewResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: CustomerReview, included: [CustomerReviewResponseV1]? = nil, links: DocumentLinks) {
+    public init(data: CustomerReview,
+                included: [CustomerReviewResponseV1]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

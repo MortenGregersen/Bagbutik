@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # RoutingAppCoverageResponse
  A response that contains a single Routing App Coverages resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct RoutingAppCoverageResponse: Codable {
     public var included: [AppStoreVersion]?
     public let links: DocumentLinks
 
-    public init(data: RoutingAppCoverage, included: [AppStoreVersion]? = nil, links: DocumentLinks) {
+    public init(data: RoutingAppCoverage,
+                included: [AppStoreVersion]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -12,7 +12,9 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,16 +36,18 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
             public let locale: String
             public var promotionalText: String?
 
-            public init(locale: String, promotionalText: String? = nil) {
+            public init(locale: String,
+                        promotionalText: String? = nil)
+            {
                 self.locale = locale
                 self.promotionalText = promotionalText
             }

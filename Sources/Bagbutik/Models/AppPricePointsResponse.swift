@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPricePointsResponse
  A response that contains a list of App Price Point resources.
 
  Full documentation:
@@ -8,12 +9,17 @@ import Foundation
  */
 public struct AppPricePointsResponse: Codable, PagedResponse {
     public typealias Data = AppPricePoint
+
     public let data: [AppPricePoint]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppPricePoint], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppPricePoint],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionResponse
  A response that contains a single App Store Versions resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppStoreVersionResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersion, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppStoreVersion,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -12,7 +12,9 @@ public struct SubscriptionAppStoreReviewScreenshotUpdateRequest: Codable, Reques
         public var type: String { "subscriptionAppStoreReviewScreenshots" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,16 +36,18 @@ public struct SubscriptionAppStoreReviewScreenshotUpdateRequest: Codable, Reques
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?
 
-            public init(sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
+            public init(sourceFileChecksum: String? = nil,
+                        uploaded: Bool? = nil)
+            {
                 self.sourceFileChecksum = sourceFileChecksum
                 self.uploaded = uploaded
             }

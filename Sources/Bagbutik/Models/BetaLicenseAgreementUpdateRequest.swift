@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaLicenseAgreementUpdateRequest
  The request body you use to update a Beta License Agreement.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaLicenseAgreementUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
         /// The resource's attributes.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BetaLicenseAgreementUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:

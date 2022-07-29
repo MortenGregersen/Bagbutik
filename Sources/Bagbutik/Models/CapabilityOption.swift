@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CapabilityOption
  An option within a capability setting.
 
  Full documentation:
@@ -14,7 +15,13 @@ public struct CapabilityOption: Codable {
     public var name: String?
     public var supportsWildcard: Bool?
 
-    public init(description: String? = nil, enabled: Bool? = nil, enabledByDefault: Bool? = nil, key: Key? = nil, name: String? = nil, supportsWildcard: Bool? = nil) {
+    public init(description: String? = nil,
+                enabled: Bool? = nil,
+                enabledByDefault: Bool? = nil,
+                key: Key? = nil,
+                name: String? = nil,
+                supportsWildcard: Bool? = nil)
+    {
         self.description = description
         self.enabled = enabled
         self.enabledByDefault = enabledByDefault

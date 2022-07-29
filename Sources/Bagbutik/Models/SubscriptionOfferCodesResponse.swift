@@ -2,12 +2,17 @@ import Foundation
 
 public struct SubscriptionOfferCodesResponse: Codable, PagedResponse {
     public typealias Data = SubscriptionOfferCode
+
     public let data: [SubscriptionOfferCode]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [SubscriptionOfferCode], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [SubscriptionOfferCode],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

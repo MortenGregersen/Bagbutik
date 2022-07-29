@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppEncryptionDeclaration
  The data structure that represents an App Encryption Declarations resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct AppEncryptionDeclaration: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct AppEncryptionDeclaration: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppEncryptionDeclaration.Attributes
      Attributes that describe an App Encryption Declarations resource.
 
      Full documentation:
@@ -85,7 +91,19 @@ public struct AppEncryptionDeclaration: Codable {
         /// A Boolean value that indicates whether your app uses, contains, or incorporates cryptography.
         public var usesEncryption: Bool?
 
-        public init(appEncryptionDeclarationState: AppEncryptionDeclarationState? = nil, availableOnFrenchStore: Bool? = nil, codeValue: String? = nil, containsProprietaryCryptography: Bool? = nil, containsThirdPartyCryptography: Bool? = nil, documentName: String? = nil, documentType: String? = nil, documentUrl: String? = nil, exempt: Bool? = nil, platform: Platform? = nil, uploadedDate: Date? = nil, usesEncryption: Bool? = nil) {
+        public init(appEncryptionDeclarationState: AppEncryptionDeclarationState? = nil,
+                    availableOnFrenchStore: Bool? = nil,
+                    codeValue: String? = nil,
+                    containsProprietaryCryptography: Bool? = nil,
+                    containsThirdPartyCryptography: Bool? = nil,
+                    documentName: String? = nil,
+                    documentType: String? = nil,
+                    documentUrl: String? = nil,
+                    exempt: Bool? = nil,
+                    platform: Platform? = nil,
+                    uploadedDate: Date? = nil,
+                    usesEncryption: Bool? = nil)
+        {
             self.appEncryptionDeclarationState = appEncryptionDeclarationState
             self.availableOnFrenchStore = availableOnFrenchStore
             self.codeValue = codeValue
@@ -102,6 +120,7 @@ public struct AppEncryptionDeclaration: Codable {
     }
 
     /**
+     # AppEncryptionDeclaration.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -115,6 +134,7 @@ public struct AppEncryptionDeclaration: Codable {
         }
 
         /**
+         # AppEncryptionDeclaration.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -124,12 +144,15 @@ public struct AppEncryptionDeclaration: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppEncryptionDeclaration.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -166,6 +189,7 @@ public struct AppEncryptionDeclaration: Codable {
             }
 
             /**
+             # AppEncryptionDeclaration.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -175,7 +199,9 @@ public struct AppEncryptionDeclaration: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -193,8 +219,8 @@ public struct AppEncryptionDeclaration: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

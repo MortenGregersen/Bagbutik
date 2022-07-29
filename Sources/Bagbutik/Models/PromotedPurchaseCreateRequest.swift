@@ -12,7 +12,9 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,16 +36,18 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
             public var enabled: Bool?
             public let visibleForAllUsers: Bool
 
-            public init(enabled: Bool? = nil, visibleForAllUsers: Bool) {
+            public init(enabled: Bool? = nil,
+                        visibleForAllUsers: Bool)
+            {
                 self.enabled = enabled
                 self.visibleForAllUsers = visibleForAllUsers
             }
@@ -54,7 +58,10 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
             public var inAppPurchaseV2: InAppPurchaseV2?
             public var subscription: Subscription?
 
-            public init(app: App, inAppPurchaseV2: InAppPurchaseV2? = nil, subscription: Subscription? = nil) {
+            public init(app: App,
+                        inAppPurchaseV2: InAppPurchaseV2? = nil,
+                        subscription: Subscription? = nil)
+            {
                 self.app = app
                 self.inAppPurchaseV2 = inAppPurchaseV2
                 self.subscription = subscription

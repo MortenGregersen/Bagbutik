@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperienceLocalizationUpdateRequest
  The request body you use to update a Default App Clip Experiences resource.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
     }
 
     /**
+     # AppClipDefaultExperienceLocalizationUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
         /// The attributes that describes the request that updates a Default App Clip Experience Localizations resource.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppClipDefaultExperienceLocalizationUpdateRequest.Data.Attributes
          The attributes you set that describe the Default App Clip Experience Localizations resource.
 
          Full documentation:

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaGroupCreateRequest
  The request body you use to create a Beta Group.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaGroupCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
         /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BetaGroupCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -74,7 +79,14 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
             public var publicLinkLimitEnabled: Bool?
 
-            public init(feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, isInternalGroup: Bool? = nil, name: String, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+            public init(feedbackEnabled: Bool? = nil,
+                        hasAccessToAllBuilds: Bool? = nil,
+                        isInternalGroup: Bool? = nil,
+                        name: String,
+                        publicLinkEnabled: Bool? = nil,
+                        publicLinkLimit: Int? = nil,
+                        publicLinkLimitEnabled: Bool? = nil)
+            {
                 self.feedbackEnabled = feedbackEnabled
                 self.hasAccessToAllBuilds = hasAccessToAllBuilds
                 self.isInternalGroup = isInternalGroup
@@ -86,6 +98,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # BetaGroupCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -96,13 +109,17 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             public var betaTesters: BetaTesters?
             public var builds: Builds?
 
-            public init(app: App, betaTesters: BetaTesters? = nil, builds: Builds? = nil) {
+            public init(app: App,
+                        betaTesters: BetaTesters? = nil,
+                        builds: Builds? = nil)
+            {
                 self.app = app
                 self.betaTesters = betaTesters
                 self.builds = builds
             }
 
             /**
+             # BetaGroupCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -116,6 +133,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaGroupCreateRequest.Data.Relationships.App.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
@@ -153,6 +171,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaGroupCreateRequest.Data.Relationships.BetaTesters
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -166,6 +185,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaGroupCreateRequest.Data.Relationships.BetaTesters.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
@@ -203,6 +223,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaGroupCreateRequest.Data.Relationships.Builds
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -216,6 +237,7 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaGroupCreateRequest.Data.Relationships.Builds.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

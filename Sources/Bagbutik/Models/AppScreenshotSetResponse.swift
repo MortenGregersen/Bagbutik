@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppScreenshotSetResponse
  A response that contains a single App Screenshot Sets resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppScreenshotSetResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppScreenshotSet, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppScreenshotSet,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

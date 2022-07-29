@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   String that represents an app's capability type.
+ # CapabilityType
+ String that represents an app's capability type.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/capabilitytype>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/capabilitytype>
  */
 public enum CapabilityType: String, Codable, CaseIterable {
     case iCloud = "ICLOUD"

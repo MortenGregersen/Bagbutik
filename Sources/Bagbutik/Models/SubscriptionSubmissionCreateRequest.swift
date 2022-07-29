@@ -30,8 +30,8 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         public struct Relationships: Codable {

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiIssueCounts
  The data structure that represents an Issue Counts resource.
 
  Full documentation:
@@ -16,7 +17,11 @@ public struct CiIssueCounts: Codable {
     /// The number of warnings.
     public var warnings: Int?
 
-    public init(analyzerWarnings: Int? = nil, errors: Int? = nil, testFailures: Int? = nil, warnings: Int? = nil) {
+    public init(analyzerWarnings: Int? = nil,
+                errors: Int? = nil,
+                testFailures: Int? = nil,
+                warnings: Int? = nil)
+    {
         self.analyzerWarnings = analyzerWarnings
         self.errors = errors
         self.testFailures = testFailures

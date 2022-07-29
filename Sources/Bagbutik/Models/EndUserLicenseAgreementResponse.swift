@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # EndUserLicenseAgreementResponse
  A response that contains a single End User License Agreements resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct EndUserLicenseAgreementResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: EndUserLicenseAgreement, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: EndUserLicenseAgreement,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

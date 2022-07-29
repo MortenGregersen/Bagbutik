@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocation
  The data structure that represents a Beta App Clip Invocations resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BetaAppClipInvocation: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct BetaAppClipInvocation: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BetaAppClipInvocation.Attributes
      The attributes that describe a Beta App Clip Invocations resource.
 
      Full documentation:
@@ -69,6 +75,7 @@ public struct BetaAppClipInvocation: Codable {
     }
 
     /**
+     # BetaAppClipInvocation.Relationships
      The relationships of the Beta App Clip Invocations resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -83,6 +90,7 @@ public struct BetaAppClipInvocation: Codable {
         }
 
         /**
+         # BetaAppClipInvocation.Relationships.BetaAppClipInvocationLocalizations
          The data, links, and paging information that describe the relationship between the Beta App Clip Invocations and the Beta App Clip Invocation Localizations resources.
 
          Full documentation:
@@ -96,13 +104,17 @@ public struct BetaAppClipInvocation: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BetaAppClipInvocation.Relationships.BetaAppClipInvocationLocalizations.Data
              The type and ID of a related Beta App Clip Invocation Localizations resource.
 
              Full documentation:
@@ -139,6 +151,7 @@ public struct BetaAppClipInvocation: Codable {
             }
 
             /**
+             # BetaAppClipInvocation.Relationships.BetaAppClipInvocationLocalizations.Links
              The links to the related Beta App Clip Invocation Localizations resource and the relationship’s self-link.
 
              Full documentation:
@@ -150,7 +163,9 @@ public struct BetaAppClipInvocation: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -168,8 +183,8 @@ public struct BetaAppClipInvocation: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

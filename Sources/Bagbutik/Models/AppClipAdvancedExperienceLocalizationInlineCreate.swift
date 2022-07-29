@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperienceLocalizationInlineCreate
  The data structure that represents an Advanced App Clip Experience Localization Inline Creates resource.
 
  Full documentation:
@@ -14,7 +15,9 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable {
     /// The attributes that describe the Advanced App Clip Experience Localization Inline Creates resource.
     public var attributes: Attributes?
 
-    public init(id: String? = nil, attributes: Attributes? = nil) {
+    public init(id: String? = nil,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.attributes = attributes
     }
@@ -36,12 +39,13 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case type
-        case attributes
     }
 
     /**
+     # AppClipAdvancedExperienceLocalizationInlineCreate.Attributes
      The attributes that describe an Advanced App Clip Experience Localization Inline Creates resource.
 
      Full documentation:
@@ -55,7 +59,10 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable {
         /// The title that appears on the App Clip card for the advanced App Clip experience.
         public var title: String?
 
-        public init(language: AppClipAdvancedExperienceLanguage? = nil, subtitle: String? = nil, title: String? = nil) {
+        public init(language: AppClipAdvancedExperienceLanguage? = nil,
+                    subtitle: String? = nil,
+                    title: String? = nil)
+        {
             self.language = language
             self.subtitle = subtitle
             self.title = title

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionReleaseRequestCreateRequest
  The request body you use to manually release an App Store approved version of your app.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppStoreVersionReleaseRequestCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -43,11 +45,12 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         /**
+         # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -61,6 +64,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships.AppStoreVersion
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -74,6 +78,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships.AppStoreVersion.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

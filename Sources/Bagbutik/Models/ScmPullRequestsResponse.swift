@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmPullRequestsResponse
  A response that contains a list of Pull Requests resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct ScmPullRequestsResponse: Codable, PagedResponse {
     public typealias Data = ScmPullRequest
+
     /// The resource data.
     public let data: [ScmPullRequest]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct ScmPullRequestsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [ScmPullRequest], included: [ScmRepository]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [ScmPullRequest],
+                included: [ScmRepository]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

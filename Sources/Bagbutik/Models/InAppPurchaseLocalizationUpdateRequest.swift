@@ -12,7 +12,9 @@ public struct InAppPurchaseLocalizationUpdateRequest: Codable, RequestBody {
         public var type: String { "inAppPurchaseLocalizations" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,16 +36,18 @@ public struct InAppPurchaseLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
             public var description: String?
             public var name: String?
 
-            public init(description: String? = nil, name: String? = nil) {
+            public init(description: String? = nil,
+                        name: String? = nil)
+            {
                 self.description = description
                 self.name = name
             }

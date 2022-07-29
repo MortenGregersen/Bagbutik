@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperienceUpdateRequest
  The request body you use to update a default App Clip experience.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppClipDefaultExperienceUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -30,7 +32,10 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         /// The navigational links to related data and included resource types and IDs.
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -55,13 +60,14 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # AppClipDefaultExperienceUpdateRequest.Data.Attributes
          The attributes you set that describe the new Default App Clip Experiences resource.
 
          Full documentation:
@@ -77,6 +83,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppClipDefaultExperienceUpdateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -91,6 +98,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipDefaultExperienceUpdateRequest.Data.Relationships.ReleaseWithAppStoreVersion
              The relationship to the App Store Versions resource you set with the request that updates a Default App Clip Experiences resource.
 
              Full documentation:
@@ -105,6 +113,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipDefaultExperienceUpdateRequest.Data.Relationships.ReleaseWithAppStoreVersion.Data
                  The type and ID of the App Store Versions resource that you’re relating with the Default App Clip Experiences resource you’re updating.
 
                  Full documentation:

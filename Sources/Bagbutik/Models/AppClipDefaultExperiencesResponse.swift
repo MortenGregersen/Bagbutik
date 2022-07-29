@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperiencesResponse
  A response that contains a list of Default App Clip Experiences resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct AppClipDefaultExperiencesResponse: Codable, PagedResponse {
     public typealias Data = AppClipDefaultExperience
+
     /// The resource data.
     public let data: [AppClipDefaultExperience]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct AppClipDefaultExperiencesResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [AppClipDefaultExperience], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppClipDefaultExperience],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmProvider
  The data structure that represents a Providers resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct ScmProvider: Codable {
     /// The attributes that describe the Providers resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct ScmProvider: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # ScmProvider.Attributes
      The attributes that describe a Providers resource.
 
      Full documentation:
@@ -59,7 +64,9 @@ public struct ScmProvider: Codable {
         /// The URL of the source code management provider.
         public var url: String?
 
-        public init(scmProviderType: ScmProviderType? = nil, url: String? = nil) {
+        public init(scmProviderType: ScmProviderType? = nil,
+                    url: String? = nil)
+        {
             self.scmProviderType = scmProviderType
             self.url = url
         }

@@ -5,7 +5,9 @@ public struct SubscriptionOfferCodeOneTimeUseCodeValue: Codable {
     public let links: ResourceLinks
     public var type: String { "subscriptionOfferCodeOneTimeUseCodeValues" }
 
-    public init(id: String, links: ResourceLinks) {
+    public init(id: String,
+                links: ResourceLinks)
+    {
         self.id = id
         self.links = links
     }

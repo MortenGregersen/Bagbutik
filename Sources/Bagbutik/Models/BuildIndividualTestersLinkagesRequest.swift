@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildIndividualTestersLinkagesRequest
  A request body you use to add or remove a build from multiple beta groups.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BuildIndividualTestersLinkagesRequest: Codable, RequestBody {
     }
 
     /**
+     # BuildIndividualTestersLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

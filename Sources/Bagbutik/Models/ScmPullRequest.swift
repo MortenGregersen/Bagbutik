@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmPullRequest
  The data structure that represents a Pull Requests resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct ScmPullRequest: Codable, RequestBody {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct ScmPullRequest: Codable, RequestBody {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # ScmPullRequest.Attributes
      The attributes that describe a Pull Requests resource.
 
      Full documentation:
@@ -83,7 +89,18 @@ public struct ScmPullRequest: Codable, RequestBody {
         /// The URL of the pull request.
         public var webUrl: String?
 
-        public init(destinationBranchName: String? = nil, destinationRepositoryName: String? = nil, destinationRepositoryOwner: String? = nil, isClosed: Bool? = nil, isCrossRepository: Bool? = nil, number: Int? = nil, sourceBranchName: String? = nil, sourceRepositoryName: String? = nil, sourceRepositoryOwner: String? = nil, title: String? = nil, webUrl: String? = nil) {
+        public init(destinationBranchName: String? = nil,
+                    destinationRepositoryName: String? = nil,
+                    destinationRepositoryOwner: String? = nil,
+                    isClosed: Bool? = nil,
+                    isCrossRepository: Bool? = nil,
+                    number: Int? = nil,
+                    sourceBranchName: String? = nil,
+                    sourceRepositoryName: String? = nil,
+                    sourceRepositoryOwner: String? = nil,
+                    title: String? = nil,
+                    webUrl: String? = nil)
+        {
             self.destinationBranchName = destinationBranchName
             self.destinationRepositoryName = destinationRepositoryName
             self.destinationRepositoryOwner = destinationRepositoryOwner
@@ -99,6 +116,7 @@ public struct ScmPullRequest: Codable, RequestBody {
     }
 
     /**
+     # ScmPullRequest.Relationships
      The relationships of the Pull Requests resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -113,6 +131,7 @@ public struct ScmPullRequest: Codable, RequestBody {
         }
 
         /**
+         # ScmPullRequest.Relationships.Repository
          The data and links that describe the relationship between the Pull Requests and the Repositories resources.
 
          Full documentation:
@@ -124,12 +143,15 @@ public struct ScmPullRequest: Codable, RequestBody {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # ScmPullRequest.Relationships.Repository.Data
              The type and ID of a related Repositories resource.
 
              Full documentation:
@@ -166,6 +188,7 @@ public struct ScmPullRequest: Codable, RequestBody {
             }
 
             /**
+             # ScmPullRequest.Relationships.Repository.Links
              The links to the related Repositories resource and the relationship’s self-link.
 
              Full documentation:
@@ -177,7 +200,9 @@ public struct ScmPullRequest: Codable, RequestBody {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -195,8 +220,8 @@ public struct ScmPullRequest: Codable, RequestBody {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

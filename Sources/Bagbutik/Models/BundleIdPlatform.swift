@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   Strings that represent the operating system intended for the bundle.
+ # BundleIdPlatform
+ Strings that represent the operating system intended for the bundle.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/bundleidplatform>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidplatform>
  */
 public enum BundleIdPlatform: String, Codable, CaseIterable {
     /// A string that represents iOS.

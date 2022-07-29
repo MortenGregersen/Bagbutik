@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperienceImageCreateRequest
  The request body you use to reserve an image asset for an advanced App Clip experience.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
     }
 
     /**
+     # AppClipAdvancedExperienceImageCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -45,11 +47,12 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
+            case type
         }
 
         /**
+         # AppClipAdvancedExperienceImageCreateRequest.Data.Attributes
          The attributes you set that describe the new Advanced App Clip Experience Images resource.
 
          Full documentation:
@@ -61,7 +64,9 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
             /// The size of the image asset that appears on the App Clip card for the advanced App Clip experience.
             public let fileSize: Int
 
-            public init(fileName: String, fileSize: Int) {
+            public init(fileName: String,
+                        fileSize: Int)
+            {
                 self.fileName = fileName
                 self.fileSize = fileSize
             }

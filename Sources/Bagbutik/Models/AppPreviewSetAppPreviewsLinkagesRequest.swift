@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPreviewSetAppPreviewsLinkagesRequest
  A request body you use to reorder the app previews in a preview set.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppPreviewSetAppPreviewsLinkagesRequest: Codable, RequestBody {
     }
 
     /**
+     # AppPreviewSetAppPreviewsLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

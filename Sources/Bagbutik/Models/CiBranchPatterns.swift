@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBranchPatterns
  Case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct CiBranchPatterns: Codable {
     /// The list of case-sensitive patterns Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
     public var patterns: [Patterns]?
 
-    public init(isAllMatch: Bool? = nil, patterns: [Patterns]? = nil) {
+    public init(isAllMatch: Bool? = nil,
+                patterns: [Patterns]? = nil)
+    {
         self.isAllMatch = isAllMatch
         self.patterns = patterns
     }
 
     /**
+     # CiBranchPatterns.Patterns
      A case-sensitive pattern Xcode Cloud uses to determine if a change meets branch names you configure for a workflow’s start condition.
 
      Full documentation:
@@ -29,7 +33,9 @@ public struct CiBranchPatterns: Codable {
         /// A case-sensitive string. If the string is a prefix pattern, Xcode Cloud starts a build when the changed branch name starts with this string. Otherwise, Xcode Cloud starts a build when the changed branch name exactly matches this string.
         public var pattern: String?
 
-        public init(isPrefix: Bool? = nil, pattern: String? = nil) {
+        public init(isPrefix: Bool? = nil,
+                    pattern: String? = nil)
+        {
             self.isPrefix = isPrefix
             self.pattern = pattern
         }

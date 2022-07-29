@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppInfoLocalizationUpdateRequest
  The request body you use to update an App Info Localization.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppInfoLocalizationUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
         public var type: String { "appInfoLocalizations" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -46,12 +50,13 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppInfoLocalizationUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -64,7 +69,12 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
             public var privacyPolicyUrl: String?
             public var subtitle: String?
 
-            public init(name: String? = nil, privacyChoicesUrl: String? = nil, privacyPolicyText: String? = nil, privacyPolicyUrl: String? = nil, subtitle: String? = nil) {
+            public init(name: String? = nil,
+                        privacyChoicesUrl: String? = nil,
+                        privacyPolicyText: String? = nil,
+                        privacyPolicyUrl: String? = nil,
+                        subtitle: String? = nil)
+            {
                 self.name = name
                 self.privacyChoicesUrl = privacyChoicesUrl
                 self.privacyPolicyText = privacyPolicyText

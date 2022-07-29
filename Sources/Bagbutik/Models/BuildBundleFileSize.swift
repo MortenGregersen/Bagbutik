@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildBundleFileSize
  The data structure that represents a Build Bundle File Sizes resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct BuildBundleFileSize: Codable {
     /// The attributes that describe the Build Bundle File Sizes resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct BuildBundleFileSize: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # BuildBundleFileSize.Attributes
      The attributes that describe a Build Bundle File Sizes resource.
 
      Full documentation:
@@ -63,7 +68,11 @@ public struct BuildBundleFileSize: Codable {
         /// A string that identifies the OS version supported by the app or App Clip.
         public var osVersion: String?
 
-        public init(deviceModel: String? = nil, downloadBytes: Int? = nil, installBytes: Int? = nil, osVersion: String? = nil) {
+        public init(deviceModel: String? = nil,
+                    downloadBytes: Int? = nil,
+                    installBytes: Int? = nil,
+                    osVersion: String? = nil)
+        {
             self.deviceModel = deviceModel
             self.downloadBytes = downloadBytes
             self.installBytes = installBytes

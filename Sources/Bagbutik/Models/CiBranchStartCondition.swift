@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBranchStartCondition
  Settings for a start condition that starts a build if a branch changes.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct CiBranchStartCondition: Codable {
     /// The source branch name and custom patterns you configure for a workflow that starts a new build for changes to a branch.
     public var source: CiBranchPatterns?
 
-    public init(autoCancel: Bool? = nil, filesAndFoldersRule: CiFilesAndFoldersRule? = nil, source: CiBranchPatterns? = nil) {
+    public init(autoCancel: Bool? = nil,
+                filesAndFoldersRule: CiFilesAndFoldersRule? = nil,
+                source: CiBranchPatterns? = nil)
+    {
         self.autoCancel = autoCancel
         self.filesAndFoldersRule = filesAndFoldersRule
         self.source = source

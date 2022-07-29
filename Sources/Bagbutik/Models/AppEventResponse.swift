@@ -5,7 +5,10 @@ public struct AppEventResponse: Codable {
     public var included: [AppEventLocalization]?
     public let links: DocumentLinks
 
-    public init(data: AppEvent, included: [AppEventLocalization]? = nil, links: DocumentLinks) {
+    public init(data: AppEvent,
+                included: [AppEventLocalization]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

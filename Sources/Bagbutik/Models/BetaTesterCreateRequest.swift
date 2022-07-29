@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaTesterCreateRequest
  The request body you use to create a BetaTester.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaTesterCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
         /// The types and IDs of the related data to update.
         public var relationships: Relationships?
 
-        public init(attributes: Attributes, relationships: Relationships? = nil) {
+        public init(attributes: Attributes,
+                    relationships: Relationships? = nil)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BetaTesterCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -69,7 +74,10 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             /// The beta tester's last name.
             public var lastName: String?
 
-            public init(email: String, firstName: String? = nil, lastName: String? = nil) {
+            public init(email: String,
+                        firstName: String? = nil,
+                        lastName: String? = nil)
+            {
                 self.email = email
                 self.firstName = firstName
                 self.lastName = lastName
@@ -77,6 +85,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # BetaTesterCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -86,12 +95,15 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             public var betaGroups: BetaGroups?
             public var builds: Builds?
 
-            public init(betaGroups: BetaGroups? = nil, builds: Builds? = nil) {
+            public init(betaGroups: BetaGroups? = nil,
+                        builds: Builds? = nil)
+            {
                 self.betaGroups = betaGroups
                 self.builds = builds
             }
 
             /**
+             # BetaTesterCreateRequest.Data.Relationships.BetaGroups
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -105,6 +117,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaTesterCreateRequest.Data.Relationships.BetaGroups.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
@@ -142,6 +155,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaTesterCreateRequest.Data.Relationships.Builds
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -155,6 +169,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaTesterCreateRequest.Data.Relationships.Builds.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   A string that represents the type of an Xcode Cloud workflow’s action.
+ # CiActionType
+ A string that represents the type of an Xcode Cloud workflow’s action.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/ciactiontype>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciactiontype>
  */
 public enum CiActionType: String, Codable, CaseIterable {
     /// The action is a build action.

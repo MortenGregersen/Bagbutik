@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationUpdateRequest
  The request body you use to update a Beta App Clip Invocation.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaAppClipInvocationUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
         /// The attributes that describe the request that updates a Beta App Clip Invocations resource.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BetaAppClipInvocationUpdateRequest.Data.Attributes
          The attributes you set that describe the updated Beta App Clip Invocations resource.
 
          Full documentation:

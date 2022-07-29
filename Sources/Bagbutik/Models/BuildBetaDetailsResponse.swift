@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildBetaDetailsResponse
  A response that contains a list of Build Beta Detail resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct BuildBetaDetailsResponse: Codable, PagedResponse {
     public typealias Data = BuildBetaDetail
+
     /// The resource data.
     public let data: [BuildBetaDetail]
     public var included: [Build]?
@@ -16,7 +18,11 @@ public struct BuildBetaDetailsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [BuildBetaDetail], included: [Build]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [BuildBetaDetail],
+                included: [Build]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

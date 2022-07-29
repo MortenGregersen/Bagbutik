@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDomainStatus
  The data structure that represents the App Clip Domain Statuses resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct AppClipDomainStatus: Codable {
     /// The attributes that describe the App Clip Domain Statuses resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct AppClipDomainStatus: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # AppClipDomainStatus.Attributes
      The attributes that describe the App Clip Domain Status resource.
 
      Full documentation:
@@ -59,12 +64,15 @@ public struct AppClipDomainStatus: Codable {
         /// The date when App Store Connect last verified the status of an associated domain.
         public var lastUpdatedDate: Date?
 
-        public init(domains: [Domains]? = nil, lastUpdatedDate: Date? = nil) {
+        public init(domains: [Domains]? = nil,
+                    lastUpdatedDate: Date? = nil)
+        {
             self.domains = domains
             self.lastUpdatedDate = lastUpdatedDate
         }
 
         /**
+         # AppClipDomainStatus.Attributes.Domains
          Domains you associated with your App Clip.
 
          Full documentation:
@@ -80,7 +88,11 @@ public struct AppClipDomainStatus: Codable {
             /// The date when App Store Connect last verified the status of an associated domain.
             public var lastUpdatedDate: Date?
 
-            public init(domain: String? = nil, errorCode: ErrorCode? = nil, isValid: Bool? = nil, lastUpdatedDate: Date? = nil) {
+            public init(domain: String? = nil,
+                        errorCode: ErrorCode? = nil,
+                        isValid: Bool? = nil,
+                        lastUpdatedDate: Date? = nil)
+            {
                 self.domain = domain
                 self.errorCode = errorCode
                 self.isValid = isValid
