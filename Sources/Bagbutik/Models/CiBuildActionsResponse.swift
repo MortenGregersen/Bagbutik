@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBuildActionsResponse
  A response that contains a list of Build Actions resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct CiBuildActionsResponse: Codable, PagedResponse {
     public typealias Data = CiBuildAction
+
     /// The resource data.
     public let data: [CiBuildAction]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct CiBuildActionsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [CiBuildAction], included: [CiBuildRun]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [CiBuildAction],
+                included: [CiBuildRun]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

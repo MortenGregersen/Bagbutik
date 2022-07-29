@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List Prerelease Versions
-      Get a list of prerelease versions for all apps.
+     # List Prerelease Versions
+     Get a list of prerelease versions for all apps.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_prerelease_versions>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_prerelease_versions>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPreReleaseVersionsV1(fields: [ListPreReleaseVersionsV1.Field]? = nil,
                                          filters: [ListPreReleaseVersionsV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                                          sorts: [ListPreReleaseVersionsV1.Sort]? = nil,
                                          limits: [ListPreReleaseVersionsV1.Limit]? = nil) -> Request<PreReleaseVersionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/preReleaseVersions", method: .get, parameters: .init(fields: fields,
-                                                                                     filters: filters,
-                                                                                     includes: includes,
-                                                                                     sorts: sorts,
-                                                                                     limits: limits))
+        .init(path: "/v1/preReleaseVersions", method: .get, parameters: .init(fields: fields,
+                                                                              filters: filters,
+                                                                              includes: includes,
+                                                                              sorts: sorts,
+                                                                              limits: limits))
     }
 }
 
@@ -152,7 +152,8 @@ public enum ListPreReleaseVersionsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, builds
+        case app
+        case builds
     }
 
     /**
@@ -167,9 +168,9 @@ public enum ListPreReleaseVersionsV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related builds returned (when they are included) - maximum 50
         case builds(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

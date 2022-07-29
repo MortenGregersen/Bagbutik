@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildResponse
  A response that contains a single Builds resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct BuildResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: Build, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: Build,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

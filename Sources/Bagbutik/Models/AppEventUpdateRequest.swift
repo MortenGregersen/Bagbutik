@@ -12,7 +12,9 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
         public var type: String { "appEvents" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,9 +36,9 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
@@ -49,7 +51,15 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
             public var referenceName: String?
             public var territorySchedules: [TerritorySchedules]?
 
-            public init(badge: AppEvent.Attributes.Badge? = nil, deepLink: String? = nil, primaryLocale: String? = nil, priority: AppEvent.Attributes.Priority? = nil, purchaseRequirement: AppEvent.Attributes.PurchaseRequirement? = nil, purpose: AppEvent.Attributes.Purpose? = nil, referenceName: String? = nil, territorySchedules: [TerritorySchedules]? = nil) {
+            public init(badge: AppEvent.Attributes.Badge? = nil,
+                        deepLink: String? = nil,
+                        primaryLocale: String? = nil,
+                        priority: AppEvent.Attributes.Priority? = nil,
+                        purchaseRequirement: AppEvent.Attributes.PurchaseRequirement? = nil,
+                        purpose: AppEvent.Attributes.Purpose? = nil,
+                        referenceName: String? = nil,
+                        territorySchedules: [TerritorySchedules]? = nil)
+            {
                 self.badge = badge
                 self.deepLink = deepLink
                 self.primaryLocale = primaryLocale
@@ -66,7 +76,11 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
                 public var publishStart: Date?
                 public var territories: [String]?
 
-                public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
+                public init(eventEnd: Date? = nil,
+                            eventStart: Date? = nil,
+                            publishStart: Date? = nil,
+                            territories: [String]? = nil)
+                {
                     self.eventEnd = eventEnd
                     self.eventStart = eventStart
                     self.publishStart = publishStart

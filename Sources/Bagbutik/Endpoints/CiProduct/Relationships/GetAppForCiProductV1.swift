@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Information for an Xcode Cloud Product
-      Get the app in App Store Connect that’s related to an Xcode Cloud product.
+     # Read App Information for an Xcode Cloud Product
+     Get the app in App Store Connect that’s related to an Xcode Cloud product.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_information_for_an_xcode_cloud_product>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_information_for_an_xcode_cloud_product>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForCiProductV1(id: String,
                                      fields: [GetAppForCiProductV1.Field]? = nil,
                                      includes: [GetAppForCiProductV1.Include]? = nil,
                                      limits: [GetAppForCiProductV1.Limit]? = nil) -> Request<AppResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciProducts/\(id)/app", method: .get, parameters: .init(fields: fields,
-                                                                                       includes: includes,
-                                                                                       limits: limits))
+        .init(path: "/v1/ciProducts/\(id)/app", method: .get, parameters: .init(fields: fields,
+                                                                                includes: includes,
+                                                                                limits: limits))
     }
 }
 
@@ -351,46 +351,68 @@ public enum GetAppForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClips, appCustomProductPages, appEvents, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, inAppPurchasesV2, preOrder, preReleaseVersions, prices, promotedPurchases, reviewSubmissions, subscriptionGracePeriod, subscriptionGroups
+        case appClips
+        case appCustomProductPages
+        case appEvents
+        case appInfos
+        case appStoreVersions
+        case availableTerritories
+        case betaAppLocalizations
+        case betaAppReviewDetail
+        case betaGroups
+        case betaLicenseAgreement
+        case builds
+        case ciProduct
+        case endUserLicenseAgreement
+        case gameCenterEnabledVersions
+        case inAppPurchases
+        case inAppPurchasesV2
+        case preOrder
+        case preReleaseVersions
+        case prices
+        case promotedPurchases
+        case reviewSubmissions
+        case subscriptionGracePeriod
+        case subscriptionGroups
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum number of related betaGroups returned (when they are included) - maximum 50
-        case betaGroups(Int)
-        /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50
-        case appStoreVersions(Int)
-        /// Maximum number of related preReleaseVersions returned (when they are included) - maximum 50
-        case preReleaseVersions(Int)
-        /// Maximum number of related betaAppLocalizations returned (when they are included) - maximum 50
-        case betaAppLocalizations(Int)
-        /// Maximum number of related builds returned (when they are included) - maximum 50
-        case builds(Int)
-        /// Maximum number of related appInfos returned (when they are included) - maximum 50
-        case appInfos(Int)
         /// Maximum number of related appClips returned (when they are included) - maximum 50
         case appClips(Int)
-        /// Maximum number of related prices returned (when they are included) - maximum 50
-        case prices(Int)
-        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
-        case availableTerritories(Int)
-        /// Maximum number of related inAppPurchases returned (when they are included) - maximum 50
-        case inAppPurchases(Int)
-        /// Maximum number of related subscriptionGroups returned (when they are included) - maximum 50
-        case subscriptionGroups(Int)
-        /// Maximum number of related gameCenterEnabledVersions returned (when they are included) - maximum 50
-        case gameCenterEnabledVersions(Int)
         /// Maximum number of related appCustomProductPages returned (when they are included) - maximum 50
         case appCustomProductPages(Int)
-        /// Maximum number of related inAppPurchasesV2 returned (when they are included) - maximum 50
-        case inAppPurchasesV2(Int)
-        /// Maximum number of related promotedPurchases returned (when they are included) - maximum 50
-        case promotedPurchases(Int)
         /// Maximum number of related appEvents returned (when they are included) - maximum 50
         case appEvents(Int)
+        /// Maximum number of related appInfos returned (when they are included) - maximum 50
+        case appInfos(Int)
+        /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50
+        case appStoreVersions(Int)
+        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
+        case availableTerritories(Int)
+        /// Maximum number of related betaAppLocalizations returned (when they are included) - maximum 50
+        case betaAppLocalizations(Int)
+        /// Maximum number of related betaGroups returned (when they are included) - maximum 50
+        case betaGroups(Int)
+        /// Maximum number of related builds returned (when they are included) - maximum 50
+        case builds(Int)
+        /// Maximum number of related gameCenterEnabledVersions returned (when they are included) - maximum 50
+        case gameCenterEnabledVersions(Int)
+        /// Maximum number of related inAppPurchases returned (when they are included) - maximum 50
+        case inAppPurchases(Int)
+        /// Maximum number of related inAppPurchasesV2 returned (when they are included) - maximum 50
+        case inAppPurchasesV2(Int)
+        /// Maximum number of related preReleaseVersions returned (when they are included) - maximum 50
+        case preReleaseVersions(Int)
+        /// Maximum number of related prices returned (when they are included) - maximum 50
+        case prices(Int)
+        /// Maximum number of related promotedPurchases returned (when they are included) - maximum 50
+        case promotedPurchases(Int)
         /// Maximum number of related reviewSubmissions returned (when they are included) - maximum 50
         case reviewSubmissions(Int)
+        /// Maximum number of related subscriptionGroups returned (when they are included) - maximum 50
+        case subscriptionGroups(Int)
     }
 }

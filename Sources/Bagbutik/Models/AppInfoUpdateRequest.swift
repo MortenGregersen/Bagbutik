@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppInfoUpdateRequest
  The request body you use to update an App Info.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppInfoUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
         /// Navigational links to related data and included resource types and IDs.
         public var relationships: Relationships?
 
-        public init(id: String, relationships: Relationships? = nil) {
+        public init(id: String,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.relationships = relationships
         }
@@ -51,11 +55,12 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
 
         private enum CodingKeys: String, CodingKey {
             case id
-            case type
             case relationships
+            case type
         }
 
         /**
+         # AppInfoUpdateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -69,7 +74,13 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             public var secondarySubcategoryOne: SecondarySubcategoryOne?
             public var secondarySubcategoryTwo: SecondarySubcategoryTwo?
 
-            public init(primaryCategory: PrimaryCategory? = nil, primarySubcategoryOne: PrimarySubcategoryOne? = nil, primarySubcategoryTwo: PrimarySubcategoryTwo? = nil, secondaryCategory: SecondaryCategory? = nil, secondarySubcategoryOne: SecondarySubcategoryOne? = nil, secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil) {
+            public init(primaryCategory: PrimaryCategory? = nil,
+                        primarySubcategoryOne: PrimarySubcategoryOne? = nil,
+                        primarySubcategoryTwo: PrimarySubcategoryTwo? = nil,
+                        secondaryCategory: SecondaryCategory? = nil,
+                        secondarySubcategoryOne: SecondarySubcategoryOne? = nil,
+                        secondarySubcategoryTwo: SecondarySubcategoryTwo? = nil)
+            {
                 self.primaryCategory = primaryCategory
                 self.primarySubcategoryOne = primarySubcategoryOne
                 self.primarySubcategoryTwo = primarySubcategoryTwo
@@ -79,6 +90,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoUpdateRequest.Data.Relationships.PrimaryCategory
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -92,6 +104,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoUpdateRequest.Data.Relationships.PrimaryCategory.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
@@ -129,6 +142,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoUpdateRequest.Data.Relationships.PrimarySubcategoryOne
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -142,6 +156,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoUpdateRequest.Data.Relationships.PrimarySubcategoryOne.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
@@ -179,6 +194,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoUpdateRequest.Data.Relationships.PrimarySubcategoryTwo
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -192,6 +208,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoUpdateRequest.Data.Relationships.PrimarySubcategoryTwo.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
@@ -229,6 +246,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoUpdateRequest.Data.Relationships.SecondaryCategory
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -242,6 +260,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoUpdateRequest.Data.Relationships.SecondaryCategory.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
@@ -279,6 +298,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoUpdateRequest.Data.Relationships.SecondarySubcategoryOne
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -292,6 +312,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoUpdateRequest.Data.Relationships.SecondarySubcategoryOne.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:
@@ -329,6 +350,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppInfoUpdateRequest.Data.Relationships.SecondarySubcategoryTwo
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -342,6 +364,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppInfoUpdateRequest.Data.Relationships.SecondarySubcategoryTwo.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:

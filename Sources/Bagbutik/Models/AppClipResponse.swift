@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipResponse
  A response that contains a single App Clips resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct AppClipResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppClip, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppClip,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

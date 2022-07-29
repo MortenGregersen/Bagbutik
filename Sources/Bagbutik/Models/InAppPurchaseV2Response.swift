@@ -5,7 +5,10 @@ public struct InAppPurchaseV2Response: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: InAppPurchaseV2, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: InAppPurchaseV2,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

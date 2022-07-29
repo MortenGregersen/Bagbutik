@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # Territory
  The data structure that represents a Territories resource.
 
  Full documentation:
@@ -12,7 +13,10 @@ public struct Territory: Codable {
     public var type: String { "territories" }
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -37,13 +41,14 @@ public struct Territory: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # Territory.Attributes
      Attributes that describe a Territories resource.
 
      Full documentation:

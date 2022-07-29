@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildsResponse
  A response that contains a list of Builds resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct BuildsResponse: Codable, PagedResponse {
     public typealias Data = Build
+
     /// The resource data.
     public let data: [Build]
     public var included: [Included]?
@@ -16,7 +18,11 @@ public struct BuildsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [Build], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [Build],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

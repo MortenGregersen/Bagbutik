@@ -5,7 +5,10 @@ public struct AppCustomProductPageLocalizationResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppCustomProductPageLocalization, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppCustomProductPageLocalization,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

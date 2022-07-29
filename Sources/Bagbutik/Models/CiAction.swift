@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiAction
  The data structure that represents an Actions resource.
 
  Full documentation:
@@ -24,7 +25,15 @@ public struct CiAction: Codable {
     /// An action’s test configuration. Only set this field for test actions.
     public var testConfiguration: TestConfiguration?
 
-    public init(actionType: CiActionType? = nil, buildDistributionAudience: BuildAudienceType? = nil, destination: Destination? = nil, isRequiredToPass: Bool? = nil, name: String? = nil, platform: Platform? = nil, scheme: String? = nil, testConfiguration: TestConfiguration? = nil) {
+    public init(actionType: CiActionType? = nil,
+                buildDistributionAudience: BuildAudienceType? = nil,
+                destination: Destination? = nil,
+                isRequiredToPass: Bool? = nil,
+                name: String? = nil,
+                platform: Platform? = nil,
+                scheme: String? = nil,
+                testConfiguration: TestConfiguration? = nil)
+    {
         self.actionType = actionType
         self.buildDistributionAudience = buildDistributionAudience
         self.destination = destination
@@ -54,6 +63,7 @@ public struct CiAction: Codable {
     }
 
     /**
+     # CiAction.TestConfiguration
      The test configuration for a test action.
 
      Full documentation:
@@ -67,7 +77,10 @@ public struct CiAction: Codable {
         /// The name of the test plan. This value is only available to test actions that set the `kind` field to `SPECIFIC_TEST_PLANS`.
         public var testPlanName: String?
 
-        public init(kind: Kind? = nil, testDestinations: [CiTestDestination]? = nil, testPlanName: String? = nil) {
+        public init(kind: Kind? = nil,
+                    testDestinations: [CiTestDestination]? = nil,
+                    testPlanName: String? = nil)
+        {
             self.kind = kind
             self.testDestinations = testDestinations
             self.testPlanName = testPlanName

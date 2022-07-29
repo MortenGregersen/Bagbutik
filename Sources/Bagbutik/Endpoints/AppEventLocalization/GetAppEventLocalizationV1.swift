@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # GET /v1/appEventLocalizations/{id}
+     # GET /v1/appEventLocalizations/{id}
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventlocalizations_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventlocalizations_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEventLocalizationV1(id: String,
                                           fields: [GetAppEventLocalizationV1.Field]? = nil,
                                           includes: [GetAppEventLocalizationV1.Include]? = nil,
                                           limits: [GetAppEventLocalizationV1.Limit]? = nil) -> Request<AppEventLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appEventLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                              includes: includes,
-                                                                                              limits: limits))
+        .init(path: "/v1/appEventLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                       includes: includes,
+                                                                                       limits: limits))
     }
 }
 
@@ -74,7 +74,9 @@ public enum GetAppEventLocalizationV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appEvent, appEventScreenshots, appEventVideoClips
+        case appEvent
+        case appEventScreenshots
+        case appEventVideoClips
     }
 
     /**

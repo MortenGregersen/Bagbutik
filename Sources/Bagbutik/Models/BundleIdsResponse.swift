@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleIdsResponse
  A response that contains a list of Bundle ID resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct BundleIdsResponse: Codable, PagedResponse {
     public typealias Data = BundleId
+
     /// The resource data.
     public let data: [BundleId]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct BundleIdsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [BundleId], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [BundleId],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

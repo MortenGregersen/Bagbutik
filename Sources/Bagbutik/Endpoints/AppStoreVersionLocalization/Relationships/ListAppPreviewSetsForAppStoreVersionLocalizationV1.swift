@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All App Preview Sets for an App Store Version Localization
-      List all app preview sets for a specific localization.
+     # List All App Preview Sets for an App Store Version Localization
+     List all app preview sets for a specific localization.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_preview_sets_for_an_app_store_version_localization>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_preview_sets_for_an_app_store_version_localization>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppPreviewSetsForAppStoreVersionLocalizationV1(id: String,
                                                                    fields: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                                    includes: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Include]? = nil,
                                                                    limits: [ListAppPreviewSetsForAppStoreVersionLocalizationV1.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersionLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
-                                                                                                                    filters: filters,
-                                                                                                                    includes: includes,
-                                                                                                                    limits: limits))
+        .init(path: "/v1/appStoreVersionLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
+                                                                                                             filters: filters,
+                                                                                                             includes: includes,
+                                                                                                             limits: limits))
     }
 }
 
@@ -127,16 +127,19 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageLocalization, appPreviews, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
+        case appCustomProductPageLocalization
+        case appPreviews
+        case appStoreVersionExperimentTreatmentLocalization
+        case appStoreVersionLocalization
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appPreviews returned (when they are included) - maximum 50
         case appPreviews(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

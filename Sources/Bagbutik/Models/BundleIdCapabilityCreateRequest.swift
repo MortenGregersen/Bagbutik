@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleIdCapabilityCreateRequest
  The request body you use to create a Bundle ID Capability.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BundleIdCapabilityCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -25,7 +27,9 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -47,12 +51,13 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BundleIdCapabilityCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -62,13 +67,16 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             public let capabilityType: CapabilityType
             public var settings: [CapabilitySetting]?
 
-            public init(capabilityType: CapabilityType, settings: [CapabilitySetting]? = nil) {
+            public init(capabilityType: CapabilityType,
+                        settings: [CapabilitySetting]? = nil)
+            {
                 self.capabilityType = capabilityType
                 self.settings = settings
             }
         }
 
         /**
+         # BundleIdCapabilityCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -82,6 +90,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BundleIdCapabilityCreateRequest.Data.Relationships.BundleId
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -95,6 +104,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BundleIdCapabilityCreateRequest.Data.Relationships.BundleId.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

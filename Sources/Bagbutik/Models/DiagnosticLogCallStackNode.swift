@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # DiagnosticLogCallStackNode
  Diagnostic information that describes a single line in a call stack.
 
  Full documentation:
@@ -34,7 +35,20 @@ public struct DiagnosticLogCallStackNode: Codable {
     /// The name of the symbol in your code.
     public var symbolName: String?
 
-    public init(address: String? = nil, binaryName: String? = nil, binaryUUID: String? = nil, fileName: String? = nil, insightsCategory: String? = nil, isBlameFrame: Bool? = nil, lineNumber: String? = nil, offsetIntoBinaryTextSegment: String? = nil, offsetIntoSymbol: String? = nil, rawFrame: String? = nil, sampleCount: Int? = nil, subFrames: [DiagnosticLogCallStackNode]? = nil, symbolName: String? = nil) {
+    public init(address: String? = nil,
+                binaryName: String? = nil,
+                binaryUUID: String? = nil,
+                fileName: String? = nil,
+                insightsCategory: String? = nil,
+                isBlameFrame: Bool? = nil,
+                lineNumber: String? = nil,
+                offsetIntoBinaryTextSegment: String? = nil,
+                offsetIntoSymbol: String? = nil,
+                rawFrame: String? = nil,
+                sampleCount: Int? = nil,
+                subFrames: [DiagnosticLogCallStackNode]? = nil,
+                symbolName: String? = nil)
+    {
         self.address = address
         self.binaryName = binaryName
         self.binaryUUID = binaryUUID

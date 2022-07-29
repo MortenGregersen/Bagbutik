@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppLocalizationCreateRequest
  The request body you use to create a Beta App Localization.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaAppLocalizationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
         /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,18 +54,19 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BetaAppLocalizationCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
+
+         Table 1 lists allowed locale values.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationcreaterequest/data/attributes>
-
-         Table 1 lists allowed locale values.
          */
         public struct Attributes: Codable {
             /// A description of your app that highlights features and functionality.
@@ -77,7 +82,13 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
             /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
             public var tvOsPrivacyPolicy: String?
 
-            public init(description: String? = nil, feedbackEmail: String? = nil, locale: String, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
+            public init(description: String? = nil,
+                        feedbackEmail: String? = nil,
+                        locale: String,
+                        marketingUrl: String? = nil,
+                        privacyPolicyUrl: String? = nil,
+                        tvOsPrivacyPolicy: String? = nil)
+            {
                 self.description = description
                 self.feedbackEmail = feedbackEmail
                 self.locale = locale
@@ -88,6 +99,7 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # BetaAppLocalizationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -101,6 +113,7 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaAppLocalizationCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -114,6 +127,7 @@ public struct BetaAppLocalizationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaAppLocalizationCreateRequest.Data.Relationships.App.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

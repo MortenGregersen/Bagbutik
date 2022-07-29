@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # Read Xcode Cloud Workflow Information
-      Get information about a specific Xcode Cloud workflow.
+     # Read Xcode Cloud Workflow Information
+     Get information about a specific Xcode Cloud workflow.
 
-      The example request below accesses information about an Xcode Cloud workflow. Display the workflow data provided in the response on a dashboard or use it to read additional information; for example, detailed data about builds Xcode Cloud performed.
+     The example request below accesses information about an Xcode Cloud workflow. Display the workflow data provided in the response on a dashboard or use it to read additional information; for example, detailed data about builds Xcode Cloud performed.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_workflow_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_workflow_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiWorkflowV1(id: String,
                                 fields: [GetCiWorkflowV1.Field]? = nil,
                                 includes: [GetCiWorkflowV1.Include]? = nil) -> Request<CiWorkflowResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciWorkflows/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                    includes: includes))
+        .init(path: "/v1/ciWorkflows/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                             includes: includes))
     }
 }
 
@@ -95,6 +95,9 @@ public enum GetCiWorkflowV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case macOsVersion, product, repository, xcodeVersion
+        case macOsVersion
+        case product
+        case repository
+        case xcodeVersion
     }
 }

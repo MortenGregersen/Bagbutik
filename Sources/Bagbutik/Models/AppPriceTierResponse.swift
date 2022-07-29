@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPriceTierResponse
  A response that contains a single App Price Tier resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct AppPriceTierResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppPriceTier, included: [AppPricePoint]? = nil, links: DocumentLinks) {
+    public init(data: AppPriceTier,
+                included: [AppPricePoint]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

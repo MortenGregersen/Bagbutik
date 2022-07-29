@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # Device
  The data structure that represents a Devices resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct Device: Codable {
     /// The resource's attributes.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct Device: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # Device.Attributes
      Attributes that describe a Devices resource.
 
      Full documentation:
@@ -62,7 +67,14 @@ public struct Device: Codable {
         public var status: Status?
         public var udid: String?
 
-        public init(addedDate: Date? = nil, deviceClass: DeviceClass? = nil, model: String? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, status: Status? = nil, udid: String? = nil) {
+        public init(addedDate: Date? = nil,
+                    deviceClass: DeviceClass? = nil,
+                    model: String? = nil,
+                    name: String? = nil,
+                    platform: BundleIdPlatform? = nil,
+                    status: Status? = nil,
+                    udid: String? = nil)
+        {
             self.addedDate = addedDate
             self.deviceClass = deviceClass
             self.model = model

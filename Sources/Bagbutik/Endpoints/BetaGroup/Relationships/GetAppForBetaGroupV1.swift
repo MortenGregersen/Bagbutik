@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the App Information of a Beta Group
-      Get the app information for a specific beta group.
+     # Read the App Information of a Beta Group
+     Get the app information for a specific beta group.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_beta_group>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_beta_group>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBetaGroupV1(id: String,
                                      fields: [GetAppForBetaGroupV1.Field]? = nil) -> Request<AppResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaGroups/\(id)/app", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/betaGroups/\(id)/app", method: .get, parameters: .init(fields: fields))
     }
 }
 

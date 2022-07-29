@@ -12,7 +12,9 @@ public struct PromotedPurchaseUpdateRequest: Codable, RequestBody {
         public var type: String { "promotedPurchases" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,16 +36,18 @@ public struct PromotedPurchaseUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
             public var enabled: Bool?
             public var visibleForAllUsers: Bool?
 
-            public init(enabled: Bool? = nil, visibleForAllUsers: Bool? = nil) {
+            public init(enabled: Bool? = nil,
+                        visibleForAllUsers: Bool? = nil)
+            {
                 self.enabled = enabled
                 self.visibleForAllUsers = visibleForAllUsers
             }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmGitReference
  The data structure that represents a Git References resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct ScmGitReference: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct ScmGitReference: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # ScmGitReference.Attributes
      The attributes that describe a Git Reference resource.
 
      Full documentation:
@@ -69,7 +75,11 @@ public struct ScmGitReference: Codable {
         /// The name of the Git reference.
         public var name: String?
 
-        public init(canonicalName: String? = nil, isDeleted: Bool? = nil, kind: CiGitRefKind? = nil, name: String? = nil) {
+        public init(canonicalName: String? = nil,
+                    isDeleted: Bool? = nil,
+                    kind: CiGitRefKind? = nil,
+                    name: String? = nil)
+        {
             self.canonicalName = canonicalName
             self.isDeleted = isDeleted
             self.kind = kind
@@ -78,6 +88,7 @@ public struct ScmGitReference: Codable {
     }
 
     /**
+     # ScmGitReference.Relationships
      The relationships of the Git References resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -92,6 +103,7 @@ public struct ScmGitReference: Codable {
         }
 
         /**
+         # ScmGitReference.Relationships.Repository
          The data and links that describe the relationship between the Git References and the Repositories resources.
 
          Full documentation:
@@ -103,12 +115,15 @@ public struct ScmGitReference: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # ScmGitReference.Relationships.Repository.Data
              The type and ID of a related Repositories resource.
 
              Full documentation:
@@ -145,6 +160,7 @@ public struct ScmGitReference: Codable {
             }
 
             /**
+             # ScmGitReference.Relationships.Repository.Links
              The links to the related Repositories resource and the relationship’s self-link.
 
              Full documentation:
@@ -156,7 +172,9 @@ public struct ScmGitReference: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -174,8 +192,8 @@ public struct ScmGitReference: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

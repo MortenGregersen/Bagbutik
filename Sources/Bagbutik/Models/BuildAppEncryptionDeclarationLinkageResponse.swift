@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildAppEncryptionDeclarationLinkageResponse
  A response body that contains the ID of a single related resource.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
     /// Navigational links including the self-link and links to the related data.
     public let links: DocumentLinks
 
-    public init(data: Data, links: DocumentLinks) {
+    public init(data: Data,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }
 
     /**
+     # BuildAppEncryptionDeclarationLinkageResponse.Data
      The data element of the response body.
 
      Full documentation:

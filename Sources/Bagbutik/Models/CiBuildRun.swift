@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBuildRun
  The data structure that represents a Build Runs resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct CiBuildRun: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct CiBuildRun: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # CiBuildRun.Attributes
      The attributes that describe a Build Runs resource.
 
      Full documentation:
@@ -85,7 +91,19 @@ public struct CiBuildRun: Codable {
         /// The date and time when Xcode Cloud started the build.
         public var startedDate: Date?
 
-        public init(cancelReason: CancelReason? = nil, completionStatus: CiCompletionStatus? = nil, createdDate: Date? = nil, destinationCommit: DestinationCommit? = nil, executionProgress: CiExecutionProgress? = nil, finishedDate: Date? = nil, isPullRequestBuild: Bool? = nil, issueCounts: CiIssueCounts? = nil, number: Int? = nil, sourceCommit: SourceCommit? = nil, startReason: StartReason? = nil, startedDate: Date? = nil) {
+        public init(cancelReason: CancelReason? = nil,
+                    completionStatus: CiCompletionStatus? = nil,
+                    createdDate: Date? = nil,
+                    destinationCommit: DestinationCommit? = nil,
+                    executionProgress: CiExecutionProgress? = nil,
+                    finishedDate: Date? = nil,
+                    isPullRequestBuild: Bool? = nil,
+                    issueCounts: CiIssueCounts? = nil,
+                    number: Int? = nil,
+                    sourceCommit: SourceCommit? = nil,
+                    startReason: StartReason? = nil,
+                    startedDate: Date? = nil)
+        {
             self.cancelReason = cancelReason
             self.completionStatus = completionStatus
             self.createdDate = createdDate
@@ -106,6 +124,7 @@ public struct CiBuildRun: Codable {
         }
 
         /**
+         # CiBuildRun.Attributes.DestinationCommit
          The latest commit of a pull request’s target branch or the source commit for builds that aren’t pull request builds.
 
          Full documentation:
@@ -123,7 +142,12 @@ public struct CiBuildRun: Codable {
             /// The commit URL.
             public var webUrl: String?
 
-            public init(author: CiGitUser? = nil, commitSha: String? = nil, committer: CiGitUser? = nil, message: String? = nil, webUrl: String? = nil) {
+            public init(author: CiGitUser? = nil,
+                        commitSha: String? = nil,
+                        committer: CiGitUser? = nil,
+                        message: String? = nil,
+                        webUrl: String? = nil)
+            {
                 self.author = author
                 self.commitSha = commitSha
                 self.committer = committer
@@ -133,6 +157,7 @@ public struct CiBuildRun: Codable {
         }
 
         /**
+         # CiBuildRun.Attributes.SourceCommit
          The latest commit of a Git branch or tag, or of a pull request’s source branch.
 
          Full documentation:
@@ -150,7 +175,12 @@ public struct CiBuildRun: Codable {
             /// The commit URL.
             public var webUrl: String?
 
-            public init(author: CiGitUser? = nil, commitSha: String? = nil, committer: CiGitUser? = nil, message: String? = nil, webUrl: String? = nil) {
+            public init(author: CiGitUser? = nil,
+                        commitSha: String? = nil,
+                        committer: CiGitUser? = nil,
+                        message: String? = nil,
+                        webUrl: String? = nil)
+            {
                 self.author = author
                 self.commitSha = commitSha
                 self.committer = committer
@@ -170,6 +200,7 @@ public struct CiBuildRun: Codable {
     }
 
     /**
+     # CiBuildRun.Relationships
      The relationships of the Build Runs resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -189,7 +220,13 @@ public struct CiBuildRun: Codable {
         /// The data and links that describe the relationship between the Build Runs and the Workflows resources.
         public var workflow: Workflow?
 
-        public init(builds: Builds? = nil, destinationBranch: DestinationBranch? = nil, product: Product? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
+        public init(builds: Builds? = nil,
+                    destinationBranch: DestinationBranch? = nil,
+                    product: Product? = nil,
+                    pullRequest: PullRequest? = nil,
+                    sourceBranchOrTag: SourceBranchOrTag? = nil,
+                    workflow: Workflow? = nil)
+        {
             self.builds = builds
             self.destinationBranch = destinationBranch
             self.product = product
@@ -199,6 +236,7 @@ public struct CiBuildRun: Codable {
         }
 
         /**
+         # CiBuildRun.Relationships.Builds
          The data, links, and paging information that describe the relationship between the Build Runs and the Builds resources.
 
          Full documentation:
@@ -212,13 +250,17 @@ public struct CiBuildRun: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # CiBuildRun.Relationships.Builds.Data
              The type and ID of a related Builds resource.
 
              Full documentation:
@@ -255,6 +297,7 @@ public struct CiBuildRun: Codable {
             }
 
             /**
+             # CiBuildRun.Relationships.Builds.Links
              The links to the related Builds resource and the relationship’s self-link.
 
              Full documentation:
@@ -266,7 +309,9 @@ public struct CiBuildRun: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -284,13 +329,14 @@ public struct CiBuildRun: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiBuildRun.Relationships.DestinationBranch
          The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the destination branch.
 
          Full documentation:
@@ -302,12 +348,15 @@ public struct CiBuildRun: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiBuildRun.Relationships.DestinationBranch.Data
              The type and ID of a related Git References resource that represents the build run’s destination branch.
 
              Full documentation:
@@ -344,6 +393,7 @@ public struct CiBuildRun: Codable {
             }
 
             /**
+             # CiBuildRun.Relationships.DestinationBranch.Links
              The links to the related Git References resource that represents the destination branch and the relationship’s self-link.
 
              Full documentation:
@@ -355,7 +405,9 @@ public struct CiBuildRun: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -373,13 +425,14 @@ public struct CiBuildRun: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiBuildRun.Relationships.Product
          The data and links that describe the relationship between the Build Runs and the Products resources.
 
          Full documentation:
@@ -391,12 +444,15 @@ public struct CiBuildRun: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiBuildRun.Relationships.Product.Data
              The type and ID of a related Products resource.
 
              Full documentation:
@@ -433,6 +489,7 @@ public struct CiBuildRun: Codable {
             }
 
             /**
+             # CiBuildRun.Relationships.Product.Links
              The links to the related Products resource and the relationship’s self-link.
 
              Full documentation:
@@ -444,7 +501,9 @@ public struct CiBuildRun: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -462,13 +521,14 @@ public struct CiBuildRun: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiBuildRun.Relationships.PullRequest
          The data and links that describe the relationship between the Build Runs and the Pull Requests resources.
 
          Full documentation:
@@ -480,12 +540,15 @@ public struct CiBuildRun: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiBuildRun.Relationships.PullRequest.Data
              The type and ID of a related Pull Requests resource.
 
              Full documentation:
@@ -522,6 +585,7 @@ public struct CiBuildRun: Codable {
             }
 
             /**
+             # CiBuildRun.Relationships.PullRequest.Links
              The links to the related Pull Requests resource and the relationship’s self-link.
 
              Full documentation:
@@ -533,7 +597,9 @@ public struct CiBuildRun: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -551,13 +617,14 @@ public struct CiBuildRun: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiBuildRun.Relationships.SourceBranchOrTag
          The data and links that describe the relationship between the Build Runs and the Git References resources.
 
          Full documentation:
@@ -569,12 +636,15 @@ public struct CiBuildRun: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiBuildRun.Relationships.SourceBranchOrTag.Data
              The type and ID of a related Git References resource that represents the source branch or tag.
 
              Full documentation:
@@ -611,6 +681,7 @@ public struct CiBuildRun: Codable {
             }
 
             /**
+             # CiBuildRun.Relationships.SourceBranchOrTag.Links
              The links to the related Git References resource that represents the source branch or tag and the relationship’s self-link.
 
              Full documentation:
@@ -622,7 +693,9 @@ public struct CiBuildRun: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -640,13 +713,14 @@ public struct CiBuildRun: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiBuildRun.Relationships.Workflow
          The data and links that describe the relationship between the Build Runs and the Workflows resources.
 
          Full documentation:
@@ -658,12 +732,15 @@ public struct CiBuildRun: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiBuildRun.Relationships.Workflow.Data
              The type and ID of a related Workflows resource.
 
              Full documentation:
@@ -700,6 +777,7 @@ public struct CiBuildRun: Codable {
             }
 
             /**
+             # CiBuildRun.Relationships.Workflow.Links
              The links to the related Workflows resource and the relationship’s self-link.
 
              Full documentation:
@@ -711,7 +789,9 @@ public struct CiBuildRun: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -729,8 +809,8 @@ public struct CiBuildRun: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

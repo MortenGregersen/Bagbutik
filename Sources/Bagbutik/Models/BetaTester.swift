@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaTester
  The data structure that represents a Beta Testers resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BetaTester: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct BetaTester: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BetaTester.Attributes
      Attributes that describe a Beta Testers resource.
 
      Full documentation:
@@ -69,7 +75,11 @@ public struct BetaTester: Codable {
         /// The beta tester's last name.
         public var lastName: String?
 
-        public init(email: String? = nil, firstName: String? = nil, inviteType: BetaInviteType? = nil, lastName: String? = nil) {
+        public init(email: String? = nil,
+                    firstName: String? = nil,
+                    inviteType: BetaInviteType? = nil,
+                    lastName: String? = nil)
+        {
             self.email = email
             self.firstName = firstName
             self.inviteType = inviteType
@@ -78,6 +88,7 @@ public struct BetaTester: Codable {
     }
 
     /**
+     # BetaTester.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -88,13 +99,17 @@ public struct BetaTester: Codable {
         public var betaGroups: BetaGroups?
         public var builds: Builds?
 
-        public init(apps: Apps? = nil, betaGroups: BetaGroups? = nil, builds: Builds? = nil) {
+        public init(apps: Apps? = nil,
+                    betaGroups: BetaGroups? = nil,
+                    builds: Builds? = nil)
+        {
             self.apps = apps
             self.betaGroups = betaGroups
             self.builds = builds
         }
 
         /**
+         # BetaTester.Relationships.Apps
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -105,13 +120,17 @@ public struct BetaTester: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BetaTester.Relationships.Apps.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -146,6 +165,7 @@ public struct BetaTester: Codable {
             }
 
             /**
+             # BetaTester.Relationships.Apps.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -155,7 +175,9 @@ public struct BetaTester: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -173,13 +195,14 @@ public struct BetaTester: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BetaTester.Relationships.BetaGroups
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -190,13 +213,17 @@ public struct BetaTester: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BetaTester.Relationships.BetaGroups.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -231,6 +258,7 @@ public struct BetaTester: Codable {
             }
 
             /**
+             # BetaTester.Relationships.BetaGroups.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -240,7 +268,9 @@ public struct BetaTester: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -258,13 +288,14 @@ public struct BetaTester: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BetaTester.Relationships.Builds
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -275,13 +306,17 @@ public struct BetaTester: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BetaTester.Relationships.Builds.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -316,6 +351,7 @@ public struct BetaTester: Codable {
             }
 
             /**
+             # BetaTester.Relationships.Builds.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -325,7 +361,9 @@ public struct BetaTester: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -343,8 +381,8 @@ public struct BetaTester: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

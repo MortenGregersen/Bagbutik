@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreReviewAttachment
  The data structure that represent an App Store Review Attachments resource.
 
  Full documentation:
@@ -13,7 +14,11 @@ public struct AppStoreReviewAttachment: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,14 +46,15 @@ public struct AppStoreReviewAttachment: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppStoreReviewAttachment.Attributes
      Attributes that describe an App Store Review Attachments resource.
 
      Full documentation:
@@ -61,7 +67,12 @@ public struct AppStoreReviewAttachment: Codable {
         public var sourceFileChecksum: String?
         public var uploadOperations: [UploadOperation]?
 
-        public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
+        public init(assetDeliveryState: AppMediaAssetState? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    sourceFileChecksum: String? = nil,
+                    uploadOperations: [UploadOperation]? = nil)
+        {
             self.assetDeliveryState = assetDeliveryState
             self.fileName = fileName
             self.fileSize = fileSize
@@ -71,6 +82,7 @@ public struct AppStoreReviewAttachment: Codable {
     }
 
     /**
+     # AppStoreReviewAttachment.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -84,6 +96,7 @@ public struct AppStoreReviewAttachment: Codable {
         }
 
         /**
+         # AppStoreReviewAttachment.Relationships.AppStoreReviewDetail
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -93,12 +106,15 @@ public struct AppStoreReviewAttachment: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreReviewAttachment.Relationships.AppStoreReviewDetail.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -133,6 +149,7 @@ public struct AppStoreReviewAttachment: Codable {
             }
 
             /**
+             # AppStoreReviewAttachment.Relationships.AppStoreReviewDetail.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -142,7 +159,9 @@ public struct AppStoreReviewAttachment: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -160,8 +179,8 @@ public struct AppStoreReviewAttachment: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

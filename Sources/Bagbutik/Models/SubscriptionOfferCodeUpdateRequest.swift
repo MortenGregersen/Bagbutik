@@ -12,7 +12,9 @@ public struct SubscriptionOfferCodeUpdateRequest: Codable, RequestBody {
         public var type: String { "subscriptionOfferCodes" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,9 +36,9 @@ public struct SubscriptionOfferCodeUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {

@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List Users
-      Get a list of the users on your team.
+     # List Users
+     Get a list of the users on your team.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_users>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_users>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listUsersV1(fields: [ListUsersV1.Field]? = nil,
                             filters: [ListUsersV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                             sorts: [ListUsersV1.Sort]? = nil,
                             limits: [ListUsersV1.Limit]? = nil) -> Request<UsersResponse, ErrorResponse>
     {
-        return .init(path: "/v1/users", method: .get, parameters: .init(fields: fields,
-                                                                        filters: filters,
-                                                                        includes: includes,
-                                                                        sorts: sorts,
-                                                                        limits: limits))
+        .init(path: "/v1/users", method: .get, parameters: .init(fields: fields,
+                                                                 filters: filters,
+                                                                 includes: includes,
+                                                                 sorts: sorts,
+                                                                 limits: limits))
     }
 }
 

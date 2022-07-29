@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildAppEncryptionDeclarationLinkageRequest
  The request body you use to attach an app encryption declaration to a build.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BuildAppEncryptionDeclarationLinkageRequest: Codable, RequestBody 
     }
 
     /**
+     # BuildAppEncryptionDeclarationLinkageRequest.Data
      The data element of the request body.
 
      Full documentation:

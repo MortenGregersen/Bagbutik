@@ -12,7 +12,9 @@ public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Request
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,16 +36,18 @@ public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Request
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
             public let expirationDate: String
             public let numberOfCodes: Int
 
-            public init(expirationDate: String, numberOfCodes: Int) {
+            public init(expirationDate: String,
+                        numberOfCodes: Int)
+            {
                 self.expirationDate = expirationDate
                 self.numberOfCodes = numberOfCodes
             }

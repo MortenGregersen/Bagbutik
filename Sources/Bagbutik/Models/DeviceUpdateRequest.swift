@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # DeviceUpdateRequest
  The request body you use to update a Device.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # DeviceUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -25,7 +27,9 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
         public var type: String { "devices" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -47,12 +51,13 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # DeviceUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -62,7 +67,9 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
             public var name: String?
             public var status: Device.Attributes.Status?
 
-            public init(name: String? = nil, status: Device.Attributes.Status? = nil) {
+            public init(name: String? = nil,
+                        status: Device.Attributes.Status? = nil)
+            {
                 self.name = name
                 self.status = status
             }

@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # List All Subscriptions for a Subscription Group
-      Get a list of all auto-renewable subscriptions in a subscription group.
+     # List All Subscriptions for a Subscription Group
+     Get a list of all auto-renewable subscriptions in a subscription group.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscriptions_for_a_subscription_group>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscriptions_for_a_subscription_group>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listSubscriptionsForSubscriptionGroupV1(id: String,
                                                         fields: [ListSubscriptionsForSubscriptionGroupV1.Field]? = nil,
@@ -21,11 +21,11 @@ public extension Request {
                                                         sorts: [ListSubscriptionsForSubscriptionGroupV1.Sort]? = nil,
                                                         limits: [ListSubscriptionsForSubscriptionGroupV1.Limit]? = nil) -> Request<SubscriptionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptionGroups/\(id)/subscriptions", method: .get, parameters: .init(fields: fields,
-                                                                                                         filters: filters,
-                                                                                                         includes: includes,
-                                                                                                         sorts: sorts,
-                                                                                                         limits: limits))
+        .init(path: "/v1/subscriptionGroups/\(id)/subscriptions", method: .get, parameters: .init(fields: fields,
+                                                                                                  filters: filters,
+                                                                                                  includes: includes,
+                                                                                                  sorts: sorts,
+                                                                                                  limits: limits))
     }
 }
 
@@ -186,7 +186,14 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appStoreReviewScreenshot, group, introductoryOffers, offerCodes, prices, promotedPurchase, promotionalOffers, subscriptionLocalizations
+        case appStoreReviewScreenshot
+        case group
+        case introductoryOffers
+        case offerCodes
+        case prices
+        case promotedPurchase
+        case promotionalOffers
+        case subscriptionLocalizations
     }
 
     /**
@@ -201,17 +208,17 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
-        /// Maximum number of related subscriptionLocalizations returned (when they are included) - maximum 50
-        case subscriptionLocalizations(Int)
         /// Maximum number of related introductoryOffers returned (when they are included) - maximum 50
         case introductoryOffers(Int)
-        /// Maximum number of related promotionalOffers returned (when they are included) - maximum 50
-        case promotionalOffers(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
         /// Maximum number of related offerCodes returned (when they are included) - maximum 50
         case offerCodes(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50
         case prices(Int)
+        /// Maximum number of related promotionalOffers returned (when they are included) - maximum 50
+        case promotionalOffers(Int)
+        /// Maximum number of related subscriptionLocalizations returned (when they are included) - maximum 50
+        case subscriptionLocalizations(Int)
     }
 }

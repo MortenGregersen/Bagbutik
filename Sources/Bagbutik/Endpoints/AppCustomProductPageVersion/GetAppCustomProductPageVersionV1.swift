@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # GET /v1/appCustomProductPageVersions/{id}
+     # GET /v1/appCustomProductPageVersions/{id}
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpageversions_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpageversions_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appCustomProductPageLocalizations returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appCustomProductPageLocalizations returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppCustomProductPageVersionV1(id: String,
                                                  fields: [GetAppCustomProductPageVersionV1.Field]? = nil,
                                                  includes: [GetAppCustomProductPageVersionV1.Include]? = nil,
                                                  limit: Int? = nil) -> Request<AppCustomProductPageVersionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appCustomProductPageVersions/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                     includes: includes,
-                                                                                                     limit: limit))
+        .init(path: "/v1/appCustomProductPageVersions/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                              includes: includes,
+                                                                                              limit: limit))
     }
 }
 
@@ -52,6 +52,7 @@ public enum GetAppCustomProductPageVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPage, appCustomProductPageLocalizations
+        case appCustomProductPage
+        case appCustomProductPageLocalizations
     }
 }

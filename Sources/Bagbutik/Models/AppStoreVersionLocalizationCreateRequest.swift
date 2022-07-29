@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionLocalizationCreateRequest
  The request body you use to create an App Store Version Localization.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppStoreVersionLocalizationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -46,12 +50,13 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppStoreVersionLocalizationCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -66,7 +71,14 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
             public var supportUrl: String?
             public var whatsNew: String?
 
-            public init(description: String? = nil, keywords: String? = nil, locale: String, marketingUrl: String? = nil, promotionalText: String? = nil, supportUrl: String? = nil, whatsNew: String? = nil) {
+            public init(description: String? = nil,
+                        keywords: String? = nil,
+                        locale: String,
+                        marketingUrl: String? = nil,
+                        promotionalText: String? = nil,
+                        supportUrl: String? = nil,
+                        whatsNew: String? = nil)
+            {
                 self.description = description
                 self.keywords = keywords
                 self.locale = locale
@@ -78,6 +90,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppStoreVersionLocalizationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -91,6 +104,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppStoreVersionLocalizationCreateRequest.Data.Relationships.AppStoreVersion
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -104,6 +118,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppStoreVersionLocalizationCreateRequest.Data.Relationships.AppStoreVersion.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

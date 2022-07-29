@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmProviderType
  The source code management provider’s type.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct ScmProviderType: Codable {
     /// A string that represents the kind of a Providers resource.
     public var kind: Kind?
 
-    public init(displayName: String? = nil, isOnPremise: Bool? = nil, kind: Kind? = nil) {
+    public init(displayName: String? = nil,
+                isOnPremise: Bool? = nil,
+                kind: Kind? = nil)
+    {
         self.displayName = displayName
         self.isOnPremise = isOnPremise
         self.kind = kind

@@ -20,7 +20,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.1.0"),
-        .package(url: "https://github.com/SwiftGen/StencilSwiftKit", from: "2.8.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.17"),
         .package(url: "https://github.com/apple/swift-crypto", from: "2.0.0"),
         .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.2"),
@@ -48,7 +47,6 @@ let package = Package(
                 "BagbutikDocsCollector",
                 "BagbutikSpecDecoder",
                 "BagbutikStringExtensions",
-                "StencilSwiftKit",
                 "SwiftFormat"
             ]),
         .target(name: "BagbutikDocsCollector", dependencies: ["BagbutikSpecDecoder"]),

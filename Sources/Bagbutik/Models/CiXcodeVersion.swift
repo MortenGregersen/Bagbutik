@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiXcodeVersion
  The data structure that represents an Xcode Versions resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct CiXcodeVersion: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct CiXcodeVersion: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # CiXcodeVersion.Attributes
      The attributes that describe an Xcode Versions resource.
 
      Full documentation:
@@ -67,13 +73,17 @@ public struct CiXcodeVersion: Codable {
         /// The Xcode version.
         public var version: String?
 
-        public init(name: String? = nil, testDestinations: [TestDestinations]? = nil, version: String? = nil) {
+        public init(name: String? = nil,
+                    testDestinations: [TestDestinations]? = nil,
+                    version: String? = nil)
+        {
             self.name = name
             self.testDestinations = testDestinations
             self.version = version
         }
 
         /**
+         # CiXcodeVersion.Attributes.TestDestinations
          The test destinations available for an Xcode version.
 
          Full documentation:
@@ -89,7 +99,11 @@ public struct CiXcodeVersion: Codable {
             /// A string that indicates whether a test destination is a simulated device or a Mac.
             public var kind: CiTestDestinationKind?
 
-            public init(availableRuntimes: [AvailableRuntimes]? = nil, deviceTypeIdentifier: String? = nil, deviceTypeName: String? = nil, kind: CiTestDestinationKind? = nil) {
+            public init(availableRuntimes: [AvailableRuntimes]? = nil,
+                        deviceTypeIdentifier: String? = nil,
+                        deviceTypeName: String? = nil,
+                        kind: CiTestDestinationKind? = nil)
+            {
                 self.availableRuntimes = availableRuntimes
                 self.deviceTypeIdentifier = deviceTypeIdentifier
                 self.deviceTypeName = deviceTypeName
@@ -97,6 +111,7 @@ public struct CiXcodeVersion: Codable {
             }
 
             /**
+             # CiXcodeVersion.Attributes.TestDestinations.AvailableRuntimes
              The data structure that represents the available runtimes for test destinations of an Xcode Versions resource.
 
              Full documentation:
@@ -108,7 +123,9 @@ public struct CiXcodeVersion: Codable {
                 /// The name of the operating system of the simulated environment Xcode Cloud uses.
                 public var runtimeName: String?
 
-                public init(runtimeIdentifier: String? = nil, runtimeName: String? = nil) {
+                public init(runtimeIdentifier: String? = nil,
+                            runtimeName: String? = nil)
+                {
                     self.runtimeIdentifier = runtimeIdentifier
                     self.runtimeName = runtimeName
                 }
@@ -117,6 +134,7 @@ public struct CiXcodeVersion: Codable {
     }
 
     /**
+     # CiXcodeVersion.Relationships
      The relationships of the Xcode Versions resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -131,6 +149,7 @@ public struct CiXcodeVersion: Codable {
         }
 
         /**
+         # CiXcodeVersion.Relationships.MacOsVersions
          The data, links, and paging information that describe the relationship between the Xcode Versions and the macOS Versions resources.
 
          Full documentation:
@@ -144,13 +163,17 @@ public struct CiXcodeVersion: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # CiXcodeVersion.Relationships.MacOsVersions.Data
              The type and ID of a related macOS Versions resource.
 
              Full documentation:
@@ -187,6 +210,7 @@ public struct CiXcodeVersion: Codable {
             }
 
             /**
+             # CiXcodeVersion.Relationships.MacOsVersions.Links
              The links to the related macOS Versions resources and the relationship’s self-link.
 
              Full documentation:
@@ -198,7 +222,9 @@ public struct CiXcodeVersion: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -216,8 +242,8 @@ public struct CiXcodeVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

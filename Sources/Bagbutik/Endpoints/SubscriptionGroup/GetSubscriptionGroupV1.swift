@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read Subscription Group Information
-      Get the details of a specific subscription group.
+     # Read Subscription Group Information
+     Get the details of a specific subscription group.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionGroupV1(id: String,
                                        fields: [GetSubscriptionGroupV1.Field]? = nil,
                                        includes: [GetSubscriptionGroupV1.Include]? = nil,
                                        limits: [GetSubscriptionGroupV1.Limit]? = nil) -> Request<SubscriptionGroupResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptionGroups/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                           includes: includes,
-                                                                                           limits: limits))
+        .init(path: "/v1/subscriptionGroups/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                    includes: includes,
+                                                                                    limits: limits))
     }
 }
 
@@ -75,7 +75,8 @@ public enum GetSubscriptionGroupV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case subscriptionGroupLocalizations, subscriptions
+        case subscriptionGroupLocalizations
+        case subscriptions
     }
 
     /**

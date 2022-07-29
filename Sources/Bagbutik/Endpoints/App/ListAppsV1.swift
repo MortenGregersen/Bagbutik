@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # List Apps
-      Find and list apps added in App Store Connect.
+     # List Apps
+     Find and list apps added in App Store Connect.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter exists: Attributes, relationships, and IDs to check for existence
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter exists: Attributes, relationships, and IDs to check for existence
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppsV1(fields: [ListAppsV1.Field]? = nil,
                            filters: [ListAppsV1.Filter]? = nil,
@@ -21,12 +21,12 @@ public extension Request {
                            sorts: [ListAppsV1.Sort]? = nil,
                            limits: [ListAppsV1.Limit]? = nil) -> Request<AppsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps", method: .get, parameters: .init(fields: fields,
-                                                                       filters: filters,
-                                                                       exists: exists,
-                                                                       includes: includes,
-                                                                       sorts: sorts,
-                                                                       limits: limits))
+        .init(path: "/v1/apps", method: .get, parameters: .init(fields: fields,
+                                                                filters: filters,
+                                                                exists: exists,
+                                                                includes: includes,
+                                                                sorts: sorts,
+                                                                limits: limits))
     }
 }
 
@@ -445,7 +445,29 @@ public enum ListAppsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClips, appCustomProductPages, appEvents, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, inAppPurchasesV2, preOrder, preReleaseVersions, prices, promotedPurchases, reviewSubmissions, subscriptionGracePeriod, subscriptionGroups
+        case appClips
+        case appCustomProductPages
+        case appEvents
+        case appInfos
+        case appStoreVersions
+        case availableTerritories
+        case betaAppLocalizations
+        case betaAppReviewDetail
+        case betaGroups
+        case betaLicenseAgreement
+        case builds
+        case ciProduct
+        case endUserLicenseAgreement
+        case gameCenterEnabledVersions
+        case inAppPurchases
+        case inAppPurchasesV2
+        case preOrder
+        case preReleaseVersions
+        case prices
+        case promotedPurchases
+        case reviewSubmissions
+        case subscriptionGracePeriod
+        case subscriptionGroups
     }
 
     /**
@@ -464,8 +486,6 @@ public enum ListAppsV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appClips returned (when they are included) - maximum 50
         case appClips(Int)
         /// Maximum number of related appCustomProductPages returned (when they are included) - maximum 50
@@ -490,6 +510,8 @@ public enum ListAppsV1 {
         case inAppPurchases(Int)
         /// Maximum number of related inAppPurchasesV2 returned (when they are included) - maximum 50
         case inAppPurchasesV2(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
         /// Maximum number of related preReleaseVersions returned (when they are included) - maximum 50
         case preReleaseVersions(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50

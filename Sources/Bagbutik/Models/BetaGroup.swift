@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaGroup
  The data structure that represents a Beta Groups resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BetaGroup: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct BetaGroup: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BetaGroup.Attributes
      Attributes that describe a Beta Groups resource.
 
      Full documentation:
@@ -80,7 +86,18 @@ public struct BetaGroup: Codable {
         /// A Boolean value that limits the number of testers who can join the beta group using the public link.
         public var publicLinkLimitEnabled: Bool?
 
-        public init(createdDate: Date? = nil, feedbackEnabled: Bool? = nil, hasAccessToAllBuilds: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, isInternalGroup: Bool? = nil, name: String? = nil, publicLink: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkId: String? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+        public init(createdDate: Date? = nil,
+                    feedbackEnabled: Bool? = nil,
+                    hasAccessToAllBuilds: Bool? = nil,
+                    iosBuildsAvailableForAppleSiliconMac: Bool? = nil,
+                    isInternalGroup: Bool? = nil,
+                    name: String? = nil,
+                    publicLink: String? = nil,
+                    publicLinkEnabled: Bool? = nil,
+                    publicLinkId: String? = nil,
+                    publicLinkLimit: Int? = nil,
+                    publicLinkLimitEnabled: Bool? = nil)
+        {
             self.createdDate = createdDate
             self.feedbackEnabled = feedbackEnabled
             self.hasAccessToAllBuilds = hasAccessToAllBuilds
@@ -96,6 +113,7 @@ public struct BetaGroup: Codable {
     }
 
     /**
+     # BetaGroup.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -106,13 +124,17 @@ public struct BetaGroup: Codable {
         public var betaTesters: BetaTesters?
         public var builds: Builds?
 
-        public init(app: App? = nil, betaTesters: BetaTesters? = nil, builds: Builds? = nil) {
+        public init(app: App? = nil,
+                    betaTesters: BetaTesters? = nil,
+                    builds: Builds? = nil)
+        {
             self.app = app
             self.betaTesters = betaTesters
             self.builds = builds
         }
 
         /**
+         # BetaGroup.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -122,12 +144,15 @@ public struct BetaGroup: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BetaGroup.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -164,6 +189,7 @@ public struct BetaGroup: Codable {
             }
 
             /**
+             # BetaGroup.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -173,7 +199,9 @@ public struct BetaGroup: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -191,13 +219,14 @@ public struct BetaGroup: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BetaGroup.Relationships.BetaTesters
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -208,13 +237,17 @@ public struct BetaGroup: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BetaGroup.Relationships.BetaTesters.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -251,6 +284,7 @@ public struct BetaGroup: Codable {
             }
 
             /**
+             # BetaGroup.Relationships.BetaTesters.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -260,7 +294,9 @@ public struct BetaGroup: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -278,13 +314,14 @@ public struct BetaGroup: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BetaGroup.Relationships.Builds
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -295,13 +332,17 @@ public struct BetaGroup: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BetaGroup.Relationships.Builds.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -338,6 +379,7 @@ public struct BetaGroup: Codable {
             }
 
             /**
+             # BetaGroup.Relationships.Builds.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -347,7 +389,9 @@ public struct BetaGroup: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -365,8 +409,8 @@ public struct BetaGroup: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaTesterInvitation
  The data structure that represents a Beta Tester Invitations resource.
 
  Full documentation:
@@ -14,7 +15,9 @@ public struct BetaTesterInvitation: Codable {
     /// The resource type.
     public var type: String { "betaTesterInvitations" }
 
-    public init(id: String, links: ResourceLinks) {
+    public init(id: String,
+                links: ResourceLinks)
+    {
         self.id = id
         self.links = links
     }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # EndUserLicenseAgreementCreateRequest
  The request body you use to create an End User License Agreement.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # EndUserLicenseAgreementCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -46,12 +50,13 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # EndUserLicenseAgreementCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -66,6 +71,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # EndUserLicenseAgreementCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -75,12 +81,15 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
             public let app: App
             public let territories: Territories
 
-            public init(app: App, territories: Territories) {
+            public init(app: App,
+                        territories: Territories)
+            {
                 self.app = app
                 self.territories = territories
             }
 
             /**
+             # EndUserLicenseAgreementCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -94,6 +103,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # EndUserLicenseAgreementCreateRequest.Data.Relationships.App.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
@@ -129,6 +139,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # EndUserLicenseAgreementCreateRequest.Data.Relationships.Territories
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -142,6 +153,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # EndUserLicenseAgreementCreateRequest.Data.Relationships.Territories.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

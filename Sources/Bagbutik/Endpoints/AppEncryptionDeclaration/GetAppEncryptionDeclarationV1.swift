@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read App Encryption Declaration Information
-      Get information about a specific app encryption declaration.
+     # Read App Encryption Declaration Information
+     Get information about a specific app encryption declaration.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_encryption_declaration_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_encryption_declaration_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEncryptionDeclarationV1(id: String,
                                               fields: [GetAppEncryptionDeclarationV1.Field]? = nil,
                                               includes: [GetAppEncryptionDeclarationV1.Include]? = nil) -> Request<AppEncryptionDeclarationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appEncryptionDeclarations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                  includes: includes))
+        .init(path: "/v1/appEncryptionDeclarations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                           includes: includes))
     }
 }
 

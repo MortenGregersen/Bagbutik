@@ -4,7 +4,9 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [AppInlineCreate]?
 
-    public init(data: Data, included: [AppInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [AppInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -15,7 +17,10 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -40,10 +45,10 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {

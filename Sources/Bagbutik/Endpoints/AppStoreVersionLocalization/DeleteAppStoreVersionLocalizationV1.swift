@@ -1,15 +1,15 @@
 public extension Request {
     /**
-      # Delete an App Store Version Localization
-      Delete a language from your version metadata.
+     # Delete an App Store Version Localization
+     Delete a language from your version metadata.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_store_version_localization>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_store_version_localization>
 
-      - Parameter id: The id of the requested resource
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func deleteAppStoreVersionLocalizationV1(id: String) -> Request<EmptyResponse, ErrorResponse> {
-        return .init(path: "/v1/appStoreVersionLocalizations/\(id)", method: .delete)
+        .init(path: "/v1/appStoreVersionLocalizations/\(id)", method: .delete)
     }
 }

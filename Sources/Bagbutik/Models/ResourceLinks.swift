@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ResourceLinks
  Self-links to requested resources.
 
  Full documentation:

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ProfilesResponse
  A response that contains a list of Profiles resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct ProfilesResponse: Codable, PagedResponse {
     public typealias Data = Profile
+
     /// The resource data.
     public let data: [Profile]
     public var included: [Included]?
@@ -16,7 +18,11 @@ public struct ProfilesResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [Profile], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [Profile],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -18,12 +18,13 @@ final class EnumSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
-           Strings that represent Apple operating systems.
+         # Platform
+         Strings that represent Apple operating systems.
 
-           Full documentation:
-           </platform>
+         All platforms are nice...
 
-           All platforms are nice...
+         Full documentation:
+         </platform>
          */
         public enum Platform: String, Codable, CaseIterable {
             /// A string that represents macOS.

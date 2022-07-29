@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleIdCapability
  The data structure that represents a Bundle ID Capabilities resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct BundleIdCapability: Codable {
     /// The resource's attributes.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct BundleIdCapability: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # BundleIdCapability.Attributes
      Attributes that describe a Bundle ID Capabilities resource.
 
      Full documentation:
@@ -57,7 +62,9 @@ public struct BundleIdCapability: Codable {
         public var capabilityType: CapabilityType?
         public var settings: [CapabilitySetting]?
 
-        public init(capabilityType: CapabilityType? = nil, settings: [CapabilitySetting]? = nil) {
+        public init(capabilityType: CapabilityType? = nil,
+                    settings: [CapabilitySetting]? = nil)
+        {
             self.capabilityType = capabilityType
             self.settings = settings
         }

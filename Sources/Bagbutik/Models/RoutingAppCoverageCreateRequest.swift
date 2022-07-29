@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # RoutingAppCoverageCreateRequest
  The request body you use to create a Routing App Coverage.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # RoutingAppCoverageCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -46,12 +50,13 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # RoutingAppCoverageCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -61,13 +66,16 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
             public let fileName: String
             public let fileSize: Int
 
-            public init(fileName: String, fileSize: Int) {
+            public init(fileName: String,
+                        fileSize: Int)
+            {
                 self.fileName = fileName
                 self.fileSize = fileSize
             }
         }
 
         /**
+         # RoutingAppCoverageCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -81,6 +89,7 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # RoutingAppCoverageCreateRequest.Data.Relationships.AppStoreVersion
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -94,6 +103,7 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # RoutingAppCoverageCreateRequest.Data.Relationships.AppStoreVersion.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

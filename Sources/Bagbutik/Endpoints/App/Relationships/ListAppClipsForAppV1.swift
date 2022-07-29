@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # Search an App’s App Clips
-      Search your App’s associated App Clips.
+     # Search an App’s App Clips
+     Search your App’s associated App Clips.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/search_an_app_s_app_clips>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/search_an_app_s_app_clips>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppClipsForAppV1(id: String,
                                      fields: [ListAppClipsForAppV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                      includes: [ListAppClipsForAppV1.Include]? = nil,
                                      limits: [ListAppClipsForAppV1.Limit]? = nil) -> Request<AppClipsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/appClips", method: .get, parameters: .init(fields: fields,
-                                                                                      filters: filters,
-                                                                                      includes: includes,
-                                                                                      limits: limits))
+        .init(path: "/v1/apps/\(id)/appClips", method: .get, parameters: .init(fields: fields,
+                                                                               filters: filters,
+                                                                               includes: includes,
+                                                                               limits: limits))
     }
 }
 
@@ -108,16 +108,17 @@ public enum ListAppClipsForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, appClipDefaultExperiences
+        case app
+        case appClipDefaultExperiences
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appClipDefaultExperiences returned (when they are included) - maximum 50
         case appClipDefaultExperiences(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

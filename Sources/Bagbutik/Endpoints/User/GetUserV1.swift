@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read User Information
-      Get information about a user on your team, such as name, roles, and app visibility.
+     # Read User Information
+     Get information about a user on your team, such as name, roles, and app visibility.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_user_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_user_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related visibleApps returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related visibleApps returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getUserV1(id: String,
                           fields: [GetUserV1.Field]? = nil,
                           includes: [GetUserV1.Include]? = nil,
                           limit: Int? = nil) -> Request<UserResponse, ErrorResponse>
     {
-        return .init(path: "/v1/users/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                              includes: includes,
-                                                                              limit: limit))
+        .init(path: "/v1/users/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                       includes: includes,
+                                                                       limit: limit))
     }
 }
 

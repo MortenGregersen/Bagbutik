@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List and Download Certificates
-      Find and list certificates and download their data.
+     # List and Download Certificates
+     Find and list certificates and download their data.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_and_download_certificates>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_and_download_certificates>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCertificatesV1(fields: [ListCertificatesV1.Field]? = nil,
                                    filters: [ListCertificatesV1.Filter]? = nil,
                                    sorts: [ListCertificatesV1.Sort]? = nil,
                                    limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/certificates", method: .get, parameters: .init(fields: fields,
-                                                                               filters: filters,
-                                                                               sorts: sorts,
-                                                                               limit: limit))
+        .init(path: "/v1/certificates", method: .get, parameters: .init(fields: fields,
+                                                                        filters: filters,
+                                                                        sorts: sorts,
+                                                                        limit: limit))
     }
 }
 

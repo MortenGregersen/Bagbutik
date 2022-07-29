@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppsResponse
  A response that contains a list of Apps resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct AppsResponse: Codable, PagedResponse {
     public typealias Data = App
+
     /// The resource data.
     public let data: [App]
     public var included: [Included]?
@@ -16,7 +18,11 @@ public struct AppsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [App], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [App],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildIcon
  The data structure that represents the Build Icons resource.
 
  Full documentation:
@@ -12,7 +13,10 @@ public struct BuildIcon: Codable {
     public var type: String { "buildIcons" }
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -37,13 +41,14 @@ public struct BuildIcon: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # BuildIcon.Attributes
      Attributes that describe a Build Icons resource.
 
      Full documentation:
@@ -54,7 +59,10 @@ public struct BuildIcon: Codable {
         public var iconType: IconAssetType?
         public var name: String?
 
-        public init(iconAsset: ImageAsset? = nil, iconType: IconAssetType? = nil, name: String? = nil) {
+        public init(iconAsset: ImageAsset? = nil,
+                    iconType: IconAssetType? = nil,
+                    name: String? = nil)
+        {
             self.iconAsset = iconAsset
             self.iconType = iconType
             self.name = name

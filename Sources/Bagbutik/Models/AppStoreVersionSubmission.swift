@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionSubmission
  The data structure that represents an App Store Version Submissions resource.
 
  Full documentation:
@@ -12,7 +13,10 @@ public struct AppStoreVersionSubmission: Codable {
     public var type: String { "appStoreVersionSubmissions" }
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.relationships = relationships
@@ -39,11 +43,12 @@ public struct AppStoreVersionSubmission: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case links
-        case type
         case relationships
+        case type
     }
 
     /**
+     # AppStoreVersionSubmission.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -57,6 +62,7 @@ public struct AppStoreVersionSubmission: Codable {
         }
 
         /**
+         # AppStoreVersionSubmission.Relationships.AppStoreVersion
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -66,12 +72,15 @@ public struct AppStoreVersionSubmission: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersionSubmission.Relationships.AppStoreVersion.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -106,6 +115,7 @@ public struct AppStoreVersionSubmission: Codable {
             }
 
             /**
+             # AppStoreVersionSubmission.Relationships.AppStoreVersion.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -115,7 +125,9 @@ public struct AppStoreVersionSubmission: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -133,8 +145,8 @@ public struct AppStoreVersionSubmission: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

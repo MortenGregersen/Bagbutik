@@ -4,7 +4,9 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [SubscriptionPromotionalOfferPriceInlineCreate]?
 
-    public init(data: Data, included: [SubscriptionPromotionalOfferPriceInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [SubscriptionPromotionalOfferPriceInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -14,7 +16,9 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
         public var type: String { "subscriptionPromotionalOffers" }
         public var relationships: Relationships?
 
-        public init(id: String, relationships: Relationships? = nil) {
+        public init(id: String,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.relationships = relationships
         }
@@ -37,8 +41,8 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
 
         private enum CodingKeys: String, CodingKey {
             case id
-            case type
             case relationships
+            case type
         }
 
         public struct Relationships: Codable {

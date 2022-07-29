@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppLocalizationsResponse
  A response that contains a list of Beta App Localization resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct BetaAppLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = BetaAppLocalization
+
     /// The resource data.
     public let data: [BetaAppLocalization]
     public var included: [App]?
@@ -16,7 +18,11 @@ public struct BetaAppLocalizationsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [BetaAppLocalization], included: [App]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [BetaAppLocalization],
+                included: [App]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

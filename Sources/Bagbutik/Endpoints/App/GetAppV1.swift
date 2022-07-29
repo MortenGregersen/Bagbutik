@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Information
-      Get information about a specific app.
+     # Read App Information
+     Get information about a specific app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppV1(id: String,
                          fields: [GetAppV1.Field]? = nil,
                          includes: [GetAppV1.Include]? = nil,
                          limits: [GetAppV1.Limit]? = nil) -> Request<AppResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                             includes: includes,
-                                                                             limits: limits))
+        .init(path: "/v1/apps/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                      includes: includes,
+                                                                      limits: limits))
     }
 }
 
@@ -382,7 +382,29 @@ public enum GetAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClips, appCustomProductPages, appEvents, appInfos, appStoreVersions, availableTerritories, betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, builds, ciProduct, endUserLicenseAgreement, gameCenterEnabledVersions, inAppPurchases, inAppPurchasesV2, preOrder, preReleaseVersions, prices, promotedPurchases, reviewSubmissions, subscriptionGracePeriod, subscriptionGroups
+        case appClips
+        case appCustomProductPages
+        case appEvents
+        case appInfos
+        case appStoreVersions
+        case availableTerritories
+        case betaAppLocalizations
+        case betaAppReviewDetail
+        case betaGroups
+        case betaLicenseAgreement
+        case builds
+        case ciProduct
+        case endUserLicenseAgreement
+        case gameCenterEnabledVersions
+        case inAppPurchases
+        case inAppPurchasesV2
+        case preOrder
+        case preReleaseVersions
+        case prices
+        case promotedPurchases
+        case reviewSubmissions
+        case subscriptionGracePeriod
+        case subscriptionGroups
     }
 
     /**

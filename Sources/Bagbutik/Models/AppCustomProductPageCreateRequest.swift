@@ -4,7 +4,9 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [Included]?
 
-    public init(data: Data, included: [Included]? = nil) {
+    public init(data: Data,
+                included: [Included]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -14,7 +16,9 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -36,9 +40,9 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -55,7 +59,11 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
             public var appStoreVersionTemplate: AppStoreVersionTemplate?
             public var customProductPageTemplate: CustomProductPageTemplate?
 
-            public init(app: App, appCustomProductPageVersions: AppCustomProductPageVersions? = nil, appStoreVersionTemplate: AppStoreVersionTemplate? = nil, customProductPageTemplate: CustomProductPageTemplate? = nil) {
+            public init(app: App,
+                        appCustomProductPageVersions: AppCustomProductPageVersions? = nil,
+                        appStoreVersionTemplate: AppStoreVersionTemplate? = nil,
+                        customProductPageTemplate: CustomProductPageTemplate? = nil)
+            {
                 self.app = app
                 self.appCustomProductPageVersions = appCustomProductPageVersions
                 self.appStoreVersionTemplate = appStoreVersionTemplate

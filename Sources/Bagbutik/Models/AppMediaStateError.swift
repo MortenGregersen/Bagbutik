@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppMediaStateError
  An error code and description.
 
  Full documentation:
@@ -10,7 +11,9 @@ public struct AppMediaStateError: Codable {
     public var code: String?
     public var description: String?
 
-    public init(code: String? = nil, description: String? = nil) {
+    public init(code: String? = nil,
+                description: String? = nil)
+    {
         self.code = code
         self.description = description
     }

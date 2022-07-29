@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # GET /v1/appCustomProductPageLocalizations/{id}
+     # GET /v1/appCustomProductPageLocalizations/{id}
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppCustomProductPageLocalizationV1(id: String,
                                                       fields: [GetAppCustomProductPageLocalizationV1.Field]? = nil,
                                                       includes: [GetAppCustomProductPageLocalizationV1.Include]? = nil,
                                                       limits: [GetAppCustomProductPageLocalizationV1.Limit]? = nil) -> Request<AppCustomProductPageLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appCustomProductPageLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                          includes: includes,
-                                                                                                          limits: limits))
+        .init(path: "/v1/appCustomProductPageLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                                   includes: includes,
+                                                                                                   limits: limits))
     }
 }
 
@@ -63,7 +63,9 @@ public enum GetAppCustomProductPageLocalizationV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageVersion, appPreviewSets, appScreenshotSets
+        case appCustomProductPageVersion
+        case appPreviewSets
+        case appScreenshotSets
     }
 
     /**

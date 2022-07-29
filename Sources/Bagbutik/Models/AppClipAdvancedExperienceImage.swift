@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperienceImage
  The data structure that represents an image that appears on the App Clip card for an advanced App Clip experience.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct AppClipAdvancedExperienceImage: Codable {
     /// The attributes that describe the Advanced App Clip Experience Images resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct AppClipAdvancedExperienceImage: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # AppClipAdvancedExperienceImage.Attributes
      The attributes that describe an Advanced App Clip Experience Images resource.
 
      Full documentation:
@@ -67,7 +72,13 @@ public struct AppClipAdvancedExperienceImage: Codable {
         /// Upload operations for the image asset that appears on the App Clip card for an advanced App Clip experience.
         public var uploadOperations: [UploadOperation]?
 
-        public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
+        public init(assetDeliveryState: AppMediaAssetState? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    imageAsset: ImageAsset? = nil,
+                    sourceFileChecksum: String? = nil,
+                    uploadOperations: [UploadOperation]? = nil)
+        {
             self.assetDeliveryState = assetDeliveryState
             self.fileName = fileName
             self.fileSize = fileSize

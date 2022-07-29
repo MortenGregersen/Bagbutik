@@ -1,27 +1,27 @@
 public extension Request {
     /**
-      # Read Xcode Cloud Product Information
-      Get information about a specific Xcode Cloud product.
+     # Read Xcode Cloud Product Information
+     Get information about a specific Xcode Cloud product.
 
-      The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.
+     The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_product_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_product_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related primaryRepositories returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related primaryRepositories returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiProductV1(id: String,
                                fields: [GetCiProductV1.Field]? = nil,
                                includes: [GetCiProductV1.Include]? = nil,
                                limit: Int? = nil) -> Request<CiProductResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciProducts/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                   includes: includes,
-                                                                                   limit: limit))
+        .init(path: "/v1/ciProducts/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                            includes: includes,
+                                                                            limit: limit))
     }
 }
 
@@ -155,6 +155,8 @@ public enum GetCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, bundleId, primaryRepositories
+        case app
+        case bundleId
+        case primaryRepositories
     }
 }

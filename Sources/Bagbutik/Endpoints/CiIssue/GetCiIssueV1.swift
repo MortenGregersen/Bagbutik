@@ -1,21 +1,21 @@
 public extension Request {
     /**
-      # Read Xcode Cloud Issue Information
-      Get information about a specific issue that occurred when Xcode Cloud performed a build.
+     # Read Xcode Cloud Issue Information
+     Get information about a specific issue that occurred when Xcode Cloud performed a build.
 
-      The example request below retrieves information about a specific issue Xcode Cloud encountered when it performed a build. Use the information provided to display issues on a dashboard, create reports, and so on.
+     The example request below retrieves information about a specific issue Xcode Cloud encountered when it performed a build. Use the information provided to display issues on a dashboard, create reports, and so on.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_issue_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_issue_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCiIssueV1(id: String,
                              fields: [GetCiIssueV1.Field]? = nil) -> Request<CiIssueResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciIssues/\(id)", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/ciIssues/\(id)", method: .get, parameters: .init(fields: fields))
     }
 }
 

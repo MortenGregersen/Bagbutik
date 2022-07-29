@@ -12,7 +12,9 @@ public struct ReviewSubmissionItemUpdateRequest: Codable, RequestBody {
         public var type: String { "reviewSubmissionItems" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,16 +36,18 @@ public struct ReviewSubmissionItemUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
             public var removed: Bool?
             public var resolved: Bool?
 
-            public init(removed: Bool? = nil, resolved: Bool? = nil) {
+            public init(removed: Bool? = nil,
+                        resolved: Bool? = nil)
+            {
                 self.removed = removed
                 self.resolved = resolved
             }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CustomerReviewResponseV1
  The data structure that represents the Customer Review Responses resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct CustomerReviewResponseV1: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct CustomerReviewResponseV1: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # CustomerReviewResponseV1.Attributes
      The attributes of the response to a customer’s review including its content.
 
      Full documentation:
@@ -67,7 +73,10 @@ public struct CustomerReviewResponseV1: Codable {
         /// The state of your response.
         public var state: State?
 
-        public init(lastModifiedDate: Date? = nil, responseBody: String? = nil, state: State? = nil) {
+        public init(lastModifiedDate: Date? = nil,
+                    responseBody: String? = nil,
+                    state: State? = nil)
+        {
             self.lastModifiedDate = lastModifiedDate
             self.responseBody = responseBody
             self.state = state
@@ -80,6 +89,7 @@ public struct CustomerReviewResponseV1: Codable {
     }
 
     /**
+     # CustomerReviewResponseV1.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -94,6 +104,7 @@ public struct CustomerReviewResponseV1: Codable {
         }
 
         /**
+         # CustomerReviewResponseV1.Relationships.Review
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -105,12 +116,15 @@ public struct CustomerReviewResponseV1: Codable {
             /// The links to the related data and the relationship’s self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CustomerReviewResponseV1.Relationships.Review.Data
              The type and ID of a resource that you’re relating with the resource you’re updating.
 
              Full documentation:
@@ -147,6 +161,7 @@ public struct CustomerReviewResponseV1: Codable {
             }
 
             /**
+             # CustomerReviewResponseV1.Relationships.Review.Links
              The links to the related data and the relationship’s self-link.
 
              Full documentation:
@@ -158,7 +173,9 @@ public struct CustomerReviewResponseV1: Codable {
                 /// The relashionship’s self-link.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -176,8 +193,8 @@ public struct CustomerReviewResponseV1: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

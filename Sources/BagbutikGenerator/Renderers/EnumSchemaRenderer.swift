@@ -4,12 +4,6 @@ import SwiftFormat
 
 /// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
-    let docsLoader: DocsLoader
-
-    public init(docsLoader: DocsLoader) {
-        self.docsLoader = docsLoader
-    }
-
     /**
      Render an enum schema
 
@@ -19,46 +13,34 @@ public class EnumSchemaRenderer: Renderer {
      - Returns: The rendered enum schema
      */
     public func render(enumSchema: EnumSchema, additionalProtocol: String = "Codable") throws -> String {
-        let context = try enumContext(for: enumSchema, additionalProtocol: additionalProtocol)
-        let rendered = try environment.renderTemplate(string: template, context: context)
-        return try SwiftFormat.format(rendered)
-    }
-
-    private let template = """
-        {% if abstract %}/**
-          {{ abstract }}
-
-          Full documentation:
-          <{{ url }}>{% if discussion %}
-
-          {{ discussion }}{% endif %}
-        */
-        {% endif %}public enum {{ name }}: {{ rawType }}, {{ additionalProtocol }}, CaseIterable {
-        {% for case in cases %}
-        {% if case.documentation %}/// {{ case.documentation }}
-        {% else %}{%
-        endif %}case {{ case.id }} = "{{ case.value }}"{%
-        endfor %}
-    }
-    """
-
-    private func enumContext(for enumSchema: EnumSchema, additionalProtocol: String) throws -> [String: Any] {
+        var rendered = ""
         var documentation: EnumDocumentation?
-        if let url = enumSchema.url, case .enum(let enumDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url) {
+        if let url = enumSchema.url,
+           case .enum(let enumDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
+           let abstract = enumDocumentation.abstract {
             documentation = enumDocumentation
+            rendered += renderDocumentationBlock(title: enumDocumentation.title) {
+                var documentationContent = abstract
+                if let discussion = enumDocumentation.discussion {
+                    documentationContent += "\n\n\(discussion)"
+                }
+                documentationContent += "\n\nFull documentation:\n<\(url)>"
+                return documentationContent
+            } + "\n"
         }
-        return [
-            "name": enumSchema.name,
-            "abstract": documentation?.abstract ?? "",
-            "url": enumSchema.url ?? "",
-            "discussion": documentation?.discussion ?? "",
-            "rawType": enumSchema.type.capitalized,
-            "additionalProtocol": additionalProtocol,
-            "cases": enumSchema.cases.map { enumCase -> EnumCase in
-                var enumCase = enumCase
-                enumCase.documentation = documentation?.cases[enumCase.value]
-                return enumCase
+        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(additionalProtocol), CaseIterable {\n"
+        let cases = enumSchema.cases.map { enumCase -> EnumCase in
+            var enumCase = enumCase
+            enumCase.documentation = documentation?.cases[enumCase.value]
+            return enumCase
+        }
+        cases.forEach {
+            if let caseDocumentation = $0.documentation {
+                rendered += "///\(caseDocumentation)\n"
             }
-        ]
+            rendered += "case \($0.id) = \"\($0.value)\"\n"
+        }
+        rendered += "}"
+        return try SwiftFormat.format(rendered)
     }
 }

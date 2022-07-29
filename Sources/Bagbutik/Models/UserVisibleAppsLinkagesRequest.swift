@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UserVisibleAppsLinkagesRequest
  A request body you use to add or remove visible apps from a user.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct UserVisibleAppsLinkagesRequest: Codable, RequestBody {
     }
 
     /**
+     # UserVisibleAppsLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

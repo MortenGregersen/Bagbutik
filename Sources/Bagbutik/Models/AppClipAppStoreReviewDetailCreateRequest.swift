@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAppStoreReviewDetailCreateRequest
  The request body you use to create an App Clip App Store Review Detail.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppClipAppStoreReviewDetailCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
         /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes? = nil, relationships: Relationships) {
+        public init(attributes: Attributes? = nil,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppClipAppStoreReviewDetailCreateRequest.Data.Attributes
          The attributes you set that describe the new App Clip App Store Review Details resource.
 
          Full documentation:
@@ -71,6 +76,7 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppClipAppStoreReviewDetailCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -85,6 +91,7 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppClipAppStoreReviewDetailCreateRequest.Data.Relationships.AppClipDefaultExperience
              The relationship to the Default App Clip Experiences resource you set with the request that creates an App Clip App Store Review Details resource.
 
              Full documentation:
@@ -99,6 +106,7 @@ public struct AppClipAppStoreReviewDetailCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppClipAppStoreReviewDetailCreateRequest.Data.Relationships.AppClipDefaultExperience.Data
                  The type and ID of the Default App Clip Experiences resource that you’re relating with the App Clip App Store Review Details resource you’re creating.
 
                  Full documentation:

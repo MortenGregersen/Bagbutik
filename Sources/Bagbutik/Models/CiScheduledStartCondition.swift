@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiScheduledStartCondition
  Settings for a start condition that starts a build based on a schedule.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct CiScheduledStartCondition: Codable {
     /// The source branch name and custom patterns you configure for a workflow that starts a new build on a schedule.
     public var source: CiBranchPatterns?
 
-    public init(schedule: Schedule? = nil, source: CiBranchPatterns? = nil) {
+    public init(schedule: Schedule? = nil,
+                source: CiBranchPatterns? = nil)
+    {
         self.schedule = schedule
         self.source = source
     }
 
     /**
+     # CiScheduledStartCondition.Schedule
      The schedule of an Xcode Cloud workflow that starts a new build based on a schedule.
 
      Full documentation:
@@ -35,7 +39,12 @@ public struct CiScheduledStartCondition: Codable {
         /// A string that represents the time zone you configure for the start condition that starts a new build on a schedule.
         public var timezone: String?
 
-        public init(days: Items? = nil, frequency: Frequency? = nil, hour: Int? = nil, minute: Int? = nil, timezone: String? = nil) {
+        public init(days: Items? = nil,
+                    frequency: Frequency? = nil,
+                    hour: Int? = nil,
+                    minute: Int? = nil,
+                    timezone: String? = nil)
+        {
             self.days = days
             self.frequency = frequency
             self.hour = hour

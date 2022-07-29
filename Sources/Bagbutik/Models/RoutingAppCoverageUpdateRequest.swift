@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # RoutingAppCoverageUpdateRequest
  The request body you use to update a Routing App Coverage.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # RoutingAppCoverageUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
         public var type: String { "routingAppCoverages" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -46,12 +50,13 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # RoutingAppCoverageUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -61,7 +66,9 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?
 
-            public init(sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
+            public init(sourceFileChecksum: String? = nil,
+                        uploaded: Bool? = nil)
+            {
                 self.sourceFileChecksum = sourceFileChecksum
                 self.uploaded = uploaded
             }

@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the Pre-Order Information of an App
-      Get available date and release date of an app that is available for pre-order.
+     # Read the Pre-Order Information of an App
+     Get available date and release date of an app that is available for pre-order.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_pre-order_information_of_an_app>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_pre-order_information_of_an_app>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPreOrderForAppV1(id: String,
                                     fields: [GetPreOrderForAppV1.Field]? = nil) -> Request<AppPreOrderResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/preOrder", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/apps/\(id)/preOrder", method: .get, parameters: .init(fields: fields))
     }
 }
 

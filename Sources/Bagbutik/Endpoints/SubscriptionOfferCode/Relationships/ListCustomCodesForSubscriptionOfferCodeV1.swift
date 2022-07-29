@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All Custom Offer Codes for an Auto-Renewable Subscription
-      Get details about a custom code for a specific subscription offer for an auto-renewable subscription.
+     # List All Custom Offer Codes for an Auto-Renewable Subscription
+     Get details about a custom code for a specific subscription offer for an auto-renewable subscription.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_custom_offer_codes_for_an_auto-renewable_subscription>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_custom_offer_codes_for_an_auto-renewable_subscription>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCustomCodesForSubscriptionOfferCodeV1(id: String,
                                                           fields: [ListCustomCodesForSubscriptionOfferCodeV1.Field]? = nil,
                                                           includes: [ListCustomCodesForSubscriptionOfferCodeV1.Include]? = nil,
                                                           limit: Int? = nil) -> Request<SubscriptionOfferCodeCustomCodesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptionOfferCodes/\(id)/customCodes", method: .get, parameters: .init(fields: fields,
-                                                                                                           includes: includes,
-                                                                                                           limit: limit))
+        .init(path: "/v1/subscriptionOfferCodes/\(id)/customCodes", method: .get, parameters: .init(fields: fields,
+                                                                                                    includes: includes,
+                                                                                                    limit: limit))
     }
 }
 

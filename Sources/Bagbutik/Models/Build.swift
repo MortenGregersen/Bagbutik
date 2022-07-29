@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # Build
  The data structure that represents a Builds resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct Build: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct Build: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # Build.Attributes
      Attributes that describe a Builds resource.
 
      Full documentation:
@@ -80,7 +86,18 @@ public struct Build: Codable {
         /// The version number of the uploaded build.
         public var version: String?
 
-        public init(buildAudienceType: BuildAudienceType? = nil, computedMinMacOsVersion: String? = nil, expirationDate: Date? = nil, expired: Bool? = nil, iconAssetToken: ImageAsset? = nil, lsMinimumSystemVersion: String? = nil, minOsVersion: String? = nil, processingState: ProcessingState? = nil, uploadedDate: Date? = nil, usesNonExemptEncryption: Bool? = nil, version: String? = nil) {
+        public init(buildAudienceType: BuildAudienceType? = nil,
+                    computedMinMacOsVersion: String? = nil,
+                    expirationDate: Date? = nil,
+                    expired: Bool? = nil,
+                    iconAssetToken: ImageAsset? = nil,
+                    lsMinimumSystemVersion: String? = nil,
+                    minOsVersion: String? = nil,
+                    processingState: ProcessingState? = nil,
+                    uploadedDate: Date? = nil,
+                    usesNonExemptEncryption: Bool? = nil,
+                    version: String? = nil)
+        {
             self.buildAudienceType = buildAudienceType
             self.computedMinMacOsVersion = computedMinMacOsVersion
             self.expirationDate = expirationDate
@@ -103,6 +120,7 @@ public struct Build: Codable {
     }
 
     /**
+     # Build.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -122,7 +140,18 @@ public struct Build: Codable {
         public var individualTesters: IndividualTesters?
         public var preReleaseVersion: PreReleaseVersion?
 
-        public init(app: App? = nil, appEncryptionDeclaration: AppEncryptionDeclaration? = nil, appStoreVersion: AppStoreVersion? = nil, betaAppReviewSubmission: BetaAppReviewSubmission? = nil, betaBuildLocalizations: BetaBuildLocalizations? = nil, betaGroups: BetaGroups? = nil, buildBetaDetail: BuildBetaDetail? = nil, buildBundles: BuildBundles? = nil, icons: Icons? = nil, individualTesters: IndividualTesters? = nil, preReleaseVersion: PreReleaseVersion? = nil) {
+        public init(app: App? = nil,
+                    appEncryptionDeclaration: AppEncryptionDeclaration? = nil,
+                    appStoreVersion: AppStoreVersion? = nil,
+                    betaAppReviewSubmission: BetaAppReviewSubmission? = nil,
+                    betaBuildLocalizations: BetaBuildLocalizations? = nil,
+                    betaGroups: BetaGroups? = nil,
+                    buildBetaDetail: BuildBetaDetail? = nil,
+                    buildBundles: BuildBundles? = nil,
+                    icons: Icons? = nil,
+                    individualTesters: IndividualTesters? = nil,
+                    preReleaseVersion: PreReleaseVersion? = nil)
+        {
             self.app = app
             self.appEncryptionDeclaration = appEncryptionDeclaration
             self.appStoreVersion = appStoreVersion
@@ -137,6 +166,7 @@ public struct Build: Codable {
         }
 
         /**
+         # Build.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -146,12 +176,15 @@ public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # Build.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -188,6 +221,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -197,7 +231,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -215,13 +251,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.AppEncryptionDeclaration
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -231,12 +268,15 @@ public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # Build.Relationships.AppEncryptionDeclaration.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -273,6 +313,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.AppEncryptionDeclaration.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -282,7 +323,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -300,13 +343,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.AppStoreVersion
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -316,12 +360,15 @@ public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # Build.Relationships.AppStoreVersion.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -356,6 +403,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.AppStoreVersion.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -365,7 +413,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -383,13 +433,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.BetaAppReviewSubmission
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -399,12 +450,15 @@ public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # Build.Relationships.BetaAppReviewSubmission.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -441,6 +495,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.BetaAppReviewSubmission.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -450,7 +505,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -468,13 +525,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.BetaBuildLocalizations
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -485,13 +543,17 @@ public struct Build: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # Build.Relationships.BetaBuildLocalizations.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -528,6 +590,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.BetaBuildLocalizations.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -537,7 +600,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -555,13 +620,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.BetaGroups
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -573,16 +639,17 @@ public struct Build: Codable {
             /// Paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             public struct Data: Codable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "betaGroups" }
 
                 public init(id: String) {
@@ -613,7 +680,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -631,13 +700,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.BuildBetaDetail
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -647,12 +717,15 @@ public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # Build.Relationships.BuildBetaDetail.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -689,6 +762,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.BuildBetaDetail.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -698,7 +772,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -716,13 +792,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.BuildBundles
          The data, links, and paging information that describe the relationship between the Builds and the Build Bundles resources.
 
          Full documentation:
@@ -736,13 +813,17 @@ public struct Build: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # Build.Relationships.BuildBundles.Data
              The type and ID of a related Build Bundles resource.
 
              Full documentation:
@@ -779,6 +860,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.BuildBundles.Links
              The links to the related Build Bundles resource and the relationship’s self-link.
 
              Full documentation:
@@ -790,7 +872,9 @@ public struct Build: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -808,13 +892,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.Icons
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -825,13 +910,17 @@ public struct Build: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # Build.Relationships.Icons.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -866,6 +955,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.Icons.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -875,7 +965,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -893,13 +985,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.IndividualTesters
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -910,13 +1003,17 @@ public struct Build: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # Build.Relationships.IndividualTesters.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -953,6 +1050,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.IndividualTesters.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -962,7 +1060,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -980,13 +1080,14 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # Build.Relationships.PreReleaseVersion
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -996,12 +1097,15 @@ public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # Build.Relationships.PreReleaseVersion.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -1038,6 +1142,7 @@ public struct Build: Codable {
             }
 
             /**
+             # Build.Relationships.PreReleaseVersion.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -1047,7 +1152,9 @@ public struct Build: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -1065,8 +1172,8 @@ public struct Build: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

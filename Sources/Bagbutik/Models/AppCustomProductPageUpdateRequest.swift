@@ -12,7 +12,9 @@ public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
         public var type: String { "appCustomProductPages" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -34,16 +36,18 @@ public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         public struct Attributes: Codable {
             public var name: String?
             public var visible: Bool?
 
-            public init(name: String? = nil, visible: Bool? = nil) {
+            public init(name: String? = nil,
+                        visible: Bool? = nil)
+            {
                 self.name = name
                 self.visible = visible
             }

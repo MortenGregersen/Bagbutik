@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPricePointResponse
  A response that contains a single App Price Points resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppPricePointResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppPricePoint, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppPricePoint,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

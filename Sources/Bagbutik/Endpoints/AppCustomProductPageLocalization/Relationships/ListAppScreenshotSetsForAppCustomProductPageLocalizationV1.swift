@@ -1,16 +1,16 @@
 public extension Request {
     /**
-      # GET /v1/appCustomProductPageLocalizations/{id}/appScreenshotSets
+     # GET /v1/appCustomProductPageLocalizations/{id}/appScreenshotSets
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id_appscreenshotsets>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id_appscreenshotsets>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppScreenshotSetsForAppCustomProductPageLocalizationV1(id: String,
                                                                            fields: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Field]? = nil,
@@ -18,10 +18,10 @@ public extension Request {
                                                                            includes: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Include]? = nil,
                                                                            limits: [ListAppScreenshotSetsForAppCustomProductPageLocalizationV1.Limit]? = nil) -> Request<AppScreenshotSetsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appCustomProductPageLocalizations/\(id)/appScreenshotSets", method: .get, parameters: .init(fields: fields,
-                                                                                                                            filters: filters,
-                                                                                                                            includes: includes,
-                                                                                                                            limits: limits))
+        .init(path: "/v1/appCustomProductPageLocalizations/\(id)/appScreenshotSets", method: .get, parameters: .init(fields: fields,
+                                                                                                                     filters: filters,
+                                                                                                                     includes: includes,
+                                                                                                                     limits: limits))
     }
 }
 
@@ -136,16 +136,19 @@ public enum ListAppScreenshotSetsForAppCustomProductPageLocalizationV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageLocalization, appScreenshots, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
+        case appCustomProductPageLocalization
+        case appScreenshots
+        case appStoreVersionExperimentTreatmentLocalization
+        case appStoreVersionLocalization
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appScreenshots returned (when they are included) - maximum 50
         case appScreenshots(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Screenshot Set Information
-      Get an app screenshot set including its display target, language, and the screenshot it contains.
+     # Read App Screenshot Set Information
+     Get an app screenshot set including its display target, language, and the screenshot it contains.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_screenshot_set_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_screenshot_set_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appScreenshots returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appScreenshots returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppScreenshotSetV1(id: String,
                                       fields: [GetAppScreenshotSetV1.Field]? = nil,
                                       includes: [GetAppScreenshotSetV1.Include]? = nil,
                                       limit: Int? = nil) -> Request<AppScreenshotSetResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appScreenshotSets/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                          includes: includes,
-                                                                                          limit: limit))
+        .init(path: "/v1/appScreenshotSets/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                   includes: includes,
+                                                                                   limit: limit))
     }
 }
 
@@ -59,6 +59,9 @@ public enum GetAppScreenshotSetV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageLocalization, appScreenshots, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
+        case appCustomProductPageLocalization
+        case appScreenshots
+        case appStoreVersionExperimentTreatmentLocalization
+        case appStoreVersionLocalization
     }
 }

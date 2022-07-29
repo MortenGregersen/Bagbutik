@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAppStoreReviewDetailResponse
  A response that contains a single App Clip App Store Review Details resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct AppClipAppStoreReviewDetailResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppClipAppStoreReviewDetail, included: [AppClipDefaultExperience]? = nil, links: DocumentLinks) {
+    public init(data: AppClipAppStoreReviewDetail,
+                included: [AppClipDefaultExperience]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -12,7 +12,9 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, RequestB
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,16 +36,18 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, RequestB
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
             public var appIconName: String?
             public let name: String
 
-            public init(appIconName: String? = nil, name: String) {
+            public init(appIconName: String? = nil,
+                        name: String)
+            {
                 self.appIconName = appIconName
                 self.name = name
             }

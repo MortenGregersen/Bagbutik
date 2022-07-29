@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read Subscription Group Localization Information
-      Get the specific localized subscription group display name and optional custom app name for a subscription group.
+     # Read Subscription Group Localization Information
+     Get the specific localized subscription group display name and optional custom app name for a subscription group.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_localization_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_localization_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionGroupLocalizationV1(id: String,
                                                    fields: [GetSubscriptionGroupLocalizationV1.Field]? = nil,
                                                    includes: [GetSubscriptionGroupLocalizationV1.Include]? = nil) -> Request<SubscriptionGroupLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptionGroupLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                       includes: includes))
+        .init(path: "/v1/subscriptionGroupLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                                includes: includes))
     }
 }
 

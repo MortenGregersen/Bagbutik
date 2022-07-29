@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read the App Store Version Information of a Build
-      Get the App Store version of a specific build.
+     # Read the App Store Version Information of a Build
+     Get the App Store version of a specific build.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_information_of_a_build>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_information_of_a_build>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionForBuildV1(id: String,
                                              fields: [GetAppStoreVersionForBuildV1.Field]? = nil,
                                              includes: [GetAppStoreVersionForBuildV1.Include]? = nil,
                                              limits: [GetAppStoreVersionForBuildV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/builds/\(id)/appStoreVersion", method: .get, parameters: .init(fields: fields,
-                                                                                               includes: includes,
-                                                                                               limits: limits))
+        .init(path: "/v1/builds/\(id)/appStoreVersion", method: .get, parameters: .init(fields: fields,
+                                                                                        includes: includes,
+                                                                                        limits: limits))
     }
 }
 
@@ -235,16 +235,25 @@ public enum GetAppStoreVersionForBuildV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, routingAppCoverage
+        case ageRatingDeclaration
+        case app
+        case appClipDefaultExperience
+        case appStoreReviewDetail
+        case appStoreVersionExperiments
+        case appStoreVersionLocalizations
+        case appStoreVersionPhasedRelease
+        case appStoreVersionSubmission
+        case build
+        case routingAppCoverage
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum number of related appStoreVersionLocalizations returned (when they are included) - maximum 50
-        case appStoreVersionLocalizations(Int)
         /// Maximum number of related appStoreVersionExperiments returned (when they are included) - maximum 50
         case appStoreVersionExperiments(Int)
+        /// Maximum number of related appStoreVersionLocalizations returned (when they are included) - maximum 50
+        case appStoreVersionLocalizations(Int)
     }
 }

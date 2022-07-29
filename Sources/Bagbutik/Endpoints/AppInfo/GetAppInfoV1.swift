@@ -1,27 +1,27 @@
 public extension Request {
     /**
-      # Read App Info Information
-      Read App Store information including your App Store state, age ratings, Brazil age rating, and kids' age band.
+     # Read App Info Information
+     Read App Store information including your App Store state, age ratings, Brazil age rating, and kids' age band.
 
-      For request and response examples for reading an age rating declaration, see [GET /v1/appInfos/{id}/ageRatingDeclaration](https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appinfos_id_ageratingdeclaration).
+     For request and response examples for reading an age rating declaration, see [GET /v1/appInfos/{id}/ageRatingDeclaration](https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appinfos_id_ageratingdeclaration).
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appInfoLocalizations returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appInfoLocalizations returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppInfoV1(id: String,
                              fields: [GetAppInfoV1.Field]? = nil,
                              includes: [GetAppInfoV1.Include]? = nil,
                              limit: Int? = nil) -> Request<AppInfoResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appInfos/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                 includes: includes,
-                                                                                 limit: limit))
+        .init(path: "/v1/appInfos/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                          includes: includes,
+                                                                          limit: limit))
     }
 }
 
@@ -96,6 +96,14 @@ public enum GetAppInfoV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appInfoLocalizations, primaryCategory, primarySubcategoryOne, primarySubcategoryTwo, secondaryCategory, secondarySubcategoryOne, secondarySubcategoryTwo
+        case ageRatingDeclaration
+        case app
+        case appInfoLocalizations
+        case primaryCategory
+        case primarySubcategoryOne
+        case primarySubcategoryTwo
+        case secondaryCategory
+        case secondarySubcategoryOne
+        case secondarySubcategoryTwo
     }
 }

@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List App Encryption Declarations
-      Find and list all available app encryption declarations.
+     # List App Encryption Declarations
+     Find and list all available app encryption declarations.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_app_encryption_declarations>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_app_encryption_declarations>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppEncryptionDeclarationsV1(fields: [ListAppEncryptionDeclarationsV1.Field]? = nil,
                                                 filters: [ListAppEncryptionDeclarationsV1.Filter]? = nil,
                                                 includes: [ListAppEncryptionDeclarationsV1.Include]? = nil,
                                                 limit: Int? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appEncryptionDeclarations", method: .get, parameters: .init(fields: fields,
-                                                                                            filters: filters,
-                                                                                            includes: includes,
-                                                                                            limit: limit))
+        .init(path: "/v1/appEncryptionDeclarations", method: .get, parameters: .init(fields: fields,
+                                                                                     filters: filters,
+                                                                                     includes: includes,
+                                                                                     limit: limit))
     }
 }
 

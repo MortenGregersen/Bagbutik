@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # PreReleaseVersionsResponse
  A response that contains a list of Pre-Release Version resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct PreReleaseVersionsResponse: Codable, PagedResponse {
     public typealias Data = PrereleaseVersion
+
     /// The resource data.
     public let data: [PrereleaseVersion]
     public var included: [Included]?
@@ -16,7 +18,11 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [PrereleaseVersion], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [PrereleaseVersion],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

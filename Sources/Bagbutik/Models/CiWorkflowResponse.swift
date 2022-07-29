@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiWorkflowResponse
  A response that contains a single Workflows resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct CiWorkflowResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: CiWorkflow, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: CiWorkflow,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

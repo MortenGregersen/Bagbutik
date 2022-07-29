@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All Xcode Versions Available in Xcode Cloud
-      List all Xcode versions that are available to Xcode Cloud workflows.
+     # List All Xcode Versions Available in Xcode Cloud
+     List all Xcode versions that are available to Xcode Cloud workflows.
 
-      The example request below lists Xcode versions available to Xcode Cloud workflows and supported test destinations, including information about available simulated devices. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard or to read additional information; for example, macOS version information.
+     The example request below lists Xcode versions available to Xcode Cloud workflows and supported test destinations, including information about available simulated devices. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard or to read additional information; for example, macOS version information.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_versions_available_in_xcode_cloud>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_versions_available_in_xcode_cloud>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listCiXcodeVersionsV1(fields: [ListCiXcodeVersionsV1.Field]? = nil,
                                       includes: [ListCiXcodeVersionsV1.Include]? = nil,
                                       limits: [ListCiXcodeVersionsV1.Limit]? = nil) -> Request<CiXcodeVersionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciXcodeVersions", method: .get, parameters: .init(fields: fields,
-                                                                                  includes: includes,
-                                                                                  limits: limits))
+        .init(path: "/v1/ciXcodeVersions", method: .get, parameters: .init(fields: fields,
+                                                                           includes: includes,
+                                                                           limits: limits))
     }
 }
 

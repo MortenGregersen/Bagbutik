@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AgeRatingDeclarationResponse
  A response that contains a single Age Rating Declarations resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct AgeRatingDeclarationResponse: Codable {
     /// Navigational links including the self-link and links to the related data.
     public let links: DocumentLinks
 
-    public init(data: AgeRatingDeclaration, links: DocumentLinks) {
+    public init(data: AgeRatingDeclaration,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

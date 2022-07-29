@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read and Download Certificate Information
-      Get information about a certificate and download the certificate data.
+     # Read and Download Certificate Information
+     Get information about a certificate and download the certificate data.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_and_download_certificate_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_and_download_certificate_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getCertificateV1(id: String,
                                  fields: [GetCertificateV1.Field]? = nil) -> Request<CertificateResponse, ErrorResponse>
     {
-        return .init(path: "/v1/certificates/\(id)", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/certificates/\(id)", method: .get, parameters: .init(fields: fields))
     }
 }
 

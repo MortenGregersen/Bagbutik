@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read the Price Schedule for an In-App Purchase
-      Get a list of the scheduled prices for an in-app purchase.
+     # Read the Price Schedule for an In-App Purchase
+     Get a list of the scheduled prices for an in-app purchase.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_price_schedule_for_an_in-app_purchase>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_price_schedule_for_an_in-app_purchase>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related manualPrices returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related manualPrices returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getIapPriceScheduleForInAppPurchaseV2(id: String,
                                                       fields: [GetIapPriceScheduleForInAppPurchaseV2.Field]? = nil,
                                                       includes: [GetIapPriceScheduleForInAppPurchaseV2.Include]? = nil,
                                                       limit: Int? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse>
     {
-        return .init(path: "/v2/inAppPurchases/\(id)/iapPriceSchedule", method: .get, parameters: .init(fields: fields,
-                                                                                                        includes: includes,
-                                                                                                        limit: limit))
+        .init(path: "/v2/inAppPurchases/\(id)/iapPriceSchedule", method: .get, parameters: .init(fields: fields,
+                                                                                                 includes: includes,
+                                                                                                 limit: limit))
     }
 }
 
@@ -70,6 +70,7 @@ public enum GetIapPriceScheduleForInAppPurchaseV2 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case inAppPurchase, manualPrices
+        case inAppPurchase
+        case manualPrices
     }
 }

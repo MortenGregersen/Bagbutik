@@ -1,18 +1,18 @@
 public extension Request {
     /**
-      # Commit a Review Screenshot for an In-App Purchase
-      Commit an uploaded image asset as a review screenshot for an in-app purchase.
+     # Commit a Review Screenshot for an In-App Purchase
+     Commit an uploaded image asset as a review screenshot for an in-app purchase.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/commit_a_review_screenshot_for_an_in-app_purchase>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/commit_a_review_screenshot_for_an_in-app_purchase>
 
-      - Parameter id: The id of the requested resource
-      - Parameter requestBody: InAppPurchaseAppStoreReviewScreenshot representation
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter requestBody: InAppPurchaseAppStoreReviewScreenshot representation
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func updateInAppPurchaseAppStoreReviewScreenshotV1(id: String,
                                                               requestBody: InAppPurchaseAppStoreReviewScreenshotUpdateRequest) -> Request<InAppPurchaseAppStoreReviewScreenshotResponse, ErrorResponse>
     {
-        return .init(path: "/v1/inAppPurchaseAppStoreReviewScreenshots/\(id)", method: .patch, requestBody: requestBody)
+        .init(path: "/v1/inAppPurchaseAppStoreReviewScreenshots/\(id)", method: .patch, requestBody: requestBody)
     }
 }

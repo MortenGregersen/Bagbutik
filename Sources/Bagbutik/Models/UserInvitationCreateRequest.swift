@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UserInvitationCreateRequest
  The request body you use to create a User Invitation.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # UserInvitationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
         /// The types and IDs of the related data to update.
         public var relationships: Relationships?
 
-        public init(attributes: Attributes, relationships: Relationships? = nil) {
+        public init(attributes: Attributes,
+                    relationships: Relationships? = nil)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # UserInvitationCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -75,7 +80,13 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
             public let roles: [UserRole]
 
-            public init(allAppsVisible: Bool? = nil, email: String, firstName: String, lastName: String, provisioningAllowed: Bool? = nil, roles: [UserRole]) {
+            public init(allAppsVisible: Bool? = nil,
+                        email: String,
+                        firstName: String,
+                        lastName: String,
+                        provisioningAllowed: Bool? = nil,
+                        roles: [UserRole])
+            {
                 self.allAppsVisible = allAppsVisible
                 self.email = email
                 self.firstName = firstName
@@ -86,6 +97,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # UserInvitationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -99,6 +111,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # UserInvitationCreateRequest.Data.Relationships.VisibleApps
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -112,6 +125,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # UserInvitationCreateRequest.Data.Relationships.VisibleApps.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

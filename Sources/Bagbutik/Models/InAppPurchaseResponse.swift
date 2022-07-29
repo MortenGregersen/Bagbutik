@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # InAppPurchaseResponse
  A response that contains a single In-App Purchases resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct InAppPurchaseResponse: Codable {
     public var included: [App]?
     public let links: DocumentLinks
 
-    public init(data: InAppPurchase, included: [App]? = nil, links: DocumentLinks) {
+    public init(data: InAppPurchase,
+                included: [App]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

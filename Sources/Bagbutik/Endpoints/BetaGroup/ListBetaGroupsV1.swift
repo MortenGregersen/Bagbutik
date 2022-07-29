@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List Beta Groups
-      Find and list beta groups for all apps.
+     # List Beta Groups
+     Find and list beta groups for all apps.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_groups>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_groups>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaGroupsV1(fields: [ListBetaGroupsV1.Field]? = nil,
                                  filters: [ListBetaGroupsV1.Filter]? = nil,
@@ -19,11 +19,11 @@ public extension Request {
                                  sorts: [ListBetaGroupsV1.Sort]? = nil,
                                  limits: [ListBetaGroupsV1.Limit]? = nil) -> Request<BetaGroupsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaGroups", method: .get, parameters: .init(fields: fields,
-                                                                             filters: filters,
-                                                                             includes: includes,
-                                                                             sorts: sorts,
-                                                                             limits: limits))
+        .init(path: "/v1/betaGroups", method: .get, parameters: .init(fields: fields,
+                                                                      filters: filters,
+                                                                      includes: includes,
+                                                                      sorts: sorts,
+                                                                      limits: limits))
     }
 }
 
@@ -163,7 +163,9 @@ public enum ListBetaGroupsV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case app, betaTesters, builds
+        case app
+        case betaTesters
+        case builds
     }
 
     /**
@@ -184,11 +186,11 @@ public enum ListBetaGroupsV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related betaTesters returned (when they are included) - maximum 50
         case betaTesters(Int)
         /// Maximum number of related builds returned (when they are included) - maximum 1000
         case builds(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

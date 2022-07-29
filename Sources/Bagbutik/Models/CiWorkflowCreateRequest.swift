@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiWorkflowCreateRequest
  The request body you use to create a new Xcode Cloud workflow.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # CiWorkflowCreateRequest.Data
      The data element of the request you use to create a new Xcode Cloud workflow.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
         /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # CiWorkflowCreateRequest.Data.Attributes
          The attributes you set that describe the new Workflows resource.
 
          Full documentation:
@@ -85,7 +90,18 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// A start condition that starts new builds for changes to a tag.
             public var tagStartCondition: CiTagStartCondition?
 
-            public init(actions: [CiAction], branchStartCondition: CiBranchStartCondition? = nil, clean: Bool, containerFilePath: String, description: String, isEnabled: Bool, isLockedForEditing: Bool? = nil, name: String, pullRequestStartCondition: CiPullRequestStartCondition? = nil, scheduledStartCondition: CiScheduledStartCondition? = nil, tagStartCondition: CiTagStartCondition? = nil) {
+            public init(actions: [CiAction],
+                        branchStartCondition: CiBranchStartCondition? = nil,
+                        clean: Bool,
+                        containerFilePath: String,
+                        description: String,
+                        isEnabled: Bool,
+                        isLockedForEditing: Bool? = nil,
+                        name: String,
+                        pullRequestStartCondition: CiPullRequestStartCondition? = nil,
+                        scheduledStartCondition: CiScheduledStartCondition? = nil,
+                        tagStartCondition: CiTagStartCondition? = nil)
+            {
                 self.actions = actions
                 self.branchStartCondition = branchStartCondition
                 self.clean = clean
@@ -101,6 +117,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # CiWorkflowCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -116,7 +133,11 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             /// The related Xcode Versions resource.
             public let xcodeVersion: XcodeVersion
 
-            public init(macOsVersion: MacOsVersion, product: Product, repository: Repository, xcodeVersion: XcodeVersion) {
+            public init(macOsVersion: MacOsVersion,
+                        product: Product,
+                        repository: Repository,
+                        xcodeVersion: XcodeVersion)
+            {
                 self.macOsVersion = macOsVersion
                 self.product = product
                 self.repository = repository
@@ -124,6 +145,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiWorkflowCreateRequest.Data.Relationships.MacOsVersion
              The relationship to the macOS Versions resource you set with the request that creates a Workflows resource.
 
              Full documentation:
@@ -138,6 +160,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiWorkflowCreateRequest.Data.Relationships.MacOsVersion.Data
                  The type and ID of the macOS Versions resource that you’re relating with the Workflows resource you’re creating.
 
                  Full documentation:
@@ -175,6 +198,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiWorkflowCreateRequest.Data.Relationships.Product
              The relationship to the Products resource you set with the request that creates a Workflows resource.
 
              Full documentation:
@@ -189,6 +213,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiWorkflowCreateRequest.Data.Relationships.Product.Data
                  The type and ID of the Products resource that you’re relating with the Workflows resource you’re creating.
 
                  Full documentation:
@@ -226,6 +251,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiWorkflowCreateRequest.Data.Relationships.Repository
              The relationship to the Repositories Versions resource you set with the request that creates a Workflows resource.
 
              Full documentation:
@@ -240,6 +266,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiWorkflowCreateRequest.Data.Relationships.Repository.Data
                  The type and ID of the Repositories resource that you’re relating with the Workflows resource you’re creating.
 
                  Full documentation:
@@ -277,6 +304,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiWorkflowCreateRequest.Data.Relationships.XcodeVersion
              The relationship to the Xcode Versions resource you set with the request that creates a Workflows resource.
 
              Full documentation:
@@ -291,6 +319,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiWorkflowCreateRequest.Data.Relationships.XcodeVersion.Data
                  The type and ID of the Xcode Versions resource that you’re relating with the Workflows resource you’re creating.
 
                  Full documentation:

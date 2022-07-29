@@ -5,7 +5,10 @@ public struct SubscriptionPricePointResponse: Codable {
     public var included: [Territory]?
     public let links: DocumentLinks
 
-    public init(data: SubscriptionPricePoint, included: [Territory]? = nil, links: DocumentLinks) {
+    public init(data: SubscriptionPricePoint,
+                included: [Territory]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

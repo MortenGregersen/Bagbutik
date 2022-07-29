@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionPhasedReleaseCreateRequest
  The request body you use to create an App Store Version Phased Release.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppStoreVersionPhasedReleaseCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public let relationships: Relationships
 
-        public init(attributes: Attributes? = nil, relationships: Relationships) {
+        public init(attributes: Attributes? = nil,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -46,12 +50,13 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppStoreVersionPhasedReleaseCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -66,6 +71,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppStoreVersionPhasedReleaseCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -79,6 +85,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppStoreVersionPhasedReleaseCreateRequest.Data.Relationships.AppStoreVersion
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -92,6 +99,7 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppStoreVersionPhasedReleaseCreateRequest.Data.Relationships.AppStoreVersion.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

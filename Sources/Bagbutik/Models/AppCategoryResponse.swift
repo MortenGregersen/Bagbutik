@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppCategoryResponse
  A response that contains a single App Categories resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppCategoryResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppCategory, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppCategory,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

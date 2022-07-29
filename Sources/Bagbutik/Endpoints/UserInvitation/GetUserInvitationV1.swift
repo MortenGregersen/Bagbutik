@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read User Invitation Information
-      Get information about a pending invitation to join your team.
+     # Read User Invitation Information
+     Get information about a pending invitation to join your team.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_user_invitation_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_user_invitation_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related visibleApps returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related visibleApps returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getUserInvitationV1(id: String,
                                     fields: [GetUserInvitationV1.Field]? = nil,
                                     includes: [GetUserInvitationV1.Include]? = nil,
                                     limit: Int? = nil) -> Request<UserInvitationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/userInvitations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes,
-                                                                                        limit: limit))
+        .init(path: "/v1/userInvitations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                 includes: includes,
+                                                                                 limit: limit))
     }
 }
 

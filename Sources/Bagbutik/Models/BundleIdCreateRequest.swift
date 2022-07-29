@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BundleIdCreateRequest
  The request body you use to create a Bundle ID.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BundleIdCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -43,11 +45,12 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
+            case type
         }
 
         /**
+         # BundleIdCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -59,7 +62,11 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             public let platform: BundleIdPlatform
             public var seedId: String?
 
-            public init(identifier: String, name: String, platform: BundleIdPlatform, seedId: String? = nil) {
+            public init(identifier: String,
+                        name: String,
+                        platform: BundleIdPlatform,
+                        seedId: String? = nil)
+            {
                 self.identifier = identifier
                 self.name = name
                 self.platform = platform

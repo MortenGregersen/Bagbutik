@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiArtifact
  The data structure that represents an Artifacts resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct CiArtifact: Codable {
     /// The attributes that describe the Artifacts resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct CiArtifact: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # CiArtifact.Attributes
      The attributes that describe an Artifacts resource.
 
      Full documentation:
@@ -63,7 +68,11 @@ public struct CiArtifact: Codable {
         /// A string that describes the type of the artifact.
         public var fileType: FileType?
 
-        public init(downloadUrl: String? = nil, fileName: String? = nil, fileSize: Int? = nil, fileType: FileType? = nil) {
+        public init(downloadUrl: String? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    fileType: FileType? = nil)
+        {
             self.downloadUrl = downloadUrl
             self.fileName = fileName
             self.fileSize = fileSize

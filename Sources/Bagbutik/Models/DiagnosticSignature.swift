@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # DiagnosticSignature
  The data structure that represents the Diagnostic Signatures resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct DiagnosticSignature: Codable {
     /// Attributes that describe the diagnostic signature resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct DiagnosticSignature: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # DiagnosticSignature.Attributes
      Attributes that describe a Diagnostic Signatures resource.
 
      Full documentation:
@@ -61,7 +66,10 @@ public struct DiagnosticSignature: Codable {
         /// The signature weight, which indicates how critical an issue reported by the diagnostic signature is. Weight values are between 0 and 1.
         public var weight: Double?
 
-        public init(diagnosticType: DiagnosticType? = nil, signature: String? = nil, weight: Double? = nil) {
+        public init(diagnosticType: DiagnosticType? = nil,
+                    signature: String? = nil,
+                    weight: Double? = nil)
+        {
             self.diagnosticType = diagnosticType
             self.signature = signature
             self.weight = weight

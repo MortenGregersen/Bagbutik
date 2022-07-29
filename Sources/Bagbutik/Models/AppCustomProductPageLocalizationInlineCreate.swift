@@ -6,7 +6,10 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable {
     public let attributes: Attributes
     public var relationships: Relationships?
 
-    public init(id: String? = nil, attributes: Attributes, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                attributes: Attributes,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.attributes = attributes
         self.relationships = relationships
@@ -31,17 +34,19 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id
-        case type
         case attributes
+        case id
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
         public let locale: String
         public var promotionalText: String?
 
-        public init(locale: String, promotionalText: String? = nil) {
+        public init(locale: String,
+                    promotionalText: String? = nil)
+        {
             self.locale = locale
             self.promotionalText = promotionalText
         }

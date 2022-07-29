@@ -6,7 +6,10 @@ public struct SubscriptionSubmission: Codable {
     public var type: String { "subscriptionSubmissions" }
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.relationships = relationships
@@ -33,8 +36,8 @@ public struct SubscriptionSubmission: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case links
-        case type
         case relationships
+        case type
     }
 
     public struct Relationships: Codable {
@@ -48,7 +51,9 @@ public struct SubscriptionSubmission: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -85,7 +90,9 @@ public struct SubscriptionSubmission: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -103,8 +110,8 @@ public struct SubscriptionSubmission: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

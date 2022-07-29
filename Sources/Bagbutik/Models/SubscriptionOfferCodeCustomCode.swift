@@ -7,7 +7,11 @@ public struct SubscriptionOfferCodeCustomCode: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct SubscriptionOfferCodeCustomCode: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -49,7 +53,12 @@ public struct SubscriptionOfferCodeCustomCode: Codable {
         public var expirationDate: String?
         public var numberOfCodes: Int?
 
-        public init(active: Bool? = nil, createdDate: Date? = nil, customCode: String? = nil, expirationDate: String? = nil, numberOfCodes: Int? = nil) {
+        public init(active: Bool? = nil,
+                    createdDate: Date? = nil,
+                    customCode: String? = nil,
+                    expirationDate: String? = nil,
+                    numberOfCodes: Int? = nil)
+        {
             self.active = active
             self.createdDate = createdDate
             self.customCode = customCode
@@ -69,7 +78,9 @@ public struct SubscriptionOfferCodeCustomCode: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -106,7 +117,9 @@ public struct SubscriptionOfferCodeCustomCode: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -124,8 +137,8 @@ public struct SubscriptionOfferCodeCustomCode: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

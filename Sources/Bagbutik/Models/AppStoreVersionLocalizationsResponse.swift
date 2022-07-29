@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionLocalizationsResponse
  A response that contains a list of App Store Version Localization resources.
 
  Full documentation:
@@ -8,12 +9,17 @@ import Foundation
  */
 public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppStoreVersionLocalization
+
     public let data: [AppStoreVersionLocalization]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppStoreVersionLocalization], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppStoreVersionLocalization],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

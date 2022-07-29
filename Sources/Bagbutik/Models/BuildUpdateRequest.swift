@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildUpdateRequest
  The request body you use to update a Build.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BuildUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -30,7 +32,10 @@ public struct BuildUpdateRequest: Codable, RequestBody {
         /// Navigational links to related data and included resource types and IDs.
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -55,13 +60,14 @@ public struct BuildUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         /**
+         # BuildUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -73,13 +79,16 @@ public struct BuildUpdateRequest: Codable, RequestBody {
             /// A Boolean value that indicates whether the build uses non-exempt encryption.
             public var usesNonExemptEncryption: Bool?
 
-            public init(expired: Bool? = nil, usesNonExemptEncryption: Bool? = nil) {
+            public init(expired: Bool? = nil,
+                        usesNonExemptEncryption: Bool? = nil)
+            {
                 self.expired = expired
                 self.usesNonExemptEncryption = usesNonExemptEncryption
             }
         }
 
         /**
+         # BuildUpdateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -93,6 +102,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
             }
 
             /**
+             # BuildUpdateRequest.Data.Relationships.AppEncryptionDeclaration
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -106,6 +116,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BuildUpdateRequest.Data.Relationships.AppEncryptionDeclaration.Data
                  The type and ID of a resource that you're relating with the resource you're updating.
 
                  Full documentation:

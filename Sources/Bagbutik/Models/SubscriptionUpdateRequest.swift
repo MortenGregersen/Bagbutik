@@ -4,7 +4,9 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [Included]?
 
-    public init(data: Data, included: [Included]? = nil) {
+    public init(data: Data,
+                included: [Included]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -15,7 +17,10 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         public var attributes: Attributes?
         public var relationships: Relationships?
 
-        public init(id: String, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.id = id
             self.attributes = attributes
             self.relationships = relationships
@@ -40,10 +45,10 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case id
-            case type
             case attributes
+            case id
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -54,7 +59,13 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             public var reviewNote: String?
             public var subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod?
 
-            public init(availableInAllTerritories: Bool? = nil, familySharable: Bool? = nil, groupLevel: Int? = nil, name: String? = nil, reviewNote: String? = nil, subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod? = nil) {
+            public init(availableInAllTerritories: Bool? = nil,
+                        familySharable: Bool? = nil,
+                        groupLevel: Int? = nil,
+                        name: String? = nil,
+                        reviewNote: String? = nil,
+                        subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod? = nil)
+            {
                 self.availableInAllTerritories = availableInAllTerritories
                 self.familySharable = familySharable
                 self.groupLevel = groupLevel
@@ -69,7 +80,10 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             public var prices: Prices?
             public var promotionalOffers: PromotionalOffers?
 
-            public init(introductoryOffers: IntroductoryOffers? = nil, prices: Prices? = nil, promotionalOffers: PromotionalOffers? = nil) {
+            public init(introductoryOffers: IntroductoryOffers? = nil,
+                        prices: Prices? = nil,
+                        promotionalOffers: PromotionalOffers? = nil)
+            {
                 self.introductoryOffers = introductoryOffers
                 self.prices = prices
                 self.promotionalOffers = promotionalOffers

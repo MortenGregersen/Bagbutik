@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AgeRatingDeclaration
  The data structure that represents an Age Rating Declarations resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct AgeRatingDeclaration: Codable {
     /// Attributes that describe this Age Rating Declarations resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct AgeRatingDeclaration: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # AgeRatingDeclaration.Attributes
      Attributes that describe an Age Rating Declarations resource.
 
      Full documentation:
@@ -91,7 +96,24 @@ public struct AgeRatingDeclaration: Codable {
         public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gambling: Bool? = nil, gamblingAndContests: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {
+        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
+                    contests: Contests? = nil,
+                    gambling: Bool? = nil,
+                    gamblingAndContests: Bool? = nil,
+                    gamblingSimulated: GamblingSimulated? = nil,
+                    horrorOrFearThemes: HorrorOrFearThemes? = nil,
+                    kidsAgeBand: KidsAgeBand? = nil,
+                    matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
+                    medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
+                    profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
+                    seventeenPlus: Bool? = nil,
+                    sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil,
+                    sexualContentOrNudity: SexualContentOrNudity? = nil,
+                    unrestrictedWebAccess: Bool? = nil,
+                    violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil,
+                    violenceRealistic: ViolenceRealistic? = nil,
+                    violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
+        {
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
             self.gambling = gambling
@@ -111,7 +133,23 @@ public struct AgeRatingDeclaration: Codable {
             self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil, contests: Contests? = nil, gambling: Bool? = nil, gamblingSimulated: GamblingSimulated? = nil, horrorOrFearThemes: HorrorOrFearThemes? = nil, kidsAgeBand: KidsAgeBand? = nil, matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil, medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil, profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil, seventeenPlus: Bool? = nil, sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil, sexualContentOrNudity: SexualContentOrNudity? = nil, unrestrictedWebAccess: Bool? = nil, violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil, violenceRealistic: ViolenceRealistic? = nil, violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil) {
+        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
+                    contests: Contests? = nil,
+                    gambling: Bool? = nil,
+                    gamblingSimulated: GamblingSimulated? = nil,
+                    horrorOrFearThemes: HorrorOrFearThemes? = nil,
+                    kidsAgeBand: KidsAgeBand? = nil,
+                    matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
+                    medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
+                    profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
+                    seventeenPlus: Bool? = nil,
+                    sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil,
+                    sexualContentOrNudity: SexualContentOrNudity? = nil,
+                    unrestrictedWebAccess: Bool? = nil,
+                    violenceCartoonOrFantasy: ViolenceCartoonOrFantasy? = nil,
+                    violenceRealistic: ViolenceRealistic? = nil,
+                    violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
+        {
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
             self.gambling = gambling

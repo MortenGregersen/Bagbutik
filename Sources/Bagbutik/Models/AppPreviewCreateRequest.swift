@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPreviewCreateRequest
  The request body you use to create an App Preview.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppPreviewCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -46,12 +50,13 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # AppPreviewCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -63,7 +68,11 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
             public var mimeType: String?
             public var previewFrameTimeCode: String?
 
-            public init(fileName: String, fileSize: Int, mimeType: String? = nil, previewFrameTimeCode: String? = nil) {
+            public init(fileName: String,
+                        fileSize: Int,
+                        mimeType: String? = nil,
+                        previewFrameTimeCode: String? = nil)
+            {
                 self.fileName = fileName
                 self.fileSize = fileSize
                 self.mimeType = mimeType
@@ -72,6 +81,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # AppPreviewCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -85,6 +95,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # AppPreviewCreateRequest.Data.Relationships.AppPreviewSet
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -98,6 +109,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # AppPreviewCreateRequest.Data.Relationships.AppPreviewSet.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

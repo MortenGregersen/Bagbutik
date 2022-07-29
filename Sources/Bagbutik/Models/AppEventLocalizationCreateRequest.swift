@@ -12,7 +12,9 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -45,7 +47,11 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
             public var name: String?
             public var shortDescription: String?
 
-            public init(locale: String, longDescription: String? = nil, name: String? = nil, shortDescription: String? = nil) {
+            public init(locale: String,
+                        longDescription: String? = nil,
+                        name: String? = nil,
+                        shortDescription: String? = nil)
+            {
                 self.locale = locale
                 self.longDescription = longDescription
                 self.name = name

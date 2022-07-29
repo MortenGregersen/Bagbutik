@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   String that represents a build's availability for internal testing.
+ # InternalBetaState
+ String that represents a build's availability for internal testing.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/internalbetastate>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/internalbetastate>
  */
 public enum InternalBetaState: String, Codable, CaseIterable {
     case processing = "PROCESSING"

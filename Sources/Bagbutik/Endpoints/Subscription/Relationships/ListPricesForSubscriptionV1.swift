@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Prices for a Subscription
-      Get a list of prices for an auto-renewable subscription, by territory.
+     # List All Prices for a Subscription
+     Get a list of prices for an auto-renewable subscription, by territory.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_prices_for_a_subscription>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_prices_for_a_subscription>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listPricesForSubscriptionV1(id: String,
                                             fields: [ListPricesForSubscriptionV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                             includes: [ListPricesForSubscriptionV1.Include]? = nil,
                                             limit: Int? = nil) -> Request<SubscriptionPricesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptions/\(id)/prices", method: .get, parameters: .init(fields: fields,
-                                                                                             filters: filters,
-                                                                                             includes: includes,
-                                                                                             limit: limit))
+        .init(path: "/v1/subscriptions/\(id)/prices", method: .get, parameters: .init(fields: fields,
+                                                                                      filters: filters,
+                                                                                      includes: includes,
+                                                                                      limit: limit))
     }
 }
 
@@ -75,6 +75,7 @@ public enum ListPricesForSubscriptionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case subscriptionPricePoint, territory
+        case subscriptionPricePoint
+        case territory
     }
 }

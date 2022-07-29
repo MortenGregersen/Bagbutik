@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaGroupUpdateRequest
  The request body you use to update a Beta Group.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaGroupUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
         /// The resource's attributes.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BetaGroupUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -73,7 +78,13 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
             /// A Boolean value that limits the number of testers who can join the beta group using the public link.
             public var publicLinkLimitEnabled: Bool?
 
-            public init(feedbackEnabled: Bool? = nil, iosBuildsAvailableForAppleSiliconMac: Bool? = nil, name: String? = nil, publicLinkEnabled: Bool? = nil, publicLinkLimit: Int? = nil, publicLinkLimitEnabled: Bool? = nil) {
+            public init(feedbackEnabled: Bool? = nil,
+                        iosBuildsAvailableForAppleSiliconMac: Bool? = nil,
+                        name: String? = nil,
+                        publicLinkEnabled: Bool? = nil,
+                        publicLinkLimit: Int? = nil,
+                        publicLinkLimitEnabled: Bool? = nil)
+            {
                 self.feedbackEnabled = feedbackEnabled
                 self.iosBuildsAvailableForAppleSiliconMac = iosBuildsAvailableForAppleSiliconMac
                 self.name = name

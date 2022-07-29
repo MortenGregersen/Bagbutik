@@ -6,7 +6,10 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
     public let attributes: Attributes
     public var relationships: Relationships?
 
-    public init(id: String? = nil, attributes: Attributes, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                attributes: Attributes,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.attributes = attributes
         self.relationships = relationships
@@ -31,10 +34,10 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id
-        case type
         case attributes
+        case id
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -44,7 +47,12 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
         public let offerMode: SubscriptionOfferMode
         public var startDate: String?
 
-        public init(duration: SubscriptionOfferDuration, endDate: String? = nil, numberOfPeriods: Int, offerMode: SubscriptionOfferMode, startDate: String? = nil) {
+        public init(duration: SubscriptionOfferDuration,
+                    endDate: String? = nil,
+                    numberOfPeriods: Int,
+                    offerMode: SubscriptionOfferMode,
+                    startDate: String? = nil)
+        {
             self.duration = duration
             self.endDate = endDate
             self.numberOfPeriods = numberOfPeriods
@@ -58,7 +66,10 @@ public struct SubscriptionIntroductoryOfferInlineCreate: Codable {
         public var subscriptionPricePoint: SubscriptionPricePoint?
         public var territory: Territory?
 
-        public init(subscription: Subscription? = nil, subscriptionPricePoint: SubscriptionPricePoint? = nil, territory: Territory? = nil) {
+        public init(subscription: Subscription? = nil,
+                    subscriptionPricePoint: SubscriptionPricePoint? = nil,
+                    territory: Territory? = nil)
+        {
             self.subscription = subscription
             self.subscriptionPricePoint = subscriptionPricePoint
             self.territory = territory

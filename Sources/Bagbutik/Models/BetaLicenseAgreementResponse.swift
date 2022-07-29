@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaLicenseAgreementResponse
  A response that contains a single Beta License Agreements resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct BetaLicenseAgreementResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: BetaLicenseAgreement, included: [App]? = nil, links: DocumentLinks) {
+    public init(data: BetaLicenseAgreement,
+                included: [App]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

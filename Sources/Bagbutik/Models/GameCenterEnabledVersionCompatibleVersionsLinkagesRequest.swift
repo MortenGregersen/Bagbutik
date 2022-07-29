@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # GameCenterEnabledVersionCompatibleVersionsLinkagesRequest
  A request body you use to add or remove compatible versions from a Game Center-enabled version.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable
     }
 
     /**
+     # GameCenterEnabledVersionCompatibleVersionsLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   Strings that represent Apple operating systems.
+ # Platform
+ Strings that represent Apple operating systems.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/platform>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/platform>
  */
 public enum Platform: String, Codable, CaseIterable {
     /// A string that represents iOS.

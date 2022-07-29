@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipHeaderImage
  The data structure that represents the image that appears on the App Clip card of a default App Clip experience.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct AppClipHeaderImage: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct AppClipHeaderImage: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppClipHeaderImage.Attributes
      The attributes that describe the image that appears on the App Clip card of a default App Clip experience.
 
      Full documentation:
@@ -73,7 +79,13 @@ public struct AppClipHeaderImage: Codable {
         /// Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.
         public var uploadOperations: [UploadOperation]?
 
-        public init(assetDeliveryState: AppMediaAssetState? = nil, fileName: String? = nil, fileSize: Int? = nil, imageAsset: ImageAsset? = nil, sourceFileChecksum: String? = nil, uploadOperations: [UploadOperation]? = nil) {
+        public init(assetDeliveryState: AppMediaAssetState? = nil,
+                    fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    imageAsset: ImageAsset? = nil,
+                    sourceFileChecksum: String? = nil,
+                    uploadOperations: [UploadOperation]? = nil)
+        {
             self.assetDeliveryState = assetDeliveryState
             self.fileName = fileName
             self.fileSize = fileSize
@@ -84,6 +96,7 @@ public struct AppClipHeaderImage: Codable {
     }
 
     /**
+     # AppClipHeaderImage.Relationships
      The relationships of the App Clip Header Images resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -98,6 +111,7 @@ public struct AppClipHeaderImage: Codable {
         }
 
         /**
+         # AppClipHeaderImage.Relationships.AppClipDefaultExperienceLocalization
          The data and links that describe the relationship between the App Clip Header Images and the Default App Clip Experiences resources.
 
          Full documentation:
@@ -109,12 +123,15 @@ public struct AppClipHeaderImage: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppClipHeaderImage.Relationships.AppClipDefaultExperienceLocalization.Data
              The type and ID of a related Default App Clip Experience Localizations resource.
 
              Full documentation:
@@ -151,6 +168,7 @@ public struct AppClipHeaderImage: Codable {
             }
 
             /**
+             # AppClipHeaderImage.Relationships.AppClipDefaultExperienceLocalization.Links
              The links to the related Default App Clip Experience Localizations resource and the relationship’s self-link.
 
              Full documentation:
@@ -162,7 +180,9 @@ public struct AppClipHeaderImage: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -180,8 +200,8 @@ public struct AppClipHeaderImage: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # List All Apps Visible to a User
-      Get a list of apps that a user on your team can view.
+     # List All Apps Visible to a User
+     Get a list of apps that a user on your team can view.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_apps_visible_to_a_user>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_apps_visible_to_a_user>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listVisibleAppsForUserV1(id: String,
                                          fields: [ListVisibleAppsForUserV1.Field]? = nil,
                                          limit: Int? = nil) -> Request<AppsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/users/\(id)/visibleApps", method: .get, parameters: .init(fields: fields,
-                                                                                          limit: limit))
+        .init(path: "/v1/users/\(id)/visibleApps", method: .get, parameters: .init(fields: fields,
+                                                                                   limit: limit))
     }
 }
 

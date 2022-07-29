@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # GET /v1/reviewSubmissions/{id}/items
+     # GET /v1/reviewSubmissions/{id}/items
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions_id_items>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions_id_items>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listItemsForReviewSubmissionV1(id: String,
                                                fields: [ListItemsForReviewSubmissionV1.Field]? = nil,
                                                includes: [ListItemsForReviewSubmissionV1.Include]? = nil,
                                                limit: Int? = nil) -> Request<ReviewSubmissionItemsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/reviewSubmissions/\(id)/items", method: .get, parameters: .init(fields: fields,
-                                                                                                includes: includes,
-                                                                                                limit: limit))
+        .init(path: "/v1/reviewSubmissions/\(id)/items", method: .get, parameters: .init(fields: fields,
+                                                                                         includes: includes,
+                                                                                         limit: limit))
     }
 }
 
@@ -110,6 +110,9 @@ public enum ListItemsForReviewSubmissionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageVersion, appEvent, appStoreVersion, appStoreVersionExperiment
+        case appCustomProductPageVersion
+        case appEvent
+        case appStoreVersion
+        case appStoreVersionExperiment
     }
 }

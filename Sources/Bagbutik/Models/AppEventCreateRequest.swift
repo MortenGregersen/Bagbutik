@@ -12,7 +12,9 @@ public struct AppEventCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct AppEventCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -49,7 +51,15 @@ public struct AppEventCreateRequest: Codable, RequestBody {
             public let referenceName: String
             public var territorySchedules: [TerritorySchedules]?
 
-            public init(badge: AppEvent.Attributes.Badge? = nil, deepLink: String? = nil, primaryLocale: String? = nil, priority: AppEvent.Attributes.Priority? = nil, purchaseRequirement: AppEvent.Attributes.PurchaseRequirement? = nil, purpose: AppEvent.Attributes.Purpose? = nil, referenceName: String, territorySchedules: [TerritorySchedules]? = nil) {
+            public init(badge: AppEvent.Attributes.Badge? = nil,
+                        deepLink: String? = nil,
+                        primaryLocale: String? = nil,
+                        priority: AppEvent.Attributes.Priority? = nil,
+                        purchaseRequirement: AppEvent.Attributes.PurchaseRequirement? = nil,
+                        purpose: AppEvent.Attributes.Purpose? = nil,
+                        referenceName: String,
+                        territorySchedules: [TerritorySchedules]? = nil)
+            {
                 self.badge = badge
                 self.deepLink = deepLink
                 self.primaryLocale = primaryLocale
@@ -66,7 +76,11 @@ public struct AppEventCreateRequest: Codable, RequestBody {
                 public var publishStart: Date?
                 public var territories: [String]?
 
-                public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
+                public init(eventEnd: Date? = nil,
+                            eventStart: Date? = nil,
+                            publishStart: Date? = nil,
+                            territories: [String]? = nil)
+                {
                     self.eventEnd = eventEnd
                     self.eventStart = eventStart
                     self.publishStart = publishStart

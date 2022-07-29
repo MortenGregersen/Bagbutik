@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Store Version Information for a Default App Clip Experience
-      Get App Store Version information for a default App Clip experience.
+     # Read App Store Version Information for a Default App Clip Experience
+     Get App Store Version information for a default App Clip experience.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_information_for_a_default_app_clip_experience>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_information_for_a_default_app_clip_experience>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getReleaseWithAppStoreVersionForAppClipDefaultExperienceV1(id: String,
                                                                            fields: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Field]? = nil,
                                                                            includes: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Include]? = nil,
                                                                            limits: [GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appClipDefaultExperiences/\(id)/releaseWithAppStoreVersion", method: .get, parameters: .init(fields: fields,
-                                                                                                                             includes: includes,
-                                                                                                                             limits: limits))
+        .init(path: "/v1/appClipDefaultExperiences/\(id)/releaseWithAppStoreVersion", method: .get, parameters: .init(fields: fields,
+                                                                                                                      includes: includes,
+                                                                                                                      limits: limits))
     }
 }
 
@@ -235,16 +235,25 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, routingAppCoverage
+        case ageRatingDeclaration
+        case app
+        case appClipDefaultExperience
+        case appStoreReviewDetail
+        case appStoreVersionExperiments
+        case appStoreVersionLocalizations
+        case appStoreVersionPhasedRelease
+        case appStoreVersionSubmission
+        case build
+        case routingAppCoverage
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum number of related appStoreVersionLocalizations returned (when they are included) - maximum 50
-        case appStoreVersionLocalizations(Int)
         /// Maximum number of related appStoreVersionExperiments returned (when they are included) - maximum 50
         case appStoreVersionExperiments(Int)
+        /// Maximum number of related appStoreVersionLocalizations returned (when they are included) - maximum 50
+        case appStoreVersionLocalizations(Int)
     }
 }

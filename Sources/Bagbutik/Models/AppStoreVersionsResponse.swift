@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionsResponse
  A response that contains a list of App Store Version resources.
 
  Full documentation:
@@ -8,12 +9,17 @@ import Foundation
  */
 public struct AppStoreVersionsResponse: Codable, PagedResponse {
     public typealias Data = AppStoreVersion
+
     public let data: [AppStoreVersion]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppStoreVersion], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppStoreVersion],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionReleaseRequest
  The data structure that represents an App Store Version Release Request resource.
 
  Full documentation:
@@ -14,7 +15,9 @@ public struct AppStoreVersionReleaseRequest: Codable, RequestBody {
     /// The resource type.
     public var type: String { "appStoreVersionReleaseRequests" }
 
-    public init(id: String, links: ResourceLinks) {
+    public init(id: String,
+                links: ResourceLinks)
+    {
         self.id = id
         self.links = links
     }

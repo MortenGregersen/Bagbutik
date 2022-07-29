@@ -6,7 +6,10 @@ public struct SubscriptionGracePeriod: Codable {
     public var type: String { "subscriptionGracePeriods" }
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -31,10 +34,10 @@ public struct SubscriptionGracePeriod: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     public struct Attributes: Codable {

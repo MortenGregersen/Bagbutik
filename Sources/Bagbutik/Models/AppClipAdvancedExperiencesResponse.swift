@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperiencesResponse
  A response that contains a list of Advanced App Clip Experiences resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct AppClipAdvancedExperiencesResponse: Codable, PagedResponse {
     public typealias Data = AppClipAdvancedExperience
+
     /// The resource data.
     public let data: [AppClipAdvancedExperience]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct AppClipAdvancedExperiencesResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [AppClipAdvancedExperience], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppClipAdvancedExperience],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CertificateResponse
  A response that contains a single Certificates resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct CertificateResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: Certificate, links: DocumentLinks) {
+    public init(data: Certificate,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

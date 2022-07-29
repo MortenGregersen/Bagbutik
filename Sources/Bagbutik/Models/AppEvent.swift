@@ -7,7 +7,11 @@ public struct AppEvent: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct AppEvent: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -54,7 +58,17 @@ public struct AppEvent: Codable {
         public var referenceName: String?
         public var territorySchedules: [TerritorySchedules]?
 
-        public init(archivedTerritorySchedules: [ArchivedTerritorySchedules]? = nil, badge: Badge? = nil, deepLink: String? = nil, eventState: EventState? = nil, primaryLocale: String? = nil, priority: Priority? = nil, purchaseRequirement: PurchaseRequirement? = nil, purpose: Purpose? = nil, referenceName: String? = nil, territorySchedules: [TerritorySchedules]? = nil) {
+        public init(archivedTerritorySchedules: [ArchivedTerritorySchedules]? = nil,
+                    badge: Badge? = nil,
+                    deepLink: String? = nil,
+                    eventState: EventState? = nil,
+                    primaryLocale: String? = nil,
+                    priority: Priority? = nil,
+                    purchaseRequirement: PurchaseRequirement? = nil,
+                    purpose: Purpose? = nil,
+                    referenceName: String? = nil,
+                    territorySchedules: [TerritorySchedules]? = nil)
+        {
             self.archivedTerritorySchedules = archivedTerritorySchedules
             self.badge = badge
             self.deepLink = deepLink
@@ -73,7 +87,11 @@ public struct AppEvent: Codable {
             public var publishStart: Date?
             public var territories: [String]?
 
-            public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
+            public init(eventEnd: Date? = nil,
+                        eventStart: Date? = nil,
+                        publishStart: Date? = nil,
+                        territories: [String]? = nil)
+            {
                 self.eventEnd = eventEnd
                 self.eventStart = eventStart
                 self.publishStart = publishStart
@@ -130,7 +148,11 @@ public struct AppEvent: Codable {
             public var publishStart: Date?
             public var territories: [String]?
 
-            public init(eventEnd: Date? = nil, eventStart: Date? = nil, publishStart: Date? = nil, territories: [String]? = nil) {
+            public init(eventEnd: Date? = nil,
+                        eventStart: Date? = nil,
+                        publishStart: Date? = nil,
+                        territories: [String]? = nil)
+            {
                 self.eventEnd = eventEnd
                 self.eventStart = eventStart
                 self.publishStart = publishStart
@@ -151,7 +173,10 @@ public struct AppEvent: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -189,7 +214,9 @@ public struct AppEvent: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -207,8 +234,8 @@ public struct AppEvent: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

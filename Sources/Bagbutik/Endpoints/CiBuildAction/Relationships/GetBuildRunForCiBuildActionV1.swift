@@ -1,27 +1,27 @@
 public extension Request {
     /**
-      # Read the Xcode Cloud Build Information for a Build Action
-      Get Xcode Cloud build information for a given build action.
+     # Read the Xcode Cloud Build Information for a Build Action
+     Get Xcode Cloud build information for a given build action.
 
-      The example request below retrieves detailed information for a specific action Xcode Cloud performed. Use the data provided in the response to display detailed build information on a dashboard or to access related information.
+     The example request below retrieves detailed information for a specific action Xcode Cloud performed. Use the data provided in the response to display detailed build information on a dashboard or to access related information.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_xcode_cloud_build_information_for_a_build_action>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_xcode_cloud_build_information_for_a_build_action>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related builds returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related builds returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildRunForCiBuildActionV1(id: String,
                                               fields: [GetBuildRunForCiBuildActionV1.Field]? = nil,
                                               includes: [GetBuildRunForCiBuildActionV1.Include]? = nil,
                                               limit: Int? = nil) -> Request<CiBuildRunResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciBuildActions/\(id)/buildRun", method: .get, parameters: .init(fields: fields,
-                                                                                                includes: includes,
-                                                                                                limit: limit))
+        .init(path: "/v1/ciBuildActions/\(id)/buildRun", method: .get, parameters: .init(fields: fields,
+                                                                                         includes: includes,
+                                                                                         limit: limit))
     }
 }
 
@@ -154,6 +154,11 @@ public enum GetBuildRunForCiBuildActionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case builds, destinationBranch, product, pullRequest, sourceBranchOrTag, workflow
+        case builds
+        case destinationBranch
+        case product
+        case pullRequest
+        case sourceBranchOrTag
+        case workflow
     }
 }

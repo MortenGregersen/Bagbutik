@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UserResponse
  A response that contains a single Users resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct UserResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: User, included: [App]? = nil, links: DocumentLinks) {
+    public init(data: User,
+                included: [App]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

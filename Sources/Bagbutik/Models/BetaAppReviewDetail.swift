@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppReviewDetail
  The data structure that represents a Beta App Review Details resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BetaAppReviewDetail: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct BetaAppReviewDetail: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BetaAppReviewDetail.Attributes
      Attributes that describe a Beta App Review Details resource.
 
      Full documentation:
@@ -77,7 +83,15 @@ public struct BetaAppReviewDetail: Codable {
         /// Additional information about your app that can help during the review process. Do not include demo account details. Review notes have a maximum of 4,000 characters.
         public var notes: String?
 
-        public init(contactEmail: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactPhone: String? = nil, demoAccountName: String? = nil, demoAccountPassword: String? = nil, demoAccountRequired: Bool? = nil, notes: String? = nil) {
+        public init(contactEmail: String? = nil,
+                    contactFirstName: String? = nil,
+                    contactLastName: String? = nil,
+                    contactPhone: String? = nil,
+                    demoAccountName: String? = nil,
+                    demoAccountPassword: String? = nil,
+                    demoAccountRequired: Bool? = nil,
+                    notes: String? = nil)
+        {
             self.contactEmail = contactEmail
             self.contactFirstName = contactFirstName
             self.contactLastName = contactLastName
@@ -90,6 +104,7 @@ public struct BetaAppReviewDetail: Codable {
     }
 
     /**
+     # BetaAppReviewDetail.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -103,6 +118,7 @@ public struct BetaAppReviewDetail: Codable {
         }
 
         /**
+         # BetaAppReviewDetail.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -112,12 +128,15 @@ public struct BetaAppReviewDetail: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BetaAppReviewDetail.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -154,6 +173,7 @@ public struct BetaAppReviewDetail: Codable {
             }
 
             /**
+             # BetaAppReviewDetail.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -163,7 +183,9 @@ public struct BetaAppReviewDetail: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -181,8 +203,8 @@ public struct BetaAppReviewDetail: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

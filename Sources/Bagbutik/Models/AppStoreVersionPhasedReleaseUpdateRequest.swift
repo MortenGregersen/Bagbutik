@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionPhasedReleaseUpdateRequest
  The request body you use to update an App Store Version Phased Release.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppStoreVersionPhasedReleaseUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
         public var type: String { "appStoreVersionPhasedReleases" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -46,12 +50,13 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppStoreVersionPhasedReleaseUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:

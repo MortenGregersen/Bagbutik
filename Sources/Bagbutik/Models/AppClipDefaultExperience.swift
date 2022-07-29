@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperience
  The data structure that represents a Default App Clip Experiences resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct AppClipDefaultExperience: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct AppClipDefaultExperience: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppClipDefaultExperience.Attributes
      The attributes that describe a Default App Clip Experiences resource.
 
      Full documentation:
@@ -69,6 +75,7 @@ public struct AppClipDefaultExperience: Codable {
     }
 
     /**
+     # AppClipDefaultExperience.Relationships
      The relationships of the Default App Clip Experiences resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -84,7 +91,11 @@ public struct AppClipDefaultExperience: Codable {
         /// The related App Store Versions resource.
         public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
-        public init(appClip: AppClip? = nil, appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail? = nil, appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations? = nil, releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
+        public init(appClip: AppClip? = nil,
+                    appClipAppStoreReviewDetail: AppClipAppStoreReviewDetail? = nil,
+                    appClipDefaultExperienceLocalizations: AppClipDefaultExperienceLocalizations? = nil,
+                    releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil)
+        {
             self.appClip = appClip
             self.appClipAppStoreReviewDetail = appClipAppStoreReviewDetail
             self.appClipDefaultExperienceLocalizations = appClipDefaultExperienceLocalizations
@@ -92,6 +103,7 @@ public struct AppClipDefaultExperience: Codable {
         }
 
         /**
+         # AppClipDefaultExperience.Relationships.AppClip
          The data and links that describe the relationship between the Default App Clip Experiences and the App Clips resources.
 
          Full documentation:
@@ -103,12 +115,15 @@ public struct AppClipDefaultExperience: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.AppClip.Data
              The type and ID of a related App Clips resource.
 
              Full documentation:
@@ -145,6 +160,7 @@ public struct AppClipDefaultExperience: Codable {
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.AppClip.Links
              The links to the related App Clips resource and the relationship’s self-link.
 
              Full documentation:
@@ -156,7 +172,9 @@ public struct AppClipDefaultExperience: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -174,13 +192,14 @@ public struct AppClipDefaultExperience: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppClipDefaultExperience.Relationships.AppClipAppStoreReviewDetail
          The data and links that describe the relationship between the Default App Clip Experiences and the App Clip App Store Review Details resources.
 
          Full documentation:
@@ -192,12 +211,15 @@ public struct AppClipDefaultExperience: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.AppClipAppStoreReviewDetail.Data
              The type and ID of a related App Clip App Store Details resource.
 
              Full documentation:
@@ -234,6 +256,7 @@ public struct AppClipDefaultExperience: Codable {
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.AppClipAppStoreReviewDetail.Links
              The links to the related App Clip App Store Review Details resource and the relationship’s self-link.
 
              Full documentation:
@@ -245,7 +268,9 @@ public struct AppClipDefaultExperience: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -263,13 +288,14 @@ public struct AppClipDefaultExperience: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppClipDefaultExperience.Relationships.AppClipDefaultExperienceLocalizations
          The data, links, and paging information that describe the relationship between the Default App Clip Experiences and the Default App Clip Experience Localizations resources.
 
          Full documentation:
@@ -283,13 +309,17 @@ public struct AppClipDefaultExperience: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.AppClipDefaultExperienceLocalizations.Data
              The type and ID of a related Default App Clip Experience Localizations resource.
 
              Full documentation:
@@ -326,6 +356,7 @@ public struct AppClipDefaultExperience: Codable {
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.AppClipDefaultExperienceLocalizations.Links
              The links to the related Default App Clip Experience Localizations resource and the relationship’s self-link.
 
              Full documentation:
@@ -337,7 +368,9 @@ public struct AppClipDefaultExperience: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -355,13 +388,14 @@ public struct AppClipDefaultExperience: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppClipDefaultExperience.Relationships.ReleaseWithAppStoreVersion
          The data and links that describe the relationship between the Default App Clip Experiences and the App Store Versions resources.
 
          Full documentation:
@@ -373,12 +407,15 @@ public struct AppClipDefaultExperience: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.ReleaseWithAppStoreVersion.Data
              The type and ID of a related App Store Versions resource.
 
              Full documentation:
@@ -415,6 +452,7 @@ public struct AppClipDefaultExperience: Codable {
             }
 
             /**
+             # AppClipDefaultExperience.Relationships.ReleaseWithAppStoreVersion.Links
              The links to the related App Store Versions resource and the relationship’s self-link.
 
              Full documentation:
@@ -426,7 +464,9 @@ public struct AppClipDefaultExperience: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -444,8 +484,8 @@ public struct AppClipDefaultExperience: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

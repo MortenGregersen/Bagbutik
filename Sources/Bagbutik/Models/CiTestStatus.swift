@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   A string that represents test status information.
+ # CiTestStatus
+ A string that represents test status information.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/citeststatus>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/citeststatus>
  */
 public enum CiTestStatus: String, Codable, CaseIterable {
     /// The tests passed.

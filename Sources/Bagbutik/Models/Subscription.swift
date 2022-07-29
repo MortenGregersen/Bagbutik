@@ -7,7 +7,11 @@ public struct Subscription: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -35,11 +39,11 @@ public struct Subscription: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -52,7 +56,15 @@ public struct Subscription: Codable {
         public var state: State?
         public var subscriptionPeriod: SubscriptionPeriod?
 
-        public init(availableInAllTerritories: Bool? = nil, familySharable: Bool? = nil, groupLevel: Int? = nil, name: String? = nil, productId: String? = nil, reviewNote: String? = nil, state: State? = nil, subscriptionPeriod: SubscriptionPeriod? = nil) {
+        public init(availableInAllTerritories: Bool? = nil,
+                    familySharable: Bool? = nil,
+                    groupLevel: Int? = nil,
+                    name: String? = nil,
+                    productId: String? = nil,
+                    reviewNote: String? = nil,
+                    state: State? = nil,
+                    subscriptionPeriod: SubscriptionPeriod? = nil)
+        {
             self.availableInAllTerritories = availableInAllTerritories
             self.familySharable = familySharable
             self.groupLevel = groupLevel
@@ -96,7 +108,15 @@ public struct Subscription: Codable {
         public var promotionalOffers: PromotionalOffers?
         public var subscriptionLocalizations: SubscriptionLocalizations?
 
-        public init(appStoreReviewScreenshot: AppStoreReviewScreenshot? = nil, group: Group? = nil, introductoryOffers: IntroductoryOffers? = nil, offerCodes: OfferCodes? = nil, prices: Prices? = nil, promotedPurchase: PromotedPurchase? = nil, promotionalOffers: PromotionalOffers? = nil, subscriptionLocalizations: SubscriptionLocalizations? = nil) {
+        public init(appStoreReviewScreenshot: AppStoreReviewScreenshot? = nil,
+                    group: Group? = nil,
+                    introductoryOffers: IntroductoryOffers? = nil,
+                    offerCodes: OfferCodes? = nil,
+                    prices: Prices? = nil,
+                    promotedPurchase: PromotedPurchase? = nil,
+                    promotionalOffers: PromotionalOffers? = nil,
+                    subscriptionLocalizations: SubscriptionLocalizations? = nil)
+        {
             self.appStoreReviewScreenshot = appStoreReviewScreenshot
             self.group = group
             self.introductoryOffers = introductoryOffers
@@ -111,7 +131,9 @@ public struct Subscription: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -148,7 +170,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -166,8 +190,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -176,7 +200,9 @@ public struct Subscription: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -213,7 +239,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -231,8 +259,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -242,7 +270,10 @@ public struct Subscription: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -280,7 +311,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -298,8 +331,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -309,7 +342,10 @@ public struct Subscription: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -347,7 +383,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -365,8 +403,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -376,7 +414,10 @@ public struct Subscription: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -414,7 +455,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -432,8 +475,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -442,7 +485,9 @@ public struct Subscription: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
@@ -479,7 +524,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -497,8 +544,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -508,7 +555,10 @@ public struct Subscription: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -546,7 +596,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -564,8 +616,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -575,7 +627,10 @@ public struct Subscription: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -613,7 +668,9 @@ public struct Subscription: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -631,8 +688,8 @@ public struct Subscription: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

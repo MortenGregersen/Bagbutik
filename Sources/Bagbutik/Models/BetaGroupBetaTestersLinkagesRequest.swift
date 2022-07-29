@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaGroupBetaTestersLinkagesRequest
  A request body you use to add or remove beta testers from a beta group.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaGroupBetaTestersLinkagesRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaGroupBetaTestersLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

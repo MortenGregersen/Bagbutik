@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiTestResult
  The data structure that represents a Test Results resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct CiTestResult: Codable {
     /// The attributes that describe the Test Results resource.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct CiTestResult: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # CiTestResult.Attributes
      The attributes that describe a Test Results resource.
 
      Full documentation:
@@ -67,7 +72,13 @@ public struct CiTestResult: Codable {
         /// Test status information; for example, whether the test succeeded or failed.
         public var status: CiTestStatus?
 
-        public init(className: String? = nil, destinationTestResults: [DestinationTestResults]? = nil, fileSource: FileLocation? = nil, message: String? = nil, name: String? = nil, status: CiTestStatus? = nil) {
+        public init(className: String? = nil,
+                    destinationTestResults: [DestinationTestResults]? = nil,
+                    fileSource: FileLocation? = nil,
+                    message: String? = nil,
+                    name: String? = nil,
+                    status: CiTestStatus? = nil)
+        {
             self.className = className
             self.destinationTestResults = destinationTestResults
             self.fileSource = fileSource
@@ -77,6 +88,7 @@ public struct CiTestResult: Codable {
         }
 
         /**
+         # CiTestResult.Attributes.DestinationTestResults
          The results of a test action Xcode Cloud performed using a specific test destination.
 
          Full documentation:
@@ -94,7 +106,12 @@ public struct CiTestResult: Codable {
             /// The unique identifier of a test result for a specific simulated device.
             public var uuid: String?
 
-            public init(deviceName: String? = nil, duration: Double? = nil, osVersion: String? = nil, status: CiTestStatus? = nil, uuid: String? = nil) {
+            public init(deviceName: String? = nil,
+                        duration: Double? = nil,
+                        osVersion: String? = nil,
+                        status: CiTestStatus? = nil,
+                        uuid: String? = nil)
+            {
                 self.deviceName = deviceName
                 self.duration = duration
                 self.osVersion = osVersion

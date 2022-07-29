@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreReviewDetail
  The data structure that represent an App Store Review Details  resource.
 
  Full documentation:
@@ -13,7 +14,11 @@ public struct AppStoreReviewDetail: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,14 +46,15 @@ public struct AppStoreReviewDetail: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppStoreReviewDetail.Attributes
      Attributes that describe an App Store Review Details resource.
 
      Full documentation:
@@ -64,7 +70,15 @@ public struct AppStoreReviewDetail: Codable {
         public var demoAccountRequired: Bool?
         public var notes: String?
 
-        public init(contactEmail: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactPhone: String? = nil, demoAccountName: String? = nil, demoAccountPassword: String? = nil, demoAccountRequired: Bool? = nil, notes: String? = nil) {
+        public init(contactEmail: String? = nil,
+                    contactFirstName: String? = nil,
+                    contactLastName: String? = nil,
+                    contactPhone: String? = nil,
+                    demoAccountName: String? = nil,
+                    demoAccountPassword: String? = nil,
+                    demoAccountRequired: Bool? = nil,
+                    notes: String? = nil)
+        {
             self.contactEmail = contactEmail
             self.contactFirstName = contactFirstName
             self.contactLastName = contactLastName
@@ -77,6 +91,7 @@ public struct AppStoreReviewDetail: Codable {
     }
 
     /**
+     # AppStoreReviewDetail.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -86,12 +101,15 @@ public struct AppStoreReviewDetail: Codable {
         public var appStoreReviewAttachments: AppStoreReviewAttachments?
         public var appStoreVersion: AppStoreVersion?
 
-        public init(appStoreReviewAttachments: AppStoreReviewAttachments? = nil, appStoreVersion: AppStoreVersion? = nil) {
+        public init(appStoreReviewAttachments: AppStoreReviewAttachments? = nil,
+                    appStoreVersion: AppStoreVersion? = nil)
+        {
             self.appStoreReviewAttachments = appStoreReviewAttachments
             self.appStoreVersion = appStoreVersion
         }
 
         /**
+         # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -102,13 +120,17 @@ public struct AppStoreReviewDetail: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -143,6 +165,7 @@ public struct AppStoreReviewDetail: Codable {
             }
 
             /**
+             # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -152,7 +175,9 @@ public struct AppStoreReviewDetail: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -170,13 +195,14 @@ public struct AppStoreReviewDetail: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreReviewDetail.Relationships.AppStoreVersion
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -186,12 +212,15 @@ public struct AppStoreReviewDetail: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreReviewDetail.Relationships.AppStoreVersion.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -226,6 +255,7 @@ public struct AppStoreReviewDetail: Codable {
             }
 
             /**
+             # AppStoreReviewDetail.Relationships.AppStoreVersion.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -235,7 +265,9 @@ public struct AppStoreReviewDetail: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -253,8 +285,8 @@ public struct AppStoreReviewDetail: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

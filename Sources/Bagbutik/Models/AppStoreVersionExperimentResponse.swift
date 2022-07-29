@@ -5,7 +5,10 @@ public struct AppStoreVersionExperimentResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersionExperiment, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppStoreVersionExperiment,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

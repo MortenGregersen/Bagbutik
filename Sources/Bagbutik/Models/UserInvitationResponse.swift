@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # UserInvitationResponse
  A response that contains a single User Invitations resource.
 
  Full documentation:
@@ -13,7 +14,10 @@ public struct UserInvitationResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: UserInvitation, included: [App]? = nil, links: DocumentLinks) {
+    public init(data: UserInvitation,
+                included: [App]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

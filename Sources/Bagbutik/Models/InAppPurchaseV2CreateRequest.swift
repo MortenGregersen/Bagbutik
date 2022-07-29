@@ -12,7 +12,9 @@ public struct InAppPurchaseV2CreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct InAppPurchaseV2CreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -47,7 +49,13 @@ public struct InAppPurchaseV2CreateRequest: Codable, RequestBody {
             public let productId: String
             public var reviewNote: String?
 
-            public init(availableInAllTerritories: Bool? = nil, familySharable: Bool? = nil, inAppPurchaseType: InAppPurchaseType, name: String, productId: String, reviewNote: String? = nil) {
+            public init(availableInAllTerritories: Bool? = nil,
+                        familySharable: Bool? = nil,
+                        inAppPurchaseType: InAppPurchaseType,
+                        name: String,
+                        productId: String,
+                        reviewNote: String? = nil)
+            {
                 self.availableInAllTerritories = availableInAllTerritories
                 self.familySharable = familySharable
                 self.inAppPurchaseType = inAppPurchaseType

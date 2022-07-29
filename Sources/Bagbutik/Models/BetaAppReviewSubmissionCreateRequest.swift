@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppReviewSubmissionCreateRequest
  The request body you use to create a Beta App Review Submission.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaAppReviewSubmissionCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -45,11 +47,12 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         /**
+         # BetaAppReviewSubmissionCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -63,6 +66,7 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaAppReviewSubmissionCreateRequest.Data.Relationships.Build
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -76,6 +80,7 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaAppReviewSubmissionCreateRequest.Data.Relationships.Build.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

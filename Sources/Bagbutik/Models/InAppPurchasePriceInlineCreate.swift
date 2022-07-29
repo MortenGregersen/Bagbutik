@@ -6,7 +6,10 @@ public struct InAppPurchasePriceInlineCreate: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String? = nil, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.attributes = attributes
         self.relationships = relationships
@@ -31,10 +34,10 @@ public struct InAppPurchasePriceInlineCreate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id
-        case type
         case attributes
+        case id
         case relationships
+        case type
     }
 
     public struct Attributes: Codable {
@@ -49,7 +52,9 @@ public struct InAppPurchasePriceInlineCreate: Codable {
         public var inAppPurchasePricePoint: InAppPurchasePricePoint?
         public var inAppPurchaseV2: InAppPurchaseV2?
 
-        public init(inAppPurchasePricePoint: InAppPurchasePricePoint? = nil, inAppPurchaseV2: InAppPurchaseV2? = nil) {
+        public init(inAppPurchasePricePoint: InAppPurchasePricePoint? = nil,
+                    inAppPurchaseV2: InAppPurchaseV2? = nil)
+        {
             self.inAppPurchasePricePoint = inAppPurchasePricePoint
             self.inAppPurchaseV2 = inAppPurchaseV2
         }

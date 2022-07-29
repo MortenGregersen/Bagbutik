@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipHeaderImageUpdateRequest
  The request body you use to commit the image asset for a default App Clip experience.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppClipHeaderImageUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
         /// The attributes that describe the request that updates an App Clip Header Images resource.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppClipHeaderImageUpdateRequest.Data.Attributes
          The attributes you set that describe the updated App Clip Header Images resource.
 
          Full documentation:
@@ -67,7 +72,9 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
             /// A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.
             public var uploaded: Bool?
 
-            public init(sourceFileChecksum: String? = nil, uploaded: Bool? = nil) {
+            public init(sourceFileChecksum: String? = nil,
+                        uploaded: Bool? = nil)
+            {
                 self.sourceFileChecksum = sourceFileChecksum
                 self.uploaded = uploaded
             }

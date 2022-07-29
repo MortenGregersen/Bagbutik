@@ -1,16 +1,16 @@
 public extension Request {
     /**
-      # GET /v1/appCustomProductPageVersions/{id}/appCustomProductPageLocalizations
+     # GET /v1/appCustomProductPageVersions/{id}/appCustomProductPageLocalizations
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpageversions_id_appcustomproductpagelocalizations>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpageversions_id_appcustomproductpagelocalizations>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppCustomProductPageLocalizationsForAppCustomProductPageVersionV1(id: String,
                                                                                       fields: [ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV1.Field]? = nil,
@@ -18,10 +18,10 @@ public extension Request {
                                                                                       includes: [ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV1.Include]? = nil,
                                                                                       limits: [ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV1.Limit]? = nil) -> Request<AppCustomProductPageLocalizationsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appCustomProductPageVersions/\(id)/appCustomProductPageLocalizations", method: .get, parameters: .init(fields: fields,
-                                                                                                                                       filters: filters,
-                                                                                                                                       includes: includes,
-                                                                                                                                       limits: limits))
+        .init(path: "/v1/appCustomProductPageVersions/\(id)/appCustomProductPageLocalizations", method: .get, parameters: .init(fields: fields,
+                                                                                                                                filters: filters,
+                                                                                                                                includes: includes,
+                                                                                                                                limits: limits))
     }
 }
 
@@ -83,18 +83,20 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageVersion, appPreviewSets, appScreenshotSets
+        case appCustomProductPageVersion
+        case appPreviewSets
+        case appScreenshotSets
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
-        /// Maximum number of related appScreenshotSets returned (when they are included) - maximum 50
-        case appScreenshotSets(Int)
         /// Maximum number of related appPreviewSets returned (when they are included) - maximum 50
         case appPreviewSets(Int)
+        /// Maximum number of related appScreenshotSets returned (when they are included) - maximum 50
+        case appScreenshotSets(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

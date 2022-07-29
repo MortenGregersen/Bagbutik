@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaGroupsResponse
  A response that contains a list of Beta Group resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct BetaGroupsResponse: Codable, PagedResponse {
     public typealias Data = BetaGroup
+
     /// The resource data.
     public let data: [BetaGroup]
     public var included: [Included]?
@@ -16,7 +18,11 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [BetaGroup], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [BetaGroup],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiXcodeVersionsResponse
  A response that contains a list of Xcode Versions resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct CiXcodeVersionsResponse: Codable, PagedResponse {
     public typealias Data = CiXcodeVersion
+
     /// The resource data.
     public let data: [CiXcodeVersion]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct CiXcodeVersionsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [CiXcodeVersion], included: [CiMacOsVersion]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [CiXcodeVersion],
+                included: [CiMacOsVersion]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

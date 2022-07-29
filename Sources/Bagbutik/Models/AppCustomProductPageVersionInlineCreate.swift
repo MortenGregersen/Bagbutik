@@ -5,7 +5,9 @@ public struct AppCustomProductPageVersionInlineCreate: Codable {
     public var type: String { "appCustomProductPageVersions" }
     public var relationships: Relationships?
 
-    public init(id: String? = nil, relationships: Relationships? = nil) {
+    public init(id: String? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.relationships = relationships
     }
@@ -28,15 +30,17 @@ public struct AppCustomProductPageVersionInlineCreate: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case id
-        case type
         case relationships
+        case type
     }
 
     public struct Relationships: Codable {
         public var appCustomProductPage: AppCustomProductPage?
         public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
-        public init(appCustomProductPage: AppCustomProductPage? = nil, appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil) {
+        public init(appCustomProductPage: AppCustomProductPage? = nil,
+                    appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil)
+        {
             self.appCustomProductPage = appCustomProductPage
             self.appCustomProductPageLocalizations = appCustomProductPageLocalizations
         }

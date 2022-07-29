@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionLocalizationResponse
  A response that contains a single App Store Version Localizations resource.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct AppStoreVersionLocalizationResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersionLocalization, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppStoreVersionLocalization,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

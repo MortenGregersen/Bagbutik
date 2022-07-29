@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Get the Default App Clip Experience for an App Store Version
-      Get the default App Clip experience for an App Store version of your app.
+     # Get the Default App Clip Experience for an App Store Version
+     Get the default App Clip experience for an App Store version of your app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_the_default_app_clip_experience_for_an_app_store_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_the_default_app_clip_experience_for_an_app_store_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppClipDefaultExperienceForAppStoreVersionV1(id: String,
                                                                 fields: [GetAppClipDefaultExperienceForAppStoreVersionV1.Field]? = nil,
                                                                 includes: [GetAppClipDefaultExperienceForAppStoreVersionV1.Include]? = nil,
                                                                 limit: Int? = nil) -> Request<AppClipDefaultExperienceResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)/appClipDefaultExperience", method: .get, parameters: .init(fields: fields,
-                                                                                                                  includes: includes,
-                                                                                                                  limit: limit))
+        .init(path: "/v1/appStoreVersions/\(id)/appClipDefaultExperience", method: .get, parameters: .init(fields: fields,
+                                                                                                           includes: includes,
+                                                                                                           limit: limit))
     }
 }
 
@@ -94,6 +94,9 @@ public enum GetAppClipDefaultExperienceForAppStoreVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appClip, appClipAppStoreReviewDetail, appClipDefaultExperienceLocalizations, releaseWithAppStoreVersion
+        case appClip
+        case appClipAppStoreReviewDetail
+        case appClipDefaultExperienceLocalizations
+        case releaseWithAppStoreVersion
     }
 }

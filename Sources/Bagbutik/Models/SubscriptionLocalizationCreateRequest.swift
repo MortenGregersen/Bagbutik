@@ -12,7 +12,9 @@ public struct SubscriptionLocalizationCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct SubscriptionLocalizationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -44,7 +46,10 @@ public struct SubscriptionLocalizationCreateRequest: Codable, RequestBody {
             public let locale: String
             public let name: String
 
-            public init(description: String? = nil, locale: String, name: String) {
+            public init(description: String? = nil,
+                        locale: String,
+                        name: String)
+            {
                 self.description = description
                 self.locale = locale
                 self.name = name

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiProduct
  The data structure that represents a Products resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct CiProduct: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct CiProduct: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # CiProduct.Attributes
      The attributes that describe a Products resource.
 
      Full documentation:
@@ -67,7 +73,10 @@ public struct CiProduct: Codable {
         /// A string that indicates whether the Xcode Cloud product is a framework or an app.
         public var productType: ProductType?
 
-        public init(createdDate: Date? = nil, name: String? = nil, productType: ProductType? = nil) {
+        public init(createdDate: Date? = nil,
+                    name: String? = nil,
+                    productType: ProductType? = nil)
+        {
             self.createdDate = createdDate
             self.name = name
             self.productType = productType
@@ -80,6 +89,7 @@ public struct CiProduct: Codable {
     }
 
     /**
+     # CiProduct.Relationships
      The relationships of the Products resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -93,13 +103,17 @@ public struct CiProduct: Codable {
         /// The related primary repository.
         public var primaryRepositories: PrimaryRepositories?
 
-        public init(app: App? = nil, bundleId: BundleId? = nil, primaryRepositories: PrimaryRepositories? = nil) {
+        public init(app: App? = nil,
+                    bundleId: BundleId? = nil,
+                    primaryRepositories: PrimaryRepositories? = nil)
+        {
             self.app = app
             self.bundleId = bundleId
             self.primaryRepositories = primaryRepositories
         }
 
         /**
+         # CiProduct.Relationships.App
          The data and links that describe the relationship between the Products and Apps resources.
 
          Full documentation:
@@ -111,12 +125,15 @@ public struct CiProduct: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiProduct.Relationships.App.Data
              The type and ID of a related Apps resource.
 
              Full documentation:
@@ -153,6 +170,7 @@ public struct CiProduct: Codable {
             }
 
             /**
+             # CiProduct.Relationships.App.Links
              The links to the related Apps resource and the relationship self-link.
 
              Full documentation:
@@ -164,7 +182,9 @@ public struct CiProduct: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -182,13 +202,14 @@ public struct CiProduct: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiProduct.Relationships.BundleId
          The data and links that describe the relationship between the Products and the Bundle IDs resources.
 
          Full documentation:
@@ -200,12 +221,15 @@ public struct CiProduct: Codable {
             /// The navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # CiProduct.Relationships.BundleId.Data
              The type and ID of a related Bundle IDs resource.
 
              Full documentation:
@@ -242,6 +266,7 @@ public struct CiProduct: Codable {
             }
 
             /**
+             # CiProduct.Relationships.BundleId.Links
              The links to the related Bundle IDs resource and the relationship’s self-link.
 
              Full documentation:
@@ -253,7 +278,9 @@ public struct CiProduct: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -271,13 +298,14 @@ public struct CiProduct: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # CiProduct.Relationships.PrimaryRepositories
          The data, links, and paging information that describe the relationship between the Products resource and the Repositories resource that represents the primary repository.
 
          Full documentation:
@@ -291,13 +319,17 @@ public struct CiProduct: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # CiProduct.Relationships.PrimaryRepositories.Data
              The type and ID of a related Repositories resource that represents the product’s primary repositories.
 
              Full documentation:
@@ -334,6 +366,7 @@ public struct CiProduct: Codable {
             }
 
             /**
+             # CiProduct.Relationships.PrimaryRepositories.Links
              The links to the related Repositories resources that represents primary repositories and the relationship’s self-link.
 
              Full documentation:
@@ -345,7 +378,9 @@ public struct CiProduct: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -363,8 +398,8 @@ public struct CiProduct: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

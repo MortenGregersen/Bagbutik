@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # xcodeMetrics
  A response that contains power and performance measurements for your app.
 
  Full documentation:
@@ -14,13 +15,17 @@ public struct XcodeMetrics: Codable {
     /// The current App Store Connect API version.
     public var version: String?
 
-    public init(insights: Insights? = nil, productData: [ProductData]? = nil, version: String? = nil) {
+    public init(insights: Insights? = nil,
+                productData: [ProductData]? = nil,
+                version: String? = nil)
+    {
         self.insights = insights
         self.productData = productData
         self.version = version
     }
 
     /**
+     # xcodeMetrics.Insights
      Analysis of power and performance data collected for your app that includes regressions and trends.
 
      Full documentation:
@@ -32,13 +37,16 @@ public struct XcodeMetrics: Codable {
         /// An array of metrics that have moderately increased between app versions.
         public var trendingUp: [MetricsInsight]?
 
-        public init(regressions: [MetricsInsight]? = nil, trendingUp: [MetricsInsight]? = nil) {
+        public init(regressions: [MetricsInsight]? = nil,
+                    trendingUp: [MetricsInsight]? = nil)
+        {
             self.regressions = regressions
             self.trendingUp = trendingUp
         }
     }
 
     /**
+     # xcodeMetrics.ProductData
      The metrics information of an app on a specific platform.
 
      Full documentation:
@@ -50,12 +58,15 @@ public struct XcodeMetrics: Codable {
         /// The Apple platform on which the system gathered the metrics about your app.
         public var platform: String?
 
-        public init(metricCategories: [MetricCategories]? = nil, platform: String? = nil) {
+        public init(metricCategories: [MetricCategories]? = nil,
+                    platform: String? = nil)
+        {
             self.metricCategories = metricCategories
             self.platform = platform
         }
 
         /**
+         # xcodeMetrics.ProductData.MetricCategories
          A metric category and its associated array of data and measurements.
 
          Full documentation:
@@ -67,12 +78,15 @@ public struct XcodeMetrics: Codable {
             /// An array of data and measurements for the metric category specified by the `identifier`.
             public var metrics: [Metrics]?
 
-            public init(identifier: MetricCategory? = nil, metrics: [Metrics]? = nil) {
+            public init(identifier: MetricCategory? = nil,
+                        metrics: [Metrics]? = nil)
+            {
                 self.identifier = identifier
                 self.metrics = metrics
             }
 
             /**
+             # xcodeMetrics.ProductData.MetricCategories.Metrics
              Data that relates to power and performance measurements for an app, including its datasets, goal keys, metrics identifier, and unit of measurement.
 
              Full documentation:
@@ -88,7 +102,11 @@ public struct XcodeMetrics: Codable {
                 /// The metric’s unit of measurement.
                 public var unit: Unit?
 
-                public init(datasets: [Datasets]? = nil, goalKeys: [GoalKeys]? = nil, identifier: String? = nil, unit: Unit? = nil) {
+                public init(datasets: [Datasets]? = nil,
+                            goalKeys: [GoalKeys]? = nil,
+                            identifier: String? = nil,
+                            unit: Unit? = nil)
+                {
                     self.datasets = datasets
                     self.goalKeys = goalKeys
                     self.identifier = identifier
@@ -96,6 +114,7 @@ public struct XcodeMetrics: Codable {
                 }
 
                 /**
+                 # xcodeMetrics.ProductData.MetricCategories.Metrics.Datasets
                  A set of data containing metric values for each app version, filtered by percentile and device type.
 
                  Full documentation:
@@ -107,12 +126,15 @@ public struct XcodeMetrics: Codable {
                     /// An array containing metric values for each app version.
                     public var points: [Points]?
 
-                    public init(filterCriteria: FilterCriteria? = nil, points: [Points]? = nil) {
+                    public init(filterCriteria: FilterCriteria? = nil,
+                                points: [Points]? = nil)
+                    {
                         self.filterCriteria = filterCriteria
                         self.points = points
                     }
 
                     /**
+                     # xcodeMetrics.ProductData.MetricCategories.Metrics.Datasets.FilterCriteria
                      The device and percentile criteria by which the system filters a metrics dataset.
 
                      Full documentation:
@@ -126,7 +148,10 @@ public struct XcodeMetrics: Codable {
                         /// A percentile of users affected by the metric value. The 50th percentile represents a typical user experience. The 90th percentile represents the user experience when the metric value is the highest or lowest, depending on the metric.
                         public var percentile: String?
 
-                        public init(device: String? = nil, deviceMarketingName: String? = nil, percentile: String? = nil) {
+                        public init(device: String? = nil,
+                                    deviceMarketingName: String? = nil,
+                                    percentile: String? = nil)
+                        {
                             self.device = device
                             self.deviceMarketingName = deviceMarketingName
                             self.percentile = percentile
@@ -134,6 +159,7 @@ public struct XcodeMetrics: Codable {
                     }
 
                     /**
+                     # xcodeMetrics.ProductData.MetricCategories.Metrics.Datasets.Points
                      A metric value of a goal for a specific app version, with a breakdown by metric subtypes.
 
                      Full documentation:
@@ -151,7 +177,12 @@ public struct XcodeMetrics: Codable {
                         /// The app version.
                         public var version: String?
 
-                        public init(errorMargin: Double? = nil, goal: String? = nil, percentageBreakdown: PercentageBreakdown? = nil, value: Double? = nil, version: String? = nil) {
+                        public init(errorMargin: Double? = nil,
+                                    goal: String? = nil,
+                                    percentageBreakdown: PercentageBreakdown? = nil,
+                                    value: Double? = nil,
+                                    version: String? = nil)
+                        {
                             self.errorMargin = errorMargin
                             self.goal = goal
                             self.percentageBreakdown = percentageBreakdown
@@ -160,6 +191,7 @@ public struct XcodeMetrics: Codable {
                         }
 
                         /**
+                         # xcodeMetrics.ProductData.MetricCategories.Metrics.Datasets.Points.PercentageBreakdown
                          A metric subtype and the percentage of the metric value it contributes.
 
                          Full documentation:
@@ -171,7 +203,9 @@ public struct XcodeMetrics: Codable {
                             /// The percentage of the metric value the metric subtype contributes. Values are between `0` and `100`.
                             public var value: Double?
 
-                            public init(subSystemLabel: String? = nil, value: Double? = nil) {
+                            public init(subSystemLabel: String? = nil,
+                                        value: Double? = nil)
+                            {
                                 self.subSystemLabel = subSystemLabel
                                 self.value = value
                             }
@@ -180,6 +214,7 @@ public struct XcodeMetrics: Codable {
                 }
 
                 /**
+                 # xcodeMetrics.ProductData.MetricCategories.Metrics.GoalKeys
                  A classification of a metrics value and the lower- and upper-bound values that qualify a metrics value for the classification.
 
                  Full documentation:
@@ -193,7 +228,10 @@ public struct XcodeMetrics: Codable {
                     /// The upper bound value to qualify for the goal key.
                     public var upperBound: Int?
 
-                    public init(goalKey: String? = nil, lowerBound: Int? = nil, upperBound: Int? = nil) {
+                    public init(goalKey: String? = nil,
+                                lowerBound: Int? = nil,
+                                upperBound: Int? = nil)
+                    {
                         self.goalKey = goalKey
                         self.lowerBound = lowerBound
                         self.upperBound = upperBound
@@ -201,6 +239,7 @@ public struct XcodeMetrics: Codable {
                 }
 
                 /**
+                 # xcodeMetrics.ProductData.MetricCategories.Metrics.Unit
                  A unit of measurement and its display name.
 
                  Full documentation:
@@ -212,7 +251,9 @@ public struct XcodeMetrics: Codable {
                     /// The unit of measurement.
                     public var identifier: String?
 
-                    public init(displayName: String? = nil, identifier: String? = nil) {
+                    public init(displayName: String? = nil,
+                                identifier: String? = nil)
+                    {
                         self.displayName = displayName
                         self.identifier = identifier
                     }

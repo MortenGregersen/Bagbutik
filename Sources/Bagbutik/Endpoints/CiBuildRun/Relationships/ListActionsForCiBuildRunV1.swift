@@ -1,27 +1,27 @@
 public extension Request {
     /**
-      # List All Actions for an Xcode Cloud Build
-      List all actions Xcode Cloud performed during a specific build.
+     # List All Actions for an Xcode Cloud Build
+     List all actions Xcode Cloud performed during a specific build.
 
-      The example request below lists actions Xcode Cloud performed during a specific build. Use the information provided in the response to display detailed action information on a dashboard or to read additional data; for example, test results.
+     The example request below lists actions Xcode Cloud performed during a specific build. Use the information provided in the response to display detailed action information on a dashboard or to read additional data; for example, test results.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_actions_for_an_xcode_cloud_build>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_actions_for_an_xcode_cloud_build>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listActionsForCiBuildRunV1(id: String,
                                            fields: [ListActionsForCiBuildRunV1.Field]? = nil,
                                            includes: [ListActionsForCiBuildRunV1.Include]? = nil,
                                            limit: Int? = nil) -> Request<CiBuildActionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciBuildRuns/\(id)/actions", method: .get, parameters: .init(fields: fields,
-                                                                                            includes: includes,
-                                                                                            limit: limit))
+        .init(path: "/v1/ciBuildRuns/\(id)/actions", method: .get, parameters: .init(fields: fields,
+                                                                                     includes: includes,
+                                                                                     limit: limit))
     }
 }
 

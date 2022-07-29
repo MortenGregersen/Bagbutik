@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPreOrderUpdateRequest
  The request body you use to update an App Pre-Order.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppPreOrderUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # AppPreOrderUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -24,7 +26,9 @@ public struct AppPreOrderUpdateRequest: Codable, RequestBody {
         public var type: String { "appPreOrders" }
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -46,12 +50,13 @@ public struct AppPreOrderUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # AppPreOrderUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:

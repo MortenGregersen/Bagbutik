@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipAdvancedExperienceImageResponse
  A response that contains a single Advanced App Clip Experience Images resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct AppClipAdvancedExperienceImageResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppClipAdvancedExperienceImage, links: DocumentLinks) {
+    public init(data: AppClipAdvancedExperienceImage,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

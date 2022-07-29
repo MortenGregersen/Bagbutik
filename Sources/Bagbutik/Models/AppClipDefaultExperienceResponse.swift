@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipDefaultExperienceResponse
  A response that contains a single Default App Clip Experiences resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct AppClipDefaultExperienceResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: AppClipDefaultExperience, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: AppClipDefaultExperience,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

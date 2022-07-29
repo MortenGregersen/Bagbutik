@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationsResponse
  A response that contains a list of Beta App Clip Invocations resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct BetaAppClipInvocationsResponse: Codable, PagedResponse {
     public typealias Data = BetaAppClipInvocation
+
     /// The resource data.
     public let data: [BetaAppClipInvocation]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct BetaAppClipInvocationsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [BetaAppClipInvocation], included: [BetaAppClipInvocationLocalization]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [BetaAppClipInvocation],
+                included: [BetaAppClipInvocationLocalization]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

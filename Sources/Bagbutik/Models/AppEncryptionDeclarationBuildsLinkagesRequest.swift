@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppEncryptionDeclarationBuildsLinkagesRequest
  A request body you use to add builds to an app encryption declaration.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, RequestBod
     }
 
     /**
+     # AppEncryptionDeclarationBuildsLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

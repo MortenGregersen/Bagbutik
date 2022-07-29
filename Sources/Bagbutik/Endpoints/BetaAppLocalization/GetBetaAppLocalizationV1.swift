@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read Beta App Localization Information
-      Get localized beta app information for a specific app and locale.
+     # Read Beta App Localization Information
+     Get localized beta app information for a specific app and locale.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_app_localization_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_app_localization_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBetaAppLocalizationV1(id: String,
                                          fields: [GetBetaAppLocalizationV1.Field]? = nil,
                                          includes: [GetBetaAppLocalizationV1.Include]? = nil) -> Request<BetaAppLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaAppLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes))
+        .init(path: "/v1/betaAppLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                      includes: includes))
     }
 }
 

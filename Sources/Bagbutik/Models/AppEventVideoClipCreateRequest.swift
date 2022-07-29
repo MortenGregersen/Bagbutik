@@ -12,7 +12,9 @@ public struct AppEventVideoClipCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,9 +36,9 @@ public struct AppEventVideoClipCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -45,7 +47,11 @@ public struct AppEventVideoClipCreateRequest: Codable, RequestBody {
             public let fileSize: Int
             public var previewFrameTimeCode: String?
 
-            public init(appEventAssetType: AppEventAssetType, fileName: String, fileSize: Int, previewFrameTimeCode: String? = nil) {
+            public init(appEventAssetType: AppEventAssetType,
+                        fileName: String,
+                        fileSize: Int,
+                        previewFrameTimeCode: String? = nil)
+            {
                 self.appEventAssetType = appEventAssetType
                 self.fileName = fileName
                 self.fileSize = fileSize

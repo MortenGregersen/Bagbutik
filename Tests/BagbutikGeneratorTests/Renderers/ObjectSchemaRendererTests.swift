@@ -42,12 +42,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
+
+         What is a person?
 
          Full documentation:
          <some://url>
-
-         What is a person?
          */
         public struct Person: Codable {
             /// The person's name
@@ -79,6 +80,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
 
          Full documentation:
@@ -92,7 +94,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public var name: String? = nil
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-            public init(age: Int? = nil, name: String? = nil) {
+            public init(age: Int? = nil,
+                        name: String? = nil)
+            {
                 self.age = age
                 self.name = name
             }
@@ -121,6 +125,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # PersonCreateRequest
          The data for a request to create a person.
 
          Full documentation:
@@ -161,6 +166,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
 
          Full documentation:
@@ -175,7 +181,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// A reference to the person
             public var itself: String?
 
-            public init(firstName: String, lastName: String? = nil, self itself: String? = nil) {
+            public init(firstName: String,
+                        lastName: String? = nil,
+                        self itself: String? = nil)
+            {
                 self.firstName = firstName
                 self.lastName = lastName
                 self.itself = itself
@@ -200,8 +209,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
             private enum CodingKeys: String, CodingKey {
                 case firstName
                 case id
-                case lastName
                 case itself = "self"
+                case lastName
             }
         }
 
@@ -230,6 +239,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
 
          Full documentation:
@@ -240,7 +250,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The resource's attributes.
             public var attributes: Attributes?
 
-            public init(name: String? = nil, attributes: Attributes? = nil) {
+            public init(name: String? = nil,
+                        attributes: Attributes? = nil)
+            {
                 self.name = name
                 self.attributes = attributes
             }
@@ -282,6 +294,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
 
          Full documentation:
@@ -292,12 +305,15 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The resource's relationships.
             public var relationships: Relationships?
 
-            public init(name: String? = nil, relationships: Relationships? = nil) {
+            public init(name: String? = nil,
+                        relationships: Relationships? = nil)
+            {
                 self.name = name
                 self.relationships = relationships
             }
 
             /**
+             # Relationships
              The relationships you included in the request and those on which you can operate.
 
              Full documentation:
@@ -338,6 +354,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
 
          Full documentation:
@@ -353,7 +370,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// The person's indentation preference
             public var preference: Preference?
 
-            public init(connection: Connection? = nil, name: String? = nil, pet: Pet? = nil, preference: Preference? = nil) {
+            public init(connection: Connection? = nil,
+                        name: String? = nil,
+                        pet: Pet? = nil,
+                        preference: Preference? = nil)
+            {
                 self.connection = connection
                 self.name = name
                 self.pet = pet
@@ -421,10 +442,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct PersonsResponse: Codable, PagedResponse {
             public typealias Data = Person
+        
             public let data: [Person]
             public let links: PagedDocumentLinks
 
-            public init(data: [Person], links: PagedDocumentLinks) {
+            public init(data: [Person],
+                        links: PagedDocumentLinks)
+            {
                 self.data = data
                 self.links = links
             }
@@ -512,7 +536,9 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public var data: Build?
             public var included: [Included]?
 
-            public init(data: Build? = nil, included: [Included]? = nil) {
+            public init(data: Build? = nil,
+                        included: [Included]? = nil)
+            {
                 self.data = data
                 self.included = included
             }
@@ -672,10 +698,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct BuildsResponse: Codable {
             public typealias Data = Build
+        
             public var data: [Build]?
             public var included: [Included]?
 
-            public init(data: [Build]? = nil, included: [Included]? = nil) {
+            public init(data: [Build]? = nil,
+                        included: [Included]? = nil)
+            {
                 self.data = data
                 self.included = included
             }
@@ -767,6 +796,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Person
          A person with a name.
 
          Full documentation:
@@ -779,7 +809,11 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public let attributes: Attributes
             public var relationships: Relationships?
 
-            public init(age: Int? = nil, name: String, attributes: Attributes, relationships: Relationships? = nil) {
+            public init(age: Int? = nil,
+                        name: String,
+                        attributes: Attributes,
+                        relationships: Relationships? = nil)
+            {
                 self.age = age
                 self.name = name
                 self.attributes = attributes
@@ -808,13 +842,14 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
             private enum CodingKeys: String, CodingKey {
                 case age
-                case name
-                case type
                 case attributes
+                case name
                 case relationships
+                case type
             }
 
             /**
+             # Attributes
              Attributes for a Person
 
              Full documentation:
@@ -830,6 +865,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             /**
+             # Relationships
              The relationships you included in the request and those on which you can operate.
 
              Full documentation:
@@ -880,7 +916,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public var number: String?
             public var type: PhoneNumberType?
 
-            public init(intent: String? = nil, number: String? = nil, type: PhoneNumberType? = nil) {
+            public init(intent: String? = nil,
+                        number: String? = nil,
+                        type: PhoneNumberType? = nil)
+            {
                 self.intent = intent
                 self.number = number
                 self.type = type

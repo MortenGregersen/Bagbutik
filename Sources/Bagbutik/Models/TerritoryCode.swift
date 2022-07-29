@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   The App Store territory codes.
+ # TerritoryCode
+ The App Store territory codes.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/territorycode>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territorycode>
  */
 public enum TerritoryCode: String, Codable, CaseIterable {
     case abw = "ABW"

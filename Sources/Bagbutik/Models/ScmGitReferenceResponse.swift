@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmGitReferenceResponse
  A response that contains a single Git References resource.
 
  Full documentation:
@@ -14,7 +15,10 @@ public struct ScmGitReferenceResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: ScmGitReference, included: [ScmRepository]? = nil, links: DocumentLinks) {
+    public init(data: ScmGitReference,
+                included: [ScmRepository]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

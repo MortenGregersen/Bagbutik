@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionBuildLinkageResponse
  A response body that contains the ID of a single related resource.
 
  Full documentation:
@@ -10,12 +11,15 @@ public struct AppStoreVersionBuildLinkageResponse: Codable {
     public let data: Data
     public let links: DocumentLinks
 
-    public init(data: Data, links: DocumentLinks) {
+    public init(data: Data,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }
 
     /**
+     # AppStoreVersionBuildLinkageResponse.Data
      The data element of the response body.
 
      Full documentation:

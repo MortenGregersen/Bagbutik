@@ -1,21 +1,21 @@
 public extension Request {
     /**
-      # GET /v1/appEventVideoClips/{id}
+     # GET /v1/appEventVideoClips/{id}
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventvideoclips_id>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventvideoclips_id>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEventVideoClipV1(id: String,
                                        fields: [GetAppEventVideoClipV1.Field]? = nil,
                                        includes: [GetAppEventVideoClipV1.Include]? = nil) -> Request<AppEventVideoClipResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appEventVideoClips/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                           includes: includes))
+        .init(path: "/v1/appEventVideoClips/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                    includes: includes))
     }
 }
 

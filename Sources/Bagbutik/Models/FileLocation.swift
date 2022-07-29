@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # FileLocation
  The data structure that represents a File Locations resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct FileLocation: Codable {
     /// The path to the file that caused an issue.
     public var path: String?
 
-    public init(lineNumber: Int? = nil, path: String? = nil) {
+    public init(lineNumber: Int? = nil,
+                path: String? = nil)
+    {
         self.lineNumber = lineNumber
         self.path = path
     }

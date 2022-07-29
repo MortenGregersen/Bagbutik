@@ -1,24 +1,24 @@
 public extension Request {
     /**
-      # List All Test Results for an Xcode Cloud Test Action
-      List all test results for a specific test action Xcode Cloud performed as part of a build.
+     # List All Test Results for an Xcode Cloud Test Action
+     List all test results for a specific test action Xcode Cloud performed as part of a build.
 
-      The example request below lists the test results for an Xcode Cloud build that performed a test action. Use the information provided in the response to display test results on a dashboard, create a new task for a failing test in your issue tracker, and so on.
+     The example request below lists the test results for an Xcode Cloud build that performed a test action. Use the information provided in the response to display test results on a dashboard, create a new task for a failing test in your issue tracker, and so on.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_test_results_for_an_xcode_cloud_test_action>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_test_results_for_an_xcode_cloud_test_action>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listTestResultsForCiBuildActionV1(id: String,
                                                   fields: [ListTestResultsForCiBuildActionV1.Field]? = nil,
                                                   limit: Int? = nil) -> Request<CiTestResultsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciBuildActions/\(id)/testResults", method: .get, parameters: .init(fields: fields,
-                                                                                                   limit: limit))
+        .init(path: "/v1/ciBuildActions/\(id)/testResults", method: .get, parameters: .init(fields: fields,
+                                                                                            limit: limit))
     }
 }
 

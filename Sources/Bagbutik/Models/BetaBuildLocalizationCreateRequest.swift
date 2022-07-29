@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaBuildLocalizationCreateRequest
  The request body you use to create a Beta Build Localization.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaBuildLocalizationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
         /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,18 +54,19 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BetaBuildLocalizationCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
+
+         Table 1 lists allowed locale values.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationcreaterequest/data/attributes>
-
-         Table 1 lists allowed locale values.
          */
         public struct Attributes: Codable {
             /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalizationcreaterequest/data/attributes#3073798) for possible values.
@@ -69,13 +74,16 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
             /// A field that describes changes and additions to a build and indicates features you would like your users to test.
             public var whatsNew: String?
 
-            public init(locale: String, whatsNew: String? = nil) {
+            public init(locale: String,
+                        whatsNew: String? = nil)
+            {
                 self.locale = locale
                 self.whatsNew = whatsNew
             }
         }
 
         /**
+         # BetaBuildLocalizationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -89,6 +97,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaBuildLocalizationCreateRequest.Data.Relationships.Build
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -102,6 +111,7 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaBuildLocalizationCreateRequest.Data.Relationships.Build.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

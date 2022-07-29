@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # Read Beta App Review Detail Information
-      Get beta app review details for a specific app.
+     # Read Beta App Review Detail Information
+     Get beta app review details for a specific app.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_app_review_detail_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_app_review_detail_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBetaAppReviewDetailV1(id: String,
                                          fields: [GetBetaAppReviewDetailV1.Field]? = nil,
                                          includes: [GetBetaAppReviewDetailV1.Include]? = nil) -> Request<BetaAppReviewDetailResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaAppReviewDetails/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes))
+        .init(path: "/v1/betaAppReviewDetails/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                      includes: includes))
     }
 }
 

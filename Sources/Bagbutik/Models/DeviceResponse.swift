@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # DeviceResponse
  A response that contains a single Devices resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct DeviceResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: Device, links: DocumentLinks) {
+    public init(data: Device,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

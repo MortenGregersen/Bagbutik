@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppClipsResponse
  A response that contains a list of App Clips resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct AppClipsResponse: Codable, PagedResponse {
     public typealias Data = AppClip
+
     /// The resource data.
     public let data: [AppClip]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct AppClipsResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [AppClip], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppClip],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

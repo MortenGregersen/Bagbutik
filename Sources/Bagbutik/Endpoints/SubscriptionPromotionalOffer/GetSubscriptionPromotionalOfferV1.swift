@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read Promotional Offer Information
-      Get details about a specific promotional offer for an auto-renewable subscription.
+     # Read Promotional Offer Information
+     Get details about a specific promotional offer for an auto-renewable subscription.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_promotional_offer_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_promotional_offer_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum number of related prices returned (when they are included) - maximum 50
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related prices returned (when they are included) - maximum 50
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSubscriptionPromotionalOfferV1(id: String,
                                                   fields: [GetSubscriptionPromotionalOfferV1.Field]? = nil,
                                                   includes: [GetSubscriptionPromotionalOfferV1.Include]? = nil,
                                                   limit: Int? = nil) -> Request<SubscriptionPromotionalOfferResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptionPromotionalOffers/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                      includes: includes,
-                                                                                                      limit: limit))
+        .init(path: "/v1/subscriptionPromotionalOffers/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                               includes: includes,
+                                                                                               limit: limit))
     }
 }
 
@@ -53,6 +53,7 @@ public enum GetSubscriptionPromotionalOfferV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case prices, subscription
+        case prices
+        case subscription
     }
 }

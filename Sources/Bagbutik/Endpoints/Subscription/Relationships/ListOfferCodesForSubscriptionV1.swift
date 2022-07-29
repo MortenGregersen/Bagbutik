@@ -1,17 +1,17 @@
 public extension Request {
     /**
-      # List All Offer Codes for a Subscription
-      Get a list of subscription offer codes for a specific auto-renewable subscription.
+     # List All Offer Codes for a Subscription
+     Get a list of subscription offer codes for a specific auto-renewable subscription.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_offer_codes_for_a_subscription>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_offer_codes_for_a_subscription>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listOfferCodesForSubscriptionV1(id: String,
                                                 fields: [ListOfferCodesForSubscriptionV1.Field]? = nil,
@@ -19,10 +19,10 @@ public extension Request {
                                                 includes: [ListOfferCodesForSubscriptionV1.Include]? = nil,
                                                 limits: [ListOfferCodesForSubscriptionV1.Limit]? = nil) -> Request<SubscriptionOfferCodesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/subscriptions/\(id)/offerCodes", method: .get, parameters: .init(fields: fields,
-                                                                                                 filters: filters,
-                                                                                                 includes: includes,
-                                                                                                 limits: limits))
+        .init(path: "/v1/subscriptions/\(id)/offerCodes", method: .get, parameters: .init(fields: fields,
+                                                                                          filters: filters,
+                                                                                          includes: includes,
+                                                                                          limits: limits))
     }
 }
 
@@ -113,19 +113,22 @@ public enum ListOfferCodesForSubscriptionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case customCodes, oneTimeUseCodes, prices, subscription
+        case customCodes
+        case oneTimeUseCodes
+        case prices
+        case subscription
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related customCodes returned (when they are included) - maximum 50
+        case customCodes(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
         /// Maximum number of related oneTimeUseCodes returned (when they are included) - maximum 50
         case oneTimeUseCodes(Int)
-        /// Maximum number of related customCodes returned (when they are included) - maximum 50
-        case customCodes(Int)
         /// Maximum number of related prices returned (when they are included) - maximum 50
         case prices(Int)
     }

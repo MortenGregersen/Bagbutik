@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ScmRepositoriesResponse
  A response that contains a list of Repositories resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct ScmRepositoriesResponse: Codable, PagedResponse {
     public typealias Data = ScmRepository
+
     /// The resource data.
     public let data: [ScmRepository]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
     /// The paging information.
     public var meta: PagingInformation?
 
-    public init(data: [ScmRepository], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [ScmRepository],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

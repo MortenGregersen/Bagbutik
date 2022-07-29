@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CustomerReviewResponseV1CreateRequest
  The request body to use to create a response to a customer review.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
     }
 
     /**
+     # CustomerReviewResponseV1CreateRequest.Data
      The data element of the request body for creating a response to a customer review.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
         /// Navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # CustomerReviewResponseV1CreateRequest.Data.Attributes
          The attributes of the customer review response, including its text content.
 
          Full documentation:
@@ -71,6 +76,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
         }
 
         /**
+         # CustomerReviewResponseV1CreateRequest.Data.Relationships
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -85,6 +91,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CustomerReviewResponseV1CreateRequest.Data.Relationships.Review
              The data and links that describe the relationship between the resources.
 
              Full documentation:
@@ -99,6 +106,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CustomerReviewResponseV1CreateRequest.Data.Relationships.Review.Data
                  The type and ID of a resource that you’re relating with the resource you’re updating.
 
                  Full documentation:

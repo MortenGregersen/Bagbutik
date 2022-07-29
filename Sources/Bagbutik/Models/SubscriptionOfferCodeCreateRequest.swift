@@ -4,7 +4,9 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
     public let data: Data
     public var included: [SubscriptionOfferCodePriceInlineCreate]?
 
-    public init(data: Data, included: [SubscriptionOfferCodePriceInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [SubscriptionOfferCodePriceInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
@@ -14,7 +16,9 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -36,9 +40,9 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
@@ -49,7 +53,13 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
             public let offerEligibility: SubscriptionOfferEligibility
             public let offerMode: SubscriptionOfferMode
 
-            public init(customerEligibilities: [SubscriptionCustomerEligibility], duration: SubscriptionOfferDuration, name: String, numberOfPeriods: Int, offerEligibility: SubscriptionOfferEligibility, offerMode: SubscriptionOfferMode) {
+            public init(customerEligibilities: [SubscriptionCustomerEligibility],
+                        duration: SubscriptionOfferDuration,
+                        name: String,
+                        numberOfPeriods: Int,
+                        offerEligibility: SubscriptionOfferEligibility,
+                        offerMode: SubscriptionOfferMode)
+            {
                 self.customerEligibilities = customerEligibilities
                 self.duration = duration
                 self.name = name
@@ -63,7 +73,9 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
             public let prices: Prices
             public let subscription: Subscription
 
-            public init(prices: Prices, subscription: Subscription) {
+            public init(prices: Prices,
+                        subscription: Subscription)
+            {
                 self.prices = prices
                 self.subscription = subscription
             }

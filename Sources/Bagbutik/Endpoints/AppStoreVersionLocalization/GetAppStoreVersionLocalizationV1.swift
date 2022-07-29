@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Store Version Localization Information
-      Read localized version-level information.
+     # Read App Store Version Localization Information
+     Read localized version-level information.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_localization_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_localization_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionLocalizationV1(id: String,
                                                  fields: [GetAppStoreVersionLocalizationV1.Field]? = nil,
                                                  includes: [GetAppStoreVersionLocalizationV1.Include]? = nil,
                                                  limits: [GetAppStoreVersionLocalizationV1.Limit]? = nil) -> Request<AppStoreVersionLocalizationResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersionLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                                     includes: includes,
-                                                                                                     limits: limits))
+        .init(path: "/v1/appStoreVersionLocalizations/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                              includes: includes,
+                                                                                              limits: limits))
     }
 }
 
@@ -69,7 +69,9 @@ public enum GetAppStoreVersionLocalizationV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appPreviewSets, appScreenshotSets, appStoreVersion
+        case appPreviewSets
+        case appScreenshotSets
+        case appStoreVersion
     }
 
     /**

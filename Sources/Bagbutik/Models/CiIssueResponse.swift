@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiIssueResponse
  A response that contains a single Issues resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct CiIssueResponse: Codable {
     /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: CiIssue, links: DocumentLinks) {
+    public init(data: CiIssue,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

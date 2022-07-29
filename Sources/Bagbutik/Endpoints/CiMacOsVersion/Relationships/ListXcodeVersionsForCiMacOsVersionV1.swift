@@ -1,27 +1,27 @@
 public extension Request {
     /**
-      # List Available Xcode Versions for a macOS Version
-      List all Xcode versions available for a specific macOS version in Xcode Cloud.
+     # List Available Xcode Versions for a macOS Version
+     List all Xcode versions available for a specific macOS version in Xcode Cloud.
 
-      The example request below lists Xcode versions available in Xcode Cloud for a specific macOS version. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard.
+     The example request below lists Xcode versions available in Xcode Cloud for a specific macOS version. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_available_xcode_versions_for_a_macos_version>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_available_xcode_versions_for_a_macos_version>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listXcodeVersionsForCiMacOsVersionV1(id: String,
                                                      fields: [ListXcodeVersionsForCiMacOsVersionV1.Field]? = nil,
                                                      includes: [ListXcodeVersionsForCiMacOsVersionV1.Include]? = nil,
                                                      limits: [ListXcodeVersionsForCiMacOsVersionV1.Limit]? = nil) -> Request<CiXcodeVersionsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciMacOsVersions/\(id)/xcodeVersions", method: .get, parameters: .init(fields: fields,
-                                                                                                      includes: includes,
-                                                                                                      limits: limits))
+        .init(path: "/v1/ciMacOsVersions/\(id)/xcodeVersions", method: .get, parameters: .init(fields: fields,
+                                                                                               includes: includes,
+                                                                                               limits: limits))
     }
 }
 

@@ -1,16 +1,16 @@
 public extension Request {
     /**
-      # GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appPreviewSets
+     # GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appPreviewSets
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperimenttreatmentlocalizations_id_apppreviewsets>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperimenttreatmentlocalizations_id_apppreviewsets>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1(id: String,
                                                                                       fields: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Field]? = nil,
@@ -18,10 +18,10 @@ public extension Request {
                                                                                       includes: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Include]? = nil,
                                                                                       limits: [ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV1.Limit]? = nil) -> Request<AppPreviewSetsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
-                                                                                                                                       filters: filters,
-                                                                                                                                       includes: includes,
-                                                                                                                                       limits: limits))
+        .init(path: "/v1/appStoreVersionExperimentTreatmentLocalizations/\(id)/appPreviewSets", method: .get, parameters: .init(fields: fields,
+                                                                                                                                filters: filters,
+                                                                                                                                includes: includes,
+                                                                                                                                limits: limits))
     }
 }
 
@@ -126,16 +126,19 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case appCustomProductPageLocalization, appPreviews, appStoreVersionExperimentTreatmentLocalization, appStoreVersionLocalization
+        case appCustomProductPageLocalization
+        case appPreviews
+        case appStoreVersionExperimentTreatmentLocalization
+        case appStoreVersionLocalization
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appPreviews returned (when they are included) - maximum 50
         case appPreviews(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

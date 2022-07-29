@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPreviewSetsResponse
  A response that contains a list of App Preview Set resources.
 
  Full documentation:
@@ -8,12 +9,17 @@ import Foundation
  */
 public struct AppPreviewSetsResponse: Codable, PagedResponse {
     public typealias Data = AppPreviewSet
+
     public let data: [AppPreviewSet]
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [AppPreviewSet], included: [Included]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [AppPreviewSet],
+                included: [Included]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

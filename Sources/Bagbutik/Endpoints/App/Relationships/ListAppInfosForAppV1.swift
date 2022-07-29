@@ -1,27 +1,27 @@
 public extension Request {
     /**
-      # List All App Infos for an App
-      Get information about an app that is currently live on App Store, or that goes live with the next version.
+     # List All App Infos for an App
+     Get information about an app that is currently live on App Store, or that goes live with the next version.
 
-      Use this endpoint to retrieve the derived app-level information for an app. If the app has both a “Ready for Sale” version and a version you’re preparing for release, it will have two app infos. One represents information about the app currently in the App Store, and the other represents the information that will take effect when you release the next version. Use the `appStoreState` attribute to differentiate them.
+     Use this endpoint to retrieve the derived app-level information for an app. If the app has both a “Ready for Sale” version and a version you’re preparing for release, it will have two app infos. One represents information about the app currently in the App Store, and the other represents the information that will take effect when you release the next version. Use the `appStoreState` attribute to differentiate them.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_infos_for_an_app>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_infos_for_an_app>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppInfosForAppV1(id: String,
                                      fields: [ListAppInfosForAppV1.Field]? = nil,
                                      includes: [ListAppInfosForAppV1.Include]? = nil,
                                      limits: [ListAppInfosForAppV1.Limit]? = nil) -> Request<AppInfosResponse, ErrorResponse>
     {
-        return .init(path: "/v1/apps/\(id)/appInfos", method: .get, parameters: .init(fields: fields,
-                                                                                      includes: includes,
-                                                                                      limits: limits))
+        .init(path: "/v1/apps/\(id)/appInfos", method: .get, parameters: .init(fields: fields,
+                                                                               includes: includes,
+                                                                               limits: limits))
     }
 }
 
@@ -139,16 +139,24 @@ public enum ListAppInfosForAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appInfoLocalizations, primaryCategory, primarySubcategoryOne, primarySubcategoryTwo, secondaryCategory, secondarySubcategoryOne, secondarySubcategoryTwo
+        case ageRatingDeclaration
+        case app
+        case appInfoLocalizations
+        case primaryCategory
+        case primarySubcategoryOne
+        case primarySubcategoryTwo
+        case secondaryCategory
+        case secondarySubcategoryOne
+        case secondarySubcategoryTwo
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
-        /// Maximum resources per page - maximum 200
-        case limit(Int)
         /// Maximum number of related appInfoLocalizations returned (when they are included) - maximum 50
         case appInfoLocalizations(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

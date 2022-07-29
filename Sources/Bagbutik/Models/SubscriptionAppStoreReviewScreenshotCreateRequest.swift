@@ -12,7 +12,9 @@ public struct SubscriptionAppStoreReviewScreenshotCreateRequest: Codable, Reques
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -34,16 +36,18 @@ public struct SubscriptionAppStoreReviewScreenshotCreateRequest: Codable, Reques
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         public struct Attributes: Codable {
             public let fileName: String
             public let fileSize: Int
 
-            public init(fileName: String, fileSize: Int) {
+            public init(fileName: String,
+                        fileSize: Int)
+            {
                 self.fileName = fileName
                 self.fileSize = fileSize
             }

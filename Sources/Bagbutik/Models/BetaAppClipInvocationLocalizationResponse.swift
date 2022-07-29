@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationLocalizationResponse
  A response that contains a single Beta App Clip Invocation Localizations resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct BetaAppClipInvocationLocalizationResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: BetaAppClipInvocationLocalization, links: DocumentLinks) {
+    public init(data: BetaAppClipInvocationLocalization,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

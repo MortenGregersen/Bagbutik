@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ProfileCreateRequest
  The request body you use to create a Profile.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # ProfileCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -25,7 +27,9 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         public let attributes: Attributes
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -47,12 +51,13 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # ProfileCreateRequest.Data.Attributes
          Attributes that you set that describe the new resource.
 
          Full documentation:
@@ -62,13 +67,16 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             public let name: String
             public let profileType: Profile.Attributes.ProfileType
 
-            public init(name: String, profileType: Profile.Attributes.ProfileType) {
+            public init(name: String,
+                        profileType: Profile.Attributes.ProfileType)
+            {
                 self.name = name
                 self.profileType = profileType
             }
         }
 
         /**
+         # ProfileCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -79,13 +87,17 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             public let certificates: Certificates
             public var devices: Devices?
 
-            public init(bundleId: BundleId, certificates: Certificates, devices: Devices? = nil) {
+            public init(bundleId: BundleId,
+                        certificates: Certificates,
+                        devices: Devices? = nil)
+            {
                 self.bundleId = bundleId
                 self.certificates = certificates
                 self.devices = devices
             }
 
             /**
+             # ProfileCreateRequest.Data.Relationships.BundleId
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -99,6 +111,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # ProfileCreateRequest.Data.Relationships.BundleId.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
@@ -134,6 +147,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # ProfileCreateRequest.Data.Relationships.Certificates
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -147,6 +161,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # ProfileCreateRequest.Data.Relationships.Certificates.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:
@@ -182,6 +197,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # ProfileCreateRequest.Data.Relationships.Devices
              The relationships to other resources that you can set with this request.
 
              Full documentation:
@@ -195,6 +211,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # ProfileCreateRequest.Data.Relationships.Devices.Data
                  The type and ID of the resource that you're relating with the resource you're creating.
 
                  Full documentation:

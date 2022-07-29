@@ -1,26 +1,26 @@
 public extension Request {
     /**
-      # List Devices
-      Find and list devices registered to your team.
+     # List Devices
+     Find and list devices registered to your team.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_devices>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_devices>
 
-      - Parameter fields: Fields to return for included related types
-      - Parameter filters: Attributes, relationships, and IDs by which to filter
-      - Parameter sorts: Attributes by which to sort
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter fields: Fields to return for included related types
+     - Parameter filters: Attributes, relationships, and IDs by which to filter
+     - Parameter sorts: Attributes by which to sort
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listDevicesV1(fields: [ListDevicesV1.Field]? = nil,
                               filters: [ListDevicesV1.Filter]? = nil,
                               sorts: [ListDevicesV1.Sort]? = nil,
                               limit: Int? = nil) -> Request<DevicesResponse, ErrorResponse>
     {
-        return .init(path: "/v1/devices", method: .get, parameters: .init(fields: fields,
-                                                                          filters: filters,
-                                                                          sorts: sorts,
-                                                                          limit: limit))
+        .init(path: "/v1/devices", method: .get, parameters: .init(fields: fields,
+                                                                   filters: filters,
+                                                                   sorts: sorts,
+                                                                   limit: limit))
     }
 }
 

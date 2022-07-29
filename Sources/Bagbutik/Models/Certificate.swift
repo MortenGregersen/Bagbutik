@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # Certificate
  The data structure that represents a Certificates resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct Certificate: Codable {
     /// The resource's attributes.
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,13 +45,14 @@ public struct Certificate: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # Certificate.Attributes
      Attributes that describe a Certificates resource.
 
      Full documentation:
@@ -62,7 +67,14 @@ public struct Certificate: Codable {
         public var platform: BundleIdPlatform?
         public var serialNumber: String?
 
-        public init(certificateContent: String? = nil, certificateType: CertificateType? = nil, displayName: String? = nil, expirationDate: Date? = nil, name: String? = nil, platform: BundleIdPlatform? = nil, serialNumber: String? = nil) {
+        public init(certificateContent: String? = nil,
+                    certificateType: CertificateType? = nil,
+                    displayName: String? = nil,
+                    expirationDate: Date? = nil,
+                    name: String? = nil,
+                    platform: BundleIdPlatform? = nil,
+                    serialNumber: String? = nil)
+        {
             self.certificateContent = certificateContent
             self.certificateType = certificateType
             self.displayName = displayName

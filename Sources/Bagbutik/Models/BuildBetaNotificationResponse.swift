@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildBetaNotificationResponse
  A response that contains a single Build Beta Notifications resource.
 
  Full documentation:
@@ -12,7 +13,9 @@ public struct BuildBetaNotificationResponse: Codable {
     /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
-    public init(data: BuildBetaNotification, links: DocumentLinks) {
+    public init(data: BuildBetaNotification,
+                links: DocumentLinks)
+    {
         self.data = data
         self.links = links
     }

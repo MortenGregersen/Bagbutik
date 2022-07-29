@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppScreenshotSetAppScreenshotsLinkagesRequest
  A request body you use to reorder the screenshots in a screenshot set.
 
  Full documentation:
@@ -14,6 +15,7 @@ public struct AppScreenshotSetAppScreenshotsLinkagesRequest: Codable, RequestBod
     }
 
     /**
+     # AppScreenshotSetAppScreenshotsLinkagesRequest.Data
      The data element of the request body.
 
      Full documentation:

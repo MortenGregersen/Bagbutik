@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the Primary Subcategory One Information of an App Info
-      Get the first App Store subcategory within an app’s primary category.
+     # Read the Primary Subcategory One Information of an App Info
+     Get the first App Store subcategory within an app’s primary category.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_primary_subcategory_one_information_of_an_app_info>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_primary_subcategory_one_information_of_an_app_info>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPrimarySubcategoryOneForAppInfoV1(id: String,
                                                      fields: [GetPrimarySubcategoryOneForAppInfoV1.Field]? = nil) -> Request<AppCategoryResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appInfos/\(id)/primarySubcategoryOne", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/appInfos/\(id)/primarySubcategoryOne", method: .get, parameters: .init(fields: fields))
     }
 }
 

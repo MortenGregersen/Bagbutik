@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppLocalizationUpdateRequest
  The request body you use to update a Beta App Localization.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaAppLocalizationUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
         /// The resource's attributes.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BetaAppLocalizationUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -73,7 +78,12 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
             /// Your company’s privacy policy. Privacy policies are recommended for all apps that collect user or device-related data, or as otherwise required by law.
             public var tvOsPrivacyPolicy: String?
 
-            public init(description: String? = nil, feedbackEmail: String? = nil, marketingUrl: String? = nil, privacyPolicyUrl: String? = nil, tvOsPrivacyPolicy: String? = nil) {
+            public init(description: String? = nil,
+                        feedbackEmail: String? = nil,
+                        marketingUrl: String? = nil,
+                        privacyPolicyUrl: String? = nil,
+                        tvOsPrivacyPolicy: String? = nil)
+            {
                 self.description = description
                 self.feedbackEmail = feedbackEmail
                 self.marketingUrl = marketingUrl

@@ -1,19 +1,19 @@
 public extension Request {
     /**
-      # Read the Bundle ID in a Profile
-      Get the bundle ID information for a specific provisioning profile.
+     # Read the Bundle ID in a Profile
+     Get the bundle ID information for a specific provisioning profile.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_bundle_id_in_a_profile>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_bundle_id_in_a_profile>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBundleIdForProfileV1(id: String,
                                         fields: [GetBundleIdForProfileV1.Field]? = nil) -> Request<BundleIdResponse, ErrorResponse>
     {
-        return .init(path: "/v1/profiles/\(id)/bundleId", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/profiles/\(id)/bundleId", method: .get, parameters: .init(fields: fields))
     }
 }
 

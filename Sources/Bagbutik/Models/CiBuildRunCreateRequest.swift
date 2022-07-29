@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CiBuildRunCreateRequest
  The request body you use to start a new Xcode Cloud build.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
     }
 
     /**
+     # CiBuildRunCreateRequest.Data
      The data element of the request you use to start a new Xcode Cloud build.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
         /// The types and IDs of the related data to update.
         public var relationships: Relationships?
 
-        public init(attributes: Attributes? = nil, relationships: Relationships? = nil) {
+        public init(attributes: Attributes? = nil,
+                    relationships: Relationships? = nil)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -50,12 +54,13 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # CiBuildRunCreateRequest.Data.Attributes
          The attributes you set that describe the new Build Runs resource.
 
          Full documentation:
@@ -71,6 +76,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # CiBuildRunCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -86,7 +92,11 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             /// The related Workflows resource.
             public var workflow: Workflow?
 
-            public init(buildRun: BuildRun? = nil, pullRequest: PullRequest? = nil, sourceBranchOrTag: SourceBranchOrTag? = nil, workflow: Workflow? = nil) {
+            public init(buildRun: BuildRun? = nil,
+                        pullRequest: PullRequest? = nil,
+                        sourceBranchOrTag: SourceBranchOrTag? = nil,
+                        workflow: Workflow? = nil)
+            {
                 self.buildRun = buildRun
                 self.pullRequest = pullRequest
                 self.sourceBranchOrTag = sourceBranchOrTag
@@ -94,6 +104,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiBuildRunCreateRequest.Data.Relationships.BuildRun
              The relationship to the Build Runs resource you can set with the request that creates a Build Runs resource.
 
              Full documentation:
@@ -108,6 +119,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiBuildRunCreateRequest.Data.Relationships.BuildRun.Data
                  The type and ID of the Build Runs resource that you’re relating with the Build Runs resource you’re creating.
 
                  Full documentation:
@@ -145,6 +157,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiBuildRunCreateRequest.Data.Relationships.PullRequest
              The relationship to the Pull Requests resource you can set with the request that creates a Build Runs resource.
 
              Full documentation:
@@ -159,6 +172,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiBuildRunCreateRequest.Data.Relationships.PullRequest.Data
                  The type and ID of the Pull Requests resource that you’re relating with the Build Runs resource you’re creating.
 
                  Full documentation:
@@ -196,6 +210,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiBuildRunCreateRequest.Data.Relationships.SourceBranchOrTag
              The relationship to the Git References resource that represents the source branch or tag you can set with the request that creates a Build Runs resource.
 
              Full documentation:
@@ -210,6 +225,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiBuildRunCreateRequest.Data.Relationships.SourceBranchOrTag.Data
                  The type and ID of the Git References resource that represents the source branch or tag you relate with the Build Runs resource you’re creating.
 
                  Full documentation:
@@ -247,6 +263,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # CiBuildRunCreateRequest.Data.Relationships.Workflow
              The relationship to the Workflows resource you can set with the request that creates a Build Runs resource.
 
              Full documentation:
@@ -261,6 +278,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # CiBuildRunCreateRequest.Data.Relationships.Workflow.Data
                  The type and ID of the Workflows resource that you’re relating with the Build Runs resource you’re creating.
 
                  Full documentation:

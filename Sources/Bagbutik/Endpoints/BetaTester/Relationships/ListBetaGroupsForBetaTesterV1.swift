@@ -1,22 +1,22 @@
 public extension Request {
     /**
-      # List All Beta Groups to Which a Beta Tester Belongs
-      Get a list of beta groups that contain a specific beta tester.
+     # List All Beta Groups to Which a Beta Tester Belongs
+     Get a list of beta groups that contain a specific beta tester.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_beta_groups_to_which_a_beta_tester_belongs>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_beta_groups_to_which_a_beta_tester_belongs>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listBetaGroupsForBetaTesterV1(id: String,
                                               fields: [ListBetaGroupsForBetaTesterV1.Field]? = nil,
                                               limit: Int? = nil) -> Request<BetaGroupsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/betaTesters/\(id)/betaGroups", method: .get, parameters: .init(fields: fields,
-                                                                                               limit: limit))
+        .init(path: "/v1/betaTesters/\(id)/betaGroups", method: .get, parameters: .init(fields: fields,
+                                                                                        limit: limit))
     }
 }
 

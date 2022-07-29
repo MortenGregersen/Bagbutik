@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersionPhasedRelease
  The data structure that represent an App Store Version Phased Releases resource.
 
  Full documentation:
@@ -12,7 +13,10 @@ public struct AppStoreVersionPhasedRelease: Codable {
     public var type: String { "appStoreVersionPhasedReleases" }
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -37,13 +41,14 @@ public struct AppStoreVersionPhasedRelease: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # AppStoreVersionPhasedRelease.Attributes
      Attributes that describe an App Store Version Phased Releases resource.
 
      Full documentation:
@@ -55,7 +60,11 @@ public struct AppStoreVersionPhasedRelease: Codable {
         public var startDate: Date?
         public var totalPauseDuration: Int?
 
-        public init(currentDayNumber: Int? = nil, phasedReleaseState: PhasedReleaseState? = nil, startDate: Date? = nil, totalPauseDuration: Int? = nil) {
+        public init(currentDayNumber: Int? = nil,
+                    phasedReleaseState: PhasedReleaseState? = nil,
+                    startDate: Date? = nil,
+                    totalPauseDuration: Int? = nil)
+        {
             self.currentDayNumber = currentDayNumber
             self.phasedReleaseState = phasedReleaseState
             self.startDate = startDate

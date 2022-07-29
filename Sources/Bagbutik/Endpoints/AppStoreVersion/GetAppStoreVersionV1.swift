@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # Read App Store Version Information
-      Get information for a specific app store version.
+     # Read App Store Version Information
+     Get information for a specific app store version.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_information>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_information>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limits: Number of resources to return
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limits: Number of resources to return
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppStoreVersionV1(id: String,
                                      fields: [GetAppStoreVersionV1.Field]? = nil,
                                      includes: [GetAppStoreVersionV1.Include]? = nil,
                                      limits: [GetAppStoreVersionV1.Limit]? = nil) -> Request<AppStoreVersionResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appStoreVersions/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                         includes: includes,
-                                                                                         limits: limits))
+        .init(path: "/v1/appStoreVersions/\(id)", method: .get, parameters: .init(fields: fields,
+                                                                                  includes: includes,
+                                                                                  limits: limits))
     }
 }
 
@@ -206,7 +206,16 @@ public enum GetAppStoreVersionV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case ageRatingDeclaration, app, appClipDefaultExperience, appStoreReviewDetail, appStoreVersionExperiments, appStoreVersionLocalizations, appStoreVersionPhasedRelease, appStoreVersionSubmission, build, routingAppCoverage
+        case ageRatingDeclaration
+        case app
+        case appClipDefaultExperience
+        case appStoreReviewDetail
+        case appStoreVersionExperiments
+        case appStoreVersionLocalizations
+        case appStoreVersionPhasedRelease
+        case appStoreVersionSubmission
+        case build
+        case routingAppCoverage
     }
 
     /**

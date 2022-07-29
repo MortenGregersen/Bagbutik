@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppClipInvocationCreateRequest
  The request body you use to create an App Clip invocation for testers.
 
  Full documentation:
@@ -12,12 +13,15 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
     /// The relationship data to include in the response.
     public var included: [BetaAppClipInvocationLocalizationInlineCreate]?
 
-    public init(data: Data, included: [BetaAppClipInvocationLocalizationInlineCreate]? = nil) {
+    public init(data: Data,
+                included: [BetaAppClipInvocationLocalizationInlineCreate]? = nil)
+    {
         self.data = data
         self.included = included
     }
 
     /**
+     # BetaAppClipInvocationCreateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -31,7 +35,9 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
         /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
-        public init(attributes: Attributes, relationships: Relationships) {
+        public init(attributes: Attributes,
+                    relationships: Relationships)
+        {
             self.attributes = attributes
             self.relationships = relationships
         }
@@ -53,12 +59,13 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case attributes
             case relationships
+            case type
         }
 
         /**
+         # BetaAppClipInvocationCreateRequest.Data.Attributes
          The attributes you set that describe the new Beta App Clip Invocations resource.
 
          Full documentation:
@@ -74,6 +81,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
         }
 
         /**
+         # BetaAppClipInvocationCreateRequest.Data.Relationships
          The relationships to other resources that you can set with this request.
 
          Full documentation:
@@ -85,12 +93,15 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             /// The related Build Bundles resource.
             public let buildBundle: BuildBundle
 
-            public init(betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations, buildBundle: BuildBundle) {
+            public init(betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations,
+                        buildBundle: BuildBundle)
+            {
                 self.betaAppClipInvocationLocalizations = betaAppClipInvocationLocalizations
                 self.buildBundle = buildBundle
             }
 
             /**
+             # BetaAppClipInvocationCreateRequest.Data.Relationships.BetaAppClipInvocationLocalizations
              The relationship to the Beta App Clip Invocation Localizations resource you set with the request that creates a Beta App Clip Invocations resource.
 
              Full documentation:
@@ -105,6 +116,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaAppClipInvocationCreateRequest.Data.Relationships.BetaAppClipInvocationLocalizations.Data
                  The type and ID of the Beta App Clip Invocation Localizations resource that you’re relating with the Beta App Clip Invocations resource you’re creating.
 
                  Full documentation:
@@ -142,6 +154,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             }
 
             /**
+             # BetaAppClipInvocationCreateRequest.Data.Relationships.BuildBundle
              The relationship to the Build Bundles resource you set with the request that creates a Beta App Clip Invocations resource.
 
              Full documentation:
@@ -156,6 +169,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 }
 
                 /**
+                 # BetaAppClipInvocationCreateRequest.Data.Relationships.BuildBundle.Data
                  The type and ID of the Build Bundles resource that you’re relating with the Beta App Clip Invocations resource you’re creating.
 
                  Full documentation:

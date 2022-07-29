@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # PerfPowerMetric
  Unused.
 
  Full documentation:
@@ -12,7 +13,10 @@ public struct PerfPowerMetric: Codable {
     public var type: String { "perfPowerMetrics" }
     public var attributes: Attributes?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -37,13 +41,14 @@ public struct PerfPowerMetric: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
         case type
-        case attributes
     }
 
     /**
+     # PerfPowerMetric.Attributes
      Attributes that describe a Power and Performance Metrics resource.
 
      Full documentation:
@@ -56,7 +61,10 @@ public struct PerfPowerMetric: Codable {
         public var metricType: MetricType?
         public var platform: Platform?
 
-        public init(deviceType: String? = nil, metricType: MetricType? = nil, platform: Platform? = nil) {
+        public init(deviceType: String? = nil,
+                    metricType: MetricType? = nil,
+                    platform: Platform? = nil)
+        {
             self.deviceType = deviceType
             self.metricType = metricType
             self.platform = platform

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # GameCenterEnabledVersionCompatibleVersionsLinkagesResponse
  A response body that contains a list of related resource IDs.
 
  Full documentation:
@@ -11,13 +12,17 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codabl
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [Data], links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [Data],
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.links = links
         self.meta = meta
     }
 
     /**
+     # GameCenterEnabledVersionCompatibleVersionsLinkagesResponse.Data
      The data element of the response body.
 
      Full documentation:

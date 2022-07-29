@@ -30,15 +30,17 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
-            case type
             case relationships
+            case type
         }
 
         public struct Relationships: Codable {
             public let appCustomProductPage: AppCustomProductPage
             public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
-            public init(appCustomProductPage: AppCustomProductPage, appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil) {
+            public init(appCustomProductPage: AppCustomProductPage,
+                        appCustomProductPageLocalizations: AppCustomProductPageLocalizations? = nil)
+            {
                 self.appCustomProductPage = appCustomProductPage
                 self.appCustomProductPageLocalizations = appCustomProductPageLocalizations
             }

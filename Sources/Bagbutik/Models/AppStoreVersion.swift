@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppStoreVersion
  The data structure that represent an App Store Versions resource.
 
  Full documentation:
@@ -13,7 +14,11 @@ public struct AppStoreVersion: Codable {
     public var attributes: Attributes?
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -41,14 +46,15 @@ public struct AppStoreVersion: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # AppStoreVersion.Attributes
      Attributes that describe an App Store Versions resource.
 
      Full documentation:
@@ -64,7 +70,15 @@ public struct AppStoreVersion: Codable {
         public var releaseType: ReleaseType?
         public var versionString: String?
 
-        public init(appStoreState: AppStoreVersionState? = nil, copyright: String? = nil, createdDate: Date? = nil, downloadable: Bool? = nil, earliestReleaseDate: Date? = nil, platform: Platform? = nil, releaseType: ReleaseType? = nil, versionString: String? = nil) {
+        public init(appStoreState: AppStoreVersionState? = nil,
+                    copyright: String? = nil,
+                    createdDate: Date? = nil,
+                    downloadable: Bool? = nil,
+                    earliestReleaseDate: Date? = nil,
+                    platform: Platform? = nil,
+                    releaseType: ReleaseType? = nil,
+                    versionString: String? = nil)
+        {
             self.appStoreState = appStoreState
             self.copyright = copyright
             self.createdDate = createdDate
@@ -83,6 +97,7 @@ public struct AppStoreVersion: Codable {
     }
 
     /**
+     # AppStoreVersion.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -103,7 +118,17 @@ public struct AppStoreVersion: Codable {
         public var routingAppCoverage: RoutingAppCoverage?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil, app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionExperiments: AppStoreVersionExperiments? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
+        public init(ageRatingDeclaration: AgeRatingDeclaration? = nil,
+                    app: App? = nil,
+                    appClipDefaultExperience: AppClipDefaultExperience? = nil,
+                    appStoreReviewDetail: AppStoreReviewDetail? = nil,
+                    appStoreVersionExperiments: AppStoreVersionExperiments? = nil,
+                    appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil,
+                    appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil,
+                    appStoreVersionSubmission: AppStoreVersionSubmission? = nil,
+                    build: Build? = nil,
+                    routingAppCoverage: RoutingAppCoverage? = nil)
+        {
             self.ageRatingDeclaration = ageRatingDeclaration
             self.app = app
             self.appClipDefaultExperience = appClipDefaultExperience
@@ -116,7 +141,16 @@ public struct AppStoreVersion: Codable {
             self.routingAppCoverage = routingAppCoverage
         }
 
-        public init(app: App? = nil, appClipDefaultExperience: AppClipDefaultExperience? = nil, appStoreReviewDetail: AppStoreReviewDetail? = nil, appStoreVersionExperiments: AppStoreVersionExperiments? = nil, appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil, appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil, appStoreVersionSubmission: AppStoreVersionSubmission? = nil, build: Build? = nil, routingAppCoverage: RoutingAppCoverage? = nil) {
+        public init(app: App? = nil,
+                    appClipDefaultExperience: AppClipDefaultExperience? = nil,
+                    appStoreReviewDetail: AppStoreReviewDetail? = nil,
+                    appStoreVersionExperiments: AppStoreVersionExperiments? = nil,
+                    appStoreVersionLocalizations: AppStoreVersionLocalizations? = nil,
+                    appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil,
+                    appStoreVersionSubmission: AppStoreVersionSubmission? = nil,
+                    build: Build? = nil,
+                    routingAppCoverage: RoutingAppCoverage? = nil)
+        {
             self.app = app
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appStoreReviewDetail = appStoreReviewDetail
@@ -129,6 +163,7 @@ public struct AppStoreVersion: Codable {
         }
 
         /**
+         # AppStoreVersion.Relationships.AgeRatingDeclaration
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -138,12 +173,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.AgeRatingDeclaration.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -178,6 +216,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.AgeRatingDeclaration.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -187,7 +226,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -205,13 +246,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -221,12 +263,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -261,6 +306,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -270,7 +316,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -288,13 +336,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.AppClipDefaultExperience
          The data and links that describe the relationship between the App Store Versions and the Default App Clip Experiences resources.
 
          Full documentation:
@@ -306,12 +355,15 @@ public struct AppStoreVersion: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.AppClipDefaultExperience.Data
              The type and ID of a related Default App Clip Experiences resource.
 
              Full documentation:
@@ -348,6 +400,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.AppClipDefaultExperience.Links
              The links to the related Default App Clip Experiences resource and the relationship’s self-link.
 
              Full documentation:
@@ -359,7 +412,9 @@ public struct AppStoreVersion: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -377,13 +432,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.AppStoreReviewDetail
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -393,12 +449,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreReviewDetail.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -433,6 +492,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreReviewDetail.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -442,7 +502,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -460,8 +522,8 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
@@ -471,7 +533,10 @@ public struct AppStoreVersion: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
@@ -509,7 +574,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -527,13 +594,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.AppStoreVersionLocalizations
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -544,13 +612,17 @@ public struct AppStoreVersion: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -585,6 +657,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -594,7 +667,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -612,13 +687,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -628,12 +704,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -668,6 +747,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -677,7 +757,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -695,13 +777,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.AppStoreVersionSubmission
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -711,12 +794,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreVersionSubmission.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -751,6 +837,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.AppStoreVersionSubmission.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -760,7 +847,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -778,13 +867,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.Build
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -794,12 +884,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.Build.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -834,6 +927,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.Build.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -843,7 +937,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -861,13 +957,14 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # AppStoreVersion.Relationships.RoutingAppCoverage
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -877,12 +974,15 @@ public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # AppStoreVersion.Relationships.RoutingAppCoverage.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -917,6 +1017,7 @@ public struct AppStoreVersion: Codable {
             }
 
             /**
+             # AppStoreVersion.Relationships.RoutingAppCoverage.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -926,7 +1027,9 @@ public struct AppStoreVersion: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -944,8 +1047,8 @@ public struct AppStoreVersion: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

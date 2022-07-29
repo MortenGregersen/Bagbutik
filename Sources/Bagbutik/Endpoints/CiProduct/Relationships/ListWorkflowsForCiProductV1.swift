@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All Workflows for an Xcode Cloud Product
-      List all workflows for a specific Xcode Cloud product.
+     # List All Workflows for an Xcode Cloud Product
+     List all workflows for a specific Xcode Cloud product.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_workflows_for_an_xcode_cloud_product>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_workflows_for_an_xcode_cloud_product>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listWorkflowsForCiProductV1(id: String,
                                             fields: [ListWorkflowsForCiProductV1.Field]? = nil,
                                             includes: [ListWorkflowsForCiProductV1.Include]? = nil,
                                             limit: Int? = nil) -> Request<CiWorkflowsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/ciProducts/\(id)/workflows", method: .get, parameters: .init(fields: fields,
-                                                                                             includes: includes,
-                                                                                             limit: limit))
+        .init(path: "/v1/ciProducts/\(id)/workflows", method: .get, parameters: .init(fields: fields,
+                                                                                      includes: includes,
+                                                                                      limit: limit))
     }
 }
 
@@ -101,6 +101,9 @@ public enum ListWorkflowsForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
-        case macOsVersion, product, repository, xcodeVersion
+        case macOsVersion
+        case product
+        case repository
+        case xcodeVersion
     }
 }

@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BetaAppReviewDetailUpdateRequest
  The request body you use to update a Beta App Review Detail.
 
  Full documentation:
@@ -15,6 +16,7 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
     }
 
     /**
+     # BetaAppReviewDetailUpdateRequest.Data
      The data element of the request body.
 
      Full documentation:
@@ -28,7 +30,9 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
         /// The resource's attributes.
         public var attributes: Attributes?
 
-        public init(id: String, attributes: Attributes? = nil) {
+        public init(id: String,
+                    attributes: Attributes? = nil)
+        {
             self.id = id
             self.attributes = attributes
         }
@@ -50,12 +54,13 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case type
-            case attributes
         }
 
         /**
+         # BetaAppReviewDetailUpdateRequest.Data.Attributes
          Attributes whose values you're changing as part of the update request.
 
          Full documentation:
@@ -79,7 +84,15 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
             /// Additional information about your app that can help during the review process. Do not include demo account details. Review notes have a maximum of 4,000 characters.
             public var notes: String?
 
-            public init(contactEmail: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactPhone: String? = nil, demoAccountName: String? = nil, demoAccountPassword: String? = nil, demoAccountRequired: Bool? = nil, notes: String? = nil) {
+            public init(contactEmail: String? = nil,
+                        contactFirstName: String? = nil,
+                        contactLastName: String? = nil,
+                        contactPhone: String? = nil,
+                        demoAccountName: String? = nil,
+                        demoAccountPassword: String? = nil,
+                        demoAccountRequired: Bool? = nil,
+                        notes: String? = nil)
+            {
                 self.contactEmail = contactEmail
                 self.contactFirstName = contactFirstName
                 self.contactLastName = contactLastName

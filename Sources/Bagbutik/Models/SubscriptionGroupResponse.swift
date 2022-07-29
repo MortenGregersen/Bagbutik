@@ -5,7 +5,10 @@ public struct SubscriptionGroupResponse: Codable {
     public var included: [Included]?
     public let links: DocumentLinks
 
-    public init(data: SubscriptionGroup, included: [Included]? = nil, links: DocumentLinks) {
+    public init(data: SubscriptionGroup,
+                included: [Included]? = nil,
+                links: DocumentLinks)
+    {
         self.data = data
         self.included = included
         self.links = links

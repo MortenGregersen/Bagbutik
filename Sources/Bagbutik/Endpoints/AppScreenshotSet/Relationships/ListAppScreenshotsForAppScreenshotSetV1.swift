@@ -1,25 +1,25 @@
 public extension Request {
     /**
-      # List All App Screenshots for an App Screenshot Set
-      List all ordered screenshots in a screenshot set.
+     # List All App Screenshots for an App Screenshot Set
+     List all ordered screenshots in a screenshot set.
 
-      Full documentation:
-      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_screenshots_for_an_app_screenshot_set>
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_screenshots_for_an_app_screenshot_set>
 
-      - Parameter id: The id of the requested resource
-      - Parameter fields: Fields to return for included related types
-      - Parameter includes: Relationship data to include in the response
-      - Parameter limit: Maximum resources per page - maximum 200
-      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+     - Parameter id: The id of the requested resource
+     - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum resources per page - maximum 200
+     - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppScreenshotsForAppScreenshotSetV1(id: String,
                                                         fields: [ListAppScreenshotsForAppScreenshotSetV1.Field]? = nil,
                                                         includes: [ListAppScreenshotsForAppScreenshotSetV1.Include]? = nil,
                                                         limit: Int? = nil) -> Request<AppScreenshotsResponse, ErrorResponse>
     {
-        return .init(path: "/v1/appScreenshotSets/\(id)/appScreenshots", method: .get, parameters: .init(fields: fields,
-                                                                                                         includes: includes,
-                                                                                                         limit: limit))
+        .init(path: "/v1/appScreenshotSets/\(id)/appScreenshots", method: .get, parameters: .init(fields: fields,
+                                                                                                  includes: includes,
+                                                                                                  limit: limit))
     }
 }
 

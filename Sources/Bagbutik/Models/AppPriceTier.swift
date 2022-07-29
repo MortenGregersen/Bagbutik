@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # AppPriceTier
  The data structure that represent an App Price Tiers resource.
 
  Full documentation:
@@ -16,7 +17,10 @@ public struct AppPriceTier: Codable {
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.relationships = relationships
@@ -43,11 +47,12 @@ public struct AppPriceTier: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case links
-        case type
         case relationships
+        case type
     }
 
     /**
+     # AppPriceTier.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -65,6 +70,7 @@ public struct AppPriceTier: Codable {
         public init() {}
 
         /**
+         # AppPriceTier.Relationships.PricePoints
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -75,13 +81,17 @@ public struct AppPriceTier: Codable {
             public var links: Links?
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # AppPriceTier.Relationships.PricePoints.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -116,6 +126,7 @@ public struct AppPriceTier: Codable {
             }
 
             /**
+             # AppPriceTier.Relationships.PricePoints.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -125,7 +136,9 @@ public struct AppPriceTier: Codable {
                 public var related: String?
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -143,8 +156,8 @@ public struct AppPriceTier: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

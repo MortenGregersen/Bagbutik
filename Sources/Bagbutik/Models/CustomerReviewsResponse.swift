@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CustomerReviewsResponse
  A response that contains a list of Customer Reviews resources.
 
  Full documentation:
@@ -8,6 +9,7 @@ import Foundation
  */
 public struct CustomerReviewsResponse: Codable, PagedResponse {
     public typealias Data = CustomerReview
+
     /// A list of customer review resource data.
     public let data: [CustomerReview]
     /// The requested relationship data.
@@ -17,7 +19,11 @@ public struct CustomerReviewsResponse: Codable, PagedResponse {
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [CustomerReview], included: [CustomerReviewResponseV1]? = nil, links: PagedDocumentLinks, meta: PagingInformation? = nil) {
+    public init(data: [CustomerReview],
+                included: [CustomerReviewResponseV1]? = nil,
+                links: PagedDocumentLinks,
+                meta: PagingInformation? = nil)
+    {
         self.data = data
         self.included = included
         self.links = links

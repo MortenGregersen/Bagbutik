@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # BuildBundle
  The data structure that represents Build Bundles resource.
 
  Full documentation:
@@ -18,7 +19,11 @@ public struct BuildBundle: Codable {
     /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
-    public init(id: String, links: ResourceLinks? = nil, attributes: Attributes? = nil, relationships: Relationships? = nil) {
+    public init(id: String,
+                links: ResourceLinks? = nil,
+                attributes: Attributes? = nil,
+                relationships: Relationships? = nil)
+    {
         self.id = id
         self.links = links
         self.attributes = attributes
@@ -46,14 +51,15 @@ public struct BuildBundle: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case attributes
         case id
         case links
-        case type
-        case attributes
         case relationships
+        case type
     }
 
     /**
+     # BuildBundle.Attributes
      The attributes that describe a Build Bundles resource.
 
      Full documentation:
@@ -95,7 +101,24 @@ public struct BuildBundle: Codable {
         /// A Boolean value that indicates whether the app or App Clip included in the build bundle uses location services.
         public var usesLocationServices: Bool?
 
-        public init(bundleId: String? = nil, bundleType: BundleType? = nil, dSYMUrl: String? = nil, deviceProtocols: [String]? = nil, entitlements: [String: [String: String]]? = nil, fileName: String? = nil, hasOnDemandResources: Bool? = nil, hasPrerenderedIcon: Bool? = nil, hasSirikit: Bool? = nil, includesSymbols: Bool? = nil, isIosBuildMacAppStoreCompatible: Bool? = nil, locales: [String]? = nil, platformBuild: String? = nil, requiredCapabilities: [String]? = nil, sdkBuild: String? = nil, supportedArchitectures: [String]? = nil, usesLocationServices: Bool? = nil) {
+        public init(bundleId: String? = nil,
+                    bundleType: BundleType? = nil,
+                    dSYMUrl: String? = nil,
+                    deviceProtocols: [String]? = nil,
+                    entitlements: [String: [String: String]]? = nil,
+                    fileName: String? = nil,
+                    hasOnDemandResources: Bool? = nil,
+                    hasPrerenderedIcon: Bool? = nil,
+                    hasSirikit: Bool? = nil,
+                    includesSymbols: Bool? = nil,
+                    isIosBuildMacAppStoreCompatible: Bool? = nil,
+                    locales: [String]? = nil,
+                    platformBuild: String? = nil,
+                    requiredCapabilities: [String]? = nil,
+                    sdkBuild: String? = nil,
+                    supportedArchitectures: [String]? = nil,
+                    usesLocationServices: Bool? = nil)
+        {
             self.bundleId = bundleId
             self.bundleType = bundleType
             self.dSYMUrl = dSYMUrl
@@ -122,6 +145,7 @@ public struct BuildBundle: Codable {
     }
 
     /**
+     # BuildBundle.Relationships
      The relationships of the Build Bundles resource you included in the request and those on which you can operate.
 
      Full documentation:
@@ -137,7 +161,11 @@ public struct BuildBundle: Codable {
         /// The related Build Bundle File Sizes resource.
         public var buildBundleFileSizes: BuildBundleFileSizes?
 
-        public init(appClipDomainCacheStatus: AppClipDomainCacheStatus? = nil, appClipDomainDebugStatus: AppClipDomainDebugStatus? = nil, betaAppClipInvocations: BetaAppClipInvocations? = nil, buildBundleFileSizes: BuildBundleFileSizes? = nil) {
+        public init(appClipDomainCacheStatus: AppClipDomainCacheStatus? = nil,
+                    appClipDomainDebugStatus: AppClipDomainDebugStatus? = nil,
+                    betaAppClipInvocations: BetaAppClipInvocations? = nil,
+                    buildBundleFileSizes: BuildBundleFileSizes? = nil)
+        {
             self.appClipDomainCacheStatus = appClipDomainCacheStatus
             self.appClipDomainDebugStatus = appClipDomainDebugStatus
             self.betaAppClipInvocations = betaAppClipInvocations
@@ -145,6 +173,7 @@ public struct BuildBundle: Codable {
         }
 
         /**
+         # BuildBundle.Relationships.AppClipDomainCacheStatus
          The data and links that describe the relationship between the Build Bundles and the App Clip Domain Cache Statuses resources.
 
          Full documentation:
@@ -156,12 +185,15 @@ public struct BuildBundle: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BuildBundle.Relationships.AppClipDomainCacheStatus.Data
              The type and ID of a related App Clip Domain Cache Status resource.
 
              Full documentation:
@@ -198,6 +230,7 @@ public struct BuildBundle: Codable {
             }
 
             /**
+             # BuildBundle.Relationships.AppClipDomainCacheStatus.Links
              The type and ID of a related App Clip Domain Cache Status resource.
 
              Full documentation:
@@ -209,7 +242,9 @@ public struct BuildBundle: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -227,13 +262,14 @@ public struct BuildBundle: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BuildBundle.Relationships.AppClipDomainDebugStatus
          The data and links that describe the relationship between the Build Bundles and the App Clip Domain Debug Statuses resources.
 
          Full documentation:
@@ -245,12 +281,15 @@ public struct BuildBundle: Codable {
             /// Navigational links that include the self-link.
             public var links: Links?
 
-            public init(data: Data? = nil, links: Links? = nil) {
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
                 self.data = data
                 self.links = links
             }
 
             /**
+             # BuildBundle.Relationships.AppClipDomainDebugStatus.Data
              The type and ID of a related App Clip Domain Debug Status resource.
 
              Full documentation:
@@ -287,6 +326,7 @@ public struct BuildBundle: Codable {
             }
 
             /**
+             # BuildBundle.Relationships.AppClipDomainDebugStatus.Links
              The type and ID of a related App Clip Domain Debug Status resource.
 
              Full documentation:
@@ -298,7 +338,9 @@ public struct BuildBundle: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -316,13 +358,14 @@ public struct BuildBundle: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BuildBundle.Relationships.BetaAppClipInvocations
          The data, links, and paging information that describe the relationship between the Build Bundles and the Beta App Clip Invocations resources.
 
          Full documentation:
@@ -336,13 +379,17 @@ public struct BuildBundle: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BuildBundle.Relationships.BetaAppClipInvocations.Data
              The type and ID of a related Beta App Clip Invocations resource.
 
              Full documentation:
@@ -379,6 +426,7 @@ public struct BuildBundle: Codable {
             }
 
             /**
+             # BuildBundle.Relationships.BetaAppClipInvocations.Links
              The type and ID of a related Beta App Clip Invocations resource.
 
              Full documentation:
@@ -390,7 +438,9 @@ public struct BuildBundle: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -408,13 +458,14 @@ public struct BuildBundle: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }
 
         /**
+         # BuildBundle.Relationships.BuildBundleFileSizes
          The data, links, and paging information that describe the relationship between the Build Bundles and the Build Bundle File Sizes resources.
 
          Full documentation:
@@ -428,13 +479,17 @@ public struct BuildBundle: Codable {
             /// The paging information.
             public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil, links: Links? = nil, meta: PagingInformation? = nil) {
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
                 self.data = data
                 self.links = links
                 self.meta = meta
             }
 
             /**
+             # BuildBundle.Relationships.BuildBundleFileSizes.Data
              The type and ID of a related Build Bundle File Sizes resource.
 
              Full documentation:
@@ -471,6 +526,7 @@ public struct BuildBundle: Codable {
             }
 
             /**
+             # BuildBundle.Relationships.BuildBundleFileSizes.Links
              The type and ID of a related Build Bundle File Sizes resource.
 
              Full documentation:
@@ -482,7 +538,9 @@ public struct BuildBundle: Codable {
                 /// The link to the resource.
                 public var itself: String?
 
-                public init(related: String? = nil, self itself: String? = nil) {
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
                     self.related = related
                     self.itself = itself
                 }
@@ -500,8 +558,8 @@ public struct BuildBundle: Codable {
                 }
 
                 private enum CodingKeys: String, CodingKey {
-                    case related
                     case itself = "self"
+                    case related
                 }
             }
         }

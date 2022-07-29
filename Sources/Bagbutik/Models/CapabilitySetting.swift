@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # CapabilitySetting
  An object that  represents a capability setting for an app.
 
  Full documentation:
@@ -16,7 +17,15 @@ public struct CapabilitySetting: Codable {
     public var options: [CapabilityOption]?
     public var visible: Bool?
 
-    public init(allowedInstances: AllowedInstances? = nil, description: String? = nil, enabledByDefault: Bool? = nil, key: Key? = nil, minInstances: Int? = nil, name: String? = nil, options: [CapabilityOption]? = nil, visible: Bool? = nil) {
+    public init(allowedInstances: AllowedInstances? = nil,
+                description: String? = nil,
+                enabledByDefault: Bool? = nil,
+                key: Key? = nil,
+                minInstances: Int? = nil,
+                name: String? = nil,
+                options: [CapabilityOption]? = nil,
+                visible: Bool? = nil)
+    {
         self.allowedInstances = allowedInstances
         self.description = description
         self.enabledByDefault = enabledByDefault

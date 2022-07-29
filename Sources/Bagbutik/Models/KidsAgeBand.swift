@@ -1,10 +1,11 @@
 import Foundation
 
 /**
-   String that represents a Made for Kids app's age band.
+ # KidsAgeBand
+ String that represents a Made for Kids app's age band.
 
-   Full documentation:
-   <https://developer.apple.com/documentation/appstoreconnectapi/kidsageband>
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/kidsageband>
  */
 public enum KidsAgeBand: String, Codable, CaseIterable {
     /// A literal that represents the age band for ages 5 and under.

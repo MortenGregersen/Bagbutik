@@ -1,6 +1,7 @@
 import Foundation
 
 /**
+ # ImageAsset
  An image asset, including its height, width, and template URL.
 
  Full documentation:
@@ -11,7 +12,10 @@ public struct ImageAsset: Codable {
     public var templateUrl: String?
     public var width: Int?
 
-    public init(height: Int? = nil, templateUrl: String? = nil, width: Int? = nil) {
+    public init(height: Int? = nil,
+                templateUrl: String? = nil,
+                width: Int? = nil)
+    {
         self.height = height
         self.templateUrl = templateUrl
         self.width = width
