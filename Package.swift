@@ -49,7 +49,7 @@ let package = Package(
                 "BagbutikStringExtensions",
                 "SwiftFormat"
             ]),
-        .target(name: "BagbutikDocsCollector", dependencies: ["BagbutikSpecDecoder"]),
+        .target(name: "BagbutikDocsCollector", dependencies: ["BagbutikSpecDecoder", "BagbutikPolyfill"]),
         .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikStringExtensions"),
         .target(name: "BagbutikPolyfill"),
