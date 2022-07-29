@@ -21,10 +21,10 @@ final class EnumSchemaRendererTests: XCTestCase {
          # Platform
          Strings that represent Apple operating systems.
 
+         All platforms are nice...
+
          Full documentation:
          </platform>
-
-         All platforms are nice...
          */
         public enum Platform: String, Codable, CaseIterable {
             /// A string that represents macOS.

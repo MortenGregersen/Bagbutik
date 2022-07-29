@@ -20,15 +20,11 @@ public class EnumSchemaRenderer: Renderer {
            let abstract = enumDocumentation.abstract {
             documentation = enumDocumentation
             rendered += renderDocumentationBlock(title: enumDocumentation.title) {
-                var documentationContent = """
-                \(abstract)
-                
-                Full documentation:
-                <\(url)>
-                """
+                var documentationContent = abstract
                 if let discussion = enumDocumentation.discussion {
                     documentationContent += "\n\n\(discussion)"
                 }
+                documentationContent += "\n\nFull documentation:\n<\(url)>"
                 return documentationContent
             } + "\n"
         }

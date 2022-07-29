@@ -45,10 +45,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
          # Person
          A person with a name.
 
+         What is a person?
+
          Full documentation:
          <some://url>
-
-         What is a person?
          */
         public struct Person: Codable {
             /// The person's name

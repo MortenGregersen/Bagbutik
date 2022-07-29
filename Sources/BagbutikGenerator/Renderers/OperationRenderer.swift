@@ -49,24 +49,26 @@ public class OperationRenderer: Renderer {
             }
             parameters.append(contentsOf: parametersInfo.parameters)
             var extensionContent = renderDocumentationBlock(title: title) {
-                var documentationContent = ""
+                var documentationContent = [String]()
                 if let abstract = documentation?.abstract {
-                    documentationContent += abstract + "\n"
+                    documentationContent.append(abstract)
                 }
-                documentationContent += "\n"
                 if let discussion = documentation?.discussion {
-                    documentationContent += discussion + "\n\n"
+                    documentationContent.append(discussion)
                 }
-                documentationContent += """
+                if documentationContent.isEmpty {
+                    documentationContent.append("\n")
+                }
+                documentationContent.append("""
                 Full documentation:
                 <\(self.docsLoader.createUrlForOperation(withId: operation.id))>
-
-                """
-                documentationContent += parameters.reduce(into: ["\n"]) { partialResult, parameter in
+                """)
+                var parametersPart = parameters.reduce(into: ["\n"]) { partialResult, parameter in
                     partialResult.append(renderDocumentationParameterLine(name: parameter.name, description: parameter.documentation))
                 }.joined(separator: "\n")
-                documentationContent += "\n- Returns: A ``Request`` to send to an instance of ``BagbutikService``"
-                return documentationContent
+                parametersPart += "\n- Returns: A ``Request`` to send to an instance of ``BagbutikService``"
+                documentationContent.append(parametersPart)
+                return documentationContent.joined(separator: "\n\n")
             }
             extensionContent += "\n" + renderFunction(
                 named: operationName,

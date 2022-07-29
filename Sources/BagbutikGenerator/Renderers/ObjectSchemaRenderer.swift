@@ -20,16 +20,15 @@ public class ObjectSchemaRenderer: Renderer {
            let abstract = objectDocumentation.abstract {
             documentation = objectDocumentation
             rendered += renderDocumentationBlock(title: objectDocumentation.title) {
-                var documentationContent = """
-                \(abstract)
-
+                var documentationContent = [abstract]
+                if let discussion = objectDocumentation.discussion {
+                    documentationContent.append(discussion)
+                }
+                documentationContent.append("""
                 Full documentation:
                 <\(objectSchema.url)>
-                """
-                if let discussion = objectDocumentation.discussion {
-                    documentationContent += "\n\n\(discussion)"
-                }
-                return documentationContent
+                """)
+                return documentationContent.joined(separator: "\n\n")
             } + "\n"
         }
         var protocols = ["Codable"]
