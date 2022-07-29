@@ -62,6 +62,7 @@ let package = Package(
             ],
             resources: [.copy("test-private-key.p8")]),
         .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
+        .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
         .testTarget(name: "BagbutikStringExtensionsTests", dependencies: ["BagbutikStringExtensions"]),
     ])
