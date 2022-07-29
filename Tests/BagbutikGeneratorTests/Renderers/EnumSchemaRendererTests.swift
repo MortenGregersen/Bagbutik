@@ -18,6 +18,7 @@ final class EnumSchemaRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         /**
+         # Platform
          Strings that represent Apple operating systems.
 
          Full documentation:

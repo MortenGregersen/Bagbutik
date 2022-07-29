@@ -19,17 +19,18 @@ public class EnumSchemaRenderer: Renderer {
            case .enum(let enumDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
            let abstract = enumDocumentation.abstract {
             documentation = enumDocumentation
-            rendered += """
-            /**
-             \(abstract)
-
-             Full documentation:
-             <\(url)>
-            """
-            if let discussion = enumDocumentation.discussion {
-                rendered += "\n\n \(discussion)"
-            }
-            rendered += "\n*/\n"
+            rendered += renderDocumentationBlock(title: enumDocumentation.title) {
+                var documentationContent = """
+                \(abstract)
+                
+                Full documentation:
+                <\(url)>
+                """
+                if let discussion = enumDocumentation.discussion {
+                    documentationContent += "\n\n\(discussion)"
+                }
+                return documentationContent
+            } + "\n"
         }
         rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(additionalProtocol), CaseIterable {\n"
         let cases = enumSchema.cases.map { enumCase -> EnumCase in

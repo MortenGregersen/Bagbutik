@@ -7,7 +7,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "name", type: "string", optional: true, isSimpleType: true)
+        let rendered = renderer.renderProperty(id: "name", type: "string", optional: true, isSimpleType: true)
         // Then
         XCTAssertEqual(rendered, "public var name: String?")
     }
@@ -16,7 +16,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "required", type: "bool", optional: false, isSimpleType: true)
+        let rendered = renderer.renderProperty(id: "required", type: "bool", optional: false, isSimpleType: true)
         // Then
         XCTAssertEqual(rendered, "public let `required`: Bool")
     }
@@ -25,7 +25,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "data", type: "Data", optional: true, isSimpleType: false)
+        let rendered = renderer.renderProperty(id: "data", type: "Data", optional: true, isSimpleType: false)
         // Then
         XCTAssertEqual(rendered, "@NullCodable public var data: Data?")
         // It is necessary to add the @NullCodable property wrapper, to ensure that optionals are encoded as null.
@@ -37,7 +37,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "data", type: "[Data]", optional: true, isSimpleType: false)
+        let rendered = renderer.renderProperty(id: "data", type: "[Data]", optional: true, isSimpleType: false)
         // Then
         XCTAssertEqual(rendered, "@NullCodable public var data: [Data]?")
     }
@@ -46,7 +46,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "device", type: "Device", optional: true, isSimpleType: false)
+        let rendered = renderer.renderProperty(id: "device", type: "Device", optional: true, isSimpleType: false)
         // Then
         XCTAssertEqual(rendered, "public var device: Device?")
     }
@@ -55,7 +55,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "device", type: "Device", optional: false, isSimpleType: false)
+        let rendered = renderer.renderProperty(id: "device", type: "Device", optional: false, isSimpleType: false)
         // Then
         XCTAssertEqual(rendered, "public let device: Device")
     }
@@ -64,7 +64,7 @@ final class PropertyRendererTests: XCTestCase {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())
         // When
-        let rendered = try renderer.render(id: "name", type: "string", optional: true, isSimpleType: true, deprecated: true)
+        let rendered = renderer.renderProperty(id: "name", type: "string", optional: true, isSimpleType: true, deprecated: true)
         // Then
         XCTAssertEqual(rendered, """
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")

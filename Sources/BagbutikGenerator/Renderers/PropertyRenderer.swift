@@ -1,5 +1,5 @@
 internal class PropertyRenderer: Renderer {
-    func render(id: String, type: String, optional: Bool, isSimpleType: Bool, deprecated: Bool = false) throws -> String {
+    func renderProperty(id: String, type: String, access: String = "public", optional: Bool, isSimpleType: Bool, deprecated: Bool = false) -> String {
         var rendered = ""
         if deprecated {
             rendered += #"@available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")"#
@@ -17,5 +17,9 @@ internal class PropertyRenderer: Renderer {
             rendered += " = nil"
         }
         return rendered
+    }
+    
+    func renderConstant(id: String, type: String, access: String = "public", value: String) -> String {
+        return "\(access) var \(escapeReservedKeywords(in: id)): \(type) { \(value) }"
     }
 }

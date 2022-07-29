@@ -61,7 +61,7 @@ public class OperationRenderer: Renderer {
                 }
                 documentationContent += """
                 Full documentation:
-                <\(docsLoader.createUrlForOperation(withId: operation.id))>
+                <\(self.docsLoader.createUrlForOperation(withId: operation.id))>
 
                 """
                 documentationContent += parameters.reduce(into: ["\n"]) { partialResult, parameter in
@@ -74,6 +74,7 @@ public class OperationRenderer: Renderer {
                 named: operationName,
                 parameters: parameters.map { .init(name: $0.name, type: $0.type, optional: $0.optional) },
                 returnType: "Request<\(operation.successResponseType), \(operation.errorResponseType)>",
+                static: true,
                 deprecated: operation.deprecated) {
                     var funcContent = ".init(path: \"\(interpolatablePath)\", method: .\(operation.method.rawValue)"
                     if operation.requestBody != nil {
