@@ -12,5 +12,6 @@ public enum BundleIdPlatform: String, Codable, CaseIterable {
     case iOS = "IOS"
     /// A string that represents macOS.
     case macOS = "MAC_OS"
+    /// A string that represents iOS and macOS.
     case universal = "UNIVERSAL"
 }

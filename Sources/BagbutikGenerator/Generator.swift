@@ -96,6 +96,7 @@ public class Generator {
 
         print("🔍 Loading docs \(documentationDirURL)...")
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
+        try docsLoader.applyManualDocumentation()
 
         let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
         try removeChildren(at: endpointsDirURL)

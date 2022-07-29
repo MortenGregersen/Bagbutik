@@ -41,6 +41,21 @@ public class DocsLoader {
         self.schemaDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: schemaDocumentationByIdData)
     }
 
+    public func applyManualDocumentation() throws {
+        guard let identifierBySchemaName = identifierBySchemaName,
+              var schemaDocumentationById = schemaDocumentationById else {
+            throw DocsLoaderError.documentationNotLoaded
+        }
+        if let identifier = identifierBySchemaName["BundleIdPlatform"],
+           case .enum(var bundleIdPlatformDocumentation) = schemaDocumentationById[identifier],
+           bundleIdPlatformDocumentation.cases["UNIVERSAL"] == nil || bundleIdPlatformDocumentation.cases["UNIVERSAL"] == ""
+        {
+            bundleIdPlatformDocumentation.cases["UNIVERSAL"] = "A string that represents iOS and macOS."
+            schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
+        }
+        self.schemaDocumentationById = schemaDocumentationById
+    }
+
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
         guard let identifierBySchemaName = identifierBySchemaName,
               let schemaDocumentationById = schemaDocumentationById else {
