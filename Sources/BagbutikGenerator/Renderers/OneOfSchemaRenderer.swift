@@ -1,7 +1,5 @@
 import BagbutikSpecDecoder
 import Foundation
-import Stencil
-import StencilSwiftKit
 import SwiftFormat
 
 /// A renderer which renders one of schemas

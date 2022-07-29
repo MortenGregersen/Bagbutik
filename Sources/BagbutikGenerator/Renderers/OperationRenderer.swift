@@ -1,8 +1,6 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
-import Stencil
-import StencilSwiftKit
 import SwiftFormat
 
 /// Errors that can occur when rendering an operation
