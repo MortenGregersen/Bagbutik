@@ -1,11 +1,11 @@
 import ArgumentParser
 import BagbutikDocsCollector
 import BagbutikGenerator
-import BagbutikPolyfill
 import Foundation
 import Zip
 #if canImport(FoundationNetworking)
 // Linux support
+import BagbutikPolyfill
 import FoundationNetworking
 #endif
 

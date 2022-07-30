@@ -1,4 +1,3 @@
-import BagbutikPolyfill
 #if canImport(CryptoKit)
 import CryptoKit
 #else
@@ -7,6 +6,7 @@ import Crypto
 import Foundation
 #if canImport(FoundationNetworking)
 // Linux support
+import BagbutikPolyfill
 import FoundationNetworking
 #endif
 
