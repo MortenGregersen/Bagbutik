@@ -1,8 +1,8 @@
-import BagbutikPolyfill
 import BagbutikSpecDecoder
 import Foundation
 #if canImport(FoundationNetworking)
 // Linux support
+import BagbutikPolyfill
 import FoundationNetworking
 #endif
 

@@ -30,14 +30,14 @@ let package = Package(
             dependencies: [
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
                 .target(name: "system-zlib", condition: .when(platforms: [.linux])),
-                "BagbutikPolyfill"
+                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
             ]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
                 "BagbutikGenerator",
                 "BagbutikDocsCollector",
-                "BagbutikPolyfill",
+                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux])),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "Zip"
             ]),
@@ -49,7 +49,10 @@ let package = Package(
                 "BagbutikStringExtensions",
                 "SwiftFormat"
             ]),
-        .target(name: "BagbutikDocsCollector", dependencies: ["BagbutikSpecDecoder", "BagbutikPolyfill"]),
+        .target(name: "BagbutikDocsCollector", dependencies: [
+            "BagbutikSpecDecoder",
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
+        ]),
         .target(name: "BagbutikSpecDecoder", dependencies: ["BagbutikStringExtensions"]),
         .target(name: "BagbutikStringExtensions"),
         .target(name: "BagbutikPolyfill"),
