@@ -54,7 +54,6 @@ final class GeneratorTests: XCTestCase {
             "ListVisibleAppIdsForUserV2.swift",
             "ReplaceUsersResponse.swift",
             "UsersResponse.swift",
-            
         ])
         XCTAssertEqual(printer.printedLogs[0], "🔍 Loading spec file:///Users/steve/spec.json...")
         XCTAssertEqual(printer.printedLogs[1], "🔍 Loading docs file:///Users/steve/documentation...")
@@ -154,7 +153,7 @@ final class GeneratorTests: XCTestCase {
         }
     }
     
-    private class MockFileManager: GeneratorFileManager, TestableFileManager {
+    private class MockFileManager: TestableFileManager {
         var directoriesCreated = [String]()
         var filesCreated = [(name: String, data: Data)]()
         var itemsRemoved = [String]()
