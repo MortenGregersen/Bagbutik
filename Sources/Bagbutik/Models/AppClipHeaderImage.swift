@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>
  */
-public struct AppClipHeaderImage: Codable {
+public struct AppClipHeaderImage: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an App Clip Header Images resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -137,7 +137,7 @@ public struct AppClipHeaderImage: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.

@@ -28,7 +28,7 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codabl
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "gameCenterEnabledVersions" }
 

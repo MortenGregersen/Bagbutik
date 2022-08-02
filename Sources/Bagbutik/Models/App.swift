@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/app>
  */
-public struct App: Codable {
+public struct App: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -290,7 +290,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies an App Clips resource.
                 public let id: String
                 /// The resource type.
@@ -373,7 +373,7 @@ public struct App: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPages" }
 
@@ -445,7 +445,7 @@ public struct App: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appEvents" }
 
@@ -531,7 +531,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appInfos" }
 
@@ -624,7 +624,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -717,7 +717,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 
@@ -810,7 +810,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -902,7 +902,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -997,7 +997,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1089,7 +1089,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1184,7 +1184,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1278,7 +1278,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
                 /// The resource type.
@@ -1372,7 +1372,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "endUserLicenseAgreements" }
 
@@ -1465,7 +1465,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterEnabledVersions" }
 
@@ -1558,7 +1558,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
 
@@ -1637,7 +1637,7 @@ public struct App: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
 
@@ -1720,7 +1720,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreOrders" }
 
@@ -1813,7 +1813,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1908,7 +1908,7 @@ public struct App: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPrices" }
 
@@ -1987,7 +1987,7 @@ public struct App: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 
@@ -2059,7 +2059,7 @@ public struct App: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "reviewSubmissions" }
 
@@ -2128,7 +2128,7 @@ public struct App: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGracePeriods" }
 
@@ -2200,7 +2200,7 @@ public struct App: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGroups" }
 

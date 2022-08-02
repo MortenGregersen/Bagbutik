@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature>
  */
-public struct DiagnosticSignature: Codable {
+public struct DiagnosticSignature: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a diagnostic signature.
     public let id: String
     /// Navigational links that include the self-link.

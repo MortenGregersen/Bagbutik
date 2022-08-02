@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion>
  */
-public struct CiMacOsVersion: Codable {
+public struct CiMacOsVersion: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a macOS Versions resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -125,7 +125,7 @@ public struct CiMacOsVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                 public let id: String
                 /// The resource type.

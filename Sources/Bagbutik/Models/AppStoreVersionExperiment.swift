@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppStoreVersionExperiment: Codable {
+public struct AppStoreVersionExperiment: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreVersionExperiments" }
@@ -104,7 +104,7 @@ public struct AppStoreVersionExperiment: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -176,7 +176,7 @@ public struct AppStoreVersionExperiment: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatments" }
 

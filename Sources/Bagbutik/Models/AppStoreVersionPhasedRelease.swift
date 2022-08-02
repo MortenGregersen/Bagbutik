@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease>
  */
-public struct AppStoreVersionPhasedRelease: Codable {
+public struct AppStoreVersionPhasedRelease: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreVersionPhasedReleases" }

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppPriceInlineCreate: Codable {
+public struct AppPriceInlineCreate: Codable, Identifiable {
     public var id: String?
     public var type: String { "appPrices" }
 

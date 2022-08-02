@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
  */
-public struct CiArtifact: Codable {
+public struct CiArtifact: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Artifacts resource.
     public let id: String
     /// The navigational links that include the self-link.

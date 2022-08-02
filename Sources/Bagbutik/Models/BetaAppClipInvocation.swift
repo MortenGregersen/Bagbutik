@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
  */
-public struct BetaAppClipInvocation: Codable {
+public struct BetaAppClipInvocation: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Beta App Clip Invocations resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -120,7 +120,7 @@ public struct BetaAppClipInvocation: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                 public let id: String
                 /// The resource type.

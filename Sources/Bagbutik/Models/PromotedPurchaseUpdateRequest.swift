@@ -7,7 +7,7 @@ public struct PromotedPurchaseUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "promotedPurchases" }
         public var attributes: Attributes?

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization>
  */
-public struct AppClipDefaultExperienceLocalization: Codable {
+public struct AppClipDefaultExperienceLocalization: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -126,7 +126,7 @@ public struct AppClipDefaultExperienceLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization/relationships/appclipdefaultexperience/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.
@@ -222,7 +222,7 @@ public struct AppClipDefaultExperienceLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization/relationships/appclipheaderimage/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Header Images resource.
                 public let id: String
                 /// The resource type.

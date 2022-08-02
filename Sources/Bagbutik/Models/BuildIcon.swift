@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildicon>
  */
-public struct BuildIcon: Codable {
+public struct BuildIcon: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "buildIcons" }

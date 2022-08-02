@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission>
  */
-public struct AppStoreVersionSubmission: Codable {
+public struct AppStoreVersionSubmission: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreVersionSubmissions" }
@@ -86,7 +86,7 @@ public struct AppStoreVersionSubmission: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 

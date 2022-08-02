@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion>
  */
-public struct PrereleaseVersion: Codable {
+public struct PrereleaseVersion: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -122,7 +122,7 @@ public struct PrereleaseVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -217,7 +217,7 @@ public struct PrereleaseVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion/relationships/builds/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

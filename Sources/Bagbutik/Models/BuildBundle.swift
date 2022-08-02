@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>
  */
-public struct BuildBundle: Codable {
+public struct BuildBundle: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -199,7 +199,7 @@ public struct BuildBundle: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Domain Cache Statuses resource.
                 public let id: String
                 /// The resource type.
@@ -295,7 +295,7 @@ public struct BuildBundle: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Domain Debug Statuses resource.
                 public let id: String
                 /// The resource type.
@@ -395,7 +395,7 @@ public struct BuildBundle: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.
@@ -495,7 +495,7 @@ public struct BuildBundle: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Bundle File Sizes resource.
                 public let id: String
                 /// The resource type.

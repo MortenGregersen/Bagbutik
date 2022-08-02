@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion>
  */
-public struct CiXcodeVersion: Codable {
+public struct CiXcodeVersion: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Xcode Versions resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -179,7 +179,7 @@ public struct CiXcodeVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                 public let id: String
                 /// The resource type.

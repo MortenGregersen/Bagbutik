@@ -61,7 +61,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
 
@@ -97,7 +97,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appEvents" }
 
@@ -133,7 +133,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 
@@ -169,7 +169,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionExperiments" }
 
@@ -205,7 +205,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "reviewSubmissions" }
 

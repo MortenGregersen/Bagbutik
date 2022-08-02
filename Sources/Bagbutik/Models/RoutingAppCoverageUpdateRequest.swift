@@ -21,7 +21,7 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "routingAppCoverages" }
         public var attributes: Attributes?

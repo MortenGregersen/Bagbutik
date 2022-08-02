@@ -28,7 +28,7 @@ public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, PagedResp
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }
 

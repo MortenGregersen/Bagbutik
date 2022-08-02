@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppStoreVersionPromotion: Codable {
+public struct AppStoreVersionPromotion: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreVersionPromotions" }

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SubscriptionOfferCode: Codable {
+public struct SubscriptionOfferCode: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptionOfferCodes" }
@@ -107,7 +107,7 @@ public struct SubscriptionOfferCode: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodeCustomCodes" }
 
@@ -179,7 +179,7 @@ public struct SubscriptionOfferCode: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodeOneTimeUseCodes" }
 
@@ -251,7 +251,7 @@ public struct SubscriptionOfferCode: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodePrices" }
 
@@ -320,7 +320,7 @@ public struct SubscriptionOfferCode: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptions" }
 

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization>
  */
-public struct BetaAppLocalization: Codable {
+public struct BetaAppLocalization: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -136,7 +136,7 @@ public struct BetaAppLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalization/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

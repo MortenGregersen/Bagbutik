@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization>
  */
-public struct AppInfoLocalization: Codable {
+public struct AppInfoLocalization: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appInfoLocalizations" }
@@ -123,7 +123,7 @@ public struct AppInfoLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appInfos" }
 

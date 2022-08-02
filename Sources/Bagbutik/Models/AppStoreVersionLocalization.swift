@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization>
  */
-public struct AppStoreVersionLocalization: Codable {
+public struct AppStoreVersionLocalization: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreVersionLocalizations" }
@@ -136,7 +136,7 @@ public struct AppStoreVersionLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 
@@ -229,7 +229,7 @@ public struct AppStoreVersionLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshotSets" }
 
@@ -319,7 +319,7 @@ public struct AppStoreVersionLocalization: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 

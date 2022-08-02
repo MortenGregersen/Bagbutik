@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SubscriptionOfferCodeOneTimeUseCodeValue: Codable {
+public struct SubscriptionOfferCodeOneTimeUseCodeValue: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptionOfferCodeOneTimeUseCodeValues" }

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>
  */
-public struct AppClipDomainStatus: Codable {
+public struct AppClipDomainStatus: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an App Clip Domain Statuses resource.
     public let id: String
     /// Navigational links that include the self-link.

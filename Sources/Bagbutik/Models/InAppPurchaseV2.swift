@@ -1,6 +1,6 @@
 import Foundation
 
-public struct InAppPurchaseV2: Codable {
+public struct InAppPurchaseV2: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "inAppPurchases" }
@@ -110,7 +110,7 @@ public struct InAppPurchaseV2: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseAppStoreReviewScreenshots" }
 
@@ -179,7 +179,7 @@ public struct InAppPurchaseV2: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseContents" }
 
@@ -248,7 +248,7 @@ public struct InAppPurchaseV2: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchasePriceSchedules" }
 
@@ -320,7 +320,7 @@ public struct InAppPurchaseV2: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseLocalizations" }
 
@@ -392,7 +392,7 @@ public struct InAppPurchaseV2: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchasePricePoints" }
 
@@ -461,7 +461,7 @@ public struct InAppPurchaseV2: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 

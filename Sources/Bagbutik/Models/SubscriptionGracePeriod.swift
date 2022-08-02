@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SubscriptionGracePeriod: Codable {
+public struct SubscriptionGracePeriod: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptionGracePeriods" }

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest>
  */
-public struct ScmPullRequest: Codable, RequestBody {
+public struct ScmPullRequest: Codable, Identifiable, RequestBody {
     /// The opaque resource ID that uniquely identifies a Pull Request resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -157,7 +157,7 @@ public struct ScmPullRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
                 /// The resource type.
