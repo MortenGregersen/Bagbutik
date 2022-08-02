@@ -87,7 +87,7 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionOfferCodePrices" }
 
@@ -123,7 +123,7 @@ public struct SubscriptionOfferCodeCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptions" }
 

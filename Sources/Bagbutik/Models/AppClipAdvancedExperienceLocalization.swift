@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalization>
  */
-public struct AppClipAdvancedExperienceLocalization: Codable {
+public struct AppClipAdvancedExperienceLocalization: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Localizations resource.
     public let id: String
     /// Navigational links that include the self-link.

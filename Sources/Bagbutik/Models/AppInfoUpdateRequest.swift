@@ -22,7 +22,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         /// An opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -110,7 +110,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/primarycategory/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// An opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -162,7 +162,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/primarysubcategoryone/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// An opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -214,7 +214,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/primarysubcategorytwo/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// An opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -266,7 +266,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/secondarycategory/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// An opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -318,7 +318,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/secondarysubcategoryone/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// An opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -370,7 +370,7 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest/data/relationships/secondarysubcategorytwo/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// An opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.

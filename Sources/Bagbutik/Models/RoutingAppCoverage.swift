@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage>
  */
-public struct RoutingAppCoverage: Codable {
+public struct RoutingAppCoverage: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "routingAppCoverages" }
@@ -120,7 +120,7 @@ public struct RoutingAppCoverage: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage/relationships/appstoreversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct InAppPurchasePrice: Codable {
+public struct InAppPurchasePrice: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "inAppPurchasePrices" }
@@ -76,7 +76,7 @@ public struct InAppPurchasePrice: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchasePricePoints" }
 
@@ -145,7 +145,7 @@ public struct InAppPurchasePrice: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 

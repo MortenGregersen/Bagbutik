@@ -7,7 +7,7 @@ public struct AppEventLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appEventLocalizations" }
         public var attributes: Attributes?

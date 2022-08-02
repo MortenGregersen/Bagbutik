@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment>
  */
-public struct AppStoreReviewAttachment: Codable {
+public struct AppStoreReviewAttachment: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreReviewAttachments" }
@@ -120,7 +120,7 @@ public struct AppStoreReviewAttachment: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships/appstorereviewdetail/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
 

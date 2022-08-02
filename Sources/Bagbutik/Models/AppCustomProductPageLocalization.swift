@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppCustomProductPageLocalization: Codable {
+public struct AppCustomProductPageLocalization: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appCustomProductPageLocalizations" }
@@ -83,7 +83,7 @@ public struct AppCustomProductPageLocalization: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageVersions" }
 
@@ -155,7 +155,7 @@ public struct AppCustomProductPageLocalization: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 
@@ -227,7 +227,7 @@ public struct AppCustomProductPageLocalization: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshotSets" }
 

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder>
  */
-public struct AppPreOrder: Codable {
+public struct AppPreOrder: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appPreOrders" }
@@ -111,7 +111,7 @@ public struct AppPreOrder: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 

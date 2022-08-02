@@ -11,7 +11,7 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionGracePeriods" }
         public var attributes: Attributes?
@@ -73,7 +73,7 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 

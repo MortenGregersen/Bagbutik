@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion>
  */
-public struct AppStoreVersion: Codable {
+public struct AppStoreVersion: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appStoreVersions" }
@@ -187,7 +187,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
 
@@ -277,7 +277,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -369,7 +369,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.
@@ -463,7 +463,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
 
@@ -542,7 +542,7 @@ public struct AppStoreVersion: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
@@ -628,7 +628,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
 
@@ -718,7 +718,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionPhasedReleases" }
 
@@ -808,7 +808,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionSubmissions" }
 
@@ -898,7 +898,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
 
@@ -988,7 +988,7 @@ public struct AppStoreVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "routingAppCoverages" }
 

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement>
  */
-public struct EndUserLicenseAgreement: Codable {
+public struct EndUserLicenseAgreement: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "endUserLicenseAgreements" }
@@ -111,7 +111,7 @@ public struct EndUserLicenseAgreement: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -204,7 +204,7 @@ public struct EndUserLicenseAgreement: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 

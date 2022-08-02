@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>
  */
-public struct ScmGitReference: Codable {
+public struct ScmGitReference: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Git References resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -129,7 +129,7 @@ public struct ScmGitReference: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
                 /// The resource type.

@@ -25,7 +25,7 @@ public struct AppStoreVersionBuildLinkageResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkageresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "builds" }
 

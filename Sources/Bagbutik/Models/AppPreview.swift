@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreview>
  */
-public struct AppPreview: Codable {
+public struct AppPreview: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appPreviews" }
@@ -132,7 +132,7 @@ public struct AppPreview: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 

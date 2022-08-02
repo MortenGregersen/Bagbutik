@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppCustomProductPageVersionInlineCreate: Codable {
+public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageVersions" }
     public var relationships: Relationships?
@@ -52,7 +52,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable {
                 self.data = data
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPages" }
 
@@ -88,7 +88,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable {
                 self.data = data
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageLocalizations" }
 

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresult>
  */
-public struct CiTestResult: Codable {
+public struct CiTestResult: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Test Results resource.
     public let id: String
     /// The navigational links that include the self-link.

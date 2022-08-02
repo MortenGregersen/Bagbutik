@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcategory>
  */
-public struct AppCategory: Codable {
+public struct AppCategory: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appCategories" }
@@ -111,7 +111,7 @@ public struct AppCategory: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCategories" }
 
@@ -204,7 +204,7 @@ public struct AppCategory: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCategories" }
 

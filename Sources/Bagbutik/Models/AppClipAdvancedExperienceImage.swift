@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage>
  */
-public struct AppClipAdvancedExperienceImage: Codable {
+public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Images resource.
     public let id: String
     /// Navigational links that include the self-link.

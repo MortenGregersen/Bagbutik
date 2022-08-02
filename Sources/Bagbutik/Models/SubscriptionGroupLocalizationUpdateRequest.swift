@@ -7,7 +7,7 @@ public struct SubscriptionGroupLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionGroupLocalizations" }
         public var attributes: Attributes?

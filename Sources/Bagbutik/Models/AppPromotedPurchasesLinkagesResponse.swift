@@ -14,7 +14,7 @@ public struct AppPromotedPurchasesLinkagesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "promotedPurchases" }
 

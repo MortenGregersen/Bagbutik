@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience>
  */
-public struct AppClipDefaultExperience: Codable {
+public struct AppClipDefaultExperience: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Default App Clip Experiences resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -129,7 +129,7 @@ public struct AppClipDefaultExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclip/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies an App Clips resource.
                 public let id: String
                 /// The resource type.
@@ -225,7 +225,7 @@ public struct AppClipDefaultExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipappstorereviewdetail/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip App Store Review Details resource.
                 public let id: String
                 /// The resource type.
@@ -325,7 +325,7 @@ public struct AppClipDefaultExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipdefaultexperiencelocalizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.
@@ -421,7 +421,7 @@ public struct AppClipDefaultExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/releasewithappstoreversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Store Versions resource.
                 public let id: String
                 /// The resource type.

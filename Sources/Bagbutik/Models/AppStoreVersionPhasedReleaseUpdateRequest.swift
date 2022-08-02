@@ -21,7 +21,7 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionPhasedReleases" }
         public var attributes: Attributes?

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2>
  */
-public struct AppPricePointV2: Codable {
+public struct AppPricePointV2: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -125,7 +125,7 @@ public struct AppPricePointV2: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -217,7 +217,7 @@ public struct AppPricePointV2: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/pricetier/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPriceTiers" }
 
@@ -307,7 +307,7 @@ public struct AppPricePointV2: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/territory/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 

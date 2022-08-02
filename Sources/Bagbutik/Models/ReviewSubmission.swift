@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ReviewSubmission: Codable {
+public struct ReviewSubmission: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "reviewSubmissions" }
@@ -96,7 +96,7 @@ public struct ReviewSubmission: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -165,7 +165,7 @@ public struct ReviewSubmission: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -237,7 +237,7 @@ public struct ReviewSubmission: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "reviewSubmissionItems" }
 

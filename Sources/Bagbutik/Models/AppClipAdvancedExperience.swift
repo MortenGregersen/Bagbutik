@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience>
  */
-public struct AppClipAdvancedExperience: Codable {
+public struct AppClipAdvancedExperience: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experiences resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -412,7 +412,7 @@ public struct AppClipAdvancedExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/appclip/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clips resource.
                 public let id: String
                 /// The resource type.
@@ -508,7 +508,7 @@ public struct AppClipAdvancedExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/headerimage/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Images resource.
                 public let id: String
                 /// The resource type.
@@ -608,7 +608,7 @@ public struct AppClipAdvancedExperience: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperience/relationships/localizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.

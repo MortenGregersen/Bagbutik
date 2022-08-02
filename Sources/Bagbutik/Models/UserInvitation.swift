@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation>
  */
-public struct UserInvitation: Codable {
+public struct UserInvitation: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -141,7 +141,7 @@ public struct UserInvitation: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/userinvitation/relationships/visibleapps/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

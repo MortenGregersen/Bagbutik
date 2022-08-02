@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Subscription: Codable {
+public struct Subscription: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptions" }
@@ -138,7 +138,7 @@ public struct Subscription: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionAppStoreReviewScreenshots" }
 
@@ -207,7 +207,7 @@ public struct Subscription: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGroups" }
 
@@ -279,7 +279,7 @@ public struct Subscription: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionIntroductoryOffers" }
 
@@ -351,7 +351,7 @@ public struct Subscription: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodes" }
 
@@ -423,7 +423,7 @@ public struct Subscription: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPrices" }
 
@@ -492,7 +492,7 @@ public struct Subscription: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 
@@ -564,7 +564,7 @@ public struct Subscription: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPromotionalOffers" }
 
@@ -636,7 +636,7 @@ public struct Subscription: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionLocalizations" }
 
