@@ -1,6 +1,10 @@
 @testable import BagbutikDocsCollector
 @testable import BagbutikSpecDecoder
 import XCTest
+#if canImport(FoundationNetworking)
+// Linux support
+import FoundationNetworking
+#endif
 
 final class DocsFetcherTests: XCTestCase {
     let validSpecFileURL = URL(fileURLWithPath: "/Users/steve/spec.json")
