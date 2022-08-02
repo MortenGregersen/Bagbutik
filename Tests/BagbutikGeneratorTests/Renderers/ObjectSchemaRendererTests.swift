@@ -172,7 +172,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Identifiable {
             /// The firstname of the person
             public let firstName: String
             /// The unique id for the person

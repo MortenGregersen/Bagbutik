@@ -32,6 +32,9 @@ public class ObjectSchemaRenderer: Renderer {
             } + "\n"
         }
         var protocols = ["Codable"]
+        if objectSchema.properties.keys.contains("id") {
+            protocols.append("Identifiable")
+        }
         if objectSchema.name.hasSuffix("Request") {
             protocols.append("RequestBody")
         }
