@@ -41,6 +41,7 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "Zip"
             ]),
+        // Internal targets
         .target(
             name: "BagbutikGenerator",
             dependencies: [
@@ -57,6 +58,7 @@ let package = Package(
         .target(name: "BagbutikStringExtensions"),
         .target(name: "BagbutikPolyfill"),
         .target(name: "system-zlib"),
+        // Test targets
         .testTarget(
             name: "BagbutikTests",
             dependencies: [
