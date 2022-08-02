@@ -28,7 +28,7 @@ final class BinarySchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRender_NoDocumenation() throws {
+    func testRender_NoDocumentation() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = BinarySchemaRenderer(docsLoader: docsLoader)

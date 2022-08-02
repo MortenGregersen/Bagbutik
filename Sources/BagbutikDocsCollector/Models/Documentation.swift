@@ -1,7 +1,7 @@
 import BagbutikSpecDecoder
 import Foundation
 
-public enum Documentation: Codable {
+public enum Documentation: Codable, Equatable {
     case `enum`(EnumDocumentation)
     case object(ObjectDocumentation)
     case operation(OperationDocumentation)
@@ -105,7 +105,7 @@ public enum Documentation: Codable {
         if metadata.symbolKind == "tdef" /* Enum */ {
             let values: [String: String] = contentSections.compactMap { contentSection -> [String: String]? in
                 guard case .possibleValues(let values) = contentSection else { return nil }
-                return values.mapValues { formatContent($0) ?? "" }
+                return values.compactMapValues { formatContent($0) ?? "" }
             }.first ?? [:]
             self = .enum(.init(id: id, title: metadata.title, abstract: abstract, discussion: discussion, cases: values))
         } else if metadata.symbolKind == "dict" /* Object */ {
@@ -176,7 +176,6 @@ public enum Documentation: Codable {
         case .enum(let documentation):
             try container.encode(Metadata(title: documentation.title, symbolKind: "tdef"), forKey: .metadata)
             contentSections.append(ContentSection.possibleValues(documentation.cases.mapValues { Content(text: $0) }))
-
         case .object(let documentation):
             try container.encode(Metadata(title: documentation.title, symbolKind: "dict"), forKey: .metadata)
             let properties = documentation.properties.reduce(into: [Property]()) { partialResult, keyValue in
@@ -347,7 +346,7 @@ public enum Documentation: Codable {
                 try container.encode("restResponses", forKey: .kind)
                 try container.encode(responses.sorted(by: { $0.status < $1.status }), forKey: .items)
             case .unused:
-                try container.encode("content", forKey: .kind)
+                return
             }
         }
 
