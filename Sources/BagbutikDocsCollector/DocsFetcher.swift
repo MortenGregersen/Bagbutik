@@ -37,7 +37,7 @@ internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 /**
  Function used to fetch data for requests.
 
- Only used to inject into a ``BagbutikService``.
+ Only used to inject into a ``DocsFetcher``.
 
  - Parameters:
     - request: The URLRequest for which to load data.
