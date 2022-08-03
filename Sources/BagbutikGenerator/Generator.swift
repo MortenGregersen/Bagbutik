@@ -28,6 +28,10 @@ extension FileManager: GeneratorFileManager {}
 public enum GeneratorError: Error {
     /// The URL is not a file URL
     case notFileUrl(FileURLType)
+    /// The operation in the path has no documentation
+    case noDocumentationForOperationInPath(String)
+    /// The schema has no documentation
+    case noDocumentationForSchema(String)
     /// The file could not be created
     case couldNotCreateFile(String)
 
@@ -97,11 +101,24 @@ public class Generator {
         print("🔍 Loading docs \(documentationDirURL)...")
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
 
-        let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
-        try removeChildren(at: endpointsDirURL)
+        try PackageName.allCases.forEach { packageName in
+            let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
+            let endpointsDirURL = packageDirURL.appendingPathComponent("Endpoints")
+            try removeChildren(at: endpointsDirURL)
+            let modelsDirURL = packageDirURL.appendingPathComponent("Models")
+            try removeChildren(at: modelsDirURL)
+        }
+
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
+                    guard let firstOperation = path.operations.first,
+                          let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: firstOperation.id) else {
+                        throw GeneratorError.noDocumentationForOperationInPath(path.path)
+                    }
+                    let endpointsDirURL = outputDirURL
+                        .appendingPathComponent(documentation.packageName.name)
+                        .appendingPathComponent("Endpoints")
                     let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
                     try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
                     try Self.generateEndpoints(for: path, docsLoader: self.docsLoader).forEach { endpoint in
@@ -116,15 +133,19 @@ public class Generator {
             for try await _ in taskGroup {}
         }
 
-        let modelsDirURL = outputDirURL.appendingPathComponent("Models")
-        try removeChildren(at: modelsDirURL)
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
                     self.print("⚡️ Generating model \(schema.name)...")
                     let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
-                    let fileURL = modelsDirURL.appendingPathComponent(fileName)
+                    guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+                        throw GeneratorError.noDocumentationForSchema(schema.name)
+                    }
+                    let fileURL = outputDirURL
+                        .appendingPathComponent(documentation.packageName.name)
+                        .appendingPathComponent("Models")
+                        .appendingPathComponent(fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
                         throw GeneratorError.couldNotCreateFile(fileName)
                     }

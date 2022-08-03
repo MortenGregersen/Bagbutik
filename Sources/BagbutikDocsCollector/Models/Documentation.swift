@@ -17,7 +17,7 @@ public enum Documentation: Codable {
         }
     }
 
-    var packageName: PackageName {
+    public var packageName: PackageName {
         switch self {
         case .enum(let documentation):
             return documentation.packageName
