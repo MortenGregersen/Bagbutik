@@ -9,7 +9,7 @@ final class OperationRendererTests: XCTestCase {
     func testRenderSimple() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
                     .init(status: 200, reason: "OK", description: nil)
                 ])]
         )
@@ -110,7 +110,7 @@ final class OperationRendererTests: XCTestCase {
     func testRenderParameters() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let renderer = OperationRenderer(docsLoader: docsLoader)
         let parameters: [Parameter] = [
@@ -260,7 +260,7 @@ final class OperationRendererTests: XCTestCase {
     func testRenderRequest() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let renderer = OperationRenderer(docsLoader: docsLoader)
         let requestBody = RequestBody(name: "UserUpdateRequest", documentation: "User representation")
@@ -298,7 +298,7 @@ final class OperationRendererTests: XCTestCase {
     func testUnknownTypeOfExists() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let parameters: [Parameter] = [
             .exists(name: "hair", type: .enum(type: "length", values: ["SHORT", "LONG"]), documentation: "description for hair")
@@ -315,7 +315,7 @@ final class OperationRendererTests: XCTestCase {
     func testUnknownTypeOfInclude() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let parameters: [Parameter] = [
             .include(type: .simple(type: .string))
@@ -332,7 +332,7 @@ final class OperationRendererTests: XCTestCase {
     func testUnknownTypeOfSort() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let parameters: [Parameter] = [
             .sort(type: .simple(type: .string), documentation: "sorting")
@@ -349,7 +349,7 @@ final class OperationRendererTests: XCTestCase {
     func testDontRenderEmptyParameter() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
-                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
+                .init(id: "apps-get_collection", packageName: .appStore, title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let renderer = OperationRenderer(docsLoader: docsLoader)
         let parameters: [Parameter] = [
