@@ -8,7 +8,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     case testFlight
     case users
     case xcodeCloud
-    
+
     public var name: String {
         let prefix = "Bagbutik-"
         switch self {
@@ -53,9 +53,9 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     }
 
     static func resolvePackageName(from arrayOfPathArrays: [[String]]) throws -> PackageName {
-        guard arrayOfPathArrays.count == 1, let paths = arrayOfPathArrays.first else { return .core }
-        let packageNames = paths.compactMap(resolvePackageName(from:))
+        let packageNames = Set(arrayOfPathArrays.compactMap { $0.compactMap(resolvePackageName(from:)).first })
         guard packageNames.count == 1, let packageName = packageNames.first else {
+            let paths = arrayOfPathArrays.flatMap { $0 }
             if let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
                longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" {
                 return .core
