@@ -1,6 +1,61 @@
 import BagbutikSpecDecoder
 import Foundation
 
+enum PackageName {
+    case appStore
+    case core
+    case provisioning
+    case reporting
+    case testFlight
+    case usersAndRoles
+    case xcodeCloud
+
+    enum ResolveError: Error {
+        case unknownPath
+    }
+
+    private static func resolvePackageName(from arrayOfPathArrays: [[String]]) throws -> PackageName {
+        guard arrayOfPathArrays.count == 1, let paths = arrayOfPathArrays.first else { return .core }
+        let packageNames = paths.compactMap(resolvePackageName(from:))
+        guard packageNames.count == 1, let packageName = packageNames.first else {
+            if let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
+               longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" {
+                return .core
+            }
+            throw ResolveError.unknownPath
+        }
+        return packageName
+    }
+
+    private static func resolvePackageName(from path: String) -> PackageName? {
+        switch path {
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store":
+            return .appStore
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/large_data_sets",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse":
+            return .core
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/bundle_ids",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/bundle_id_capabilities",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/certificates",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/devices",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/profiles":
+            return .provisioning
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/sales_and_finance_reports",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs":
+            return .reporting
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers":
+            return .testFlight
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/users",
+             "doc://com.apple.documentation/documentation/appstoreconnectapi/user_invitations":
+            return .usersAndRoles
+        case "doc://com.apple.documentation/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds":
+            return .xcodeCloud
+        default:
+            return nil
+        }
+    }
+}
+
 public enum Documentation: Codable {
     case `enum`(EnumDocumentation)
     case object(ObjectDocumentation)
@@ -228,6 +283,10 @@ public enum Documentation: Codable {
 
     private struct Abstract: Codable {
         let text: String
+    }
+
+    private struct Hierarchy: Codable {
+        let paths: [[String]]
     }
 
     internal struct Reference: Codable {

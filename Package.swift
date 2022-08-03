@@ -28,10 +28,24 @@ let package = Package(
         .target(
             name: "Bagbutik",
             dependencies: [
+                "Bagbutik-AppStore",
+                "Bagbutik-TestFlight",
+                "Bagbutik-Provisioning",
+                "Bagbutik-XcodeCloud",
+                "Bagbutik-Reporting",
+                "Bagbutik-UsersAndRoles",
+                "Bagbutik-Core",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
                 .target(name: "system-zlib", condition: .when(platforms: [.linux])),
                 .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
             ]),
+        .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-UsersAndRoles", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-Core"),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
