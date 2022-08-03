@@ -1,13 +1,33 @@
 import Foundation
 
-public enum PackageName: Codable, Equatable {
+public enum PackageName: CaseIterable, Codable, Equatable {
     case appStore
     case core
     case provisioning
     case reporting
     case testFlight
-    case usersAndRoles
+    case users
     case xcodeCloud
+    
+    public var name: String {
+        let prefix = "Bagbutik-"
+        switch self {
+        case .appStore:
+            return prefix.appending("AppStore")
+        case .core:
+            return prefix.appending("Core")
+        case .provisioning:
+            return prefix.appending("Provisioning")
+        case .reporting:
+            return prefix.appending("Reporting")
+        case .testFlight:
+            return prefix.appending("TestFlight")
+        case .users:
+            return prefix.appending("Users")
+        case .xcodeCloud:
+            return prefix.appending("XcodeCloud")
+        }
+    }
 
     var path: String {
         switch self {
@@ -21,7 +41,7 @@ public enum PackageName: Codable, Equatable {
             return Self.reportingPath
         case .testFlight:
             return Self.testFlightPath
-        case .usersAndRoles:
+        case .users:
             return Self.usersAndRolesPath
         case .xcodeCloud:
             return Self.xcodeCloudPath
@@ -76,7 +96,7 @@ public enum PackageName: Codable, Equatable {
         case "doc://com.apple.documentation/documentation/appstoreconnectapi/users",
              "doc://com.apple.documentation/documentation/appstoreconnectapi/user_invitations",
              usersAndRolesPath:
-            return .usersAndRoles
+            return .users
         case xcodeCloudPath:
             return .xcodeCloud
         default:

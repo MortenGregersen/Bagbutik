@@ -33,7 +33,7 @@ let package = Package(
                 "Bagbutik-Provisioning",
                 "Bagbutik-XcodeCloud",
                 "Bagbutik-Reporting",
-                "Bagbutik-UsersAndRoles",
+                "Bagbutik-Users",
                 "Bagbutik-Core",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
                 .target(name: "system-zlib", condition: .when(platforms: [.linux])),
@@ -44,7 +44,7 @@ let package = Package(
         .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-UsersAndRoles", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-Core"),
         .executableTarget(
             name: "BagbutikCLI",
