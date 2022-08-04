@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlog>
  */
-public struct DiagnosticLog: Codable {
+public struct DiagnosticLog: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "diagnosticLogs" }

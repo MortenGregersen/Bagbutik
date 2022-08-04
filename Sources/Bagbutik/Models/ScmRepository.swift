@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository>
  */
-public struct ScmRepository: Codable {
+public struct ScmRepository: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Repositories resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -138,7 +138,7 @@ public struct ScmRepository: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Git References resource that represents the default branch.
                 public let id: String
                 /// The resource type.
@@ -234,7 +234,7 @@ public struct ScmRepository: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Providers resource.
                 public let id: String
                 /// The resource type.

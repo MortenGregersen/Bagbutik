@@ -359,7 +359,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/appclip/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related App Clips resource.
                     public let id: String
                     /// The resource type.
@@ -412,7 +412,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/headerimage/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related App Clip Header Images resource.
                     public let id: String
                     /// The resource type.
@@ -465,7 +465,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/localizations/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Localizations resource.
                     public let id: String
                     /// The resource type.

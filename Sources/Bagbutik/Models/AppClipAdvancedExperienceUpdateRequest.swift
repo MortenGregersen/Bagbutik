@@ -27,7 +27,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -366,7 +366,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships/appclip/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies an App Clips resource.
                     public let id: String
                     /// The resource type.
@@ -419,7 +419,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships/headerimage/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Images resource.
                     public let id: String
                     /// The resource type.
@@ -472,7 +472,7 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceupdaterequest/data/relationships/localizations/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Localizations resource.
                     public let id: String
                     /// The resource type.

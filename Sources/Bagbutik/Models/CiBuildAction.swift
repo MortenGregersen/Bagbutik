@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction>
  */
-public struct CiBuildAction: Codable {
+public struct CiBuildAction: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Actions resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -145,7 +145,7 @@ public struct CiBuildAction: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Runs resource.
                 public let id: String
                 /// The resource type.

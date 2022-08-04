@@ -125,7 +125,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -161,7 +161,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionLocalizations" }
 
@@ -211,7 +211,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "builds" }
 

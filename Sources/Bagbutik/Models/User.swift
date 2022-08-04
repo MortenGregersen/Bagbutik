@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/user>
  */
-public struct User: Codable {
+public struct User: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -137,7 +137,7 @@ public struct User: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/user/relationships/visibleapps/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

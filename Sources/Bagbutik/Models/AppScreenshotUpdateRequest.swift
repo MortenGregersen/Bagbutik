@@ -21,7 +21,7 @@ public struct AppScreenshotUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }
         public var attributes: Attributes?

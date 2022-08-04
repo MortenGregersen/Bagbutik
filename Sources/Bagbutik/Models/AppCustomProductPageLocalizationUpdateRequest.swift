@@ -7,7 +7,7 @@ public struct AppCustomProductPageLocalizationUpdateRequest: Codable, RequestBod
         self.data = data
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appCustomProductPageLocalizations" }
         public var attributes: Attributes?

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewset>
  */
-public struct AppPreviewSet: Codable {
+public struct AppPreviewSet: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appPreviewSets" }
@@ -103,7 +103,7 @@ public struct AppPreviewSet: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageLocalizations" }
 
@@ -189,7 +189,7 @@ public struct AppPreviewSet: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewset/relationships/apppreviews/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviews" }
 
@@ -265,7 +265,7 @@ public struct AppPreviewSet: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
 
@@ -348,7 +348,7 @@ public struct AppPreviewSet: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewset/relationships/appstoreversionlocalization/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
 

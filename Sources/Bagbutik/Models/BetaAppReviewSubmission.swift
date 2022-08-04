@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission>
  */
-public struct BetaAppReviewSubmission: Codable {
+public struct BetaAppReviewSubmission: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -117,7 +117,7 @@ public struct BetaAppReviewSubmission: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

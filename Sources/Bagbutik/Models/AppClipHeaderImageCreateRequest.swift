@@ -117,7 +117,7 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest/data/relationships/appclipdefaultexperiencelocalization/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                     public let id: String
                     /// The resource type.

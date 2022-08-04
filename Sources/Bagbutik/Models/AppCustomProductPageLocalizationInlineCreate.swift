@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppCustomProductPageLocalizationInlineCreate: Codable {
+public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageLocalizations" }
     public let attributes: Attributes
@@ -66,7 +66,7 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable {
                 self.data = data
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageVersions" }
 

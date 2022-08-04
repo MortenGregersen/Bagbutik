@@ -1,4 +1,4 @@
-public struct ObjectDocumentation: Equatable {
+public struct ObjectDocumentation: Codable, Equatable {
     public let id: String
     public let packageName: PackageName
     public let title: String
@@ -7,7 +7,7 @@ public struct ObjectDocumentation: Equatable {
     public let properties: [String: PropertyDocumentation]
     public let subDocumentationIds: [String]
 
-    public init(id: String, packageName: PackageName, title: String, abstract: String?, discussion: String?, properties: [String: PropertyDocumentation], subDocumentationIds: [String]) {
+    public init(id: String, packageName: PackageName, title: String, abstract: String? = nil, discussion: String? = nil, properties: [String: PropertyDocumentation] = [:], subDocumentationIds: [String] = []) {
         self.id = id
         self.packageName = packageName
         self.title = title

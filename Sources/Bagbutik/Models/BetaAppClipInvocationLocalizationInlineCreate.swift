@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate>
  */
-public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
+public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization Inline Create resource.
     public var id: String?
     /// The resource type.
@@ -109,7 +109,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.

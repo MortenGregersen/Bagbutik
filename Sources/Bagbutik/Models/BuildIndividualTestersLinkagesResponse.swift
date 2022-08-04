@@ -31,7 +31,7 @@ public struct BuildIndividualTestersLinkagesResponse: Codable, PagedResponse {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.

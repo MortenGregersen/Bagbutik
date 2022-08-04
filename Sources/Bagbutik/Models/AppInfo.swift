@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfo>
  */
-public struct AppInfo: Codable {
+public struct AppInfo: Codable, Identifiable {
     /// An opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -151,7 +151,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
 
@@ -241,7 +241,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -338,7 +338,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -432,7 +432,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -526,7 +526,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -620,7 +620,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -714,7 +714,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -808,7 +808,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -902,7 +902,7 @@ public struct AppInfo: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

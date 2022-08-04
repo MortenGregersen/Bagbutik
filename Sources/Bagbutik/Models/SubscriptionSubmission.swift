@@ -1,6 +1,6 @@
 import Foundation
 
-public struct SubscriptionSubmission: Codable {
+public struct SubscriptionSubmission: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "subscriptionSubmissions" }
@@ -58,7 +58,7 @@ public struct SubscriptionSubmission: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptions" }
 

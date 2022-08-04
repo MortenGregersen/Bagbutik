@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppEvent: Codable {
+public struct AppEvent: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appEvents" }
@@ -182,7 +182,7 @@ public struct AppEvent: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appEventLocalizations" }
 

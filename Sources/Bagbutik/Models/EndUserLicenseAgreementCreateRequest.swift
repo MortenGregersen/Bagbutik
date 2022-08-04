@@ -109,7 +109,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/app/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -159,7 +159,7 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/territories/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }
 

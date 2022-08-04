@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclip>
  */
-public struct AppClip: Codable {
+public struct AppClip: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an App Clips resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -121,7 +121,7 @@ public struct AppClip: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Apps resource.
                 public let id: String
                 /// The resource type.
@@ -221,7 +221,7 @@ public struct AppClip: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/appclipdefaultexperiences/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.

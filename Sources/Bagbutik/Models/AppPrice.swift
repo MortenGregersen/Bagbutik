@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appprice>
  */
-public struct AppPrice: Codable {
+public struct AppPrice: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -94,7 +94,7 @@ public struct AppPrice: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -184,7 +184,7 @@ public struct AppPrice: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appprice/relationships/pricetier/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPriceTiers" }
 

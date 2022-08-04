@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppEventLocalization: Codable {
+public struct AppEventLocalization: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appEventLocalizations" }
@@ -89,7 +89,7 @@ public struct AppEventLocalization: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appEvents" }
 
@@ -161,7 +161,7 @@ public struct AppEventLocalization: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appEventScreenshots" }
 
@@ -233,7 +233,7 @@ public struct AppEventLocalization: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appEventVideoClips" }
 

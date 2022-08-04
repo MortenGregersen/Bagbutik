@@ -22,7 +22,7 @@ public struct BundleIdUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "bundleIds" }
         public var attributes: Attributes?

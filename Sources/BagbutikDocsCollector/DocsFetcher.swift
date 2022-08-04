@@ -34,6 +34,18 @@ extension DocsFetcherError: Equatable {}
  */
 internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
+/**
+ Function used to fetch data for requests.
+
+ Only used to inject into a ``DocsFetcher``.
+
+ - Parameters:
+    - request: The URLRequest for which to load data.
+    - delegate: Task-specific delegate.
+ - Returns: Data and response.
+ */
+public typealias FetchData = (_ url: URL, _ delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
+
 public enum DocsFilename: String {
     case schemaMapping = "SchemaIndex.json"
     case schemaDocumentation = "SchemaDocumentation.json"
@@ -44,6 +56,7 @@ public enum DocsFilename: String {
 
 public class DocsFetcher {
     private let loadSpec: LoadSpec
+    private let fetchData: FetchData
     private let fileManager: TestableFileManager
     private let print: (String) -> Void
 
@@ -57,11 +70,16 @@ public class DocsFetcher {
             try spec.applyManualPatches()
             return spec
         }
-        self.init(loadSpec: loadSpec, fileManager: FileManager.default, print: { Swift.print($0) })
+        self.init(loadSpec: loadSpec)
     }
 
-    internal init(loadSpec: @escaping LoadSpec, fileManager: TestableFileManager, print: @escaping (String) -> Void) {
+    internal init(
+        loadSpec: @escaping LoadSpec,
+        fetchData: @escaping FetchData = URLSession.shared.data(from:delegate:),
+        fileManager: TestableFileManager = FileManager.default,
+        print: @escaping (String) -> Void = { Swift.print($0) }) {
         self.loadSpec = loadSpec
+        self.fetchData = fetchData
         self.fileManager = fileManager
         self.print = print
     }
@@ -75,22 +93,22 @@ public class DocsFetcher {
         let operationIds = spec.paths.values.map(\.operations).flatMap { $0 }.map(\.id).sorted()
         for operationId in operationIds {
             if let operationUrl = createJsonDocumentationUrl(fromOperationId: operationId) {
-                print("Fetching documentation for operation '\(operationId)'")
+                print("Fetching documentation for operation '\(operationId)' (\(operationUrl))")
                 let documentation = try await fetchDocumentation(for: operationUrl)
                 operationDocumentationById[operationId] = documentation
             } else {
-                print("⚠️ Documenation URL missing for operation: '\(operationId)'")
+                print("⚠️ Documentation URL missing for operation: '\(operationId)'")
             }
         }
-        let operationIdsWithUrlButNotInSpec = OperationMapping.allMappings.keys.filter { !operationIds.contains($0) }
-        operationIdsWithUrlButNotInSpec.forEach { operationId in
-            print("⚠️ Documenation URL exists for removed operation: '\(operationId)'")
-        }
+        // Comment in to get a list of obsolete URLs
+//        let operationIdsWithUrlButNotInSpec = OperationMapping.allMappings.keys.filter { !operationIds.contains($0) }
+//        operationIdsWithUrlButNotInSpec.forEach { operationId in
+//            print("⚠️ Documentation URL exists for removed operation: '\(operationId)'")
+//        }
 
         var identifierBySchemaName = [String: String]()
         var schemaDocumentationById = [String: Documentation]()
         for schema in spec.components.schemas.sorted(by: { $0.key < $1.key }).map(\.value) {
-            print("Fetching documentation for schema '\(schema.name)'")
             let documentation = try await fetchDocumentation(for: schema)
             identifierBySchemaName[schema.name] = documentation.id
             schemaDocumentationById[documentation.id] = documentation
@@ -128,6 +146,7 @@ public class DocsFetcher {
             throw DocsFetcherError.noDocumentationUrl(schema.name)
         }
         let jsonUrl = createJsonDocumentationUrl(fromUrl: urlString)
+        print("Fetching documentation for schema '\(schema.name)' (\(jsonUrl))")
         return try await fetchDocumentation(for: jsonUrl)
     }
 
@@ -136,6 +155,7 @@ public class DocsFetcher {
                                     didFetchDocumentation: (Documentation) -> Void) async throws {
         for documentationId in documentationIds {
             let jsonUrl = createJsonDocumentationUrl(fromDocId: documentationId)
+            print("Fetching documentation for sub schema (\(jsonUrl))")
             let documentation = try await fetchDocumentation(for: jsonUrl)
             didFetchDocumentation(documentation)
             try await fetchDocumentation(
@@ -146,8 +166,7 @@ public class DocsFetcher {
     }
 
     private func fetchDocumentation(for url: URL) async throws -> Documentation {
-        print("Fetching JSON from: \(url)")
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let (data, _) = try await fetchData(url, nil)
         return try JSONDecoder().decode(Documentation.self, from: data)
     }
 

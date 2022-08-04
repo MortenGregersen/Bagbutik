@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail>
  */
-public struct AppClipAppStoreReviewDetail: Codable {
+public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an App Clip App Store Review Details resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -116,7 +116,7 @@ public struct AppClipAppStoreReviewDetail: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.

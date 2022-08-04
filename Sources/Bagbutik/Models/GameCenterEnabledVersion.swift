@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion>
  */
-public struct GameCenterEnabledVersion: Codable {
+public struct GameCenterEnabledVersion: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "gameCenterEnabledVersions" }
@@ -118,7 +118,7 @@ public struct GameCenterEnabledVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -211,7 +211,7 @@ public struct GameCenterEnabledVersion: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterEnabledVersions" }
 

@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>
  */
-public struct CiIssue: Codable {
+public struct CiIssue: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Issues resource.
     public let id: String
     /// The navigational links that include the self-link.

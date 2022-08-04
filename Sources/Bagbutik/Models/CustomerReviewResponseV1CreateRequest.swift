@@ -112,7 +112,7 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest/data/relationships/review/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the `customerReviews` resource that you’re responding to.
                     public let id: String
                     /// The resource type.

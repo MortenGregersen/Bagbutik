@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1>
  */
-public struct CustomerReviewResponseV1: Codable {
+public struct CustomerReviewResponseV1: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the `CustomerReviewResponses` resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -130,7 +130,7 @@ public struct CustomerReviewResponseV1: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the `customerReviews` resource.
                 public let id: String
                 /// The resource type.

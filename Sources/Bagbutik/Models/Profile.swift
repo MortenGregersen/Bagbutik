@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profile>
  */
-public struct Profile: Codable {
+public struct Profile: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource
     public let id: String
     /// Navigational links that include the self-link.
@@ -163,7 +163,7 @@ public struct Profile: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "bundleIds" }
 
@@ -256,7 +256,7 @@ public struct Profile: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "certificates" }
 
@@ -349,7 +349,7 @@ public struct Profile: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "devices" }
 

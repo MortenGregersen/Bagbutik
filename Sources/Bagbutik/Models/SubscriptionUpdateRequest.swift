@@ -11,7 +11,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptions" }
         public var attributes: Attributes?
@@ -96,7 +96,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionIntroductoryOffers" }
 
@@ -132,7 +132,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionPrices" }
 
@@ -168,7 +168,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionPromotionalOffers" }
 

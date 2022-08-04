@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>
  */
-public struct BuildBundleFileSize: Codable {
+public struct BuildBundleFileSize: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
     /// Navigational links that include the self-link.

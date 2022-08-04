@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric>
  */
-public struct PerfPowerMetric: Codable {
+public struct PerfPowerMetric: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "perfPowerMetrics" }

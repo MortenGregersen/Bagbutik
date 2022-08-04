@@ -77,7 +77,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -113,7 +113,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
 
@@ -149,7 +149,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 
@@ -185,7 +185,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPages" }
 

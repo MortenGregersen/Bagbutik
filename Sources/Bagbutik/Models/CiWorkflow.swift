@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow>
  */
-public struct CiWorkflow: Codable {
+public struct CiWorkflow: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Workflows resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -174,7 +174,7 @@ public struct CiWorkflow: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                 public let id: String
                 /// The resource type.
@@ -270,7 +270,7 @@ public struct CiWorkflow: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
                 /// The resource type.
@@ -366,7 +366,7 @@ public struct CiWorkflow: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
                 /// The resource type.
@@ -462,7 +462,7 @@ public struct CiWorkflow: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                 public let id: String
                 /// The resource type.

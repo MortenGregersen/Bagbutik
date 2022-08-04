@@ -24,7 +24,7 @@ public struct ErrorResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors>
      */
-    public struct Errors: Codable {
+    public struct Errors: Codable, Identifiable {
         /// A machine-readable code indicating the type of error. The code is a hierarchical value with levels of specificity separated by the '`.`' character. This value is parseable for programmatic error handling in code.
         public let code: String
         /// A detailed explanation of the error. Do not use this field for programmatic error handling.

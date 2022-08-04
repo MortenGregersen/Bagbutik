@@ -7,7 +7,7 @@ public struct SubscriptionAppStoreReviewScreenshotUpdateRequest: Codable, Reques
         self.data = data
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionAppStoreReviewScreenshots" }
         public var attributes: Attributes?

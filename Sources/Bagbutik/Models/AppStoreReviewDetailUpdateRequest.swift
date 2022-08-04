@@ -21,7 +21,7 @@ public struct AppStoreReviewDetailUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appStoreReviewDetails" }
         public var attributes: Attributes?

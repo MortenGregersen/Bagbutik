@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/build>
  */
-public struct Build: Codable {
+public struct Build: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -190,7 +190,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -282,7 +282,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appencryptiondeclaration/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -374,7 +374,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -464,7 +464,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betaappreviewsubmission/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -559,7 +559,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -648,7 +648,7 @@ public struct Build: Codable {
                 self.meta = meta
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "betaGroups" }
 
@@ -731,7 +731,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbetadetail/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -829,7 +829,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Bundles resource.
                 public let id: String
                 /// The resource type.
@@ -926,7 +926,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "buildIcons" }
 
@@ -1019,7 +1019,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/individualtesters/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1111,7 +1111,7 @@ public struct Build: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/prereleaseversion/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

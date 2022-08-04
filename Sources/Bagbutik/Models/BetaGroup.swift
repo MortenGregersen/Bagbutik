@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroup>
  */
-public struct BetaGroup: Codable {
+public struct BetaGroup: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -158,7 +158,7 @@ public struct BetaGroup: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -253,7 +253,7 @@ public struct BetaGroup: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/betatesters/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -348,7 +348,7 @@ public struct BetaGroup: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betagroup/relationships/builds/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.

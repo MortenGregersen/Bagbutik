@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequest>
  */
-public struct AppStoreVersionReleaseRequest: Codable, RequestBody {
+public struct AppStoreVersionReleaseRequest: Codable, Identifiable, RequestBody {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.

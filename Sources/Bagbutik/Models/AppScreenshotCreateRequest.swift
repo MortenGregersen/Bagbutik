@@ -109,7 +109,7 @@ public struct AppScreenshotCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships/appscreenshotset/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appScreenshotSets" }
 

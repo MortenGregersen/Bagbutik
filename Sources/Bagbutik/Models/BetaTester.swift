@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatester>
  */
-public struct BetaTester: Codable {
+public struct BetaTester: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -136,7 +136,7 @@ public struct BetaTester: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -229,7 +229,7 @@ public struct BetaTester: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "betaGroups" }
 
@@ -322,7 +322,7 @@ public struct BetaTester: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
 

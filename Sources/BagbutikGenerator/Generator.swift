@@ -2,28 +2,6 @@ import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
 
-/**
- A file manager which can perform the operations needed by the Generator
-
- This is just an interface already implemented by Foundation's FileManager, needed to enable unit testing.
-
- # Reference
- <https://developer.apple.com/documentation/foundation/filemanager>
- */
-public protocol GeneratorFileManager {
-    /// # Reference:
-    /// <https://developer.apple.com/documentation/foundation/filemanager/1415371-createdirectory>
-    func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws
-    /// # Reference:
-    /// <https://developer.apple.com/documentation/foundation/filemanager/1410695-createfile>
-    func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool
-    /// # Reference:
-    /// <https://developer.apple.com/documentation/foundation/filemanager/1413590-removeitem>
-    func removeItem(at URL: URL) throws
-}
-
-extension FileManager: GeneratorFileManager {}
-
 /// Errors that can occur when generating
 public enum GeneratorError: Error {
     /// The URL is not a file URL
@@ -59,7 +37,7 @@ internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 /// A generator which loads a spec and generates endpoints and models from the spec
 public class Generator {
     private let loadSpec: LoadSpec
-    private let fileManager: GeneratorFileManager
+    private let fileManager: TestableFileManager
     private let docsLoader: DocsLoader
     private let print: (String) -> Void
 
@@ -76,7 +54,7 @@ public class Generator {
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, docsLoader: DocsLoader(), print: { Swift.print($0) })
     }
 
-    internal init(loadSpec: @escaping LoadSpec, fileManager: GeneratorFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
+    internal init(loadSpec: @escaping LoadSpec, fileManager: TestableFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
         self.loadSpec = loadSpec
         self.fileManager = fileManager
         self.docsLoader = docsLoader
@@ -100,6 +78,7 @@ public class Generator {
 
         print("🔍 Loading docs \(documentationDirURL)...")
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
+        try docsLoader.applyManualDocumentation()
 
         try PackageName.allCases.forEach { packageName in
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)

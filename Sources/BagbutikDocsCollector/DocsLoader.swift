@@ -5,6 +5,8 @@ import Foundation
 public enum DocsLoaderError: Error {
     /// The documentation hasn't been loaded yet
     case documentationNotLoaded
+    /// The type of the documentation is wrong
+    case wrongTypeOfDocumentation
 }
 
 public class DocsLoader {
@@ -14,15 +16,11 @@ public class DocsLoader {
     internal var schemaDocumentationById: [String: Documentation]?
 
     public convenience init() {
-        self.init(loadFile: { url in try Data(contentsOf: url) })
+        self.init(operationDocumentationById: nil) // A parameter is needed for it to call the internal initializer
     }
 
-    internal init(loadFile: @escaping (URL) throws -> Data) {
+    internal init(loadFile: @escaping (URL) throws -> Data = { url in try Data(contentsOf: url) }, operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
         self.loadFile = loadFile
-    }
-
-    internal convenience init(operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
-        self.init()
         self.operationDocumentationById = operationDocumentationById
         self.identifierBySchemaName = identifierBySchemaName
         self.schemaDocumentationById = schemaDocumentationById
@@ -34,11 +32,26 @@ public class DocsLoader {
         let schemaDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         let jsonDecoder = JSONDecoder()
         self.operationDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: operationDocumentationByIdData).mapValues { documentation in
-            guard case .operation(let operationDocumentation) = documentation else { fatalError("Parsed documentation is not for operation") }
+            guard case .operation(let operationDocumentation) = documentation else { throw DocsLoaderError.wrongTypeOfDocumentation }
             return operationDocumentation
         }
         self.identifierBySchemaName = try jsonDecoder.decode([String: String].self, from: identifierBySchemaNameData)
         self.schemaDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: schemaDocumentationByIdData)
+    }
+
+    public func applyManualDocumentation() throws {
+        guard let identifierBySchemaName = identifierBySchemaName,
+              var schemaDocumentationById = schemaDocumentationById else {
+            throw DocsLoaderError.documentationNotLoaded
+        }
+        if let identifier = identifierBySchemaName["BundleIdPlatform"],
+           case .enum(var bundleIdPlatformDocumentation) = schemaDocumentationById[identifier],
+           bundleIdPlatformDocumentation.cases["UNIVERSAL"] == nil || bundleIdPlatformDocumentation.cases["UNIVERSAL"] == ""
+        {
+            bundleIdPlatformDocumentation.cases["UNIVERSAL"] = "A string that represents iOS and macOS."
+            schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
+        }
+        self.schemaDocumentationById = schemaDocumentationById
     }
 
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {

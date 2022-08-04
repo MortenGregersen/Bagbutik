@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territory>
  */
-public struct Territory: Codable {
+public struct Territory: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "territories" }

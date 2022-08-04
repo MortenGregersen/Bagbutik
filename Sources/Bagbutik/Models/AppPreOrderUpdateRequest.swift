@@ -21,7 +21,7 @@ public struct AppPreOrderUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appPreOrders" }
         public var attributes: Attributes?

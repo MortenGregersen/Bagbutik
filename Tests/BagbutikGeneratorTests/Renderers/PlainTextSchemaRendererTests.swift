@@ -28,7 +28,7 @@ final class PlainTextSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRender_NoDocumenation() throws {
+    func testRender_NoDocumentation() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader)

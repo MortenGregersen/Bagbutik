@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun>
  */
-public struct CiBuildRun: Codable {
+public struct CiBuildRun: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Runs resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -266,7 +266,7 @@ public struct CiBuildRun: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Builds resource.
                 public let id: String
                 /// The resource type.
@@ -362,7 +362,7 @@ public struct CiBuildRun: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Git References resource that represents the destination branch.
                 public let id: String
                 /// The resource type.
@@ -458,7 +458,7 @@ public struct CiBuildRun: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
                 /// The resource type.
@@ -554,7 +554,7 @@ public struct CiBuildRun: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Pull Requests resource.
                 public let id: String
                 /// The resource type.
@@ -650,7 +650,7 @@ public struct CiBuildRun: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Git References resource that represents the source branch or tag.
                 public let id: String
                 /// The resource type.
@@ -746,7 +746,7 @@ public struct CiBuildRun: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Workflows resource.
                 public let id: String
                 /// The resource type.

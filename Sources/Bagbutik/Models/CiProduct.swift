@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct>
  */
-public struct CiProduct: Codable {
+public struct CiProduct: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Products resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -139,7 +139,7 @@ public struct CiProduct: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Apps resource.
                 public let id: String
                 /// The resource type.
@@ -235,7 +235,7 @@ public struct CiProduct: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Bundle IDs resource.
                 public let id: String
                 /// The resource type.
@@ -335,7 +335,7 @@ public struct CiProduct: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource that represents the primary repository.
                 public let id: String
                 /// The resource type.

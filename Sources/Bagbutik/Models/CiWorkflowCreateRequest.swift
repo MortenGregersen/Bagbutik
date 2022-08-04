@@ -166,7 +166,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/macosversion/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                     public let id: String
                     /// The resource type.
@@ -219,7 +219,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/product/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Products resource.
                     public let id: String
                     /// The resource type.
@@ -272,7 +272,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/repository/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Repositories resource.
                     public let id: String
                     /// The resource type.
@@ -325,7 +325,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/xcodeversion/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                     public let id: String
                     /// The resource type.

@@ -22,7 +22,7 @@ public struct BetaBuildLocalizationUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationupdaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.

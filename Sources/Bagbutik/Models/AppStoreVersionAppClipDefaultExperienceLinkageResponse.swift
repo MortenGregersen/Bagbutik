@@ -27,7 +27,7 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkageresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the response.
         public let id: String
         /// The resource type.

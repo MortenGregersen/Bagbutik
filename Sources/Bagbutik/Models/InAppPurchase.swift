@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>
  */
-public struct InAppPurchase: Codable {
+public struct InAppPurchase: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "inAppPurchases" }
@@ -150,7 +150,7 @@ public struct InAppPurchase: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 

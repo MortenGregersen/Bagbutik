@@ -117,7 +117,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/relationships/betaappclipinvocation/data>
                  */
-                public struct Data: Codable {
+                public struct Data: Codable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                     public let id: String
                     /// The resource type.

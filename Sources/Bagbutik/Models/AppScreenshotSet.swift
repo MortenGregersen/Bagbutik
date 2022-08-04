@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset>
  */
-public struct AppScreenshotSet: Codable {
+public struct AppScreenshotSet: Codable, Identifiable {
     public let id: String
     public let links: ResourceLinks
     public var type: String { "appScreenshotSets" }
@@ -103,7 +103,7 @@ public struct AppScreenshotSet: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageLocalizations" }
 
@@ -189,7 +189,7 @@ public struct AppScreenshotSet: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshots" }
 
@@ -265,7 +265,7 @@ public struct AppScreenshotSet: Codable {
                 self.links = links
             }
 
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
 
@@ -348,7 +348,7 @@ public struct AppScreenshotSet: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization/data>
              */
-            public struct Data: Codable {
+            public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
 

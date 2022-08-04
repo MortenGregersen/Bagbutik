@@ -31,7 +31,7 @@ public struct UserVisibleAppsLinkagesResponse: Codable, PagedResponse {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/uservisibleappslinkagesresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
