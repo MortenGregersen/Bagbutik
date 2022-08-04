@@ -1,6 +1,6 @@
 public struct OperationDocumentation: Codable, Equatable {
     public let id: String
-    public let packageName: PackageName
+    public let hierarchy: Documentation.Hierarchy
     public let title: String
     public let abstract: String?
     public let discussion: String?
@@ -9,9 +9,9 @@ public struct OperationDocumentation: Codable, Equatable {
     public let body: String?
     public let responses: [ResponseDocumentation]
 
-    public init(id: String, packageName: PackageName, title: String, abstract: String? = nil, discussion: String? = nil, pathParameters: [String: String] = [:], queryParameters: [String: String] = [:], body: String? = nil, responses: [ResponseDocumentation] = []) {
+    public init(id: String, hierarchy: Documentation.Hierarchy, title: String, abstract: String? = nil, discussion: String? = nil, pathParameters: [String: String] = [:], queryParameters: [String: String] = [:], body: String? = nil, responses: [ResponseDocumentation] = []) {
         self.id = id
-        self.packageName = packageName
+        self.hierarchy = hierarchy
         self.title = title
         self.abstract = abstract
         self.discussion = discussion

@@ -95,8 +95,9 @@ public class Generator {
                           let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: firstOperation.id) else {
                         throw GeneratorError.noDocumentationForOperationInPath(path.path)
                     }
+                    let packageName = try self.docsLoader.resolvePackageName(for: Documentation.operation(documentation))
                     let endpointsDirURL = outputDirURL
-                        .appendingPathComponent(documentation.packageName.name)
+                        .appendingPathComponent(packageName.name)
                         .appendingPathComponent("Endpoints")
                     let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
                     try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
@@ -121,8 +122,9 @@ public class Generator {
                     guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
                         throw GeneratorError.noDocumentationForSchema(schema.name)
                     }
+                    let packageName = try self.docsLoader.resolvePackageName(for: documentation)
                     let fileURL = outputDirURL
-                        .appendingPathComponent(documentation.packageName.name)
+                        .appendingPathComponent(packageName.name)
                         .appendingPathComponent("Models")
                         .appendingPathComponent(fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {

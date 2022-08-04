@@ -48,23 +48,6 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         }
     }
 
-    enum ResolveError: Error {
-        case unknownPaths([String])
-    }
-
-    static func resolvePackageName(from arrayOfPathArrays: [[String]]) throws -> PackageName {
-        let packageNames = Set(arrayOfPathArrays.compactMap { $0.compactMap(resolvePackageName(from:)).first })
-        guard packageNames.count == 1, let packageName = packageNames.first else {
-            let paths = arrayOfPathArrays.flatMap { $0 }
-            if let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
-               longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" {
-                return .core
-            }
-            throw ResolveError.unknownPaths(paths)
-        }
-        return packageName
-    }
-
     private static let appStorePath = "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store"
     private static let corePath = "doc://com.apple.documentation/documentation/appstoreconnectapi"
     private static let provisioningPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-provisioning"
@@ -73,7 +56,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     private static let usersAndRolesPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-usersAndRoles"
     private static let xcodeCloudPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds"
 
-    private static func resolvePackageName(from path: String) -> PackageName? {
+    static func resolvePackageName(from path: String) -> PackageName? {
         switch path {
         case appStorePath:
             return .appStore

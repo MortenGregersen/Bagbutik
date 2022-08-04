@@ -7,6 +7,8 @@ public enum DocsLoaderError: Error {
     case documentationNotLoaded
     /// The type of the documentation is wrong
     case wrongTypeOfDocumentation
+    /// The package name could not be resolved
+    case couldNotResolvePackageName(id: String, paths: [[String]])
 }
 
 public class DocsLoader {
@@ -52,6 +54,19 @@ public class DocsLoader {
             schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
         }
         self.schemaDocumentationById = schemaDocumentationById
+    }
+
+    public func resolvePackageName(for documentation: Documentation) throws -> PackageName {
+        let packageNames = Set(documentation.hierarchy.paths.compactMap { $0.compactMap(PackageName.resolvePackageName(from:)).first })
+        guard packageNames.count == 1, let packageName = packageNames.first else {
+            let paths = documentation.hierarchy.paths.flatMap { $0 }
+            guard let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
+                  longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" else {
+                throw DocsLoaderError.couldNotResolvePackageName(id: documentation.id, paths: documentation.hierarchy.paths)
+            }
+            return .core
+        }
+        return packageName
     }
 
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
