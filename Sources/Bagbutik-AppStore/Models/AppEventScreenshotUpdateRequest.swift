@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct AppEventScreenshotUpdateRequest: Codable, RequestBody {
     public let data: Data

@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct ReviewSubmissionResponse: Codable {
     public let data: ReviewSubmission

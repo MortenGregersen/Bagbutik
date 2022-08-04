@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct PromotedPurchase: Codable, Identifiable {
     public let id: String

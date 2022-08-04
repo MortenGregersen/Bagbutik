@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct AppCustomProductPageVersionResponse: Codable {
     public let data: AppCustomProductPageVersion

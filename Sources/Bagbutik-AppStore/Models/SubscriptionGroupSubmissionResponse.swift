@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionGroupSubmissionResponse: Codable {
     public let data: SubscriptionGroupSubmission

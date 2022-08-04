@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct AppStoreVersionExperimentTreatmentLocalizationResponse: Codable {
     public let data: AppStoreVersionExperimentTreatmentLocalization

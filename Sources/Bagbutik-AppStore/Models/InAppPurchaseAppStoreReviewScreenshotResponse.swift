@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct InAppPurchaseAppStoreReviewScreenshotResponse: Codable {
     public let data: InAppPurchaseAppStoreReviewScreenshot

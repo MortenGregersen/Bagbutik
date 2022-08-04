@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct InAppPurchasePricesResponse: Codable, PagedResponse {
     public typealias Data = InAppPurchasePrice

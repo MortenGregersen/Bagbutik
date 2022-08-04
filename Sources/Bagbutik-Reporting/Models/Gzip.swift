@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct Gzip: BinaryResponse {
     public let data: Data

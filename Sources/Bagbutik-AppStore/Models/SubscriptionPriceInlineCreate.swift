@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionPriceInlineCreate: Codable, Identifiable {
     public var id: String?

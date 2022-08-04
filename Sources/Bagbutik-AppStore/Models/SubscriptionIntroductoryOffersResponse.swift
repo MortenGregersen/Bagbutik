@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionIntroductoryOffersResponse: Codable, PagedResponse {
     public typealias Data = SubscriptionIntroductoryOffer

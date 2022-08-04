@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct HttpHeader: Codable {
     public var name: String?

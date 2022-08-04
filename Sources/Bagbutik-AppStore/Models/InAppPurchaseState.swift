@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public enum InAppPurchaseState: String, Codable, CaseIterable {
     case missingMetadata = "MISSING_METADATA"

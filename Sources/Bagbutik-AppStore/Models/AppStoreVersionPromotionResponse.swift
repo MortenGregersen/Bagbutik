@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct AppStoreVersionPromotionResponse: Codable {
     public let data: AppStoreVersionPromotion

@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionGracePeriodResponse: Codable {
     public let data: SubscriptionGracePeriod

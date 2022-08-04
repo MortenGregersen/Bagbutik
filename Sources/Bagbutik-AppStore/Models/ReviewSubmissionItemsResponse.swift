@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
     public typealias Data = ReviewSubmissionItem

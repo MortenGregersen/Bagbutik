@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionIntroductoryOffersLinkagesResponse: Codable, PagedResponse {
     public let data: [Data]

@@ -1,32 +1,38 @@
 import Foundation
+import Bagbutik_Core
 
 /**
- # BuildBetaGroupsLinkagesRequest
- A request body you use to add or remove beta groups from a build.
+ # BuildAppEncryptionDeclarationLinkageResponse
+ A response body that contains the ID of a single related resource.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/buildbetagroupslinkagesrequest>
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse>
  */
-public struct BuildBetaGroupsLinkagesRequest: Codable, RequestBody {
-    /// The types and IDs of related resources.
-    public let data: [Data]
+public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
+    /// The object types and IDs of the related resources.
+    public let data: Data
+    /// Navigational links including the self-link and links to the related data.
+    public let links: DocumentLinks
 
-    public init(data: [Data]) {
+    public init(data: Data,
+                links: DocumentLinks)
+    {
         self.data = data
+        self.links = links
     }
 
     /**
-     # BuildBetaGroupsLinkagesRequest.Data
-     The data element of the request body.
+     # BuildAppEncryptionDeclarationLinkageResponse.Data
+     The data element of the response body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetagroupslinkagesrequest/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse/data>
      */
     public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
-        public var type: String { "betaGroups" }
+        public var type: String { "appEncryptionDeclarations" }
 
         public init(id: String) {
             self.id = id

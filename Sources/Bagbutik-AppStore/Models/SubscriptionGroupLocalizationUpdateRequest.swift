@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionGroupLocalizationUpdateRequest: Codable, RequestBody {
     public let data: Data

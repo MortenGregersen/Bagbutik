@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionOfferCodeOneTimeUseCodeResponse: Codable {
     public let data: SubscriptionOfferCodeOneTimeUseCode

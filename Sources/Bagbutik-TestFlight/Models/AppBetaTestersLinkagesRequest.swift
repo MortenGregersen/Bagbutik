@@ -1,37 +1,33 @@
 import Foundation
+import Bagbutik_Core
 
 /**
- # BuildAppEncryptionDeclarationLinkageResponse
- A response body that contains the ID of a single related resource.
+ # AppBetaTestersLinkagesRequest
+ A request body you use to remove beta testers from an app.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse>
+ <https://developer.apple.com/documentation/appstoreconnectapi/appbetatesterslinkagesrequest>
  */
-public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
-    /// The object types and IDs of the related resources.
-    public let data: Data
-    /// Navigational links including the self-link and links to the related data.
-    public let links: DocumentLinks
+public struct AppBetaTestersLinkagesRequest: Codable, RequestBody {
+    /// The types and IDs of related resources.
+    public let data: [Data]
 
-    public init(data: Data,
-                links: DocumentLinks)
-    {
+    public init(data: [Data]) {
         self.data = data
-        self.links = links
     }
 
     /**
-     # BuildAppEncryptionDeclarationLinkageResponse.Data
-     The data element of the response body.
+     # AppBetaTestersLinkagesRequest.Data
+     The data element of the request body.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse/data>
+     <https://developer.apple.com/documentation/appstoreconnectapi/appbetatesterslinkagesrequest/data>
      */
     public struct Data: Codable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
-        public var type: String { "appEncryptionDeclarations" }
+        public var type: String { "betaTesters" }
 
         public init(id: String) {
             self.id = id

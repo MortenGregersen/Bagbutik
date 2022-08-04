@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
     public let id: String

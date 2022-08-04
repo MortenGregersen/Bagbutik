@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public enum InAppPurchaseType: String, Codable, CaseIterable {
     case consumable = "CONSUMABLE"

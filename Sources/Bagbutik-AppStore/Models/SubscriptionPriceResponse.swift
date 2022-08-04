@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct SubscriptionPriceResponse: Codable {
     public let data: SubscriptionPrice

@@ -121,7 +121,7 @@ public class Generator {
                     }
                     let packageName = try self.docsLoader.resolvePackageName(for: documentation)
                     self.print("⚡️ Generating model \(schema.name)...")
-                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
+                    let model = try Self.generateModel(for: schema, packageName: packageName, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
                     let fileURL = outputDirURL
                         .appendingPathComponent(packageName.name)
@@ -162,7 +162,7 @@ public class Generator {
         }
     }
 
-    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    private static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
         switch schema {
@@ -179,8 +179,12 @@ public class Generator {
             renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
                 .render(plainTextSchema: plainTextSchema)
         }
+        var imports = ["import Foundation"]
+        if packageName != .core {
+            imports.append("import Bagbutik_Core")
+        }
         let contents = """
-        import Foundation
+        \(imports.joined(separator: "\n"))
 
         \(renderedSchema)
         """

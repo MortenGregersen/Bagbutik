@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public struct AppEventVideoClipResponse: Codable {
     public let data: AppEventVideoClip

@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public enum SubscriptionOfferEligibility: String, Codable, CaseIterable {
     case stackWithIntroOffers = "STACK_WITH_INTRO_OFFERS"

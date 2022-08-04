@@ -1,4 +1,5 @@
 import Foundation
+import Bagbutik_Core
 
 public enum SubscriptionStatusUrlVersion: String, Codable, CaseIterable {
     case V1
