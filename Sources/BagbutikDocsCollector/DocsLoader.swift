@@ -57,7 +57,7 @@ public class DocsLoader {
     }
 
     public func resolvePackageName(for documentation: Documentation) throws -> PackageName {
-        let packageNames = Set(documentation.hierarchy.paths.compactMap { $0.compactMap(PackageName.resolvePackageName(from:)).first })
+        let packageNames = documentation.hierarchy.paths.compactMap { $0.compactMap(PackageName.resolvePackageName(from:)).first }
         guard let packageName = packageNames.first else {
             let paths = documentation.hierarchy.paths.flatMap { $0 }
             guard let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,

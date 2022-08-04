@@ -116,15 +116,11 @@ public class Generator {
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
-                    guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
-                        throw GeneratorError.noDocumentationForSchema(schema.name)
-                    }
-                    let packageName = try self.docsLoader.resolvePackageName(for: documentation)
                     self.print("⚡️ Generating model \(schema.name)...")
-                    let model = try Self.generateModel(for: schema, packageName: packageName, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
+                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
                     let fileURL = outputDirURL
-                        .appendingPathComponent(packageName.name)
+                        .appendingPathComponent(PackageName.core.name)
                         .appendingPathComponent("Models")
                         .appendingPathComponent(fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
@@ -162,7 +158,7 @@ public class Generator {
         }
     }
 
-    private static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
         switch schema {
@@ -179,12 +175,8 @@ public class Generator {
             renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
                 .render(plainTextSchema: plainTextSchema)
         }
-        var imports = ["import Foundation"]
-        if packageName != .core {
-            imports.append("import Bagbutik_Core")
-        }
         let contents = """
-        \(imports.joined(separator: "\n"))
+        import Foundation
 
         \(renderedSchema)
         """
