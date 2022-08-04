@@ -141,7 +141,9 @@ public class Generator {
     }
 
     private func removeChildren(at url: URL) throws {
-        try fileManager.removeItem(at: url)
+        if fileManager.fileExists(atPath: url.path) {
+            try fileManager.removeItem(at: url)
+        }
         try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
     }
 

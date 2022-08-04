@@ -16,6 +16,9 @@ public protocol TestableFileManager {
     /// <https://developer.apple.com/documentation/foundation/filemanager/1410695-createfile>
     func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool
     /// # Reference:
+    /// <https://developer.apple.com/documentation/foundation/filemanager/1415645-fileexists>
+    func fileExists(atPath path: String) -> Bool
+    /// # Reference:
     /// <https://developer.apple.com/documentation/foundation/filemanager/1413590-removeitem>
     func removeItem(at URL: URL) throws
 }
