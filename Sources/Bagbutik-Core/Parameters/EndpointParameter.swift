@@ -39,7 +39,7 @@ extension AssociatedValueParameter {
     }
 }
 
-protocol ParameterValue {
+public protocol ParameterValue {
     /// The raw value for the parameter value.
     var rawValue: String { get }
 }
