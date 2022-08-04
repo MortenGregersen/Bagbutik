@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Read the Xcode Cloud Product for an App

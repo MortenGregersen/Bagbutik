@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All Apps Visible to an Invited User

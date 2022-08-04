@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Read App Store Version Information for a Default App Clip Experience

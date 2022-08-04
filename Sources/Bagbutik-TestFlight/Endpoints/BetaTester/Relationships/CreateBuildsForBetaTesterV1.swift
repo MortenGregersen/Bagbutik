@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Individually Assign a Beta Tester to Builds

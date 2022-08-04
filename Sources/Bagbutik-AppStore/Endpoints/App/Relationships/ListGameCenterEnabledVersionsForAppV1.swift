@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All Game Center Enabled Versions for an App

@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Read the Age Rating Declaration Information of an App Store Version

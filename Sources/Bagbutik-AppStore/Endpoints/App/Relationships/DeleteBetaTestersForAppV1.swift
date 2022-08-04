@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Remove Beta Testers from All Groups and Builds of an App

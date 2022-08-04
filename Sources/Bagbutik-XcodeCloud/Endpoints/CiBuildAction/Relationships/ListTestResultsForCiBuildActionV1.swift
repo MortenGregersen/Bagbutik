@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All Test Results for an Xcode Cloud Test Action

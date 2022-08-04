@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Get All Compatible Version IDs for a Game Center Enabled Version

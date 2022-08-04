@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All One-Time Use Offer Codes for an Auto-Renewable Subscription

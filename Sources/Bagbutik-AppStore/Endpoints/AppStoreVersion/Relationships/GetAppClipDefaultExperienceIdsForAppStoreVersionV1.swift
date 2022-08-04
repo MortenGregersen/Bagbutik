@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Get the Default App Clip Experiences Resource ID for an App Store Version

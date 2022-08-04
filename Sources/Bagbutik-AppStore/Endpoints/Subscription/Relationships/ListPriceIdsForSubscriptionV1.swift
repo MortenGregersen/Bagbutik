@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All Subscription Prices IDs for an Auto-Renewable Subscription

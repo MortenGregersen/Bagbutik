@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Replace All Compatible Versions for a Game Center Enabled Version

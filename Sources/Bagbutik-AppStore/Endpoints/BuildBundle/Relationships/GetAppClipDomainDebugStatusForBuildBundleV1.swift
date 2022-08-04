@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Read App Clip Domain Debug Status Information for a Build Bundle

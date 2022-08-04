@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Create Localized Metadata for a Beta App Clip Invocation

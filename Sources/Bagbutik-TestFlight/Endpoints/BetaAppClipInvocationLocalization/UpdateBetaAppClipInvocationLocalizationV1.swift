@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Modify Localized Metadata of an App Clip Invocation for Testers

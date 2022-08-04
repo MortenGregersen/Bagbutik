@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Get All App Screenshot IDs for an App Screenshot Set

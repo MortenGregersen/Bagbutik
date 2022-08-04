@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Create a Review Screenshot for an Auto-Renewable Subscription

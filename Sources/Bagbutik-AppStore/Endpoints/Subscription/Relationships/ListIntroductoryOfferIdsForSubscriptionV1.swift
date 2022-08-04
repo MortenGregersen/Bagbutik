@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All Introductory Offer Resource IDs for an Auto-Renewable Subscription

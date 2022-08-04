@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Read the App Clip Domain Cache Status Information for a Build Bundle

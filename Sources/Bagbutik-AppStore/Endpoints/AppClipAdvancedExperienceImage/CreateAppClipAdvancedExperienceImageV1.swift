@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Create an App Clip Card Image for an Advanced App Clip Experience

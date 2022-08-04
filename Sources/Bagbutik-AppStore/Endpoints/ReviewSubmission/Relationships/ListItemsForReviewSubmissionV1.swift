@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # GET /v1/reviewSubmissions/{id}/items

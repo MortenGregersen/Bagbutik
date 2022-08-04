@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Get All Beta Group IDs of a Beta Tester's Groups

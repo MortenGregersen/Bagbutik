@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Deactivate a Subscription Offer with Offer Codes

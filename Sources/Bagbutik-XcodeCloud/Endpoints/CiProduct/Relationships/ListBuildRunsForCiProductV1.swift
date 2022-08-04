@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # List All Xcode Cloud Builds for an Xcode Cloud Product

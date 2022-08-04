@@ -1,3 +1,5 @@
+import Bagbutik_Core
+
 public extension Request {
     /**
      # Read Promoted Purchase Image Information for an In-App Purchase
