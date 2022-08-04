@@ -6,7 +6,7 @@ public enum Documentation: Codable, Equatable {
     case object(ObjectDocumentation)
     case operation(OperationDocumentation)
 
-    var id: String {
+    public var id: String {
         switch self {
         case .enum(let documentation):
             return documentation.id
@@ -252,6 +252,10 @@ public enum Documentation: Codable, Equatable {
 
     public struct Hierarchy: Codable, Equatable {
         let paths: [[String]]
+
+        public init(paths: [[String]]) {
+            self.paths = paths
+        }
     }
 
     internal struct Reference: Codable {

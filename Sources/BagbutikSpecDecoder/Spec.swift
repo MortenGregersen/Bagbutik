@@ -124,6 +124,10 @@ public struct Spec: Decodable {
      Eg. ErrorResponse has an OneOf with references to ErrorSourcePointer and ErrorSourceParameter, but these schemas have a different title, and have another name when generated.
      */
     public mutating func applyManualPatches() throws {
+        // Remove all paths with no operations
+        paths = paths.filter { $0.value.operations.count > 0 }
+        
+        // Fix up the names of the sub schemas of ErrorResponse
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,

@@ -9,7 +9,7 @@ public struct OperationDocumentation: Codable, Equatable {
     public let body: String?
     public let responses: [ResponseDocumentation]
 
-    public init(id: String, hierarchy: Documentation.Hierarchy, title: String, abstract: String? = nil, discussion: String? = nil, pathParameters: [String: String] = [:], queryParameters: [String: String] = [:], body: String? = nil, responses: [ResponseDocumentation] = []) {
+    public init(id: String, hierarchy: Documentation.Hierarchy = .init(paths: []), title: String, abstract: String? = nil, discussion: String? = nil, pathParameters: [String: String] = [:], queryParameters: [String: String] = [:], body: String? = nil, responses: [ResponseDocumentation] = []) {
         self.id = id
         self.hierarchy = hierarchy
         self.title = title

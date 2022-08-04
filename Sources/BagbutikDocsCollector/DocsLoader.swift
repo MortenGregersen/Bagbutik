@@ -2,7 +2,7 @@ import BagbutikSpecDecoder
 import Foundation
 
 /// Errors that can occur when loading docs
-public enum DocsLoaderError: Error {
+public enum DocsLoaderError: Error, Equatable {
     /// The documentation hasn't been loaded yet
     case documentationNotLoaded
     /// The type of the documentation is wrong
@@ -58,7 +58,7 @@ public class DocsLoader {
 
     public func resolvePackageName(for documentation: Documentation) throws -> PackageName {
         let packageNames = Set(documentation.hierarchy.paths.compactMap { $0.compactMap(PackageName.resolvePackageName(from:)).first })
-        guard packageNames.count == 1, let packageName = packageNames.first else {
+        guard let packageName = packageNames.first else {
             let paths = documentation.hierarchy.paths.flatMap { $0 }
             guard let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
                   longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" else {

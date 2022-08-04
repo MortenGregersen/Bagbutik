@@ -731,7 +731,20 @@ final class SpecTests: XCTestCase {
     func testApplyManualPatches() throws {
         let specString = """
         {
-            "paths": {},
+            "paths": {
+                "/v1/ciBuildActions/{id}/relationships/buildRun" : {
+                    "parameters" : [ {
+                        "name" : "id",
+                        "in" : "path",
+                        "description" : "the id of the requested resource",
+                        "schema" : {
+                            "type" : "string"
+                        },
+                        "style" : "simple",
+                        "required" : true
+                    } ]
+                },
+            },
             "components": {
                 "schemas": {
                     "ErrorResponse" : {
@@ -777,6 +790,7 @@ final class SpecTests: XCTestCase {
         let jsonDecoder = JSONDecoder()
         var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         try spec.applyManualPatches()
+        XCTAssertEqual(spec.paths.count, 0)
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
               case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type

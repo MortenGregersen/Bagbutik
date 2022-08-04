@@ -8,7 +8,7 @@ final class BinarySchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
-                .init(id: "/gzip", packageName: .core, title: "Gzip", abstract: "Some summary", discussion: nil, properties: [:], subDocumentationIds: []))
+                .init(id: "/gzip", title: "Gzip", abstract: "Some summary", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
         let renderer = BinarySchemaRenderer(docsLoader: docsLoader)
         let schema = BinarySchema(name: "Gzip", url: "some://url")

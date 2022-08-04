@@ -116,13 +116,13 @@ public class Generator {
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
-                    self.print("⚡️ Generating model \(schema.name)...")
-                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
-                    let fileName = model.name + ".swift"
                     guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
                         throw GeneratorError.noDocumentationForSchema(schema.name)
                     }
                     let packageName = try self.docsLoader.resolvePackageName(for: documentation)
+                    self.print("⚡️ Generating model \(schema.name)...")
+                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
+                    let fileName = model.name + ".swift"
                     let fileURL = outputDirURL
                         .appendingPathComponent(packageName.name)
                         .appendingPathComponent("Models")

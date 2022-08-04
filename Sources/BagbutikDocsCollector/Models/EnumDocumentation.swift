@@ -6,7 +6,7 @@ public struct EnumDocumentation: Equatable {
     public let discussion: String?
     public var cases: [String: String]
 
-    public init(id: String, hierarchy: Documentation.Hierarchy, title: String, abstract: String? = nil, discussion: String? = nil, cases: [String: String]) {
+    public init(id: String, hierarchy: Documentation.Hierarchy = .init(paths: []), title: String, abstract: String? = nil, discussion: String? = nil, cases: [String: String]) {
         self.id = id
         self.hierarchy = hierarchy
         self.title = title
