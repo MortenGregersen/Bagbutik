@@ -80,13 +80,14 @@ public class Generator {
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try docsLoader.applyManualDocumentation()
 
-        try PackageName.allCases.forEach { packageName in
+        try PackageName.allCases.filter { $0 != .core }.forEach { packageName in
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
             let endpointsDirURL = packageDirURL.appendingPathComponent("Endpoints")
             try removeChildren(at: endpointsDirURL)
-            let modelsDirURL = packageDirURL.appendingPathComponent("Models")
-            try removeChildren(at: modelsDirURL)
         }
+        let packageDirURL = outputDirURL.appendingPathComponent(PackageName.core.name)
+        let modelsDirURL = packageDirURL.appendingPathComponent("Models")
+        try removeChildren(at: modelsDirURL)
 
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.paths.values.forEach { path in
