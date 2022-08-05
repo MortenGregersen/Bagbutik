@@ -12,6 +12,17 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "Bagbutik",
+            targets: [
+                "Bagbutik-Core",
+                "Bagbutik-AppStore",
+                "Bagbutik-Provisioning",
+                "Bagbutik-Reporting",
+                "Bagbutik-TestFlight",
+                "Bagbutik-Users",
+                "Bagbutik-XcodeCloud",
+            ]),
+        .library(
             name: "Bagbutik-Core",
             targets: ["Bagbutik-Core"]),
         .library(
