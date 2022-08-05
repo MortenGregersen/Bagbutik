@@ -6,8 +6,8 @@ import Foundation
 public enum GeneratorError: Error {
     /// The URL is not a file URL
     case notFileUrl(FileURLType)
-    /// The operation in the path has no documentation
-    case noDocumentationForOperationInPath(String)
+    /// The operation has no documentation
+    case noDocumentationForOperation(String)
     /// The schema has no documentation
     case noDocumentationForSchema(String)
     /// The file could not be created
@@ -80,33 +80,43 @@ public class Generator {
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try docsLoader.applyManualDocumentation()
 
-        try PackageName.allCases.filter { $0 != .core }.forEach { packageName in
+        try PackageName.allCases.forEach { packageName in
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
             let endpointsDirURL = packageDirURL.appendingPathComponent("Endpoints")
             try removeChildren(at: endpointsDirURL)
+            let modelsDirURL = packageDirURL.appendingPathComponent("Models")
+            try removeChildren(at: modelsDirURL)
         }
-        let packageDirURL = outputDirURL.appendingPathComponent(PackageName.core.name)
-        let modelsDirURL = packageDirURL.appendingPathComponent("Models")
-        try removeChildren(at: modelsDirURL)
 
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
+            let operationRenderer = OperationRenderer(docsLoader: docsLoader)
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
-                    guard let firstOperation = path.operations.first,
-                          let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: firstOperation.id) else {
-                        throw GeneratorError.noDocumentationForOperationInPath(path.path)
-                    }
-                    let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
-                    let endpointsDirURL = outputDirURL
-                        .appendingPathComponent(packageName.name)
-                        .appendingPathComponent("Endpoints")
-                    let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
-                    try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
-                    try Self.generateEndpoints(for: path, docsLoader: self.docsLoader).forEach { endpoint in
-                        let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
-                        self.print("⚡️ Generating endpoint \(endpoint.fileName)...")
-                        guard self.fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
-                            throw GeneratorError.couldNotCreateFile(endpoint.fileName)
+                    try path.operations.forEach { operation in
+                        let name = "\(operation.name.capitalizingFirstLetter())\(path.info.version)"
+                        self.print("⚡️ Generating endpoint \(name)...")
+                        let fileName = "\(name).swift"
+                        let renderedOperation = try operationRenderer.render(operation: operation, in: path)
+                        let packageName: PackageName
+                        if operation.successResponseType == "EmptyResponse" {
+                            guard let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
+                                throw GeneratorError.noDocumentationForOperation(operation.id)
+                            }
+                            packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+                        } else {
+                            guard let responseTypeDocumentation = try self.docsLoader.resolveDocumentationForSchema(named: operation.successResponseType) else {
+                                throw GeneratorError.noDocumentationForSchema(operation.successResponseType)
+                            }
+                            packageName = try DocsLoader.resolvePackageName(for: responseTypeDocumentation)
+                        }
+                        let endpointsDirURL = outputDirURL
+                            .appendingPathComponent(packageName.name)
+                            .appendingPathComponent("Endpoints")
+                        let operationDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
+                        try self.fileManager.createDirectory(at: operationDirURL, withIntermediateDirectories: true, attributes: nil)
+                        let fileURL = operationDirURL.appendingPathComponent(fileName)
+                        guard self.fileManager.createFile(atPath: fileURL.path, contents: renderedOperation.data(using: .utf8), attributes: nil) else {
+                            throw GeneratorError.couldNotCreateFile(fileURL.path)
                         }
                     }
                 }
@@ -117,11 +127,15 @@ public class Generator {
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
+                    guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+                        throw GeneratorError.noDocumentationForSchema(schema.name)
+                    }
+                    let packageName = try DocsLoader.resolvePackageName(for: documentation)
                     self.print("⚡️ Generating model \(schema.name)...")
                     let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
                     let fileURL = outputDirURL
-                        .appendingPathComponent(PackageName.core.name)
+                        .appendingPathComponent(packageName.name)
                         .appendingPathComponent("Models")
                         .appendingPathComponent(fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
@@ -150,15 +164,6 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateEndpoints(for path: Path, docsLoader: DocsLoader) throws -> [(name: String, fileName: String, contents: String)] {
-        try path.operations.map { operation in
-            let name = operation.name.capitalizingFirstLetter()
-            let fileName = "\(name)\(path.info.version).swift"
-            let renderedOperation = try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)
-            return (name: name, fileName: fileName, contents: renderedOperation)
-        }
-    }
-
     private static func generateModel(for schema: Schema, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
@@ -176,8 +181,15 @@ public class Generator {
             renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
                 .render(plainTextSchema: plainTextSchema)
         }
+        var imports = ["import Foundation"]
+        guard let documentation = try docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+            throw GeneratorError.noDocumentationForSchema(schema.name)
+        }
+        if try DocsLoader.resolvePackageName(for: documentation) != .core {
+            imports.append("import Bagbutik_Core")
+        }
         let contents = """
-        import Foundation
+        \(imports.sorted().joined(separator: "\n"))
 
         \(renderedSchema)
         """
