@@ -96,7 +96,7 @@ public class Generator {
                           let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: firstOperation.id) else {
                         throw GeneratorError.noDocumentationForOperationInPath(path.path)
                     }
-                    let packageName = try self.docsLoader.resolvePackageName(for: Documentation.operation(documentation))
+                    let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
                     let endpointsDirURL = outputDirURL
                         .appendingPathComponent(packageName.name)
                         .appendingPathComponent("Endpoints")

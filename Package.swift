@@ -12,8 +12,26 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Bagbutik",
-            targets: ["Bagbutik"]),
+            name: "Bagbutik-Core",
+            targets: ["Bagbutik-Core"]),
+        .library(
+            name: "Bagbutik-AppStore",
+            targets: ["Bagbutik-AppStore"]),
+        .library(
+            name: "Bagbutik-Provisioning",
+            targets: ["Bagbutik-Provisioning"]),
+        .library(
+            name: "Bagbutik-Reporting",
+            targets: ["Bagbutik-Reporting"]),
+        .library(
+            name: "Bagbutik-TestFlight",
+            targets: ["Bagbutik-TestFlight"]),
+        .library(
+            name: "Bagbutik-Users",
+            targets: ["Bagbutik-Users"]),
+        .library(
+            name: "Bagbutik-XcodeCloud",
+            targets: ["Bagbutik-XcodeCloud"]),
         .executable(
             name: "bagbutik-cli",
             targets: ["BagbutikCLI"])
@@ -25,27 +43,17 @@ let package = Package(
         .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.2"),
     ],
     targets: [
-        .target(
-            name: "Bagbutik",
-            dependencies: [
-                "Bagbutik-AppStore",
-                "Bagbutik-TestFlight",
-                "Bagbutik-Provisioning",
-                "Bagbutik-XcodeCloud",
-                "Bagbutik-Reporting",
-                "Bagbutik-Users",
-                "Bagbutik-Core",
-                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
-                .target(name: "system-zlib", condition: .when(platforms: [.linux])),
-                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
-            ]),
+        .target(name: "Bagbutik-Core", dependencies: [
+            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
+            .target(name: "system-zlib", condition: .when(platforms: [.linux])),
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
+        ]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-Core"),
+        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core"]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
@@ -74,9 +82,10 @@ let package = Package(
         .target(name: "system-zlib"),
         // Test targets
         .testTarget(
-            name: "BagbutikTests",
+            name: "Bagbutik-CoreTests",
             dependencies: [
-                "Bagbutik",
+                "Bagbutik-Core",
+                "Bagbutik-AppStore",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
             ],
             resources: [.copy("test-private-key.p8")]),

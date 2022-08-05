@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikTests"
-               BuildableName = "BagbutikTests"
-               BlueprintName = "BagbutikTests"
+               BlueprintIdentifier = "Bagbutik-CoreTests"
+               BuildableName = "Bagbutik-CoreTests"
+               BlueprintName = "Bagbutik-CoreTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -315,18 +315,6 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BagbutikTests"
-               BuildableName = "BagbutikTests"
-               BlueprintName = "BagbutikTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BagbutikGeneratorTests"
                BuildableName = "BagbutikGeneratorTests"
                BlueprintName = "BagbutikGeneratorTests"
@@ -366,6 +354,18 @@
                BlueprintIdentifier = "BagbutikDocsCollectorTests"
                BuildableName = "BagbutikDocsCollectorTests"
                BlueprintName = "BagbutikDocsCollectorTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Bagbutik-CoreTests"
+               BuildableName = "Bagbutik-CoreTests"
+               BlueprintName = "Bagbutik-CoreTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>

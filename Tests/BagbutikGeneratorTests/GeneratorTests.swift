@@ -9,14 +9,14 @@ final class GeneratorTests: XCTestCase {
     let validDocumentationDirURL = URL(fileURLWithPath: "/Users/steve/documentation")
     let testSpec = try! Spec(paths: [
         "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
-            .init(id: "apps-get_collection",
+            .init(id: "users-get_collection",
                   name: "listUsers",
                   method: .get,
                   successResponseType: "UsersResponse",
                   errorResponseType: "ErrorResponse"),
         ]),
-        "/v1/users/{id}/relationships/visibleApps": Path(path: "/v2/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", version: "V2", isRelationship: true), operations: [
-            .init(id: "apps-get_collection",
+        "/v2/users/{id}/relationships/visibleApps": Path(path: "/v2/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", version: "V2", isRelationship: true), operations: [
+            .init(id: "users-visibleApps-get_to_many_relationship",
                   name: "listVisibleAppIdsForUser",
                   method: .get,
                   successResponseType: "UserVisibleAppsLinkagesResponse",
@@ -29,9 +29,7 @@ final class GeneratorTests: XCTestCase {
         "Gzip": .binary(.init(name: "Gzip", url: "other://url")),
         "Csv": .plainText(.init(name: "Csv", url: "other://url")),
     ]))
-    let docsLoader = DocsLoader(loadFile: { _ in
-        "{}".data(using: .utf8)!
-    })
+    lazy var docsLoader = { DocsLoader(loadFile: loadFile) }()
     
     func testGenerateAllSimple() async throws {
         // Given
@@ -42,10 +40,28 @@ final class GeneratorTests: XCTestCase {
         try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
         // Then
         continueAfterFailure = false
-        XCTAssertEqual(fileManager.itemsRemoved.count, 2)
-        XCTAssertEqual(fileManager.itemsRemoved.sorted(), ["Endpoints", "Models"])
-        XCTAssertEqual(fileManager.directoriesCreated.count, 4)
-        XCTAssertEqual(fileManager.directoriesCreated.sorted(), ["Endpoints", "Models", "Relationships", "Users"])
+        XCTAssertEqual(fileManager.itemsRemoved.count, 7)
+        XCTAssertEqual(fileManager.itemsRemoved, [
+            "/Users/steve/output/Bagbutik-AppStore/Endpoints",
+            "/Users/steve/output/Bagbutik-Provisioning/Endpoints",
+            "/Users/steve/output/Bagbutik-Reporting/Endpoints",
+            "/Users/steve/output/Bagbutik-TestFlight/Endpoints",
+            "/Users/steve/output/Bagbutik-Users/Endpoints",
+            "/Users/steve/output/Bagbutik-XcodeCloud/Endpoints",
+            "/Users/steve/output/Bagbutik-Core/Models",
+        ])
+        XCTAssertEqual(fileManager.directoriesCreated.count, 9)
+        XCTAssertEqual(fileManager.directoriesCreated.sorted(), [
+            "/Users/steve/output/Bagbutik-AppStore/Endpoints",
+            "/Users/steve/output/Bagbutik-Core/Models",
+            "/Users/steve/output/Bagbutik-Provisioning/Endpoints",
+            "/Users/steve/output/Bagbutik-Reporting/Endpoints",
+            "/Users/steve/output/Bagbutik-TestFlight/Endpoints",
+            "/Users/steve/output/Bagbutik-Users/Endpoints",
+            "/Users/steve/output/Bagbutik-Users/Endpoints/Users",
+            "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
+            "/Users/steve/output/Bagbutik-XcodeCloud/Endpoints",
+        ])
         XCTAssertEqual(fileManager.filesCreated.count, 6)
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "Csv.swift",
@@ -161,7 +177,7 @@ final class GeneratorTests: XCTestCase {
         
         func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws {
             DispatchQueue.main.async {
-                self.directoriesCreated.append(url.lastPathComponent)
+                self.directoriesCreated.append(url.path)
             }
         }
         
@@ -176,8 +192,8 @@ final class GeneratorTests: XCTestCase {
             true
         }
         
-        func removeItem(at URL: URL) throws {
-            itemsRemoved.append(URL.lastPathComponent)
+        func removeItem(at url: URL) throws {
+            itemsRemoved.append(url.path)
         }
     }
     
@@ -188,6 +204,65 @@ final class GeneratorTests: XCTestCase {
             DispatchQueue.main.async {
                 self.printedLogs.append(string)
             }
+        }
+    }
+    
+    static let operationListUsersDocumentation = OperationDocumentation(
+        id: "users-get_collection",
+        hierarchy: .init(paths: [
+            [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.documentation/documentation/appstoreconnectapi",
+                "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+            ]
+        ]),
+        title: "List Users",
+        responses: [
+            .init(status: 200, reason: "OK"),
+            .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")
+        ]
+    )
+    
+    static let operationListVisibleAppIdsForUserDocumentation = OperationDocumentation(
+        id: "users-visibleApps-get_to_many_relationship",
+        hierarchy: .init(paths: [
+            [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.documentation/documentation/appstoreconnectapi",
+                "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+            ]
+        ]),
+        title: "Get All Visible App Resource IDs for a User",
+        responses: [
+            .init(status: 200, reason: "OK"),
+            .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")
+        ]
+    )
+
+    static let schemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
+        title: "User",
+        abstract: "The data structure that represents a Users resource.",
+        properties: [
+            "attributes": .init(required: false, description: "The resource's attributes."),
+            "id": .init(required: true, description: "The opaque resource ID that uniquely identifies the resource."),
+            "links": .init(required: true, description: "Navigational links that include the self-link."),
+            "relationships": .init(required: false, description: "Navigational links to related data and included resource types and IDs."),
+            "type": .init(required: true, description: "The resource type.")
+        ]
+    )
+
+    let loadFile: (URL) throws -> Data = { url in
+        let jsonEncoder = JSONEncoder()
+        if url.lastPathComponent == DocsFilename.operationDocumentation.filename {
+            return try jsonEncoder.encode([
+                operationListUsersDocumentation.id: Documentation.operation(operationListUsersDocumentation),
+                operationListVisibleAppIdsForUserDocumentation.id: Documentation.operation(operationListVisibleAppIdsForUserDocumentation),
+            ])
+        } else if url.lastPathComponent == DocsFilename.schemaMapping.filename {
+            return try jsonEncoder.encode(["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
+        } else { // if url.lastPathComponent == DocsFilename.schemaDocumentation.filename {
+            return try jsonEncoder.encode([schemaDocumentation.id: Documentation.object(schemaDocumentation)])
         }
     }
 }

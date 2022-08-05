@@ -56,7 +56,7 @@ public class DocsLoader {
         self.schemaDocumentationById = schemaDocumentationById
     }
 
-    public func resolvePackageName(for documentation: Documentation) throws -> PackageName {
+    public static func resolvePackageName(for documentation: Documentation) throws -> PackageName {
         let packageNames = documentation.hierarchy.paths.compactMap { $0.compactMap(PackageName.resolvePackageName(from:)).first }
         guard let packageName = packageNames.first else {
             let paths = documentation.hierarchy.paths.flatMap { $0 }

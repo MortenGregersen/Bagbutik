@@ -32,58 +32,52 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     var path: String {
         switch self {
         case .appStore:
-            return Self.appStorePath
+            return Self.pathPrefix.appending("app_store")
         case .core:
-            return Self.corePath
+            return "doc://com.apple.documentation/documentation/appstoreconnectapi"
         case .provisioning:
-            return Self.provisioningPath
+            return Self.pathPrefix.appending("bagbutik-provisioning")
         case .reporting:
-            return Self.reportingPath
+            return Self.pathPrefix.appending("bagbutik-reporting")
         case .testFlight:
-            return Self.testFlightPath
+            return Self.pathPrefix.appending("prerelease_versions_and_beta_testers")
         case .users:
-            return Self.usersAndRolesPath
+            return Self.pathPrefix.appending("bagbutik-usersAndRoles")
         case .xcodeCloud:
-            return Self.xcodeCloudPath
+            return Self.pathPrefix.appending("xcode_cloud_workflows_and_builds")
         }
     }
 
-    private static let appStorePath = "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store"
-    private static let corePath = "doc://com.apple.documentation/documentation/appstoreconnectapi"
-    private static let provisioningPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-provisioning"
-    private static let reportingPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-reporting"
-    private static let testFlightPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers"
-    private static let usersAndRolesPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-usersAndRoles"
-    private static let xcodeCloudPath = "doc://com.apple.documentation/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds"
-
     static func resolvePackageName(from path: String) -> PackageName? {
         switch path {
-        case appStorePath:
+        case Self.appStore.path:
             return .appStore
-        case "doc://com.apple.documentation/documentation/appstoreconnectapi/large_data_sets",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse":
+        case pathPrefix.appending("large_data_sets"),
+             pathPrefix.appending("errorresponse"):
             return .core
-        case "doc://com.apple.documentation/documentation/appstoreconnectapi/bundle_ids",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/bundle_id_capabilities",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/certificates",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/devices",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/profiles",
-             provisioningPath:
+        case pathPrefix.appending("bundle_ids"),
+             pathPrefix.appending("bundle_id_capabilities"),
+             pathPrefix.appending("certificates"),
+             pathPrefix.appending("devices"),
+             pathPrefix.appending("profiles"),
+             Self.provisioning.path:
             return .provisioning
-        case "doc://com.apple.documentation/documentation/appstoreconnectapi/sales_and_finance_reports",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs",
-             reportingPath:
+        case pathPrefix.appending("sales_and_finance_reports"),
+             pathPrefix.appending("power_and_performance_metrics_and_logs"),
+             Self.reporting.path:
             return .reporting
-        case testFlightPath:
+        case Self.testFlight.path:
             return .testFlight
-        case "doc://com.apple.documentation/documentation/appstoreconnectapi/users",
-             "doc://com.apple.documentation/documentation/appstoreconnectapi/user_invitations",
-             usersAndRolesPath:
+        case pathPrefix.appending("users"),
+             pathPrefix.appending("user_invitations"),
+             Self.users.path:
             return .users
-        case xcodeCloudPath:
+        case Self.xcodeCloud.path:
             return .xcodeCloud
         default:
             return nil
         }
     }
+
+    private static let pathPrefix = "doc://com.apple.documentation/documentation/appstoreconnectapi/"
 }
