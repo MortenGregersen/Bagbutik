@@ -99,6 +99,70 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
+    func testResolvePackageName() throws {
+        // Given
+        let documentation = Documentation.object(.init(
+            id: "doc://com.apple.documentation/documentation/appstoreconnectapi/build",
+            hierarchy: .init(paths: [
+                [
+                    "doc://com.apple.documentation/documentation/technologies",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store/builds"
+                ],
+                [
+                    "doc://com.apple.documentation/documentation/technologies",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store/builds"
+                ]
+            ]),
+            title: "Build"
+        ))
+        // When
+        let packageName = try DocsLoader.resolvePackageName(for: documentation)
+        // Then
+        XCTAssertEqual(packageName, .testFlight)
+    }
+
+    func testResolvePackageNameCoreFallback() throws {
+        // Given
+        let documentation = Documentation.object(.init(
+            id: "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse",
+            hierarchy: .init(paths: [
+                [
+                    "doc://com.apple.documentation/documentation/technologies",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi"
+                ]
+            ]),
+            title: "ErrorResponse"
+        ))
+        // When
+        let packageName = try DocsLoader.resolvePackageName(for: documentation)
+        // Then
+        XCTAssertEqual(packageName, .core)
+    }
+
+    func testResolvePackageNameUnknown() throws {
+        // Given
+        let documentation = Documentation.object(.init(
+            id: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob",
+            hierarchy: .init(paths: [
+                [
+                    "doc://com.apple.documentation/documentation/technologies",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi",
+                    "doc://com.apple.documentation/documentation/appstoreconnectapi/some_unknown_section"
+                ]
+            ]),
+            title: "Bob"
+        ))
+        // When
+        XCTAssertThrowsError(try DocsLoader.resolvePackageName(for: documentation)) {
+            // Then
+            XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.couldNotResolvePackageName(id: documentation.id, paths: documentation.hierarchy.paths))
+        }
+    }
+
     func testResolveDocumentationForSchemaNamed() throws {
         // Given
         let docsLoader = DocsLoader(loadFile: loadFile)

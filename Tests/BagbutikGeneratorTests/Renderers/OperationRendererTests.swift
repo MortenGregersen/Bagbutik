@@ -23,6 +23,9 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+        
         public extension Request {
             /**
              # Documentation title
@@ -57,6 +60,9 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+        
         public extension Request {
             /**
              # No overview available
@@ -88,6 +94,9 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+        
         public extension Request {
             /**
              # No overview available
@@ -133,6 +142,9 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+        
         public extension Request {
             /**
              # Documentation title
@@ -271,6 +283,9 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+        
         public extension Request {
             /**
              # Documentation title
@@ -364,6 +379,9 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+        
         public extension Request {
             /**
              # Documentation title

@@ -13,7 +13,40 @@ let package = Package(
     products: [
         .library(
             name: "Bagbutik",
-            targets: ["Bagbutik"]),
+            targets: [
+                "Bagbutik-Core",
+                "Bagbutik-Models",
+                "Bagbutik-AppStore",
+                "Bagbutik-Provisioning",
+                "Bagbutik-Reporting",
+                "Bagbutik-TestFlight",
+                "Bagbutik-Users",
+                "Bagbutik-XcodeCloud",
+            ]),
+        .library(
+            name: "Bagbutik-Core",
+            targets: ["Bagbutik-Core"]),
+        .library(
+            name: "Bagbutik-Models",
+            targets: ["Bagbutik-Models"]),
+        .library(
+            name: "Bagbutik-AppStore",
+            targets: ["Bagbutik-AppStore"]),
+        .library(
+            name: "Bagbutik-Provisioning",
+            targets: ["Bagbutik-Provisioning"]),
+        .library(
+            name: "Bagbutik-Reporting",
+            targets: ["Bagbutik-Reporting"]),
+        .library(
+            name: "Bagbutik-TestFlight",
+            targets: ["Bagbutik-TestFlight"]),
+        .library(
+            name: "Bagbutik-Users",
+            targets: ["Bagbutik-Users"]),
+        .library(
+            name: "Bagbutik-XcodeCloud",
+            targets: ["Bagbutik-XcodeCloud"]),
         .executable(
             name: "bagbutik-cli",
             targets: ["BagbutikCLI"])
@@ -25,13 +58,18 @@ let package = Package(
         .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.2"),
     ],
     targets: [
-        .target(
-            name: "Bagbutik",
-            dependencies: [
-                .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
-                .target(name: "system-zlib", condition: .when(platforms: [.linux])),
-                .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
-            ]),
+        .target(name: "Bagbutik-Core", dependencies: [
+            .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux])),
+            .target(name: "system-zlib", condition: .when(platforms: [.linux])),
+            .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
+        ]),
+        .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
@@ -41,6 +79,7 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 "Zip"
             ]),
+        // Internal targets
         .target(
             name: "BagbutikGenerator",
             dependencies: [
@@ -57,13 +96,16 @@ let package = Package(
         .target(name: "BagbutikStringExtensions"),
         .target(name: "BagbutikPolyfill"),
         .target(name: "system-zlib"),
+        // Test targets
         .testTarget(
-            name: "BagbutikTests",
+            name: "Bagbutik-CoreTests",
             dependencies: [
-                "Bagbutik",
+                "Bagbutik-Core",
+                "Bagbutik-AppStore",
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
             ],
             resources: [.copy("test-private-key.p8")]),
+        .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
         .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
         .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),

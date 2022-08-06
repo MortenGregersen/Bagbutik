@@ -6,6 +6,10 @@ import Foundation
 public enum GeneratorError: Error {
     /// The URL is not a file URL
     case notFileUrl(FileURLType)
+    /// The operation has no documentation
+    case noDocumentationForOperation(String)
+    /// The schema has no documentation
+    case noDocumentationForSchema(String)
     /// The file could not be created
     case couldNotCreateFile(String)
 
@@ -76,18 +80,39 @@ public class Generator {
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try docsLoader.applyManualDocumentation()
 
-        let endpointsDirURL = outputDirURL.appendingPathComponent("Endpoints")
-        try removeChildren(at: endpointsDirURL)
+        let modelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
+        try PackageName.allCases.filter { $0 != .core }.forEach { packageName in
+            let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
+            try removeChildren(at: packageDirURL)
+            try fileManager.createDirectory(at: packageDirURL, withIntermediateDirectories: true, attributes: nil)
+            let modelsPackageDirURL = modelsDirURL.appendingPathComponent(packageName.docsSectionName)
+            try removeChildren(at: modelsPackageDirURL)
+        }
+        let coreModelsDirURL = outputDirURL
+            .appendingPathComponent(PackageName.core.name)
+            .appendingPathComponent("Models")
+        try removeChildren(at: coreModelsDirURL)
+
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
+            let operationRenderer = OperationRenderer(docsLoader: docsLoader)
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
-                    let operationsDirURL = Self.getOperationsDirURL(for: path, in: endpointsDirURL)
-                    try self.fileManager.createDirectory(at: operationsDirURL, withIntermediateDirectories: true, attributes: nil)
-                    try Self.generateEndpoints(for: path, docsLoader: self.docsLoader).forEach { endpoint in
-                        let fileURL = operationsDirURL.appendingPathComponent(endpoint.fileName)
-                        self.print("⚡️ Generating endpoint \(endpoint.fileName)...")
-                        guard self.fileManager.createFile(atPath: fileURL.path, contents: endpoint.contents.data(using: .utf8), attributes: nil) else {
-                            throw GeneratorError.couldNotCreateFile(endpoint.fileName)
+                    try path.operations.forEach { operation in
+                        let name = "\(operation.name.capitalizingFirstLetter())\(path.info.version)"
+                        self.print("⚡️ Generating endpoint \(name)...")
+                        let fileName = "\(name).swift"
+                        let renderedOperation = try operationRenderer.render(operation: operation, in: path)
+                        let packageName: PackageName
+                        guard let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
+                            throw GeneratorError.noDocumentationForOperation(operation.id)
+                        }
+                        packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+                        let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
+                        let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
+                        try self.fileManager.createDirectory(at: operationDirURL, withIntermediateDirectories: true, attributes: nil)
+                        let fileURL = operationDirURL.appendingPathComponent(fileName)
+                        guard self.fileManager.createFile(atPath: fileURL.path, contents: renderedOperation.data(using: .utf8), attributes: nil) else {
+                            throw GeneratorError.couldNotCreateFile(fileURL.path)
                         }
                     }
                 }
@@ -95,17 +120,30 @@ public class Generator {
             for try await _ in taskGroup {}
         }
 
-        let modelsDirURL = outputDirURL.appendingPathComponent("Models")
-        try removeChildren(at: modelsDirURL)
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
             spec.components.schemas.values.forEach { schema in
                 taskGroup.addTask {
+                    guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+                        throw GeneratorError.noDocumentationForSchema(schema.name)
+                    }
+                    let packageName = try DocsLoader.resolvePackageName(for: documentation)
                     self.print("⚡️ Generating model \(schema.name)...")
-                    let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
+                    let model = try Self.generateModel(for: schema, packageName: packageName, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
+                    let modelsDirURL: URL
+                    if packageName == .core {
+                        modelsDirURL = outputDirURL
+                            .appendingPathComponent(packageName.name)
+                            .appendingPathComponent("Models")
+                    } else {
+                        modelsDirURL = outputDirURL
+                            .appendingPathComponent("Bagbutik-Models")
+                            .appendingPathComponent(packageName.docsSectionName)
+                    }
+                    try self.fileManager.createDirectory(at: modelsDirURL, withIntermediateDirectories: true, attributes: nil)
                     let fileURL = modelsDirURL.appendingPathComponent(fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
-                        throw GeneratorError.couldNotCreateFile(fileName)
+                        throw GeneratorError.couldNotCreateFile(fileURL.path)
                     }
                 }
             }
@@ -118,8 +156,9 @@ public class Generator {
     }
 
     private func removeChildren(at url: URL) throws {
-        try fileManager.removeItem(at: url)
-        try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        if fileManager.fileExists(atPath: url.path) {
+            try fileManager.removeItem(at: url)
+        }
     }
 
     private static func getOperationsDirURL(for path: Path, in endpointsDirURL: URL) -> URL {
@@ -128,16 +167,7 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateEndpoints(for path: Path, docsLoader: DocsLoader) throws -> [(name: String, fileName: String, contents: String)] {
-        try path.operations.map { operation in
-            let name = operation.name.capitalizingFirstLetter()
-            let fileName = "\(name)\(path.info.version).swift"
-            let renderedOperation = try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)
-            return (name: name, fileName: fileName, contents: renderedOperation)
-        }
-    }
-
-    private static func generateModel(for schema: Schema, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    private static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
         switch schema {
@@ -154,8 +184,12 @@ public class Generator {
             renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
                 .render(plainTextSchema: plainTextSchema)
         }
+        var imports = ["import Foundation"]
+        if packageName != .core {
+            imports.append("import Bagbutik_Core")
+        }
         let contents = """
-        import Foundation
+        \(imports.sorted().joined(separator: "\n"))
 
         \(renderedSchema)
         """

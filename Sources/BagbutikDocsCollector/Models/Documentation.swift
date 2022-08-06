@@ -6,7 +6,7 @@ public enum Documentation: Codable, Equatable {
     case object(ObjectDocumentation)
     case operation(OperationDocumentation)
 
-    var id: String {
+    public var id: String {
         switch self {
         case .enum(let documentation):
             return documentation.id
@@ -14,6 +14,17 @@ public enum Documentation: Codable, Equatable {
             return documentation.id
         case .operation(let documentation):
             return documentation.id
+        }
+    }
+
+    public var hierarchy: Hierarchy {
+        switch self {
+        case .enum(let documentation):
+            return documentation.hierarchy
+        case .object(let documentation):
+            return documentation.hierarchy
+        case .operation(let documentation):
+            return documentation.hierarchy
         }
     }
 
@@ -63,6 +74,7 @@ public enum Documentation: Codable, Equatable {
 
     private enum CodingKeys: CodingKey {
         case identifier
+        case hierarchy
         case metadata
         case abstract
         case primaryContentSections
@@ -72,6 +84,7 @@ public enum Documentation: Codable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let id = try container.decode(Identifier.self, forKey: .identifier).url
+        let hierarchy = try container.decode(Hierarchy.self, forKey: .hierarchy)
         let metadata = try container.decode(Metadata.self, forKey: .metadata)
         let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.first?.text
         let references = try container.decodeIfPresent([String: Reference].self, forKey: .references)
@@ -107,7 +120,12 @@ public enum Documentation: Codable, Equatable {
                 guard case .possibleValues(let values) = contentSection else { return nil }
                 return values.compactMapValues { formatContent($0) ?? "" }
             }.first ?? [:]
-            self = .enum(.init(id: id, title: metadata.title, abstract: abstract, discussion: discussion, cases: values))
+            self = .enum(.init(id: id,
+                               hierarchy: hierarchy,
+                               title: metadata.title,
+                               abstract: abstract,
+                               discussion: discussion,
+                               cases: values))
         } else if metadata.symbolKind == "dict" /* Object */ {
             let properties: [Property] = contentSections.compactMap { contentSection in
                 guard case .properties(let properties) = contentSection else { return nil }
@@ -120,6 +138,7 @@ public enum Documentation: Codable, Equatable {
                 .filter { $0.type.kind == "typeIdentifier" }
                 .compactMap(\.type.identifier)
             self = .object(.init(id: id,
+                                 hierarchy: hierarchy,
                                  title: metadata.title,
                                  abstract: abstract,
                                  discussion: discussion,
@@ -153,6 +172,7 @@ public enum Documentation: Codable, Equatable {
                 ResponseDocumentation(status: $0.status, reason: $0.reason, description: formatContent($0.content))
             }
             self = .operation(.init(id: id,
+                                    hierarchy: hierarchy,
                                     title: metadata.title,
                                     abstract: abstract,
                                     discussion: discussion,
@@ -171,6 +191,7 @@ public enum Documentation: Codable, Equatable {
         if let abstract = abstract {
             try container.encode([Abstract(text: abstract)], forKey: .abstract)
         }
+        try container.encode(hierarchy, forKey: .hierarchy)
         var contentSections = [ContentSection]()
         switch self {
         case .enum(let documentation):
@@ -227,6 +248,14 @@ public enum Documentation: Codable, Equatable {
 
     private struct Abstract: Codable {
         let text: String
+    }
+
+    public struct Hierarchy: Codable, Equatable {
+        let paths: [[String]]
+
+        public init(paths: [[String]]) {
+            self.paths = paths
+        }
     }
 
     internal struct Reference: Codable {

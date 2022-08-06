@@ -8,8 +8,6 @@ public struct EnumSchema: Decodable, Equatable {
     public let type: String
     /// An url for the documentation for the enum
     public let url: String?
-    /// The documentation for the enum - if any
-    public var documentation: EnumDocumentation?
     /// The enum's cases
     public let cases: [EnumCase]
 

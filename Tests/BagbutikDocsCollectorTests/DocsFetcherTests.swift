@@ -2,8 +2,8 @@
 @testable import BagbutikSpecDecoder
 import XCTest
 #if canImport(FoundationNetworking)
-// Linux support
-import FoundationNetworking
+    // Linux support
+    import FoundationNetworking
 #endif
 
 final class DocsFetcherTests: XCTestCase {
@@ -66,6 +66,15 @@ final class DocsFetcherTests: XCTestCase {
                     "text": "A response that contains a list of Users resources."
                 }
             ],
+            "hierarchy": {
+                "paths": [
+                    [
+                        "doc://com.apple.documentation/documentation/technologies",
+                        "doc://com.apple.documentation/documentation/appstoreconnectapi",
+                        "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+                    ]
+                ]
+            },
             "identifier": {
                 "url": "doc://com.apple.documentation/documentation/appstoreconnectapi/usersresponse",
             },
@@ -201,10 +210,11 @@ final class DocsFetcherTests: XCTestCase {
     
     func testFailedCreatingFiles() async throws {
         // Given
+        let urlSession = MockURLSession()
         let fileManager = MockFileManager()
         fileManager.fileNameToFailCreating = DocsFilename.operationDocumentation.filename
         let printer = Printer()
-        let docsFetcher = DocsFetcher(loadSpec: { _ in self.testSpec }, fileManager: fileManager, print: printer.print)
+        let docsFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fetchData: urlSession.data(from:delegate:), fileManager: fileManager, print: printer.print)
         // When
         await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
             // Then
@@ -216,7 +226,8 @@ final class DocsFetcherTests: XCTestCase {
         // Given
         let docsFetcher = DocsFetcher(
             loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [
-                "Platform": .enum(.init(name: "Platform", type: "String", url: nil, caseValues: []))]))
+                "Platform": .enum(.init(name: "Platform", type: "String", url: nil, caseValues: []))
+            ]))
             })
         // When
         await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
@@ -282,6 +293,10 @@ final class DocsFetcherTests: XCTestCase {
             guard fileName != fileNameToFailCreating else { return false }
             filesCreated.append((name: fileName, data: data!))
             return true
+        }
+        
+        func fileExists(atPath path: String) -> Bool {
+            true
         }
         
         func removeItem(at URL: URL) throws {

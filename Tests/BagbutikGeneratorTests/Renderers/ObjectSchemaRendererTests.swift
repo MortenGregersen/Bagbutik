@@ -442,7 +442,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct PersonsResponse: Codable, PagedResponse {
             public typealias Data = Person
-        
+
             public let data: [Person]
             public let links: PagedDocumentLinks
 
@@ -698,7 +698,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct BuildsResponse: Codable {
             public typealias Data = Build
-        
+
             public var data: [Build]?
             public var included: [Included]?
 
