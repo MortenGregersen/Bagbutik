@@ -10,22 +10,25 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     case xcodeCloud
 
     public var name: String {
-        let prefix = "Bagbutik-"
+        "Bagbutik-\(docsSectionName)"
+    }
+
+    public var docsSectionName: String {
         switch self {
         case .appStore:
-            return prefix.appending("AppStore")
+            return "AppStore"
         case .core:
-            return prefix.appending("Core")
+            return "Core"
         case .provisioning:
-            return prefix.appending("Provisioning")
+            return "Provisioning"
         case .reporting:
-            return prefix.appending("Reporting")
+            return "Reporting"
         case .testFlight:
-            return prefix.appending("TestFlight")
+            return "TestFlight"
         case .users:
-            return prefix.appending("Users")
+            return "Users"
         case .xcodeCloud:
-            return prefix.appending("XcodeCloud")
+            return "XcodeCloud"
         }
     }
 

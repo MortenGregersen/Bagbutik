@@ -80,12 +80,13 @@ public class Generator {
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try docsLoader.applyManualDocumentation()
 
+        let modelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
         try PackageName.allCases.forEach { packageName in
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
             let endpointsDirURL = packageDirURL.appendingPathComponent("Endpoints")
             try removeChildren(at: endpointsDirURL)
-            let modelsDirURL = packageDirURL.appendingPathComponent("Models")
-            try removeChildren(at: modelsDirURL)
+            let modelsPackageDirURL = packageDirURL.appendingPathComponent(packageName.docsSectionName)
+            try removeChildren(at: modelsPackageDirURL)
         }
 
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
@@ -134,10 +135,18 @@ public class Generator {
                     self.print("⚡️ Generating model \(schema.name)...")
                     let model = try Self.generateModel(for: schema, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
                     let fileName = model.name + ".swift"
-                    let fileURL = outputDirURL
-                        .appendingPathComponent(packageName.name)
-                        .appendingPathComponent("Models")
-                        .appendingPathComponent(fileName)
+                    let modelsDirURL: URL
+                    if packageName == .core {
+                        modelsDirURL = outputDirURL
+                            .appendingPathComponent(packageName.name)
+                            .appendingPathComponent("Models")
+                    } else {
+                        modelsDirURL = outputDirURL
+                            .appendingPathComponent("Bagbutik-Models")
+                            .appendingPathComponent(packageName.docsSectionName)
+                    }
+                    try self.fileManager.createDirectory(at: modelsDirURL, withIntermediateDirectories: true, attributes: nil)
+                    let fileURL = modelsDirURL.appendingPathComponent(fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
                         throw GeneratorError.couldNotCreateFile(fileName)
                     }
@@ -155,7 +164,6 @@ public class Generator {
         if fileManager.fileExists(atPath: url.path) {
             try fileManager.removeItem(at: url)
         }
-        try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
     }
 
     private static func getOperationsDirURL(for path: Path, in endpointsDirURL: URL) -> URL {

@@ -26,6 +26,9 @@ let package = Package(
             name: "Bagbutik-Core",
             targets: ["Bagbutik-Core"]),
         .library(
+            name: "Bagbutik-Models",
+            targets: ["Bagbutik-Models"]),
+        .library(
             name: "Bagbutik-AppStore",
             targets: ["Bagbutik-AppStore"]),
         .library(
@@ -59,12 +62,13 @@ let package = Package(
             .target(name: "system-zlib", condition: .when(platforms: [.linux])),
             .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux]))
         ]),
-        .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core"]),
-        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
+        .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-Users", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-XcodeCloud", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .executableTarget(
             name: "BagbutikCLI",
             dependencies: [
