@@ -1,4 +1,4 @@
-import Bagbutik_Models
+import Bagbutik_Core
 import XCTest
 
 final class ServiceErrorTests: XCTestCase {
