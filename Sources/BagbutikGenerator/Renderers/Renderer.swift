@@ -34,7 +34,7 @@ public class Renderer {
         if let protocols = protocols {
             inheritance.append(contentsOf: protocols)
         }
-        var inheritanceString: String?
+        var inheritanceString = ""
         if inheritance.count > 0 {
             inheritanceString = ": " + inheritance.joined(separator: ", ")
         }
@@ -62,7 +62,7 @@ public class Renderer {
             casesAndContent += "\n\n\(content)"
         }
         return """
-        \(access) enum \(name)\(inheritanceString ?? "") {
+        \(access) enum \(name)\(inheritanceString) {
             \(casesAndContent)
         }
         """

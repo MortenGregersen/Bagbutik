@@ -1,5 +1,6 @@
-@testable import Bagbutik_Core
 import Bagbutik_AppStore
+@testable import Bagbutik_Core
+import Bagbutik_Models
 import XCTest
 #if canImport(FoundationNetworking)
 // Linux support

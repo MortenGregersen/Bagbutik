@@ -28,6 +28,7 @@ final class GeneratorTests: XCTestCase {
         "ReplaceUsersResponse": .enum(.init(name: "ReplaceUsersResponse", type: "String", caseValues: ["none", "some"])),
         "Gzip": .binary(.init(name: "Gzip", url: "other://url")),
         "Csv": .plainText(.init(name: "Csv", url: "other://url")),
+        "ErrorResponse": .object(.init(name: "ErrorResponse", url: "some://url"))
     ]))
     lazy var docsLoader = { DocsLoader(loadFile: loadFile) }()
     
@@ -40,31 +41,39 @@ final class GeneratorTests: XCTestCase {
         try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
         // Then
         continueAfterFailure = false
-        XCTAssertEqual(fileManager.itemsRemoved.count, 7)
         XCTAssertEqual(fileManager.itemsRemoved, [
-            "/Users/steve/output/Bagbutik-AppStore/Endpoints",
-            "/Users/steve/output/Bagbutik-Provisioning/Endpoints",
-            "/Users/steve/output/Bagbutik-Reporting/Endpoints",
-            "/Users/steve/output/Bagbutik-TestFlight/Endpoints",
-            "/Users/steve/output/Bagbutik-Users/Endpoints",
-            "/Users/steve/output/Bagbutik-XcodeCloud/Endpoints",
+            "/Users/steve/output/Bagbutik-AppStore",
+            "/Users/steve/output/Bagbutik-Models/AppStore",
+            "/Users/steve/output/Bagbutik-Provisioning",
+            "/Users/steve/output/Bagbutik-Models/Provisioning",
+            "/Users/steve/output/Bagbutik-Reporting",
+            "/Users/steve/output/Bagbutik-Models/Reporting",
+            "/Users/steve/output/Bagbutik-TestFlight",
+            "/Users/steve/output/Bagbutik-Models/TestFlight",
+            "/Users/steve/output/Bagbutik-Users",
+            "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-XcodeCloud",
+            "/Users/steve/output/Bagbutik-Models/XcodeCloud",
             "/Users/steve/output/Bagbutik-Core/Models",
         ])
-        XCTAssertEqual(fileManager.directoriesCreated.count, 9)
         XCTAssertEqual(fileManager.directoriesCreated.sorted(), [
-            "/Users/steve/output/Bagbutik-AppStore/Endpoints",
+            "/Users/steve/output/Bagbutik-AppStore",
             "/Users/steve/output/Bagbutik-Core/Models",
-            "/Users/steve/output/Bagbutik-Provisioning/Endpoints",
-            "/Users/steve/output/Bagbutik-Reporting/Endpoints",
-            "/Users/steve/output/Bagbutik-TestFlight/Endpoints",
-            "/Users/steve/output/Bagbutik-Users/Endpoints",
-            "/Users/steve/output/Bagbutik-Users/Endpoints/Users",
-            "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
-            "/Users/steve/output/Bagbutik-XcodeCloud/Endpoints",
+            "/Users/steve/output/Bagbutik-Models/Reporting",
+            "/Users/steve/output/Bagbutik-Models/Reporting",
+            "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-Provisioning",
+            "/Users/steve/output/Bagbutik-Reporting",
+            "/Users/steve/output/Bagbutik-TestFlight",
+            "/Users/steve/output/Bagbutik-Users",
+            "/Users/steve/output/Bagbutik-Users/Users",
+            "/Users/steve/output/Bagbutik-Users/Users/Relationships",
+            "/Users/steve/output/Bagbutik-XcodeCloud"
         ])
-        XCTAssertEqual(fileManager.filesCreated.count, 6)
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
             "Csv.swift",
+            "ErrorResponse.swift",
             "Gzip.swift",
             "ListUsersV1.swift",
             "ListVisibleAppIdsForUserV2.swift",
@@ -73,15 +82,16 @@ final class GeneratorTests: XCTestCase {
         ])
         XCTAssertEqual(printer.printedLogs[0], "🔍 Loading spec file:///Users/steve/spec.json...")
         XCTAssertEqual(printer.printedLogs[1], "🔍 Loading docs file:///Users/steve/documentation...")
-        XCTAssertEqual(printer.printedLogs[2 ... 7].sorted(), [
-            "⚡️ Generating endpoint ListUsersV1.swift...",
-            "⚡️ Generating endpoint ListVisibleAppIdsForUserV2.swift...",
+        XCTAssertEqual(printer.printedLogs[2 ... 8].sorted(), [
+            "⚡️ Generating endpoint ListUsersV1...",
+            "⚡️ Generating endpoint ListVisibleAppIdsForUserV2...",
             "⚡️ Generating model Csv...",
+            "⚡️ Generating model ErrorResponse...",
             "⚡️ Generating model Gzip...",
             "⚡️ Generating model ReplaceUsersResponse...",
             "⚡️ Generating model UsersResponse...",
         ])
-        XCTAssertEqual(printer.printedLogs[8], "🎉 Finished generating 2 endpoints and 4 models! 🎉")
+        XCTAssertEqual(printer.printedLogs[9], "🎉 Finished generating 2 endpoints and 5 models! 🎉")
     }
     
     func testInvalidSpecFileURL() async throws {
@@ -93,7 +103,7 @@ final class GeneratorTests: XCTestCase {
         let documentationDirURL = validDocumentationDirURL
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.specFileURL))
+            XCTAssertEqual($0 as? GeneratorError, .notFileUrl(.specFileURL))
         }
     }
     
@@ -106,7 +116,7 @@ final class GeneratorTests: XCTestCase {
         let documentationDirURL = validDocumentationDirURL
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.outputDirURL))
+            XCTAssertEqual($0 as? GeneratorError, .notFileUrl(.outputDirURL))
         }
     }
     
@@ -119,7 +129,7 @@ final class GeneratorTests: XCTestCase {
         let documentationDirURL = URL(string: "https://developer.apple.com")!
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, GeneratorError.notFileUrl(.documentationDirUrl))
+            XCTAssertEqual($0 as? GeneratorError, .notFileUrl(.documentationDirUrl))
         }
     }
     
@@ -152,7 +162,7 @@ final class GeneratorTests: XCTestCase {
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("ListUsersV1.swift"))
+            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Users/ListUsersV1.swift"))
         }
     }
     
@@ -161,11 +171,58 @@ final class GeneratorTests: XCTestCase {
         let fileManager = MockFileManager()
         fileManager.fileNameToFailCreating = "UsersResponse.swift"
         let printer = Printer()
-        let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+        let generator = Generator(loadSpec: { _ in
+            try Spec(paths: [:], components: .init(schemas: [
+                "UsersResponse": self.testSpec.components.schemas["UsersResponse"]!
+            ]))
+        }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, GeneratorError.couldNotCreateFile("UsersResponse.swift"))
+            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Models/Users/UsersResponse.swift"))
+        }
+    }
+    
+    func testNoDocumentationForOperation() async throws {
+        // Given
+        let fileManager = MockFileManager()
+        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        let printer = Printer()
+        let generator = Generator(loadSpec: { _ in
+            try Spec(paths: [
+                "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
+                    .init(id: "users-delete_instance",
+                          name: "deleteUser",
+                          method: .delete,
+                          successResponseType: "EmptyResponse",
+                          errorResponseType: "ErrorResponse"),
+                ]),
+            ], components: .init(schemas: [:]))
+        }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+        // When
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, .noDocumentationForOperation("users-delete_instance"))
+        }
+    }
+    
+    func testNoDocumentationForSchema() async throws {
+        // Given
+        let fileManager = MockFileManager()
+        let docsLoader = DocsLoader(loadFile: { _ in "{}".data(using: .utf8)! })
+        let printer = Printer()
+        let generator = Generator(loadSpec: { _ in
+            try Spec(
+                paths: [:],
+                components: .init(schemas: [
+                    "UsersResponse": .object(.init(name: "UsersResponse", url: "some://url"))
+                ])
+            )
+        }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+        // When
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
+            // Then
+            XCTAssertEqual($0 as? GeneratorError, .noDocumentationForSchema("UsersResponse"))
         }
     }
     
@@ -239,7 +296,7 @@ final class GeneratorTests: XCTestCase {
         ]
     )
 
-    static let schemaDocumentation = ObjectDocumentation(
+    static let userSchemaDocumentation = ObjectDocumentation(
         id: "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
         title: "User",
         abstract: "The data structure that represents a Users resource.",
@@ -251,6 +308,59 @@ final class GeneratorTests: XCTestCase {
             "type": .init(required: true, description: "The resource type.")
         ]
     )
+    
+    static let usersResponseSchemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/usersresponse",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.documentation/documentation/appstoreconnectapi",
+            "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+        ]]),
+        title: "UsersResponse"
+    )
+    
+    static let userVisibleAppsLinkagesResponseSchemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/uservisibleappslinkagesresponse",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.documentation/documentation/appstoreconnectapi",
+            "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+        ]]),
+        title: "UserVisibleAppsLinkagesResponse"
+    )
+    
+    static let replaceUsersResponseSchemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/replaceusersresponse",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.documentation/documentation/appstoreconnectapi",
+            "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+        ]]),
+        title: "ReplaceUsersResponse"
+    )
+    
+    static let csvSchemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/csv",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.documentation/documentation/appstoreconnectapi",
+            "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-reporting"
+        ]]),
+        title: "Csv"
+    )
+    
+    static let gzipSchemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/gzip",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.documentation/documentation/appstoreconnectapi",
+            "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-reporting"
+        ]]),
+        title: "Gzip"
+    )
+    
+    static let errorResponseSchemaDocumentation = ObjectDocumentation(
+        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse",
+        hierarchy: .init(paths: [[
+            "doc://com.apple.documentation/documentation/appstoreconnectapi"
+        ]]),
+        title: "ErrorResponse"
+    )
 
     let loadFile: (URL) throws -> Data = { url in
         let jsonEncoder = JSONEncoder()
@@ -260,9 +370,25 @@ final class GeneratorTests: XCTestCase {
                 operationListVisibleAppIdsForUserDocumentation.id: Documentation.operation(operationListVisibleAppIdsForUserDocumentation),
             ])
         } else if url.lastPathComponent == DocsFilename.schemaMapping.filename {
-            return try jsonEncoder.encode(["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
+            return try jsonEncoder.encode([
+                "User": userSchemaDocumentation.id,
+                "UsersResponse": usersResponseSchemaDocumentation.id,
+                "UserVisibleAppsLinkagesResponse": userVisibleAppsLinkagesResponseSchemaDocumentation.id,
+                "ReplaceUsersResponse": replaceUsersResponseSchemaDocumentation.id,
+                "Csv": csvSchemaDocumentation.id,
+                "Gzip": gzipSchemaDocumentation.id,
+                "ErrorResponse": errorResponseSchemaDocumentation.id
+            ])
         } else { // if url.lastPathComponent == DocsFilename.schemaDocumentation.filename {
-            return try jsonEncoder.encode([schemaDocumentation.id: Documentation.object(schemaDocumentation)])
+            return try jsonEncoder.encode([
+                userSchemaDocumentation.id: Documentation.object(userSchemaDocumentation),
+                usersResponseSchemaDocumentation.id: Documentation.object(usersResponseSchemaDocumentation),
+                userVisibleAppsLinkagesResponseSchemaDocumentation.id: Documentation.object(userVisibleAppsLinkagesResponseSchemaDocumentation),
+                replaceUsersResponseSchemaDocumentation.id: Documentation.object(replaceUsersResponseSchemaDocumentation),
+                csvSchemaDocumentation.id: Documentation.object(csvSchemaDocumentation),
+                gzipSchemaDocumentation.id: Documentation.object(gzipSchemaDocumentation),
+                errorResponseSchemaDocumentation.id: Documentation.object(errorResponseSchemaDocumentation)
+            ])
         }
     }
 }

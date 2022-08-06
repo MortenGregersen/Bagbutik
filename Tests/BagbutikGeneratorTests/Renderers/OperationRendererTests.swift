@@ -24,6 +24,7 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
+        import Bagbutik_Models
         
         public extension Request {
             /**
@@ -60,6 +61,7 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
+        import Bagbutik_Models
         
         public extension Request {
             /**
@@ -93,6 +95,7 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
+        import Bagbutik_Models
         
         public extension Request {
             /**
@@ -140,6 +143,7 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
+        import Bagbutik_Models
         
         public extension Request {
             /**
@@ -280,6 +284,7 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
+        import Bagbutik_Models
         
         public extension Request {
             /**
@@ -375,6 +380,7 @@ final class OperationRendererTests: XCTestCase {
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
+        import Bagbutik_Models
         
         public extension Request {
             /**

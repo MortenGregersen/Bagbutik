@@ -15,6 +15,7 @@ let package = Package(
             name: "Bagbutik",
             targets: [
                 "Bagbutik-Core",
+                "Bagbutik-Models",
                 "Bagbutik-AppStore",
                 "Bagbutik-Provisioning",
                 "Bagbutik-Reporting",
@@ -104,6 +105,7 @@ let package = Package(
                 .product(name: "Crypto", package: "swift-crypto", condition: .when(platforms: [.linux]))
             ],
             resources: [.copy("test-private-key.p8")]),
+        .testTarget(name: "Bagbutik-ModelsTests", dependencies: ["Bagbutik-Models"]),
         .testTarget(name: "BagbutikGeneratorTests", dependencies: ["BagbutikGenerator"]),
         .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
