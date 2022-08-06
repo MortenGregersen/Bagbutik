@@ -23,7 +23,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
+        import Bagbutik_Models
         import Bagbutik_Models
         
         public extension Request {
@@ -60,7 +60,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
+        import Bagbutik_Models
         import Bagbutik_Models
         
         public extension Request {
@@ -94,7 +94,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
+        import Bagbutik_Models
         import Bagbutik_Models
         
         public extension Request {
@@ -142,7 +142,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
+        import Bagbutik_Models
         import Bagbutik_Models
         
         public extension Request {
@@ -283,7 +283,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
+        import Bagbutik_Models
         import Bagbutik_Models
         
         public extension Request {
@@ -379,7 +379,7 @@ final class OperationRendererTests: XCTestCase {
         let rendered = try renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
-        import Bagbutik_Core
+        import Bagbutik_Models
         import Bagbutik_Models
         
         public extension Request {

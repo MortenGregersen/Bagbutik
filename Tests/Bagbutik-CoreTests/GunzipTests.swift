@@ -1,5 +1,5 @@
 import XCTest
-@testable import Bagbutik_Core
+@testable import Bagbutik_Models
 
 final class GunzipTests: XCTestCase {
     static let gzipData = Data(base64Encoded: "H4sIAAAAAAAAAEtUKC4pysxLV8hPU0jOSCxKTC5JLSoGAOP+cfkWAAAA")!

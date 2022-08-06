@@ -1,4 +1,4 @@
-@testable import Bagbutik_Core
+@testable import Bagbutik_Models
 import XCTest
 
 final class RequestTests: XCTestCase {
