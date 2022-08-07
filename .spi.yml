@@ -3,3 +3,4 @@ builder:
   configs:
   - scheme: Bagbutik
     target: Bagbutik-Core
+    documentation_targets: [Bagbutik-Core]
