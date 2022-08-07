@@ -12,6 +12,7 @@ let package = Package(
     ],
     products: [
         .library(
+            // Includes all targets. Each target still needs to be imported in code.
             name: "Bagbutik",
             targets: [
                 "Bagbutik-Core",
@@ -24,9 +25,11 @@ let package = Package(
                 "Bagbutik-XcodeCloud",
             ]),
         .library(
+            // Has the core features like the service, JWT and general models.
             name: "Bagbutik-Core",
             targets: ["Bagbutik-Core"]),
         .library(
+            // All models used by the endpoints.
             name: "Bagbutik-Models",
             targets: ["Bagbutik-Models"]),
         .library(
