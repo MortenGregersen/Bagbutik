@@ -2,4 +2,4 @@ version: 1
 builder:
   configs:
   - scheme: Bagbutik
-    target: Bagbutik
+    target: Bagbutik-Core
