@@ -43,7 +43,10 @@ Bagbutik uses JSON Web Tokens (JWT) for authorization. You obtain the required k
 Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the bundle ID itself descending.
 
 ```swift
-let service = try BagbutikService(jwt: .init(
+import Bagbutik_Core
+import Bagbutik_Provisioning
+
+let service = BagbutikService(jwt: try .init(
     keyId: "P9M252746H",
     issuerId: "82067982-6b3b-4a48-be4f-5b10b373c5f2",
     privateKey: """
@@ -55,10 +58,10 @@ let service = try BagbutikService(jwt: .init(
     """
 ))
 let response = try await service.request(
-    .listBundleIds(fields: [.profiles([.bundleId, .name])],
-                   filters: [.platform([.iOS])],
-                   includes: [.profiles],
-                   sorts: [.seedIdDescending, .idDescending])
+    .listBundleIdsV1(fields: [.profiles([.bundleId, .name])],
+                     filters: [.platform([.iOS])],
+                     includes: [.profiles],
+                     sorts: [.seedIdDescending, .idDescending])
 )
 print(response)
 ```
