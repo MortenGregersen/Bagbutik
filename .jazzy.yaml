@@ -1,12 +1,11 @@
-module: Bagbutik
+module: Bagbutik_Core
+title: Bagbutik
 author: Morten Bjerg Gregersen
 source_host_url: https://github.com/MortenGregersen/Bagbutik
 copyright: '© 2022 under [open source license](https://github.com/MortenGregersen/Bagbutik/blob/main/LICENSE).'
 clean: true
 exclude:
-  - Sources/Bagbutik/Endpoints/*
-  - Sources/Bagbutik/Extensions/*
-  - Sources/Bagbutik/Models/*
+  - Sources/Bagbutik-Core/Models/*
 
 custom_categories:
   - name: Service
@@ -23,6 +22,7 @@ custom_categories:
     - Parameters
     - EndpointParameter
     - AssociatedValueParameter
+    - ParameterValue
     - FieldParameter
     - FilterParameter
     - IncludeParameter
