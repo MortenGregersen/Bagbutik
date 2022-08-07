@@ -26,7 +26,7 @@ struct BagbutikCLI: AsyncParsableCommand {
         var outputPath = "./Sources"
 
         @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a \(DocsFilename.operationDocumentation.filename), a \(DocsFilename.schemaDocumentation.filename) and a \(DocsFilename.schemaMapping.filename).")
-        var documentationPath = "./"
+        var documentationPath = "./Documentation"
 
         mutating func run() async throws {
             let specFileURL: URL
@@ -49,7 +49,7 @@ struct BagbutikCLI: AsyncParsableCommand {
         var specPath: String?
 
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
-        var outputPath = "./"
+        var outputPath = "./Documentation"
 
         func run() async throws {
             let specFileURL: URL
