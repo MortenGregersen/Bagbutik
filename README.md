@@ -77,14 +77,14 @@ So to get Bagbutik, you need to decide which functionality you need.
 
 In your `Package.swift` add Bagbutik as a dependency:
 
-```
+```swift
 dependencies: [
     .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "3.0.0"),
 ```
 
 Then in `targets` add the libraries needed by your target:
 
-```
+```swift
 targets: [
     .target(
         name: "Awesome",
@@ -95,7 +95,7 @@ targets: [
 
 If all libraries are needed, the umbrella library `Bagbutik` can be used:
 
-```
+```swift
 targets: [
     .target(
         name: "Awesome",
