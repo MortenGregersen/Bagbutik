@@ -135,6 +135,7 @@ public class ObjectSchemaRenderer: Renderer {
                 return $0.key < $1.key
             }
             let initParameters = sortedProperties.filter { !$0.value.type.isConstant }
+            var hasNullCodableWrappedProperty = false
             properties = sortedProperties.map { property -> RenderProperty in
                 let rendered: String
                 switch property.value.type {
@@ -142,10 +143,18 @@ public class ObjectSchemaRenderer: Renderer {
                     rendered = PropertyRenderer(docsLoader: docsLoader)
                         .renderConstant(id: property.key, type: "String", value: "\"\(value)\"")
                 default:
-                    rendered = PropertyRenderer(docsLoader: docsLoader)
-                        .renderProperty(id: PropertyName(idealName: property.key).safeName,
-                                        type: property.value.type.description,
-                                        optional: !objectSchema.requiredProperties.contains(property.key),
+                    let id = PropertyName(idealName: property.key).safeName
+                    let type = property.value.type.description
+                    let isOptional = !objectSchema.requiredProperties.contains(property.key)
+                    var wrapper = ""
+                    if id == "data", type == "Data" || type == "[Data]", isOptional {
+                        wrapper += "@NullCodable "
+                        hasNullCodableWrappedProperty = true
+                    }
+                    rendered = wrapper + PropertyRenderer(docsLoader: docsLoader)
+                        .renderProperty(id: id,
+                                        type: type,
+                                        optional: isOptional,
                                         isSimpleType: property.value.type.isSimple,
                                         deprecated: property.value.deprecated)
                 }
@@ -168,7 +177,7 @@ public class ObjectSchemaRenderer: Renderer {
             }
             decodableProperties = encodableProperties.filter { $0.name.idealName != "type" }
             hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
-            needsCustomCoding = hasTypeConstant || sortedProperties.contains(where: { PropertyName(idealName: $0.key).hasDifferentSafeName })
+            needsCustomCoding = hasTypeConstant || hasNullCodableWrappedProperty || sortedProperties.contains(where: { PropertyName(idealName: $0.key).hasDifferentSafeName })
         }
 
         private static func createFunctionParameters(from parameters: [Dictionary<String, Property>.Element], requiredProperties: [String]) -> [FunctionParameter] {
