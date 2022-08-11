@@ -119,6 +119,20 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 /**
                  # CiBuildRunCreateRequest.Data.Relationships.BuildRun.Data
                  The type and ID of the Build Runs resource that you’re relating with the Build Runs resource you’re creating.
@@ -170,6 +184,20 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
 
                 public init(data: Data? = nil) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**
@@ -225,6 +253,20 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 /**
                  # CiBuildRunCreateRequest.Data.Relationships.SourceBranchOrTag.Data
                  The type and ID of the Git References resource that represents the source branch or tag you relate with the Build Runs resource you’re creating.
@@ -276,6 +318,20 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
 
                 public init(data: Data? = nil) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

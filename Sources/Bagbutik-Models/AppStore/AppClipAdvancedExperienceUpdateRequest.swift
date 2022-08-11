@@ -360,6 +360,20 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 /**
                  # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.AppClip.Data
                  The type and ID of the App Clips resource that you’re relating with the Advanced App Clip Experiences resource you’re updating.
@@ -413,6 +427,20 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 /**
                  # AppClipAdvancedExperienceUpdateRequest.Data.Relationships.HeaderImage.Data
                  The type and ID of the App Clip Header Images resource that you’re relating with the Advanced App Clip Experiences resource you’re updating.
@@ -464,6 +492,20 @@ public struct AppClipAdvancedExperienceUpdateRequest: Codable, RequestBody {
 
                 public init(data: [Data]? = nil) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

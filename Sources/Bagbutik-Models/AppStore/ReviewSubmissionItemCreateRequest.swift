@@ -62,6 +62,20 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
@@ -96,6 +110,20 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
 
                 public init(data: Data? = nil) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -134,6 +162,20 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
@@ -168,6 +210,20 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
 
                 public init(data: Data? = nil) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

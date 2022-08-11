@@ -113,6 +113,20 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
+                }
+
                 /**
                  # AppClipDefaultExperienceUpdateRequest.Data.Relationships.ReleaseWithAppStoreVersion.Data
                  The type and ID of the App Store Versions resource that you’re relating with the Default App Clip Experiences resource you’re updating.
