@@ -1,5 +1,4 @@
 @testable import Bagbutik_Core
-import Bagbutik_Models
 import XCTest
 
 final class NullCodableTests: XCTestCase {
