@@ -1,5 +1,3 @@
-import BagbutikSpecDecoder
-
 internal class PropertyRenderer: Renderer {
     func renderProperty(id: String, type: String, access: String = "public", optional: Bool, isSimpleType: Bool, deprecated: Bool = false) -> String {
         var rendered = ""
