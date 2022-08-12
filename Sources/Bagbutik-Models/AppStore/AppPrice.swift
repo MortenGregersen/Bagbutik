@@ -88,6 +88,23 @@ public struct AppPrice: Codable, Identifiable {
                 self.links = links
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+
             /**
              # AppPrice.Relationships.App.Data
              The type and ID of a related resource.
@@ -176,6 +193,23 @@ public struct AppPrice: Codable, Identifiable {
             {
                 self.data = data
                 self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
             }
 
             /**

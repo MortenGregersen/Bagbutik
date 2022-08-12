@@ -21,27 +21,6 @@ final class PropertyRendererTests: XCTestCase {
         XCTAssertEqual(rendered, "public let `required`: Bool")
     }
 
-    func testNullCodableOnNonSimpleOptionalData() throws {
-        // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
-        // When
-        let rendered = renderer.renderProperty(id: "data", type: "Data", optional: true, isSimpleType: false)
-        // Then
-        XCTAssertEqual(rendered, "@NullCodable public var data: Data?")
-        // It is necessary to add the @NullCodable property wrapper, to ensure that optionals are encoded as null.
-        // If this is not done, the JSONEncoder will leave out optionals from the JSON instead.
-        // This is needed when relationships in create and update requests are cleared (eg. when removing subcategory in app info)
-    }
-
-    func testNullCodableOnNonSimpleOptionalDataArray() throws {
-        // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
-        // When
-        let rendered = renderer.renderProperty(id: "data", type: "[Data]", optional: true, isSimpleType: false)
-        // Then
-        XCTAssertEqual(rendered, "@NullCodable public var data: [Data]?")
-    }
-
     func testNoNullCodableOnNonSimpleOptionalNotData() throws {
         // Given
         let renderer = PropertyRenderer(docsLoader: DocsLoader())

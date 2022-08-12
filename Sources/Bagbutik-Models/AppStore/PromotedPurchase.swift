@@ -94,6 +94,23 @@ public struct PromotedPurchase: Codable, Identifiable {
                 self.links = links
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
@@ -166,6 +183,26 @@ public struct PromotedPurchase: Codable, Identifiable {
                 self.meta = meta
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent([Data].self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+                try container.encodeIfPresent(meta, forKey: .meta)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
+                case meta
+            }
+
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchaseImages" }
@@ -233,6 +270,23 @@ public struct PromotedPurchase: Codable, Identifiable {
             {
                 self.data = data
                 self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
             }
 
             public struct Data: Codable, Identifiable {

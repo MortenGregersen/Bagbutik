@@ -883,6 +883,117 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
+    func testRenderCustomCodingForNullCodableProperties() throws {
+        // Given
+        let docsLoader = DocsLoader(schemaDocumentationById: [
+            "some://url": .object(
+                .init(id: "/profile", title: "Profile", abstract: "A profile.", discussion: nil, properties: [:], subDocumentationIds: [])),
+            "some://url/relationships": .object(
+                .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
+        ])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let relationshipsSchema = ObjectSchema(name: "Relationships",
+                                               url: "some://url/relationships",
+                                               properties: ["bundleId": .init(type: .schema(.init(name: "BundleId", url: "some://url/relationship/bundleid", properties: [
+                                                   "data": .init(type: .schema(.init(name: "Data", url: "some://url/relationship/bundleid/data", properties: [
+                                                       "id": .init(type: .simple(.string)), "type": .init(type: .constant("bundleIds"), deprecated: false)
+                                                   ])))
+                                               ])))])
+        let schema = ObjectSchema(name: "Profile",
+                                  url: "some://url",
+                                  properties: ["id": .init(type: .simple(.string)), "relationships": .init(type: .schema(relationshipsSchema))],
+                                  requiredProperties: ["id"])
+        // When
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        /**
+         # Profile
+         A profile.
+
+         Full documentation:
+         <some://url>
+         */
+        public struct Profile: Codable, Identifiable {
+            public let id: String
+            public var relationships: Relationships?
+
+            public init(id: String,
+                        relationships: Relationships? = nil)
+            {
+                self.id = id
+                self.relationships = relationships
+            }
+
+            /**
+             # Relationships
+             The relationships you included in the request and those on which you can operate.
+
+             Full documentation:
+             <some://url/relationships>
+             */
+            public struct Relationships: Codable {
+                public var bundleId: BundleId?
+
+                public init(bundleId: BundleId? = nil) {
+                    self.bundleId = bundleId
+                }
+
+                public struct BundleId: Codable {
+                    @NullCodable public var data: Data?
+
+                    public init(data: Data? = nil) {
+                        self.data = data
+                    }
+        
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        data = try container.decodeIfPresent(Data.self, forKey: .data)
+                    }
+        
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encodeIfPresent(data, forKey: .data)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case data
+                    }
+
+                    public struct Data: Codable, Identifiable {
+                        public var id: String?
+                        public var type: String { "bundleIds" }
+
+                        public init(id: String? = nil) {
+                            self.id = id
+                        }
+
+                        public init(from decoder: Decoder) throws {
+                            let container = try decoder.container(keyedBy: CodingKeys.self)
+                            id = try container.decodeIfPresent(String.self, forKey: .id)
+                            if try container.decode(String.self, forKey: .type) != type {
+                                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                            }
+                        }
+
+                        public func encode(to encoder: Encoder) throws {
+                            var container = encoder.container(keyedBy: CodingKeys.self)
+                            try container.encodeIfPresent(id, forKey: .id)
+                            try container.encode(type, forKey: .type)
+                        }
+
+                        private enum CodingKeys: String, CodingKey {
+                            case id
+                            case type
+                        }
+                    }
+                }
+            }
+        }
+        
+        """#)
+    }
+
     func testRenderWithCustomTypeProperty() throws {
         // Given
         let json = """
