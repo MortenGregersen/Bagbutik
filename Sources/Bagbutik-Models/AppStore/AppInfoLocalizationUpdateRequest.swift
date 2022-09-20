@@ -15,6 +15,13 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppInfoLocalizationUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appInfoLocalizations" }
@@ -49,6 +56,13 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppInfoLocalizationUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var name: String?
             public var privacyChoicesUrl: String?

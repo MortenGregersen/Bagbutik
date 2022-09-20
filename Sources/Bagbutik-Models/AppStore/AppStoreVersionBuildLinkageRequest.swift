@@ -15,6 +15,13 @@ public struct AppStoreVersionBuildLinkageRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppStoreVersionBuildLinkageRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkagerequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "builds" }

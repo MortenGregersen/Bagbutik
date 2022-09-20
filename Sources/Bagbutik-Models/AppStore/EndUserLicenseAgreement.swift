@@ -54,6 +54,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
         case type
     }
 
+    /**
+     # EndUserLicenseAgreement.Attributes
+     Attributes that describe an End User License Agreements resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/attributes>
+     */
     public struct Attributes: Codable {
         public var agreementText: String?
 
@@ -62,6 +69,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
         }
     }
 
+    /**
+     # EndUserLicenseAgreement.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships>
+     */
     public struct Relationships: Codable {
         public var app: App?
         public var territories: Territories?
@@ -73,6 +87,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
             self.territories = territories
         }
 
+        /**
+         # EndUserLicenseAgreement.Relationships.App
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app>
+         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -101,6 +122,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # EndUserLicenseAgreement.Relationships.App.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -129,6 +157,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
                 }
             }
 
+            /**
+             # EndUserLicenseAgreement.Relationships.App.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/app/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -159,6 +194,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
             }
         }
 
+        /**
+         # EndUserLicenseAgreement.Relationships.Territories
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories>
+         */
         public struct Territories: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -193,6 +235,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # EndUserLicenseAgreement.Relationships.Territories.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
@@ -221,6 +270,13 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
                 }
             }
 
+            /**
+             # EndUserLicenseAgreement.Relationships.Territories.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement/relationships/territories/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

@@ -59,7 +59,15 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
         case type
     }
 
+    /**
+     # BetaAppReviewSubmission.Attributes
+     Attributes that describe a Beta App Review Submissions resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/attributes>
+     */
     public struct Attributes: Codable {
+        /// A state that indicates the current status of the beta app review submission.
         public var betaReviewState: BetaReviewState?
         public var submittedDate: Date?
 
@@ -71,6 +79,13 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
         }
     }
 
+    /**
+     # BetaAppReviewSubmission.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships>
+     */
     public struct Relationships: Codable {
         public var build: Build?
 
@@ -78,6 +93,13 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
             self.build = build
         }
 
+        /**
+         # BetaAppReviewSubmission.Relationships.Build
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build>
+         */
         public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -106,8 +128,17 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # BetaAppReviewSubmission.Relationships.Build.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -134,6 +165,13 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
                 }
             }
 
+            /**
+             # BetaAppReviewSubmission.Relationships.Build.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

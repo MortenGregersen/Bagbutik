@@ -15,6 +15,13 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppStoreVersionLocalizationUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionLocalizations" }
@@ -49,6 +56,13 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppStoreVersionLocalizationUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var description: String?
             public var keywords: String?

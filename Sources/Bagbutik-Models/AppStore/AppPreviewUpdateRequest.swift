@@ -15,6 +15,13 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppPreviewUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appPreviews" }
@@ -49,6 +56,13 @@ public struct AppPreviewUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppPreviewUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var previewFrameTimeCode: String?
             public var sourceFileChecksum: String?

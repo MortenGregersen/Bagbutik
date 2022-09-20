@@ -25,8 +25,17 @@ public struct BetaGroupBuildsLinkagesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    /**
+     # BetaGroupBuildsLinkagesResponse.Data
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesresponse/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "builds" }
 
         public init(id: String) {

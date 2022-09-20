@@ -54,6 +54,13 @@ public struct AppInfoLocalization: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppInfoLocalization.Attributes
+     Attributes that describe an App Info Localizations resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/attributes>
+     */
     public struct Attributes: Codable {
         public var locale: String?
         public var name: String?
@@ -78,6 +85,13 @@ public struct AppInfoLocalization: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppInfoLocalization.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships>
+     */
     public struct Relationships: Codable {
         public var appInfo: AppInfo?
 
@@ -85,6 +99,13 @@ public struct AppInfoLocalization: Codable, Identifiable {
             self.appInfo = appInfo
         }
 
+        /**
+         # AppInfoLocalization.Relationships.AppInfo
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo>
+         */
         public struct AppInfo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -113,6 +134,13 @@ public struct AppInfoLocalization: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfoLocalization.Relationships.AppInfo.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appInfos" }
@@ -141,6 +169,13 @@ public struct AppInfoLocalization: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfoLocalization.Relationships.AppInfo.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

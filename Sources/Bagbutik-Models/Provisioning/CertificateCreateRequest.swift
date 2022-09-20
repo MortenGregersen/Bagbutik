@@ -16,6 +16,13 @@ public struct CertificateCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # CertificateCreateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/certificatecreaterequest/data>
+     */
     public struct Data: Codable {
         public var type: String { "certificates" }
         public let attributes: Attributes
@@ -43,6 +50,13 @@ public struct CertificateCreateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # CertificateCreateRequest.Data.Attributes
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/certificatecreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let certificateType: CertificateType
             public let csrContent: String

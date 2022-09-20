@@ -54,6 +54,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppStoreReviewDetail.Attributes
+     Attributes that describe an App Store Review Details resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/attributes>
+     */
     public struct Attributes: Codable {
         public var contactEmail: String?
         public var contactFirstName: String?
@@ -84,6 +91,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppStoreReviewDetail.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships>
+     */
     public struct Relationships: Codable {
         public var appStoreReviewAttachments: AppStoreReviewAttachments?
         public var appStoreVersion: AppStoreVersion?
@@ -95,6 +109,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
             self.appStoreVersion = appStoreVersion
         }
 
+        /**
+         # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments>
+         */
         public struct AppStoreReviewAttachments: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -129,6 +150,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewAttachments" }
@@ -157,6 +185,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -187,6 +222,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppStoreReviewDetail.Relationships.AppStoreVersion
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion>
+         */
         public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -215,6 +257,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppStoreReviewDetail.Relationships.AppStoreVersion.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
@@ -243,6 +292,13 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppStoreReviewDetail.Relationships.AppStoreVersion.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

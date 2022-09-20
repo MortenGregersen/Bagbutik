@@ -15,6 +15,13 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # RoutingAppCoverageUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "routingAppCoverages" }
@@ -49,6 +56,13 @@ public struct RoutingAppCoverageUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # RoutingAppCoverageUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?

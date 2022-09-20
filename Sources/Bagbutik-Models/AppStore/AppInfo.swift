@@ -59,10 +59,21 @@ public struct AppInfo: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppInfo.Attributes
+     Attributes that describe an App Infos resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/attributes>
+     */
     public struct Attributes: Codable {
+        /// The app’s age rating as it appears on the App Store for all platforms.
         public var appStoreAgeRating: AppStoreAgeRating?
+        /// The state of an app version in the App Store.
         public var appStoreState: AppStoreVersionState?
+        /// The app’s age rating as it appears on the App Store in Brazil for all platforms.
         public var brazilAgeRating: BrazilAgeRating?
+        /// A Made for Kids app’s age band.
         public var kidsAgeBand: KidsAgeBand?
 
         public init(appStoreAgeRating: AppStoreAgeRating? = nil,
@@ -77,6 +88,13 @@ public struct AppInfo: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppInfo.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships>
+     */
     public struct Relationships: Codable {
         public var ageRatingDeclaration: AgeRatingDeclaration?
         public var app: App?
@@ -109,6 +127,13 @@ public struct AppInfo: Codable, Identifiable {
             self.secondarySubcategoryTwo = secondarySubcategoryTwo
         }
 
+        /**
+         # AppInfo.Relationships.AgeRatingDeclaration
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration>
+         */
         public struct AgeRatingDeclaration: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -137,6 +162,13 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.AgeRatingDeclaration.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
@@ -165,6 +197,13 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.AgeRatingDeclaration.Links
+             The links to the related data and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -195,6 +234,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.App
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app>
+         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -223,8 +269,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.App.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -251,8 +306,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.App.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -281,6 +345,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.AppInfoLocalizations
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations>
+         */
         public struct AppInfoLocalizations: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -315,8 +386,17 @@ public struct AppInfo: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # AppInfo.Relationships.AppInfoLocalizations.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appInfoLocalizations" }
 
                 public init(id: String) {
@@ -343,8 +423,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.AppInfoLocalizations.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -373,6 +462,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.PrimaryCategory
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory>
+         */
         public struct PrimaryCategory: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -401,8 +497,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.PrimaryCategory.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCategories" }
 
                 public init(id: String) {
@@ -429,8 +534,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.PrimaryCategory.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -459,6 +573,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.PrimarySubcategoryOne
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone>
+         */
         public struct PrimarySubcategoryOne: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -487,8 +608,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.PrimarySubcategoryOne.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCategories" }
 
                 public init(id: String) {
@@ -515,8 +645,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.PrimarySubcategoryOne.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -545,6 +684,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.PrimarySubcategoryTwo
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo>
+         */
         public struct PrimarySubcategoryTwo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -573,8 +719,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.PrimarySubcategoryTwo.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCategories" }
 
                 public init(id: String) {
@@ -601,8 +756,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.PrimarySubcategoryTwo.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -631,6 +795,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.SecondaryCategory
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory>
+         */
         public struct SecondaryCategory: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -659,8 +830,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.SecondaryCategory.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCategories" }
 
                 public init(id: String) {
@@ -687,8 +867,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.SecondaryCategory.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -717,6 +906,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.SecondarySubcategoryOne
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone>
+         */
         public struct SecondarySubcategoryOne: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -745,8 +941,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.SecondarySubcategoryOne.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCategories" }
 
                 public init(id: String) {
@@ -773,8 +978,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.SecondarySubcategoryOne.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -803,6 +1017,13 @@ public struct AppInfo: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppInfo.Relationships.SecondarySubcategoryTwo
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo>
+         */
         public struct SecondarySubcategoryTwo: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -831,8 +1052,17 @@ public struct AppInfo: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppInfo.Relationships.SecondarySubcategoryTwo.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appCategories" }
 
                 public init(id: String) {
@@ -859,8 +1089,17 @@ public struct AppInfo: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppInfo.Relationships.SecondarySubcategoryTwo.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,

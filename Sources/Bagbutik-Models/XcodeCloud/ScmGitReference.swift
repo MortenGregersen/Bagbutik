@@ -59,10 +59,21 @@ public struct ScmGitReference: Codable, Identifiable {
         case type
     }
 
+    /**
+     # ScmGitReference.Attributes
+     The attributes that describe a Git Reference resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/attributes>
+     */
     public struct Attributes: Codable {
+        /// The canonical name of the Git reference.
         public var canonicalName: String?
+        /// A Boolean value that indicates whether the Git reference was deleted.
         public var isDeleted: Bool?
+        /// A value that indicates whether the Git reference is a tag or a branch.
         public var kind: CiGitRefKind?
+        /// The name of the Git reference.
         public var name: String?
 
         public init(canonicalName: String? = nil,
@@ -77,15 +88,32 @@ public struct ScmGitReference: Codable, Identifiable {
         }
     }
 
+    /**
+     # ScmGitReference.Relationships
+     The relationships of the Git References resource you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships>
+     */
     public struct Relationships: Codable {
+        /// The related Repositories resource.
         public var repository: Repository?
 
         public init(repository: Repository? = nil) {
             self.repository = repository
         }
 
+        /**
+         # ScmGitReference.Relationships.Repository
+         The data and links that describe the relationship between the Git References and the Repositories resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository>
+         */
         public struct Repository: Codable {
+            /// The ID and type of the related Repositories resource.
             @NullCodable public var data: Data?
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil,
@@ -112,8 +140,17 @@ public struct ScmGitReference: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # ScmGitReference.Relationships.Repository.Data
+             The type and ID of a related Repositories resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "scmRepositories" }
 
                 public init(id: String) {
@@ -140,8 +177,17 @@ public struct ScmGitReference: Codable, Identifiable {
                 }
             }
 
+            /**
+             # ScmGitReference.Relationships.Repository.Links
+             The links to the related Repositories resource and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,

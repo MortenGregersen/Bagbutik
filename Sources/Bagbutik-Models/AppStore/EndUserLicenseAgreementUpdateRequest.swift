@@ -15,6 +15,13 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # EndUserLicenseAgreementUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "endUserLicenseAgreements" }
@@ -55,6 +62,13 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # EndUserLicenseAgreementUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var agreementText: String?
 
@@ -63,6 +77,13 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
             }
         }
 
+        /**
+         # EndUserLicenseAgreementUpdateRequest.Data.Relationships
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public var territories: Territories?
 
@@ -70,6 +91,13 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
                 self.territories = territories
             }
 
+            /**
+             # EndUserLicenseAgreementUpdateRequest.Data.Relationships.Territories
+             The data and links that describe the relationship between the resources.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships/territories>
+             */
             public struct Territories: Codable {
                 @NullCodable public var data: [Data]?
 
@@ -91,6 +119,13 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, RequestBody {
                     case data
                 }
 
+                /**
+                 # EndUserLicenseAgreementUpdateRequest.Data.Relationships.Territories.Data
+                 The type and ID of a resource that you're relating with the resource you're updating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships/territories/data>
+                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }

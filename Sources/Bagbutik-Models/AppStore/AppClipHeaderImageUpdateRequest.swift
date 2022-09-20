@@ -16,9 +16,19 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppClipHeaderImageUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
+        /// The resource type.
         public var type: String { "appClipHeaderImages" }
+        /// The attributes that describe the request that updates an App Clip Header Images resource.
         public var attributes: Attributes?
 
         public init(id: String,
@@ -50,8 +60,17 @@ public struct AppClipHeaderImageUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppClipHeaderImageUpdateRequest.Data.Attributes
+         The attributes you set that describe the updated App Clip Header Images resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
             public var sourceFileChecksum: String?
+            /// A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.
             public var uploaded: Bool?
 
             public init(sourceFileChecksum: String? = nil,
