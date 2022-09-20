@@ -63,19 +63,9 @@ public struct CiAction: Codable {
         case watchos = "WATCHOS"
     }
 
-    /**
-     # CiAction.TestConfiguration
-     The test configuration for a test action.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ciaction/testconfiguration>
-     */
     public struct TestConfiguration: Codable {
-        /// A string that describes whether the test action uses the scheme’s default tests or a specific test plan.
         public var kind: Kind?
-        /// A list of destination information for the test configuration.
         public var testDestinations: [CiTestDestination]?
-        /// The name of the test plan. This value is only available to test actions that set the `kind` field to `SPECIFIC_TEST_PLANS`.
         public var testPlanName: String?
 
         public init(kind: Kind? = nil,

@@ -9,6 +9,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>
  */
 public enum ScreenshotDisplayType: String, Codable, CaseIterable {
+    case appIphone67 = "APP_IPHONE_67"
+    case appIphone61 = "APP_IPHONE_61"
     case appIphone65 = "APP_IPHONE_65"
     case appIphone58 = "APP_IPHONE_58"
     case appIphone55 = "APP_IPHONE_55"
@@ -21,10 +23,13 @@ public enum ScreenshotDisplayType: String, Codable, CaseIterable {
     case appIpad105 = "APP_IPAD_105"
     case appIpad97 = "APP_IPAD_97"
     case appDesktop = "APP_DESKTOP"
+    case appWatchUltra = "APP_WATCH_ULTRA"
     case appWatchSeries7 = "APP_WATCH_SERIES_7"
     case appWatchSeries4 = "APP_WATCH_SERIES_4"
     case appWatchSeries3 = "APP_WATCH_SERIES_3"
     case appAppleTV = "APP_APPLE_TV"
+    case iMessageAppIphone67 = "IMESSAGE_APP_IPHONE_67"
+    case iMessageAppIphone61 = "IMESSAGE_APP_IPHONE_61"
     case iMessageAppIphone65 = "IMESSAGE_APP_IPHONE_65"
     case iMessageAppIphone58 = "IMESSAGE_APP_IPHONE_58"
     case iMessageAppIphone55 = "IMESSAGE_APP_IPHONE_55"

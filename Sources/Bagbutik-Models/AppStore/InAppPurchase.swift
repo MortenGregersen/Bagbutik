@@ -54,13 +54,6 @@ public struct InAppPurchase: Codable, Identifiable {
         case type
     }
 
-    /**
-     # InAppPurchase.Attributes
-     Attributes that describe an In-App Purchases resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/attributes>
-     */
     public struct Attributes: Codable {
         public var inAppPurchaseType: InAppPurchaseType?
         public var productId: String?
@@ -109,13 +102,6 @@ public struct InAppPurchase: Codable, Identifiable {
         }
     }
 
-    /**
-     # InAppPurchase.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships>
-     */
     public struct Relationships: Codable {
         public var apps: Apps?
 
@@ -123,13 +109,6 @@ public struct InAppPurchase: Codable, Identifiable {
             self.apps = apps
         }
 
-        /**
-         # InAppPurchase.Relationships.Apps
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps>
-         */
         public struct Apps: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -164,13 +143,6 @@ public struct InAppPurchase: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # InAppPurchase.Relationships.Apps.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -199,13 +171,6 @@ public struct InAppPurchase: Codable, Identifiable {
                 }
             }
 
-            /**
-             # InAppPurchase.Relationships.Apps.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

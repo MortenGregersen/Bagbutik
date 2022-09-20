@@ -59,15 +59,7 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
         case type
     }
 
-    /**
-     # BetaLicenseAgreement.Attributes
-     Attributes that describe a Beta License Agreements resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement/attributes>
-     */
     public struct Attributes: Codable {
-        /// The license agreement text for your beta app that displays to users.
         public var agreementText: String?
 
         public init(agreementText: String? = nil) {
@@ -75,13 +67,6 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
         }
     }
 
-    /**
-     # BetaLicenseAgreement.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement/relationships>
-     */
     public struct Relationships: Codable {
         public var app: App?
 
@@ -89,13 +74,6 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
             self.app = app
         }
 
-        /**
-         # BetaLicenseAgreement.Relationships.App
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement/relationships/app>
-         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -124,17 +102,8 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # BetaLicenseAgreement.Relationships.App.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement/relationships/app/data>
-             */
             public struct Data: Codable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -161,13 +130,6 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
                 }
             }
 
-            /**
-             # BetaLicenseAgreement.Relationships.App.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreement/relationships/app/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

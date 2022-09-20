@@ -15,13 +15,6 @@ public struct AppScreenshotSetAppScreenshotsLinkagesRequest: Codable, RequestBod
         self.data = data
     }
 
-    /**
-     # AppScreenshotSetAppScreenshotsLinkagesRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesrequest/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }

@@ -21,17 +21,8 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable {
         self.links = links
     }
 
-    /**
-     # AppStoreVersionAppClipDefaultExperienceLinkageResponse.Data
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkageresponse/data>
-     */
     public struct Data: Codable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the response.
         public let id: String
-        /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
 
         public init(id: String) {

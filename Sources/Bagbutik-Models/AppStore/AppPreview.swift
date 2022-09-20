@@ -54,13 +54,6 @@ public struct AppPreview: Codable, Identifiable {
         case type
     }
 
-    /**
-     # AppPreview.Attributes
-     Attributes that describe an App Previews resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/attributes>
-     */
     public struct Attributes: Codable {
         public var assetDeliveryState: AppMediaAssetState?
         public var fileName: String?
@@ -94,13 +87,6 @@ public struct AppPreview: Codable, Identifiable {
         }
     }
 
-    /**
-     # AppPreview.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships>
-     */
     public struct Relationships: Codable {
         public var appPreviewSet: AppPreviewSet?
 
@@ -108,13 +94,6 @@ public struct AppPreview: Codable, Identifiable {
             self.appPreviewSet = appPreviewSet
         }
 
-        /**
-         # AppPreview.Relationships.AppPreviewSet
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset>
-         */
         public struct AppPreviewSet: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -143,13 +122,6 @@ public struct AppPreview: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppPreview.Relationships.AppPreviewSet.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
@@ -178,13 +150,6 @@ public struct AppPreview: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppPreview.Relationships.AppPreviewSet.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

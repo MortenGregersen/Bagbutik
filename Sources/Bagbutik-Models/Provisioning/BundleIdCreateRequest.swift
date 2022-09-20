@@ -16,13 +16,6 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # BundleIdCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data>
-     */
     public struct Data: Codable {
         public var type: String { "bundleIds" }
         public let attributes: Attributes
@@ -50,13 +43,6 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # BundleIdCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public let identifier: String
             public let name: String

@@ -59,29 +59,14 @@ public struct CiBuildAction: Codable, Identifiable {
         case type
     }
 
-    /**
-     # CiBuildAction.Attributes
-     The attributes that describe a Build Actions resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/attributes>
-     */
     public struct Attributes: Codable {
-        /// The type of the build action.
         public var actionType: CiActionType?
-        /// The status of the action.
         public var completionStatus: CiCompletionStatus?
-        /// A string that indicates the progress of the build action.
         public var executionProgress: CiExecutionProgress?
-        /// The date and time when Xcode Cloud finished performing the action.
         public var finishedDate: Date?
-        /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
         public var isRequiredToPass: Bool?
-        /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the action.
         public var issueCounts: CiIssueCounts?
-        /// The name of the build action; for example, `Archive iOS`.
         public var name: String?
-        /// The date and time when Xcode Cloud started performing the action.
         public var startedDate: Date?
 
         public init(actionType: CiActionType? = nil,
@@ -104,32 +89,15 @@ public struct CiBuildAction: Codable, Identifiable {
         }
     }
 
-    /**
-     # CiBuildAction.Relationships
-     The relationships of the Build Actions resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships>
-     */
     public struct Relationships: Codable {
-        /// The data and links that describe the relationship between the Build Actions and the Build Runs resources.
         public var buildRun: BuildRun?
 
         public init(buildRun: BuildRun? = nil) {
             self.buildRun = buildRun
         }
 
-        /**
-         # CiBuildAction.Relationships.BuildRun
-         The data and links that describe the relationship between the Build Actions and Build Runs resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun>
-         */
         public struct BuildRun: Codable {
-            /// The ID and type of the related Build Runs resource.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil,
@@ -156,17 +124,8 @@ public struct CiBuildAction: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # CiBuildAction.Relationships.BuildRun.Data
-             The type and ID of a related Build Runs resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/data>
-             */
             public struct Data: Codable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Build Runs resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "ciBuildRuns" }
 
                 public init(id: String) {
@@ -193,17 +152,8 @@ public struct CiBuildAction: Codable, Identifiable {
                 }
             }
 
-            /**
-             # CiBuildAction.Relationships.BuildRun.Links
-             The links to the related Build Runs resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/links>
-             */
             public struct Links: Codable {
-                /// The link to related data.
                 public var related: String?
-                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,

@@ -59,17 +59,8 @@ public struct AppPricePointV2: Codable, Identifiable {
         case type
     }
 
-    /**
-     # AppPricePointV2.Attributes
-     Attributes that describe an App Price Point V2 resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/attributes>
-     */
     public struct Attributes: Codable {
-        /// The price to the customer.
         public var customerPrice: String?
-        /// The proceeds that go to the developer.
         public var proceeds: String?
 
         public init(customerPrice: String? = nil,
@@ -80,13 +71,6 @@ public struct AppPricePointV2: Codable, Identifiable {
         }
     }
 
-    /**
-     # AppPricePointV2.Relationships
-     The relationships you included in a request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships>
-     */
     public struct Relationships: Codable {
         public var app: App?
         public var priceTier: PriceTier?
@@ -101,13 +85,6 @@ public struct AppPricePointV2: Codable, Identifiable {
             self.territory = territory
         }
 
-        /**
-         # AppPricePointV2.Relationships.App
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/app>
-         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -136,17 +113,8 @@ public struct AppPricePointV2: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppPricePointV2.Relationships.App.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/app/data>
-             */
             public struct Data: Codable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -173,13 +141,6 @@ public struct AppPricePointV2: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppPricePointV2.Relationships.App.Links
-             The links to the related data and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/app/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -210,13 +171,6 @@ public struct AppPricePointV2: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppPricePointV2.Relationships.PriceTier
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/pricetier>
-         */
         public struct PriceTier: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -245,13 +199,6 @@ public struct AppPricePointV2: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppPricePointV2.Relationships.PriceTier.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/pricetier/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPriceTiers" }
@@ -280,13 +227,6 @@ public struct AppPricePointV2: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppPricePointV2.Relationships.PriceTier.Links
-             The links to the related data and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/pricetier/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -317,13 +257,6 @@ public struct AppPricePointV2: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppPricePointV2.Relationships.Territory
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/territory>
-         */
         public struct Territory: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -352,13 +285,6 @@ public struct AppPricePointV2: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppPricePointV2.Relationships.Territory.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/territory/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
@@ -387,13 +313,6 @@ public struct AppPricePointV2: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppPricePointV2.Relationships.Territory.Links
-             The links to the related data and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv2/relationships/territory/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

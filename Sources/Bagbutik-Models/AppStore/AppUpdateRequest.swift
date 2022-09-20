@@ -19,13 +19,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
-    /**
-     # AppUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "apps" }
@@ -66,13 +59,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # AppUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var availableInNewTerritories: Bool?
             public var bundleId: String?
@@ -103,13 +89,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
             }
         }
 
-        /**
-         # AppUpdateRequest.Data.Relationships
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public var availableTerritories: AvailableTerritories?
             public var prices: Prices?
@@ -121,13 +100,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 self.prices = prices
             }
 
-            /**
-             # AppUpdateRequest.Data.Relationships.AvailableTerritories
-             The data and links that describe the relationship between the resources.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/availableterritories>
-             */
             public struct AvailableTerritories: Codable {
                 @NullCodable public var data: [Data]?
 
@@ -149,13 +121,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
                     case data
                 }
 
-                /**
-                 # AppUpdateRequest.Data.Relationships.AvailableTerritories.Data
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/availableterritories/data>
-                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }
@@ -185,13 +150,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 }
             }
 
-            /**
-             # AppUpdateRequest.Data.Relationships.Prices
-             The data and links that describe the relationship between the resources.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/prices>
-             */
             public struct Prices: Codable {
                 @NullCodable public var data: [Data]?
 
@@ -213,13 +171,6 @@ public struct AppUpdateRequest: Codable, RequestBody {
                     case data
                 }
 
-                /**
-                 # AppUpdateRequest.Data.Relationships.Prices.Data
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships/prices/data>
-                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appPrices" }

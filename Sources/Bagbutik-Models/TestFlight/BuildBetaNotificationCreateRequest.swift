@@ -16,17 +16,8 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # BuildBetaNotificationCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "buildBetaNotifications" }
-        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -52,13 +43,6 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # BuildBetaNotificationCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public let build: Build
 
@@ -66,13 +50,6 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
-            /**
-             # BuildBetaNotificationCreateRequest.Data.Relationships.Build
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships/build>
-             */
             public struct Build: Codable {
                 public let data: Data
 
@@ -80,17 +57,8 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /**
-                 # BuildBetaNotificationCreateRequest.Data.Relationships.Build.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships/build/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The types and IDs of the related data to update.
                     public var type: String { "builds" }
 
                     public init(id: String) {

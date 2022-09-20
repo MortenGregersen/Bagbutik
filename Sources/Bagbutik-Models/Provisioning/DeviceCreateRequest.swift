@@ -16,13 +16,6 @@ public struct DeviceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # DeviceCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest/data>
-     */
     public struct Data: Codable {
         public var type: String { "devices" }
         public let attributes: Attributes
@@ -50,13 +43,6 @@ public struct DeviceCreateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # DeviceCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public let name: String
             public let platform: BundleIdPlatform

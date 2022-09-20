@@ -59,19 +59,9 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
         case type
     }
 
-    /**
-     # CustomerReviewResponseV1.Attributes
-     The attributes of the response to a customer’s review including its content.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/attributes>
-     */
     public struct Attributes: Codable {
-        /// The date and time you last modified your response to the customer’s review.
         public var lastModifiedDate: Date?
-        /// The text of the response that you wrote to the customer’s review.
         public var responseBody: String?
-        /// The state of your response.
         public var state: State?
 
         public init(lastModifiedDate: Date? = nil,
@@ -89,32 +79,15 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
         }
     }
 
-    /**
-     # CustomerReviewResponseV1.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships>
-     */
     public struct Relationships: Codable {
-        /// The customer review related to your response.
         public var review: Review?
 
         public init(review: Review? = nil) {
             self.review = review
         }
 
-        /**
-         # CustomerReviewResponseV1.Relationships.Review
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review>
-         */
         public struct Review: Codable {
-            /// The type and ID of a resource that you’re relating with the resource you’re updating.
             @NullCodable public var data: Data?
-            /// The links to the related data and the relationship’s self-link.
             public var links: Links?
 
             public init(data: Data? = nil,
@@ -141,17 +114,8 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # CustomerReviewResponseV1.Relationships.Review.Data
-             The type and ID of a resource that you’re relating with the resource you’re updating.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review/data>
-             */
             public struct Data: Codable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the `customerReviews` resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "customerReviews" }
 
                 public init(id: String) {
@@ -178,17 +142,8 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
                 }
             }
 
-            /**
-             # CustomerReviewResponseV1.Relationships.Review.Links
-             The links to the related data and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1/relationships/review/links>
-             */
             public struct Links: Codable {
-                /// The link to the related data.
                 public var related: String?
-                /// The relashionship’s self-link.
                 public var itself: String?
 
                 public init(related: String? = nil,
