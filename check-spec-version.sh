@@ -34,7 +34,7 @@ else
 fi
 
 docs_ouput=$(swift run bagbutik-cli download-newest-docs --spec-path $spec_file_path)
-warnings=$(grep -zo "⚠️.*" <<< "$docs_ouput")
+warnings=$(grep -zo "⚠️.*" <<< "$docs_ouput" || echo "" >&2)
 swift run bagbutik-cli generate --spec-path $spec_file_path
 
 rm $spec_file_path
