@@ -24,6 +24,7 @@ final class NullCodableTests: XCTestCase {
     func testEncodingNonNull() throws {
         // Given
         let encoder = JSONEncoder()
+        encoder.outputFormatting = .sortedKeys
         let testData = TestData(id: "42", name: "Bob")
         // When
         let jsonData = try encoder.encode(testData)
