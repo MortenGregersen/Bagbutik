@@ -100,10 +100,11 @@ public class DocsFetcher {
                 print("⚠️ Documentation URL missing for operation: '\(operationId)'")
             }
         }
-        let operationIdsWithUrlButNotInSpec = OperationMapping.allMappings.keys.filter { !operationIds.contains($0) }
-        operationIdsWithUrlButNotInSpec.forEach { operationId in
-            print("⚠️ Documentation URL exists for removed operation: '\(operationId)'")
-        }
+        // Comment in to get a list of obsolete URLs
+//        let operationIdsWithUrlButNotInSpec = OperationMapping.allMappings.keys.filter { !operationIds.contains($0) }
+//        operationIdsWithUrlButNotInSpec.forEach { operationId in
+//            print("⚠️ Documentation URL exists for removed operation: '\(operationId)'")
+//        }
 
         var identifierBySchemaName = [String: String]()
         var schemaDocumentationById = [String: Documentation]()
