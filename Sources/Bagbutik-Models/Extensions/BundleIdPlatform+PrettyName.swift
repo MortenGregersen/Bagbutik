@@ -4,6 +4,7 @@ public extension BundleIdPlatform {
         switch self {
         case .iOS: return "iOS"
         case .macOS: return "macOS"
+        case .services: return "Service"
         case .universal: return "Universal"
         }
     }
