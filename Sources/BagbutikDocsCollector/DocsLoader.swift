@@ -47,10 +47,13 @@ public class DocsLoader {
             throw DocsLoaderError.documentationNotLoaded
         }
         if let identifier = identifierBySchemaName["BundleIdPlatform"],
-           case .enum(var bundleIdPlatformDocumentation) = schemaDocumentationById[identifier],
-           bundleIdPlatformDocumentation.cases["UNIVERSAL"] == nil || bundleIdPlatformDocumentation.cases["UNIVERSAL"] == ""
-        {
-            bundleIdPlatformDocumentation.cases["UNIVERSAL"] = "A string that represents iOS and macOS."
+           case .enum(var bundleIdPlatformDocumentation) = schemaDocumentationById[identifier] {
+            if bundleIdPlatformDocumentation.cases["SERVICES"] == nil || bundleIdPlatformDocumentation.cases["SERVICES"] == "" {
+                bundleIdPlatformDocumentation.cases["SERVICES"] = "A string that represents a service."
+            }
+            if bundleIdPlatformDocumentation.cases["UNIVERSAL"] == nil || bundleIdPlatformDocumentation.cases["UNIVERSAL"] == "" {
+                bundleIdPlatformDocumentation.cases["UNIVERSAL"] = "A string that represents iOS and macOS."
+            }
             schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
         }
         self.schemaDocumentationById = schemaDocumentationById

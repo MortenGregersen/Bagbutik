@@ -50,7 +50,7 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
-    func testApplyManualDocumentation_UniversalNonExisting() throws {
+    func testApplyManualDocumentation_ServicesAndUniversalNonExisting() throws {
         // Given
         let docsLoader = DocsLoader(identifierBySchemaName: [
             "BundleIdPlatform": "some-id"
@@ -64,8 +64,9 @@ class DocsLoaderTests: XCTestCase {
         try docsLoader.applyManualDocumentation()
         // Then
         if case .enum(let documentation) = docsLoader.schemaDocumentationById?["some-id"] {
-            XCTAssertEqual(documentation.cases.count, 3)
-            XCTAssertEqual(Array(documentation.cases.keys).sorted(), ["IOS", "MACOS", "UNIVERSAL"].sorted())
+            XCTAssertEqual(documentation.cases.count, 4)
+            XCTAssertEqual(Array(documentation.cases.keys).sorted(), ["IOS", "MACOS", "SERVICES", "UNIVERSAL"].sorted())
+            XCTAssertEqual(documentation.cases["SERVICES"], "A string that represents a service.")
             XCTAssertEqual(documentation.cases["UNIVERSAL"], "A string that represents iOS and macOS.")
         }
     }
@@ -80,7 +81,7 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
-    func testApplyManualDocumentation_UniversalEmpty() throws {
+    func testApplyManualDocumentation_ServicesAndUniversalEmpty() throws {
         // Given
         let docsLoader = DocsLoader(identifierBySchemaName: [
             "BundleIdPlatform": "some-id"
@@ -88,6 +89,7 @@ class DocsLoaderTests: XCTestCase {
             "some-id": .enum(.init(id: "some-id", title: "BundleIdPlatform", cases: [
                 "IOS": "A string that represents iOS.",
                 "MACOS": "A string that represents macOS.",
+                "SERVICES": "",
                 "UNIVERSAL": ""
             ]))
         ])
@@ -95,6 +97,7 @@ class DocsLoaderTests: XCTestCase {
         try docsLoader.applyManualDocumentation()
         // Then
         if case .enum(let documentation) = docsLoader.schemaDocumentationById?["some-id"] {
+            XCTAssertEqual(documentation.cases["SERVICES"], "A string that represents a service.")
             XCTAssertEqual(documentation.cases["UNIVERSAL"], "A string that represents iOS and macOS.")
         }
     }
