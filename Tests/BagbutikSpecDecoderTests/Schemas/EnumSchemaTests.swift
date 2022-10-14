@@ -48,6 +48,7 @@ final class EnumSchemaTests: XCTestCase {
         XCTAssertEqual(enumSchema.cases, [
             EnumCase(id: "iOS", value: "IOS"),
             EnumCase(id: "macOS", value: "MAC_OS"),
+            EnumCase(id: "services", value: "SERVICES", documentation: "A string that represents a service."),
             EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS.")
         ])
         XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
@@ -58,7 +59,7 @@ final class EnumSchemaTests: XCTestCase {
         {
             "BundleIdPlatform" : {
                 "type" : "string",
-                "enum" : [ "IOS", "MAC_OS", "UNIVERSAL" ]
+                "enum" : [ "IOS", "MAC_OS", "SERVICES", "UNIVERSAL" ]
             }
         }
         """
@@ -67,6 +68,7 @@ final class EnumSchemaTests: XCTestCase {
         XCTAssertEqual(enumSchema.cases, [
             EnumCase(id: "iOS", value: "IOS"),
             EnumCase(id: "macOS", value: "MAC_OS"),
+            EnumCase(id: "services", value: "SERVICES"),
             EnumCase(id: "universal", value: "UNIVERSAL"),
         ])
         XCTAssertEqual(enumSchema.name, "BundleIdPlatform")
