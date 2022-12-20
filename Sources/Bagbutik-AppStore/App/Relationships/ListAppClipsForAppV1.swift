@@ -3,8 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Search an App’s App Clips
-     Search your App’s associated App Clips.
+     # List All App Clips for an App
+     List your app’s associated App Clips.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/search_an_app_s_app_clips>

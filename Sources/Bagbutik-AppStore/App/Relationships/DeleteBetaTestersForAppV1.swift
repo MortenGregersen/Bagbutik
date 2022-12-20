@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Remove Beta Testers from All Groups and Builds of an App
+     # Remove Specified Beta Testers from All Groups and Builds of an App
      Remove one or more beta testers' access to test any builds of a specific app.
 
      Full documentation:

@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # List Apps
-     Find and list apps added in App Store Connect.
+     Find and list apps in App Store Connect.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # InAppPurchasesResponse
- A response that contains a list of In-App Purchase resources.
+ A response that contains a list of In-App Purchases resources.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesresponse>
