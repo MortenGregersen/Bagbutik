@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/apps/{id}/reviewSubmissions
+     # Get Review Submissions for an App
+     Get a list of review submissions associated with a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_reviewSubmissions>

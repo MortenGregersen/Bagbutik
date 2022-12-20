@@ -6,6 +6,8 @@ public extension Request {
      # List All Customer Reviews for an App
      Get a list of customer reviews for a specific app.
 
+     The example below limits the number of reviews returned in the response.
+
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app>
 

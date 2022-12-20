@@ -6,6 +6,8 @@ public extension Request {
      # List All Price Points for an App
      Get all the available price points for a specific app.
 
+     The example below requests price points and related price tiers for the USA territory.
+
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_price_points_for_an_app>
 

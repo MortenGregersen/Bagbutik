@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify an App
-     Update app information including bundle ID, primary locale, price schedule, and global availability.
+     Update app information, including bundle ID, primary locale, price schedule, and global availability.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app>

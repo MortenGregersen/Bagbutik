@@ -6,7 +6,7 @@ public extension Request {
      # List All App Infos for an App
      Get information about an app that is currently live on App Store, or that goes live with the next version.
 
-     Use this endpoint to retrieve the derived app-level information for an app. If the app has both a “Ready for Sale” version and a version you’re preparing for release, it will have two app infos. One represents information about the app currently in the App Store, and the other represents the information that will take effect when you release the next version. Use the `appStoreState` attribute to differentiate them.
+     Use this endpoint to retrieve the derived app-level information for an app. If the app has both a “Ready for Sale” version and a version you’re preparing for release, it will have two app infos. One represents information about the app currently in the App Store, and the other represents the information that takes effect when you release the next version. Use the `appStoreState` attribute to differentiate them.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_infos_for_an_app>
