@@ -239,9 +239,7 @@ final class GeneratorTests: XCTestCase {
         func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool {
             let fileName = path.components(separatedBy: "/").last!
             guard fileName != fileNameToFailCreating else { return false }
-            DispatchQueue.main.async {
-                self.filesCreated.append((name: fileName, data: data!))
-            }
+            self.filesCreated.append((name: fileName, data: data!))
             return true
         }
         
