@@ -56,12 +56,10 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Models/XcodeCloud",
             "/Users/steve/output/Bagbutik-Core/Models",
         ])
-        XCTAssertEqual(fileManager.directoriesCreated.sorted(), [
+        XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
             "/Users/steve/output/Bagbutik-Core/Models",
             "/Users/steve/output/Bagbutik-Models/Reporting",
-            "/Users/steve/output/Bagbutik-Models/Reporting",
-            "/Users/steve/output/Bagbutik-Models/Users",
             "/Users/steve/output/Bagbutik-Models/Users",
             "/Users/steve/output/Bagbutik-Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
@@ -241,7 +239,9 @@ final class GeneratorTests: XCTestCase {
         func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool {
             let fileName = path.components(separatedBy: "/").last!
             guard fileName != fileNameToFailCreating else { return false }
-            filesCreated.append((name: fileName, data: data!))
+            DispatchQueue.main.async {
+                self.filesCreated.append((name: fileName, data: data!))
+            }
             return true
         }
         
