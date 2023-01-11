@@ -10,9 +10,13 @@ import Foundation
 public struct ErrorResponse: Codable {
     /// An array of one or more errors.
     public var errors: [Errors]?
+    public var meta: Meta?
 
-    public init(errors: [Errors]? = nil) {
+    public init(errors: [Errors]? = nil,
+                meta: Meta? = nil)
+    {
         self.errors = errors
+        self.meta = meta
     }
 
     /**
@@ -80,6 +84,14 @@ public struct ErrorResponse: Codable {
             private enum CodingKeys: String, CodingKey {
                 case type
             }
+        }
+    }
+
+    public struct Meta: Codable {
+        public var associatedErrors: [String: [ErrorResponse.Errors]]?
+
+        public init(associatedErrors: [String: [ErrorResponse.Errors]]? = nil) {
+            self.associatedErrors = associatedErrors
         }
     }
 }
