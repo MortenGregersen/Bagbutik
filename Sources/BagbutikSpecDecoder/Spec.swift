@@ -126,7 +126,7 @@ public struct Spec: Decodable {
     public mutating func applyManualPatches() throws {
         // Remove all paths with no operations
         paths = paths.filter { $0.value.operations.count > 0 }
-        
+
         // Fix up the names of the sub schemas of ErrorResponse
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
@@ -143,6 +143,17 @@ public struct Spec: Decodable {
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
         errorSchema.properties["source"] = sourceProperty
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
+
+        // Add `meta` property to ErrorResponse
+        if errorResponseSchema.properties["meta"] == nil {
+            errorResponseSchema.properties["meta"] = Property(type: .schema(.init(
+                name: "Meta",
+                url: "",
+                properties: [
+                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("ErrorResponse.Errors")))
+                ])))
+        }
+
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
     }
 
