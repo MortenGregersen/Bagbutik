@@ -127,7 +127,7 @@ public struct Spec: Decodable {
         // Remove all paths with no operations
         paths = paths.filter { $0.value.operations.count > 0 }
 
-        // Fix up the names of the sub schemas of ErrorResponse
+        // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
@@ -142,18 +142,25 @@ public struct Spec: Decodable {
         sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
         errorSchema.properties["source"] = sourceProperty
-        errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
 
-        // Add `meta` property to ErrorResponse
-        if errorResponseSchema.properties["meta"] == nil {
-            errorResponseSchema.properties["meta"] = Property(type: .schema(.init(
+        // Mark `detail` as optional on ErrorResponse.Errors
+        // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
+        // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
+        errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
+
+        // Add `meta` property to ErrorResponse.Errors
+        // In Apple's OpenAPI spec and documentation the `meta` property is not mentioned (last checked 12/1/23).
+        // But it is observed when creating a ReviewSubmissionItem with an AppStoreVersion fails.
+        if errorSchema.properties["meta"] == nil {
+            errorSchema.properties["meta"] = Property(type: .schema(.init(
                 name: "Meta",
                 url: "",
                 properties: [
-                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("ErrorResponse.Errors")))
+                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors")))
                 ])))
         }
 
+        errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
     }
 

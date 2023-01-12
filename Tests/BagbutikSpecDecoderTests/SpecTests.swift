@@ -797,14 +797,16 @@ final class SpecTests: XCTestCase {
         else {
             XCTFail(); return
         }
+        XCTAssertFalse(errorSchema.requiredProperties.contains("detail"))
         XCTAssertEqual(oneOfSchema.options, [.schemaRef("JsonPointer"), .schemaRef("Parameter")])
-        guard case .schema(let metaSchemaProperty) = errorResponse.properties["meta"]?.type,
+
+        guard case .schema(let metaSchemaProperty) = errorSchema.properties["meta"]?.type,
               case .dictionary(let errorsArrayProperty) = metaSchemaProperty.properties["associatedErrors"]?.type,
               case .arrayOfSchemaRef(let errorSchemaRef) = errorsArrayProperty
         else {
             XCTFail(); return
         }
-        XCTAssertEqual(errorSchemaRef, "ErrorResponse.Errors")
+        XCTAssertEqual(errorSchemaRef, "Errors")
     }
 
     func testApplyManualPatches_Error() throws {
