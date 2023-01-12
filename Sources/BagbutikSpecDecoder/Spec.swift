@@ -126,7 +126,20 @@ public struct Spec: Decodable {
     public mutating func applyManualPatches() throws {
         // Remove all paths with no operations
         paths = paths.filter { $0.value.operations.count > 0 }
-        
+
+        // Add the cases `UNIVERSAL` and `SERVICES` to BundleIdPlatform
+        // Apple's OpenAPI spec doesn't include Universal App IDs. Reported to Apple 21/1/21 as FB8977648.
+        // Apple's OpenAPI spec doesn't include Service IDs (like "Sign in with Apple"). Reported to Apple 14/10/22 as a later comment on FB8977648.
+        if case .enum(var bundleIdPlatformSchema) = components.schemas["BundleIdPlatform"] {
+            if !bundleIdPlatformSchema.cases.contains(where: { $0.value == "SERVICES" }) {
+                bundleIdPlatformSchema.cases.append(EnumCase(id: "services", value: "SERVICES", documentation: "A string that represents a service."))
+            }
+            if !bundleIdPlatformSchema.cases.contains(where: { $0.value == "UNIVERSAL" }) {
+                bundleIdPlatformSchema.cases.append(EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."))
+            }
+            components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
+        }
+
         // Mark `links` as optional on BuildBundle
         // In Apple's OpenAPI spec the `links` property on `BuildBundle` is marked as `required`.
         // But when requesting build bundles from the API, the `links` property is missing in the response.

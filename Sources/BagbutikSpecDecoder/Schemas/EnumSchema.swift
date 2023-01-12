@@ -9,7 +9,7 @@ public struct EnumSchema: Decodable, Equatable {
     /// An url for the documentation for the enum
     public let url: String?
     /// The enum's cases
-    public let cases: [EnumCase]
+    public var cases: [EnumCase]
 
     private enum CodingKeys: String, CodingKey {
         case type
@@ -29,20 +29,7 @@ public struct EnumSchema: Decodable, Equatable {
         self.name = name
         self.type = type
         self.url = url
-        var cases = caseValues.map {
-            EnumCase(id: $0.camelCased(with: "_"), value: $0)
-        }
-        if name == "BundleIdPlatform" {
-            if !cases.contains(where: { $0.value == "SERVICES" }) {
-                // HACK: Apple's OpenAPI spec doesn't include Service IDs (like "Sign in with Apple"). Reported to Apple 14/10/22 as a later comment on FB8977648.
-                cases.append(EnumCase(id: "services", value: "SERVICES", documentation: "A string that represents a service."))
-            }
-            if !cases.contains(where: { $0.value == "UNIVERSAL" }) {
-                // HACK: Apple's OpenAPI spec doesn't include 'Universal' App IDs. Reported to Apple 21/1/21 as FB8977648.
-                cases.append(EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."))
-            }
-        }
-        self.cases = cases
+        self.cases = caseValues.map { .init(id: $0.camelCased(with: "_"), value: $0) }
     }
 
     public init(from decoder: Decoder) throws {

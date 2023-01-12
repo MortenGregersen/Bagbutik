@@ -764,6 +764,10 @@ final class SpecTests: XCTestCase {
                         },
                         "required" : [ "links", "id", "type" ]
                     },
+                    "BundleIdPlatform" : {
+                        "type" : "string",
+                        "enum" : [ "IOS", "MAC_OS" ]
+                    },
                     "ErrorResponse" : {
                         "type" : "object",
                         "properties" : {
@@ -813,6 +817,14 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertFalse(buildBundleSchema.requiredProperties.contains("links"))
+        
+        guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["BundleIdPlatform"] else {
+            XCTFail(); return
+        }
+        let bundleIdPlatformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
+        print(bundleIdPlatformCaseValues)
+        XCTAssertTrue(bundleIdPlatformCaseValues.contains("UNIVERSAL"))
+        XCTAssertTrue(bundleIdPlatformCaseValues.contains("SERVICES"))
 
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
