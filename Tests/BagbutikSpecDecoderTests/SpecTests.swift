@@ -747,6 +747,23 @@ final class SpecTests: XCTestCase {
             },
             "components": {
                 "schemas": {
+                    "BuildBundle" : {
+                        "type" : "object",
+                        "title" : "BuildBundle",
+                        "properties" : {
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "buildBundles" ]
+                            },
+                            "id" : {
+                                "type" : "string"
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/ResourceLinks"
+                            }
+                        },
+                        "required" : [ "links", "id", "type" ]
+                    },
                     "ErrorResponse" : {
                         "type" : "object",
                         "properties" : {
@@ -791,6 +808,12 @@ final class SpecTests: XCTestCase {
         var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         try spec.applyManualPatches()
         XCTAssertEqual(spec.paths.count, 0)
+
+        guard case .object(let buildBundleSchema) = spec.components.schemas["BuildBundle"] else {
+            XCTFail(); return
+        }
+        XCTAssertFalse(buildBundleSchema.requiredProperties.contains("links"))
+
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
               case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type
