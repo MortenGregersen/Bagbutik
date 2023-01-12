@@ -19,6 +19,20 @@ public enum ServiceError: Error {
     /// The error is unknown.
     case unknown(data: Data?)
 
+    /// The associated `ErrorResponse` if the error has one.
+    public var errorResponse: ErrorResponse? {
+        switch self {
+        case .badRequest(let response),
+             .unauthorized(let response),
+             .forbidden(let response),
+             .notFound(let response),
+             .conflict(let response):
+            return response
+        default:
+            return nil
+        }
+    }
+
     /// A human readable description of the error.
     public var description: String? {
         switch self {

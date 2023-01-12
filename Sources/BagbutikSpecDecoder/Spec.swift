@@ -126,8 +126,30 @@ public struct Spec: Decodable {
     public mutating func applyManualPatches() throws {
         // Remove all paths with no operations
         paths = paths.filter { $0.value.operations.count > 0 }
-        
-        // Fix up the names of the sub schemas of ErrorResponse
+
+        // Add the cases `UNIVERSAL` and `SERVICES` to BundleIdPlatform
+        // Apple's OpenAPI spec doesn't include Universal App IDs. Reported to Apple 21/1/21 as FB8977648.
+        // Apple's OpenAPI spec doesn't include Service IDs (like "Sign in with Apple"). Reported to Apple 14/10/22 as a later comment on FB8977648.
+        if case .enum(var bundleIdPlatformSchema) = components.schemas["BundleIdPlatform"] {
+            if !bundleIdPlatformSchema.cases.contains(where: { $0.value == "SERVICES" }) {
+                bundleIdPlatformSchema.cases.append(EnumCase(id: "services", value: "SERVICES", documentation: "A string that represents a service."))
+            }
+            if !bundleIdPlatformSchema.cases.contains(where: { $0.value == "UNIVERSAL" }) {
+                bundleIdPlatformSchema.cases.append(EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."))
+            }
+            components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
+        }
+
+        // Mark `links` as optional on BuildBundle
+        // In Apple's OpenAPI spec the `links` property on `BuildBundle` is marked as `required`.
+        // But when requesting build bundles from the API, the `links` property is missing in the response.
+        // Reported to Apple 27/5/22 as FB10029609.
+        if case .object(var buildBundleSchema) = components.schemas["BuildBundle"] {
+            buildBundleSchema.requiredProperties.removeAll(where: { $0 == "links" })
+            components.schemas["BuildBundle"] = .object(buildBundleSchema)
+        }
+
+        // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
@@ -142,6 +164,24 @@ public struct Spec: Decodable {
         sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
         errorSchema.properties["source"] = sourceProperty
+
+        // Mark `detail` as optional on ErrorResponse.Errors
+        // In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
+        // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
+        errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
+
+        // Add `meta` property to ErrorResponse.Errors
+        // In Apple's OpenAPI spec and documentation the `meta` property is not mentioned (last checked 12/1/23).
+        // But it is observed when creating a ReviewSubmissionItem with an AppStoreVersion fails.
+        if errorSchema.properties["meta"] == nil {
+            errorSchema.properties["meta"] = Property(type: .schema(.init(
+                name: "Meta",
+                url: "",
+                properties: [
+                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors")))
+                ])))
+        }
+
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
     }

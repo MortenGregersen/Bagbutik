@@ -9,7 +9,7 @@ public struct ObjectSchema: Decodable, Equatable {
     /// The properties for the obejct
     public var properties: [String: Property]
     /// A list of properties that is required (always available)
-    public let requiredProperties: [String]
+    public var requiredProperties: [String]
     /// A list of schemas derived from the properties and special sub schemas
     public var subSchemas: [SubSchema] {
         var subSchemas = [SubSchema]()
@@ -68,16 +68,7 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
         }
-        let requiredProperties: [String] = try {
-            var decodedRequiredProperties = try container.decodeIfPresent([String].self, forKey: .required) ?? []
-            if name == "BuildBundle" {
-                // HACK: In Apple's OpenAPI spec the `links` property on `BuildBundle` is marked as `required.
-                // But when requesting build bunldes from the API, the `links` property is missing in the response.
-                // Reported to Apple 27/5/22 as FB10029609.
-                decodedRequiredProperties.removeAll(where: { $0 == "links" })
-            }
-            return decodedRequiredProperties
-        }()
+        let requiredProperties: [String] = try container.decodeIfPresent([String].self, forKey: .required) ?? []
         let codingPathComponents = container.codingPath.components
         let url = createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: codingPathComponents)
         self.init(name: name, url: url, properties: properties, requiredProperties: requiredProperties)

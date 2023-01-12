@@ -747,6 +747,27 @@ final class SpecTests: XCTestCase {
             },
             "components": {
                 "schemas": {
+                    "BuildBundle" : {
+                        "type" : "object",
+                        "title" : "BuildBundle",
+                        "properties" : {
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "buildBundles" ]
+                            },
+                            "id" : {
+                                "type" : "string"
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/ResourceLinks"
+                            }
+                        },
+                        "required" : [ "links", "id", "type" ]
+                    },
+                    "BundleIdPlatform" : {
+                        "type" : "string",
+                        "enum" : [ "IOS", "MAC_OS" ]
+                    },
                     "ErrorResponse" : {
                         "type" : "object",
                         "properties" : {
@@ -791,13 +812,36 @@ final class SpecTests: XCTestCase {
         var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         try spec.applyManualPatches()
         XCTAssertEqual(spec.paths.count, 0)
+
+        guard case .object(let buildBundleSchema) = spec.components.schemas["BuildBundle"] else {
+            XCTFail(); return
+        }
+        XCTAssertFalse(buildBundleSchema.requiredProperties.contains("links"))
+        
+        guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["BundleIdPlatform"] else {
+            XCTFail(); return
+        }
+        let bundleIdPlatformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
+        print(bundleIdPlatformCaseValues)
+        XCTAssertTrue(bundleIdPlatformCaseValues.contains("UNIVERSAL"))
+        XCTAssertTrue(bundleIdPlatformCaseValues.contains("SERVICES"))
+
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
               case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type
         else {
             XCTFail(); return
         }
+        XCTAssertFalse(errorSchema.requiredProperties.contains("detail"))
         XCTAssertEqual(oneOfSchema.options, [.schemaRef("JsonPointer"), .schemaRef("Parameter")])
+
+        guard case .schema(let metaSchemaProperty) = errorSchema.properties["meta"]?.type,
+              case .dictionary(let errorsArrayProperty) = metaSchemaProperty.properties["associatedErrors"]?.type,
+              case .arrayOfSchemaRef(let errorSchemaRef) = errorsArrayProperty
+        else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(errorSchemaRef, "Errors")
     }
 
     func testApplyManualPatches_Error() throws {
