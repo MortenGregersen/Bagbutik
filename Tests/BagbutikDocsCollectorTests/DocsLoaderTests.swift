@@ -71,6 +71,21 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
+    func testApplyManualDocumentation_ErrorsMetaNonExisting() throws {
+        // Given
+        let errorsIdentifier = "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse/errors"
+        let docsLoader = DocsLoader(identifierBySchemaName: [:], schemaDocumentationById: [
+            errorsIdentifier: .object(.init(id: errorsIdentifier, title: "ErrorResponse.Errors", properties: [:]))
+        ])
+        // When
+        try docsLoader.applyManualDocumentation()
+        // Then
+        if case .object(let documentation) = docsLoader.schemaDocumentationById?[errorsIdentifier] {
+            XCTAssertEqual(documentation.properties.count, 1)
+            XCTAssertEqual(documentation.properties["meta"], .init(required: false, description: "Metadata about the error - eg. associated errors. This is not currently documented by Apple."))
+        }
+    }
+
     func testApplyManualDocumentation_NotLoaded() throws {
         // Given
         let docsLoader = DocsLoader()
