@@ -31,6 +31,7 @@ public struct ErrorResponse: Codable {
         public var detail: String?
         /// The unique ID of a specific instance of an error, request, and response. Use this ID when providing feedback to or debugging issues with Apple.
         public var id: String?
+        /// Metadata about the error - eg. associated errors. This is not currently documented by Apple.
         public var meta: Meta?
         /// One of two possible types of values: `source.Parameter`, provided when a query parameter produced the error, or `source.JsonPointer`, provided when a problem with the entity produced the error.
         public var source: Source?
