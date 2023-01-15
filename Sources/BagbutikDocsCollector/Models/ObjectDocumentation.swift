@@ -4,7 +4,7 @@ public struct ObjectDocumentation: Codable, Equatable {
     public let title: String
     public let abstract: String?
     public let discussion: String?
-    public let properties: [String: PropertyDocumentation]
+    public var properties: [String: PropertyDocumentation]
     public let subDocumentationIds: [String]
 
     public init(id: String, hierarchy: Documentation.Hierarchy = .init(paths: []), title: String, abstract: String? = nil, discussion: String? = nil, properties: [String: PropertyDocumentation] = [:], subDocumentationIds: [String] = []) {

@@ -56,6 +56,12 @@ public class DocsLoader {
             }
             schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
         }
+        let errorsIdentifier = "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse/errors"
+        if case .object(var errorsDocumentation) = schemaDocumentationById[errorsIdentifier],
+           errorsDocumentation.properties["meta"] == nil {
+            errorsDocumentation.properties["meta"] = .init(required: false, description: "Metadata about the error - eg. associated errors. This is not currently documented by Apple.")
+            schemaDocumentationById[errorsIdentifier] = .object(errorsDocumentation)
+        }
         self.schemaDocumentationById = schemaDocumentationById
     }
 
