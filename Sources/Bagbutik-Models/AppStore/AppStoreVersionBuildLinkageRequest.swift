@@ -11,18 +11,18 @@ import Foundation
 public struct AppStoreVersionBuildLinkageRequest: Codable, RequestBody {
     @NullCodable public var data: Data?
 
-    public init(data: Data) {
+    public init(data: Data? = nil) {
         self.data = data
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        data = try container.decodeIfPresent(Data.self, forKey: .data)
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(data, forKey: .data)
     }
 
     private enum CodingKeys: String, CodingKey {
