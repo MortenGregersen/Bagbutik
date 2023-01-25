@@ -145,11 +145,14 @@ public class ObjectSchemaRenderer: Renderer {
                 default:
                     let id = PropertyName(idealName: property.key).safeName
                     let type = property.value.type.description
-                    let isOptional = !objectSchema.requiredProperties.contains(property.key)
+                    var isOptional = !objectSchema.requiredProperties.contains(property.key)
                     var wrapper = ""
-                    if id == "data", type == "Data" || type == "[Data]", isOptional {
+                    if id == "data", type == "Data" || type == "[Data]", isOptional || objectSchema.name.hasSuffix("LinkageRequest") {
                         wrapper += "@NullCodable "
                         hasNullCodableWrappedProperty = true
+                        if objectSchema.name.hasSuffix("LinkageRequest") {
+                            isOptional = true
+                        }
                     }
                     rendered = wrapper + PropertyRenderer(docsLoader: docsLoader)
                         .renderProperty(id: id,
