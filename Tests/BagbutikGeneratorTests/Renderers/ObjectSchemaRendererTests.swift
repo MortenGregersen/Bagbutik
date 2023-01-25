@@ -143,6 +143,94 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
+    func testRenderLinkagesRequest() throws {
+        // Given
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/personcarLinkagerequest", title: "PersonCarLinkageRequest", abstract: "The request body you use to attach a car to a Person.", discussion: nil, properties: [
+                "data": .init(required: true, description: "")
+            ], subDocumentationIds: []))]
+        )
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let schema = ObjectSchema(name: "PersonCarLinkageRequest",
+                                  url: "some://url",
+                                  properties: ["data": .init(type: .schema(.init(
+                                      name: "Data",
+                                      url: "some://url",
+                                      properties: ["id": .init(type: .simple(.string)),
+                                                   "type": .init(type: .constant("cars"))],
+                                      requiredProperties: ["id"]
+                                  )))])
+        // When
+        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        /**
+         # PersonCarLinkageRequest
+         The request body you use to attach a car to a Person.
+
+         Full documentation:
+         <some://url>
+         */
+        public struct PersonCarLinkageRequest: Codable, RequestBody {
+            @NullCodable public var data: Data?
+
+            public init(data: Data? = nil) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(data, forKey: .data)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+            }
+
+            /**
+             # PersonCarLinkageRequest
+             The request body you use to attach a car to a Person.
+
+             Full documentation:
+             <some://url>
+             */
+            public struct Data: Codable, Identifiable {
+                public let id: String
+                public var type: String { "cars" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+        }
+        
+        """#)
+    }
+
     func testRenderSpecialPropertyTypes() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
@@ -945,12 +1033,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     public init(data: Data? = nil) {
                         self.data = data
                     }
-        
+
                     public init(from decoder: Decoder) throws {
                         let container = try decoder.container(keyedBy: CodingKeys.self)
                         data = try container.decodeIfPresent(Data.self, forKey: .data)
                     }
-        
+
                     public func encode(to encoder: Encoder) throws {
                         var container = encoder.container(keyedBy: CodingKeys.self)
                         try container.encodeIfPresent(data, forKey: .data)
@@ -990,7 +1078,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
         }
-        
+
         """#)
     }
 
