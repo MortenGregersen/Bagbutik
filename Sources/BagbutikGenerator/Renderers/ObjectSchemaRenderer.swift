@@ -125,6 +125,7 @@ public class ObjectSchemaRenderer: Renderer {
         let needsCustomCoding: Bool
 
         init(for objectSchema: ObjectSchema, documentation: ObjectDocumentation?, docsLoader: DocsLoader) {
+            var objectSchema = objectSchema
             let sortedProperties = objectSchema.properties.sorted {
                 // To avoid breaking the public initializer parameter order from version 2.0,
                 // the `attributes` and `relationships` properties has to be last
@@ -145,6 +146,9 @@ public class ObjectSchemaRenderer: Renderer {
                 default:
                     let id = PropertyName(idealName: property.key).safeName
                     let type = property.value.type.description
+                    if id == "data" && objectSchema.name.hasSuffix("LinkageRequest") {
+                        objectSchema.requiredProperties.removeAll(where: { $0 == property.key })
+                    }
                     let isOptional = !objectSchema.requiredProperties.contains(property.key)
                     var wrapper = ""
                     if id == "data", type == "Data" || type == "[Data]", isOptional {
