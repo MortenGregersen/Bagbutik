@@ -63,6 +63,7 @@ final class BagbutikServiceTests: XCTestCase {
             (statusCode: 403, error: .forbidden(errorResponse)),
             (statusCode: 404, error: .notFound(errorResponse)),
             (statusCode: 409, error: .conflict(errorResponse)),
+            (statusCode: 422, error: .unprocessableEntity(errorResponse)),
             (statusCode: 418, error: .unknownHTTPError(statusCode: 418, data: data)),
         ]
         for response in responses {
@@ -230,6 +231,8 @@ extension ServiceError: Equatable {
             return lhsResponse == rhsResponse
         case (.conflict(let lhsResponse), .conflict(let rhsResponse)):
             return lhsResponse == rhsResponse
+        case (.unprocessableEntity(let lhsResponse), .unprocessableEntity(let rhsResponse)):
+            return lhsResponse == rhsResponse
         case (.wrongDateFormat(let lhsDateString), .wrongDateFormat(let rhsDateString)):
             return lhsDateString == rhsDateString
         case (.unknownHTTPError(let lhsStatusCode, let lhsData), .unknownHTTPError(let rhsStatusCode, let rhsData)):
@@ -237,7 +240,7 @@ extension ServiceError: Equatable {
         case (.unknown(let lhsData), .unknown(let rhsData)):
             return lhsData == rhsData
         default:
-            return false
+            fatalError("A error type is missing here.")
         }
     }
 }

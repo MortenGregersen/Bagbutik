@@ -12,6 +12,8 @@ public enum ServiceError: Error {
     case notFound(ErrorResponse)
     /// Conflict (HTTP status code 409). The provided resource data is not valid.
     case conflict(ErrorResponse)
+    /// Unprocessable Entity (HTTP status code 422). The entity in the request body is invalid.
+    case unprocessableEntity(ErrorResponse)
     /// The date in the response has an unknown format.
     case wrongDateFormat(dateString: String)
     /// The error is unhandled HTTP error.
@@ -26,7 +28,8 @@ public enum ServiceError: Error {
              .unauthorized(let response),
              .forbidden(let response),
              .notFound(let response),
-             .conflict(let response):
+             .conflict(let response),
+             .unprocessableEntity(let response):
             return response
         default:
             return nil
@@ -40,7 +43,8 @@ public enum ServiceError: Error {
              .unauthorized(let response),
              .forbidden(let response),
              .notFound(let response),
-             .conflict(let response):
+             .conflict(let response),
+             .unprocessableEntity(let response):
             return response.errors?.first?.detail
         case .wrongDateFormat(let dateString):
             return "A date in the response has an unknown format. The date: \(dateString)"
