@@ -169,7 +169,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(data, forKey: .data)
+                    try container.encode(data, forKey: .data)
                 }
 
                 private enum CodingKeys: String, CodingKey {
@@ -226,7 +226,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(data, forKey: .data)
+                    try container.encode(data, forKey: .data)
                 }
 
                 private enum CodingKeys: String, CodingKey {

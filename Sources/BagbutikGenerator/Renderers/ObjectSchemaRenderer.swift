@@ -86,7 +86,7 @@ public class ObjectSchemaRenderer: Renderer {
                 structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
                     var functionContent = "var container = encoder.container(keyedBy: CodingKeys.self)\n"
                     functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
-                        if encodableProperty.optional {
+                        if encodableProperty.optional, !encodableProperty.nullCodable {
                             return "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
                         } else {
                             return "try container.encode(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
@@ -147,6 +147,8 @@ public class ObjectSchemaRenderer: Renderer {
                     let id = PropertyName(idealName: property.key).safeName
                     let type = property.value.type.description
                     if id == "data" && objectSchema.name.hasSuffix("LinkageRequest") {
+                        // The `data` property is marked as required, it is required, but the value is really optional.
+                        // I can be nil, but it still needs to be in the encoded data.
                         objectSchema.requiredProperties.removeAll(where: { $0 == property.key })
                     }
                     let isOptional = !objectSchema.requiredProperties.contains(property.key)
@@ -175,9 +177,13 @@ public class ObjectSchemaRenderer: Renderer {
                 return EnumCase(id: propertyName.safeName, value: propertyName.idealName)
             }
             encodableProperties = sortedProperties.map {
-                CodableProperty(name: PropertyName(idealName: $0.key),
-                                type: $0.value.type.description,
-                                optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type")
+                let propertyName = PropertyName(idealName: $0.key)
+                let type = $0.value.type.description
+                return CodableProperty(
+                    name: propertyName,
+                    type: $0.value.type.description,
+                    optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type",
+                    nullCodable: propertyName.safeName == "data" && type == "Data" || type == "[Data]")
             }
             decodableProperties = encodableProperties.filter { $0.name.idealName != "type" }
             hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
@@ -315,5 +321,6 @@ public class ObjectSchemaRenderer: Renderer {
         let name: PropertyName
         let type: String
         let optional: Bool
+        let nullCodable: Bool
     }
 }
