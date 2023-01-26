@@ -131,7 +131,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -244,7 +244,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -362,7 +362,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
                 try container.encodeIfPresent(meta, forKey: .meta)
             }
@@ -477,7 +477,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
