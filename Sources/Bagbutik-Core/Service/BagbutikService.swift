@@ -75,6 +75,12 @@ public class BagbutikService {
         return try await self.fetch(urlRequest)
     }
     
+    @discardableResult
+    public func request(_ request: Request<EmptyResponse, ErrorResponse>) async throws -> EmptyResponse {
+        let urlRequest = request.asUrlRequest()
+        return try await self.fetch(urlRequest)
+    }
+    
     /**
      Perform all requests required to get all items.
      
@@ -150,6 +156,8 @@ public class BagbutikService {
                     throw ServiceError.notFound(errorResponse)
                 case 409:
                     throw ServiceError.conflict(errorResponse)
+                case 422:
+                    throw ServiceError.unprocessableEntity(errorResponse)
                 default:
                     break
                 }

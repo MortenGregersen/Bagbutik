@@ -13,10 +13,23 @@ final class ServiceErrorTests: XCTestCase {
             .forbidden(errorResponse),
             .notFound(errorResponse),
             .conflict(errorResponse),
+            .unprocessableEntity(errorResponse)
         ]
         errors.forEach { error in
             XCTAssertEqual(error.description, errorResponse.errors!.first!.detail)
         }
+    }
+    
+    func testErrorResponseForErrorWithErrorResponse() {
+        XCTAssertNotNil(ServiceError.badRequest(errorResponse).errorResponse)
+        XCTAssertNotNil(ServiceError.unauthorized(errorResponse).errorResponse)
+        XCTAssertNotNil(ServiceError.forbidden(errorResponse).errorResponse)
+        XCTAssertNotNil(ServiceError.notFound(errorResponse).errorResponse)
+        XCTAssertNotNil(ServiceError.conflict(errorResponse).errorResponse)
+        XCTAssertNotNil(ServiceError.unprocessableEntity(errorResponse).errorResponse)
+        XCTAssertNil(ServiceError.wrongDateFormat(dateString: "11. maj 1988, 15:42").errorResponse)
+        XCTAssertNil(ServiceError.unknownHTTPError(statusCode: 418, data: Data()).errorResponse)
+        XCTAssertNil(ServiceError.unknown(data: nil).errorResponse)
     }
     
     func testDescriptionForWrongDateFormat() {
