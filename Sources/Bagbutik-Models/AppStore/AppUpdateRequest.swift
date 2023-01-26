@@ -137,12 +137,12 @@ public struct AppUpdateRequest: Codable, RequestBody {
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent([Data].self, forKey: .data)
+                    _data = try container.decode(NullCodable<[Data]>.self, forKey: .data)
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(data, forKey: .data)
+                    try container.encode(data, forKey: .data)
                 }
 
                 private enum CodingKeys: String, CodingKey {
@@ -201,12 +201,12 @@ public struct AppUpdateRequest: Codable, RequestBody {
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent([Data].self, forKey: .data)
+                    _data = try container.decode(NullCodable<[Data]>.self, forKey: .data)
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(data, forKey: .data)
+                    try container.encode(data, forKey: .data)
                 }
 
                 private enum CodingKeys: String, CodingKey {

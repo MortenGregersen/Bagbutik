@@ -183,13 +183,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -290,13 +290,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -399,13 +399,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -510,13 +510,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -613,14 +613,14 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
+                _data = try container.decode(NullCodable<[Data]>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
                 try container.encodeIfPresent(meta, forKey: .meta)
             }
@@ -712,14 +712,14 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
+                _data = try container.decode(NullCodable<[Data]>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
                 try container.encodeIfPresent(meta, forKey: .meta)
             }
@@ -822,13 +822,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -929,13 +929,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -1036,13 +1036,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
@@ -1143,13 +1143,13 @@ public struct AppStoreVersion: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(data, forKey: .data)
+                try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
             }
 
