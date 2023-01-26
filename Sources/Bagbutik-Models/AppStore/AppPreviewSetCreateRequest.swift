@@ -101,7 +101,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
-                    _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
                 }
 
                 public func encode(to encoder: Encoder) throws {
@@ -151,7 +151,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
-                    _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
                 }
 
                 public func encode(to encoder: Encoder) throws {
@@ -208,7 +208,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
-                    _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
                 }
 
                 public func encode(to encoder: Encoder) throws {

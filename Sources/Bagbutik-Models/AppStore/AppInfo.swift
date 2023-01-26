@@ -147,7 +147,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -254,7 +254,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -368,7 +368,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<[Data]>.self, forKey: .data)
+                data = try container.decodeIfPresent([Data].self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
             }
@@ -482,7 +482,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -593,7 +593,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -704,7 +704,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -815,7 +815,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -926,7 +926,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
@@ -1037,7 +1037,7 @@ public struct AppInfo: Codable, Identifiable {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                _data = try container.decode(NullCodable<Data>.self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
             }
 
