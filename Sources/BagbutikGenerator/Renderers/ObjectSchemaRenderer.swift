@@ -67,9 +67,7 @@ public class ObjectSchemaRenderer: Renderer {
                 structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
                     var functionContent = "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
                     functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
-                        if decodableProperty.nullCodable {
-                            return "_\(decodableProperty.name.safeName) = try container.decode(NullCodable<\(decodableProperty.type)>.self, forKey: .\(decodableProperty.name.safeName))"
-                        } else if decodableProperty.optional {
+                        if decodableProperty.optional {
                             return "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
                         } else {
                             return "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
