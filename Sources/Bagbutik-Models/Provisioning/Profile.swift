@@ -95,12 +95,12 @@ public struct Profile: Codable, Identifiable {
             self.uuid = uuid
         }
 
-        public enum ProfileState: String, Codable, CaseIterable {
+        public enum ProfileState: String, ParameterValue, Codable, CaseIterable {
             case active = "ACTIVE"
             case invalid = "INVALID"
         }
 
-        public enum ProfileType: String, Codable, CaseIterable {
+        public enum ProfileType: String, ParameterValue, Codable, CaseIterable {
             case iOSAppDevelopment = "IOS_APP_DEVELOPMENT"
             case iOSAppStore = "IOS_APP_STORE"
             case iOSAppAdhoc = "IOS_APP_ADHOC"

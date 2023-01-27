@@ -85,13 +85,21 @@ public struct Spec: Decodable {
                             var enumSchema = enumSchema
                             enumSchema.additionalProtocols.insert("ParameterValue")
                             components.schemas[enumSchema.name] = .enum(enumSchema)
-                        } else if case .object(let mainSchema) = components.schemas[path.info.mainType],
-                                  case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
-                                  mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
-                                      guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
-                                      return mainAttributesPropertySchema.cases == parameterEnumSchema.cases
-                                  }) {
-                            newType = "\(path.info.mainType).Attributes.\(parameterName.capitalizingFirstLetter())"
+                        } else if case .object(var mainSchema) = components.schemas[path.info.mainType],
+                                  case .objectSchema(var mainAttributesSchema) = mainSchema.subSchemas.first(where: { $0.name == "Attributes" }),
+                                  let propertyInfo = mainAttributesSchema.properties.compactMap({ (propertyName: String, mainAttributesProperty: Property) -> (name: String, schema: EnumSchema)? in
+                                      guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type,
+                                            mainAttributesPropertySchema.cases == parameterEnumSchema.cases else { return nil }
+                                      return (name: propertyName, schema: mainAttributesPropertySchema)
+                                  }).first
+                        {
+                            newType = "\(path.info.mainType).Attributes.\(propertyInfo.name.capitalizingFirstLetter())"
+                            var enumSchema = propertyInfo.schema
+                            enumSchema.additionalProtocols.insert("ParameterValue")
+                            enumSchema.additionalProtocols.insert("Codable")
+                            mainAttributesSchema.properties[propertyInfo.name]?.type = .enumSchema(enumSchema)
+                            mainSchema.properties["attributes"]?.type = .schema(mainAttributesSchema)
+                            components.schemas[path.info.mainType] = .object(mainSchema)
                         }
                         if let newType {
                             operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: newType)), required: parameterRequired, documentation: parameterDocumentation)
