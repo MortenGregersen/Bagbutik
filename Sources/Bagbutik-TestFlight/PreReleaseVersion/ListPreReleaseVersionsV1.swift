@@ -143,12 +143,6 @@ public enum ListPreReleaseVersionsV1 {
             case invalid = "INVALID"
             case valid = "VALID"
         }
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

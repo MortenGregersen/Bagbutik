@@ -88,17 +88,11 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
      */
     public enum Filter: FilterParameter {
         /// Filter by attribute 'action'
-        case action([Action])
+        case action([AppClipAction])
         /// Filter by attribute 'placeStatus'
         case placeStatus([PlaceStatus])
         /// Filter by attribute 'status'
         case status([Status])
-
-        public enum Action: String, ParameterValue, CaseIterable {
-            case open = "OPEN"
-            case view = "VIEW"
-            case play = "PLAY"
-        }
 
         public enum PlaceStatus: String, ParameterValue, CaseIterable {
             case pending = "PENDING"

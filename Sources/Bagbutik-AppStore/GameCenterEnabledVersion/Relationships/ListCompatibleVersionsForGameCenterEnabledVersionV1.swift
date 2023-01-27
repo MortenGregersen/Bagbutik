@@ -103,12 +103,6 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
         case platform([Platform])
         /// Filter by attribute 'versionString'
         case versionString([String])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

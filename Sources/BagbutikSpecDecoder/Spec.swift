@@ -72,17 +72,27 @@ public struct Spec: Decodable {
                     .forEach { parameter in
                         guard let parameterIndex = operation.parameters?.firstIndex(of: parameter),
                               case .filter(let parameterName, let parameterValueType, let parameterRequired, let parameterDocumentation) = parameter,
-                              case .enum(let type, let values) = parameterValueType,
-                              case .object(let mainSchema) = components.schemas[path.info.mainType],
-                              case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
-                              mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
-                                  guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
-                                  let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
-                                  return mainAttributesPropertySchema.name == parameterEnumSchema.name
-                                      && mainAttributesPropertySchema.cases == parameterEnumSchema.cases
-                              })
-                        else { return }
-                        operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: "\(path.info.mainType).Attributes.\(parameterName.capitalizingFirstLetter())")), required: parameterRequired, documentation: parameterDocumentation)
+                              case .enum(let type, let values) = parameterValueType else { return }
+                        let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
+                        var newType: String?
+                        if let enumSchema = components.schemas.compactMap({ _, schema in
+                            if case .enum(let enumSchema) = schema, enumSchema.cases == parameterEnumSchema.cases {
+                                return enumSchema
+                            }
+                            return nil
+                        }).first {
+                            newType = enumSchema.name
+                        } else if case .object(let mainSchema) = components.schemas[path.info.mainType],
+                                  case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
+                                  mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
+                                      guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
+                                      return mainAttributesPropertySchema.cases == parameterEnumSchema.cases
+                                  }) {
+                            newType = "\(path.info.mainType).Attributes.\(parameterName.capitalizingFirstLetter())"
+                        }
+                        if let newType {
+                            operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: newType)), required: parameterRequired, documentation: parameterDocumentation)
+                        }
                     }
                 path.operations[operationIndex] = operation
             }

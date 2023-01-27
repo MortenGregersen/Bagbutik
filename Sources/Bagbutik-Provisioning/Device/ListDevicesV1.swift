@@ -55,16 +55,11 @@ public enum ListDevicesV1 {
         /// Filter by attribute 'name'
         case name([String])
         /// Filter by attribute 'platform'
-        case platform([Platform])
+        case platform([BundleIdPlatform])
         /// Filter by attribute 'status'
         case status([Device.Attributes.Status])
         /// Filter by attribute 'udid'
         case udid([String])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-        }
     }
 
     /**

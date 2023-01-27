@@ -395,9 +395,9 @@ public enum ListAppsV1 {
         /// Filter by id(s) of related 'appStoreVersions'
         case appStoreVersions([String])
         /// Filter by attribute 'appStoreVersions.appStoreState'
-        case appStoreVersions_appStoreState([AppStoreVersionsAppStoreState])
+        case appStoreVersions_appStoreState([AppStoreVersionState])
         /// Filter by attribute 'appStoreVersions.platform'
-        case appStoreVersions_platform([AppStoreVersionsPlatform])
+        case appStoreVersions_platform([Platform])
         /// Filter by attribute 'bundleId'
         case bundleId([String])
         /// Filter by id(s)
@@ -406,34 +406,6 @@ public enum ListAppsV1 {
         case name([String])
         /// Filter by attribute 'sku'
         case sku([String])
-
-        public enum AppStoreVersionsAppStoreState: String, ParameterValue, CaseIterable {
-            case accepted = "ACCEPTED"
-            case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case developerRejected = "DEVELOPER_REJECTED"
-            case inReview = "IN_REVIEW"
-            case invalidBinary = "INVALID_BINARY"
-            case metadataRejected = "METADATA_REJECTED"
-            case pendingAppleRelease = "PENDING_APPLE_RELEASE"
-            case pendingContract = "PENDING_CONTRACT"
-            case pendingDeveloperRelease = "PENDING_DEVELOPER_RELEASE"
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case preorderReadyForSale = "PREORDER_READY_FOR_SALE"
-            case processingForAppStore = "PROCESSING_FOR_APP_STORE"
-            case readyForReview = "READY_FOR_REVIEW"
-            case readyForSale = "READY_FOR_SALE"
-            case rejected = "REJECTED"
-            case removedFromSale = "REMOVED_FROM_SALE"
-            case waitingForExportCompliance = "WAITING_FOR_EXPORT_COMPLIANCE"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
-        }
-
-        public enum AppStoreVersionsPlatform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

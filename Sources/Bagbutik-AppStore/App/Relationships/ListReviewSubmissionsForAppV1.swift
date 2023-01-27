@@ -138,12 +138,6 @@ public enum ListReviewSubmissionsForAppV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
-
         public enum State: String, ParameterValue, CaseIterable {
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"

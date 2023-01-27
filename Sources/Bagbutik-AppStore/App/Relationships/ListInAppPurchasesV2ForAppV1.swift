@@ -134,28 +134,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         /// Filter by attribute 'productId'
         case productId([String])
         /// Filter by attribute 'state'
-        case state([State])
-
-        public enum InAppPurchaseType: String, ParameterValue, CaseIterable {
-            case consumable = "CONSUMABLE"
-            case nonConsumable = "NON_CONSUMABLE"
-            case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
-        }
-
-        public enum State: String, ParameterValue, CaseIterable {
-            case missingMetadata = "MISSING_METADATA"
-            case waitingForUpload = "WAITING_FOR_UPLOAD"
-            case processingContent = "PROCESSING_CONTENT"
-            case readyToSubmit = "READY_TO_SUBMIT"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
-            case pendingBinaryApproval = "PENDING_BINARY_APPROVAL"
-            case approved = "APPROVED"
-            case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case removedFromSale = "REMOVED_FROM_SALE"
-            case rejected = "REJECTED"
-        }
+        case state([InAppPurchaseState])
     }
 
     /**

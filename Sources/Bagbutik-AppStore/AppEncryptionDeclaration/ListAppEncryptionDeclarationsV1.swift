@@ -106,12 +106,6 @@ public enum ListAppEncryptionDeclarationsV1 {
         case builds([String])
         /// Filter by attribute 'platform'
         case platform([Platform])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

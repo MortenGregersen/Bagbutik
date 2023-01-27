@@ -242,41 +242,13 @@ public enum ListAppStoreVersionsForAppV1 {
      */
     public enum Filter: FilterParameter {
         /// Filter by attribute 'appStoreState'
-        case appStoreState([AppStoreState])
+        case appStoreState([AppStoreVersionState])
         /// Filter by id(s)
         case id([String])
         /// Filter by attribute 'platform'
         case platform([Platform])
         /// Filter by attribute 'versionString'
         case versionString([String])
-
-        public enum AppStoreState: String, ParameterValue, CaseIterable {
-            case accepted = "ACCEPTED"
-            case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case developerRejected = "DEVELOPER_REJECTED"
-            case inReview = "IN_REVIEW"
-            case invalidBinary = "INVALID_BINARY"
-            case metadataRejected = "METADATA_REJECTED"
-            case pendingAppleRelease = "PENDING_APPLE_RELEASE"
-            case pendingContract = "PENDING_CONTRACT"
-            case pendingDeveloperRelease = "PENDING_DEVELOPER_RELEASE"
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case preorderReadyForSale = "PREORDER_READY_FOR_SALE"
-            case processingForAppStore = "PROCESSING_FOR_APP_STORE"
-            case readyForReview = "READY_FOR_REVIEW"
-            case readyForSale = "READY_FOR_SALE"
-            case rejected = "REJECTED"
-            case removedFromSale = "REMOVED_FROM_SALE"
-            case waitingForExportCompliance = "WAITING_FOR_EXPORT_COMPLIANCE"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case replacedWithNewVersion = "REPLACED_WITH_NEW_VERSION"
-        }
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

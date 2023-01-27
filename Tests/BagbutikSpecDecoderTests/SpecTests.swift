@@ -589,6 +589,20 @@ final class SpecTests: XCTestCase {
                             "style" : "form",
                             "explode" : false,
                             "required" : false
+                        }, {
+                            "name" : "filter[preReleaseVersion.platform]",
+                            "in" : "query",
+                            "description" : "filter by attribute 'preReleaseVersion.platform'",
+                            "schema" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "string",
+                                    "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
+                                }
+                            },
+                            "style" : "form",
+                            "explode" : false,
+                            "required" : false
                         } ],
                         "responses" : {
                             "400" : {
@@ -645,7 +659,11 @@ final class SpecTests: XCTestCase {
                                 }
                             }
                         }
-                    }
+                    },
+                    "Platform" : {
+                        "type" : "string",
+                        "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
+                    },
                 }
             }
         }
@@ -654,12 +672,15 @@ final class SpecTests: XCTestCase {
         var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         spec.flattenIdenticalSchemas()
         guard let operation = spec.paths["/v1/profiles"]?.operations[0],
-              case .filter(_, let type, _, _) = operation.parameters?[0],
-              case .simple(let simpleType) = type
+              case .filter(_, let profileType, _, _) = operation.parameters?[0],
+              case .simple(let profileTypeSimpleType) = profileType,
+              case .filter(_, let platform, _, _) = operation.parameters?[1],
+              case .simple(let platformSimpleType) = platform
         else {
             XCTFail(); return
         }
-        XCTAssertEqual(simpleType.type, "Profile.Attributes.ProfileType")
+        XCTAssertEqual(profileTypeSimpleType.type, "Profile.Attributes.ProfileType")
+        XCTAssertEqual(platformSimpleType.type, "Platform")
     }
 
     func testFlattenIdenticalSchemas_InModels() throws {
@@ -817,7 +838,7 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertFalse(buildBundleSchema.requiredProperties.contains("links"))
-        
+
         guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["BundleIdPlatform"] else {
             XCTFail(); return
         }

@@ -97,27 +97,11 @@ public enum ListUsersV1 {
      */
     public enum Filter: FilterParameter {
         /// Filter by attribute 'roles'
-        case roles([Roles])
+        case roles([UserRole])
         /// Filter by attribute 'username'
         case username([String])
         /// Filter by id(s) of related 'visibleApps'
         case visibleApps([String])
-
-        public enum Roles: String, ParameterValue, CaseIterable {
-            case admin = "ADMIN"
-            case finance = "FINANCE"
-            case accountHolder = "ACCOUNT_HOLDER"
-            case sales = "SALES"
-            case marketing = "MARKETING"
-            case appManager = "APP_MANAGER"
-            case developer = "DEVELOPER"
-            case accessToReports = "ACCESS_TO_REPORTS"
-            case customerSupport = "CUSTOMER_SUPPORT"
-            case imageManager = "IMAGE_MANAGER"
-            case createApps = "CREATE_APPS"
-            case cloudManagedDeveloperId = "CLOUD_MANAGED_DEVELOPER_ID"
-            case cloudManagedAppDistribution = "CLOUD_MANAGED_APP_DISTRIBUTION"
-        }
     }
 
     /**

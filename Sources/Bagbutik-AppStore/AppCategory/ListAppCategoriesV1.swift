@@ -53,13 +53,7 @@ public enum ListAppCategoriesV1 {
      */
     public enum Filter: FilterParameter {
         /// Filter by attribute 'platforms'
-        case platforms([Platforms])
-
-        public enum Platforms: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
+        case platforms([Platform])
     }
 
     /**

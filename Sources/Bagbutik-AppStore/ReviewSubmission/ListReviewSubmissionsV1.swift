@@ -71,12 +71,6 @@ public enum ListReviewSubmissionsV1 {
         case platform([Platform])
         /// Filter by attribute 'state'
         case state([ReviewSubmission.Attributes.State])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

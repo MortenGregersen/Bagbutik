@@ -157,14 +157,9 @@ public enum ListBetaTestersV1 {
         /// Filter by id(s)
         case id([String])
         /// Filter by attribute 'inviteType'
-        case inviteType([InviteType])
+        case inviteType([BetaInviteType])
         /// Filter by attribute 'lastName'
         case lastName([String])
-
-        public enum InviteType: String, ParameterValue, CaseIterable {
-            case email = "EMAIL"
-            case publicLink = "PUBLIC_LINK"
-        }
     }
 
     /**

@@ -262,7 +262,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// Filter by id(s) of related 'appStoreVersion'
         case appStoreVersion([String])
         /// Filter by attribute 'betaAppReviewSubmission.betaReviewState'
-        case betaAppReviewSubmission_betaReviewState([BetaAppReviewSubmissionBetaReviewState])
+        case betaAppReviewSubmission_betaReviewState([BetaReviewState])
         /// Filter by id(s) of related 'betaGroups'
         case betaGroups([String])
         /// Filter by attribute 'buildAudienceType'
@@ -274,7 +274,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// Filter by id(s) of related 'preReleaseVersion'
         case preReleaseVersion([String])
         /// Filter by attribute 'preReleaseVersion.platform'
-        case preReleaseVersion_platform([PreReleaseVersionPlatform])
+        case preReleaseVersion_platform([Platform])
         /// Filter by attribute 'preReleaseVersion.version'
         case preReleaseVersion_version([String])
         /// Filter by attribute 'processingState'
@@ -283,24 +283,6 @@ public enum ListBuildsForCiBuildRunV1 {
         case usesNonExemptEncryption([String])
         /// Filter by attribute 'version'
         case version([String])
-
-        public enum BetaAppReviewSubmissionBetaReviewState: String, ParameterValue, CaseIterable {
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case rejected = "REJECTED"
-            case approved = "APPROVED"
-        }
-
-        public enum BuildAudienceType: String, ParameterValue, CaseIterable {
-            case internalOnly = "INTERNAL_ONLY"
-            case appStoreEligible = "APP_STORE_ELIGIBLE"
-        }
-
-        public enum PreReleaseVersionPlatform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
 
         public enum ProcessingState: String, ParameterValue, CaseIterable {
             case processing = "PROCESSING"

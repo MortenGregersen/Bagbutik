@@ -127,14 +127,9 @@ public enum ListBundleIdsV1 {
         /// Filter by attribute 'name'
         case name([String])
         /// Filter by attribute 'platform'
-        case platform([Platform])
+        case platform([BundleIdPlatform])
         /// Filter by attribute 'seedId'
         case seedId([String])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-        }
     }
 
     /**
