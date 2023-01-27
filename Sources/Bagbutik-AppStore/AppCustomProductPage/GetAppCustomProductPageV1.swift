@@ -35,14 +35,14 @@ public enum GetAppCustomProductPageV1 {
         /// The fields to include for returned resources of type appCustomProductPages
         case appCustomProductPages([AppCustomProductPages])
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate

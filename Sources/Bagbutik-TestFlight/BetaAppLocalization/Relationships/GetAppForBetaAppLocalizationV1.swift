@@ -28,7 +28,7 @@ public enum GetAppForBetaAppLocalizationV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents

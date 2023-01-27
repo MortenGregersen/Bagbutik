@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate>
  */
-public enum AppStoreVersionState: String, ParameterValue, CaseIterable {
+public enum AppStoreVersionState: String, ParameterValue, Codable, CaseIterable {
     case accepted = "ACCEPTED"
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
     case developerRejected = "DEVELOPER_REJECTED"

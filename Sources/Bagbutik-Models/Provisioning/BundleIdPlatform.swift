@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidplatform>
  */
-public enum BundleIdPlatform: String, ParameterValue, CaseIterable {
+public enum BundleIdPlatform: String, ParameterValue, Codable, CaseIterable {
     /// A string that represents iOS.
     case iOS = "IOS"
     /// A string that represents macOS.

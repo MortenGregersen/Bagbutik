@@ -36,7 +36,7 @@ public enum ListReviewSubmissionsV1 {
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
 
-        public enum ReviewSubmissionItems: String, ParameterValue, CaseIterable {
+        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -47,7 +47,7 @@ public enum ListReviewSubmissionsV1 {
             case state
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, CaseIterable {
+        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionForReview
             case canceled

@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userrole>
  */
-public enum UserRole: String, ParameterValue, CaseIterable {
+public enum UserRole: String, ParameterValue, Codable, CaseIterable {
     /// Role that serves as a secondary contact for teams and has many of the same responsibilities as the Account Holder role. Admins have access to all apps.
     case admin = "ADMIN"
     /// Role that manages financial information, including reports and tax forms. A user that has this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.

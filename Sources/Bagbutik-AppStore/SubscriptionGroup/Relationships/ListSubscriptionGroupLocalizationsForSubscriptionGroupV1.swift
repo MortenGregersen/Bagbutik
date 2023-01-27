@@ -36,7 +36,7 @@ public enum ListSubscriptionGroupLocalizationsForSubscriptionGroupV1 {
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
 
-        public enum SubscriptionGroupLocalizations: String, ParameterValue, CaseIterable {
+        public enum SubscriptionGroupLocalizations: String, ParameterValue, Codable, CaseIterable {
             case customAppName
             case locale
             case name
@@ -44,7 +44,7 @@ public enum ListSubscriptionGroupLocalizationsForSubscriptionGroupV1 {
             case subscriptionGroup
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, CaseIterable {
+        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
             case app
             case referenceName
             case subscriptionGroupLocalizations

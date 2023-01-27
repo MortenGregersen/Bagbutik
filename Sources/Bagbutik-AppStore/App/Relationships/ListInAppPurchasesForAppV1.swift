@@ -43,7 +43,7 @@ public enum ListInAppPurchasesForAppV1 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -84,7 +84,7 @@ public enum ListInAppPurchasesForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum InAppPurchases: String, ParameterValue, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case apps
             case inAppPurchaseType
             case productId
@@ -102,7 +102,7 @@ public enum ListInAppPurchasesForAppV1 {
         /// Filter by attribute 'inAppPurchaseType'
         case inAppPurchaseType([InAppPurchaseType])
 
-        public enum InAppPurchaseType: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseType: String, ParameterValue, Codable, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
             case nonConsumable = "NON_CONSUMABLE"
             case consumable = "CONSUMABLE"

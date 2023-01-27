@@ -37,7 +37,7 @@ public enum ListAppEncryptionDeclarationsV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, CaseIterable {
+        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclarationState
             case availableOnFrenchStore
@@ -54,7 +54,7 @@ public enum ListAppEncryptionDeclarationsV1 {
             case usesEncryption
         }
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents

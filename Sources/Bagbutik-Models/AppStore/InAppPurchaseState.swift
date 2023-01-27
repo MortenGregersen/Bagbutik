@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public enum InAppPurchaseState: String, ParameterValue, CaseIterable {
+public enum InAppPurchaseState: String, ParameterValue, Codable, CaseIterable {
     case missingMetadata = "MISSING_METADATA"
     case waitingForUpload = "WAITING_FOR_UPLOAD"
     case processingContent = "PROCESSING_CONTENT"

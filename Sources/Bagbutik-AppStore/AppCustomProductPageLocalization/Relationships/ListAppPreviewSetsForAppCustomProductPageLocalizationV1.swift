@@ -44,7 +44,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -52,7 +52,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case promotionalText
         }
 
-        public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
@@ -60,7 +60,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case previewType
         }
 
-        public enum AppPreviews: String, ParameterValue, CaseIterable {
+        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSet
             case assetDeliveryState
             case fileName
@@ -74,14 +74,14 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case videoUrl
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion

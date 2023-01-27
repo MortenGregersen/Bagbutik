@@ -42,7 +42,7 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
         /// The fields to include for returned resources of type appScreenshotSets
         case appScreenshotSets([AppScreenshotSets])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -50,14 +50,14 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case promotionalText
         }
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
         }
 
-        public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
@@ -65,7 +65,7 @@ public enum ListAppCustomProductPageLocalizationsForAppCustomProductPageVersionV
             case previewType
         }
 
-        public enum AppScreenshotSets: String, ParameterValue, CaseIterable {
+        public enum AppScreenshotSets: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
             case appScreenshots
             case appStoreVersionExperimentTreatmentLocalization

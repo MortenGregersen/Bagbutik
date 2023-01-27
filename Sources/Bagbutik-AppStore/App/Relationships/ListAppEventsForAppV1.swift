@@ -38,7 +38,7 @@ public enum ListAppEventsForAppV1 {
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])
 
-        public enum AppEventLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppEventLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appEvent
             case appEventScreenshots
             case appEventVideoClips
@@ -48,7 +48,7 @@ public enum ListAppEventsForAppV1 {
             case shortDescription
         }
 
-        public enum AppEvents: String, ParameterValue, CaseIterable {
+        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
             case app
             case archivedTerritorySchedules
             case badge
@@ -73,7 +73,7 @@ public enum ListAppEventsForAppV1 {
         /// Filter by id(s)
         case id([String])
 
-        public enum EventState: String, ParameterValue, CaseIterable {
+        public enum EventState: String, ParameterValue, Codable, CaseIterable {
             case draft = "DRAFT"
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"

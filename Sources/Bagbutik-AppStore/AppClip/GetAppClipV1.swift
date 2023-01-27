@@ -38,7 +38,7 @@ public enum GetAppClipV1 {
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, CaseIterable {
+        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case businessCategory
@@ -54,7 +54,7 @@ public enum GetAppClipV1 {
             case version
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -63,7 +63,7 @@ public enum GetAppClipV1 {
             case releaseWithAppStoreVersion
         }
 
-        public enum AppClips: String, ParameterValue, CaseIterable {
+        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences

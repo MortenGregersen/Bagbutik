@@ -96,7 +96,6 @@ public struct Spec: Decodable {
                             newType = "\(path.info.mainType).Attributes.\(propertyInfo.name.capitalizingFirstLetter())"
                             var enumSchema = propertyInfo.schema
                             enumSchema.additionalProtocols.insert("ParameterValue")
-                            enumSchema.additionalProtocols.insert("Codable")
                             mainAttributesSchema.properties[propertyInfo.name]?.type = .enumSchema(enumSchema)
                             mainSchema.properties["attributes"]?.type = .schema(mainAttributesSchema)
                             components.schemas[path.info.mainType] = .object(mainSchema)

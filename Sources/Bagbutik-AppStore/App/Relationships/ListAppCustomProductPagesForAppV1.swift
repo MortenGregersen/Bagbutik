@@ -41,14 +41,14 @@ public enum ListAppCustomProductPagesForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case state
             case version
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -58,7 +58,7 @@ public enum ListAppCustomProductPagesForAppV1 {
             case visible
         }
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents

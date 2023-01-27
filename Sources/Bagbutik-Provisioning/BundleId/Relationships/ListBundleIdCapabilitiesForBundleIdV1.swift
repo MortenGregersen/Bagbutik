@@ -31,7 +31,7 @@ public enum ListBundleIdCapabilitiesForBundleIdV1 {
         /// The fields to include for returned resources of type bundleIdCapabilities
         case bundleIdCapabilities([BundleIdCapabilities])
 
-        public enum BundleIdCapabilities: String, ParameterValue, CaseIterable {
+        public enum BundleIdCapabilities: String, ParameterValue, Codable, CaseIterable {
             case bundleId
             case capabilityType
             case settings

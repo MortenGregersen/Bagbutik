@@ -35,7 +35,7 @@ public enum GetAppEventV1 {
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])
 
-        public enum AppEventLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppEventLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appEvent
             case appEventScreenshots
             case appEventVideoClips
@@ -45,7 +45,7 @@ public enum GetAppEventV1 {
             case shortDescription
         }
 
-        public enum AppEvents: String, ParameterValue, CaseIterable {
+        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
             case app
             case archivedTerritorySchedules
             case badge

@@ -29,9 +29,7 @@ public class EnumSchemaRenderer: Renderer {
             } + "\n"
         }
         var additionalProtocols = enumSchema.additionalProtocols
-        if !additionalProtocols.contains("ParameterValue") {
-            additionalProtocols.insert("Codable")
-        }
+        additionalProtocols.insert("Codable")
         additionalProtocols.insert("CaseIterable")
         let additionalProtocolsString = additionalProtocols
             .sorted()

@@ -44,7 +44,7 @@ public enum ListBetaTestersV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -85,7 +85,7 @@ public enum ListBetaTestersV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaGroups: String, ParameterValue, CaseIterable {
+        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
             case app
             case betaTesters
             case builds
@@ -102,7 +102,7 @@ public enum ListBetaTestersV1 {
             case publicLinkLimitEnabled
         }
 
-        public enum BetaTesters: String, ParameterValue, CaseIterable {
+        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
             case apps
             case betaGroups
             case builds
@@ -112,7 +112,7 @@ public enum ListBetaTestersV1 {
             case lastName
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion

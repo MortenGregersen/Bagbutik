@@ -30,7 +30,7 @@ public enum GetCiIssueV1 {
         /// The fields to include for returned resources of type ciIssues
         case ciIssues([CiIssues])
 
-        public enum CiIssues: String, ParameterValue, CaseIterable {
+        public enum CiIssues: String, ParameterValue, Codable, CaseIterable {
             case category
             case fileSource
             case issueType

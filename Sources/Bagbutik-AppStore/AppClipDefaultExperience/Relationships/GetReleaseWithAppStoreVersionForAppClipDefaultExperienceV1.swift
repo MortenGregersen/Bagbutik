@@ -54,7 +54,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -74,7 +74,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -83,7 +83,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case releaseWithAppStoreVersion
         }
 
-        public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
+        public enum AppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
             case appStoreReviewAttachments
             case appStoreVersion
             case contactEmail
@@ -96,7 +96,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case notes
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case appStoreVersionExperimentTreatments
             case endDate
@@ -108,7 +108,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -121,7 +121,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case whatsNew
         }
 
-        public enum AppStoreVersionPhasedReleases: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionPhasedReleases: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
@@ -129,11 +129,11 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case totalPauseDuration
         }
 
-        public enum AppStoreVersionSubmissions: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionSubmissions: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -155,7 +155,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -196,7 +196,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -223,7 +223,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case version
         }
 
-        public enum RoutingAppCoverages: String, ParameterValue, CaseIterable {
+        public enum RoutingAppCoverages: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
             case fileName

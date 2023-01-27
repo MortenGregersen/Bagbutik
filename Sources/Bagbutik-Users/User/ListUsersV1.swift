@@ -40,7 +40,7 @@ public enum ListUsersV1 {
         /// The fields to include for returned resources of type users
         case users([Users])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -81,7 +81,7 @@ public enum ListUsersV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Users: String, ParameterValue, CaseIterable {
+        public enum Users: String, ParameterValue, Codable, CaseIterable {
             case allAppsVisible
             case firstName
             case lastName

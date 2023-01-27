@@ -36,7 +36,7 @@ public enum GetAppPreviewSetV1 {
         /// The fields to include for returned resources of type appPreviews
         case appPreviews([AppPreviews])
 
-        public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
@@ -44,7 +44,7 @@ public enum GetAppPreviewSetV1 {
             case previewType
         }
 
-        public enum AppPreviews: String, ParameterValue, CaseIterable {
+        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSet
             case assetDeliveryState
             case fileName

@@ -34,7 +34,7 @@ public enum GetInAppPurchaseV1 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchases: String, ParameterValue, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case apps
             case inAppPurchaseType
             case productId

@@ -43,7 +43,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum SubscriptionIntroductoryOffers: String, ParameterValue, CaseIterable {
+        public enum SubscriptionIntroductoryOffers: String, ParameterValue, Codable, CaseIterable {
             case duration
             case endDate
             case numberOfPeriods
@@ -54,7 +54,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case territory
         }
 
-        public enum SubscriptionPricePoints: String, ParameterValue, CaseIterable {
+        public enum SubscriptionPricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case equalizations
             case proceeds
@@ -63,7 +63,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case territory
         }
 
-        public enum Subscriptions: String, ParameterValue, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -83,7 +83,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case subscriptionPeriod
         }
 
-        public enum Territories: String, ParameterValue, CaseIterable {
+        public enum Territories: String, ParameterValue, Codable, CaseIterable {
             case currency
         }
     }

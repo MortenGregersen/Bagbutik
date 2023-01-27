@@ -41,7 +41,7 @@ public enum ListManualPricesForInAppPurchasePriceScheduleV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
             case priceTier
@@ -49,14 +49,14 @@ public enum ListManualPricesForInAppPurchasePriceScheduleV1 {
             case territory
         }
 
-        public enum InAppPurchasePrices: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePrices: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchasePricePoint
             case inAppPurchaseV2
             case startDate
             case territory
         }
 
-        public enum Territories: String, ParameterValue, CaseIterable {
+        public enum Territories: String, ParameterValue, Codable, CaseIterable {
             case currency
         }
     }

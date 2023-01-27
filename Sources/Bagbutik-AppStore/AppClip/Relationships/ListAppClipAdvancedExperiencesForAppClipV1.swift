@@ -43,7 +43,7 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
 
-        public enum AppClipAdvancedExperienceImages: String, ParameterValue, CaseIterable {
+        public enum AppClipAdvancedExperienceImages: String, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -53,13 +53,13 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case uploaded
         }
 
-        public enum AppClipAdvancedExperienceLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppClipAdvancedExperienceLocalizations: String, ParameterValue, Codable, CaseIterable {
             case language
             case subtitle
             case title
         }
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, CaseIterable {
+        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case businessCategory
@@ -75,7 +75,7 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case version
         }
 
-        public enum AppClips: String, ParameterValue, CaseIterable {
+        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
@@ -94,13 +94,13 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         /// Filter by attribute 'status'
         case status([Status])
 
-        public enum PlaceStatus: String, ParameterValue, CaseIterable {
+        public enum PlaceStatus: String, ParameterValue, Codable, CaseIterable {
             case pending = "PENDING"
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
         }
 
-        public enum Status: String, ParameterValue, CaseIterable {
+        public enum Status: String, ParameterValue, Codable, CaseIterable {
             case received = "RECEIVED"
             case deactivated = "DEACTIVATED"
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"

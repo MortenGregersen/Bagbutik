@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/previewtype>
  */
-public enum PreviewType: String, ParameterValue, CaseIterable {
+public enum PreviewType: String, ParameterValue, Codable, CaseIterable {
     case iPhone67 = "IPHONE_67"
     case iPhone61 = "IPHONE_61"
     case iPhone65 = "IPHONE_65"

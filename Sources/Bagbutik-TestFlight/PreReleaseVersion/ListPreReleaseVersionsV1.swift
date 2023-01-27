@@ -42,7 +42,7 @@ public enum ListPreReleaseVersionsV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -83,7 +83,7 @@ public enum ListPreReleaseVersionsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -110,7 +110,7 @@ public enum ListPreReleaseVersionsV1 {
             case version
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
+        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
             case app
             case builds
             case platform
@@ -137,7 +137,7 @@ public enum ListPreReleaseVersionsV1 {
         /// Filter by attribute 'version'
         case version([String])
 
-        public enum BuildsProcessingState: String, ParameterValue, CaseIterable {
+        public enum BuildsProcessingState: String, ParameterValue, Codable, CaseIterable {
             case processing = "PROCESSING"
             case failed = "FAILED"
             case invalid = "INVALID"
