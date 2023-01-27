@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territorycode>
  */
-public enum TerritoryCode: String, Codable, CaseIterable {
+public enum TerritoryCode: String, ParameterValue, CaseIterable {
     case abw = "ABW"
     case afg = "AFG"
     case ago = "AGO"

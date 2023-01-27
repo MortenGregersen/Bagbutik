@@ -82,6 +82,9 @@ public struct Spec: Decodable {
                             return nil
                         }).first {
                             newType = enumSchema.name
+                            var enumSchema = enumSchema
+                            enumSchema.additionalProtocols.insert("ParameterValue")
+                            components.schemas[enumSchema.name] = .enum(enumSchema)
                         } else if case .object(let mainSchema) = components.schemas[path.info.mainType],
                                   case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
                                   mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
