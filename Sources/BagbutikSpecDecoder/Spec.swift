@@ -75,7 +75,7 @@ public struct Spec: Decodable {
                               case .enum(let type, let values) = parameterValueType else { return }
                         let parameterEnumSchema = EnumSchema(name: parameterName.capitalizingFirstLetter(), type: type.lowercased(), caseValues: values)
                         var newType: String?
-                        if let enumSchema = components.schemas.compactMap({ _, schema in
+                        if let enumSchema: EnumSchema = components.schemas.compactMap({ _, schema in
                             if case .enum(let enumSchema) = schema, enumSchema.cases == parameterEnumSchema.cases {
                                 return enumSchema
                             }
