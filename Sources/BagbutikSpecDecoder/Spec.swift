@@ -100,7 +100,7 @@ public struct Spec: Decodable {
                             mainSchema.properties["attributes"]?.type = .schema(mainAttributesSchema)
                             components.schemas[path.info.mainType] = .object(mainSchema)
                         }
-                        if let newType {
+                        if let newType = newType {
                             operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: newType)), required: parameterRequired, documentation: parameterDocumentation)
                         }
                     }
