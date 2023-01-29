@@ -41,12 +41,12 @@ final class EnumSchemaRendererTests: XCTestCase {
     func testRenderWithAdditionalProtocol() throws {
         // Given
         let renderer = EnumSchemaRenderer(docsLoader: DocsLoader())
-        let schema = EnumSchema(name: "AppCategories", type: "string", caseValues: ["parent", "platforms", "subcategories"])
+        let schema = EnumSchema(name: "AppCategories", type: "string", caseValues: ["parent", "platforms", "subcategories"], additionalProtocols: ["ParameterValue"])
         // When
-        let rendered = try renderer.render(enumSchema: schema, additionalProtocol: "ParameterValue")
+        let rendered = try renderer.render(enumSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        public enum AppCategories: String, ParameterValue, CaseIterable {
+        public enum AppCategories: String, ParameterValue, Codable, CaseIterable {
             case parent
             case platforms
             case subcategories

@@ -28,14 +28,12 @@ public class EnumSchemaRenderer: Renderer {
                 return documentationContent
             } + "\n"
         }
-        var additionalProtocols = enumSchema.additionalProtocols
-        additionalProtocols.insert("Codable")
-        additionalProtocols.insert("CaseIterable")
-        let additionalProtocolsString = additionalProtocols
+        let protocols = enumSchema.additionalProtocols
+            .union(["Codable", "CaseIterable"])
             .sorted()
             .reversed()
             .joined(separator: ", ")
-        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(additionalProtocolsString) {\n"
+        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(protocols) {\n"
         let cases = enumSchema.cases.map { enumCase -> EnumCase in
             var enumCase = enumCase
             enumCase.documentation = documentation?.cases[enumCase.value]
