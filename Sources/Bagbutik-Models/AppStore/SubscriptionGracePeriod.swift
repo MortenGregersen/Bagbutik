@@ -42,10 +42,25 @@ public struct SubscriptionGracePeriod: Codable, Identifiable {
     }
 
     public struct Attributes: Codable {
+        public var duration: SubscriptionGracePeriodDuration?
         public var optIn: Bool?
+        public var renewalType: RenewalType?
+        public var sandboxOptIn: Bool?
 
-        public init(optIn: Bool? = nil) {
+        public init(duration: SubscriptionGracePeriodDuration? = nil,
+                    optIn: Bool? = nil,
+                    renewalType: RenewalType? = nil,
+                    sandboxOptIn: Bool? = nil)
+        {
+            self.duration = duration
             self.optIn = optIn
+            self.renewalType = renewalType
+            self.sandboxOptIn = sandboxOptIn
+        }
+
+        public enum RenewalType: String, Codable, CaseIterable {
+            case allRenewals = "ALL_RENEWALS"
+            case paidToPaidOnly = "PAID_TO_PAID_ONLY"
         }
     }
 }

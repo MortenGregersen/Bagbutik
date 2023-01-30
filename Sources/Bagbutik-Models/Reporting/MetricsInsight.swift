@@ -49,25 +49,12 @@ public struct MetricsInsight: Codable {
         self.summaryString = summaryString
     }
 
-    /**
-     # MetricsInsight.Populations
-     The value of a metric for a device type on the latest app version, and its percent change as compared with previous app versions.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/metricsinsight/populations>
-     */
     public struct Populations: Codable {
-        /// The percentage increase between the values of `latestVersionValue` and `referenceAverageValue`.
         public var deltaPercentage: Double?
-        /// The device type.
         public var device: String?
-        /// The value of the metric for the latest version of the app.
         public var latestVersionValue: Double?
-        /// The percentile of users that are affected by this metric value. For example, the 50th percentile represents a typical user experience, and the 90th percentile represents the highest or lowest numbers, depending on the metric.
         public var percentile: String?
-        /// The average value of the metric for all reference app versions.
         public var referenceAverageValue: Double?
-        /// A human-readable description of the metric and population.
         public var summaryString: String?
 
         public init(deltaPercentage: Double? = nil,

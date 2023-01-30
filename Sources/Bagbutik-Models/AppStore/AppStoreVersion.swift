@@ -54,13 +54,6 @@ public struct AppStoreVersion: Codable, Identifiable {
         case type
     }
 
-    /**
-     # AppStoreVersion.Attributes
-     Attributes that describe an App Store Versions resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
-     */
     public struct Attributes: Codable {
         public var appStoreState: AppStoreVersionState?
         public var copyright: String?
@@ -97,18 +90,10 @@ public struct AppStoreVersion: Codable, Identifiable {
         }
     }
 
-    /**
-     # AppStoreVersion.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships>
-     */
     public struct Relationships: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public var app: App?
-        /// The related Default App Clip Experiences resource.
         public var appClipDefaultExperience: AppClipDefaultExperience?
         public var appStoreReviewDetail: AppStoreReviewDetail?
         public var appStoreVersionExperiments: AppStoreVersionExperiments?
@@ -163,13 +148,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             self.routingAppCoverage = routingAppCoverage
         }
 
-        /**
-         # AppStoreVersion.Relationships.AgeRatingDeclaration
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration>
-         */
         public struct AgeRatingDeclaration: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -198,13 +176,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.AgeRatingDeclaration.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
@@ -233,13 +204,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.AgeRatingDeclaration.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -270,13 +234,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.App
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app>
-         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -305,13 +262,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.App.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -340,13 +290,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.App.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -377,17 +320,8 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppClipDefaultExperience
-         The data and links that describe the relationship between the App Store Versions and the Default App Clip Experiences resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience>
-         */
         public struct AppClipDefaultExperience: Codable {
-            /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: Data?
-            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil,
@@ -414,17 +348,8 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppClipDefaultExperience.Data
-             The type and ID of a related Default App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/data>
-             */
             public struct Data: Codable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appClipDefaultExperiences" }
 
                 public init(id: String) {
@@ -451,17 +376,8 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppClipDefaultExperience.Links
-             The links to the related Default App Clip Experiences resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/links>
-             */
             public struct Links: Codable {
-                /// The link to related data.
                 public var related: String?
-                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -490,13 +406,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreReviewDetail
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail>
-         */
         public struct AppStoreReviewDetail: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -525,13 +434,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreReviewDetail.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
@@ -560,13 +462,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreReviewDetail.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -689,13 +584,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreVersionLocalizations
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations>
-         */
         public struct AppStoreVersionLocalizations: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -730,13 +618,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
@@ -765,13 +646,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -802,13 +676,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease>
-         */
         public struct AppStoreVersionPhasedRelease: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -837,13 +704,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionPhasedReleases" }
@@ -872,13 +732,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -909,13 +762,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreVersionSubmission
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission>
-         */
         public struct AppStoreVersionSubmission: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -944,13 +790,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionSubmission.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionSubmissions" }
@@ -979,13 +818,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionSubmission.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1016,13 +848,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.Build
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build>
-         */
         public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -1051,13 +876,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.Build.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
@@ -1086,13 +904,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.Build.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1123,13 +934,6 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.RoutingAppCoverage
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage>
-         */
         public struct RoutingAppCoverage: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -1158,13 +962,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersion.Relationships.RoutingAppCoverage.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "routingAppCoverages" }
@@ -1193,13 +990,6 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersion.Relationships.RoutingAppCoverage.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

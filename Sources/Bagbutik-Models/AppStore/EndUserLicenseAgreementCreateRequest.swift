@@ -15,13 +15,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # EndUserLicenseAgreementCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data>
-     */
     public struct Data: Codable {
         public var type: String { "endUserLicenseAgreements" }
         public let attributes: Attributes
@@ -56,13 +49,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # EndUserLicenseAgreementCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public let agreementText: String
 
@@ -71,13 +57,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
             }
         }
 
-        /**
-         # EndUserLicenseAgreementCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public let app: App
             public let territories: Territories
@@ -89,13 +68,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 self.territories = territories
             }
 
-            /**
-             # EndUserLicenseAgreementCreateRequest.Data.Relationships.App
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/app>
-             */
             public struct App: Codable {
                 public let data: Data
 
@@ -103,13 +75,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /**
-                 # EndUserLicenseAgreementCreateRequest.Data.Relationships.App.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/app/data>
-                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
@@ -139,13 +104,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 }
             }
 
-            /**
-             # EndUserLicenseAgreementCreateRequest.Data.Relationships.Territories
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/territories>
-             */
             public struct Territories: Codable {
                 public let data: [Data]
 
@@ -153,13 +111,6 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /**
-                 # EndUserLicenseAgreementCreateRequest.Data.Relationships.Territories.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest/data/relationships/territories/data>
-                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }

@@ -58,12 +58,15 @@ public enum GetBuildV1 {
 
         public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
             case app
+            case appDescription
+            case appEncryptionDeclarationDocument
             case appEncryptionDeclarationState
             case availableOnFrenchStore
             case builds
             case codeValue
             case containsProprietaryCryptography
             case containsThirdPartyCryptography
+            case createdDate
             case documentName
             case documentType
             case documentUrl

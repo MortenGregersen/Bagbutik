@@ -52,17 +52,8 @@ public struct ScmProvider: Codable, Identifiable {
         case type
     }
 
-    /**
-     # ScmProvider.Attributes
-     The attributes that describe a Providers resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmprovider/attributes>
-     */
     public struct Attributes: Codable {
-        /// The source code management provider’s type.
         public var scmProviderType: ScmProviderType?
-        /// The URL of the source code management provider.
         public var url: String?
 
         public init(scmProviderType: ScmProviderType? = nil,

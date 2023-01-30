@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read the Subscription Grace Period Value for an App
+     # Read the Billing Grace Period Value for an App
      Get the Boolean value that represents the grace period opt-in state for your app.
 
      Full documentation:
@@ -29,8 +29,10 @@ public enum GetSubscriptionGracePeriodForAppV1 {
         case subscriptionGracePeriods([SubscriptionGracePeriods])
 
         public enum SubscriptionGracePeriods: String, ParameterValue, Codable, CaseIterable {
-            case app
+            case duration
             case optIn
+            case renewalType
+            case sandboxOptIn
         }
     }
 }

@@ -15,13 +15,6 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # AppStoreVersionPhasedReleaseUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionPhasedReleases" }
@@ -56,13 +49,6 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # AppStoreVersionPhasedReleaseUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var phasedReleaseState: PhasedReleaseState?
 

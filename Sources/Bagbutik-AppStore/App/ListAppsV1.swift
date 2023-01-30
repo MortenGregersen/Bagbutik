@@ -131,6 +131,7 @@ public enum ListAppsV1 {
             case appStoreAgeRating
             case appStoreState
             case brazilAgeRating
+            case brazilAgeRatingV2
             case kidsAgeBand
             case primaryCategory
             case primarySubcategoryOne
@@ -372,8 +373,10 @@ public enum ListAppsV1 {
         }
 
         public enum SubscriptionGracePeriods: String, ParameterValue, Codable, CaseIterable {
-            case app
+            case duration
             case optIn
+            case renewalType
+            case sandboxOptIn
         }
 
         public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {

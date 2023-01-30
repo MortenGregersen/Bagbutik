@@ -11,12 +11,18 @@ public extension Request {
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
+     - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related subcategories returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getSecondaryCategoryForAppInfoV1(id: String,
-                                                 fields: [GetSecondaryCategoryForAppInfoV1.Field]? = nil) -> Request<AppCategoryResponse, ErrorResponse>
+                                                 fields: [GetSecondaryCategoryForAppInfoV1.Field]? = nil,
+                                                 includes: [GetSecondaryCategoryForAppInfoV1.Include]? = nil,
+                                                 limit: Int? = nil) -> Request<AppCategoryResponse, ErrorResponse>
     {
-        .init(path: "/v1/appInfos/\(id)/secondaryCategory", method: .get, parameters: .init(fields: fields))
+        .init(path: "/v1/appInfos/\(id)/secondaryCategory", method: .get, parameters: .init(fields: fields,
+                                                                                            includes: includes,
+                                                                                            limit: limit))
     }
 }
 
@@ -33,5 +39,13 @@ public enum GetSecondaryCategoryForAppInfoV1 {
             case platforms
             case subcategories
         }
+    }
+
+    /**
+     Relationship data to include in the response.
+     */
+    public enum Include: String, IncludeParameter {
+        case parent
+        case subcategories
     }
 }

@@ -16,17 +16,8 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # BetaTesterInvitationCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "betaTesterInvitations" }
-        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -52,13 +43,6 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # BetaTesterInvitationCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public let app: App
             public let betaTester: BetaTester
@@ -70,13 +54,6 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                 self.betaTester = betaTester
             }
 
-            /**
-             # BetaTesterInvitationCreateRequest.Data.Relationships.App
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/app>
-             */
             public struct App: Codable {
                 public let data: Data
 
@@ -84,17 +61,8 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /**
-                 # BetaTesterInvitationCreateRequest.Data.Relationships.App.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/app/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "apps" }
 
                     public init(id: String) {
@@ -122,13 +90,6 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                 }
             }
 
-            /**
-             # BetaTesterInvitationCreateRequest.Data.Relationships.BetaTester
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/betatester>
-             */
             public struct BetaTester: Codable {
                 public let data: Data
 
@@ -136,17 +97,8 @@ public struct BetaTesterInvitationCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
-                /**
-                 # BetaTesterInvitationCreateRequest.Data.Relationships.BetaTester.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest/data/relationships/betatester/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "betaTesters" }
 
                     public init(id: String) {

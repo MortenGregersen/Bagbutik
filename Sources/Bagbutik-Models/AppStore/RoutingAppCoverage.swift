@@ -54,13 +54,6 @@ public struct RoutingAppCoverage: Codable, Identifiable {
         case type
     }
 
-    /**
-     # RoutingAppCoverage.Attributes
-     Attributes that describe a Routing App Coverages resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage/attributes>
-     */
     public struct Attributes: Codable {
         public var assetDeliveryState: AppMediaAssetState?
         public var fileName: String?
@@ -82,13 +75,6 @@ public struct RoutingAppCoverage: Codable, Identifiable {
         }
     }
 
-    /**
-     # RoutingAppCoverage.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage/relationships>
-     */
     public struct Relationships: Codable {
         public var appStoreVersion: AppStoreVersion?
 
@@ -96,13 +82,6 @@ public struct RoutingAppCoverage: Codable, Identifiable {
             self.appStoreVersion = appStoreVersion
         }
 
-        /**
-         # RoutingAppCoverage.Relationships.AppStoreVersion
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage/relationships/appstoreversion>
-         */
         public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -131,13 +110,6 @@ public struct RoutingAppCoverage: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # RoutingAppCoverage.Relationships.AppStoreVersion.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage/relationships/appstoreversion/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
@@ -166,13 +138,6 @@ public struct RoutingAppCoverage: Codable, Identifiable {
                 }
             }
 
-            /**
-             # RoutingAppCoverage.Relationships.AppStoreVersion.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage/relationships/appstoreversion/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

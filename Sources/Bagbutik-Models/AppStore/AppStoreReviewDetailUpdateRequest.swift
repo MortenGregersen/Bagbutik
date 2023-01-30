@@ -15,13 +15,6 @@ public struct AppStoreReviewDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # AppStoreReviewDetailUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appStoreReviewDetails" }
@@ -56,13 +49,6 @@ public struct AppStoreReviewDetailUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # AppStoreReviewDetailUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var contactEmail: String?
             public var contactFirstName: String?

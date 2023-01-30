@@ -56,6 +56,7 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case appStoreAgeRating
             case appStoreState
             case brazilAgeRating
+            case brazilAgeRatingV2
             case kidsAgeBand
             case primaryCategory
             case primarySubcategoryOne
