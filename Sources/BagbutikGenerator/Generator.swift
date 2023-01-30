@@ -101,11 +101,11 @@ public class Generator {
                         let name = "\(operation.name.capitalizingFirstLetter())\(path.info.version)"
                         self.print("⚡️ Generating endpoint \(name)...")
                         let fileName = "\(name).swift"
-                        let renderedOperation = try operationRenderer.render(operation: operation, in: path)
-                        let packageName: PackageName
                         guard let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
                             throw GeneratorError.noDocumentationForOperation(operation.id)
                         }
+                        let renderedOperation = try operationRenderer.render(operation: operation, in: path)
+                        let packageName: PackageName
                         packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
