@@ -41,16 +41,16 @@ public enum ListPricesForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppPriceTiers: String, ParameterValue, CaseIterable {
+        public enum AppPriceTiers: String, ParameterValue, Codable, CaseIterable {
             case pricePoints
         }
 
-        public enum AppPrices: String, ParameterValue, CaseIterable {
+        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
             case app
             case priceTier
         }
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents

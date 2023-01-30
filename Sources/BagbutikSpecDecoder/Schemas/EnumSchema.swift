@@ -10,6 +10,8 @@ public struct EnumSchema: Decodable, Equatable {
     public let url: String?
     /// The enum's cases
     public var cases: [EnumCase]
+    /// Additional protocols the enum should have when rendered
+    public var additionalProtocols: Set<String>
 
     private enum CodingKeys: String, CodingKey {
         case type
@@ -24,12 +26,14 @@ public struct EnumSchema: Decodable, Equatable {
         - type: The type of the value of the enum's cases
         - url: An url for the documentation for the enum
         - caseValues: Values for the enum's cases
+        - additionalProtocols: Additional protocols the enum should have when rendered
      */
-    public init(name: String, type: String, url: String? = nil, caseValues: [String]) {
+    public init(name: String, type: String, url: String? = nil, caseValues: [String], additionalProtocols: [String] = []) {
         self.name = name
         self.type = type
         self.url = url
         self.cases = caseValues.map { .init(id: $0.camelCased(with: "_"), value: $0) }
+        self.additionalProtocols = Set(additionalProtocols)
     }
 
     public init(from decoder: Decoder) throws {

@@ -40,7 +40,7 @@ public enum GetCiBuildRunV1 {
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -67,7 +67,7 @@ public enum GetCiBuildRunV1 {
             case version
         }
 
-        public enum CiBuildActions: String, ParameterValue, CaseIterable {
+        public enum CiBuildActions: String, ParameterValue, Codable, CaseIterable {
             case actionType
             case artifacts
             case buildRun
@@ -82,7 +82,7 @@ public enum GetCiBuildRunV1 {
             case testResults
         }
 
-        public enum CiBuildRuns: String, ParameterValue, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
             case actions
             case buildRun
             case builds

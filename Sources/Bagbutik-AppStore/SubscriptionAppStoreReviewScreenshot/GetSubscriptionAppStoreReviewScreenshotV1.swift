@@ -31,7 +31,7 @@ public enum GetSubscriptionAppStoreReviewScreenshotV1 {
         /// The fields to include for returned resources of type subscriptionAppStoreReviewScreenshots
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
 
-        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, CaseIterable {
+        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType

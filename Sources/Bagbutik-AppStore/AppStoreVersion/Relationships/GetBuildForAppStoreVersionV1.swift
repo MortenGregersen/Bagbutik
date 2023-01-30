@@ -28,7 +28,7 @@ public enum GetBuildForAppStoreVersionV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion

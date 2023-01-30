@@ -46,7 +46,7 @@ public enum GetInAppPurchaseV2 {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
 
-        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -59,7 +59,7 @@ public enum GetInAppPurchaseV2 {
             case uploaded
         }
 
-        public enum InAppPurchaseContents: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
             case fileName
             case fileSize
             case inAppPurchaseV2
@@ -67,7 +67,7 @@ public enum GetInAppPurchaseV2 {
             case url
         }
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
             case description
             case inAppPurchaseV2
             case locale
@@ -75,7 +75,7 @@ public enum GetInAppPurchaseV2 {
             case state
         }
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
             case priceTier
@@ -83,12 +83,12 @@ public enum GetInAppPurchaseV2 {
             case territory
         }
 
-        public enum InAppPurchasePriceSchedules: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchase
             case manualPrices
         }
 
-        public enum InAppPurchases: String, ParameterValue, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -106,7 +106,7 @@ public enum GetInAppPurchaseV2 {
             case state
         }
 
-        public enum PromotedPurchases: String, ParameterValue, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2

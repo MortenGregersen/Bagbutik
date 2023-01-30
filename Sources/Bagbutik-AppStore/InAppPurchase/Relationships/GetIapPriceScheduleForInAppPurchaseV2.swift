@@ -38,19 +38,19 @@ public enum GetIapPriceScheduleForInAppPurchaseV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchasePriceSchedules: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchase
             case manualPrices
         }
 
-        public enum InAppPurchasePrices: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePrices: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchasePricePoint
             case inAppPurchaseV2
             case startDate
             case territory
         }
 
-        public enum InAppPurchases: String, ParameterValue, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories

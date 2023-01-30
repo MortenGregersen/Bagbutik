@@ -30,7 +30,7 @@ public enum GetAppEventVideoClipV1 {
         /// The fields to include for returned resources of type appEventVideoClips
         case appEventVideoClips([AppEventVideoClips])
 
-        public enum AppEventVideoClips: String, ParameterValue, CaseIterable {
+        public enum AppEventVideoClips: String, ParameterValue, Codable, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState

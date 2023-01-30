@@ -33,7 +33,7 @@ public enum GetScmPullRequestV1 {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
 
-        public enum ScmPullRequests: String, ParameterValue, CaseIterable {
+        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner

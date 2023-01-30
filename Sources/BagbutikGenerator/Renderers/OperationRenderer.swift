@@ -203,9 +203,9 @@ public class OperationRenderer: Renderer {
                     case .enum(let type, let values):
                         if values.count > 0 {
                             let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                            let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
+                            let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
                             let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
-                                .render(enumSchema: enumSchema, additionalProtocol: "ParameterValue")
+                                .render(enumSchema: enumSchema)
                             fieldSubSchemas[name] = rendered
                             fields.append(EnumCase(id: name, value: "[\(enumName)]", deprecated: deprecated, documentation: documentation))
                         }
@@ -216,9 +216,9 @@ public class OperationRenderer: Renderer {
                         filters.append(EnumCase(id: name, value: "[\(type.description)]", documentation: documentation))
                     case .enum(let type, let values):
                         let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
-                        let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values)
+                        let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
                         let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
-                            .render(enumSchema: enumSchema, additionalProtocol: "ParameterValue")
+                            .render(enumSchema: enumSchema)
                         filterSubSchemas[name] = rendered
                         filters.append(EnumCase(id: name, value: "[\(enumName)]", documentation: documentation))
                     }

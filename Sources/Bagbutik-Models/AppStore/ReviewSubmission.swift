@@ -61,7 +61,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             self.submittedDate = submittedDate
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, ParameterValue, Codable, CaseIterable {
             case readyForReview = "READY_FOR_REVIEW"
             case waitingForReview = "WAITING_FOR_REVIEW"
             case inReview = "IN_REVIEW"

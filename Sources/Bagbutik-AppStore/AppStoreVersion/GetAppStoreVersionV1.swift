@@ -56,7 +56,7 @@ public enum GetAppStoreVersionV1 {
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, CaseIterable {
+        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -76,7 +76,7 @@ public enum GetAppStoreVersionV1 {
             case violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, CaseIterable {
+        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -85,7 +85,7 @@ public enum GetAppStoreVersionV1 {
             case releaseWithAppStoreVersion
         }
 
-        public enum AppStoreReviewDetails: String, ParameterValue, CaseIterable {
+        public enum AppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
             case appStoreReviewAttachments
             case appStoreVersion
             case contactEmail
@@ -98,7 +98,7 @@ public enum GetAppStoreVersionV1 {
             case notes
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case appStoreVersionExperimentTreatments
             case endDate
@@ -110,7 +110,7 @@ public enum GetAppStoreVersionV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -123,7 +123,7 @@ public enum GetAppStoreVersionV1 {
             case whatsNew
         }
 
-        public enum AppStoreVersionPhasedReleases: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionPhasedReleases: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
@@ -131,11 +131,11 @@ public enum GetAppStoreVersionV1 {
             case totalPauseDuration
         }
 
-        public enum AppStoreVersionSubmissions: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionSubmissions: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -157,7 +157,7 @@ public enum GetAppStoreVersionV1 {
             case versionString
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -184,7 +184,7 @@ public enum GetAppStoreVersionV1 {
             case version
         }
 
-        public enum CustomerReviews: String, ParameterValue, CaseIterable {
+        public enum CustomerReviews: String, ParameterValue, Codable, CaseIterable {
             case body
             case createdDate
             case rating
@@ -194,7 +194,7 @@ public enum GetAppStoreVersionV1 {
             case title
         }
 
-        public enum RoutingAppCoverages: String, ParameterValue, CaseIterable {
+        public enum RoutingAppCoverages: String, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
             case fileName

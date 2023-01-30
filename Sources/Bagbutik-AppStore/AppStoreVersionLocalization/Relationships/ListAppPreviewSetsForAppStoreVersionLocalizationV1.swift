@@ -45,7 +45,7 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -53,7 +53,7 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
             case promotionalText
         }
 
-        public enum AppPreviewSets: String, ParameterValue, CaseIterable {
+        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
@@ -61,7 +61,7 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
             case previewType
         }
 
-        public enum AppPreviews: String, ParameterValue, CaseIterable {
+        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSet
             case assetDeliveryState
             case fileName
@@ -75,14 +75,14 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
             case videoUrl
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -106,24 +106,6 @@ public enum ListAppPreviewSetsForAppStoreVersionLocalizationV1 {
         case appStoreVersionExperimentTreatmentLocalization([String])
         /// Filter by attribute 'previewType'
         case previewType([PreviewType])
-
-        public enum PreviewType: String, ParameterValue, CaseIterable {
-            case iPhone67 = "IPHONE_67"
-            case iPhone61 = "IPHONE_61"
-            case iPhone65 = "IPHONE_65"
-            case iPhone58 = "IPHONE_58"
-            case iPhone55 = "IPHONE_55"
-            case iPhone47 = "IPHONE_47"
-            case iPhone40 = "IPHONE_40"
-            case iPhone35 = "IPHONE_35"
-            case iPadPro3Gen129 = "IPAD_PRO_3GEN_129"
-            case iPadPro3Gen11 = "IPAD_PRO_3GEN_11"
-            case iPadPro129 = "IPAD_PRO_129"
-            case iPad105 = "IPAD_105"
-            case iPad97 = "IPAD_97"
-            case desktop = "DESKTOP"
-            case appleTV = "APPLE_TV"
-        }
     }
 
     /**

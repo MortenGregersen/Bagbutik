@@ -192,12 +192,12 @@ final class OperationRendererTests: XCTestCase {
                 @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
                 case vehicles([Vehicles])
 
-                public enum Devices: String, ParameterValue, CaseIterable {
+                public enum Devices: String, ParameterValue, Codable, CaseIterable {
                     case model
                     case os
                 }
 
-                public enum Vehicles: String, ParameterValue, CaseIterable {
+                public enum Vehicles: String, ParameterValue, Codable, CaseIterable {
                     case car
                     case bicycle
                 }
@@ -216,12 +216,12 @@ final class OperationRendererTests: XCTestCase {
                 /// Filter by vehicles properties
                 case vehicles_properties([VehiclesProperties])
 
-                public enum DevicesProperties: String, ParameterValue, CaseIterable {
+                public enum DevicesProperties: String, ParameterValue, Codable, CaseIterable {
                     case model
                     case os
                 }
 
-                public enum VehiclesProperties: String, ParameterValue, CaseIterable {
+                public enum VehiclesProperties: String, ParameterValue, Codable, CaseIterable {
                     case car
                     case bicycle
                 }
@@ -414,7 +414,7 @@ final class OperationRendererTests: XCTestCase {
                 ///
                 case subscriptionOfferCodeOneTimeUseCodes([SubscriptionOfferCodeOneTimeUseCodes])
 
-                public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, CaseIterable {
+                public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, Codable, CaseIterable {
                     case active
                     case createdDate
                     case expirationDate

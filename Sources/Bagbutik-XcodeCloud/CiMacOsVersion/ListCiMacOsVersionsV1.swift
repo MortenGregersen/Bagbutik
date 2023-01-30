@@ -36,13 +36,13 @@ public enum ListCiMacOsVersionsV1 {
         /// The fields to include for returned resources of type ciXcodeVersions
         case ciXcodeVersions([CiXcodeVersions])
 
-        public enum CiMacOsVersions: String, ParameterValue, CaseIterable {
+        public enum CiMacOsVersions: String, ParameterValue, Codable, CaseIterable {
             case name
             case version
             case xcodeVersions
         }
 
-        public enum CiXcodeVersions: String, ParameterValue, CaseIterable {
+        public enum CiXcodeVersions: String, ParameterValue, Codable, CaseIterable {
             case macOsVersions
             case name
             case testDestinations

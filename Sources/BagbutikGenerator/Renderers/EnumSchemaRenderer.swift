@@ -12,7 +12,7 @@ public class EnumSchemaRenderer: Renderer {
         - additionalProtocol: Any additional protocol the enum should conform to
      - Returns: The rendered enum schema
      */
-    public func render(enumSchema: EnumSchema, additionalProtocol: String = "Codable") throws -> String {
+    public func render(enumSchema: EnumSchema) throws -> String {
         var rendered = ""
         var documentation: EnumDocumentation?
         if let url = enumSchema.url,
@@ -28,7 +28,12 @@ public class EnumSchemaRenderer: Renderer {
                 return documentationContent
             } + "\n"
         }
-        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(additionalProtocol), CaseIterable {\n"
+        let protocols = enumSchema.additionalProtocols
+            .union(["Codable", "CaseIterable"])
+            .sorted()
+            .reversed()
+            .joined(separator: ", ")
+        rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(protocols) {\n"
         let cases = enumSchema.cases.map { enumCase -> EnumCase in
             var enumCase = enumCase
             enumCase.documentation = documentation?.cases[enumCase.value]

@@ -31,7 +31,7 @@ public enum ListProfilesForBundleIdV1 {
         /// The fields to include for returned resources of type profiles
         case profiles([Profiles])
 
-        public enum Profiles: String, ParameterValue, CaseIterable {
+        public enum Profiles: String, ParameterValue, Codable, CaseIterable {
             case bundleId
             case certificates
             case createdDate

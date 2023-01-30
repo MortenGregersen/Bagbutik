@@ -44,7 +44,7 @@ public enum ListProfilesV1 {
         /// The fields to include for returned resources of type profiles
         case profiles([Profiles])
 
-        public enum BundleIds: String, ParameterValue, CaseIterable {
+        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
             case app
             case bundleIdCapabilities
             case identifier
@@ -54,7 +54,7 @@ public enum ListProfilesV1 {
             case seedId
         }
 
-        public enum Certificates: String, ParameterValue, CaseIterable {
+        public enum Certificates: String, ParameterValue, Codable, CaseIterable {
             case certificateContent
             case certificateType
             case csrContent
@@ -65,7 +65,7 @@ public enum ListProfilesV1 {
             case serialNumber
         }
 
-        public enum Devices: String, ParameterValue, CaseIterable {
+        public enum Devices: String, ParameterValue, Codable, CaseIterable {
             case addedDate
             case deviceClass
             case model
@@ -75,7 +75,7 @@ public enum ListProfilesV1 {
             case udid
         }
 
-        public enum Profiles: String, ParameterValue, CaseIterable {
+        public enum Profiles: String, ParameterValue, Codable, CaseIterable {
             case bundleId
             case certificates
             case createdDate

@@ -31,7 +31,7 @@ public enum GetAppInfoLocalizationV1 {
         /// The fields to include for returned resources of type appInfoLocalizations
         case appInfoLocalizations([AppInfoLocalizations])
 
-        public enum AppInfoLocalizations: String, ParameterValue, CaseIterable {
+        public enum AppInfoLocalizations: String, ParameterValue, Codable, CaseIterable {
             case appInfo
             case locale
             case name

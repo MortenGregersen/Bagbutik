@@ -52,7 +52,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
 
-        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -65,7 +65,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case uploaded
         }
 
-        public enum InAppPurchaseContents: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
             case fileName
             case fileSize
             case inAppPurchaseV2
@@ -73,7 +73,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case url
         }
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, CaseIterable {
+        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
             case description
             case inAppPurchaseV2
             case locale
@@ -81,7 +81,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case state
         }
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
             case priceTier
@@ -89,12 +89,12 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case territory
         }
 
-        public enum InAppPurchasePriceSchedules: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchase
             case manualPrices
         }
 
-        public enum InAppPurchases: String, ParameterValue, CaseIterable {
+        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case availableInAllTerritories
@@ -112,7 +112,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case state
         }
 
-        public enum PromotedPurchases: String, ParameterValue, CaseIterable {
+        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2
@@ -134,28 +134,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         /// Filter by attribute 'productId'
         case productId([String])
         /// Filter by attribute 'state'
-        case state([State])
-
-        public enum InAppPurchaseType: String, ParameterValue, CaseIterable {
-            case consumable = "CONSUMABLE"
-            case nonConsumable = "NON_CONSUMABLE"
-            case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
-        }
-
-        public enum State: String, ParameterValue, CaseIterable {
-            case missingMetadata = "MISSING_METADATA"
-            case waitingForUpload = "WAITING_FOR_UPLOAD"
-            case processingContent = "PROCESSING_CONTENT"
-            case readyToSubmit = "READY_TO_SUBMIT"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
-            case pendingBinaryApproval = "PENDING_BINARY_APPROVAL"
-            case approved = "APPROVED"
-            case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case removedFromSale = "REMOVED_FROM_SALE"
-            case rejected = "REJECTED"
-        }
+        case state([InAppPurchaseState])
     }
 
     /**

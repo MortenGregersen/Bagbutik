@@ -40,19 +40,19 @@ public enum GetSalesReportsV1 {
         /// Filter by attribute 'version'
         case version([String])
 
-        public enum Frequency: String, ParameterValue, CaseIterable {
+        public enum Frequency: String, ParameterValue, Codable, CaseIterable {
             case daily = "DAILY"
             case weekly = "WEEKLY"
             case monthly = "MONTHLY"
             case yearly = "YEARLY"
         }
 
-        public enum ReportSubType: String, ParameterValue, CaseIterable {
+        public enum ReportSubType: String, ParameterValue, Codable, CaseIterable {
             case summary = "SUMMARY"
             case detailed = "DETAILED"
         }
 
-        public enum ReportType: String, ParameterValue, CaseIterable {
+        public enum ReportType: String, ParameterValue, Codable, CaseIterable {
             case sales = "SALES"
             case preOrder = "PRE_ORDER"
             case newsstand = "NEWSSTAND"

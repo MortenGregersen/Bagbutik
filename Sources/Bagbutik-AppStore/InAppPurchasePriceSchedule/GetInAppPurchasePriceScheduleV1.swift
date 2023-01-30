@@ -36,12 +36,12 @@ public enum GetInAppPurchasePriceScheduleV1 {
         /// The fields to include for returned resources of type inAppPurchasePrices
         case inAppPurchasePrices([InAppPurchasePrices])
 
-        public enum InAppPurchasePriceSchedules: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchase
             case manualPrices
         }
 
-        public enum InAppPurchasePrices: String, ParameterValue, CaseIterable {
+        public enum InAppPurchasePrices: String, ParameterValue, Codable, CaseIterable {
             case inAppPurchasePricePoint
             case inAppPurchaseV2
             case startDate

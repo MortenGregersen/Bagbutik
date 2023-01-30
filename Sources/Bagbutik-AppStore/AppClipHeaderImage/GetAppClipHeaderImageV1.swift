@@ -31,7 +31,7 @@ public enum GetAppClipHeaderImageV1 {
         /// The fields to include for returned resources of type appClipHeaderImages
         case appClipHeaderImages([AppClipHeaderImages])
 
-        public enum AppClipHeaderImages: String, ParameterValue, CaseIterable {
+        public enum AppClipHeaderImages: String, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperienceLocalization
             case assetDeliveryState
             case fileName

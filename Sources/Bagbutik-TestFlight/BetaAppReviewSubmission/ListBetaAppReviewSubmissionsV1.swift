@@ -37,13 +37,13 @@ public enum ListBetaAppReviewSubmissionsV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
+        public enum BetaAppReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
             case betaReviewState
             case build
             case submittedDate
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -81,13 +81,6 @@ public enum ListBetaAppReviewSubmissionsV1 {
         case betaReviewState([BetaReviewState])
         /// Filter by id(s) of related 'build'
         case build([String])
-
-        public enum BetaReviewState: String, ParameterValue, CaseIterable {
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case rejected = "REJECTED"
-            case approved = "APPROVED"
-        }
     }
 
     /**

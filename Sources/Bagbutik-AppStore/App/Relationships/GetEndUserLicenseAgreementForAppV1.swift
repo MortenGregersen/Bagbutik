@@ -28,7 +28,7 @@ public enum GetEndUserLicenseAgreementForAppV1 {
         /// The fields to include for returned resources of type endUserLicenseAgreements
         case endUserLicenseAgreements([EndUserLicenseAgreements])
 
-        public enum EndUserLicenseAgreements: String, ParameterValue, CaseIterable {
+        public enum EndUserLicenseAgreements: String, ParameterValue, Codable, CaseIterable {
             case agreementText
             case app
             case territories

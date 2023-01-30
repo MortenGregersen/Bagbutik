@@ -36,7 +36,7 @@ public enum ListCustomCodesForSubscriptionOfferCodeV1 {
         /// The fields to include for returned resources of type subscriptionOfferCodes
         case subscriptionOfferCodes([SubscriptionOfferCodes])
 
-        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, CaseIterable {
+        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
             case customCode
@@ -45,7 +45,7 @@ public enum ListCustomCodesForSubscriptionOfferCodeV1 {
             case offerCode
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, CaseIterable {
+        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
             case active
             case customCodes
             case customerEligibilities

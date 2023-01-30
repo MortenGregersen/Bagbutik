@@ -44,7 +44,7 @@ public enum ListSubscriptionGroupsForAppV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionGroupLocalizations: String, ParameterValue, CaseIterable {
+        public enum SubscriptionGroupLocalizations: String, ParameterValue, Codable, CaseIterable {
             case customAppName
             case locale
             case name
@@ -52,14 +52,14 @@ public enum ListSubscriptionGroupsForAppV1 {
             case subscriptionGroup
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, CaseIterable {
+        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
         }
 
-        public enum Subscriptions: String, ParameterValue, CaseIterable {
+        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case availableInAllTerritories
             case familySharable
@@ -89,7 +89,7 @@ public enum ListSubscriptionGroupsForAppV1 {
         /// Filter by attribute 'subscriptions.state'
         case subscriptions_state([SubscriptionsState])
 
-        public enum SubscriptionsState: String, ParameterValue, CaseIterable {
+        public enum SubscriptionsState: String, ParameterValue, Codable, CaseIterable {
             case missingMetadata = "MISSING_METADATA"
             case readyToSubmit = "READY_TO_SUBMIT"
             case waitingForReview = "WAITING_FOR_REVIEW"

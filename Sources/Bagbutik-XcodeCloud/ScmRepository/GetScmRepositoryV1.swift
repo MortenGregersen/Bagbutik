@@ -37,7 +37,7 @@ public enum GetScmRepositoryV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum ScmGitReferences: String, ParameterValue, CaseIterable {
+        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
             case canonicalName
             case isDeleted
             case kind
@@ -45,7 +45,7 @@ public enum GetScmRepositoryV1 {
             case repository
         }
 
-        public enum ScmPullRequests: String, ParameterValue, CaseIterable {
+        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner
@@ -60,7 +60,7 @@ public enum GetScmRepositoryV1 {
             case webUrl
         }
 
-        public enum ScmRepositories: String, ParameterValue, CaseIterable {
+        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl

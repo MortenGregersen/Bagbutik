@@ -36,7 +36,7 @@ public enum ListDiagnosticSignaturesForBuildV1 {
         /// The fields to include for returned resources of type diagnosticSignatures
         case diagnosticSignatures([DiagnosticSignatures])
 
-        public enum DiagnosticSignatures: String, ParameterValue, CaseIterable {
+        public enum DiagnosticSignatures: String, ParameterValue, Codable, CaseIterable {
             case diagnosticType
             case logs
             case signature
@@ -51,7 +51,7 @@ public enum ListDiagnosticSignaturesForBuildV1 {
         /// Filter by attribute 'diagnosticType'
         case diagnosticType([DiagnosticType])
 
-        public enum DiagnosticType: String, ParameterValue, CaseIterable {
+        public enum DiagnosticType: String, ParameterValue, Codable, CaseIterable {
             case diskWrites = "DISK_WRITES"
             case hangs = "HANGS"
         }

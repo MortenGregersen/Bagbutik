@@ -41,7 +41,7 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
         /// The fields to include for returned resources of type gameCenterEnabledVersions
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -82,7 +82,7 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum GameCenterEnabledVersions: String, ParameterValue, CaseIterable {
+        public enum GameCenterEnabledVersions: String, ParameterValue, Codable, CaseIterable {
             case app
             case compatibleVersions
             case iconAsset
@@ -103,12 +103,6 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
         case platform([Platform])
         /// Filter by attribute 'versionString'
         case versionString([String])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
     }
 
     /**

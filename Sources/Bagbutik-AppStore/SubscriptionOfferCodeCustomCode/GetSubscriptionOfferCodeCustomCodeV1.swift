@@ -31,7 +31,7 @@ public enum GetSubscriptionOfferCodeCustomCodeV1 {
         /// The fields to include for returned resources of type subscriptionOfferCodeCustomCodes
         case subscriptionOfferCodeCustomCodes([SubscriptionOfferCodeCustomCodes])
 
-        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, CaseIterable {
+        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
             case customCode

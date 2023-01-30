@@ -62,7 +62,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, CaseIterable {
+        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclarationState
             case availableOnFrenchStore
@@ -79,7 +79,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case usesEncryption
         }
 
-        public enum AppStoreVersions: String, ParameterValue, CaseIterable {
+        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
             case appClipDefaultExperience
@@ -101,7 +101,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -142,19 +142,19 @@ public enum ListBuildsForCiBuildRunV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaAppReviewSubmissions: String, ParameterValue, CaseIterable {
+        public enum BetaAppReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
             case betaReviewState
             case build
             case submittedDate
         }
 
-        public enum BetaBuildLocalizations: String, ParameterValue, CaseIterable {
+        public enum BetaBuildLocalizations: String, ParameterValue, Codable, CaseIterable {
             case build
             case locale
             case whatsNew
         }
 
-        public enum BetaGroups: String, ParameterValue, CaseIterable {
+        public enum BetaGroups: String, ParameterValue, Codable, CaseIterable {
             case app
             case betaTesters
             case builds
@@ -171,7 +171,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case publicLinkLimitEnabled
         }
 
-        public enum BetaTesters: String, ParameterValue, CaseIterable {
+        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
             case apps
             case betaGroups
             case builds
@@ -181,14 +181,14 @@ public enum ListBuildsForCiBuildRunV1 {
             case lastName
         }
 
-        public enum BuildBetaDetails: String, ParameterValue, CaseIterable {
+        public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
             case autoNotifyEnabled
             case build
             case externalBuildState
             case internalBuildState
         }
 
-        public enum BuildBundles: String, ParameterValue, CaseIterable {
+        public enum BuildBundles: String, ParameterValue, Codable, CaseIterable {
             case appClipDomainCacheStatus
             case appClipDomainDebugStatus
             case betaAppClipInvocations
@@ -212,13 +212,13 @@ public enum ListBuildsForCiBuildRunV1 {
             case usesLocationServices
         }
 
-        public enum BuildIcons: String, ParameterValue, CaseIterable {
+        public enum BuildIcons: String, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
             case name
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -245,7 +245,7 @@ public enum ListBuildsForCiBuildRunV1 {
             case version
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, CaseIterable {
+        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
             case app
             case builds
             case platform
@@ -262,7 +262,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// Filter by id(s) of related 'appStoreVersion'
         case appStoreVersion([String])
         /// Filter by attribute 'betaAppReviewSubmission.betaReviewState'
-        case betaAppReviewSubmission_betaReviewState([BetaAppReviewSubmissionBetaReviewState])
+        case betaAppReviewSubmission_betaReviewState([BetaReviewState])
         /// Filter by id(s) of related 'betaGroups'
         case betaGroups([String])
         /// Filter by attribute 'buildAudienceType'
@@ -274,7 +274,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// Filter by id(s) of related 'preReleaseVersion'
         case preReleaseVersion([String])
         /// Filter by attribute 'preReleaseVersion.platform'
-        case preReleaseVersion_platform([PreReleaseVersionPlatform])
+        case preReleaseVersion_platform([Platform])
         /// Filter by attribute 'preReleaseVersion.version'
         case preReleaseVersion_version([String])
         /// Filter by attribute 'processingState'
@@ -284,25 +284,7 @@ public enum ListBuildsForCiBuildRunV1 {
         /// Filter by attribute 'version'
         case version([String])
 
-        public enum BetaAppReviewSubmissionBetaReviewState: String, ParameterValue, CaseIterable {
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case rejected = "REJECTED"
-            case approved = "APPROVED"
-        }
-
-        public enum BuildAudienceType: String, ParameterValue, CaseIterable {
-            case internalOnly = "INTERNAL_ONLY"
-            case appStoreEligible = "APP_STORE_ELIGIBLE"
-        }
-
-        public enum PreReleaseVersionPlatform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-            case tvOS = "TV_OS"
-        }
-
-        public enum ProcessingState: String, ParameterValue, CaseIterable {
+        public enum ProcessingState: String, ParameterValue, Codable, CaseIterable {
             case processing = "PROCESSING"
             case failed = "FAILED"
             case invalid = "INVALID"

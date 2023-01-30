@@ -46,7 +46,7 @@ public enum GetBuildRunForCiBuildActionV1 {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -73,7 +73,7 @@ public enum GetBuildRunForCiBuildActionV1 {
             case version
         }
 
-        public enum CiBuildRuns: String, ParameterValue, CaseIterable {
+        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -97,7 +97,7 @@ public enum GetBuildRunForCiBuildActionV1 {
             case workflow
         }
 
-        public enum CiProducts: String, ParameterValue, CaseIterable {
+        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -109,7 +109,7 @@ public enum GetBuildRunForCiBuildActionV1 {
             case workflows
         }
 
-        public enum CiWorkflows: String, ParameterValue, CaseIterable {
+        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
             case actions
             case branchStartCondition
             case buildRuns
@@ -129,7 +129,7 @@ public enum GetBuildRunForCiBuildActionV1 {
             case xcodeVersion
         }
 
-        public enum ScmGitReferences: String, ParameterValue, CaseIterable {
+        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
             case canonicalName
             case isDeleted
             case kind
@@ -137,7 +137,7 @@ public enum GetBuildRunForCiBuildActionV1 {
             case repository
         }
 
-        public enum ScmPullRequests: String, ParameterValue, CaseIterable {
+        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner

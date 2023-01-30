@@ -44,7 +44,7 @@ public enum ListBundleIdsV1 {
         /// The fields to include for returned resources of type profiles
         case profiles([Profiles])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -85,13 +85,13 @@ public enum ListBundleIdsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BundleIdCapabilities: String, ParameterValue, CaseIterable {
+        public enum BundleIdCapabilities: String, ParameterValue, Codable, CaseIterable {
             case bundleId
             case capabilityType
             case settings
         }
 
-        public enum BundleIds: String, ParameterValue, CaseIterable {
+        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
             case app
             case bundleIdCapabilities
             case identifier
@@ -101,7 +101,7 @@ public enum ListBundleIdsV1 {
             case seedId
         }
 
-        public enum Profiles: String, ParameterValue, CaseIterable {
+        public enum Profiles: String, ParameterValue, Codable, CaseIterable {
             case bundleId
             case certificates
             case createdDate
@@ -127,14 +127,9 @@ public enum ListBundleIdsV1 {
         /// Filter by attribute 'name'
         case name([String])
         /// Filter by attribute 'platform'
-        case platform([Platform])
+        case platform([BundleIdPlatform])
         /// Filter by attribute 'seedId'
         case seedId([String])
-
-        public enum Platform: String, ParameterValue, CaseIterable {
-            case iOS = "IOS"
-            case macOS = "MAC_OS"
-        }
     }
 
     /**

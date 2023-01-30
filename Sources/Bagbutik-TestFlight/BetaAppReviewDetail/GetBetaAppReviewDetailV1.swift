@@ -33,7 +33,7 @@ public enum GetBetaAppReviewDetailV1 {
         /// The fields to include for returned resources of type betaAppReviewDetails
         case betaAppReviewDetails([BetaAppReviewDetails])
 
-        public enum Apps: String, ParameterValue, CaseIterable {
+        public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case appClips
             case appCustomProductPages
             case appEvents
@@ -74,7 +74,7 @@ public enum GetBetaAppReviewDetailV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaAppReviewDetails: String, ParameterValue, CaseIterable {
+        public enum BetaAppReviewDetails: String, ParameterValue, Codable, CaseIterable {
             case app
             case contactEmail
             case contactFirstName

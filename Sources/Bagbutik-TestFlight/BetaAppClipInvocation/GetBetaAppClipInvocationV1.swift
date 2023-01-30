@@ -34,7 +34,7 @@ public enum GetBetaAppClipInvocationV1 {
         /// The fields to include for returned resources of type betaAppClipInvocations
         case betaAppClipInvocations([BetaAppClipInvocations])
 
-        public enum BetaAppClipInvocations: String, ParameterValue, CaseIterable {
+        public enum BetaAppClipInvocations: String, ParameterValue, Codable, CaseIterable {
             case betaAppClipInvocationLocalizations
             case buildBundle
             case url

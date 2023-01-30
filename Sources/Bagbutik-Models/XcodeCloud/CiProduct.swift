@@ -83,7 +83,7 @@ public struct CiProduct: Codable, Identifiable {
             self.productType = productType
         }
 
-        public enum ProductType: String, Codable, CaseIterable {
+        public enum ProductType: String, ParameterValue, Codable, CaseIterable {
             case app = "APP"
             case framework = "FRAMEWORK"
         }

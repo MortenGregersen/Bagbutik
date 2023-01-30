@@ -112,7 +112,7 @@ public struct Build: Codable, Identifiable {
             self.version = version
         }
 
-        public enum ProcessingState: String, Codable, CaseIterable {
+        public enum ProcessingState: String, ParameterValue, Codable, CaseIterable {
             case processing = "PROCESSING"
             case failed = "FAILED"
             case invalid = "INVALID"

@@ -28,7 +28,7 @@ public enum GetBuildBetaDetailForBuildV1 {
         /// The fields to include for returned resources of type buildBetaDetails
         case buildBetaDetails([BuildBetaDetails])
 
-        public enum BuildBetaDetails: String, ParameterValue, CaseIterable {
+        public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
             case autoNotifyEnabled
             case build
             case externalBuildState

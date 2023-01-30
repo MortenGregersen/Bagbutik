@@ -37,14 +37,14 @@ public enum ListBuildBetaDetailsV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum BuildBetaDetails: String, ParameterValue, CaseIterable {
+        public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
             case autoNotifyEnabled
             case build
             case externalBuildState
             case internalBuildState
         }
 
-        public enum Builds: String, ParameterValue, CaseIterable {
+        public enum Builds: String, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
