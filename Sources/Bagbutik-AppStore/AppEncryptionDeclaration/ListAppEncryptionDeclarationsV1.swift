@@ -12,18 +12,18 @@ public extension Request {
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
      - Parameter includes: Relationship data to include in the response
-     - Parameter limit: Maximum resources per page - maximum 200
+     - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listAppEncryptionDeclarationsV1(fields: [ListAppEncryptionDeclarationsV1.Field]? = nil,
                                                 filters: [ListAppEncryptionDeclarationsV1.Filter]? = nil,
                                                 includes: [ListAppEncryptionDeclarationsV1.Include]? = nil,
-                                                limit: Int? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse>
+                                                limits: [ListAppEncryptionDeclarationsV1.Limit]? = nil) -> Request<AppEncryptionDeclarationsResponse, ErrorResponse>
     {
         .init(path: "/v1/appEncryptionDeclarations", method: .get, parameters: .init(fields: fields,
                                                                                      filters: filters,
                                                                                      includes: includes,
-                                                                                     limit: limit))
+                                                                                     limits: limits))
     }
 }
 
@@ -32,19 +32,36 @@ public enum ListAppEncryptionDeclarationsV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appEncryptionDeclarationDocuments
+        case appEncryptionDeclarationDocuments([AppEncryptionDeclarationDocuments])
         /// The fields to include for returned resources of type appEncryptionDeclarations
         case appEncryptionDeclarations([AppEncryptionDeclarations])
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
+        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+            case appEncryptionDeclaration
+            case assetDeliveryState
+            case assetToken
+            case downloadUrl
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+        }
+
         public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
             case app
+            case appDescription
+            case appEncryptionDeclarationDocument
             case appEncryptionDeclarationState
             case availableOnFrenchStore
             case builds
             case codeValue
             case containsProprietaryCryptography
             case containsThirdPartyCryptography
+            case createdDate
             case documentName
             case documentType
             case documentUrl
@@ -113,5 +130,17 @@ public enum ListAppEncryptionDeclarationsV1 {
      */
     public enum Include: String, IncludeParameter {
         case app
+        case appEncryptionDeclarationDocument
+        case builds
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related builds returned (when they are included) - maximum 50
+        case builds(Int)
+        /// Maximum resources per page - maximum 200
+        case limit(Int)
     }
 }

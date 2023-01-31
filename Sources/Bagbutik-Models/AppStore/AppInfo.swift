@@ -72,19 +72,50 @@ public struct AppInfo: Codable, Identifiable {
         /// The state of an app version in the App Store.
         public var appStoreState: AppStoreVersionState?
         /// The app’s age rating as it appears on the App Store in Brazil for all platforms.
-        public var brazilAgeRating: BrazilAgeRating?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var brazilAgeRating: BrazilAgeRating? = nil
+        public var brazilAgeRatingV2: BrazilAgeRatingV2?
         /// A Made for Kids app’s age band.
         public var kidsAgeBand: KidsAgeBand?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appStoreAgeRating: AppStoreAgeRating? = nil,
                     appStoreState: AppStoreVersionState? = nil,
                     brazilAgeRating: BrazilAgeRating? = nil,
+                    brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
                     kidsAgeBand: KidsAgeBand? = nil)
         {
             self.appStoreAgeRating = appStoreAgeRating
             self.appStoreState = appStoreState
             self.brazilAgeRating = brazilAgeRating
+            self.brazilAgeRatingV2 = brazilAgeRatingV2
             self.kidsAgeBand = kidsAgeBand
+        }
+
+        public init(appStoreAgeRating: AppStoreAgeRating? = nil,
+                    appStoreState: AppStoreVersionState? = nil,
+                    brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
+                    kidsAgeBand: KidsAgeBand? = nil)
+        {
+            self.appStoreAgeRating = appStoreAgeRating
+            self.appStoreState = appStoreState
+            self.brazilAgeRatingV2 = brazilAgeRatingV2
+            self.kidsAgeBand = kidsAgeBand
+        }
+
+        public enum BrazilAgeRatingV2: String, Codable, CaseIterable {
+            case selfRatedL = "SELF_RATED_L"
+            case selfRatedTen = "SELF_RATED_TEN"
+            case selfRatedTwelve = "SELF_RATED_TWELVE"
+            case selfRatedFourteen = "SELF_RATED_FOURTEEN"
+            case selfRatedSixteen = "SELF_RATED_SIXTEEN"
+            case selfRatedEighteen = "SELF_RATED_EIGHTEEN"
+            case officialL = "OFFICIAL_L"
+            case officialTen = "OFFICIAL_TEN"
+            case officialTwelve = "OFFICIAL_TWELVE"
+            case officialFourteen = "OFFICIAL_FOURTEEN"
+            case officialSixteen = "OFFICIAL_SIXTEEN"
+            case officialEighteen = "OFFICIAL_EIGHTEEN"
         }
     }
 

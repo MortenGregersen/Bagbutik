@@ -135,7 +135,7 @@ public enum GetInAppPurchaseV2 {
     public enum Limit: LimitParameter {
         /// Maximum number of related inAppPurchaseLocalizations returned (when they are included) - maximum 50
         case inAppPurchaseLocalizations(Int)
-        /// Maximum number of related pricePoints returned (when they are included) - maximum 40000
+        /// Maximum number of related pricePoints returned (when they are included) - maximum 8000
         case pricePoints(Int)
     }
 }

@@ -41,4 +41,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test
-      run: swift test -v --enable-code-coverage
+      run: swift test -v

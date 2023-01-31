@@ -12,14 +12,17 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
      - Parameter includes: Relationship data to include in the response
+     - Parameter limit: Maximum number of related builds returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEncryptionDeclarationV1(id: String,
                                               fields: [GetAppEncryptionDeclarationV1.Field]? = nil,
-                                              includes: [GetAppEncryptionDeclarationV1.Include]? = nil) -> Request<AppEncryptionDeclarationResponse, ErrorResponse>
+                                              includes: [GetAppEncryptionDeclarationV1.Include]? = nil,
+                                              limit: Int? = nil) -> Request<AppEncryptionDeclarationResponse, ErrorResponse>
     {
         .init(path: "/v1/appEncryptionDeclarations/\(id)", method: .get, parameters: .init(fields: fields,
-                                                                                           includes: includes))
+                                                                                           includes: includes,
+                                                                                           limit: limit))
     }
 }
 
@@ -28,19 +31,36 @@ public enum GetAppEncryptionDeclarationV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appEncryptionDeclarationDocuments
+        case appEncryptionDeclarationDocuments([AppEncryptionDeclarationDocuments])
         /// The fields to include for returned resources of type appEncryptionDeclarations
         case appEncryptionDeclarations([AppEncryptionDeclarations])
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
+        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+            case appEncryptionDeclaration
+            case assetDeliveryState
+            case assetToken
+            case downloadUrl
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+            case uploaded
+        }
+
         public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
             case app
+            case appDescription
+            case appEncryptionDeclarationDocument
             case appEncryptionDeclarationState
             case availableOnFrenchStore
             case builds
             case codeValue
             case containsProprietaryCryptography
             case containsThirdPartyCryptography
+            case createdDate
             case documentName
             case documentType
             case documentUrl
@@ -97,5 +117,7 @@ public enum GetAppEncryptionDeclarationV1 {
      */
     public enum Include: String, IncludeParameter {
         case app
+        case appEncryptionDeclarationDocument
+        case builds
     }
 }

@@ -167,7 +167,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseLocalizations(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
-        /// Maximum number of related pricePoints returned (when they are included) - maximum 40000
+        /// Maximum number of related pricePoints returned (when they are included) - maximum 8000
         case pricePoints(Int)
     }
 }
