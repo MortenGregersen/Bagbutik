@@ -48,8 +48,17 @@ public struct PerfPowerMetric: Codable, Identifiable {
         case type
     }
 
+    /**
+     # PerfPowerMetric.Attributes
+     Attributes that describe a Power and Performance Metrics resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric/attributes>
+     */
     public struct Attributes: Codable {
+        /// A string that represents the device type.
         public var deviceType: String?
+        /// For more information about metric types, see [MetricCategory](https://developer.apple.com/documentation/appstoreconnectapi/metriccategory).
         public var metricType: MetricType?
         public var platform: Platform?
 

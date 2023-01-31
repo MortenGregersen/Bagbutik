@@ -54,6 +54,13 @@ public struct AppScreenshot: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppScreenshot.Attributes
+     Attributes that describe an App Screenshots resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/attributes>
+     */
     public struct Attributes: Codable {
         public var assetDeliveryState: AppMediaAssetState?
         public var assetToken: String?
@@ -84,6 +91,13 @@ public struct AppScreenshot: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppScreenshot.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/relationships>
+     */
     public struct Relationships: Codable {
         public var appScreenshotSet: AppScreenshotSet?
 
@@ -91,6 +105,13 @@ public struct AppScreenshot: Codable, Identifiable {
             self.appScreenshotSet = appScreenshotSet
         }
 
+        /**
+         # AppScreenshot.Relationships.AppScreenshotSet
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/relationships/appscreenshotset>
+         */
         public struct AppScreenshotSet: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -119,6 +140,13 @@ public struct AppScreenshot: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppScreenshot.Relationships.AppScreenshotSet.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/relationships/appscreenshotset/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshotSets" }
@@ -147,6 +175,13 @@ public struct AppScreenshot: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppScreenshot.Relationships.AppScreenshotSet.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshot/relationships/appscreenshotset/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

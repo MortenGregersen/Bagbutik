@@ -19,6 +19,13 @@ public struct AppStoreVersionBuildLinkageResponse: Codable {
         self.links = links
     }
 
+    /**
+     # AppStoreVersionBuildLinkageResponse.Data
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkageresponse/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "builds" }

@@ -59,9 +59,19 @@ public struct CiXcodeVersion: Codable, Identifiable {
         case type
     }
 
+    /**
+     # CiXcodeVersion.Attributes
+     The attributes that describe an Xcode Versions resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes>
+     */
     public struct Attributes: Codable {
+        /// The name of the Xcode version.
         public var name: String?
+        /// A list of the Xcode version’s available test destinations.
         public var testDestinations: [TestDestinations]?
+        /// The Xcode version.
         public var version: String?
 
         public init(name: String? = nil,
@@ -73,10 +83,21 @@ public struct CiXcodeVersion: Codable, Identifiable {
             self.version = version
         }
 
+        /**
+         # CiXcodeVersion.Attributes.TestDestinations
+         The test destinations available for an Xcode version.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes/testdestinations>
+         */
         public struct TestDestinations: Codable {
+            /// A list of runtimes available for the Xcode version.
             public var availableRuntimes: [AvailableRuntimes]?
+            /// A string that uniquely identifies the simulated device Xcode Cloud uses for a test action; for example, `com.apple.CoreSimulator.SimDeviceType.iPhone-12`.
             public var deviceTypeIdentifier: String?
+            /// The display name of the simulated device Xcode Cloud uses for a test action; for example, `iPhone 12`.
             public var deviceTypeName: String?
+            /// A string that indicates whether a test destination is a simulated device or a Mac.
             public var kind: CiTestDestinationKind?
 
             public init(availableRuntimes: [AvailableRuntimes]? = nil,
@@ -90,8 +111,17 @@ public struct CiXcodeVersion: Codable, Identifiable {
                 self.kind = kind
             }
 
+            /**
+             # CiXcodeVersion.Attributes.TestDestinations.AvailableRuntimes
+             The data structure that represents the available runtimes for test destinations of an Xcode Versions resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes/testdestinations/availableruntimes>
+             */
             public struct AvailableRuntimes: Codable {
+                /// A string that identifies the simulated environment Xcode Cloud uses for a test action.
                 public var runtimeIdentifier: String?
+                /// The name of the operating system of the simulated environment Xcode Cloud uses.
                 public var runtimeName: String?
 
                 public init(runtimeIdentifier: String? = nil,
@@ -104,16 +134,34 @@ public struct CiXcodeVersion: Codable, Identifiable {
         }
     }
 
+    /**
+     # CiXcodeVersion.Relationships
+     The relationships of the Xcode Versions resource you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships>
+     */
     public struct Relationships: Codable {
+        /// The related macOS Versions resource.
         public var macOsVersions: MacOsVersions?
 
         public init(macOsVersions: MacOsVersions? = nil) {
             self.macOsVersions = macOsVersions
         }
 
+        /**
+         # CiXcodeVersion.Relationships.MacOsVersions
+         The data, links, and paging information that describe the relationship between the Xcode Versions and the macOS Versions resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions>
+         */
         public struct MacOsVersions: Codable {
+            /// The ID and type of the related macOS Versions resource.
             @NullCodable public var data: [Data]?
+            /// The navigational links that include the self-link.
             public var links: Links?
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
@@ -145,8 +193,17 @@ public struct CiXcodeVersion: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # CiXcodeVersion.Relationships.MacOsVersions.Data
+             The type and ID of a related macOS Versions resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "ciMacOsVersions" }
 
                 public init(id: String) {
@@ -173,8 +230,17 @@ public struct CiXcodeVersion: Codable, Identifiable {
                 }
             }
 
+            /**
+             # CiXcodeVersion.Relationships.MacOsVersions.Links
+             The links to the related macOS Versions resources and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,

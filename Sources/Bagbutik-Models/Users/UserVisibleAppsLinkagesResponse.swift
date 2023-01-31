@@ -25,8 +25,17 @@ public struct UserVisibleAppsLinkagesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    /**
+     # UserVisibleAppsLinkagesResponse.Data
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/uservisibleappslinkagesresponse/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "apps" }
 
         public init(id: String) {

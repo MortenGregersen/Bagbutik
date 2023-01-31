@@ -54,6 +54,13 @@ public struct AppCategory: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppCategory.Attributes
+     Attributes that describe an App Categories resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/attributes>
+     */
     public struct Attributes: Codable {
         public var platforms: [Platform]?
 
@@ -62,6 +69,13 @@ public struct AppCategory: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppCategory.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships>
+     */
     public struct Relationships: Codable {
         public var parent: Parent?
         public var subcategories: Subcategories?
@@ -73,6 +87,13 @@ public struct AppCategory: Codable, Identifiable {
             self.subcategories = subcategories
         }
 
+        /**
+         # AppCategory.Relationships.Parent
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent>
+         */
         public struct Parent: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -101,6 +122,13 @@ public struct AppCategory: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppCategory.Relationships.Parent.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCategories" }
@@ -129,6 +157,13 @@ public struct AppCategory: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppCategory.Relationships.Parent.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -159,6 +194,13 @@ public struct AppCategory: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppCategory.Relationships.Subcategories
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories>
+         */
         public struct Subcategories: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -193,6 +235,13 @@ public struct AppCategory: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # AppCategory.Relationships.Subcategories.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCategories" }
@@ -221,6 +270,13 @@ public struct AppCategory: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppCategory.Relationships.Subcategories.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

@@ -59,8 +59,19 @@ public struct BetaBuildLocalization: Codable, Identifiable {
         case type
     }
 
+    /**
+     # BetaBuildLocalization.Attributes
+     Attributes that describe a Beta Build Localizations resource.
+
+     Table 1 lists allowed locale values.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/attributes>
+     */
     public struct Attributes: Codable {
+        /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalization/attributes#3042206) for possible values.
         public var locale: String?
+        /// A field that describes changes and additions to a build and indicates features you would like your users to test.
         public var whatsNew: String?
 
         public init(locale: String? = nil,
@@ -71,6 +82,13 @@ public struct BetaBuildLocalization: Codable, Identifiable {
         }
     }
 
+    /**
+     # BetaBuildLocalization.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships>
+     */
     public struct Relationships: Codable {
         public var build: Build?
 
@@ -78,6 +96,13 @@ public struct BetaBuildLocalization: Codable, Identifiable {
             self.build = build
         }
 
+        /**
+         # BetaBuildLocalization.Relationships.Build
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build>
+         */
         public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -106,8 +131,17 @@ public struct BetaBuildLocalization: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # BetaBuildLocalization.Relationships.Build.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -134,6 +168,13 @@ public struct BetaBuildLocalization: Codable, Identifiable {
                 }
             }
 
+            /**
+             # BetaBuildLocalization.Relationships.Build.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

@@ -16,8 +16,17 @@ public struct BuildBetaGroupsLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # BuildBetaGroupsLinkagesRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetagroupslinkagesrequest/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "betaGroups" }
 
         public init(id: String) {

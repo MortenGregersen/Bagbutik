@@ -52,8 +52,17 @@ public struct BetaAppClipInvocationLocalization: Codable, Identifiable {
         case type
     }
 
+    /**
+     # BetaAppClipInvocationLocalization.Attributes
+     The attributes that describe a Beta App Clip Invocation Localizations resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalization/attributes>
+     */
     public struct Attributes: Codable {
+        /// The specified locale. Refer to ``BetaAppLocalizationCreateRequest/Data/Attributes`` for possible values.
         public var locale: String?
+        /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
         public var title: String?
 
         public init(locale: String? = nil,

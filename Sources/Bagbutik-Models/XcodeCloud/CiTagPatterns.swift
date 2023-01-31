@@ -21,8 +21,17 @@ public struct CiTagPatterns: Codable {
         self.patterns = patterns
     }
 
+    /**
+     # CiTagPatterns.Patterns
+     A case-sensitive pattern Xcode Cloud uses to determine if a change meets tag names you configure for a workflow’s start condition.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/citagpatterns/patterns>
+     */
     public struct Patterns: Codable {
+        /// A Boolean value that indicates whether the pattern matches the start of a tag name, or the exact tag name.
         public var isPrefix: Bool?
+        /// A case-sensitive string. If the string is a prefix pattern, Xcode Cloud starts a build when the changed tag name starts with this string. Otherwise, Xcode Cloud starts a build when the changed tag name exactly matches this string.
         public var pattern: String?
 
         public init(isPrefix: Bool? = nil,

@@ -16,6 +16,13 @@ public struct BundleIdUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # BundleIdUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "bundleIds" }
@@ -50,6 +57,13 @@ public struct BundleIdUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # BundleIdUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var name: String?
 
