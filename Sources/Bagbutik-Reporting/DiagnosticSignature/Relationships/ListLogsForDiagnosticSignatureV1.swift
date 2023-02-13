@@ -16,7 +16,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func listLogsForDiagnosticSignatureV1(id: String,
-                                                 limit: Int? = nil) -> Request<EmptyResponse, ErrorResponse>
+                                                 limit: Int? = nil) -> Request<DiagnosticLogs, ErrorResponse>
     {
         .init(path: "/v1/diagnosticSignatures/\(id)/logs", method: .get, parameters: .init(limit: limit))
     }
