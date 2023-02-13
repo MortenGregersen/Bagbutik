@@ -165,6 +165,7 @@ public struct Operation: Decodable, Equatable {
         else if let gzipResponseType = try responseType(forMimeType: "application/a-gzip", in: contentContainer) { return gzipResponseType }
         else if let csvResponseType = try responseType(forMimeType: "text/csv", in: contentContainer) { return csvResponseType }
         else if let xcodeMetricsResponseType = try responseType(forMimeType: "application/vnd.apple.xcode-metrics+json", in: contentContainer) { return xcodeMetricsResponseType }
+        else if let diagnosticLogsResponseType = try responseType(forMimeType: "application/vnd.apple.diagnostic-logs+json", in: contentContainer) { return diagnosticLogsResponseType }
         return "EmptyResponse"
     }
     
