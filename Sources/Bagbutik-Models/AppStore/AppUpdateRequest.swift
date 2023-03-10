@@ -74,7 +74,8 @@ public struct AppUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            public var availableInNewTerritories: Bool?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var availableInNewTerritories: Bool? = nil
             public var bundleId: String?
             public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
             public var primaryLocale: String?
@@ -83,6 +84,7 @@ public struct AppUpdateRequest: Codable, RequestBody {
             public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
             public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(availableInNewTerritories: Bool? = nil,
                         bundleId: String? = nil,
                         contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil,
@@ -101,6 +103,23 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
                 self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
             }
+
+            public init(bundleId: String? = nil,
+                        contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil,
+                        primaryLocale: String? = nil,
+                        subscriptionStatusUrl: String? = nil,
+                        subscriptionStatusUrlForSandbox: String? = nil,
+                        subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
+                        subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
+            {
+                self.bundleId = bundleId
+                self.contentRightsDeclaration = contentRightsDeclaration
+                self.primaryLocale = primaryLocale
+                self.subscriptionStatusUrl = subscriptionStatusUrl
+                self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
+                self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
+                self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
+            }
         }
 
         /**
@@ -111,15 +130,20 @@ public struct AppUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/relationships>
          */
         public struct Relationships: Codable {
-            public var availableTerritories: AvailableTerritories?
-            public var prices: Prices?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var availableTerritories: AvailableTerritories? = nil
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var prices: Prices? = nil
 
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(availableTerritories: AvailableTerritories? = nil,
                         prices: Prices? = nil)
             {
                 self.availableTerritories = availableTerritories
                 self.prices = prices
             }
+
+            public init() {}
 
             /**
              # AppUpdateRequest.Data.Relationships.AvailableTerritories

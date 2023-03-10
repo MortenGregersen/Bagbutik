@@ -48,9 +48,16 @@ public struct InAppPurchasePrice: Codable, Identifiable {
     }
 
     public struct Attributes: Codable {
+        public var endDate: String?
+        public var manual: Bool?
         public var startDate: String?
 
-        public init(startDate: String? = nil) {
+        public init(endDate: String? = nil,
+                    manual: Bool? = nil,
+                    startDate: String? = nil)
+        {
+            self.endDate = endDate
+            self.manual = manual
             self.startDate = startDate
         }
     }

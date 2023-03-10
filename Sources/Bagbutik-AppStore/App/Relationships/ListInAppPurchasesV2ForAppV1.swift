@@ -90,6 +90,8 @@ public enum ListInAppPurchasesV2ForAppV1 {
         }
 
         public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
+            case automaticPrices
+            case baseTerritory
             case inAppPurchase
             case manualPrices
         }

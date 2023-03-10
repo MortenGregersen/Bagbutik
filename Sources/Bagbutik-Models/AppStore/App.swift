@@ -67,7 +67,8 @@ public struct App: Codable, Identifiable {
      <https://developer.apple.com/documentation/appstoreconnectapi/app/attributes>
      */
     public struct Attributes: Codable {
-        public var availableInNewTerritories: Bool?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var availableInNewTerritories: Bool? = nil
         /// The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.
         public var bundleId: String?
         public var contentRightsDeclaration: ContentRightsDeclaration?
@@ -83,6 +84,7 @@ public struct App: Codable, Identifiable {
         public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
         public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(availableInNewTerritories: Bool? = nil,
                     bundleId: String? = nil,
                     contentRightsDeclaration: ContentRightsDeclaration? = nil,
@@ -96,6 +98,29 @@ public struct App: Codable, Identifiable {
                     subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
         {
             self.availableInNewTerritories = availableInNewTerritories
+            self.bundleId = bundleId
+            self.contentRightsDeclaration = contentRightsDeclaration
+            self.isOrEverWasMadeForKids = isOrEverWasMadeForKids
+            self.name = name
+            self.primaryLocale = primaryLocale
+            self.sku = sku
+            self.subscriptionStatusUrl = subscriptionStatusUrl
+            self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
+            self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
+            self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
+        }
+
+        public init(bundleId: String? = nil,
+                    contentRightsDeclaration: ContentRightsDeclaration? = nil,
+                    isOrEverWasMadeForKids: Bool? = nil,
+                    name: String? = nil,
+                    primaryLocale: String? = nil,
+                    sku: String? = nil,
+                    subscriptionStatusUrl: String? = nil,
+                    subscriptionStatusUrlForSandbox: String? = nil,
+                    subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
+                    subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
+        {
             self.bundleId = bundleId
             self.contentRightsDeclaration = contentRightsDeclaration
             self.isOrEverWasMadeForKids = isOrEverWasMadeForKids
@@ -131,7 +156,8 @@ public struct App: Codable, Identifiable {
         /// The data and links that describe the relationship between the Apps and the App Store Versions resources.
         public var appStoreVersions: AppStoreVersions?
         /// The data and links that describe the relationship between the Apps and the Available Territories resources.
-        public var availableTerritories: AvailableTerritories?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var availableTerritories: AvailableTerritories? = nil
         /// The data and links that describe the relationship between the Apps and the Beta App Localizations resources.
         public var betaAppLocalizations: BetaAppLocalizations?
         /// The data and links that describe the relationship between the Apps and the Beta App Review Details resources.
@@ -157,7 +183,8 @@ public struct App: Codable, Identifiable {
         /// The data and links that describe the relationship between the Apps and the Pre-Release Versions resources.
         public var preReleaseVersions: PreReleaseVersions?
         /// The data and links that describe the relationship between the Apps and the Prices resources.
-        public var prices: Prices?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var prices: Prices? = nil
         public var promotedPurchases: PromotedPurchases?
         public var reviewSubmissions: ReviewSubmissions?
         public var subscriptionGracePeriod: SubscriptionGracePeriod?
@@ -218,7 +245,6 @@ public struct App: Codable, Identifiable {
                     appEvents: AppEvents? = nil,
                     appInfos: AppInfos? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
-                    availableTerritories: AvailableTerritories? = nil,
                     betaAppLocalizations: BetaAppLocalizations? = nil,
                     betaAppReviewDetail: BetaAppReviewDetail? = nil,
                     betaGroups: BetaGroups? = nil,
@@ -230,7 +256,6 @@ public struct App: Codable, Identifiable {
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     preOrder: PreOrder? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
-                    prices: Prices? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
                     subscriptionGracePeriod: SubscriptionGracePeriod? = nil,
@@ -241,7 +266,6 @@ public struct App: Codable, Identifiable {
             self.appEvents = appEvents
             self.appInfos = appInfos
             self.appStoreVersions = appStoreVersions
-            self.availableTerritories = availableTerritories
             self.betaAppLocalizations = betaAppLocalizations
             self.betaAppReviewDetail = betaAppReviewDetail
             self.betaGroups = betaGroups
@@ -253,7 +277,6 @@ public struct App: Codable, Identifiable {
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.preOrder = preOrder
             self.preReleaseVersions = preReleaseVersions
-            self.prices = prices
             self.promotedPurchases = promotedPurchases
             self.reviewSubmissions = reviewSubmissions
             self.subscriptionGracePeriod = subscriptionGracePeriod
