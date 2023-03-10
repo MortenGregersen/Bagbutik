@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List App Price Tiers
+     # List app price tiers
      List all app price tiers available in App Store Connect.
 
      Full documentation:

@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/reviewSubmissions/{id}
+     # Modify a review submission
+     Edit the details or contents of a review submission.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_reviewsubmissions_id>

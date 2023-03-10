@@ -105,6 +105,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
              # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place
              The place information of an advanced App Clip experience you create with this request.
 
+             Apple Maps uses any location data that you provide solely for matching an App Clip experience to an existing location. If it can’t find a match, Apple Maps doesn’t use the provided location data.
+
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place>
              */

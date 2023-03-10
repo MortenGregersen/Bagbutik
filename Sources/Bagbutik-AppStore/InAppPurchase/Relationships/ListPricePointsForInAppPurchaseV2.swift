@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Price Points for an In-App Purchase
+     # List all price points for an in-app purchase
      Get a list of possible price points for an in-app purchase.
 
      Full documentation:

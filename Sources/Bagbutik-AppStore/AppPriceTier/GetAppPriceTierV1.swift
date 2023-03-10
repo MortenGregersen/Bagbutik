@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read App Price Tier Information
+     # Read app price tier information
      Read available app price tiers.
 
      Full documentation:

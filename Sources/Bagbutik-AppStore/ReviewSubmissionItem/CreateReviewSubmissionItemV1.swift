@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/reviewSubmissions
+     # Create a review submission
+     Create a review submission for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_reviewsubmissions>
