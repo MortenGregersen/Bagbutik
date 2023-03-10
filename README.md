@@ -79,7 +79,7 @@ In your `Package.swift` add Bagbutik as a dependency:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "3.0.0"),
+    .package(url: "https://github.com/MortenGregersen/Bagbutik", from: "5.0.0"),
 ```
 
 Then in `targets` add the libraries needed by your target:
