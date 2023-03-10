@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Available Territories for an App
+     # List all available territories for an app
      Get a list of App Store territories where an app is or will be available.
 
      Full documentation:

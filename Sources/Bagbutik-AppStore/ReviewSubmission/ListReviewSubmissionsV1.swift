@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/reviewSubmissions
+     # List review submissions for an app
+     List recent and current review submissions for a specific app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions>
