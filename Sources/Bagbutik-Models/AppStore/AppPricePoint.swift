@@ -59,6 +59,13 @@ public struct AppPricePoint: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppPricePoint.Attributes
+     Attributes that describe an App Price Points resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/attributes>
+     */
     public struct Attributes: Codable {
         public var customerPrice: String?
         public var proceeds: String?
@@ -71,6 +78,13 @@ public struct AppPricePoint: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppPricePoint.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships>
+     */
     public struct Relationships: Codable {
         public var priceTier: PriceTier?
         public var territory: Territory?
@@ -82,6 +96,13 @@ public struct AppPricePoint: Codable, Identifiable {
             self.territory = territory
         }
 
+        /**
+         # AppPricePoint.Relationships.PriceTier
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships/pricetier>
+         */
         public struct PriceTier: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -110,6 +131,13 @@ public struct AppPricePoint: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppPricePoint.Relationships.PriceTier.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships/pricetier/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPriceTiers" }
@@ -138,6 +166,13 @@ public struct AppPricePoint: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppPricePoint.Relationships.PriceTier.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships/pricetier/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -168,6 +203,13 @@ public struct AppPricePoint: Codable, Identifiable {
             }
         }
 
+        /**
+         # AppPricePoint.Relationships.Territory
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships/territory>
+         */
         public struct Territory: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -196,6 +238,13 @@ public struct AppPricePoint: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppPricePoint.Relationships.Territory.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships/territory/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
@@ -224,6 +273,13 @@ public struct AppPricePoint: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppPricePoint.Relationships.Territory.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/apppricepoint/relationships/territory/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

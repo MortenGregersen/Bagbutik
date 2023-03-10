@@ -30,8 +30,17 @@ public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: 
         case data
     }
 
+    /**
+     # AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkagerequest/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
+        /// The resource type.
         public var type: String { "appStoreVersions" }
 
         public init(id: String) {

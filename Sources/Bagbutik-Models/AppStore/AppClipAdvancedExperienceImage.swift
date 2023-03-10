@@ -52,12 +52,25 @@ public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppClipAdvancedExperienceImage.Attributes
+     The attributes that describe an Advanced App Clip Experience Images resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage/attributes>
+     */
     public struct Attributes: Codable {
+        /// The state of the App Clip card image asset you uploaded.
         public var assetDeliveryState: AppMediaAssetState?
+        /// The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.
         public var fileName: String?
+        /// The size of the image asset that appears on the App Clip card for the advanced App Clip experience.
         public var fileSize: Int?
+        /// The image asset that appears on the App Clip card of an advanced App Clip experience.
         public var imageAsset: ImageAsset?
+        /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
         public var sourceFileChecksum: String?
+        /// Upload operations for the image asset that appears on the App Clip card for an advanced App Clip experience.
         public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil,

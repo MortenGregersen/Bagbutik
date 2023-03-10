@@ -15,13 +15,29 @@ public struct ErrorResponse: Codable {
         self.errors = errors
     }
 
+    /**
+     # ErrorResponse.Errors
+     The details about one error that is returned when an API request is not successful.
+
+     Use the `code` parameter for programmatic error handling. See [Parsing the Error Response Code](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/parsing_the_error_response_code) for more information. For more information about using the `source` parameter, see [Pinpointing the Location of Errors](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/pinpointing_the_location_of_errors).
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors>
+     */
     public struct Errors: Codable, Identifiable {
+        /// A machine-readable code indicating the type of error. The code is a hierarchical value with levels of specificity separated by the '`.`' character. This value is parseable for programmatic error handling in code.
         public let code: String
+        /// A detailed explanation of the error. Do not use this field for programmatic error handling.
         public var detail: String?
+        /// The unique ID of a specific instance of an error, request, and response. Use this ID when providing feedback to or debugging issues with Apple.
         public var id: String?
+        /// Metadata about the error - eg. associated errors. This is not currently documented by Apple.
         public var meta: Meta?
+        /// One of two possible types of values: `source.Parameter`, provided when a query parameter produced the error, or `source.JsonPointer`, provided when a problem with the entity produced the error.
         public var source: Source?
+        /// The HTTP status code of the error. This status code usually matches the response's status code; however, if the request produces multiple errors, these two codes may differ.
         public let status: String
+        /// A summary of the error. Do not use this field for programmatic error handling.
         public let title: String
 
         public init(code: String,

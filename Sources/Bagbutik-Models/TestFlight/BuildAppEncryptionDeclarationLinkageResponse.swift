@@ -21,8 +21,17 @@ public struct BuildAppEncryptionDeclarationLinkageResponse: Codable {
         self.links = links
     }
 
+    /**
+     # BuildAppEncryptionDeclarationLinkageResponse.Data
+     The data element of the response body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "appEncryptionDeclarations" }
 
         public init(id: String) {

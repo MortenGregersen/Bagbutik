@@ -59,14 +59,29 @@ public struct BetaAppReviewDetail: Codable, Identifiable {
         case type
     }
 
+    /**
+     # BetaAppReviewDetail.Attributes
+     Attributes that describe a Beta App Review Details resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail/attributes>
+     */
     public struct Attributes: Codable {
+        /// Email address of contact in case communication is needed with the beta app review.
         public var contactEmail: String?
+        /// First name of contact in case communication is needed with the beta app review.
         public var contactFirstName: String?
+        /// Last name of contact in case communication is needed with the beta app review.
         public var contactLastName: String?
+        /// Phone number of contact in case communication is needed with the beta app review.
         public var contactPhone: String?
+        /// The user name to sign in to your app to review its features.
         public var demoAccountName: String?
+        /// The password to sign in to your app to review its features.
         public var demoAccountPassword: String?
+        /// A Boolean value that indicates if sign-in information is required to review all the features of your app. If users sign in using social media, provide information for an account for review. Credentials must be valid and active for duration of review.
         public var demoAccountRequired: Bool?
+        /// Additional information about your app that can help during the review process. Do not include demo account details. Review notes have a maximum of 4,000 characters.
         public var notes: String?
 
         public init(contactEmail: String? = nil,
@@ -89,6 +104,13 @@ public struct BetaAppReviewDetail: Codable, Identifiable {
         }
     }
 
+    /**
+     # BetaAppReviewDetail.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail/relationships>
+     */
     public struct Relationships: Codable {
         public var app: App?
 
@@ -96,6 +118,13 @@ public struct BetaAppReviewDetail: Codable, Identifiable {
             self.app = app
         }
 
+        /**
+         # BetaAppReviewDetail.Relationships.App
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail/relationships/app>
+         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -124,8 +153,17 @@ public struct BetaAppReviewDetail: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # BetaAppReviewDetail.Relationships.App.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail/relationships/app/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "apps" }
 
                 public init(id: String) {
@@ -152,6 +190,13 @@ public struct BetaAppReviewDetail: Codable, Identifiable {
                 }
             }
 
+            /**
+             # BetaAppReviewDetail.Relationships.App.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetail/relationships/app/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

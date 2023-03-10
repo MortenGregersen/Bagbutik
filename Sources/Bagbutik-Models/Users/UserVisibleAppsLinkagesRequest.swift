@@ -16,8 +16,17 @@ public struct UserVisibleAppsLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # UserVisibleAppsLinkagesRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/uservisibleappslinkagesrequest/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "apps" }
 
         public init(id: String) {

@@ -52,6 +52,13 @@ public struct Device: Codable, Identifiable {
         case type
     }
 
+    /**
+     # Device.Attributes
+     Attributes that describe a Devices resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/device/attributes>
+     */
     public struct Attributes: Codable {
         public var addedDate: Date?
         public var deviceClass: DeviceClass?

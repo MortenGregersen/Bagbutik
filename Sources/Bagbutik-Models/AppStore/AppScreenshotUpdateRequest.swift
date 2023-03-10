@@ -15,6 +15,13 @@ public struct AppScreenshotUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppScreenshotUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }
@@ -49,6 +56,13 @@ public struct AppScreenshotUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppScreenshotUpdateRequest.Data.Attributes
+         Attributes whose values you're changing as part of the update request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?

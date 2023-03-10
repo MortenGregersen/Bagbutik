@@ -48,6 +48,13 @@ public struct Territory: Codable, Identifiable {
         case type
     }
 
+    /**
+     # Territory.Attributes
+     Attributes that describe a Territories resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/territory/attributes>
+     */
     public struct Attributes: Codable {
         public var currency: String?
 

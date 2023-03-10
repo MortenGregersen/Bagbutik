@@ -15,6 +15,13 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # RoutingAppCoverageCreateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoveragecreaterequest/data>
+     */
     public struct Data: Codable {
         public var type: String { "routingAppCoverages" }
         public let attributes: Attributes
@@ -49,6 +56,13 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # RoutingAppCoverageCreateRequest.Data.Attributes
+         Attributes that you set that describe the new resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoveragecreaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public let fileName: String
             public let fileSize: Int
@@ -61,6 +75,13 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
             }
         }
 
+        /**
+         # RoutingAppCoverageCreateRequest.Data.Relationships
+         The relationships to other resources that you can set with this request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoveragecreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
 
@@ -68,6 +89,13 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
                 self.appStoreVersion = appStoreVersion
             }
 
+            /**
+             # RoutingAppCoverageCreateRequest.Data.Relationships.AppStoreVersion
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoveragecreaterequest/data/relationships/appstoreversion>
+             */
             public struct AppStoreVersion: Codable {
                 public let data: Data
 
@@ -75,6 +103,13 @@ public struct RoutingAppCoverageCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                /**
+                 # RoutingAppCoverageCreateRequest.Data.Relationships.AppStoreVersion.Data
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoveragecreaterequest/data/relationships/appstoreversion/data>
+                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }

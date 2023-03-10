@@ -45,9 +45,19 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Identi
         case type
     }
 
+    /**
+     # AppClipAdvancedExperienceLocalizationInlineCreate.Attributes
+     The attributes that describe an Advanced App Clip Experience Localization Inline Creates resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate/attributes>
+     */
     public struct Attributes: Codable {
+        /// A string that identifies the language of the advanced App Clip experience.
         public var language: AppClipAdvancedExperienceLanguage?
+        /// The subtitle that appears on the App Clip card for the advanced App Clip experience.
         public var subtitle: String?
+        /// The title that appears on the App Clip card for the advanced App Clip experience.
         public var title: String?
 
         public init(language: AppClipAdvancedExperienceLanguage? = nil,

@@ -59,14 +59,25 @@ public struct App: Codable, Identifiable {
         case type
     }
 
+    /**
+     # App.Attributes
+     Attributes that describe an Apps resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/app/attributes>
+     */
     public struct Attributes: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var availableInNewTerritories: Bool? = nil
+        /// The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.
         public var bundleId: String?
         public var contentRightsDeclaration: ContentRightsDeclaration?
         public var isOrEverWasMadeForKids: Bool?
+        /// The name of your app as it will appear in the App Store. The maximum length is 30 characters.
         public var name: String?
+        /// The primary locale for your app. If localized app information isn’t available in an App Store territory, the information from your primary language is used instead.
         public var primaryLocale: String?
+        /// A unique ID for your app that is not visible on the App Store.
         public var sku: String?
         public var subscriptionStatusUrl: String?
         public var subscriptionStatusUrlForSandbox: String?
@@ -128,27 +139,50 @@ public struct App: Codable, Identifiable {
         }
     }
 
+    /**
+     # App.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships>
+     */
     public struct Relationships: Codable {
+        /// The data and links that describe the relationship between the Apps and the App Clips resources.
         public var appClips: AppClips?
         public var appCustomProductPages: AppCustomProductPages?
         public var appEvents: AppEvents?
+        /// The data and links that describe the relationship between the Apps and the App Infos resources.
         public var appInfos: AppInfos?
+        /// The data and links that describe the relationship between the Apps and the App Store Versions resources.
         public var appStoreVersions: AppStoreVersions?
+        /// The data and links that describe the relationship between the Apps and the Available Territories resources.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var availableTerritories: AvailableTerritories? = nil
+        /// The data and links that describe the relationship between the Apps and the Beta App Localizations resources.
         public var betaAppLocalizations: BetaAppLocalizations?
+        /// The data and links that describe the relationship between the Apps and the Beta App Review Details resources.
         public var betaAppReviewDetail: BetaAppReviewDetail?
+        /// The data and links that describe the relationship between the Apps and the Beta Groups resources.
         public var betaGroups: BetaGroups?
+        /// The data and links that describe the relationship between the Apps and the Beta License Agreements resources.
         public var betaLicenseAgreement: BetaLicenseAgreement?
+        /// The data and links that describe the relationship between the Apps and the Builds resources.
         public var builds: Builds?
+        /// The data and links that describe the relationship between the Apps and the Products resources.
         public var ciProduct: CiProduct?
+        /// The data and links that describe the relationship between the Apps and the End User License Agreements (EULA) resources.
         public var endUserLicenseAgreement: EndUserLicenseAgreement?
+        /// The data and links that describe the relationship between the Apps and the Game Center Enabled Versions resources.
         public var gameCenterEnabledVersions: GameCenterEnabledVersions?
+        /// The data and links that describe the relationship between the Apps and the In App Purchases resources.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var inAppPurchases: InAppPurchases? = nil
         public var inAppPurchasesV2: InAppPurchasesV2?
+        /// The data and links that describe the relationship between the Apps and the Pre-Orders resources.
         public var preOrder: PreOrder?
+        /// The data and links that describe the relationship between the Apps and the Pre-Release Versions resources.
         public var preReleaseVersions: PreReleaseVersions?
+        /// The data and links that describe the relationship between the Apps and the Prices resources.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var prices: Prices? = nil
         public var promotedPurchases: PromotedPurchases?
@@ -249,9 +283,19 @@ public struct App: Codable, Identifiable {
             self.subscriptionGroups = subscriptionGroups
         }
 
+        /**
+         # App.Relationships.AppClips
+         The data and links that describe the relationship between the Apps and the App Clips resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips>
+         */
         public struct AppClips: Codable {
+            /// The ID and type of the related App Clips resource.
             @NullCodable public var data: [Data]?
+            /// Navigational links that include the self-link.
             public var links: Links?
+            /// The paging information.
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
@@ -283,8 +327,17 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.AppClips.Data
+             The type and ID of a related App Clips resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies an App Clips resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appClips" }
 
                 public init(id: String) {
@@ -311,8 +364,17 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.AppClips.Links
+             The links to the related App Clips resource and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -525,6 +587,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.AppInfos
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos>
+         */
         public struct AppInfos: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -559,6 +628,13 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.AppInfos.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appInfos" }
@@ -587,6 +663,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.AppInfos.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -617,6 +700,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.AppStoreVersions
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions>
+         */
         public struct AppStoreVersions: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -651,6 +741,13 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.AppStoreVersions.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
@@ -679,6 +776,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.AppStoreVersions.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -709,6 +813,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.AvailableTerritories
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories>
+         */
         public struct AvailableTerritories: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -743,6 +854,13 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.AvailableTerritories.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
@@ -771,6 +889,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.AvailableTerritories.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -801,6 +926,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.BetaAppLocalizations
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations>
+         */
         public struct BetaAppLocalizations: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -835,8 +967,17 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.BetaAppLocalizations.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "betaAppLocalizations" }
 
                 public init(id: String) {
@@ -863,6 +1004,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.BetaAppLocalizations.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -893,6 +1041,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.BetaAppReviewDetail
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail>
+         */
         public struct BetaAppReviewDetail: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -921,8 +1076,17 @@ public struct App: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # App.Relationships.BetaAppReviewDetail.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "betaAppReviewDetails" }
 
                 public init(id: String) {
@@ -949,6 +1113,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.BetaAppReviewDetail.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -979,6 +1150,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.BetaGroups
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups>
+         */
         public struct BetaGroups: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -1013,8 +1191,17 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.BetaGroups.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "betaGroups" }
 
                 public init(id: String) {
@@ -1041,6 +1228,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.BetaGroups.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1071,6 +1265,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.BetaLicenseAgreement
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement>
+         */
         public struct BetaLicenseAgreement: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -1099,8 +1300,17 @@ public struct App: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # App.Relationships.BetaLicenseAgreement.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "betaLicenseAgreements" }
 
                 public init(id: String) {
@@ -1127,6 +1337,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.BetaLicenseAgreement.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1157,6 +1374,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.Builds
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds>
+         */
         public struct Builds: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -1191,8 +1415,17 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.Builds.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -1219,6 +1452,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.Builds.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1249,8 +1489,17 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.CiProduct
+         The data and links that describe the relationship between the Apps and Products resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct>
+         */
         public struct CiProduct: Codable {
+            /// The ID and type of the related Products resource.
             @NullCodable public var data: Data?
+            /// The navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil,
@@ -1277,8 +1526,17 @@ public struct App: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # App.Relationships.CiProduct.Data
+             The type and ID of a related Products resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "ciProducts" }
 
                 public init(id: String) {
@@ -1305,8 +1563,17 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.CiProduct.Links
+             The links to the related Products resource and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,
@@ -1335,6 +1602,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.EndUserLicenseAgreement
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement>
+         */
         public struct EndUserLicenseAgreement: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -1363,6 +1637,13 @@ public struct App: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # App.Relationships.EndUserLicenseAgreement.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "endUserLicenseAgreements" }
@@ -1391,6 +1672,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.EndUserLicenseAgreement.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1421,6 +1709,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.GameCenterEnabledVersions
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions>
+         */
         public struct GameCenterEnabledVersions: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -1455,6 +1750,13 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.GameCenterEnabledVersions.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterEnabledVersions" }
@@ -1483,6 +1785,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.GameCenterEnabledVersions.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1513,6 +1822,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.InAppPurchases
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases>
+         */
         public struct InAppPurchases: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -1547,6 +1863,13 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.InAppPurchases.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
@@ -1575,6 +1898,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.InAppPurchases.Links
+             The links to the related data and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1697,6 +2027,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.PreOrder
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder>
+         */
         public struct PreOrder: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -1725,6 +2062,13 @@ public struct App: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # App.Relationships.PreOrder.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPreOrders" }
@@ -1753,6 +2097,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.PreOrder.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1783,6 +2134,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.PreReleaseVersions
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions>
+         */
         public struct PreReleaseVersions: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -1817,8 +2175,17 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.PreReleaseVersions.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "preReleaseVersions" }
 
                 public init(id: String) {
@@ -1845,6 +2212,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.PreReleaseVersions.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -1875,6 +2249,13 @@ public struct App: Codable, Identifiable {
             }
         }
 
+        /**
+         # App.Relationships.Prices
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices>
+         */
         public struct Prices: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -1909,6 +2290,13 @@ public struct App: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # App.Relationships.Prices.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appPrices" }
@@ -1937,6 +2325,13 @@ public struct App: Codable, Identifiable {
                 }
             }
 
+            /**
+             # App.Relationships.Prices.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

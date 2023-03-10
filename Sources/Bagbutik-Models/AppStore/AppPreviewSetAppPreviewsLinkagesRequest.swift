@@ -15,6 +15,13 @@ public struct AppPreviewSetAppPreviewsLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppPreviewSetAppPreviewsLinkagesRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesrequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appPreviews" }

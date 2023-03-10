@@ -54,6 +54,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
         case type
     }
 
+    /**
+     # GameCenterEnabledVersion.Attributes
+     Attributes that describe a Game Center Enabled Versions resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/attributes>
+     */
     public struct Attributes: Codable {
         public var iconAsset: ImageAsset?
         public var platform: Platform?
@@ -69,6 +76,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
         }
     }
 
+    /**
+     # GameCenterEnabledVersion.Relationships
+     The relationships you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships>
+     */
     public struct Relationships: Codable {
         public var app: App?
         public var compatibleVersions: CompatibleVersions?
@@ -80,6 +94,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
             self.compatibleVersions = compatibleVersions
         }
 
+        /**
+         # GameCenterEnabledVersion.Relationships.App
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app>
+         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -108,6 +129,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # GameCenterEnabledVersion.Relationships.App.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -136,6 +164,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
                 }
             }
 
+            /**
+             # GameCenterEnabledVersion.Relationships.App.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -166,6 +201,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
             }
         }
 
+        /**
+         # GameCenterEnabledVersion.Relationships.CompatibleVersions
+         The data and links that describe the relationship between the resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions>
+         */
         public struct CompatibleVersions: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -200,6 +242,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # GameCenterEnabledVersion.Relationships.CompatibleVersions.Data
+             The type and ID of a related resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions/data>
+             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterEnabledVersions" }
@@ -228,6 +277,13 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
                 }
             }
 
+            /**
+             # GameCenterEnabledVersion.Relationships.CompatibleVersions.Links
+             The links to the related data and the relationship's self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

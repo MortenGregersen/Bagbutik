@@ -16,9 +16,19 @@ public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppClipAppStoreReviewDetailUpdateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailupdaterequest/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
+        /// The resource type.
         public var type: String { "appClipAppStoreReviewDetails" }
+        /// The attributes that describe the request that updates an App Clip App Store Review Details resource.
         public var attributes: Attributes?
 
         public init(id: String,
@@ -50,7 +60,15 @@ public struct AppClipAppStoreReviewDetailUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppClipAppStoreReviewDetailUpdateRequest.Data.Attributes
+         The attributes you set that describe the updated App Clip App Store Review Details resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
+            /// An array of invocation URLs for your App Clip.
             public var invocationUrls: [String]?
 
             public init(invocationUrls: [String]? = nil) {

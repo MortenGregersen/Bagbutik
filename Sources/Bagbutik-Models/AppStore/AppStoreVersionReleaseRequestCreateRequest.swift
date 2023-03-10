@@ -16,6 +16,13 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # AppStoreVersionReleaseRequestCreateRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data>
+     */
     public struct Data: Codable {
         public var type: String { "appStoreVersionReleaseRequests" }
         public let relationships: Relationships
@@ -43,6 +50,13 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships
+         The relationships to other resources that you can set with this request.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships>
+         */
         public struct Relationships: Codable {
             public let appStoreVersion: AppStoreVersion
 
@@ -50,6 +64,13 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                 self.appStoreVersion = appStoreVersion
             }
 
+            /**
+             # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships.AppStoreVersion
+             The relationships to other resources that you can set with this request.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion>
+             */
             public struct AppStoreVersion: Codable {
                 public let data: Data
 
@@ -57,6 +78,13 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                     self.data = data
                 }
 
+                /**
+                 # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships.AppStoreVersion.Data
+                 The type and ID of the resource that you're relating with the resource you're creating.
+
+                 Full documentation:
+                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion/data>
+                 */
                 public struct Data: Codable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }

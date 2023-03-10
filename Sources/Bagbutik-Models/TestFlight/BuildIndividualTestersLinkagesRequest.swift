@@ -16,8 +16,17 @@ public struct BuildIndividualTestersLinkagesRequest: Codable, RequestBody {
         self.data = data
     }
 
+    /**
+     # BuildIndividualTestersLinkagesRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesrequest/data>
+     */
     public struct Data: Codable, Identifiable {
+        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
+        /// The resource type.
         public var type: String { "betaTesters" }
 
         public init(id: String) {

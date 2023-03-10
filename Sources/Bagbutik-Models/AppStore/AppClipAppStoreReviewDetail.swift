@@ -59,7 +59,15 @@ public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AppClipAppStoreReviewDetail.Attributes
+     The attributes that describe the App Clip App Store Review Details resource.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/attributes>
+     */
     public struct Attributes: Codable {
+        /// An array of invocation URLs for your App Clip.
         public var invocationUrls: [String]?
 
         public init(invocationUrls: [String]? = nil) {
@@ -67,15 +75,32 @@ public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
         }
     }
 
+    /**
+     # AppClipAppStoreReviewDetail.Relationships
+     The relationships of the App Clip App Store Details resource you included in the request and those on which you can operate.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships>
+     */
     public struct Relationships: Codable {
+        /// The related Default App Clip Experiences resource.
         public var appClipDefaultExperience: AppClipDefaultExperience?
 
         public init(appClipDefaultExperience: AppClipDefaultExperience? = nil) {
             self.appClipDefaultExperience = appClipDefaultExperience
         }
 
+        /**
+         # AppClipAppStoreReviewDetail.Relationships.AppClipDefaultExperience
+         The data and links that describe the relationship between the App Clip App Store Review Details and the Default App Clip Experiences resources.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience>
+         */
         public struct AppClipDefaultExperience: Codable {
+            /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: Data?
+            /// Navigational links that include the self-link.
             public var links: Links?
 
             public init(data: Data? = nil,
@@ -102,8 +127,17 @@ public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
                 case links
             }
 
+            /**
+             # AppClipAppStoreReviewDetail.Relationships.AppClipDefaultExperience.Data
+             The links to the related Default App Clip Experiences resource and the relationship’s self-link.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
+                /// The resource type.
                 public var type: String { "appClipDefaultExperiences" }
 
                 public init(id: String) {
@@ -130,8 +164,17 @@ public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AppClipAppStoreReviewDetail.Relationships.AppClipDefaultExperience.Links
+             The type and ID of a related Default App Clip Experiences resource.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience/links>
+             */
             public struct Links: Codable {
+                /// The link to related data.
                 public var related: String?
+                /// The link to the resource.
                 public var itself: String?
 
                 public init(related: String? = nil,

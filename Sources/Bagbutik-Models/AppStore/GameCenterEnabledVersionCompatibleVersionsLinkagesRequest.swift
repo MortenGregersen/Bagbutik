@@ -15,6 +15,13 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable
         self.data = data
     }
 
+    /**
+     # GameCenterEnabledVersionCompatibleVersionsLinkagesRequest.Data
+     The data element of the request body.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest/data>
+     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "gameCenterEnabledVersions" }
