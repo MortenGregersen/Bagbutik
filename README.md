@@ -25,6 +25,9 @@
     <a href="https://twitter.com/mortengregersen">
         <img src="https://img.shields.io/badge/twitter-@mortengregersen-blue.svg?style=flat" alt="Twitter" />
     </a>
+    <a href="https://twitter.com/mortengregersen">
+        <img src="https://img.shields.io/badge/mastodon.social-@mortengregersen-blueviolet.svg?style=flat" alt="Mastodon" />
+    </a>
 </p>
 
 ## What is Bagbutik?
