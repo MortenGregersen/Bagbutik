@@ -22,7 +22,6 @@
     <a href="https://codecov.io/gh/MortenGregersen/Bagbutik">
         <img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G"/>
     </a>
-    <br />
     <a href="https://twitter.com/mortengregersen">
         <img src="https://img.shields.io/badge/twitter-@mortengregersen-blue.svg?style=flat" alt="Twitter" />
     </a>
