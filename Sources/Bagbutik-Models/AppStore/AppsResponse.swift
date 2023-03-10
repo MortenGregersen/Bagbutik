@@ -90,18 +90,6 @@ public struct AppsResponse: Codable, PagedResponse {
         return appStoreVersions
     }
 
-    public func getAvailableTerritories(for app: App) -> [Territory] {
-        guard let availableTerritoryIds = app.relationships?.availableTerritories?.data?.map(\.id),
-              let availableTerritories = included?.compactMap({ relationship -> Territory? in
-                  guard case let .territory(availableTerritory) = relationship else { return nil }
-                  return availableTerritoryIds.contains(availableTerritory.id) ? availableTerritory : nil
-              })
-        else {
-            return []
-        }
-        return availableTerritories
-    }
-
     public func getBetaAppLocalizations(for app: App) -> [BetaAppLocalization] {
         guard let betaAppLocalizationIds = app.relationships?.betaAppLocalizations?.data?.map(\.id),
               let betaAppLocalizations = included?.compactMap({ relationship -> BetaAppLocalization? in
@@ -207,18 +195,6 @@ public struct AppsResponse: Codable, PagedResponse {
             return []
         }
         return preReleaseVersions
-    }
-
-    public func getPrices(for app: App) -> [AppPrice] {
-        guard let priceIds = app.relationships?.prices?.data?.map(\.id),
-              let prices = included?.compactMap({ relationship -> AppPrice? in
-                  guard case let .appPrice(price) = relationship else { return nil }
-                  return priceIds.contains(price.id) ? price : nil
-              })
-        else {
-            return []
-        }
-        return prices
     }
 
     public func getPromotedPurchases(for app: App) -> [PromotedPurchase] {

@@ -37,10 +37,13 @@ public enum GetUserV1 {
         case users([Users])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case appAvailability
             case appClips
             case appCustomProductPages
             case appEvents
             case appInfos
+            case appPricePoints
+            case appPriceSchedule
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories

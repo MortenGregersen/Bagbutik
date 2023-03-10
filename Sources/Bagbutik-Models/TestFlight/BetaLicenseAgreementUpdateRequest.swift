@@ -16,19 +16,9 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # BetaLicenseAgreementUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "betaLicenseAgreements" }
-        /// The resource's attributes.
         public var attributes: Attributes?
 
         public init(id: String,
@@ -60,15 +50,7 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # BetaLicenseAgreementUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The license agreement text for your beta app that displays to users.
             public var agreementText: String?
 
             public init(agreementText: String? = nil) {

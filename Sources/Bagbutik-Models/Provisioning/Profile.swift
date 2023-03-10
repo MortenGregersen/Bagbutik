@@ -59,13 +59,6 @@ public struct Profile: Codable, Identifiable {
         case type
     }
 
-    /**
-     # Profile.Attributes
-     Attributes that describe a Profiles resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/profile/attributes>
-     */
     public struct Attributes: Codable {
         public var createdDate: Date?
         public var expirationDate: Date?
@@ -118,13 +111,6 @@ public struct Profile: Codable, Identifiable {
         }
     }
 
-    /**
-     # Profile.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships>
-     */
     public struct Relationships: Codable {
         public var bundleId: BundleId?
         public var certificates: Certificates?
@@ -139,13 +125,6 @@ public struct Profile: Codable, Identifiable {
             self.devices = devices
         }
 
-        /**
-         # Profile.Relationships.BundleId
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid>
-         */
         public struct BundleId: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -174,13 +153,6 @@ public struct Profile: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # Profile.Relationships.BundleId.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "bundleIds" }
@@ -209,13 +181,6 @@ public struct Profile: Codable, Identifiable {
                 }
             }
 
-            /**
-             # Profile.Relationships.BundleId.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/bundleid/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -246,13 +211,6 @@ public struct Profile: Codable, Identifiable {
             }
         }
 
-        /**
-         # Profile.Relationships.Certificates
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates>
-         */
         public struct Certificates: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -287,13 +245,6 @@ public struct Profile: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # Profile.Relationships.Certificates.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "certificates" }
@@ -322,13 +273,6 @@ public struct Profile: Codable, Identifiable {
                 }
             }
 
-            /**
-             # Profile.Relationships.Certificates.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/certificates/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -359,13 +303,6 @@ public struct Profile: Codable, Identifiable {
             }
         }
 
-        /**
-         # Profile.Relationships.Devices
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices>
-         */
         public struct Devices: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -400,13 +337,6 @@ public struct Profile: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # Profile.Relationships.Devices.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "devices" }
@@ -435,13 +365,6 @@ public struct Profile: Codable, Identifiable {
                 }
             }
 
-            /**
-             # Profile.Relationships.Devices.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/profile/relationships/devices/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

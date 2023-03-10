@@ -16,21 +16,10 @@ public struct BuildUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # BuildUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "builds" }
-        /// The resource's attributes.
         public var attributes: Attributes?
-        /// Navigational links to related data and included resource types and IDs.
         public var relationships: Relationships?
 
         public init(id: String,
@@ -67,17 +56,8 @@ public struct BuildUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # BuildUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
             public var expired: Bool?
-            /// A Boolean value that indicates whether the build uses non-exempt encryption.
             public var usesNonExemptEncryption: Bool?
 
             public init(expired: Bool? = nil,
@@ -88,13 +68,6 @@ public struct BuildUpdateRequest: Codable, RequestBody {
             }
         }
 
-        /**
-         # BuildUpdateRequest.Data.Relationships
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
             public var appEncryptionDeclaration: AppEncryptionDeclaration?
 
@@ -102,13 +75,6 @@ public struct BuildUpdateRequest: Codable, RequestBody {
                 self.appEncryptionDeclaration = appEncryptionDeclaration
             }
 
-            /**
-             # BuildUpdateRequest.Data.Relationships.AppEncryptionDeclaration
-             The data and links that describe the relationship between the resources.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships/appencryptiondeclaration>
-             */
             public struct AppEncryptionDeclaration: Codable {
                 @NullCodable public var data: Data?
 
@@ -130,17 +96,8 @@ public struct BuildUpdateRequest: Codable, RequestBody {
                     case data
                 }
 
-                /**
-                 # BuildUpdateRequest.Data.Relationships.AppEncryptionDeclaration.Data
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships/appencryptiondeclaration/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appEncryptionDeclarations" }
 
                     public init(id: String) {

@@ -16,19 +16,9 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # BuildBetaDetailUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "buildBetaDetails" }
-        /// The resource's attributes.
         public var attributes: Attributes?
 
         public init(id: String,
@@ -60,15 +50,7 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # BuildBetaDetailUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
             public var autoNotifyEnabled: Bool?
 
             public init(autoNotifyEnabled: Bool? = nil) {

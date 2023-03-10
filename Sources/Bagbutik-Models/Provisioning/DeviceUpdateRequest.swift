@@ -16,13 +16,6 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # DeviceUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/deviceupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "devices" }
@@ -57,13 +50,6 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # DeviceUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/deviceupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var name: String?
             public var status: Device.Attributes.Status?

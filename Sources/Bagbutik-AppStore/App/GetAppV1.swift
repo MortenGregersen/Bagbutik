@@ -31,6 +31,8 @@ public enum GetAppV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type appAvailabilities
+        case appAvailabilities([AppAvailabilities])
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
         /// The fields to include for returned resources of type appCustomProductPages
@@ -42,8 +44,12 @@ public enum GetAppV1 {
         /// The fields to include for returned resources of type appPreOrders
         case appPreOrders([AppPreOrders])
         /// The fields to include for returned resources of type appPricePoints
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPricePoints([AppPricePoints])
+        /// The fields to include for returned resources of type appPriceSchedules
+        case appPriceSchedules([AppPriceSchedules])
         /// The fields to include for returned resources of type appPrices
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPrices([AppPrices])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
@@ -83,7 +89,14 @@ public enum GetAppV1 {
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
         /// The fields to include for returned resources of type territories
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case territories([Territories])
+
+        public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case availableInNewTerritories
+            case availableTerritories
+        }
 
         public enum AppClips: String, ParameterValue, Codable, CaseIterable {
             case app
@@ -148,6 +161,13 @@ public enum GetAppV1 {
             case territory
         }
 
+        public enum AppPriceSchedules: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case automaticPrices
+            case baseTerritory
+            case manualPrices
+        }
+
         public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
             case app
             case priceTier
@@ -176,10 +196,13 @@ public enum GetAppV1 {
         }
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case appAvailability
             case appClips
             case appCustomProductPages
             case appEvents
             case appInfos
+            case appPricePoints
+            case appPriceSchedule
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories

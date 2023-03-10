@@ -59,19 +59,9 @@ public struct BuildBetaDetail: Codable, Identifiable {
         case type
     }
 
-    /**
-     # BuildBetaDetail.Attributes
-     Attributes that describe a Build Beta Details resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/attributes>
-     */
     public struct Attributes: Codable {
-        /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
         public var autoNotifyEnabled: Bool?
-        /// A state that indicates if the build is available for external testing.
         public var externalBuildState: ExternalBetaState?
-        /// A state that indicates if the build is available for internal testing.
         public var internalBuildState: InternalBetaState?
 
         public init(autoNotifyEnabled: Bool? = nil,
@@ -84,13 +74,6 @@ public struct BuildBetaDetail: Codable, Identifiable {
         }
     }
 
-    /**
-     # BuildBetaDetail.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships>
-     */
     public struct Relationships: Codable {
         public var build: Build?
 
@@ -98,13 +81,6 @@ public struct BuildBetaDetail: Codable, Identifiable {
             self.build = build
         }
 
-        /**
-         # BuildBetaDetail.Relationships.Build
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build>
-         */
         public struct Build: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -133,17 +109,8 @@ public struct BuildBetaDetail: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # BuildBetaDetail.Relationships.Build.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build/data>
-             */
             public struct Data: Codable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -170,13 +137,6 @@ public struct BuildBetaDetail: Codable, Identifiable {
                 }
             }
 
-            /**
-             # BuildBetaDetail.Relationships.Build.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

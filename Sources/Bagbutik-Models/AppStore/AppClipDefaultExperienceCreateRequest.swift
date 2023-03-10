@@ -16,19 +16,9 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # AppClipDefaultExperienceCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data>
-     */
     public struct Data: Codable {
-        /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
-        /// The attributes that describe the request that creates a Default App Clip Experiences resource.
         public var attributes: Attributes?
-        /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes? = nil,
@@ -60,15 +50,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # AppClipDefaultExperienceCreateRequest.Data.Attributes
-         The attributes you set that describe the Default App Clip Experiences resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
-            /// The call-to-action verb that appears on the App Clip card.
             public var action: AppClipAction?
 
             public init(action: AppClipAction? = nil) {
@@ -76,19 +58,9 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             }
         }
 
-        /**
-         # AppClipDefaultExperienceCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships>
-         */
         public struct Relationships: Codable {
-            /// The related App Clips resource.
             public let appClip: AppClip
-            /// The related Default App Clip Experience Templates resource.
             public var appClipDefaultExperienceTemplate: AppClipDefaultExperienceTemplate?
-            /// The related App Store Versions resource.
             public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
             public init(appClip: AppClip,
@@ -100,32 +72,15 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                 self.releaseWithAppStoreVersion = releaseWithAppStoreVersion
             }
 
-            /**
-             # AppClipDefaultExperienceCreateRequest.Data.Relationships.AppClip
-             The relationship to the App Clips resource you set with the request that creates a Default App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclip>
-             */
             public struct AppClip: Codable {
-                /// The ID and type of the related App Clips resource.
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
                 }
 
-                /**
-                 # AppClipDefaultExperienceCreateRequest.Data.Relationships.AppClip.Data
-                 The type and ID of the App Clips resource that you’re relating with the Default App Clip Experiences resource you’re creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclip/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies an App Clips resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appClips" }
 
                     public init(id: String) {
@@ -153,15 +108,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                 }
             }
 
-            /**
-             # AppClipDefaultExperienceCreateRequest.Data.Relationships.AppClipDefaultExperienceTemplate
-             The relationship to the Default App Clip Experience Templates resource you set with the request that creates a Default App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclipdefaultexperiencetemplate>
-             */
             public struct AppClipDefaultExperienceTemplate: Codable {
-                /// The ID and type of the related App Clip Default Experience Templates resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -182,17 +129,8 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                     case data
                 }
 
-                /**
-                 # AppClipDefaultExperienceCreateRequest.Data.Relationships.AppClipDefaultExperienceTemplate.Data
-                 The type and ID of the Default App Clip Experience Templates resource that you’re relating with the Default App Clip Experiences resource you’re creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclipdefaultexperiencetemplate/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the related Default App Clip Experience Templates resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appClipDefaultExperiences" }
 
                     public init(id: String) {
@@ -220,15 +158,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                 }
             }
 
-            /**
-             # AppClipDefaultExperienceCreateRequest.Data.Relationships.ReleaseWithAppStoreVersion
-             The relationship to the App Store Versions resource you set with the request that creates a Default App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/releasewithappstoreversion>
-             */
             public struct ReleaseWithAppStoreVersion: Codable {
-                /// The ID and type of the related App Store Versions resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -249,17 +179,8 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                     case data
                 }
 
-                /**
-                 # AppClipDefaultExperienceCreateRequest.Data.Relationships.ReleaseWithAppStoreVersion.Data
-                 The type and ID of the App Store Versions resource that you’re relating with the Default App Clip Experiences resource you’re creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/releasewithappstoreversion/data>
-                 */
                 public struct Data: Codable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the related App Store Versions resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appStoreVersions" }
 
                     public init(id: String) {

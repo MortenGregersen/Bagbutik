@@ -59,21 +59,10 @@ public struct BetaTester: Codable, Identifiable {
         case type
     }
 
-    /**
-     # BetaTester.Attributes
-     Attributes that describe a Beta Testers resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betatester/attributes>
-     */
     public struct Attributes: Codable {
-        /// The beta tester's email address, used for sending beta testing invitations.
         public var email: String?
-        /// The beta tester's first name.
         public var firstName: String?
-        /// An invite type that indicates if a beta tester was invited by an email invite or used a TestFlight public link to join a beta test.
         public var inviteType: BetaInviteType?
-        /// The beta tester's last name.
         public var lastName: String?
 
         public init(email: String? = nil,
@@ -88,13 +77,6 @@ public struct BetaTester: Codable, Identifiable {
         }
     }
 
-    /**
-     # BetaTester.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships>
-     */
     public struct Relationships: Codable {
         public var apps: Apps?
         public var betaGroups: BetaGroups?
@@ -109,13 +91,6 @@ public struct BetaTester: Codable, Identifiable {
             self.builds = builds
         }
 
-        /**
-         # BetaTester.Relationships.Apps
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps>
-         */
         public struct Apps: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -150,13 +125,6 @@ public struct BetaTester: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # BetaTester.Relationships.Apps.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -185,13 +153,6 @@ public struct BetaTester: Codable, Identifiable {
                 }
             }
 
-            /**
-             # BetaTester.Relationships.Apps.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -222,13 +183,6 @@ public struct BetaTester: Codable, Identifiable {
             }
         }
 
-        /**
-         # BetaTester.Relationships.BetaGroups
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups>
-         */
         public struct BetaGroups: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -263,13 +217,6 @@ public struct BetaTester: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # BetaTester.Relationships.BetaGroups.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "betaGroups" }
@@ -298,13 +245,6 @@ public struct BetaTester: Codable, Identifiable {
                 }
             }
 
-            /**
-             # BetaTester.Relationships.BetaGroups.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?
@@ -335,13 +275,6 @@ public struct BetaTester: Codable, Identifiable {
             }
         }
 
-        /**
-         # BetaTester.Relationships.Builds
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds>
-         */
         public struct Builds: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -376,13 +309,6 @@ public struct BetaTester: Codable, Identifiable {
                 case meta
             }
 
-            /**
-             # BetaTester.Relationships.Builds.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
@@ -411,13 +337,6 @@ public struct BetaTester: Codable, Identifiable {
                 }
             }
 
-            /**
-             # BetaTester.Relationships.Builds.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

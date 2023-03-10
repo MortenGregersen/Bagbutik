@@ -16,6 +16,7 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listPricePointsForAppV1(id: String,
                                         fields: [ListPricePointsForAppV1.Field]? = nil,
                                         filters: [ListPricePointsForAppV1.Filter]? = nil,
@@ -56,10 +57,13 @@ public enum ListPricePointsForAppV1 {
         }
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case appAvailability
             case appClips
             case appCustomProductPages
             case appEvents
             case appInfos
+            case appPricePoints
+            case appPriceSchedule
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories

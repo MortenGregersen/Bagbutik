@@ -12,17 +12,17 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
      - Parameter includes: Relationship data to include in the response
-     - Parameter limit: Maximum number of related manualPrices returned (when they are included) - maximum 50
+     - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getIapPriceScheduleForInAppPurchaseV2(id: String,
                                                       fields: [GetIapPriceScheduleForInAppPurchaseV2.Field]? = nil,
                                                       includes: [GetIapPriceScheduleForInAppPurchaseV2.Include]? = nil,
-                                                      limit: Int? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse>
+                                                      limits: [GetIapPriceScheduleForInAppPurchaseV2.Limit]? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/iapPriceSchedule", method: .get, parameters: .init(fields: fields,
                                                                                                  includes: includes,
-                                                                                                 limit: limit))
+                                                                                                 limits: limits))
     }
 }
 
@@ -37,15 +37,21 @@ public enum GetIapPriceScheduleForInAppPurchaseV2 {
         case inAppPurchasePrices([InAppPurchasePrices])
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
+        /// The fields to include for returned resources of type territories
+        case territories([Territories])
 
         public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
+            case automaticPrices
+            case baseTerritory
             case inAppPurchase
             case manualPrices
         }
 
         public enum InAppPurchasePrices: String, ParameterValue, Codable, CaseIterable {
+            case endDate
             case inAppPurchasePricePoint
             case inAppPurchaseV2
+            case manual
             case startDate
             case territory
         }
@@ -67,13 +73,29 @@ public enum GetIapPriceScheduleForInAppPurchaseV2 {
             case reviewNote
             case state
         }
+
+        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+            case currency
+        }
     }
 
     /**
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter {
+        case automaticPrices
+        case baseTerritory
         case inAppPurchase
         case manualPrices
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related automaticPrices returned (when they are included) - maximum 50
+        case automaticPrices(Int)
+        /// Maximum number of related manualPrices returned (when they are included) - maximum 50
+        case manualPrices(Int)
     }
 }

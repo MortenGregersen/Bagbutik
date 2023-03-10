@@ -22,13 +22,6 @@ public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, PagedResp
         self.meta = meta
     }
 
-    /**
-     # AppScreenshotSetAppScreenshotsLinkagesResponse.Data
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesresponse/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }

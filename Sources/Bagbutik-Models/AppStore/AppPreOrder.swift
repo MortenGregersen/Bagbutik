@@ -54,13 +54,6 @@ public struct AppPreOrder: Codable, Identifiable {
         case type
     }
 
-    /**
-     # AppPreOrder.Attributes
-     Attributes that describe an App Pre Orders resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/attributes>
-     */
     public struct Attributes: Codable {
         public var appReleaseDate: String?
         public var preOrderAvailableDate: String?
@@ -73,13 +66,6 @@ public struct AppPreOrder: Codable, Identifiable {
         }
     }
 
-    /**
-     # AppPreOrder.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships>
-     */
     public struct Relationships: Codable {
         public var app: App?
 
@@ -87,13 +73,6 @@ public struct AppPreOrder: Codable, Identifiable {
             self.app = app
         }
 
-        /**
-         # AppPreOrder.Relationships.App
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app>
-         */
         public struct App: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -122,13 +101,6 @@ public struct AppPreOrder: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppPreOrder.Relationships.App.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -157,13 +129,6 @@ public struct AppPreOrder: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppPreOrder.Relationships.App.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

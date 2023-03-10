@@ -48,13 +48,6 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
         case type
     }
 
-    /**
-     # AppStoreVersionSubmission.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships>
-     */
     public struct Relationships: Codable {
         public var appStoreVersion: AppStoreVersion?
 
@@ -62,13 +55,6 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
             self.appStoreVersion = appStoreVersion
         }
 
-        /**
-         # AppStoreVersionSubmission.Relationships.AppStoreVersion
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion>
-         */
         public struct AppStoreVersion: Codable {
             @NullCodable public var data: Data?
             public var links: Links?
@@ -97,13 +83,6 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
                 case links
             }
 
-            /**
-             # AppStoreVersionSubmission.Relationships.AppStoreVersion.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion/data>
-             */
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
@@ -132,13 +111,6 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
                 }
             }
 
-            /**
-             # AppStoreVersionSubmission.Relationships.AppStoreVersion.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion/links>
-             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

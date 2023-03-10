@@ -15,13 +15,6 @@ public struct AppPreOrderUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
-    /**
-     # AppPreOrderUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appPreOrders" }
@@ -56,13 +49,6 @@ public struct AppPreOrderUpdateRequest: Codable, RequestBody {
             case type
         }
 
-        /**
-         # AppPreOrderUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable {
             public var appReleaseDate: String?
 

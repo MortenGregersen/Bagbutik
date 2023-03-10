@@ -22,13 +22,6 @@ public struct AppPreviewSetAppPreviewsLinkagesResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    /**
-     # AppPreviewSetAppPreviewsLinkagesResponse.Data
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse/data>
-     */
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appPreviews" }
