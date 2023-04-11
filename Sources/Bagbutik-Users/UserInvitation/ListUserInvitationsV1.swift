@@ -111,14 +111,14 @@ public enum ListUserInvitationsV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case visibleApps
     }
 
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case emailAscending = "email"
         case emailDescending = "-email"
         case lastNameAscending = "lastName"

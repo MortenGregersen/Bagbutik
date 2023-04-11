@@ -86,7 +86,7 @@ public enum ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersio
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appPreviewSets
         case appScreenshotSets
         case appStoreVersionExperimentTreatment

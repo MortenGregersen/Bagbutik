@@ -110,14 +110,14 @@ public enum ListUsersV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case visibleApps
     }
 
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case lastNameAscending = "lastName"
         case lastNameDescending = "-lastName"
         case usernameAscending = "username"

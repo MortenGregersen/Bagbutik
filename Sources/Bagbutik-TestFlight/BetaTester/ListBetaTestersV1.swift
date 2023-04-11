@@ -168,7 +168,7 @@ public enum ListBetaTestersV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case apps
         case betaGroups
         case builds
@@ -177,7 +177,7 @@ public enum ListBetaTestersV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case emailAscending = "email"
         case emailDescending = "-email"
         case firstNameAscending = "firstName"

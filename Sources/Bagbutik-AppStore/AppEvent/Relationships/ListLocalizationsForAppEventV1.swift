@@ -93,7 +93,7 @@ public enum ListLocalizationsForAppEventV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appEvent
         case appEventScreenshots
         case appEventVideoClips

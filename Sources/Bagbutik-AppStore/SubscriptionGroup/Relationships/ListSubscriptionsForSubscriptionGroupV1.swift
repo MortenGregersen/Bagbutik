@@ -188,7 +188,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreReviewScreenshot
         case group
         case introductoryOffers
@@ -202,7 +202,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case nameAscending = "name"
         case nameDescending = "-name"
     }

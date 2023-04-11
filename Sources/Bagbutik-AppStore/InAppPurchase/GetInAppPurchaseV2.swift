@@ -122,7 +122,7 @@ public enum GetInAppPurchaseV2 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreReviewScreenshot
         case content
         case iapPriceSchedule

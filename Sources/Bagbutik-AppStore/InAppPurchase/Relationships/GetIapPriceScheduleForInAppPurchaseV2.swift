@@ -82,7 +82,7 @@ public enum GetIapPriceScheduleForInAppPurchaseV2 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case automaticPrices
         case baseTerritory
         case inAppPurchase

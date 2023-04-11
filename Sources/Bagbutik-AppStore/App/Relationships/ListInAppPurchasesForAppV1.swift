@@ -117,14 +117,14 @@ public enum ListInAppPurchasesForAppV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case apps
     }
 
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case inAppPurchaseTypeAscending = "inAppPurchaseType"
         case inAppPurchaseTypeDescending = "-inAppPurchaseType"
         case productIdAscending = "productId"

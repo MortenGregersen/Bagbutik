@@ -87,7 +87,7 @@ public enum GetAppClipDefaultExperienceV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appClip
         case appClipAppStoreReviewDetail
         case appClipDefaultExperienceLocalizations

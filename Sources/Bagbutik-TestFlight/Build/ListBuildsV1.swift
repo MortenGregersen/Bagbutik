@@ -264,7 +264,7 @@ public enum ListBuildsV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case appEncryptionDeclaration
         case appStoreVersion
@@ -281,7 +281,7 @@ public enum ListBuildsV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case preReleaseVersionAscending = "preReleaseVersion"
         case preReleaseVersionDescending = "-preReleaseVersion"
         case uploadedDateAscending = "uploadedDate"

@@ -64,7 +64,7 @@ public enum ListCertificatesV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case certificateTypeAscending = "certificateType"
         case certificateTypeDescending = "-certificateType"
         case displayNameAscending = "displayName"
