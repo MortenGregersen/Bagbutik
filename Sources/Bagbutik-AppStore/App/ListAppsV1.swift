@@ -445,7 +445,7 @@ public enum ListAppsV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appClips
         case appCustomProductPages
         case appEvents
@@ -474,7 +474,7 @@ public enum ListAppsV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case bundleIdAscending = "bundleId"
         case bundleIdDescending = "-bundleId"
         case nameAscending = "name"

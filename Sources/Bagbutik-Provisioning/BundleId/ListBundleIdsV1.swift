@@ -138,7 +138,7 @@ public enum ListBundleIdsV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case bundleIdCapabilities
         case profiles
@@ -147,7 +147,7 @@ public enum ListBundleIdsV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case idAscending = "id"
         case idDescending = "-id"
         case identifierAscending = "identifier"

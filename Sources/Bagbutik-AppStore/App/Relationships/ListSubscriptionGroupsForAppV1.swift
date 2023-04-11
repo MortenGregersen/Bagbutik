@@ -106,7 +106,7 @@ public enum ListSubscriptionGroupsForAppV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case subscriptionGroupLocalizations
         case subscriptions
     }
@@ -114,7 +114,7 @@ public enum ListSubscriptionGroupsForAppV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case referenceNameAscending = "referenceName"
         case referenceNameDescending = "-referenceName"
     }

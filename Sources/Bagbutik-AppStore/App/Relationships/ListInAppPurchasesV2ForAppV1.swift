@@ -142,7 +142,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreReviewScreenshot
         case content
         case iapPriceSchedule
@@ -154,7 +154,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case inAppPurchaseTypeAscending = "inAppPurchaseType"
         case inAppPurchaseTypeDescending = "-inAppPurchaseType"
         case nameAscending = "name"

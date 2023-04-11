@@ -84,14 +84,14 @@ public enum ListCustomerReviewsForAppStoreVersionV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case response
     }
 
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case createdDateAscending = "createdDate"
         case createdDateDescending = "-createdDate"
         case ratingAscending = "rating"

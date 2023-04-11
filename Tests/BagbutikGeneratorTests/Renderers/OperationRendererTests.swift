@@ -240,7 +240,7 @@ final class OperationRendererTests: XCTestCase {
             /**
              Relationship data to include in the response.
              */
-            public enum Include: String, IncludeParameter {
+            public enum Include: String, IncludeParameter, CaseIterable {
                 case devices
                 case glasses
             }
@@ -248,7 +248,7 @@ final class OperationRendererTests: XCTestCase {
             /**
              Attributes by which to sort.
              */
-            public enum Sort: String, SortParameter {
+            public enum Sort: String, SortParameter, CaseIterable {
                 case devicesCountAscending = "devicesCount"
                 case devicesCountDescending = "-devicesCount"
                 case nameAscending = "name"
@@ -427,7 +427,7 @@ final class OperationRendererTests: XCTestCase {
             /**
              Relationship data to include in the response.
              */
-            public enum Include: String, IncludeParameter {
+            public enum Include: String, IncludeParameter, CaseIterable {
                 case offerCode
             }
         }

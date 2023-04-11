@@ -144,7 +144,7 @@ public class OperationRenderer: Renderer {
                     \(renderEnum(
                         named: "Include",
                         rawType: "String",
-                        protocols: ["IncludeParameter"],
+                        protocols: ["IncludeParameter", "CaseIterable"],
                         cases: parametersInfo.includes))
                     """)
                 }
@@ -154,7 +154,7 @@ public class OperationRenderer: Renderer {
                     \(renderEnum(
                         named: "Sort",
                         rawType: "String",
-                        protocols: ["SortParameter"],
+                        protocols: ["SortParameter", "CaseIterable"],
                         cases: parametersInfo.sorts))
                     """)
                 }

@@ -65,7 +65,7 @@ public enum ListDevicesV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case idAscending = "id"
         case idDescending = "-id"
         case nameAscending = "name"

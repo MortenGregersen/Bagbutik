@@ -151,7 +151,7 @@ public enum ListPreReleaseVersionsV1 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case builds
     }
@@ -159,7 +159,7 @@ public enum ListPreReleaseVersionsV1 {
     /**
      Attributes by which to sort.
      */
-    public enum Sort: String, SortParameter {
+    public enum Sort: String, SortParameter, CaseIterable {
         case versionAscending = "version"
         case versionDescending = "-version"
     }

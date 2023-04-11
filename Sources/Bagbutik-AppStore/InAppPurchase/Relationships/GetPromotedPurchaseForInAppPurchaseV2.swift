@@ -105,7 +105,7 @@ public enum GetPromotedPurchaseForInAppPurchaseV2 {
     /**
      Relationship data to include in the response.
      */
-    public enum Include: String, IncludeParameter {
+    public enum Include: String, IncludeParameter, CaseIterable {
         case inAppPurchaseV2
         case promotionImages
         case subscription
