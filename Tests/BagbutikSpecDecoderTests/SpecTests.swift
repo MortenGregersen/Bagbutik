@@ -834,11 +834,6 @@ final class SpecTests: XCTestCase {
         try spec.applyManualPatches()
         XCTAssertEqual(spec.paths.count, 0)
 
-        guard case .object(let buildBundleSchema) = spec.components.schemas["BuildBundle"] else {
-            XCTFail(); return
-        }
-        XCTAssertFalse(buildBundleSchema.requiredProperties.contains("links"))
-
         guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["BundleIdPlatform"] else {
             XCTFail(); return
         }

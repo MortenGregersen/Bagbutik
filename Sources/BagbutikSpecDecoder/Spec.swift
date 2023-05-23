@@ -160,15 +160,6 @@ public struct Spec: Decodable {
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
         }
 
-        // Mark `links` as optional on BuildBundle
-        // In Apple's OpenAPI spec the `links` property on `BuildBundle` is marked as `required`.
-        // But when requesting build bundles from the API, the `links` property is missing in the response.
-        // Reported to Apple 27/5/22 as FB10029609.
-        if case .object(var buildBundleSchema) = components.schemas["BuildBundle"] {
-            buildBundleSchema.requiredProperties.removeAll(where: { $0 == "links" })
-            components.schemas["BuildBundle"] = .object(buildBundleSchema)
-        }
-
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],

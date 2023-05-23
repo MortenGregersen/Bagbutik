@@ -12,7 +12,7 @@ public struct BuildBundle: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
     /// Navigational links that include the self-link.
-    public var links: ResourceLinks?
+    public let links: ResourceLinks
     /// The resource type.
     public var type: String { "buildBundles" }
     /// The attributes that describe the Build Bundles resource.
@@ -21,7 +21,7 @@ public struct BuildBundle: Codable, Identifiable {
     public var relationships: Relationships?
 
     public init(id: String,
-                links: ResourceLinks? = nil,
+                links: ResourceLinks,
                 attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
@@ -34,7 +34,7 @@ public struct BuildBundle: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
+        links = try container.decode(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
@@ -45,7 +45,7 @@ public struct BuildBundle: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
+        try container.encode(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
