@@ -60,6 +60,18 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         return appStoreVersionExperiments
     }
 
+    public func getAppStoreVersionExperimentsV2(for appStoreVersion: AppStoreVersion) -> [AppStoreVersionExperiment] {
+        guard let appStoreVersionExperimentsV2Ids = appStoreVersion.relationships?.appStoreVersionExperimentsV2?.data?.map(\.id),
+              let appStoreVersionExperimentsV2 = included?.compactMap({ relationship -> AppStoreVersionExperiment? in
+                  guard case let .appStoreVersionExperiment(appStoreVersionExperimentsV2) = relationship else { return nil }
+                  return appStoreVersionExperimentsV2Ids.contains(appStoreVersionExperimentsV2.id) ? appStoreVersionExperimentsV2 : nil
+              })
+        else {
+            return []
+        }
+        return appStoreVersionExperimentsV2
+    }
+
     public func getAppStoreVersionLocalizations(for appStoreVersion: AppStoreVersion) -> [AppStoreVersionLocalization] {
         guard let appStoreVersionLocalizationIds = appStoreVersion.relationships?.appStoreVersionLocalizations?.data?.map(\.id),
               let appStoreVersionLocalizations = included?.compactMap({ relationship -> AppStoreVersionLocalization? in
@@ -106,6 +118,7 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appStoreReviewDetail(AppStoreReviewDetail)
         case appStoreVersionExperiment(AppStoreVersionExperiment)
+        case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
         case appStoreVersionLocalization(AppStoreVersionLocalization)
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
@@ -123,6 +136,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
                 self = .appStoreReviewDetail(appStoreReviewDetail)
             } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
                 self = .appStoreVersionExperiment(appStoreVersionExperiment)
+            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
+                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
             } else if let appStoreVersionLocalization = try? AppStoreVersionLocalization(from: decoder) {
                 self = .appStoreVersionLocalization(appStoreVersionLocalization)
             } else if let appStoreVersionPhasedRelease = try? AppStoreVersionPhasedRelease(from: decoder) {
@@ -150,6 +165,8 @@ public struct AppStoreVersionsResponse: Codable, PagedResponse {
             case let .appStoreReviewDetail(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionExperiment(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperimentV2(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)

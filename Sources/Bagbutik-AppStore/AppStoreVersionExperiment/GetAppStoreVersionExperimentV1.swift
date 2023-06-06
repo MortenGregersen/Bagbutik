@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersionExperiments/{id}
+     # Read App Store experiment information v1
+     Get information for a specific App Store version experiment.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperiments_id>
@@ -14,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum number of related appStoreVersionExperimentTreatments returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppStoreVersionExperimentV1(id: String,
                                                fields: [GetAppStoreVersionExperimentV1.Field]? = nil,
                                                includes: [GetAppStoreVersionExperimentV1.Include]? = nil,
@@ -40,6 +42,7 @@ public enum GetAppStoreVersionExperimentV1 {
             case appIconName
             case appStoreVersionExperiment
             case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
             case name
             case promotedDate
         }

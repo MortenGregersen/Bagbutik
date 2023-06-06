@@ -84,6 +84,13 @@ public struct SubscriptionResponse: Codable {
         return promotionalOffers
     }
 
+    public func getSubscriptionAvailability() -> SubscriptionAvailability? {
+        included?.compactMap { relationship -> SubscriptionAvailability? in
+            guard case let .subscriptionAvailability(subscriptionAvailability) = relationship else { return nil }
+            return subscriptionAvailability
+        }.first { $0.id == data.relationships?.subscriptionAvailability?.data?.id }
+    }
+
     public func getSubscriptionLocalizations() -> [SubscriptionLocalization] {
         guard let subscriptionLocalizationIds = data.relationships?.subscriptionLocalizations?.data?.map(\.id),
               let subscriptionLocalizations = included?.compactMap({ relationship -> SubscriptionLocalization? in
@@ -99,6 +106,7 @@ public struct SubscriptionResponse: Codable {
     public enum Included: Codable {
         case promotedPurchase(PromotedPurchase)
         case subscriptionAppStoreReviewScreenshot(SubscriptionAppStoreReviewScreenshot)
+        case subscriptionAvailability(SubscriptionAvailability)
         case subscriptionGroup(SubscriptionGroup)
         case subscriptionIntroductoryOffer(SubscriptionIntroductoryOffer)
         case subscriptionLocalization(SubscriptionLocalization)
@@ -111,6 +119,8 @@ public struct SubscriptionResponse: Codable {
                 self = .promotedPurchase(promotedPurchase)
             } else if let subscriptionAppStoreReviewScreenshot = try? SubscriptionAppStoreReviewScreenshot(from: decoder) {
                 self = .subscriptionAppStoreReviewScreenshot(subscriptionAppStoreReviewScreenshot)
+            } else if let subscriptionAvailability = try? SubscriptionAvailability(from: decoder) {
+                self = .subscriptionAvailability(subscriptionAvailability)
             } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
                 self = .subscriptionGroup(subscriptionGroup)
             } else if let subscriptionIntroductoryOffer = try? SubscriptionIntroductoryOffer(from: decoder) {
@@ -134,6 +144,8 @@ public struct SubscriptionResponse: Codable {
             case let .promotedPurchase(value):
                 try value.encode(to: encoder)
             case let .subscriptionAppStoreReviewScreenshot(value):
+                try value.encode(to: encoder)
+            case let .subscriptionAvailability(value):
                 try value.encode(to: encoder)
             case let .subscriptionGroup(value):
                 try value.encode(to: encoder)

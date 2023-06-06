@@ -34,6 +34,8 @@ public enum ListReviewSubmissionsForAppV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type actors
+        case actors([Actors])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
         /// The fields to include for returned resources of type apps
@@ -43,6 +45,14 @@ public enum ListReviewSubmissionsForAppV1 {
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
 
+        public enum Actors: String, ParameterValue, Codable, CaseIterable {
+            case actorType
+            case apiKeyId
+            case userEmail
+            case userFirstName
+            case userLastName
+        }
+
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
@@ -50,6 +60,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -73,6 +84,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreVersionExperimentsV2
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories
@@ -114,6 +126,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case appEvent
             case appStoreVersion
             case appStoreVersionExperiment
+            case appStoreVersionExperimentV2
             case removed
             case resolved
             case reviewSubmission
@@ -125,9 +138,11 @@ public enum ListReviewSubmissionsForAppV1 {
             case appStoreVersionForReview
             case canceled
             case items
+            case lastUpdatedByActor
             case platform
             case state
             case submitted
+            case submittedByActor
             case submittedDate
         }
     }
@@ -159,6 +174,8 @@ public enum ListReviewSubmissionsForAppV1 {
         case app
         case appStoreVersionForReview
         case items
+        case lastUpdatedByActor
+        case submittedByActor
     }
 
     /**

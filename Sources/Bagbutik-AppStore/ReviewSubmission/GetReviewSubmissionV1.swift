@@ -41,6 +41,7 @@ public enum GetReviewSubmissionV1 {
             case appEvent
             case appStoreVersion
             case appStoreVersionExperiment
+            case appStoreVersionExperimentV2
             case removed
             case resolved
             case reviewSubmission
@@ -52,9 +53,11 @@ public enum GetReviewSubmissionV1 {
             case appStoreVersionForReview
             case canceled
             case items
+            case lastUpdatedByActor
             case platform
             case state
             case submitted
+            case submittedByActor
             case submittedDate
         }
     }
@@ -66,5 +69,7 @@ public enum GetReviewSubmissionV1 {
         case app
         case appStoreVersionForReview
         case items
+        case lastUpdatedByActor
+        case submittedByActor
     }
 }

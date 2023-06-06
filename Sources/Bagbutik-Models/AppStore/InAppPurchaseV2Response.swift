@@ -36,6 +36,13 @@ public struct InAppPurchaseV2Response: Codable {
         }.first { $0.id == data.relationships?.iapPriceSchedule?.data?.id }
     }
 
+    public func getInAppPurchaseAvailability() -> InAppPurchaseAvailability? {
+        included?.compactMap { relationship -> InAppPurchaseAvailability? in
+            guard case let .inAppPurchaseAvailability(inAppPurchaseAvailability) = relationship else { return nil }
+            return inAppPurchaseAvailability
+        }.first { $0.id == data.relationships?.inAppPurchaseAvailability?.data?.id }
+    }
+
     public func getInAppPurchaseLocalizations() -> [InAppPurchaseLocalization] {
         guard let inAppPurchaseLocalizationIds = data.relationships?.inAppPurchaseLocalizations?.data?.map(\.id),
               let inAppPurchaseLocalizations = included?.compactMap({ relationship -> InAppPurchaseLocalization? in
@@ -69,6 +76,7 @@ public struct InAppPurchaseV2Response: Codable {
 
     public enum Included: Codable {
         case inAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
+        case inAppPurchaseAvailability(InAppPurchaseAvailability)
         case inAppPurchaseContent(InAppPurchaseContent)
         case inAppPurchaseLocalization(InAppPurchaseLocalization)
         case inAppPurchasePricePoint(InAppPurchasePricePoint)
@@ -78,6 +86,8 @@ public struct InAppPurchaseV2Response: Codable {
         public init(from decoder: Decoder) throws {
             if let inAppPurchaseAppStoreReviewScreenshot = try? InAppPurchaseAppStoreReviewScreenshot(from: decoder) {
                 self = .inAppPurchaseAppStoreReviewScreenshot(inAppPurchaseAppStoreReviewScreenshot)
+            } else if let inAppPurchaseAvailability = try? InAppPurchaseAvailability(from: decoder) {
+                self = .inAppPurchaseAvailability(inAppPurchaseAvailability)
             } else if let inAppPurchaseContent = try? InAppPurchaseContent(from: decoder) {
                 self = .inAppPurchaseContent(inAppPurchaseContent)
             } else if let inAppPurchaseLocalization = try? InAppPurchaseLocalization(from: decoder) {
@@ -97,6 +107,8 @@ public struct InAppPurchaseV2Response: Codable {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .inAppPurchaseAppStoreReviewScreenshot(value):
+                try value.encode(to: encoder)
+            case let .inAppPurchaseAvailability(value):
                 try value.encode(to: encoder)
             case let .inAppPurchaseContent(value):
                 try value.encode(to: encoder)

@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 /**
- # PrereleaseVersion
+ # PreReleaseVersion
  The data structure that represents a Prerelease Versions  resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion>
  */
-public struct PrereleaseVersion: Codable, Identifiable {
+public struct PreReleaseVersion: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -60,7 +60,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
     }
 
     /**
-     # PrereleaseVersion.Attributes
+     # PreReleaseVersion.Attributes
      Attributes that describe a Prerelease Versions resource.
 
      Full documentation:
@@ -81,7 +81,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
     }
 
     /**
-     # PrereleaseVersion.Relationships
+     # PreReleaseVersion.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -99,7 +99,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
         }
 
         /**
-         # PrereleaseVersion.Relationships.App
+         # PreReleaseVersion.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -134,7 +134,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PrereleaseVersion.Relationships.App.Data
+             # PreReleaseVersion.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -171,7 +171,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PrereleaseVersion.Relationships.App.Links
+             # PreReleaseVersion.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -208,7 +208,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
         }
 
         /**
-         # PrereleaseVersion.Relationships.Builds
+         # PreReleaseVersion.Relationships.Builds
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -249,7 +249,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PrereleaseVersion.Relationships.Builds.Data
+             # PreReleaseVersion.Relationships.Builds.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -286,7 +286,7 @@ public struct PrereleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PrereleaseVersion.Relationships.Builds.Links
+             # PreReleaseVersion.Relationships.Builds.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:

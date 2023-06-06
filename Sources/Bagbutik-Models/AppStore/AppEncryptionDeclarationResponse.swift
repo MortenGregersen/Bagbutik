@@ -38,18 +38,6 @@ public struct AppEncryptionDeclarationResponse: Codable {
         }.first { $0.id == data.relationships?.appEncryptionDeclarationDocument?.data?.id }
     }
 
-    public func getBuilds() -> [Build] {
-        guard let buildIds = data.relationships?.builds?.data?.map(\.id),
-              let builds = included?.compactMap({ relationship -> Build? in
-                  guard case let .build(build) = relationship else { return nil }
-                  return buildIds.contains(build.id) ? build : nil
-              })
-        else {
-            return []
-        }
-        return builds
-    }
-
     public enum Included: Codable {
         case app(App)
         case appEncryptionDeclarationDocument(AppEncryptionDeclarationDocument)

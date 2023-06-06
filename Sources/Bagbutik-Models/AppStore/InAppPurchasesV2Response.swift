@@ -41,6 +41,13 @@ public struct InAppPurchasesV2Response: Codable, PagedResponse {
         }.first { $0.id == inAppPurchaseV2.relationships?.iapPriceSchedule?.data?.id }
     }
 
+    public func getInAppPurchaseAvailability(for inAppPurchaseV2: InAppPurchaseV2) -> InAppPurchaseAvailability? {
+        included?.compactMap { relationship -> InAppPurchaseAvailability? in
+            guard case let .inAppPurchaseAvailability(inAppPurchaseAvailability) = relationship else { return nil }
+            return inAppPurchaseAvailability
+        }.first { $0.id == inAppPurchaseV2.relationships?.inAppPurchaseAvailability?.data?.id }
+    }
+
     public func getInAppPurchaseLocalizations(for inAppPurchaseV2: InAppPurchaseV2) -> [InAppPurchaseLocalization] {
         guard let inAppPurchaseLocalizationIds = inAppPurchaseV2.relationships?.inAppPurchaseLocalizations?.data?.map(\.id),
               let inAppPurchaseLocalizations = included?.compactMap({ relationship -> InAppPurchaseLocalization? in
@@ -74,6 +81,7 @@ public struct InAppPurchasesV2Response: Codable, PagedResponse {
 
     public enum Included: Codable {
         case inAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
+        case inAppPurchaseAvailability(InAppPurchaseAvailability)
         case inAppPurchaseContent(InAppPurchaseContent)
         case inAppPurchaseLocalization(InAppPurchaseLocalization)
         case inAppPurchasePricePoint(InAppPurchasePricePoint)
@@ -83,6 +91,8 @@ public struct InAppPurchasesV2Response: Codable, PagedResponse {
         public init(from decoder: Decoder) throws {
             if let inAppPurchaseAppStoreReviewScreenshot = try? InAppPurchaseAppStoreReviewScreenshot(from: decoder) {
                 self = .inAppPurchaseAppStoreReviewScreenshot(inAppPurchaseAppStoreReviewScreenshot)
+            } else if let inAppPurchaseAvailability = try? InAppPurchaseAvailability(from: decoder) {
+                self = .inAppPurchaseAvailability(inAppPurchaseAvailability)
             } else if let inAppPurchaseContent = try? InAppPurchaseContent(from: decoder) {
                 self = .inAppPurchaseContent(inAppPurchaseContent)
             } else if let inAppPurchaseLocalization = try? InAppPurchaseLocalization(from: decoder) {
@@ -102,6 +112,8 @@ public struct InAppPurchasesV2Response: Codable, PagedResponse {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .inAppPurchaseAppStoreReviewScreenshot(value):
+                try value.encode(to: encoder)
+            case let .inAppPurchaseAvailability(value):
                 try value.encode(to: encoder)
             case let .inAppPurchaseContent(value):
                 try value.encode(to: encoder)

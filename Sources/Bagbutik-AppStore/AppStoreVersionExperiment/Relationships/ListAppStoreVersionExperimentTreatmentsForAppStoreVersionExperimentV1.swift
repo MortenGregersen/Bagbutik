@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments
+     # List all treatments for an App Store Experiment v1
+     Get a list of all treatments for a specific App Store version experiment.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperiments_id_appstoreversionexperimenttreatments>
@@ -14,6 +15,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1(id: String,
                                                                                       fields: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1.Field]? = nil,
                                                                                       includes: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV1.Include]? = nil,
@@ -49,15 +51,19 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV
             case appIconName
             case appStoreVersionExperiment
             case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
             case name
             case promotedDate
         }
 
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
+            case app
             case appStoreVersionExperimentTreatments
+            case controlVersions
             case endDate
+            case latestControlVersion
             case name
+            case platform
             case reviewRequired
             case startDate
             case started
@@ -72,6 +78,7 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreVersionExperiment
         case appStoreVersionExperimentTreatmentLocalizations
+        case appStoreVersionExperimentV2
     }
 
     /**

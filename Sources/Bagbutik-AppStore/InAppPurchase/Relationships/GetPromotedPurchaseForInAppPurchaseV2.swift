@@ -48,6 +48,7 @@ public enum GetPromotedPurchaseForInAppPurchaseV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
@@ -97,6 +98,7 @@ public enum GetPromotedPurchaseForInAppPurchaseV2 {
             case promotionalOffers
             case reviewNote
             case state
+            case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
         }

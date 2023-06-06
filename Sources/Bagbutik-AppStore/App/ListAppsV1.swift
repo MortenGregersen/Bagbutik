@@ -58,6 +58,8 @@ public enum ListAppsV1 {
         /// The fields to include for returned resources of type appPrices
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPrices([AppPrices])
+        /// The fields to include for returned resources of type appStoreVersionExperiments
+        case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
         /// The fields to include for returned resources of type apps
@@ -180,6 +182,21 @@ public enum ListAppsV1 {
             case priceTier
         }
 
+        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case appStoreVersionExperimentTreatments
+            case controlVersions
+            case endDate
+            case latestControlVersion
+            case name
+            case platform
+            case reviewRequired
+            case startDate
+            case started
+            case state
+            case trafficProportion
+        }
+
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
@@ -187,6 +204,7 @@ public enum ListAppsV1 {
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -210,6 +228,7 @@ public enum ListAppsV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreVersionExperimentsV2
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories
@@ -389,9 +408,11 @@ public enum ListAppsV1 {
             case appStoreVersionForReview
             case canceled
             case items
+            case lastUpdatedByActor
             case platform
             case state
             case submitted
+            case submittedByActor
             case submittedDate
         }
 
@@ -450,6 +471,7 @@ public enum ListAppsV1 {
         case appCustomProductPages
         case appEvents
         case appInfos
+        case appStoreVersionExperimentsV2
         case appStoreVersions
         case availableTerritories
         case betaAppLocalizations
@@ -495,6 +517,8 @@ public enum ListAppsV1 {
         case appEvents(Int)
         /// Maximum number of related appInfos returned (when they are included) - maximum 50
         case appInfos(Int)
+        /// Maximum number of related appStoreVersionExperimentsV2 returned (when they are included) - maximum 50
+        case appStoreVersionExperimentsV2(Int)
         /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50
         case appStoreVersions(Int)
         /// Maximum number of related availableTerritories returned (when they are included) - maximum 50

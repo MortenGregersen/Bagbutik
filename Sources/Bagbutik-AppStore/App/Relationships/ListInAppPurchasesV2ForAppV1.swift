@@ -39,12 +39,12 @@ public enum ListInAppPurchasesV2ForAppV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots
         case inAppPurchaseAppStoreReviewScreenshots([InAppPurchaseAppStoreReviewScreenshots])
+        /// The fields to include for returned resources of type inAppPurchaseAvailabilities
+        case inAppPurchaseAvailabilities([InAppPurchaseAvailabilities])
         /// The fields to include for returned resources of type inAppPurchaseContents
         case inAppPurchaseContents([InAppPurchaseContents])
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
         case inAppPurchaseLocalizations([InAppPurchaseLocalizations])
-        /// The fields to include for returned resources of type inAppPurchasePricePoints
-        case inAppPurchasePricePoints([InAppPurchasePricePoints])
         /// The fields to include for returned resources of type inAppPurchasePriceSchedules
         case inAppPurchasePriceSchedules([InAppPurchasePriceSchedules])
         /// The fields to include for returned resources of type inAppPurchases
@@ -65,6 +65,12 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case uploaded
         }
 
+        public enum InAppPurchaseAvailabilities: String, ParameterValue, Codable, CaseIterable {
+            case availableInNewTerritories
+            case availableTerritories
+            case inAppPurchase
+        }
+
         public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
             case fileName
             case fileSize
@@ -79,14 +85,6 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case locale
             case name
             case state
-        }
-
-        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
-            case customerPrice
-            case inAppPurchaseV2
-            case priceTier
-            case proceeds
-            case territory
         }
 
         public enum InAppPurchasePriceSchedules: String, ParameterValue, Codable, CaseIterable {
@@ -104,10 +102,10 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
-            case pricePoints
             case productId
             case promotedPurchase
             case reviewNote
@@ -146,6 +144,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case appStoreReviewScreenshot
         case content
         case iapPriceSchedule
+        case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
         case pricePoints
         case promotedPurchase
@@ -169,7 +168,5 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseLocalizations(Int)
         /// Maximum resources per page - maximum 200
         case limit(Int)
-        /// Maximum number of related pricePoints returned (when they are included) - maximum 8000
-        case pricePoints(Int)
     }
 }

@@ -33,6 +33,8 @@ public enum GetInAppPurchaseV2 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots
         case inAppPurchaseAppStoreReviewScreenshots([InAppPurchaseAppStoreReviewScreenshots])
+        /// The fields to include for returned resources of type inAppPurchaseAvailabilities
+        case inAppPurchaseAvailabilities([InAppPurchaseAvailabilities])
         /// The fields to include for returned resources of type inAppPurchaseContents
         case inAppPurchaseContents([InAppPurchaseContents])
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
@@ -57,6 +59,12 @@ public enum GetInAppPurchaseV2 {
             case sourceFileChecksum
             case uploadOperations
             case uploaded
+        }
+
+        public enum InAppPurchaseAvailabilities: String, ParameterValue, Codable, CaseIterable {
+            case availableInNewTerritories
+            case availableTerritories
+            case inAppPurchase
         }
 
         public enum InAppPurchaseContents: String, ParameterValue, Codable, CaseIterable {
@@ -98,6 +106,7 @@ public enum GetInAppPurchaseV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
@@ -126,6 +135,7 @@ public enum GetInAppPurchaseV2 {
         case appStoreReviewScreenshot
         case content
         case iapPriceSchedule
+        case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
         case pricePoints
         case promotedPurchase

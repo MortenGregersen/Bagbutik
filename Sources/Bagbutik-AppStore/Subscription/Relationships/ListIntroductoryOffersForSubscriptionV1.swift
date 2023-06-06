@@ -79,6 +79,7 @@ public enum ListIntroductoryOffersForSubscriptionV1 {
             case promotionalOffers
             case reviewNote
             case state
+            case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
         }

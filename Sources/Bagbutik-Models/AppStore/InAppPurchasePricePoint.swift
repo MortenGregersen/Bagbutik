@@ -49,15 +49,24 @@ public struct InAppPurchasePricePoint: Codable, Identifiable {
 
     public struct Attributes: Codable {
         public var customerPrice: String?
-        public var priceTier: String?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var priceTier: String? = nil
         public var proceeds: String?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(customerPrice: String? = nil,
                     priceTier: String? = nil,
                     proceeds: String? = nil)
         {
             self.customerPrice = customerPrice
             self.priceTier = priceTier
+            self.proceeds = proceeds
+        }
+
+        public init(customerPrice: String? = nil,
+                    proceeds: String? = nil)
+        {
+            self.customerPrice = customerPrice
             self.proceeds = proceeds
         }
     }

@@ -64,6 +64,7 @@ public enum GetIapPriceScheduleForInAppPurchaseV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
