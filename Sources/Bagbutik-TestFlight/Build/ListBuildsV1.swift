@@ -87,6 +87,7 @@ public enum ListBuildsV1 {
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -110,6 +111,7 @@ public enum ListBuildsV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreVersionExperimentsV2
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories

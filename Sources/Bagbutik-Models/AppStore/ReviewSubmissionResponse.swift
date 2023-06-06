@@ -41,13 +41,30 @@ public struct ReviewSubmissionResponse: Codable {
         return items
     }
 
+    public func getLastUpdatedByActor() -> Actor? {
+        included?.compactMap { relationship -> Actor? in
+            guard case let .actor(lastUpdatedByActor) = relationship else { return nil }
+            return lastUpdatedByActor
+        }.first { $0.id == data.relationships?.lastUpdatedByActor?.data?.id }
+    }
+
+    public func getSubmittedByActor() -> Actor? {
+        included?.compactMap { relationship -> Actor? in
+            guard case let .actor(submittedByActor) = relationship else { return nil }
+            return submittedByActor
+        }.first { $0.id == data.relationships?.submittedByActor?.data?.id }
+    }
+
     public enum Included: Codable {
+        case actor(Actor)
         case app(App)
         case appStoreVersion(AppStoreVersion)
         case reviewSubmissionItem(ReviewSubmissionItem)
 
         public init(from decoder: Decoder) throws {
-            if let app = try? App(from: decoder) {
+            if let actor = try? Actor(from: decoder) {
+                self = .actor(actor)
+            } else if let app = try? App(from: decoder) {
                 self = .app(app)
             } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
                 self = .appStoreVersion(appStoreVersion)
@@ -61,6 +78,8 @@ public struct ReviewSubmissionResponse: Codable {
 
         public func encode(to encoder: Encoder) throws {
             switch self {
+            case let .actor(value):
+                try value.encode(to: encoder)
             case let .app(value):
                 try value.encode(to: encoder)
             case let .appStoreVersion(value):

@@ -100,10 +100,13 @@ public enum ListAppStoreVersionsForAppV1 {
         }
 
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
+            case app
             case appStoreVersionExperimentTreatments
+            case controlVersions
             case endDate
+            case latestControlVersion
             case name
+            case platform
             case reviewRequired
             case startDate
             case started
@@ -143,6 +146,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
@@ -166,6 +170,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreVersionExperimentsV2
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories
@@ -263,6 +268,7 @@ public enum ListAppStoreVersionsForAppV1 {
         case appClipDefaultExperience
         case appStoreReviewDetail
         case appStoreVersionExperiments
+        case appStoreVersionExperimentsV2
         case appStoreVersionLocalizations
         case appStoreVersionPhasedRelease
         case appStoreVersionSubmission
@@ -276,6 +282,8 @@ public enum ListAppStoreVersionsForAppV1 {
     public enum Limit: LimitParameter {
         /// Maximum number of related appStoreVersionExperiments returned (when they are included) - maximum 50
         case appStoreVersionExperiments(Int)
+        /// Maximum number of related appStoreVersionExperimentsV2 returned (when they are included) - maximum 50
+        case appStoreVersionExperimentsV2(Int)
         /// Maximum number of related appStoreVersionLocalizations returned (when they are included) - maximum 50
         case appStoreVersionLocalizations(Int)
         /// Maximum resources per page - maximum 200

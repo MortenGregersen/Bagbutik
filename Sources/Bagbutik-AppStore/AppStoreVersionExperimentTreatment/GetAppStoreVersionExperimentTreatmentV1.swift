@@ -47,6 +47,7 @@ public enum GetAppStoreVersionExperimentTreatmentV1 {
             case appIconName
             case appStoreVersionExperiment
             case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
             case name
             case promotedDate
         }
@@ -58,5 +59,6 @@ public enum GetAppStoreVersionExperimentTreatmentV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreVersionExperiment
         case appStoreVersionExperimentTreatmentLocalizations
+        case appStoreVersionExperimentV2
     }
 }

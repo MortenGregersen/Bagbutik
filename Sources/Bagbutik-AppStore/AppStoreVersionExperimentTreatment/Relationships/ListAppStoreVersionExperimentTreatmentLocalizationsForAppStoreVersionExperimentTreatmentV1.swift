@@ -70,6 +70,7 @@ public enum ListAppStoreVersionExperimentTreatmentLocalizationsForAppStoreVersio
             case appIconName
             case appStoreVersionExperiment
             case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
             case name
             case promotedDate
         }

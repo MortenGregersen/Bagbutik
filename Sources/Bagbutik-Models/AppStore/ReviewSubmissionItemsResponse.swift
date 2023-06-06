@@ -48,11 +48,19 @@ public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
         }.first { $0.id == reviewSubmissionItem.relationships?.appStoreVersionExperiment?.data?.id }
     }
 
+    public func getAppStoreVersionExperimentV2(for reviewSubmissionItem: ReviewSubmissionItem) -> AppStoreVersionExperiment? {
+        included?.compactMap { relationship -> AppStoreVersionExperiment? in
+            guard case let .appStoreVersionExperiment(appStoreVersionExperimentV2) = relationship else { return nil }
+            return appStoreVersionExperimentV2
+        }.first { $0.id == reviewSubmissionItem.relationships?.appStoreVersionExperimentV2?.data?.id }
+    }
+
     public enum Included: Codable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperiment(AppStoreVersionExperiment)
+        case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
 
         public init(from decoder: Decoder) throws {
             if let appCustomProductPageVersion = try? AppCustomProductPageVersion(from: decoder) {
@@ -63,6 +71,8 @@ public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
                 self = .appStoreVersion(appStoreVersion)
             } else if let appStoreVersionExperiment = try? AppStoreVersionExperiment(from: decoder) {
                 self = .appStoreVersionExperiment(appStoreVersionExperiment)
+            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
+                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -78,6 +88,8 @@ public struct ReviewSubmissionItemsResponse: Codable, PagedResponse {
             case let .appStoreVersion(value):
                 try value.encode(to: encoder)
             case let .appStoreVersionExperiment(value):
+                try value.encode(to: encoder)
+            case let .appStoreVersionExperimentV2(value):
                 try value.encode(to: encoder)
             }
         }

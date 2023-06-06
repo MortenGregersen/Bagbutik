@@ -35,6 +35,8 @@ public enum GetSubscriptionV1 {
         case promotedPurchases([PromotedPurchases])
         /// The fields to include for returned resources of type subscriptionAppStoreReviewScreenshots
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
+        /// The fields to include for returned resources of type subscriptionAvailabilities
+        case subscriptionAvailabilities([SubscriptionAvailabilities])
         /// The fields to include for returned resources of type subscriptionIntroductoryOffers
         case subscriptionIntroductoryOffers([SubscriptionIntroductoryOffers])
         /// The fields to include for returned resources of type subscriptionLocalizations
@@ -71,6 +73,12 @@ public enum GetSubscriptionV1 {
             case subscription
             case uploadOperations
             case uploaded
+        }
+
+        public enum SubscriptionAvailabilities: String, ParameterValue, Codable, CaseIterable {
+            case availableInNewTerritories
+            case availableTerritories
+            case subscription
         }
 
         public enum SubscriptionIntroductoryOffers: String, ParameterValue, Codable, CaseIterable {
@@ -151,6 +159,7 @@ public enum GetSubscriptionV1 {
             case promotionalOffers
             case reviewNote
             case state
+            case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
         }
@@ -167,6 +176,7 @@ public enum GetSubscriptionV1 {
         case prices
         case promotedPurchase
         case promotionalOffers
+        case subscriptionAvailability
         case subscriptionLocalizations
     }
 

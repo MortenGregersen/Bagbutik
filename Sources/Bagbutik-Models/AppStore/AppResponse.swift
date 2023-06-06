@@ -72,6 +72,18 @@ public struct AppResponse: Codable {
         return appInfos
     }
 
+    public func getAppStoreVersionExperimentsV2() -> [AppStoreVersionExperimentV2] {
+        guard let appStoreVersionExperimentsV2Ids = data.relationships?.appStoreVersionExperimentsV2?.data?.map(\.id),
+              let appStoreVersionExperimentsV2 = included?.compactMap({ relationship -> AppStoreVersionExperimentV2? in
+                  guard case let .appStoreVersionExperimentV2(appStoreVersionExperimentsV2) = relationship else { return nil }
+                  return appStoreVersionExperimentsV2Ids.contains(appStoreVersionExperimentsV2.id) ? appStoreVersionExperimentsV2 : nil
+              })
+        else {
+            return []
+        }
+        return appStoreVersionExperimentsV2
+    }
+
     public func getAppStoreVersions() -> [AppStoreVersion] {
         guard let appStoreVersionIds = data.relationships?.appStoreVersions?.data?.map(\.id),
               let appStoreVersions = included?.compactMap({ relationship -> AppStoreVersion? in
@@ -179,10 +191,10 @@ public struct AppResponse: Codable {
         }.first { $0.id == data.relationships?.preOrder?.data?.id }
     }
 
-    public func getPreReleaseVersions() -> [PrereleaseVersion] {
+    public func getPreReleaseVersions() -> [PreReleaseVersion] {
         guard let preReleaseVersionIds = data.relationships?.preReleaseVersions?.data?.map(\.id),
-              let preReleaseVersions = included?.compactMap({ relationship -> PrereleaseVersion? in
-                  guard case let .prereleaseVersion(preReleaseVersion) = relationship else { return nil }
+              let preReleaseVersions = included?.compactMap({ relationship -> PreReleaseVersion? in
+                  guard case let .preReleaseVersion(preReleaseVersion) = relationship else { return nil }
                   return preReleaseVersionIds.contains(preReleaseVersion.id) ? preReleaseVersion : nil
               })
         else {
@@ -242,6 +254,7 @@ public struct AppResponse: Codable {
         case appPreOrder(AppPreOrder)
         case appPrice(AppPrice)
         case appStoreVersion(AppStoreVersion)
+        case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
         case betaAppLocalization(BetaAppLocalization)
         case betaAppReviewDetail(BetaAppReviewDetail)
         case betaGroup(BetaGroup)
@@ -252,7 +265,7 @@ public struct AppResponse: Codable {
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
         case inAppPurchase(InAppPurchase)
         case inAppPurchaseV2(InAppPurchaseV2)
-        case prereleaseVersion(PrereleaseVersion)
+        case preReleaseVersion(PreReleaseVersion)
         case promotedPurchase(PromotedPurchase)
         case reviewSubmission(ReviewSubmission)
         case subscriptionGracePeriod(SubscriptionGracePeriod)
@@ -274,6 +287,8 @@ public struct AppResponse: Codable {
                 self = .appPrice(appPrice)
             } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
                 self = .appStoreVersion(appStoreVersion)
+            } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
+                self = .appStoreVersionExperimentV2(appStoreVersionExperimentV2)
             } else if let betaAppLocalization = try? BetaAppLocalization(from: decoder) {
                 self = .betaAppLocalization(betaAppLocalization)
             } else if let betaAppReviewDetail = try? BetaAppReviewDetail(from: decoder) {
@@ -294,8 +309,8 @@ public struct AppResponse: Codable {
                 self = .inAppPurchase(inAppPurchase)
             } else if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
                 self = .inAppPurchaseV2(inAppPurchaseV2)
-            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
-                self = .prereleaseVersion(prereleaseVersion)
+            } else if let preReleaseVersion = try? PreReleaseVersion(from: decoder) {
+                self = .preReleaseVersion(preReleaseVersion)
             } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
                 self = .promotedPurchase(promotedPurchase)
             } else if let reviewSubmission = try? ReviewSubmission(from: decoder) {
@@ -328,6 +343,8 @@ public struct AppResponse: Codable {
                 try value.encode(to: encoder)
             case let .appStoreVersion(value):
                 try value.encode(to: encoder)
+            case let .appStoreVersionExperimentV2(value):
+                try value.encode(to: encoder)
             case let .betaAppLocalization(value):
                 try value.encode(to: encoder)
             case let .betaAppReviewDetail(value):
@@ -348,7 +365,7 @@ public struct AppResponse: Codable {
                 try value.encode(to: encoder)
             case let .inAppPurchaseV2(value):
                 try value.encode(to: encoder)
-            case let .prereleaseVersion(value):
+            case let .preReleaseVersion(value):
                 try value.encode(to: encoder)
             case let .promotedPurchase(value):
                 try value.encode(to: encoder)

@@ -51,6 +51,7 @@ public enum ListInAppPurchasesForAppV1 {
             case appInfos
             case appPricePoints
             case appPriceSchedule
+            case appStoreVersionExperimentsV2
             case appStoreVersions
             case availableInNewTerritories
             case availableTerritories

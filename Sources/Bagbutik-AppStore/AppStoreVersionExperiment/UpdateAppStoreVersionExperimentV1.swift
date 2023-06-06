@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appStoreVersionExperiments/{id}
+     # Modify an App Store experiment v1
+     Update the name, the started state, and the proportion of traffic to send to an App Store experiment.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_appstoreversionexperiments_id>
@@ -12,6 +13,7 @@ public extension Request {
      - Parameter requestBody: AppStoreVersionExperiment representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func updateAppStoreVersionExperimentV1(id: String,
                                                   requestBody: AppStoreVersionExperimentUpdateRequest) -> Request<AppStoreVersionExperimentResponse, ErrorResponse>
     {

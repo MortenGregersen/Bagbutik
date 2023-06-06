@@ -77,6 +77,7 @@ public enum GetAppClipDefaultExperienceForAppStoreVersionV1 {
             case appStoreReviewDetail
             case appStoreState
             case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission

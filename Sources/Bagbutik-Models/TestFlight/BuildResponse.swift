@@ -119,9 +119,9 @@ public struct BuildResponse: Codable {
         return individualTesters
     }
 
-    public func getPreReleaseVersion() -> PrereleaseVersion? {
-        included?.compactMap { relationship -> PrereleaseVersion? in
-            guard case let .prereleaseVersion(preReleaseVersion) = relationship else { return nil }
+    public func getPreReleaseVersion() -> PreReleaseVersion? {
+        included?.compactMap { relationship -> PreReleaseVersion? in
+            guard case let .preReleaseVersion(preReleaseVersion) = relationship else { return nil }
             return preReleaseVersion
         }.first { $0.id == data.relationships?.preReleaseVersion?.data?.id }
     }
@@ -137,7 +137,7 @@ public struct BuildResponse: Codable {
         case buildBetaDetail(BuildBetaDetail)
         case buildBundle(BuildBundle)
         case buildIcon(BuildIcon)
-        case prereleaseVersion(PrereleaseVersion)
+        case preReleaseVersion(PreReleaseVersion)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
@@ -160,8 +160,8 @@ public struct BuildResponse: Codable {
                 self = .buildBundle(buildBundle)
             } else if let buildIcon = try? BuildIcon(from: decoder) {
                 self = .buildIcon(buildIcon)
-            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
-                self = .prereleaseVersion(prereleaseVersion)
+            } else if let preReleaseVersion = try? PreReleaseVersion(from: decoder) {
+                self = .preReleaseVersion(preReleaseVersion)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -190,7 +190,7 @@ public struct BuildResponse: Codable {
                 try value.encode(to: encoder)
             case let .buildIcon(value):
                 try value.encode(to: encoder)
-            case let .prereleaseVersion(value):
+            case let .preReleaseVersion(value):
                 try value.encode(to: encoder)
             }
         }

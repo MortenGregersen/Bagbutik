@@ -99,6 +99,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case promotionalOffers
             case reviewNote
             case state
+            case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
         }
