@@ -159,6 +159,15 @@ public struct Spec: Decodable {
             }
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
         }
+        
+        // Add the case `VISION_OS` to Platform
+        // Apple's OpenAPI spec doesn't include visionOS for App Categories. Reported to Apple 28/8/23 as FB13071298.
+        if case .enum(var platformSchema) = components.schemas["Platform"] {
+            if !platformSchema.cases.contains(where: { $0.value == "VISION_OS" }) {
+                platformSchema.cases.append(EnumCase(id: "visionOS", value: "VISION_OS", documentation: "A string that represents visionOS."))
+            }
+            components.schemas["Platform"] = .enum(platformSchema)
+        }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],

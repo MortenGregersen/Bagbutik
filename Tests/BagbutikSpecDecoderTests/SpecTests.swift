@@ -824,7 +824,11 @@ final class SpecTests: XCTestCase {
                                 }
                             }
                         }
-                    }
+                    },
+                    "Platform" : {
+                        "type" : "string",
+                        "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
+                    },
                 }
             }
         }
@@ -838,7 +842,7 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         let bundleIdPlatformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
-        print(bundleIdPlatformCaseValues)
+        XCTAssertEqual(bundleIdPlatformCaseValues.count, 4)
         XCTAssertTrue(bundleIdPlatformCaseValues.contains("UNIVERSAL"))
         XCTAssertTrue(bundleIdPlatformCaseValues.contains("SERVICES"))
 
@@ -858,6 +862,13 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(errorSchemaRef, "Errors")
+        
+        guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["Platform"] else {
+            XCTFail(); return
+        }
+        let platformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
+        XCTAssertEqual(platformCaseValues.count, 4)
+        XCTAssertTrue(platformCaseValues.contains("VISION_OS"))
     }
 
     func testApplyManualPatches_Error() throws {
