@@ -75,13 +75,13 @@ public struct ReviewSubmission: Codable, Identifiable {
     public struct Relationships: Codable {
         public var app: App?
         public var appStoreVersionForReview: AppStoreVersionForReview?
-        public var items: Relationships?
+        public var items: Properties?
         public var lastUpdatedByActor: LastUpdatedByActor?
         public var submittedByActor: SubmittedByActor?
 
         public init(app: App? = nil,
                     appStoreVersionForReview: AppStoreVersionForReview? = nil,
-                    items: Relationships? = nil,
+                    items: Properties? = nil,
                     lastUpdatedByActor: LastUpdatedByActor? = nil,
                     submittedByActor: SubmittedByActor? = nil)
         {
@@ -350,7 +350,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Properties: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
