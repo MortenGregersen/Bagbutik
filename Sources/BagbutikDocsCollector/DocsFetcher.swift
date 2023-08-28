@@ -32,7 +32,7 @@ extension DocsFetcherError: Equatable {}
  - Parameter fileUrl: The file URL to load the spec from
  - Returns: A decoded Spec
  */
-internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
+typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /**
  Function used to fetch data for requests.
@@ -73,7 +73,7 @@ public class DocsFetcher {
         self.init(loadSpec: loadSpec)
     }
 
-    internal init(
+    init(
         loadSpec: @escaping LoadSpec,
         fetchData: @escaping FetchData = URLSession.shared.data(from:delegate:),
         fileManager: TestableFileManager = FileManager.default,
@@ -133,9 +133,9 @@ public class DocsFetcher {
         print("Saving schema mapping to: \(schemaMappingFileUrl.path)")
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        guard fileManager.createFile(atPath: operationDocumentationFileUrl.path, contents: try encoder.encode(operationDocumentationById), attributes: nil),
-              fileManager.createFile(atPath: schemaDocumentationFileUrl.path, contents: try encoder.encode(schemaDocumentationById), attributes: nil),
-              fileManager.createFile(atPath: schemaMappingFileUrl.path, contents: try encoder.encode(identifierBySchemaName), attributes: nil)
+        guard try fileManager.createFile(atPath: operationDocumentationFileUrl.path, contents: encoder.encode(operationDocumentationById), attributes: nil),
+              try fileManager.createFile(atPath: schemaDocumentationFileUrl.path, contents: encoder.encode(schemaDocumentationById), attributes: nil),
+              try fileManager.createFile(atPath: schemaMappingFileUrl.path, contents: encoder.encode(identifierBySchemaName), attributes: nil)
         else {
             throw DocsFetcherError.couldNotCreateFile
         }
@@ -167,7 +167,17 @@ public class DocsFetcher {
 
     private func fetchDocumentation(for url: URL) async throws -> Documentation {
         let (data, _) = try await fetchData(url, nil)
-        return try JSONDecoder().decode(Documentation.self, from: data)
+        do {
+            return try JSONDecoder().decode(Documentation.self, from: data)
+        } catch {
+            // Sometimes the response contains HTML-like content - probably rate limiting. Try again
+            guard let underlyingError = (error as NSError).underlyingErrors.first as? NSError, underlyingError.description.contains("Unexpected character '<'") else {
+                throw error
+            }
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            let (data, _) = try await fetchData(url, nil)
+            return try JSONDecoder().decode(Documentation.self, from: data)
+        }
     }
 
     private func createJsonDocumentationUrl(fromUrl url: String) -> URL {
