@@ -112,7 +112,7 @@ final class GeneratorTests: XCTestCase {
         let specFileURL = validSpecFileURL
         let outputDirURL = URL(string: "https://developer.apple.com")!
         let documentationDirURL = validDocumentationDirURL
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? GeneratorError, .notFileUrl(.outputDirURL))
         }
@@ -125,7 +125,7 @@ final class GeneratorTests: XCTestCase {
         let specFileURL = validSpecFileURL
         let outputDirURL = validOutputDirURL
         let documentationDirURL = URL(string: "https://developer.apple.com")!
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? GeneratorError, .notFileUrl(.documentationDirUrl))
         }
@@ -138,7 +138,7 @@ final class GeneratorTests: XCTestCase {
         let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
         let outputDirURL = validOutputDirURL
         let documentationDirURL = validDocumentationDirURL
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
             let nsError = $0 as NSError
             #if os(Linux)
@@ -158,7 +158,7 @@ final class GeneratorTests: XCTestCase {
         let printer = Printer()
         let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Users/ListUsersV1.swift"))
         }
@@ -175,7 +175,7 @@ final class GeneratorTests: XCTestCase {
             ]))
         }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Models/Users/UsersResponse.swift"))
         }
@@ -198,7 +198,7 @@ final class GeneratorTests: XCTestCase {
             ], components: .init(schemas: [:]))
         }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? GeneratorError, .noDocumentationForOperation("users-delete_instance"))
         }
@@ -218,7 +218,7 @@ final class GeneratorTests: XCTestCase {
             )
         }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? GeneratorError, .noDocumentationForSchema("UsersResponse"))
         }
