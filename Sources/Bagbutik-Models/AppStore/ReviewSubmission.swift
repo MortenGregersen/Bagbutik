@@ -75,13 +75,13 @@ public struct ReviewSubmission: Codable, Identifiable {
     public struct Relationships: Codable {
         public var app: App?
         public var appStoreVersionForReview: AppStoreVersionForReview?
-        public var items: Relationships?
+        public var items: Items?
         public var lastUpdatedByActor: LastUpdatedByActor?
         public var submittedByActor: SubmittedByActor?
 
         public init(app: App? = nil,
                     appStoreVersionForReview: AppStoreVersionForReview? = nil,
-                    items: Relationships? = nil,
+                    items: Items? = nil,
                     lastUpdatedByActor: LastUpdatedByActor? = nil,
                     submittedByActor: SubmittedByActor? = nil)
         {
@@ -264,37 +264,43 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct LastUpdatedByActor: Codable {
-            @NullCodable public var data: Data?
+        public struct Items: Codable {
+            @NullCodable public var data: [Item]?
             public var links: Links?
+            public var meta: PagingInformation?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
+            public init(data: [Item]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
             {
                 self.data = data
                 self.links = links
+                self.meta = meta
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                data = try container.decodeIfPresent([Item].self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
+                try container.encodeIfPresent(meta, forKey: .meta)
             }
 
             private enum CodingKeys: String, CodingKey {
                 case data
                 case links
+                case meta
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Item: Codable, Identifiable {
                 public let id: String
-                public var type: String { "actors" }
+                public var type: String { "reviewSubmissionItems" }
 
                 public init(id: String) {
                     self.id = id
@@ -350,43 +356,37 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct Relationships: Codable {
-            @NullCodable public var data: [Data]?
+        public struct LastUpdatedByActor: Codable {
+            @NullCodable public var data: Data?
             public var links: Links?
-            public var meta: PagingInformation?
 
-            public init(data: [Data]? = nil,
-                        links: Links? = nil,
-                        meta: PagingInformation? = nil)
+            public init(data: Data? = nil,
+                        links: Links? = nil)
             {
                 self.data = data
                 self.links = links
-                self.meta = meta
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
                 links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode(data, forKey: .data)
                 try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
             }
 
             private enum CodingKeys: String, CodingKey {
                 case data
                 case links
-                case meta
             }
 
             public struct Data: Codable, Identifiable {
                 public let id: String
-                public var type: String { "reviewSubmissionItems" }
+                public var type: String { "actors" }
 
                 public init(id: String) {
                     self.id = id

@@ -6,7 +6,7 @@ public extension Request {
      # Download Finance Reports
      Download finance reports filtered by your specified criteria.
 
-     For more information see [Finance reports](https://help.apple.com/app-store-connect/#/dev716cf3a0d).
+     For more information see [Download financial reports](https://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports).
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/download_finance_reports>

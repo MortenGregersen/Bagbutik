@@ -5,7 +5,7 @@ import Foundation
  # AppStoreAgeRating
  String that represents the app’s age rating as it appears on the App Store for all platforms.
 
- For more information about app ratings, see [App ratings](https://help.apple.com/app-store-connect/#/dev269f11291).
+ For more information about app ratings, see [Age ratings](https://developer.apple.com/help/app-store-connect/reference/age-ratings).
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreagerating>

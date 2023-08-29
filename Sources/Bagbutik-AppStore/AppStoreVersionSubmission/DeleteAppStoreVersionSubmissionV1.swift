@@ -6,7 +6,7 @@ public extension Request {
      # Delete an App Store Version Submission
      Remove a version from App Store review.
 
-     Use this endpoint to remove a version from App Review. This request fails with an appropriate error if the app can't be removed from review. For more information, see [Remove a version from review](https://help.apple.com/app-store-connect/#/dev04f55d711).
+     Use this endpoint to remove a version from App Review. This request fails with an appropriate error if the app can't be removed from review. For more information, see [Remove a submission from review](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/remove-a-submission-from-review).
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_store_version_submission>

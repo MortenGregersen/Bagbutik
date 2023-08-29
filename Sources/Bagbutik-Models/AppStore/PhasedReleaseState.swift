@@ -5,7 +5,7 @@ import Foundation
  # PhasedReleaseState
  String that represents the progress of a phased release for an app version.
 
- For more information about phased releases including pausing an update, see [Release a version update in phases](https://help.apple.com/app-store-connect/#/dev3d65fcee1).
+ For more information about phased releases including pausing an update, see [Release a version update in phases](https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases).
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/phasedreleasestate>

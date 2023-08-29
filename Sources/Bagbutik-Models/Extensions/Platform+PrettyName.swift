@@ -5,6 +5,7 @@ public extension Platform {
         case .iOS: return "iOS"
         case .macOS: return "macOS"
         case .tvOS: return "tvOS"
+        case .visionOS: return "visionOS"
         }
     }
 }
