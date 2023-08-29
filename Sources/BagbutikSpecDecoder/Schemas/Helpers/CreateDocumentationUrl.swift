@@ -5,6 +5,7 @@ internal func createDocumentationUrl(forSchemaNamed name: String, withCodingPath
             $0 != "ErrorSourcePointer" &&
             $0 != "ErrorSourceParameter" && 
             $0 != "OneOf" &&
+            $0 != "Properties" &&
             !$0.hasPrefix("Index ")
         }
     if urlPathComponents.last != name {
