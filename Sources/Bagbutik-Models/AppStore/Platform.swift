@@ -15,5 +15,6 @@ public enum Platform: String, ParameterValue, Codable, CaseIterable {
     case macOS = "MAC_OS"
     /// A string that represents tvOS.
     case tvOS = "TV_OS"
+    /// A string that represents visionOS.
     case visionOS = "VISION_OS"
 }
