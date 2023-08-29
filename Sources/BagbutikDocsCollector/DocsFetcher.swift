@@ -170,6 +170,9 @@ public class DocsFetcher {
         do {
             return try JSONDecoder().decode(Documentation.self, from: data)
         } catch {
+            #if os(Linux)
+            throw error
+            #else
             // Sometimes the response contains HTML-like content - probably rate limiting. Try again
             guard let underlyingError = (error as NSError).underlyingErrors.first as? NSError, underlyingError.description.contains("Unexpected character '<'") else {
                 throw error
@@ -177,6 +180,7 @@ public class DocsFetcher {
             try await Task.sleep(nanoseconds: 2_000_000_000)
             let (data, _) = try await fetchData(url, nil)
             return try JSONDecoder().decode(Documentation.self, from: data)
+            #endif
         }
     }
 
