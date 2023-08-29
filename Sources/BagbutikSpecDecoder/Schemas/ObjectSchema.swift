@@ -70,7 +70,7 @@ public struct ObjectSchema: Decodable, Equatable {
         if let title = try container.decodeIfPresent(String.self, forKey: .title) {
             name = title
         } else {
-            if container.codingPath[2].stringValue == "ReviewSubmission" {
+            if container.codingPath.count > 2, container.codingPath[2].stringValue == "ReviewSubmission" {
                 name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
             } else {
                 name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
