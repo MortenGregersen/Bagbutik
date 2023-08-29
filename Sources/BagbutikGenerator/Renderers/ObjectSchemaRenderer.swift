@@ -153,7 +153,7 @@ public class ObjectSchemaRenderer: Renderer {
                     }
                     let isOptional = !objectSchema.requiredProperties.contains(property.key)
                     var wrapper = ""
-                    if id == "data", type == "Data" || type == "[Data]", isOptional {
+                    if id == "data", type == "Data" || type == "[Data]" || type == "[Item]", isOptional {
                         wrapper += "@NullCodable "
                         hasNullCodableWrappedProperty = true
                     }
@@ -183,7 +183,7 @@ public class ObjectSchemaRenderer: Renderer {
                     name: propertyName,
                     type: $0.value.type.description,
                     optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type",
-                    nullCodable: propertyName.safeName == "data" && type == "Data" || type == "[Data]")
+                    nullCodable: propertyName.safeName == "data" && type == "Data" || type == "[Data]" || type == "[Item]")
             }
             decodableProperties = encodableProperties.filter { $0.name.idealName != "type" }
             hasTypeConstant = sortedProperties.contains(where: { $0.key == "type" && $0.value.type.isConstant })
