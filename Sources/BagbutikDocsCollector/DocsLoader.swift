@@ -56,6 +56,13 @@ public class DocsLoader {
             }
             schemaDocumentationById[identifier] = .enum(bundleIdPlatformDocumentation)
         }
+        if let identifier = identifierBySchemaName["Platform"],
+           case .enum(var platformDocumentation) = schemaDocumentationById[identifier] {
+            if platformDocumentation.cases["VISION_OS"] == nil || platformDocumentation.cases["VISION_OS"] == "" {
+                platformDocumentation.cases["VISION_OS"] = "A string that represents visionOS."
+            }
+            schemaDocumentationById[identifier] = .enum(platformDocumentation)
+        }
         let errorsIdentifier = "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse/errors"
         if case .object(var errorsDocumentation) = schemaDocumentationById[errorsIdentifier],
            errorsDocumentation.properties["meta"] == nil {
