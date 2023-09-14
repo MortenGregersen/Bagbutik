@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listAppsForBetaTesterV1(id: String,
                                         fields: [ListAppsForBetaTesterV1.Field]? = nil,
-                                        limit: Int? = nil) -> Request<AppsResponse, ErrorResponse>
+                                        limit: Int? = nil) -> Request<AppsWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/betaTesters/\(id)/apps", method: .get, parameters: .init(fields: fields,
                                                                                   limit: limit))
@@ -35,6 +35,7 @@ public enum ListAppsForBetaTesterV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -54,6 +55,7 @@ public enum ListAppsForBetaTesterV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2

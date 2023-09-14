@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listAppStoreVersionLocalizationsForAppStoreVersionV1(id: String,
                                                                      fields: [ListAppStoreVersionLocalizationsForAppStoreVersionV1.Field]? = nil,
-                                                                     limit: Int? = nil) -> Request<AppStoreVersionLocalizationsResponse, ErrorResponse>
+                                                                     limit: Int? = nil) -> Request<AppStoreVersionLocalizationsWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/appStoreVersions/\(id)/appStoreVersionLocalizations", method: .get, parameters: .init(fields: fields,
                                                                                                                limit: limit))

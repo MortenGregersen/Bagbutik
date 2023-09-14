@@ -98,7 +98,17 @@ public struct Operation: Decodable, Equatable {
         self.init(id: operationId, name: name, method: method, deprecated: deprecated, parameters: parameters, requestBody: requestBody, successResponseType: successResponseType, errorResponseType: errorResponseType)
     }
     
-    internal static func getName(forId operationId: String) throws -> String {
+    private static let operationNameRegex = try! NSRegularExpression(pattern: #".*V\d+"#)
+
+    public func getVersionedName(path: Path) -> String {
+        let name = name.capitalizingFirstLetter()
+        guard Self.operationNameRegex.firstMatch(in: name, range: NSRange(location: name.utf16.count - 3, length: 3)) != nil else {
+            return name + path.info.version
+        }
+        return name
+    }
+
+    static func getName(forId operationId: String) throws -> String {
         let range = NSRange(location: 0, length: operationId.utf16.count)
         if let result = getInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])

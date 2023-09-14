@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listBuildsForAppV1(id: String,
                                    fields: [ListBuildsForAppV1.Field]? = nil,
-                                   limit: Int? = nil) -> Request<BuildsResponse, ErrorResponse>
+                                   limit: Int? = nil) -> Request<BuildsWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/apps/\(id)/builds", method: .get, parameters: .init(fields: fields,
                                                                              limit: limit))

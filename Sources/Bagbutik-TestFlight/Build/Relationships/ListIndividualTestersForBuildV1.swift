@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listIndividualTestersForBuildV1(id: String,
                                                 fields: [ListIndividualTestersForBuildV1.Field]? = nil,
-                                                limit: Int? = nil) -> Request<BetaTestersResponse, ErrorResponse>
+                                                limit: Int? = nil) -> Request<BetaTestersWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/builds/\(id)/individualTesters", method: .get, parameters: .init(fields: fields,
                                                                                           limit: limit))

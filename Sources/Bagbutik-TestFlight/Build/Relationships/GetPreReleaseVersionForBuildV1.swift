@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPreReleaseVersionForBuildV1(id: String,
-                                               fields: [GetPreReleaseVersionForBuildV1.Field]? = nil) -> Request<PreReleaseVersionResponse, ErrorResponse>
+                                               fields: [GetPreReleaseVersionForBuildV1.Field]? = nil) -> Request<PrereleaseVersionWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/builds/\(id)/preReleaseVersion", method: .get, parameters: .init(fields: fields))
     }

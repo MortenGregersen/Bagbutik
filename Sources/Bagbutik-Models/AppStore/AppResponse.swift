@@ -48,6 +48,18 @@ public struct AppResponse: Codable {
         return appCustomProductPages
     }
 
+    public func getAppEncryptionDeclarations() -> [AppEncryptionDeclaration] {
+        guard let appEncryptionDeclarationIds = data.relationships?.appEncryptionDeclarations?.data?.map(\.id),
+              let appEncryptionDeclarations = included?.compactMap({ relationship -> AppEncryptionDeclaration? in
+                  guard case let .appEncryptionDeclaration(appEncryptionDeclaration) = relationship else { return nil }
+                  return appEncryptionDeclarationIds.contains(appEncryptionDeclaration.id) ? appEncryptionDeclaration : nil
+              })
+        else {
+            return []
+        }
+        return appEncryptionDeclarations
+    }
+
     public func getAppEvents() -> [AppEvent] {
         guard let appEventIds = data.relationships?.appEvents?.data?.map(\.id),
               let appEvents = included?.compactMap({ relationship -> AppEvent? in
@@ -160,6 +172,13 @@ public struct AppResponse: Codable {
         }.first { $0.id == data.relationships?.endUserLicenseAgreement?.data?.id }
     }
 
+    public func getGameCenterDetail() -> GameCenterDetail? {
+        included?.compactMap { relationship -> GameCenterDetail? in
+            guard case let .gameCenterDetail(gameCenterDetail) = relationship else { return nil }
+            return gameCenterDetail
+        }.first { $0.id == data.relationships?.gameCenterDetail?.data?.id }
+    }
+
     public func getGameCenterEnabledVersions() -> [GameCenterEnabledVersion] {
         guard let gameCenterEnabledVersionIds = data.relationships?.gameCenterEnabledVersions?.data?.map(\.id),
               let gameCenterEnabledVersions = included?.compactMap({ relationship -> GameCenterEnabledVersion? in
@@ -191,10 +210,10 @@ public struct AppResponse: Codable {
         }.first { $0.id == data.relationships?.preOrder?.data?.id }
     }
 
-    public func getPreReleaseVersions() -> [PreReleaseVersion] {
+    public func getPreReleaseVersions() -> [PrereleaseVersion] {
         guard let preReleaseVersionIds = data.relationships?.preReleaseVersions?.data?.map(\.id),
-              let preReleaseVersions = included?.compactMap({ relationship -> PreReleaseVersion? in
-                  guard case let .preReleaseVersion(preReleaseVersion) = relationship else { return nil }
+              let preReleaseVersions = included?.compactMap({ relationship -> PrereleaseVersion? in
+                  guard case let .prereleaseVersion(preReleaseVersion) = relationship else { return nil }
                   return preReleaseVersionIds.contains(preReleaseVersion.id) ? preReleaseVersion : nil
               })
         else {
@@ -249,6 +268,7 @@ public struct AppResponse: Codable {
     public enum Included: Codable {
         case appClip(AppClip)
         case appCustomProductPage(AppCustomProductPage)
+        case appEncryptionDeclaration(AppEncryptionDeclaration)
         case appEvent(AppEvent)
         case appInfo(AppInfo)
         case appPreOrder(AppPreOrder)
@@ -262,10 +282,11 @@ public struct AppResponse: Codable {
         case build(Build)
         case ciProduct(CiProduct)
         case endUserLicenseAgreement(EndUserLicenseAgreement)
+        case gameCenterDetail(GameCenterDetail)
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
         case inAppPurchase(InAppPurchase)
         case inAppPurchaseV2(InAppPurchaseV2)
-        case preReleaseVersion(PreReleaseVersion)
+        case prereleaseVersion(PrereleaseVersion)
         case promotedPurchase(PromotedPurchase)
         case reviewSubmission(ReviewSubmission)
         case subscriptionGracePeriod(SubscriptionGracePeriod)
@@ -277,6 +298,8 @@ public struct AppResponse: Codable {
                 self = .appClip(appClip)
             } else if let appCustomProductPage = try? AppCustomProductPage(from: decoder) {
                 self = .appCustomProductPage(appCustomProductPage)
+            } else if let appEncryptionDeclaration = try? AppEncryptionDeclaration(from: decoder) {
+                self = .appEncryptionDeclaration(appEncryptionDeclaration)
             } else if let appEvent = try? AppEvent(from: decoder) {
                 self = .appEvent(appEvent)
             } else if let appInfo = try? AppInfo(from: decoder) {
@@ -303,14 +326,16 @@ public struct AppResponse: Codable {
                 self = .ciProduct(ciProduct)
             } else if let endUserLicenseAgreement = try? EndUserLicenseAgreement(from: decoder) {
                 self = .endUserLicenseAgreement(endUserLicenseAgreement)
+            } else if let gameCenterDetail = try? GameCenterDetail(from: decoder) {
+                self = .gameCenterDetail(gameCenterDetail)
             } else if let gameCenterEnabledVersion = try? GameCenterEnabledVersion(from: decoder) {
                 self = .gameCenterEnabledVersion(gameCenterEnabledVersion)
             } else if let inAppPurchase = try? InAppPurchase(from: decoder) {
                 self = .inAppPurchase(inAppPurchase)
             } else if let inAppPurchaseV2 = try? InAppPurchaseV2(from: decoder) {
                 self = .inAppPurchaseV2(inAppPurchaseV2)
-            } else if let preReleaseVersion = try? PreReleaseVersion(from: decoder) {
-                self = .preReleaseVersion(preReleaseVersion)
+            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
+                self = .prereleaseVersion(prereleaseVersion)
             } else if let promotedPurchase = try? PromotedPurchase(from: decoder) {
                 self = .promotedPurchase(promotedPurchase)
             } else if let reviewSubmission = try? ReviewSubmission(from: decoder) {
@@ -332,6 +357,8 @@ public struct AppResponse: Codable {
             case let .appClip(value):
                 try value.encode(to: encoder)
             case let .appCustomProductPage(value):
+                try value.encode(to: encoder)
+            case let .appEncryptionDeclaration(value):
                 try value.encode(to: encoder)
             case let .appEvent(value):
                 try value.encode(to: encoder)
@@ -359,13 +386,15 @@ public struct AppResponse: Codable {
                 try value.encode(to: encoder)
             case let .endUserLicenseAgreement(value):
                 try value.encode(to: encoder)
+            case let .gameCenterDetail(value):
+                try value.encode(to: encoder)
             case let .gameCenterEnabledVersion(value):
                 try value.encode(to: encoder)
             case let .inAppPurchase(value):
                 try value.encode(to: encoder)
             case let .inAppPurchaseV2(value):
                 try value.encode(to: encoder)
-            case let .preReleaseVersion(value):
+            case let .prereleaseVersion(value):
                 try value.encode(to: encoder)
             case let .promotedPurchase(value):
                 try value.encode(to: encoder)

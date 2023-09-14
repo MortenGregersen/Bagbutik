@@ -18,7 +18,7 @@ public extension Request {
     static func getPreReleaseVersionV1(id: String,
                                        fields: [GetPreReleaseVersionV1.Field]? = nil,
                                        includes: [GetPreReleaseVersionV1.Include]? = nil,
-                                       limit: Int? = nil) -> Request<PreReleaseVersionResponse, ErrorResponse>
+                                       limit: Int? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse>
     {
         .init(path: "/v1/preReleaseVersions/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                     includes: includes,
@@ -42,6 +42,7 @@ public enum GetPreReleaseVersionV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -61,6 +62,7 @@ public enum GetPreReleaseVersionV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2

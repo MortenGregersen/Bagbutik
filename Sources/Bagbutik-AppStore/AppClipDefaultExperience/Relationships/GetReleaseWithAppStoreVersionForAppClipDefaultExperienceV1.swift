@@ -98,6 +98,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
 
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
             case app
+            case appStoreVersion
             case appStoreVersionExperimentTreatments
             case controlVersions
             case endDate
@@ -163,6 +164,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -182,6 +184,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2

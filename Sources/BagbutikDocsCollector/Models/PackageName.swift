@@ -42,7 +42,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         case .core:
             return "doc://com.apple.documentation/documentation/appstoreconnectapi"
         case .gameCenter:
-            return Self.pathPrefix.appending("game_center")
+            return Self.pathPrefix.appending("bagbutik-game_center")
         case .provisioning:
             return Self.pathPrefix.appending("bagbutik-provisioning")
         case .reporting:

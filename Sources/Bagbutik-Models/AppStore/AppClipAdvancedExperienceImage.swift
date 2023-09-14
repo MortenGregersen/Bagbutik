@@ -12,14 +12,14 @@ public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Images resource.
     public let id: String
     /// Navigational links that include the self-link.
-    public let links: ResourceLinks
+    public var links: ResourceLinks?
     /// The resource type.
     public var type: String { "appClipAdvancedExperienceImages" }
     /// The attributes that describe the Advanced App Clip Experience Images resource.
     public var attributes: Attributes?
 
     public init(id: String,
-                links: ResourceLinks,
+                links: ResourceLinks? = nil,
                 attributes: Attributes? = nil)
     {
         self.id = id
@@ -30,7 +30,7 @@ public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         if try container.decode(String.self, forKey: .type) != type {
             throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -40,7 +40,7 @@ public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
     }

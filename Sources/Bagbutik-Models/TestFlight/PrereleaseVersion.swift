@@ -2,17 +2,17 @@ import Bagbutik_Core
 import Foundation
 
 /**
- # PreReleaseVersion
+ # PrereleaseVersion
  The data structure that represents a Prerelease Versions  resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversion>
  */
-public struct PreReleaseVersion: Codable, Identifiable {
+public struct PrereleaseVersion: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
-    public let links: ResourceLinks
+    public var links: ResourceLinks?
     /// The resource type.
     public var type: String { "preReleaseVersions" }
     /// The resource's attributes.
@@ -21,7 +21,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
     public var relationships: Relationships?
 
     public init(id: String,
-                links: ResourceLinks,
+                links: ResourceLinks? = nil,
                 attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
@@ -34,7 +34,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
@@ -45,7 +45,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
@@ -60,7 +60,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
     }
 
     /**
-     # PreReleaseVersion.Attributes
+     # PrereleaseVersion.Attributes
      Attributes that describe a Prerelease Versions resource.
 
      Full documentation:
@@ -81,7 +81,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
     }
 
     /**
-     # PreReleaseVersion.Relationships
+     # PrereleaseVersion.Relationships
      The relationships you included in the request and those on which you can operate.
 
      Full documentation:
@@ -99,7 +99,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
         }
 
         /**
-         # PreReleaseVersion.Relationships.App
+         # PrereleaseVersion.Relationships.App
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -134,7 +134,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PreReleaseVersion.Relationships.App.Data
+             # PrereleaseVersion.Relationships.App.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -171,7 +171,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PreReleaseVersion.Relationships.App.Links
+             # PrereleaseVersion.Relationships.App.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:
@@ -208,7 +208,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
         }
 
         /**
-         # PreReleaseVersion.Relationships.Builds
+         # PrereleaseVersion.Relationships.Builds
          The data and links that describe the relationship between the resources.
 
          Full documentation:
@@ -249,7 +249,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PreReleaseVersion.Relationships.Builds.Data
+             # PrereleaseVersion.Relationships.Builds.Data
              The type and ID of a related resource.
 
              Full documentation:
@@ -286,7 +286,7 @@ public struct PreReleaseVersion: Codable, Identifiable {
             }
 
             /**
-             # PreReleaseVersion.Relationships.Builds.Links
+             # PrereleaseVersion.Relationships.Builds.Links
              The links to the related data and the relationship's self-link.
 
              Full documentation:

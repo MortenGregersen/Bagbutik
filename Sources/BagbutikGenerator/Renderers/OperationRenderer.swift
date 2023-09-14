@@ -40,7 +40,7 @@ public class OperationRenderer: Renderer {
             range: NSRange(location: 0, length: path.path.utf16.count),
             withTemplate: #"\\($1)"#)
         let parametersInfo = try OperationParametersInfo(for: operation, in: path, docsLoader: docsLoader)
-        let operationName = createOperationName(operation, path: path)
+        let operationName = operation.getVersionedName(path: path)
         var rendered = "import Bagbutik_Core\nimport Bagbutik_Models\n\n" + renderExtension(on: "Request") {
             let title = documentation?.title ?? "No overview available"
             var parameters = parametersInfo.pathParameters
@@ -271,7 +271,7 @@ public class OperationRenderer: Renderer {
             if let requestBody = operation.requestBody {
                 self.requestBody = .init(name: "requestBody", type: requestBody.name, optional: false, documentation: requestBody.documentation.capitalizingFirstLetter())
             }
-            let operationWrapperName = createOperationName(operation, path: path)
+            let operationWrapperName = operation.getVersionedName(path: path)
             if fields.count > 0 {
                 parameters.append(.init(name: "fields", type: "[\(operationWrapperName).Field]", optional: true, documentation: "Fields to return for included related types"))
             }
@@ -304,8 +304,4 @@ public class OperationRenderer: Renderer {
             }
         }
     }
-}
-
-private func createOperationName(_ operation: BagbutikSpecDecoder.Operation, path: Path) -> String {
-    operation.name.capitalizingFirstLetter() + path.info.version
 }

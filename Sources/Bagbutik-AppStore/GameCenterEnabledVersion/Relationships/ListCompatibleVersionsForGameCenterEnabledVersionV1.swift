@@ -16,6 +16,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func listCompatibleVersionsForGameCenterEnabledVersionV1(id: String,
                                                                     fields: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Field]? = nil,
                                                                     filters: [ListCompatibleVersionsForGameCenterEnabledVersionV1.Filter]? = nil,
@@ -45,6 +46,7 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -64,6 +66,7 @@ public enum ListCompatibleVersionsForGameCenterEnabledVersionV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2

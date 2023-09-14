@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getRoutingAppCoverageForAppStoreVersionV1(id: String,
-                                                          fields: [GetRoutingAppCoverageForAppStoreVersionV1.Field]? = nil) -> Request<RoutingAppCoverageResponse, ErrorResponse>
+                                                          fields: [GetRoutingAppCoverageForAppStoreVersionV1.Field]? = nil) -> Request<RoutingAppCoverageWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/appStoreVersions/\(id)/routingAppCoverage", method: .get, parameters: .init(fields: fields))
     }

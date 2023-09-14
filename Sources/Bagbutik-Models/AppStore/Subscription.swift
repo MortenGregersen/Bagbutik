@@ -3,13 +3,13 @@ import Foundation
 
 public struct Subscription: Codable, Identifiable {
     public let id: String
-    public let links: ResourceLinks
+    public var links: ResourceLinks?
     public var type: String { "subscriptions" }
     public var attributes: Attributes?
     public var relationships: Relationships?
 
     public init(id: String,
-                links: ResourceLinks,
+                links: ResourceLinks? = nil,
                 attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
@@ -22,7 +22,7 @@ public struct Subscription: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
@@ -33,7 +33,7 @@ public struct Subscription: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
@@ -48,7 +48,8 @@ public struct Subscription: Codable, Identifiable {
     }
 
     public struct Attributes: Codable {
-        public var availableInAllTerritories: Bool?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var availableInAllTerritories: Bool? = nil
         public var familySharable: Bool?
         public var groupLevel: Int?
         public var name: String?
@@ -57,6 +58,7 @@ public struct Subscription: Codable, Identifiable {
         public var state: State?
         public var subscriptionPeriod: SubscriptionPeriod?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(availableInAllTerritories: Bool? = nil,
                     familySharable: Bool? = nil,
                     groupLevel: Int? = nil,
@@ -67,6 +69,23 @@ public struct Subscription: Codable, Identifiable {
                     subscriptionPeriod: SubscriptionPeriod? = nil)
         {
             self.availableInAllTerritories = availableInAllTerritories
+            self.familySharable = familySharable
+            self.groupLevel = groupLevel
+            self.name = name
+            self.productId = productId
+            self.reviewNote = reviewNote
+            self.state = state
+            self.subscriptionPeriod = subscriptionPeriod
+        }
+
+        public init(familySharable: Bool? = nil,
+                    groupLevel: Int? = nil,
+                    name: String? = nil,
+                    productId: String? = nil,
+                    reviewNote: String? = nil,
+                    state: State? = nil,
+                    subscriptionPeriod: SubscriptionPeriod? = nil)
+        {
             self.familySharable = familySharable
             self.groupLevel = groupLevel
             self.name = name

@@ -12,14 +12,14 @@ public struct AppPriceTier: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
-    public let links: ResourceLinks
+    public var links: ResourceLinks?
     /// The resource type.
     public var type: String { "appPriceTiers" }
     /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
-                links: ResourceLinks,
+                links: ResourceLinks? = nil,
                 relationships: Relationships? = nil)
     {
         self.id = id
@@ -30,7 +30,7 @@ public struct AppPriceTier: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
             throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -40,7 +40,7 @@ public struct AppPriceTier: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(relationships, forKey: .relationships)
     }

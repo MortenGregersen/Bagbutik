@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Create an App Pre-Order
-     Turn on pre-order and set the expected app release date.
+     Create an app pre-order and set the expected app release date.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_pre-order>

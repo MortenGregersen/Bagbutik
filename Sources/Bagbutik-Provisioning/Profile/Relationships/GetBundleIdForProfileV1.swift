@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBundleIdForProfileV1(id: String,
-                                        fields: [GetBundleIdForProfileV1.Field]? = nil) -> Request<BundleIdResponse, ErrorResponse>
+                                        fields: [GetBundleIdForProfileV1.Field]? = nil) -> Request<BundleIdWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/profiles/\(id)/bundleId", method: .get, parameters: .init(fields: fields))
     }

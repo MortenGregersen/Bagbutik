@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read the Pre-Order Information of an App
-     Get the available date and release date of an app that is available for pre-order.
+     Get the available date and release date of an app that’s available for pre-order.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_pre-order_information_of_an_app>
@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getPreOrderForAppV1(id: String,
-                                    fields: [GetPreOrderForAppV1.Field]? = nil) -> Request<AppPreOrderResponse, ErrorResponse>
+                                    fields: [GetPreOrderForAppV1.Field]? = nil) -> Request<AppPreOrderWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/apps/\(id)/preOrder", method: .get, parameters: .init(fields: fields))
     }

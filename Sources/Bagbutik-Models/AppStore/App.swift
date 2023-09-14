@@ -12,7 +12,7 @@ public struct App: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
-    public let links: ResourceLinks
+    public var links: ResourceLinks?
     /// The resource type.
     public var type: String { "apps" }
     /// The resource's attributes.
@@ -21,7 +21,7 @@ public struct App: Codable, Identifiable {
     public var relationships: Relationships?
 
     public init(id: String,
-                links: ResourceLinks,
+                links: ResourceLinks? = nil,
                 attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
@@ -34,7 +34,7 @@ public struct App: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
@@ -45,7 +45,7 @@ public struct App: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
@@ -150,6 +150,7 @@ public struct App: Codable, Identifiable {
         /// The data and links that describe the relationship between the Apps and the App Clips resources.
         public var appClips: AppClips?
         public var appCustomProductPages: AppCustomProductPages?
+        public var appEncryptionDeclarations: AppEncryptionDeclarations?
         public var appEvents: AppEvents?
         /// The data and links that describe the relationship between the Apps and the App Infos resources.
         public var appInfos: AppInfos?
@@ -173,6 +174,7 @@ public struct App: Codable, Identifiable {
         public var ciProduct: CiProduct?
         /// The data and links that describe the relationship between the Apps and the End User License Agreements (EULA) resources.
         public var endUserLicenseAgreement: EndUserLicenseAgreement?
+        public var gameCenterDetail: GameCenterDetail?
         /// The data and links that describe the relationship between the Apps and the Game Center Enabled Versions resources.
         public var gameCenterEnabledVersions: GameCenterEnabledVersions?
         /// The data and links that describe the relationship between the Apps and the In App Purchases resources.
@@ -194,6 +196,7 @@ public struct App: Codable, Identifiable {
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appClips: AppClips? = nil,
                     appCustomProductPages: AppCustomProductPages? = nil,
+                    appEncryptionDeclarations: AppEncryptionDeclarations? = nil,
                     appEvents: AppEvents? = nil,
                     appInfos: AppInfos? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
@@ -206,6 +209,7 @@ public struct App: Codable, Identifiable {
                     builds: Builds? = nil,
                     ciProduct: CiProduct? = nil,
                     endUserLicenseAgreement: EndUserLicenseAgreement? = nil,
+                    gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterEnabledVersions: GameCenterEnabledVersions? = nil,
                     inAppPurchases: InAppPurchases? = nil,
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
@@ -219,6 +223,7 @@ public struct App: Codable, Identifiable {
         {
             self.appClips = appClips
             self.appCustomProductPages = appCustomProductPages
+            self.appEncryptionDeclarations = appEncryptionDeclarations
             self.appEvents = appEvents
             self.appInfos = appInfos
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
@@ -231,6 +236,7 @@ public struct App: Codable, Identifiable {
             self.builds = builds
             self.ciProduct = ciProduct
             self.endUserLicenseAgreement = endUserLicenseAgreement
+            self.gameCenterDetail = gameCenterDetail
             self.gameCenterEnabledVersions = gameCenterEnabledVersions
             self.inAppPurchases = inAppPurchases
             self.inAppPurchasesV2 = inAppPurchasesV2
@@ -245,6 +251,7 @@ public struct App: Codable, Identifiable {
 
         public init(appClips: AppClips? = nil,
                     appCustomProductPages: AppCustomProductPages? = nil,
+                    appEncryptionDeclarations: AppEncryptionDeclarations? = nil,
                     appEvents: AppEvents? = nil,
                     appInfos: AppInfos? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
@@ -256,6 +263,7 @@ public struct App: Codable, Identifiable {
                     builds: Builds? = nil,
                     ciProduct: CiProduct? = nil,
                     endUserLicenseAgreement: EndUserLicenseAgreement? = nil,
+                    gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterEnabledVersions: GameCenterEnabledVersions? = nil,
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     preOrder: PreOrder? = nil,
@@ -267,6 +275,7 @@ public struct App: Codable, Identifiable {
         {
             self.appClips = appClips
             self.appCustomProductPages = appCustomProductPages
+            self.appEncryptionDeclarations = appEncryptionDeclarations
             self.appEvents = appEvents
             self.appInfos = appInfos
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
@@ -278,6 +287,7 @@ public struct App: Codable, Identifiable {
             self.builds = builds
             self.ciProduct = ciProduct
             self.endUserLicenseAgreement = endUserLicenseAgreement
+            self.gameCenterDetail = gameCenterDetail
             self.gameCenterEnabledVersions = gameCenterEnabledVersions
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.preOrder = preOrder
@@ -445,6 +455,112 @@ public struct App: Codable, Identifiable {
             public struct Data: Codable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPages" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
+            public struct Links: Codable {
+                public var related: String?
+                public var itself: String?
+
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
+                    self.related = related
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case itself = "self"
+                    case related
+                }
+            }
+        }
+
+        /**
+         # App.Relationships.AppEncryptionDeclarations
+         The data and links that describe the relationship between an app and an App Encryption Declaration.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appencryptiondeclarations>
+         */
+        public struct AppEncryptionDeclarations: Codable {
+            @NullCodable public var data: [Data]?
+            public var links: Links?
+            public var meta: PagingInformation?
+
+            public init(data: [Data]? = nil,
+                        links: Links? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent([Data].self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+                try container.encodeIfPresent(meta, forKey: .meta)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
+                case meta
+            }
+
+            /**
+             # App.Relationships.AppEncryptionDeclarations.Data
+             The type and ID of the App Encryption Declaration
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appencryptiondeclarations/data>
+             */
+            public struct Data: Codable, Identifiable {
+                public let id: String
+                public var type: String { "appEncryptionDeclarations" }
 
                 public init(id: String) {
                     self.id = id
@@ -1776,6 +1892,92 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement/links>
              */
+            public struct Links: Codable {
+                public var related: String?
+                public var itself: String?
+
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
+                    self.related = related
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case itself = "self"
+                    case related
+                }
+            }
+        }
+
+        public struct GameCenterDetail: Codable {
+            @NullCodable public var data: Data?
+            public var links: Links?
+
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+
+            public struct Data: Codable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterDetails" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

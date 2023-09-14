@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listProfilesForBundleIdV1(id: String,
                                           fields: [ListProfilesForBundleIdV1.Field]? = nil,
-                                          limit: Int? = nil) -> Request<ProfilesResponse, ErrorResponse>
+                                          limit: Int? = nil) -> Request<ProfilesWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/bundleIds/\(id)/profiles", method: .get, parameters: .init(fields: fields,
                                                                                     limit: limit))

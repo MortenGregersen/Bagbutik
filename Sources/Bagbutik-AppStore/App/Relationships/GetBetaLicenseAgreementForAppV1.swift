@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBetaLicenseAgreementForAppV1(id: String,
-                                                fields: [GetBetaLicenseAgreementForAppV1.Field]? = nil) -> Request<BetaLicenseAgreementResponse, ErrorResponse>
+                                                fields: [GetBetaLicenseAgreementForAppV1.Field]? = nil) -> Request<BetaLicenseAgreementWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/apps/\(id)/betaLicenseAgreement", method: .get, parameters: .init(fields: fields))
     }
