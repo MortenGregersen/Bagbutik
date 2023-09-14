@@ -1,3 +1,4 @@
+import Bagbutik_Core
 import Foundation
 
 public struct TerritoriesWithoutIncludesResponse: Codable, PagedResponse {

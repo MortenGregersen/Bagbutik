@@ -13,15 +13,15 @@ public enum DocsLoaderError: Error, Equatable {
 
 public class DocsLoader {
     private let loadFile: (URL) throws -> Data
-    internal var operationDocumentationById: [String: OperationDocumentation]?
-    internal var identifierBySchemaName: [String: String]?
-    internal var schemaDocumentationById: [String: Documentation]?
+    var operationDocumentationById: [String: OperationDocumentation]?
+    var identifierBySchemaName: [String: String]?
+    var schemaDocumentationById: [String: Documentation]?
 
     public convenience init() {
         self.init(operationDocumentationById: nil) // A parameter is needed for it to call the internal initializer
     }
 
-    internal init(loadFile: @escaping (URL) throws -> Data = { url in try Data(contentsOf: url) }, operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
+    init(loadFile: @escaping (URL) throws -> Data = { url in try Data(contentsOf: url) }, operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
         self.loadFile = loadFile
         self.operationDocumentationById = operationDocumentationById
         self.identifierBySchemaName = identifierBySchemaName
@@ -42,8 +42,8 @@ public class DocsLoader {
     }
 
     public func applyManualDocumentation() throws {
-        guard let identifierBySchemaName = identifierBySchemaName,
-              var schemaDocumentationById = schemaDocumentationById else {
+        guard let identifierBySchemaName,
+              var schemaDocumentationById else {
             throw DocsLoaderError.documentationNotLoaded
         }
         if let identifier = identifierBySchemaName["BundleIdPlatform"],
@@ -80,14 +80,19 @@ public class DocsLoader {
                   longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" else {
                 throw DocsLoaderError.couldNotResolvePackageName(id: documentation.id, paths: documentation.hierarchy.paths)
             }
+            if documentation.id.hasSuffix("ageratingdeclarationwithoutincludesresponse")
+                || documentation.id.hasSuffix("apppreorderwithoutincludesresponse")
+                || documentation.id.hasSuffix("territorieswithoutincludesresponse") {
+                return .appStore
+            }
             return .core
         }
         return packageName
     }
 
     public func resolveDocumentationForSchema(named schemaName: String) throws -> Documentation? {
-        guard let identifierBySchemaName = identifierBySchemaName,
-              let schemaDocumentationById = schemaDocumentationById else {
+        guard let identifierBySchemaName,
+              let schemaDocumentationById else {
             throw DocsLoaderError.documentationNotLoaded
         }
         guard let identifier = identifierBySchemaName[schemaName],
@@ -98,20 +103,20 @@ public class DocsLoader {
     }
 
     public func resolveDocumentationForSchema(withDocsUrl docsUrl: String) throws -> Documentation? {
-        guard let schemaDocumentationById = schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         let identifier = self.createDocumentationId(fromUrl: docsUrl)
         guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }
 
     public func resolveDocumentationForSchema(withId identifier: String) throws -> Documentation? {
-        guard let schemaDocumentationById = schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }
 
     public func resolveDocumentationForOperation(withId operationId: String) throws -> OperationDocumentation? {
-        guard let operationDocumentationById = operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
+        guard let operationDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
         guard let documentation = operationDocumentationById[operationId] else { return nil }
         return documentation
     }
