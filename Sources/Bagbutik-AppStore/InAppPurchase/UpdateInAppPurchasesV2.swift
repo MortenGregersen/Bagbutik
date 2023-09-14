@@ -13,8 +13,8 @@ public extension Request {
      - Parameter requestBody: InAppPurchase representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func updateInAppPurchasesV2V2(id: String,
-                                         requestBody: InAppPurchaseV2UpdateRequest) -> Request<InAppPurchaseV2Response, ErrorResponse>
+    static func updateInAppPurchasesV2(id: String,
+                                       requestBody: InAppPurchaseV2UpdateRequest) -> Request<InAppPurchaseV2Response, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)", method: .patch, requestBody: requestBody)
     }

@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func listTerritoryAvailabilitiesForAppAvailabilitiesV2V2(id: String,
-                                                                    fields: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2V2.Field]? = nil,
-                                                                    includes: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2V2.Include]? = nil,
-                                                                    limit: Int? = nil) -> Request<TerritoryAvailabilitiesResponse, ErrorResponse>
+    static func listTerritoryAvailabilitiesForAppAvailabilitiesV2(id: String,
+                                                                  fields: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2.Field]? = nil,
+                                                                  includes: [ListTerritoryAvailabilitiesForAppAvailabilitiesV2.Include]? = nil,
+                                                                  limit: Int? = nil) -> Request<TerritoryAvailabilitiesResponse, ErrorResponse>
     {
         .init(path: "/v2/appAvailabilities/\(id)/territoryAvailabilities", method: .get, parameters: .init(fields: fields,
                                                                                                            includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum ListTerritoryAvailabilitiesForAppAvailabilitiesV2V2 {
+public enum ListTerritoryAvailabilitiesForAppAvailabilitiesV2 {
     /**
      Fields to return for included related types.
      */

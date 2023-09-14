@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func listInAppPurchaseLocalizationsForInAppPurchasesV2V2(id: String,
-                                                                    fields: [ListInAppPurchaseLocalizationsForInAppPurchasesV2V2.Field]? = nil,
-                                                                    includes: [ListInAppPurchaseLocalizationsForInAppPurchasesV2V2.Include]? = nil,
-                                                                    limit: Int? = nil) -> Request<InAppPurchaseLocalizationsResponse, ErrorResponse>
+    static func listInAppPurchaseLocalizationsForInAppPurchasesV2(id: String,
+                                                                  fields: [ListInAppPurchaseLocalizationsForInAppPurchasesV2.Field]? = nil,
+                                                                  includes: [ListInAppPurchaseLocalizationsForInAppPurchasesV2.Include]? = nil,
+                                                                  limit: Int? = nil) -> Request<InAppPurchaseLocalizationsResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/inAppPurchaseLocalizations", method: .get, parameters: .init(fields: fields,
                                                                                                            includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2V2 {
+public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

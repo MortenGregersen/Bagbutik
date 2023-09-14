@@ -12,7 +12,7 @@ public extension Request {
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func deleteInAppPurchasesV2V2(id: String) -> Request<EmptyResponse, ErrorResponse> {
+    static func deleteInAppPurchasesV2(id: String) -> Request<EmptyResponse, ErrorResponse> {
         .init(path: "/v2/inAppPurchases/\(id)", method: .delete)
     }
 }

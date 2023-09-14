@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getIapPriceScheduleForInAppPurchasesV2V2(id: String,
-                                                         fields: [GetIapPriceScheduleForInAppPurchasesV2V2.Field]? = nil,
-                                                         includes: [GetIapPriceScheduleForInAppPurchasesV2V2.Include]? = nil,
-                                                         limits: [GetIapPriceScheduleForInAppPurchasesV2V2.Limit]? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse>
+    static func getIapPriceScheduleForInAppPurchasesV2(id: String,
+                                                       fields: [GetIapPriceScheduleForInAppPurchasesV2.Field]? = nil,
+                                                       includes: [GetIapPriceScheduleForInAppPurchasesV2.Include]? = nil,
+                                                       limits: [GetIapPriceScheduleForInAppPurchasesV2.Limit]? = nil) -> Request<InAppPurchasePriceScheduleResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/iapPriceSchedule", method: .get, parameters: .init(fields: fields,
                                                                                                  includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum GetIapPriceScheduleForInAppPurchasesV2V2 {
+public enum GetIapPriceScheduleForInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

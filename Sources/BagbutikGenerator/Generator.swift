@@ -98,7 +98,7 @@ public class Generator {
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
                     try path.operations.forEach { operation in
-                        let name = "\(operation.name.capitalizingFirstLetter())\(path.info.version)"
+                        let name = operation.getVersionedName(path: path)
                         self.print("⚡️ Generating endpoint \(name)...")
                         let fileName = "\(name).swift"
                         guard let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: operation.id) else {

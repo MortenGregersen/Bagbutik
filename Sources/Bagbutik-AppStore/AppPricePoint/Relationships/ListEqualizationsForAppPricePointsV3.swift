@@ -16,11 +16,11 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func listEqualizationsForAppPricePointsV3V3(id: String,
-                                                       fields: [ListEqualizationsForAppPricePointsV3V3.Field]? = nil,
-                                                       filters: [ListEqualizationsForAppPricePointsV3V3.Filter]? = nil,
-                                                       includes: [ListEqualizationsForAppPricePointsV3V3.Include]? = nil,
-                                                       limit: Int? = nil) -> Request<AppPricePointsV3Response, ErrorResponse>
+    static func listEqualizationsForAppPricePointsV3(id: String,
+                                                     fields: [ListEqualizationsForAppPricePointsV3.Field]? = nil,
+                                                     filters: [ListEqualizationsForAppPricePointsV3.Filter]? = nil,
+                                                     includes: [ListEqualizationsForAppPricePointsV3.Include]? = nil,
+                                                     limit: Int? = nil) -> Request<AppPricePointsV3Response, ErrorResponse>
     {
         .init(path: "/v3/appPricePoints/\(id)/equalizations", method: .get, parameters: .init(fields: fields,
                                                                                               filters: filters,
@@ -29,7 +29,7 @@ public extension Request {
     }
 }
 
-public enum ListEqualizationsForAppPricePointsV3V3 {
+public enum ListEqualizationsForAppPricePointsV3 {
     /**
      Fields to return for included related types.
      */

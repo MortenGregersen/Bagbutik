@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limit: Maximum number of related availableTerritories returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getInAppPurchaseAvailabilityForInAppPurchasesV2V2(id: String,
-                                                                  fields: [GetInAppPurchaseAvailabilityForInAppPurchasesV2V2.Field]? = nil,
-                                                                  includes: [GetInAppPurchaseAvailabilityForInAppPurchasesV2V2.Include]? = nil,
-                                                                  limit: Int? = nil) -> Request<InAppPurchaseAvailabilityResponse, ErrorResponse>
+    static func getInAppPurchaseAvailabilityForInAppPurchasesV2(id: String,
+                                                                fields: [GetInAppPurchaseAvailabilityForInAppPurchasesV2.Field]? = nil,
+                                                                includes: [GetInAppPurchaseAvailabilityForInAppPurchasesV2.Include]? = nil,
+                                                                limit: Int? = nil) -> Request<InAppPurchaseAvailabilityResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/inAppPurchaseAvailability", method: .get, parameters: .init(fields: fields,
                                                                                                           includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum GetInAppPurchaseAvailabilityForInAppPurchasesV2V2 {
+public enum GetInAppPurchaseAvailabilityForInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

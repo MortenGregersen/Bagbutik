@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limit: Maximum number of related territoryAvailabilities returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getAppAvailabilitiesV2V2(id: String,
-                                         fields: [GetAppAvailabilitiesV2V2.Field]? = nil,
-                                         includes: [GetAppAvailabilitiesV2V2.Include]? = nil,
-                                         limit: Int? = nil) -> Request<AppAvailabilityV2Response, ErrorResponse>
+    static func getAppAvailabilitiesV2(id: String,
+                                       fields: [GetAppAvailabilitiesV2.Field]? = nil,
+                                       includes: [GetAppAvailabilitiesV2.Include]? = nil,
+                                       limit: Int? = nil) -> Request<AppAvailabilityV2Response, ErrorResponse>
     {
         .init(path: "/v2/appAvailabilities/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                    includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum GetAppAvailabilitiesV2V2 {
+public enum GetAppAvailabilitiesV2 {
     /**
      Fields to return for included related types.
      */

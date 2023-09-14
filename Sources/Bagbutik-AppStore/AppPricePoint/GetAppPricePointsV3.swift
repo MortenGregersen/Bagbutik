@@ -14,16 +14,16 @@ public extension Request {
      - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getAppPricePointsV3V3(id: String,
-                                      fields: [GetAppPricePointsV3V3.Field]? = nil,
-                                      includes: [GetAppPricePointsV3V3.Include]? = nil) -> Request<AppPricePointV3Response, ErrorResponse>
+    static func getAppPricePointsV3(id: String,
+                                    fields: [GetAppPricePointsV3.Field]? = nil,
+                                    includes: [GetAppPricePointsV3.Include]? = nil) -> Request<AppPricePointV3Response, ErrorResponse>
     {
         .init(path: "/v3/appPricePoints/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                 includes: includes))
     }
 }
 
-public enum GetAppPricePointsV3V3 {
+public enum GetAppPricePointsV3 {
     /**
      Fields to return for included related types.
      */

@@ -14,16 +14,16 @@ public extension Request {
      - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getAppStoreReviewScreenshotForInAppPurchasesV2V2(id: String,
-                                                                 fields: [GetAppStoreReviewScreenshotForInAppPurchasesV2V2.Field]? = nil,
-                                                                 includes: [GetAppStoreReviewScreenshotForInAppPurchasesV2V2.Include]? = nil) -> Request<InAppPurchaseAppStoreReviewScreenshotResponse, ErrorResponse>
+    static func getAppStoreReviewScreenshotForInAppPurchasesV2(id: String,
+                                                               fields: [GetAppStoreReviewScreenshotForInAppPurchasesV2.Field]? = nil,
+                                                               includes: [GetAppStoreReviewScreenshotForInAppPurchasesV2.Include]? = nil) -> Request<InAppPurchaseAppStoreReviewScreenshotResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/appStoreReviewScreenshot", method: .get, parameters: .init(fields: fields,
                                                                                                          includes: includes))
     }
 }
 
-public enum GetAppStoreReviewScreenshotForInAppPurchasesV2V2 {
+public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

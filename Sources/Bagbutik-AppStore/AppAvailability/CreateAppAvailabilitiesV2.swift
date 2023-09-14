@@ -12,7 +12,7 @@ public extension Request {
      - Parameter requestBody: AppAvailability representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func createAppAvailabilitiesV2V2(requestBody: AppAvailabilityV2CreateRequest) -> Request<AppAvailabilityV2Response, ErrorResponse> {
+    static func createAppAvailabilitiesV2(requestBody: AppAvailabilityV2CreateRequest) -> Request<AppAvailabilityV2Response, ErrorResponse> {
         .init(path: "/v2/appAvailabilities", method: .post, requestBody: requestBody)
     }
 }

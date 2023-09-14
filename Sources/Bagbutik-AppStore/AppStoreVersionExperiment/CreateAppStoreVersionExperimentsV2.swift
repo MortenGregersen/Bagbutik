@@ -12,7 +12,7 @@ public extension Request {
      - Parameter requestBody: AppStoreVersionExperiment representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func createAppStoreVersionExperimentsV2V2(requestBody: AppStoreVersionExperimentV2CreateRequest) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse> {
+    static func createAppStoreVersionExperimentsV2(requestBody: AppStoreVersionExperimentV2CreateRequest) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse> {
         .init(path: "/v2/appStoreVersionExperiments", method: .post, requestBody: requestBody)
     }
 }

@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getInAppPurchasesV2V2(id: String,
-                                      fields: [GetInAppPurchasesV2V2.Field]? = nil,
-                                      includes: [GetInAppPurchasesV2V2.Include]? = nil,
-                                      limits: [GetInAppPurchasesV2V2.Limit]? = nil) -> Request<InAppPurchaseV2Response, ErrorResponse>
+    static func getInAppPurchasesV2(id: String,
+                                    fields: [GetInAppPurchasesV2.Field]? = nil,
+                                    includes: [GetInAppPurchasesV2.Include]? = nil,
+                                    limits: [GetInAppPurchasesV2.Limit]? = nil) -> Request<InAppPurchaseV2Response, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                 includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum GetInAppPurchasesV2V2 {
+public enum GetInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

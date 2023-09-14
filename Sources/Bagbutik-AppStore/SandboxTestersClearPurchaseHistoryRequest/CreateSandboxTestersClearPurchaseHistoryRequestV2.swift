@@ -12,7 +12,7 @@ public extension Request {
      - Parameter requestBody: SandboxTestersClearPurchaseHistoryRequest representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func createSandboxTestersClearPurchaseHistoryRequestV2V2(requestBody: SandboxTestersClearPurchaseHistoryRequestV2CreateRequest) -> Request<SandboxTestersClearPurchaseHistoryRequestV2Response, ErrorResponse> {
+    static func createSandboxTestersClearPurchaseHistoryRequestV2(requestBody: SandboxTestersClearPurchaseHistoryRequestV2CreateRequest) -> Request<SandboxTestersClearPurchaseHistoryRequestV2Response, ErrorResponse> {
         .init(path: "/v2/sandboxTestersClearPurchaseHistoryRequest", method: .post, requestBody: requestBody)
     }
 }

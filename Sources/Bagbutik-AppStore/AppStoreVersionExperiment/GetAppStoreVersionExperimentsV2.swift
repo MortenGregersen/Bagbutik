@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getAppStoreVersionExperimentsV2V2(id: String,
-                                                  fields: [GetAppStoreVersionExperimentsV2V2.Field]? = nil,
-                                                  includes: [GetAppStoreVersionExperimentsV2V2.Include]? = nil,
-                                                  limits: [GetAppStoreVersionExperimentsV2V2.Limit]? = nil) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse>
+    static func getAppStoreVersionExperimentsV2(id: String,
+                                                fields: [GetAppStoreVersionExperimentsV2.Field]? = nil,
+                                                includes: [GetAppStoreVersionExperimentsV2.Include]? = nil,
+                                                limits: [GetAppStoreVersionExperimentsV2.Limit]? = nil) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse>
     {
         .init(path: "/v2/appStoreVersionExperiments/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                             includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum GetAppStoreVersionExperimentsV2V2 {
+public enum GetAppStoreVersionExperimentsV2 {
     /**
      Fields to return for included related types.
      */

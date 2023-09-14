@@ -13,8 +13,8 @@ public extension Request {
      - Parameter requestBody: AppStoreVersionExperiment representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func updateAppStoreVersionExperimentsV2V2(id: String,
-                                                     requestBody: AppStoreVersionExperimentV2UpdateRequest) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse>
+    static func updateAppStoreVersionExperimentsV2(id: String,
+                                                   requestBody: AppStoreVersionExperimentV2UpdateRequest) -> Request<AppStoreVersionExperimentV2Response, ErrorResponse>
     {
         .init(path: "/v2/appStoreVersionExperiments/\(id)", method: .patch, requestBody: requestBody)
     }

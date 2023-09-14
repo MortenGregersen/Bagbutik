@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limit: Maximum number of related promotionImages returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func getPromotedPurchaseForInAppPurchasesV2V2(id: String,
-                                                         fields: [GetPromotedPurchaseForInAppPurchasesV2V2.Field]? = nil,
-                                                         includes: [GetPromotedPurchaseForInAppPurchasesV2V2.Include]? = nil,
-                                                         limit: Int? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
+    static func getPromotedPurchaseForInAppPurchasesV2(id: String,
+                                                       fields: [GetPromotedPurchaseForInAppPurchasesV2.Field]? = nil,
+                                                       includes: [GetPromotedPurchaseForInAppPurchasesV2.Include]? = nil,
+                                                       limit: Int? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/promotedPurchase", method: .get, parameters: .init(fields: fields,
                                                                                                  includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum GetPromotedPurchaseForInAppPurchasesV2V2 {
+public enum GetPromotedPurchaseForInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

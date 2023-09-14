@@ -16,11 +16,11 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 8000
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func listPricePointsForInAppPurchasesV2V2(id: String,
-                                                     fields: [ListPricePointsForInAppPurchasesV2V2.Field]? = nil,
-                                                     filters: [ListPricePointsForInAppPurchasesV2V2.Filter]? = nil,
-                                                     includes: [ListPricePointsForInAppPurchasesV2V2.Include]? = nil,
-                                                     limit: Int? = nil) -> Request<InAppPurchasePricePointsResponse, ErrorResponse>
+    static func listPricePointsForInAppPurchasesV2(id: String,
+                                                   fields: [ListPricePointsForInAppPurchasesV2.Field]? = nil,
+                                                   filters: [ListPricePointsForInAppPurchasesV2.Filter]? = nil,
+                                                   includes: [ListPricePointsForInAppPurchasesV2.Include]? = nil,
+                                                   limit: Int? = nil) -> Request<InAppPurchasePricePointsResponse, ErrorResponse>
     {
         .init(path: "/v2/inAppPurchases/\(id)/pricePoints", method: .get, parameters: .init(fields: fields,
                                                                                             filters: filters,
@@ -29,7 +29,7 @@ public extension Request {
     }
 }
 
-public enum ListPricePointsForInAppPurchasesV2V2 {
+public enum ListPricePointsForInAppPurchasesV2 {
     /**
      Fields to return for included related types.
      */

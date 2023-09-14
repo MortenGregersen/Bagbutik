@@ -15,10 +15,10 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func listAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2V2(id: String,
-                                                                                         fields: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2V2.Field]? = nil,
-                                                                                         includes: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2V2.Include]? = nil,
-                                                                                         limits: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2V2.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentsResponse, ErrorResponse>
+    static func listAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2(id: String,
+                                                                                       fields: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2.Field]? = nil,
+                                                                                       includes: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2.Include]? = nil,
+                                                                                       limits: [ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2.Limit]? = nil) -> Request<AppStoreVersionExperimentTreatmentsResponse, ErrorResponse>
     {
         .init(path: "/v2/appStoreVersionExperiments/\(id)/appStoreVersionExperimentTreatments", method: .get, parameters: .init(fields: fields,
                                                                                                                                 includes: includes,
@@ -26,7 +26,7 @@ public extension Request {
     }
 }
 
-public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2V2 {
+public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentsV2 {
     /**
      Fields to return for included related types.
      */

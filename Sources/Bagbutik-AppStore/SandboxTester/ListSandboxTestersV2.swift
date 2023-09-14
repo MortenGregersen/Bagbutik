@@ -13,15 +13,15 @@ public extension Request {
      - Parameter limit: Maximum resources per page - maximum 200
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
-    static func listSandboxTestersV2V2(fields: [ListSandboxTestersV2V2.Field]? = nil,
-                                       limit: Int? = nil) -> Request<SandboxTestersV2Response, ErrorResponse>
+    static func listSandboxTestersV2(fields: [ListSandboxTestersV2.Field]? = nil,
+                                     limit: Int? = nil) -> Request<SandboxTestersV2Response, ErrorResponse>
     {
         .init(path: "/v2/sandboxTesters", method: .get, parameters: .init(fields: fields,
                                                                           limit: limit))
     }
 }
 
-public enum ListSandboxTestersV2V2 {
+public enum ListSandboxTestersV2 {
     /**
      Fields to return for included related types.
      */
