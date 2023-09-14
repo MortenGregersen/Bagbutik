@@ -32,7 +32,7 @@ extension GeneratorError: Equatable {}
  - Parameter fileUrl: The file URL to load the spec from
  - Returns: A decoded Spec
  */
-internal typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
+typealias LoadSpec = (_ fileUrl: URL) throws -> Spec
 
 /// A generator which loads a spec and generates endpoints and models from the spec
 public class Generator {
@@ -54,7 +54,7 @@ public class Generator {
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, docsLoader: DocsLoader(), print: { Swift.print($0) })
     }
 
-    internal init(loadSpec: @escaping LoadSpec, fileManager: TestableFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
+    init(loadSpec: @escaping LoadSpec, fileManager: TestableFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
         self.loadSpec = loadSpec
         self.fileManager = fileManager
         self.docsLoader = docsLoader

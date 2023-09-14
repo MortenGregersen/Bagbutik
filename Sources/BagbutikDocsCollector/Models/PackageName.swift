@@ -3,6 +3,7 @@ import Foundation
 public enum PackageName: CaseIterable, Codable, Equatable {
     case appStore
     case core
+    case gameCenter
     case provisioning
     case reporting
     case testFlight
@@ -19,6 +20,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return "AppStore"
         case .core:
             return "Core"
+        case .gameCenter:
+            return "GameCenter"
         case .provisioning:
             return "Provisioning"
         case .reporting:
@@ -38,6 +41,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return Self.pathPrefix.appending("app_store")
         case .core:
             return "doc://com.apple.documentation/documentation/appstoreconnectapi"
+        case .gameCenter:
+            return Self.pathPrefix.appending("game_center")
         case .provisioning:
             return Self.pathPrefix.appending("bagbutik-provisioning")
         case .reporting:
@@ -58,6 +63,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         case pathPrefix.appending("large_data_sets"),
              pathPrefix.appending("errorresponse"):
             return .core
+        case pathPrefix.appending("game_center"):
+            return .gameCenter
         case pathPrefix.appending("bundle_ids"),
              pathPrefix.appending("bundle_id_capabilities"),
              pathPrefix.appending("certificates"),

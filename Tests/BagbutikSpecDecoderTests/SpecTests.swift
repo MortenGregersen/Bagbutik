@@ -460,16 +460,6 @@ final class SpecTests: XCTestCase {
                                         "$ref": "#/components/schemas/AppInfoLocalization"
                                     }, {
                                         "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
                                     }]
                                 }
                             },
@@ -498,16 +488,6 @@ final class SpecTests: XCTestCase {
                                         "$ref": "#/components/schemas/AgeRatingDeclaration"
                                     }, {
                                         "$ref": "#/components/schemas/AppInfoLocalization"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
-                                    }, {
-                                        "$ref": "#/components/schemas/AppCategory"
                                     }, {
                                         "$ref": "#/components/schemas/AppCategory"
                                     }]
