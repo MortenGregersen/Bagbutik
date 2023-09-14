@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Modify an App Pre-Order
+     # Modify an App Pre-Order V1
      Update the release date for your app pre-order.
 
      Full documentation:

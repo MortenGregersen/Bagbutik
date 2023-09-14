@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBuildV1(id: String,
-                                 fields: [GetAppForBuildV1.Field]? = nil) -> Request<AppResponse, ErrorResponse>
+                                 fields: [GetAppForBuildV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/builds/\(id)/app", method: .get, parameters: .init(fields: fields))
     }
@@ -32,6 +32,7 @@ public enum GetAppForBuildV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -51,6 +52,7 @@ public enum GetAppForBuildV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2

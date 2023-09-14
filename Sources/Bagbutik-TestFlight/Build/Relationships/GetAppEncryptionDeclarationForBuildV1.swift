@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppEncryptionDeclarationForBuildV1(id: String,
-                                                      fields: [GetAppEncryptionDeclarationForBuildV1.Field]? = nil) -> Request<AppEncryptionDeclarationResponse, ErrorResponse>
+                                                      fields: [GetAppEncryptionDeclarationForBuildV1.Field]? = nil) -> Request<AppEncryptionDeclarationWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/builds/\(id)/appEncryptionDeclaration", method: .get, parameters: .init(fields: fields))
     }

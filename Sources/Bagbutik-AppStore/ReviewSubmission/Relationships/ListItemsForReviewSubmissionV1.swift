@@ -66,6 +66,7 @@ public enum ListItemsForReviewSubmissionV1 {
 
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
             case app
+            case appStoreVersion
             case appStoreVersionExperimentTreatments
             case controlVersions
             case endDate

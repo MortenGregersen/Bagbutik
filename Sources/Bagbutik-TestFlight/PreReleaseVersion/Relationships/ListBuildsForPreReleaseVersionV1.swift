@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listBuildsForPreReleaseVersionV1(id: String,
                                                  fields: [ListBuildsForPreReleaseVersionV1.Field]? = nil,
-                                                 limit: Int? = nil) -> Request<BuildsResponse, ErrorResponse>
+                                                 limit: Int? = nil) -> Request<BuildsWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/preReleaseVersions/\(id)/builds", method: .get, parameters: .init(fields: fields,
                                                                                            limit: limit))

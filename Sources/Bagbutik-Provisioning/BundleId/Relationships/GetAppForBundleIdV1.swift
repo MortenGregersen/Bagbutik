@@ -13,7 +13,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getAppForBundleIdV1(id: String,
-                                    fields: [GetAppForBundleIdV1.Field]? = nil) -> Request<AppResponse, ErrorResponse>
+                                    fields: [GetAppForBundleIdV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/bundleIds/\(id)/app", method: .get, parameters: .init(fields: fields))
     }
@@ -31,6 +31,7 @@ public enum GetAppForBundleIdV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -50,6 +51,7 @@ public enum GetAppForBundleIdV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2

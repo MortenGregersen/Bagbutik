@@ -16,7 +16,7 @@ public extension Request {
      */
     static func listCertificatesForProfileV1(id: String,
                                              fields: [ListCertificatesForProfileV1.Field]? = nil,
-                                             limit: Int? = nil) -> Request<CertificatesResponse, ErrorResponse>
+                                             limit: Int? = nil) -> Request<CertificatesWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/profiles/\(id)/certificates", method: .get, parameters: .init(fields: fields,
                                                                                        limit: limit))

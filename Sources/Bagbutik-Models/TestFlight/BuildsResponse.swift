@@ -125,9 +125,9 @@ public struct BuildsResponse: Codable, PagedResponse {
         return individualTesters
     }
 
-    public func getPreReleaseVersion(for build: Build) -> PreReleaseVersion? {
-        included?.compactMap { relationship -> PreReleaseVersion? in
-            guard case let .preReleaseVersion(preReleaseVersion) = relationship else { return nil }
+    public func getPreReleaseVersion(for build: Build) -> PrereleaseVersion? {
+        included?.compactMap { relationship -> PrereleaseVersion? in
+            guard case let .prereleaseVersion(preReleaseVersion) = relationship else { return nil }
             return preReleaseVersion
         }.first { $0.id == build.relationships?.preReleaseVersion?.data?.id }
     }
@@ -143,7 +143,7 @@ public struct BuildsResponse: Codable, PagedResponse {
         case buildBetaDetail(BuildBetaDetail)
         case buildBundle(BuildBundle)
         case buildIcon(BuildIcon)
-        case preReleaseVersion(PreReleaseVersion)
+        case prereleaseVersion(PrereleaseVersion)
 
         public init(from decoder: Decoder) throws {
             if let app = try? App(from: decoder) {
@@ -166,8 +166,8 @@ public struct BuildsResponse: Codable, PagedResponse {
                 self = .buildBundle(buildBundle)
             } else if let buildIcon = try? BuildIcon(from: decoder) {
                 self = .buildIcon(buildIcon)
-            } else if let preReleaseVersion = try? PreReleaseVersion(from: decoder) {
-                self = .preReleaseVersion(preReleaseVersion)
+            } else if let prereleaseVersion = try? PrereleaseVersion(from: decoder) {
+                self = .prereleaseVersion(prereleaseVersion)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -196,7 +196,7 @@ public struct BuildsResponse: Codable, PagedResponse {
                 try value.encode(to: encoder)
             case let .buildIcon(value):
                 try value.encode(to: encoder)
-            case let .preReleaseVersion(value):
+            case let .prereleaseVersion(value):
                 try value.encode(to: encoder)
             }
         }

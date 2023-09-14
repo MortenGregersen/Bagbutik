@@ -58,6 +58,7 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV
 
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
             case app
+            case appStoreVersion
             case appStoreVersionExperimentTreatments
             case controlVersions
             case endDate

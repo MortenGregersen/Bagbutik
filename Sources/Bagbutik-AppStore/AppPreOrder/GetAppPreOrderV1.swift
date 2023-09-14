@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read App Pre-Order Information
-     Get information about your app's pre-order configuration.
+     Get information about your app’s pre-order configuration.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/read_app_pre-order_information>

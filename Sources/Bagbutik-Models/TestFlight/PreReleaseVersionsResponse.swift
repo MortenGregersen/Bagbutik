@@ -9,17 +9,17 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
  */
 public struct PreReleaseVersionsResponse: Codable, PagedResponse {
-    public typealias Data = PreReleaseVersion
+    public typealias Data = PrereleaseVersion
 
     /// The resource data.
-    public let data: [PreReleaseVersion]
+    public let data: [PrereleaseVersion]
     public var included: [Included]?
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
     /// Paging information.
     public var meta: PagingInformation?
 
-    public init(data: [PreReleaseVersion],
+    public init(data: [PrereleaseVersion],
                 included: [Included]? = nil,
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
@@ -30,15 +30,15 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
-    public func getApp(for preReleaseVersion: PreReleaseVersion) -> App? {
+    public func getApp(for prereleaseVersion: PrereleaseVersion) -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }
             return app
-        }.first { $0.id == preReleaseVersion.relationships?.app?.data?.id }
+        }.first { $0.id == prereleaseVersion.relationships?.app?.data?.id }
     }
 
-    public func getBuilds(for preReleaseVersion: PreReleaseVersion) -> [Build] {
-        guard let buildIds = preReleaseVersion.relationships?.builds?.data?.map(\.id),
+    public func getBuilds(for prereleaseVersion: PrereleaseVersion) -> [Build] {
+        guard let buildIds = prereleaseVersion.relationships?.builds?.data?.map(\.id),
               let builds = included?.compactMap({ relationship -> Build? in
                   guard case let .build(build) = relationship else { return nil }
                   return buildIds.contains(build.id) ? build : nil

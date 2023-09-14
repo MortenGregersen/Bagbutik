@@ -14,7 +14,7 @@ public extension Request {
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildForBetaBuildLocalizationV1(id: String,
-                                                   fields: [GetBuildForBetaBuildLocalizationV1.Field]? = nil) -> Request<BuildResponse, ErrorResponse>
+                                                   fields: [GetBuildForBetaBuildLocalizationV1.Field]? = nil) -> Request<BuildWithoutIncludesResponse, ErrorResponse>
     {
         .init(path: "/v1/betaBuildLocalizations/\(id)/build", method: .get, parameters: .init(fields: fields))
     }

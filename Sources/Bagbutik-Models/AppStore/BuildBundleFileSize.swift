@@ -11,26 +11,21 @@ import Foundation
 public struct BuildBundleFileSize: Codable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
-    /// Navigational links that include the self-link.
-    public let links: ResourceLinks
     /// The resource type.
     public var type: String { "buildBundleFileSizes" }
     /// The attributes that describe the Build Bundle File Sizes resource.
     public var attributes: Attributes?
 
     public init(id: String,
-                links: ResourceLinks,
                 attributes: Attributes? = nil)
     {
         self.id = id
-        self.links = links
         self.attributes = attributes
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        links = try container.decode(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         if try container.decode(String.self, forKey: .type) != type {
             throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -40,7 +35,6 @@ public struct BuildBundleFileSize: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
     }
@@ -48,7 +42,6 @@ public struct BuildBundleFileSize: Codable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case attributes
         case id
-        case links
         case type
     }
 

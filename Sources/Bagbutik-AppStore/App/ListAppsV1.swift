@@ -44,6 +44,8 @@ public enum ListAppsV1 {
         case appClips([AppClips])
         /// The fields to include for returned resources of type appCustomProductPages
         case appCustomProductPages([AppCustomProductPages])
+        /// The fields to include for returned resources of type appEncryptionDeclarations
+        case appEncryptionDeclarations([AppEncryptionDeclarations])
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])
         /// The fields to include for returned resources of type appInfos
@@ -51,7 +53,6 @@ public enum ListAppsV1 {
         /// The fields to include for returned resources of type appPreOrders
         case appPreOrders([AppPreOrders])
         /// The fields to include for returned resources of type appPricePoints
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPricePoints([AppPricePoints])
         /// The fields to include for returned resources of type appPriceSchedules
         case appPriceSchedules([AppPriceSchedules])
@@ -80,10 +81,12 @@ public enum ListAppsV1 {
         case customerReviews([CustomerReviews])
         /// The fields to include for returned resources of type endUserLicenseAgreements
         case endUserLicenseAgreements([EndUserLicenseAgreements])
+        /// The fields to include for returned resources of type gameCenterDetails
+        case gameCenterDetails([GameCenterDetails])
         /// The fields to include for returned resources of type gameCenterEnabledVersions
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
         /// The fields to include for returned resources of type inAppPurchases
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case inAppPurchases([InAppPurchases])
         /// The fields to include for returned resources of type perfPowerMetrics
         case perfPowerMetrics([PerfPowerMetrics])
@@ -122,6 +125,26 @@ public enum ListAppsV1 {
             case name
             case url
             case visible
+        }
+
+        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case appDescription
+            case appEncryptionDeclarationDocument
+            case appEncryptionDeclarationState
+            case availableOnFrenchStore
+            case builds
+            case codeValue
+            case containsProprietaryCryptography
+            case containsThirdPartyCryptography
+            case createdDate
+            case documentName
+            case documentType
+            case documentUrl
+            case exempt
+            case platform
+            case uploadedDate
+            case usesEncryption
         }
 
         public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
@@ -165,6 +188,7 @@ public enum ListAppsV1 {
         public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
             case app
             case customerPrice
+            case equalizations
             case priceTier
             case proceeds
             case territory
@@ -224,6 +248,7 @@ public enum ListAppsV1 {
             case appAvailability
             case appClips
             case appCustomProductPages
+            case appEncryptionDeclarations
             case appEvents
             case appInfos
             case appPricePoints
@@ -243,6 +268,7 @@ public enum ListAppsV1 {
             case contentRightsDeclaration
             case customerReviews
             case endUserLicenseAgreement
+            case gameCenterDetail
             case gameCenterEnabledVersions
             case inAppPurchases
             case inAppPurchasesV2
@@ -364,6 +390,22 @@ public enum ListAppsV1 {
             case territories
         }
 
+        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+            case achievementReleases
+            case app
+            case arcadeEnabled
+            case challengeEnabled
+            case defaultGroupLeaderboard
+            case defaultLeaderboard
+            case gameCenterAchievements
+            case gameCenterAppVersions
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboards
+            case leaderboardReleases
+            case leaderboardSetReleases
+        }
+
         public enum GameCenterEnabledVersions: String, ParameterValue, Codable, CaseIterable {
             case app
             case compatibleVersions
@@ -373,10 +415,23 @@ public enum ListAppsV1 {
         }
 
         public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case appStoreReviewScreenshot
             case apps
+            case availableInAllTerritories
+            case content
+            case contentHosting
+            case familySharable
+            case iapPriceSchedule
+            case inAppPurchaseAvailability
+            case inAppPurchaseLocalizations
             case inAppPurchaseType
+            case name
+            case pricePoints
             case productId
+            case promotedPurchase
             case referenceName
+            case reviewNote
             case state
         }
 
@@ -469,6 +524,7 @@ public enum ListAppsV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appClips
         case appCustomProductPages
+        case appEncryptionDeclarations
         case appEvents
         case appInfos
         case appStoreVersionExperimentsV2
@@ -481,6 +537,7 @@ public enum ListAppsV1 {
         case builds
         case ciProduct
         case endUserLicenseAgreement
+        case gameCenterDetail
         case gameCenterEnabledVersions
         case inAppPurchases
         case inAppPurchasesV2
@@ -513,6 +570,8 @@ public enum ListAppsV1 {
         case appClips(Int)
         /// Maximum number of related appCustomProductPages returned (when they are included) - maximum 50
         case appCustomProductPages(Int)
+        /// Maximum number of related appEncryptionDeclarations returned (when they are included) - maximum 50
+        case appEncryptionDeclarations(Int)
         /// Maximum number of related appEvents returned (when they are included) - maximum 50
         case appEvents(Int)
         /// Maximum number of related appInfos returned (when they are included) - maximum 50

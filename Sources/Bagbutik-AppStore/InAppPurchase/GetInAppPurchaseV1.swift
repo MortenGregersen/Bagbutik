@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum number of related apps returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getInAppPurchaseV1(id: String,
                                    fields: [GetInAppPurchaseV1.Field]? = nil,
                                    includes: [GetInAppPurchaseV1.Include]? = nil,
