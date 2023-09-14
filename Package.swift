@@ -18,6 +18,7 @@ let package = Package(
                 "Bagbutik-Core",
                 "Bagbutik-Models",
                 "Bagbutik-AppStore",
+                "Bagbutik-GameCenter",
                 "Bagbutik-Provisioning",
                 "Bagbutik-Reporting",
                 "Bagbutik-TestFlight",
@@ -35,6 +36,9 @@ let package = Package(
         .library(
             name: "Bagbutik-AppStore",
             targets: ["Bagbutik-AppStore"]),
+        .library(
+            name: "Bagbutik-GameCenter",
+            targets: ["Bagbutik-GameCenter"]),
         .library(
             name: "Bagbutik-Provisioning",
             targets: ["Bagbutik-Provisioning"]),
@@ -68,6 +72,7 @@ let package = Package(
         ]),
         .target(name: "Bagbutik-Models", dependencies: ["Bagbutik-Core"]),
         .target(name: "Bagbutik-AppStore", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
+        .target(name: "Bagbutik-GameCenter", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Provisioning", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-Reporting", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
         .target(name: "Bagbutik-TestFlight", dependencies: ["Bagbutik-Core", "Bagbutik-Models"]),
