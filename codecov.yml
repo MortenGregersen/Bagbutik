@@ -1,6 +1,7 @@
 ignore:
   - "Sources/Bagbutik-Core/Models"
   - "Sources/Bagbutik-Models/AppStore"
+  - "Sources/Bagbutik-Models/GameCenter"
   - "Sources/Bagbutik-Models/Provisioning"
   - "Sources/Bagbutik-Models/Reporting"
   - "Sources/Bagbutik-Models/TestFlight"
