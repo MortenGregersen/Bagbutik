@@ -853,15 +853,15 @@ final class SpecTests: XCTestCase {
         XCTAssertTrue(bundleIdPlatformCaseValues.contains("SERVICES"))
 
         guard case .object(let deviceSchema) = spec.components.schemas["Device"],
-              var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({
+              let deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({
                   guard case .objectSchema(let subSchema) = $0,
                         subSchema.name == "Attributes" else {
                       return nil
                   }
                   return subSchema
               }).first,
-              var statusProperty = deviceAttributesSchema.properties["status"],
-              case .enumSchema(var deviceStatusSchema) = statusProperty.type else {
+              let statusProperty = deviceAttributesSchema.properties["status"],
+              case .enumSchema(let deviceStatusSchema) = statusProperty.type else {
             XCTFail(); return
         }
         let deviceStatusCaseValues = deviceStatusSchema.cases.map(\.value)
