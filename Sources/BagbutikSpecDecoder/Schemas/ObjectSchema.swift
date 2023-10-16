@@ -34,8 +34,6 @@ public struct ObjectSchema: Decodable, Equatable {
         case properties
         case deprecated
         case required
-        case attributes
-        case relationships
     }
 
     private enum PropertyCodingKeys: String, CodingKey {

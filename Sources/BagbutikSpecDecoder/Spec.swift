@@ -13,7 +13,7 @@ public struct Spec: Decodable {
         components = try container.decode(Components.self, forKey: .components)
     }
 
-    internal init(paths: [String: Path], components: Components) throws {
+    init(paths: [String: Path], components: Components) throws {
         self.paths = paths
         self.components = components
     }
@@ -91,8 +91,7 @@ public struct Spec: Decodable {
                                       guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type,
                                             mainAttributesPropertySchema.cases == parameterEnumSchema.cases else { return nil }
                                       return (name: propertyName, schema: mainAttributesPropertySchema)
-                                  }).first
-                        {
+                                  }).first {
                             newType = "\(path.info.mainType).Attributes.\(propertyInfo.name.capitalizingFirstLetter())"
                             var enumSchema = propertyInfo.schema
                             enumSchema.additionalProtocols.insert("ParameterValue")
@@ -100,7 +99,7 @@ public struct Spec: Decodable {
                             mainSchema.properties["attributes"]?.type = .schema(mainAttributesSchema)
                             components.schemas[path.info.mainType] = .object(mainSchema)
                         }
-                        if let newType = newType {
+                        if let newType {
                             operation.parameters?[parameterIndex] = .filter(name: parameterName, type: .simple(type: .init(type: newType)), required: parameterRequired, documentation: parameterDocumentation)
                         }
                     }
@@ -159,7 +158,28 @@ public struct Spec: Decodable {
             }
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
         }
-        
+
+        // Add the case `PROCESSING` to Device.Status
+        // Apple's OpenAPI spec doesn't include Processing as status for Device.
+        if case .object(var deviceSchema) = components.schemas["Device"],
+           var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({
+               guard case .objectSchema(let subSchema) = $0,
+                     subSchema.name == "Attributes" else {
+                   return nil
+               }
+               return subSchema
+           }).first,
+           var statusProperty = deviceAttributesSchema.properties["status"],
+           case .enumSchema(var statusEnum) = statusProperty.type {
+            var values = statusEnum.cases
+            values.append(.init(id: "processing", value: "PROCESSING"))
+            statusEnum.cases = values
+            statusProperty.type = .enumSchema(statusEnum)
+            deviceAttributesSchema.properties["status"] = statusProperty
+            deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
+            components.schemas["Device"] = .object(deviceSchema)
+        }
+
         // Add the case `VISION_OS` to Platform
         // Apple's OpenAPI spec doesn't include visionOS for App Categories. Reported to Apple 28/8/23 as FB13071298.
         if case .enum(var platformSchema) = components.schemas["Platform"] {
