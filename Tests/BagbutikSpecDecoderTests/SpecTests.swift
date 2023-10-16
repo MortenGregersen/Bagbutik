@@ -769,6 +769,32 @@ final class SpecTests: XCTestCase {
                         "type" : "string",
                         "enum" : [ "IOS", "MAC_OS" ]
                     },
+                    "Device" : {
+                        "type" : "object",
+                        "title" : "Device",
+                        "properties" : {
+                            "type" : {
+                                "type" : "string",
+                                "enum" : [ "devices" ]
+                            },
+                            "id" : {
+                                "type" : "string"
+                            },
+                            "attributes" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "status" : {
+                                        "type" : "string",
+                                        "enum" : [ "ENABLED", "DISABLED" ]
+                                    },
+                                }
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/ResourceLinks"
+                            }
+                        },
+                        "required" : [ "id", "type" ]
+                    },
                     "ErrorResponse" : {
                         "type" : "object",
                         "properties" : {
@@ -826,6 +852,22 @@ final class SpecTests: XCTestCase {
         XCTAssertTrue(bundleIdPlatformCaseValues.contains("UNIVERSAL"))
         XCTAssertTrue(bundleIdPlatformCaseValues.contains("SERVICES"))
 
+        guard case .object(let deviceSchema) = spec.components.schemas["Device"],
+              var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({
+                  guard case .objectSchema(let subSchema) = $0,
+                        subSchema.name == "Attributes" else {
+                      return nil
+                  }
+                  return subSchema
+              }).first,
+              var statusProperty = deviceAttributesSchema.properties["status"],
+              case .enumSchema(var deviceStatusSchema) = statusProperty.type else {
+            XCTFail(); return
+        }
+        let deviceStatusCaseValues = deviceStatusSchema.cases.map(\.value)
+        XCTAssertEqual(deviceStatusCaseValues.count, 3)
+        XCTAssertTrue(deviceStatusCaseValues.contains("PROCESSING"))
+
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
               case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type
@@ -842,7 +884,7 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(errorSchemaRef, "Errors")
-        
+
         guard case .enum(let bundleIdPlatformSchema) = spec.components.schemas["Platform"] else {
             XCTFail(); return
         }

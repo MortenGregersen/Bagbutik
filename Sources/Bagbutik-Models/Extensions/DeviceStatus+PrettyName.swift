@@ -4,6 +4,7 @@ public extension Device.Attributes.Status {
         switch self {
         case .enabled: return "Enabled"
         case .disabled: return "Disabled"
+        case .processing: return "Processing"
         }
     }
 }
