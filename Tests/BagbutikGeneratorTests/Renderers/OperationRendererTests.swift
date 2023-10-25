@@ -25,7 +25,7 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
         import Bagbutik_Models
-        
+
         public extension Request {
             /**
              # Documentation title
@@ -46,7 +46,7 @@ final class OperationRendererTests: XCTestCase {
 
         """#)
     }
-    
+
     func testRenderCustomParameters() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
@@ -79,18 +79,20 @@ final class OperationRendererTests: XCTestCase {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
 
-             - Parameter period: The duration of the reporting period
              - Parameter groupBy: The dimension by which to group the results
+             - Parameter period: The duration of the reporting period
              - Parameter limit: Maximum resources per page - maximum 200
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
              */
-            static func listUsersV1(period: String? = nil,
-                                    groupBy: ListUsersV1.GroupBy? = nil,
+            static func listUsersV1(groupBy: ListUsersV1.GroupBy? = nil,
+                                    period: String? = nil,
                                     limit: Int? = nil) -> Request<UsersResponse, ErrorResponse>
             {
-                .init(path: "/users", method: .get, parameters: .init(period: period,
-                                                                      groupBy: groupBy,
-                                                                      limit: limit))
+                var customs = [String: String]()
+                if let groupBy { customs["groupBy"] = groupBy.rawValue }
+                if let period { customs["period"] = period.rawValue }
+                return .init(path: "/users", method: .get, parameters: .init(limit: limit,
+                                                                             customs: customs))
             }
         }
 
@@ -102,7 +104,7 @@ final class OperationRendererTests: XCTestCase {
                 case betaTesters
             }
         }
-        
+
         """#)
     }
 
@@ -121,7 +123,7 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
         import Bagbutik_Models
-        
+
         public extension Request {
             /**
              # No overview available
@@ -155,7 +157,7 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
         import Bagbutik_Models
-        
+
         public extension Request {
             /**
              # No overview available
@@ -203,7 +205,7 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
         import Bagbutik_Models
-        
+
         public extension Request {
             /**
              # Documentation title
@@ -344,7 +346,7 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
         import Bagbutik_Models
-        
+
         public extension Request {
             /**
              # Documentation title
@@ -440,7 +442,7 @@ final class OperationRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
         import Bagbutik_Models
-        
+
         public extension Request {
             /**
              # Documentation title
