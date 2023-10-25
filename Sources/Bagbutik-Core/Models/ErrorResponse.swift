@@ -2,7 +2,7 @@ import Foundation
 
 /**
  # ErrorResponse
- Information with error details that an API returns in the response body whenever the API request is not successful.
+ The error details that an API returns in the response body whenever the API request isn’t successful.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse>
@@ -17,7 +17,7 @@ public struct ErrorResponse: Codable {
 
     /**
      # ErrorResponse.Errors
-     The details about one error that is returned when an API request is not successful.
+     The details about an error that are returned when an API request isn’t successful.
 
      Use the `code` parameter for programmatic error handling. See [Parsing the Error Response Code](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/parsing_the_error_response_code) for more information. For more information about using the `source` parameter, see [Pinpointing the Location of Errors](https://developer.apple.com/documentation/appstoreconnectapi/interpreting_and_handling_errors/pinpointing_the_location_of_errors).
 

@@ -13,6 +13,7 @@ public extension Request {
      - Parameter fields: Fields to return for included related types
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getPreOrderForAppV1(id: String,
                                     fields: [GetPreOrderForAppV1.Field]? = nil) -> Request<AppPreOrderWithoutIncludesResponse, ErrorResponse>
     {

@@ -32,6 +32,7 @@ public enum GetAppV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type appAvailabilities
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appAvailabilities([AppAvailabilities])
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
@@ -44,6 +45,7 @@ public enum GetAppV1 {
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
         /// The fields to include for returned resources of type appPreOrders
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPreOrders([AppPreOrders])
         /// The fields to include for returned resources of type appPricePoints
         case appPricePoints([AppPricePoints])
