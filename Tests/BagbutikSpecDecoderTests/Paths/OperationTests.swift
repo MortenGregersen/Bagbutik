@@ -255,9 +255,132 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(getOperation?.errorResponseType, "ErrorResponse")
     }
 
+    func testGetMetrics() throws {
+        // Given
+        let json = #"""
+        {
+            "get" : {
+                "tags" : [ "Apps", "Metrics" ],
+                "operationId" : "apps-betaTesterUsages-get_metrics",
+                "parameters" : [ {
+                    "name" : "limit",
+                    "in" : "query",
+                    "description" : "maximum number of groups to return per page",
+                    "schema" : {
+                        "type" : "integer",
+                        "maximum" : 200
+                    },
+                    "style" : "form"
+                }, {
+                    "name" : "groupBy",
+                    "in" : "query",
+                    "description" : "the dimension by which to group the results",
+                    "schema" : {
+                        "type" : "array",
+                        "items" : {
+                            "type" : "string",
+                            "enum" : [ "betaTesters" ]
+                        }
+                    },
+                    "style" : "form",
+                    "explode" : false
+                }, {
+                    "name" : "filter[betaTesters]",
+                    "in" : "query",
+                    "description" : "filter by 'betaTesters' relationship dimension",
+                    "schema" : {
+                        "type" : "string"
+                    },
+                    "style" : "form",
+                    "explode" : false
+                }, {
+                    "name" : "period",
+                    "in" : "query",
+                    "description" : "the duration of the reporting period",
+                    "schema" : {
+                        "type" : "string"
+                    },
+                    "style" : "form",
+                    "explode" : false,
+                    "examples" : {
+                        "PTnM" : {
+                            "value" : "PT10M"
+                        },
+                        "PnDTnHnMn.nS" : {
+                            "value" : "P7DT10H10M10.5S"
+                        },
+                        "PnD" : {
+                            "value" : "P7D"
+                        },
+                        "PTn.nS" : {
+                            "value" : "PT10.5S"
+                        },
+                        "PTnH" : {
+                            "value" : "PT10H"
+                        }
+                    }
+                } ],
+                "responses" : {
+                    "400" : {
+                        "description" : "Parameter error(s)",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403" : {
+                        "description" : "Forbidden error",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404" : {
+                        "description" : "Not found error",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "200" : {
+                        "description" : "Metrics data response",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/AppsBetaTesterUsagesV1MetricResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """#
+        // When
+        let operations = try jsonDecoder.decode([String: BagbutikSpecDecoder.Operation].self, from: json.data(using: .utf8)!)
+        // Then
+        let getOperation = operations["get"]
+        XCTAssertEqual(getOperation?.name, "getMetricsForBetaTesterUsageInApp")
+        XCTAssertEqual(getOperation?.method, .get)
+        XCTAssertEqual(getOperation?.parameters?.count, 4)
+        XCTAssertEqual(getOperation?.requestBody, nil)
+        XCTAssertEqual(getOperation?.successResponseType, "AppsBetaTesterUsagesV1MetricResponse")
+        XCTAssertEqual(getOperation?.errorResponseType, "ErrorResponse")
+    }
+
     func testGetName() throws {
         XCTAssertEqual(try Operation.getName(forId: "users-get_instance"), "getUser")
         XCTAssertEqual(try Operation.getName(forId: "users-get_collection"), "listUsers")
+        XCTAssertEqual(try Operation.getName(forId: "betaGroups-betaTesterUsages-get_metrics"), "getMetricsForBetaTesterUsageInBetaGroup")
         XCTAssertEqual(try Operation.getName(forId: "appStoreVersions-build-get_to_one_relationship"), "getBuildIdsForAppStoreVersion")
         XCTAssertEqual(try Operation.getName(forId: "users-visibleApps-get_to_many_relationship"), "listVisibleAppIdsForUser")
         XCTAssertEqual(try Operation.getName(forId: "appStoreVersions-build-get_to_one_related"), "getBuildForAppStoreVersion")

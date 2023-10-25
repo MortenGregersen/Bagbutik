@@ -1,8 +1,8 @@
 import Foundation
 
-extension Operation {
+public extension Operation {
     /// A parameter that can be sent with an operation
-    public enum Parameter: Decodable, Equatable {
+    enum Parameter: Decodable, Equatable {
         /// A parameter that filter the data in the response
         case filter(name: String, type: ParameterValueType, required: Bool, documentation: String)
         /// A parameter that checks for existance of a property
@@ -15,6 +15,8 @@ extension Operation {
         case limit(name: String, documentation: String, maximum: Int)
         /// A parameter that indicates which related types shoudl be included in the response
         case include(type: ParameterValueType)
+        /// A parameter that is custom for the operation
+        case custom(name: String, type: ParameterValueType, documentation: String)
         
         private enum CodingKeys: String, CodingKey {
             case name, description, required, deprecated, schema
@@ -45,7 +47,8 @@ extension Operation {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
                 self = .include(type: type)
             } else {
-                throw DecodingError.dataCorruptedError(forKey: .name, in: container, debugDescription: "Parameter type not known")
+                let type = try container.decode(ParameterValueType.self, forKey: .schema)
+                self = .custom(name: name, type: type, documentation: documentation)
             }
         }
         

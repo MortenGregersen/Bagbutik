@@ -158,6 +158,17 @@ public class OperationRenderer: Renderer {
                         cases: parametersInfo.sorts))
                     """)
                 }
+                parametersInfo.customs.forEach { _, value in
+                    guard case .enum(let type, let values) = value.type else { return }
+                    let enumName = value.name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
+                    let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
+                    let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
+                        .render(enumSchema: enumSchema)
+                    structContent.append("""
+                    \(renderDocumentationBlock { value.documentation.capitalizingFirstLetter() })
+                    \(rendered)
+                    """)
+                }
                 if parametersInfo.limits.count > 1 {
                     structContent.append("""
                     \(renderDocumentationBlock { "Number of included related resources to return." })
@@ -186,6 +197,7 @@ public class OperationRenderer: Renderer {
         var includes = [EnumCase]()
         var sorts = [EnumCase]()
         var limits = [EnumCase]()
+        var customs: [String: (name: String, type: BagbutikSpecDecoder.Operation.Parameter.ParameterValueType, documentation: String)] = [:]
         var pathParameters = [OperationParameter]()
         var requestBody: OperationParameter?
         var parameters = [OperationParameter]()
@@ -225,6 +237,8 @@ public class OperationRenderer: Renderer {
                     if required {
                         filtersRequired.append("`\(name)`")
                     }
+                case .custom(let name, let type, let documentation):
+                    customs[name] = (name: name, type: type, documentation: documentation)
                 case .exists(let name, let type, let documentation):
                     switch type {
                     case .simple(let type):
@@ -235,7 +249,7 @@ public class OperationRenderer: Renderer {
                 case .include(let type):
                     switch type {
                     case .enum(_, let values):
-                        includes = values.map { EnumCase(id: $0, value: $0) }
+                        includes.insert(contentsOf: values.map { EnumCase(id: $0, value: $0) }, at: 0)
                     default:
                         throw OperationRendererError.unknownTypeOfInclude
                     }
@@ -260,9 +274,12 @@ public class OperationRenderer: Renderer {
             }
 
             let wrapperProperties: [[Any]] = [fields, filters, includes, sorts]
-            let propertiesCount = wrapperProperties.reduce(into: 0) { count, properties in
-                count += properties.count
-            } + (limits.count > 1 ? limits.count : 0)
+            let propertiesCount = wrapperProperties.reduce(into: 0) { $0 += $1.count }
+                + customs.reduce(into: 0) {
+                    guard case .enum = $1.value.type else { return }
+                    $0 += 1
+                }
+                + (limits.count > 1 ? limits.count : 0)
             requiresWrapperStruct = propertiesCount > 0
 
             path.parameters?.forEach { pathParameter in
@@ -286,6 +303,16 @@ public class OperationRenderer: Renderer {
             }
             if sorts.count > 0 {
                 parameters.append(.init(name: "sorts", type: "[\(operationWrapperName).Sort]", optional: true, documentation: "Attributes by which to sort"))
+            }
+            customs.forEach { key, value in
+                let type: String
+                switch value.type {
+                case .simple(let simpleType):
+                    type = simpleType.description
+                case .enum:
+                    type = "\(operationWrapperName).\(value.name.capitalizingFirstLetter())"
+                }
+                parameters.append(.init(name: key, type: type, optional: true, documentation: value.documentation))
             }
             if limits.count > 0 {
                 let name: String
