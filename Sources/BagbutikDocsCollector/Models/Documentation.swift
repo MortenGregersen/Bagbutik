@@ -522,6 +522,7 @@ public enum Documentation: Codable, Equatable {
             name = try container.decode(String.self, forKey: .name)
             let types = try container.decode([PropertyType].self, forKey: .type)
                 .filter { $0.text != "[" && $0.text != "]" }
+                .filter { $0.text != "[[" && $0.text != "]]" }
             guard types.count == 1 else { throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Multiple types for '\(name)'") }
             type = types.first!
             required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
