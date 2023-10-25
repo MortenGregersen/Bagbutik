@@ -449,16 +449,6 @@ public enum Documentation: Codable, Equatable {
             case text(String)
             case reference(String)
 
-            var formattedText: String {
-                switch self {
-                case .text(let text):
-                    return text
-                case .reference(let reference):
-                    // Maybe do some smart linking here
-                    return reference
-                }
-            }
-
             private enum CodingKeys: CodingKey {
                 case type
                 case text
