@@ -48,7 +48,7 @@ public class OperationRenderer: Renderer {
                 parameters.append(requestBody)
             }
             parameters.append(contentsOf: parametersInfo.parameters)
-            var extensionContent = renderDocumentationBlock(title: title) {
+            var extensionContent = self.renderDocumentationBlock(title: title) {
                 var documentationContent = [String]()
                 if let abstract = documentation?.abstract {
                     documentationContent.append(abstract)
@@ -64,7 +64,7 @@ public class OperationRenderer: Renderer {
                 <\(self.docsLoader.createUrlForOperation(withId: operation.id))>
                 """)
                 var parametersPart = parameters.reduce(into: ["\n"]) { partialResult, parameter in
-                    partialResult.append(renderDocumentationParameterLine(name: parameter.name, description: parameter.documentation))
+                    partialResult.append(self.renderDocumentationParameterLine(name: parameter.name, description: parameter.documentation))
                 }.joined(separator: "\n")
                 parametersPart += "\n- Returns: A ``Request`` to send to an instance of ``BagbutikService``"
                 documentationContent.append(parametersPart)
@@ -80,7 +80,7 @@ public class OperationRenderer: Renderer {
                     if parametersInfo.customs.count > 0 {
                         funcContent += "var customs = [String: String]()\n"
                         funcContent += parametersInfo.customs
-                            .sorted(using: KeyPathComparator(\.key, order: .forward))
+                            .sorted(by: { $0.key < $1.key })
                             .map { _, value in
                                 "if let \(value.name) { customs[\"\(value.name)\"] = \(value.name).rawValue }\n"
                             }.joined()
@@ -175,7 +175,7 @@ public class OperationRenderer: Renderer {
                         cases: parametersInfo.sorts))
                     """)
                 }
-                parametersInfo.customs.sorted(using: KeyPathComparator(\.key, order: .forward)).forEach { _, value in
+                parametersInfo.customs.sorted(by: { $0.key < $1.key }).forEach { _, value in
                     guard case .enum(let type, let values) = value.type else { return }
                     let enumName = value.name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
@@ -321,7 +321,7 @@ public class OperationRenderer: Renderer {
             if sorts.count > 0 {
                 parameters.append(.init(name: "sorts", type: "[\(operationWrapperName).Sort]", optional: true, documentation: "Attributes by which to sort"))
             }
-            customs.sorted(using: KeyPathComparator(\.key, order: .forward)).forEach { key, value in
+            customs.sorted(by: { $0.key < $1.key }).forEach { key, value in
                 let type: String
                 switch value.type {
                 case .simple(let simpleType):
