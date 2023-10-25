@@ -322,7 +322,7 @@ class DocsLoaderTests: XCTestCase {
             "limit[visibleApps]": "Number of included related resources to return.",
         ],
         responses: [
-            .init(status: 200, reason: "OK"),
+            .init(status: 200, reason: "OK", description: ""),
             .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")
         ]
     )

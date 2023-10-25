@@ -89,10 +89,10 @@ public enum Documentation: Codable, Equatable {
         let abstract = try container.decodeIfPresent([Abstract].self, forKey: .abstract)?.first?.text
         let references = try container.decodeIfPresent([String: Reference].self, forKey: .references)
         let formatContent: (Content?) -> String? = { content in
-            content?.inlineContent.reduce(into: "") { partialResult, inlineContent in
+            content?.inlineContent.reduce(into: "") { contentResult, inlineContent in
                 switch inlineContent {
                 case .text(let text):
-                    partialResult?.append(text)
+                    contentResult.append(text)
                 case .reference(let identifier):
                     guard let reference = references?[identifier] else { return }
                     switch reference.role {
@@ -100,11 +100,17 @@ public enum Documentation: Codable, Equatable {
                         let formattedReference = reference.title
                             .replacingOccurrences(of: ".", with: "/")
                             .capitalizingFirstLetter()
-                        partialResult?.append("``\(formattedReference)``")
+                        contentResult.append("``\(formattedReference)``")
                     case .symbol, .article, .link, .none:
-                        partialResult?.append("[\(reference.title)](\(reference.url))")
+                        contentResult.append("[\(reference.title)](\(reference.url))")
                     }
                 }
+            }
+        }
+        let formatContents: ([Content]?) -> String? = { contents in
+            contents?.reduce(into: "") { contentsResult, content in
+                guard let formattedContent = formatContent(content) else { return }
+                contentsResult.append(formattedContent)
             }
         }
         let contentSections = try container.decode([ContentSection].self, forKey: .primaryContentSections)
@@ -118,7 +124,7 @@ public enum Documentation: Codable, Equatable {
         if metadata.symbolKind == "tdef" /* Enum */ {
             let values: [String: String] = contentSections.compactMap { contentSection -> [String: String]? in
                 guard case .possibleValues(let values) = contentSection else { return nil }
-                return values.compactMapValues { formatContent($0) ?? "" }
+                return values.compactMapValues { formatContent($0) }
             }.first ?? [:]
             self = .enum(.init(id: id,
                                hierarchy: hierarchy,
@@ -132,7 +138,7 @@ public enum Documentation: Codable, Equatable {
                 return properties
             }.first ?? []
             let propertyDocumentations: [String: PropertyDocumentation] = properties.reduce(into: [:]) { partialResult, property in
-                partialResult[property.name] = PropertyDocumentation(required: property.required, description: formatContent(property.content))
+                partialResult[property.name] = PropertyDocumentation(required: property.required, description: formatContents(property.contents))
             }
             let subDocumentationIds = properties
                 .filter { $0.type.kind == "typeIdentifier" }
@@ -149,13 +155,13 @@ public enum Documentation: Codable, Equatable {
                 guard case .pathParameters(let parameters) = contentSection else { return nil }
                 return parameters
             }.first ?? []).reduce(into: [:]) { partialResult, parameter in
-                partialResult[parameter.name] = formatContent(parameter.content) ?? ""
+                partialResult[parameter.name] = formatContents(parameter.contents) ?? ""
             }
             let queryParameters: [String: String] = (contentSections.compactMap { contentSection -> [Parameter]? in
                 guard case .queryParameters(let parameters) = contentSection else { return nil }
                 return parameters
             }.first ?? []).reduce(into: [:]) { partialResult, parameter in
-                partialResult[parameter.name] = formatContent(parameter.content) ?? ""
+                partialResult[parameter.name] = formatContents(parameter.contents) ?? ""
             }
             let body = contentSections.compactMap { contentSection -> String? in
                 guard case .restBody(let contents) = contentSection else { return nil }
@@ -169,7 +175,7 @@ public enum Documentation: Codable, Equatable {
                 return responses
             }.first ?? []
             let responseDocumentations: [ResponseDocumentation] = responses.map {
-                ResponseDocumentation(status: $0.status, reason: $0.reason, description: formatContent($0.content))
+                ResponseDocumentation(status: $0.status, reason: $0.reason, description: formatContents($0.contents))
             }
             self = .operation(.init(id: id,
                                     hierarchy: hierarchy,
@@ -188,7 +194,7 @@ public enum Documentation: Codable, Equatable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(Identifier(url: id), forKey: .identifier)
-        if let abstract = abstract {
+        if let abstract {
             try container.encode([Abstract(text: abstract)], forKey: .abstract)
         }
         try container.encode(hierarchy, forKey: .hierarchy)
@@ -205,20 +211,20 @@ public enum Documentation: Codable, Equatable {
                 let property = Property(name: propertyName,
                                         type: .init(kind: "text", text: "", identifier: nil),
                                         required: propertyDocumentation.required,
-                                        content: .init(text: propertyDocumentation.description ?? ""))
+                                        contents: [.init(text: propertyDocumentation.description ?? "")])
                 partialResult.append(property)
             }
             contentSections.append(ContentSection.properties(properties))
         case .operation(let documentation):
             try container.encode(Metadata(title: documentation.title, symbolKind: "operation"), forKey: .metadata)
             let pathParameters = documentation.pathParameters.map { keyValue in
-                Parameter(name: keyValue.key, content: .init(text: keyValue.value))
+                Parameter(name: keyValue.key, contents: [.init(text: keyValue.value)])
             }
             if pathParameters.count > 0 {
                 contentSections.append(.pathParameters(pathParameters))
             }
             let queryParameters = documentation.queryParameters.map { keyValue in
-                Parameter(name: keyValue.key, content: .init(text: keyValue.value))
+                Parameter(name: keyValue.key, contents: [.init(text: keyValue.value)])
             }
             if queryParameters.count > 0 {
                 contentSections.append(.queryParameters(queryParameters))
@@ -227,11 +233,16 @@ public enum Documentation: Codable, Equatable {
                 contentSections.append(.restBody([body]))
             }
             contentSections.append(.restResponses(documentation.responses.map { response in
-                let content = response.description.map { Content(text: $0) }
-                return Response(status: response.status, reason: response.reason, content: content)
+                let contents: [Content]
+                if let content = response.description.map({ Content(text: $0) }) {
+                    contents = [content]
+                } else {
+                    contents = []
+                }
+                return Response(status: response.status, reason: response.reason, contents: contents)
             }))
         }
-        if let discussion = discussion {
+        if let discussion {
             contentSections.append(.discussion([.init(text: discussion)]))
         }
         try container.encode(contentSections, forKey: .primaryContentSections)
@@ -258,7 +269,7 @@ public enum Documentation: Codable, Equatable {
         }
     }
 
-    internal struct Reference: Codable {
+    struct Reference: Codable {
         let title: String
         let url: String
         let role: Role?
@@ -438,6 +449,16 @@ public enum Documentation: Codable, Equatable {
             case text(String)
             case reference(String)
 
+            var formattedText: String {
+                switch self {
+                case .text(let text):
+                    return text
+                case .reference(let reference):
+                    // Maybe do some smart linking here
+                    return reference
+                }
+            }
+
             private enum CodingKeys: CodingKey {
                 case type
                 case text
@@ -480,7 +501,7 @@ public enum Documentation: Codable, Equatable {
         let name: String
         let type: PropertyType
         let required: Bool
-        let content: Content?
+        let contents: [Content]?
 
         enum CodingKeys: CodingKey {
             case name
@@ -489,11 +510,11 @@ public enum Documentation: Codable, Equatable {
             case content
         }
 
-        init(name: String, type: PropertyType, required: Bool, content: Content?) {
+        init(name: String, type: PropertyType, required: Bool, contents: [Content]?) {
             self.name = name
             self.type = type
             self.required = required
-            self.content = content
+            self.contents = contents
         }
 
         public init(from decoder: Decoder) throws {
@@ -504,10 +525,8 @@ public enum Documentation: Codable, Equatable {
             guard types.count == 1 else { throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Multiple types for '\(name)'") }
             type = types.first!
             required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
-            let contents = (try container.decodeIfPresent([Content].self, forKey: .content) ?? [])
+            contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
                 .filter { $0.inlineContent.count > 0 }
-            guard contents.count <= 1 else { throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(name)'") }
-            content = contents.first
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -515,8 +534,8 @@ public enum Documentation: Codable, Equatable {
             try container.encode(name, forKey: .name)
             try container.encode([type], forKey: .type)
             try container.encode(required, forKey: .required)
-            if let content = content {
-                try container.encode([content], forKey: .content)
+            if let contents {
+                try container.encode(contents, forKey: .content)
             }
         }
 
@@ -529,38 +548,30 @@ public enum Documentation: Codable, Equatable {
 
     public struct Parameter: Codable {
         let name: String
-        let content: Content?
+        let contents: [Content]?
 
         enum CodingKeys: CodingKey {
             case name
             case content
         }
 
-        init(name: String, content: Content?) {
+        init(name: String, contents: [Content]?) {
             self.name = name
-            self.content = content
+            self.contents = contents
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             name = try container.decode(String.self, forKey: .name)
-            let contents = (try container.decodeIfPresent([Content].self, forKey: .content) ?? [])
+            contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
                 .filter { $0.inlineContent.count > 0 }
-            guard contents.count <= 1 || contents.allSatisfy({ $0.type == "paragraph" }) else {
-                throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(name)'")
-            }
-            if contents.count > 1 {
-                content = Content(type: contents.first!.type, inlineContent: contents.flatMap(\.inlineContent))
-            } else {
-                content = contents.first
-            }
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(name, forKey: .name)
-            if let content = content {
-                try container.encode([content], forKey: .content)
+            if let contents {
+                try container.encode(contents, forKey: .content)
             }
         }
     }
@@ -568,7 +579,7 @@ public enum Documentation: Codable, Equatable {
     public struct Response: Codable {
         let status: Int
         let reason: String
-        let content: Content?
+        let contents: [Content]?
 
         enum CodingKeys: CodingKey {
             case status
@@ -576,28 +587,26 @@ public enum Documentation: Codable, Equatable {
             case content
         }
 
-        init(status: Int, reason: String, content: Content?) {
+        init(status: Int, reason: String, contents: [Content]?) {
             self.status = status
             self.reason = reason
-            self.content = content
+            self.contents = contents
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             status = try container.decode(Int.self, forKey: .status)
             reason = try container.decode(String.self, forKey: .reason)
-            let contents = (try container.decodeIfPresent([Content].self, forKey: .content) ?? [])
+            contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
                 .filter { $0.inlineContent.count > 0 }
-            guard contents.count <= 1 else { throw DecodingError.dataCorruptedError(forKey: .content, in: container, debugDescription: "Multiple contents for '\(status)'") }
-            content = contents.first
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(status, forKey: .status)
             try container.encode(reason, forKey: .reason)
-            if let content = content {
-                try container.encode([content], forKey: .content)
+            if let contents {
+                try container.encode(contents, forKey: .content)
             }
         }
     }
