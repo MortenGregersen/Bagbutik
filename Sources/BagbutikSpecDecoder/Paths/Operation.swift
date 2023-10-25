@@ -28,6 +28,7 @@ public struct Operation: Decodable, Equatable {
     
     private static let getInstanceRegex = try! NSRegularExpression(pattern: "(.*)-get_instance", options: [])
     private static let getCollectionRegex = try! NSRegularExpression(pattern: "(.*)-get_collection", options: [])
+    private static let getMetricsRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_metrics", options: [])
     private static let getToOneRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_one_relationship", options: [])
     private static let getToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_many_relationship", options: [])
     private static let getToOneRelatedRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_one_related", options: [])
@@ -119,6 +120,10 @@ public struct Operation: Decodable, Equatable {
                 return "get\(name.capitalizingFirstLetter())"
             }
             return "list\(name.capitalizingFirstLetter())"
+        } else if let result = getMetricsRegex.firstMatch(in: operationId, options: [], range: range) {
+            let metric = String(operationId[Range(result.range(at: 2), in: operationId)!])
+            let relationship = String(operationId[Range(result.range(at: 1), in: operationId)!])
+            return "getMetricsFor\(metric.singularized().capitalizingFirstLetter())In\(relationship.singularized().capitalizingFirstLetter())"
         } else if let result = getToOneRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])

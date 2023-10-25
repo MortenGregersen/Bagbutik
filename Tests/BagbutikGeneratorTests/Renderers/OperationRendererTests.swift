@@ -46,6 +46,65 @@ final class OperationRendererTests: XCTestCase {
 
         """#)
     }
+    
+    func testRenderCustomParameters() throws {
+        // Given
+        let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
+                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
+                    .init(status: 200, reason: "OK", description: nil)
+                ])]
+        )
+        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let parameters: [Parameter] = [
+            .limit(name: "limit", documentation: "maximum resources per page", maximum: 200),
+            .custom(name: "period", type: Parameter.ParameterValueType.simple(type: .string), documentation: "the duration of the reporting period"),
+            .custom(name: "groupBy", type: Parameter.ParameterValueType.enum(type: "string", values: ["betaTesters"]), documentation: "the dimension by which to group the results")
+        ]
+        let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
+        // When
+        let rendered = try renderer.render(operation: operation, in: path)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+
+        public extension Request {
+            /**
+             # Documentation title
+             Documentation summary
+
+             Documentation discussion
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+
+             - Parameter period: The duration of the reporting period
+             - Parameter groupBy: The dimension by which to group the results
+             - Parameter limit: Maximum resources per page - maximum 200
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             */
+            static func listUsersV1(period: String? = nil,
+                                    groupBy: ListUsersV1.GroupBy? = nil,
+                                    limit: Int? = nil) -> Request<UsersResponse, ErrorResponse>
+            {
+                .init(path: "/users", method: .get, parameters: .init(period: period,
+                                                                      groupBy: groupBy,
+                                                                      limit: limit))
+            }
+        }
+
+        public enum ListUsersV1 {
+            /**
+             The dimension by which to group the results
+             */
+            public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
+                case betaTesters
+            }
+        }
+        
+        """#)
+    }
 
     func testRenderNoDocumentaion() throws {
         // Given

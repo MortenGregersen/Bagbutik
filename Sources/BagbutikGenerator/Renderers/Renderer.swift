@@ -94,7 +94,7 @@ public class Renderer {
     }
     
     internal func renderDocumentationParameterLine(name: String, description: String) -> String {
-        "- Parameter \(name): \(description)"
+        "- Parameter \(name): \(description.capitalizingFirstLetter())"
     }
     
     internal func renderInitializer(parameters: [FunctionParameter], throwing: Bool = false, deprecated: Bool = false, content: () throws -> String) rethrows -> String {
