@@ -16,6 +16,8 @@ public struct Parameters {
     public let limits: [LimitParameter]?
     /// Number of resources to return
     public let limit: Int?
+    /// Custom parameters for an operation
+    public let customs: [String: String]?
 
     /**
      Create a new `Parameters` with the specified parameters.
@@ -28,6 +30,7 @@ public struct Parameters {
         - sorts: Attributes by which to sort
         - limits: Number of resources to return
         - limit: Number of resources to return
+        - customs: Custom parameters for an operation
      */
     public init(fields: [FieldParameter]? = nil,
                 filters: [FilterParameter]? = nil,
@@ -35,7 +38,8 @@ public struct Parameters {
                 includes: [IncludeParameter]? = nil,
                 sorts: [SortParameter]? = nil,
                 limits: [LimitParameter]? = nil,
-                limit: Int? = nil) {
+                limit: Int? = nil,
+                customs: [String: String]? = nil) {
         self.fields = fields
         self.filters = filters
         self.exists = exists
@@ -43,5 +47,6 @@ public struct Parameters {
         self.sorts = sorts
         self.limits = limits
         self.limit = limit
+        self.customs = customs
     }
 }
