@@ -82,7 +82,11 @@ public class OperationRenderer: Renderer {
                         funcContent += parametersInfo.customs
                             .sorted(by: { $0.key < $1.key })
                             .map { _, value in
-                                "if let \(value.name) { customs[\"\(value.name)\"] = \(value.name).rawValue }\n"
+                                var valueParameter = value.name
+                                if case .enum = value.type {
+                                    valueParameter += ".rawValue"
+                                }
+                                return "if let \(value.name) { customs[\"\(value.name)\"] = \(valueParameter) }\n"
                             }.joined()
                         funcContent += "return "
                     }
@@ -274,12 +278,7 @@ public class OperationRenderer: Renderer {
                     switch type {
                     case .enum(_, let values):
                         sorts = values.map { sort in
-                            let id: String
-                            if sort.hasPrefix("-") {
-                                id = "\(sort.dropFirst())Descending"
-                            } else {
-                                id = "\(sort)Ascending"
-                            }
+                            let id = sort.hasPrefix("-") ? "\(sort.dropFirst())Descending" : "\(sort)Ascending"
                             return EnumCase(id: id, value: sort)
                         }.sorted(by: { $0.id < $1.id })
                     default:
@@ -322,12 +321,11 @@ public class OperationRenderer: Renderer {
                 parameters.append(.init(name: "sorts", type: "[\(operationWrapperName).Sort]", optional: true, documentation: "Attributes by which to sort"))
             }
             customs.sorted(by: { $0.key < $1.key }).forEach { key, value in
-                let type: String
-                switch value.type {
+                let type = switch value.type {
                 case .simple(let simpleType):
-                    type = simpleType.description
+                    simpleType.description
                 case .enum:
-                    type = "\(operationWrapperName).\(value.name.capitalizingFirstLetter())"
+                    "\(operationWrapperName).\(value.name.capitalizingFirstLetter())"
                 }
                 parameters.append(.init(name: key, type: type, optional: true, documentation: value.documentation))
             }

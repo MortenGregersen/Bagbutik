@@ -90,7 +90,7 @@ final class OperationRendererTests: XCTestCase {
             {
                 var customs = [String: String]()
                 if let groupBy { customs["groupBy"] = groupBy.rawValue }
-                if let period { customs["period"] = period.rawValue }
+                if let period { customs["period"] = period }
                 return .init(path: "/users", method: .get, parameters: .init(limit: limit,
                                                                              customs: customs))
             }
