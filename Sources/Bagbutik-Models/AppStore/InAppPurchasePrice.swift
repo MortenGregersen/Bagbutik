@@ -3,15 +3,18 @@ import Foundation
 
 public struct InAppPurchasePrice: Codable, Identifiable {
     public let id: String
+    public var links: ResourceLinks?
     public var type: String { "inAppPurchasePrices" }
     public var attributes: Attributes?
     public var relationships: Relationships?
 
     public init(id: String,
+                links: ResourceLinks? = nil,
                 attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
         self.id = id
+        self.links = links
         self.attributes = attributes
         self.relationships = relationships
     }
@@ -19,6 +22,7 @@ public struct InAppPurchasePrice: Codable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
@@ -29,6 +33,7 @@ public struct InAppPurchasePrice: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(attributes, forKey: .attributes)
         try container.encodeIfPresent(relationships, forKey: .relationships)
@@ -37,6 +42,7 @@ public struct InAppPurchasePrice: Codable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case attributes
         case id
+        case links
         case relationships
         case type
     }

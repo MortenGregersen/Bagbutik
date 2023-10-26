@@ -12,6 +12,7 @@ public extension Request {
      - Parameter requestBody: AppPreOrder representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createAppPreOrderV1(requestBody: AppPreOrderCreateRequest) -> Request<AppPreOrderResponse, ErrorResponse> {
         .init(path: "/v1/appPreOrders", method: .post, requestBody: requestBody)
     }

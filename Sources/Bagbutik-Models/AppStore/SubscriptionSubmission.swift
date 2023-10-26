@@ -3,19 +3,23 @@ import Foundation
 
 public struct SubscriptionSubmission: Codable, Identifiable {
     public let id: String
+    public var links: ResourceLinks?
     public var type: String { "subscriptionSubmissions" }
     public var relationships: Relationships?
 
     public init(id: String,
+                links: ResourceLinks? = nil,
                 relationships: Relationships? = nil)
     {
         self.id = id
+        self.links = links
         self.relationships = relationships
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
         relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
         if try container.decode(String.self, forKey: .type) != type {
             throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -25,12 +29,14 @@ public struct SubscriptionSubmission: Codable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(links, forKey: .links)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(relationships, forKey: .relationships)
     }
 
     private enum CodingKeys: String, CodingKey {
         case id
+        case links
         case relationships
         case type
     }

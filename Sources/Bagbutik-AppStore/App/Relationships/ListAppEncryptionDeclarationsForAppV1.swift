@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read an app’s Encryption Declarions
+     # Read an App’s Encryption Declarations
      Find and list all available app encryption declarations.
 
      Full documentation:

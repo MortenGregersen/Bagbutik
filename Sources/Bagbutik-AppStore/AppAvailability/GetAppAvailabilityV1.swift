@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limit: Maximum number of related availableTerritories returned (when they are included) - maximum 50
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppAvailabilityV1(id: String,
                                      fields: [GetAppAvailabilityV1.Field]? = nil,
                                      includes: [GetAppAvailabilityV1.Include]? = nil,
