@@ -21,7 +21,7 @@ public extension Request {
                                                            limit: Int? = nil) -> Request<BetaTesterUsagesV1MetricResponse, ErrorResponse>
     {
         var customs = [String: String]()
-        if let period { customs["period"] = period.rawValue }
+        if let period { customs["period"] = period }
         return .init(path: "/v1/betaTesters/\(id)/metrics/betaTesterUsages", method: .get, parameters: .init(filters: filters,
                                                                                                              limit: limit,
                                                                                                              customs: customs))
