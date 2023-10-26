@@ -33,7 +33,23 @@ final class EnumSchemaTests: XCTestCase {
         ])
         XCTAssertEqual(enumSchema.name, "Platform")
     }
-
+    
+    func testDecodableCasesWithDash() throws {
+        let jsonString = """
+        {
+            "Locale" : {
+                "type" : "string",
+                "enum" : [ "CS-CZ", "DA-DK" ]
+            }
+        }
+        """
+        let enumSchema = try JSONDecoder().decode([String: EnumSchema].self, from: jsonString.data(using: .utf8)!).values.first!
+        XCTAssertEqual(enumSchema.cases, [
+            EnumCase(id: "CS_CZ", value: "CS-CZ"),
+            EnumCase(id: "DA_DK", value: "DA-DK")
+        ])
+    }
+    
     func testDecodablePropertyNamedType() throws {
         let jsonString = """
         {
