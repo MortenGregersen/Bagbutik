@@ -32,7 +32,7 @@ public struct EnumSchema: Decodable, Equatable {
         self.name = name
         self.type = type
         self.url = url
-        self.cases = caseValues.map { .init(id: $0.camelCased(with: "_"), value: $0) }
+        self.cases = caseValues.map { .init(id: $0.camelCased(with: "_").replacingOccurrences(of: "-", with: "_"), value: $0) }
         self.additionalProtocols = Set(additionalProtocols)
     }
 
@@ -47,9 +47,9 @@ public struct EnumSchema: Decodable, Equatable {
             }
             name = parentType.capitalizingFirstLetter() + name
         }
-        self.init(name: name,
-                  type: try container.decode(String.self, forKey: .type),
-                  url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components),
-                  caseValues: try container.decode([String].self, forKey: .enum))
+        try self.init(name: name,
+                      type: container.decode(String.self, forKey: .type),
+                      url: createDocumentationUrl(forSchemaNamed: name, withCodingPathComponents: container.codingPath.components),
+                      caseValues: container.decode([String].self, forKey: .enum))
     }
 }
