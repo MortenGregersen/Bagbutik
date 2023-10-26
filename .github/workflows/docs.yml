@@ -3,7 +3,7 @@ name: Docs
 on:
   push:
     branches:
-    - actions-macos13
+    - main
 
 jobs:
   build:
