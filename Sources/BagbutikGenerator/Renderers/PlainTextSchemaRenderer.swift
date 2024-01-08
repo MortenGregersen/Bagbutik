@@ -24,15 +24,10 @@ public class PlainTextSchemaRenderer: Renderer {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                self.text = try container.decode(String.self, forKey: .text)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case text = "text"
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                self.text = try container.decode(String.self, forKey: "text")
             }
         }
-        
         """
         if let url = plainTextSchema.url,
            case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),

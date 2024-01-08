@@ -56,10 +56,6 @@ public class OneOfSchemaRenderer {
         rendered += """
                 }
             }
-
-            private enum CodingKeys: String, CodingKey {
-                case type
-            }
         }
         """
         return rendered

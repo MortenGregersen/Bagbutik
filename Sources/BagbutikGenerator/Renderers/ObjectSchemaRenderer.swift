@@ -63,36 +63,35 @@ public class ObjectSchemaRenderer: Renderer {
             }
             structContent.append(renderInitializer(parameters: propertiesInfo.publicInitParameters, content: { createInitContent(propertiesInfo.publicInitPropertyNames) }))
             structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
-                var functionContent = "let container = try decoder.container(keyedBy: CodingKeys.self)\n"
+                var functionContent = "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
                     if decodableProperty.optional {
-                        return "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
+                        return "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
                     } else {
-                        return "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: .\(decodableProperty.name.safeName))"
+                        return "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
                     }
                 }.joined(separator: "\n")
                 if propertiesInfo.hasTypeConstant {
                     functionContent += #"""
 
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                     """#
                 }
                 return functionContent
             }))
             structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
-                var functionContent = "var container = encoder.container(keyedBy: CodingKeys.self)\n"
+                var functionContent = "var container = encoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
                     if encodableProperty.optional, !encodableProperty.nullCodable {
-                        return "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
+                        return "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
                     } else {
-                        return "try container.encode(\(encodableProperty.name.safeName), forKey: .\(encodableProperty.name.safeName))"
+                        return "try container.encode(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
                     }
                 }.joined(separator: "\n")
                 return functionContent
             }))
-            structContent.append(renderEnum(named: "CodingKeys", access: "private", rawType: "String", protocols: ["CodingKey"], cases: propertiesInfo.codingKeys))
             structContent.append(contentsOf: createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas))
             structContent.append(contentsOf: objectSchema.subSchemas.map { subSchema -> String in
                 switch subSchema {
@@ -115,7 +114,6 @@ public class ObjectSchemaRenderer: Renderer {
         let deprecatedPublicInitPropertyNames: [PropertyName]
         let publicInitParameters: [FunctionParameter]
         let publicInitPropertyNames: [PropertyName]
-        let codingKeys: [EnumCase]
         let encodableProperties: [CodableProperty]
         let decodableProperties: [CodableProperty]
         let hasTypeConstant: Bool
@@ -166,10 +164,6 @@ public class ObjectSchemaRenderer: Renderer {
             deprecatedPublicInitPropertyNames = initParameters.map { PropertyName(idealName: $0.key) }
             publicInitParameters = Self.createFunctionParameters(from: initParameters.filter { !$0.value.deprecated }, requiredProperties: objectSchema.requiredProperties)
             publicInitPropertyNames = initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) }
-            codingKeys = sortedProperties.map {
-                let propertyName = PropertyName(idealName: $0.key)
-                return EnumCase(id: propertyName.safeName, value: propertyName.idealName)
-            }
             let hasTypeConstant = sortedProperties.contains { $0.key == "type" && $0.value.type.isConstant }
             self.hasTypeConstant = hasTypeConstant
             encodableProperties = sortedProperties.map {

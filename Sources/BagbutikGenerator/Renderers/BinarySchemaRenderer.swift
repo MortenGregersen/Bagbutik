@@ -23,12 +23,8 @@ public class BinarySchemaRenderer: Renderer {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                self.data = try container.decode(Data.self, forKey: .data)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data = "data"
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                self.data = try container.decode(Data.self, forKey: "data")
             }
         }
         """
