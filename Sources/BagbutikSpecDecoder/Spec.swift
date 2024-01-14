@@ -193,8 +193,9 @@ public struct Spec: Decodable {
         // Apple's OpenAPI spec doesn't include visionOS for Screenshot Display Types. Reported to Apple 14/1/24 as FB13539766.
         if case .enum(var screenshotDisplayTypeSchema) = components.schemas["ScreenshotDisplayType"] {
             if !screenshotDisplayTypeSchema.cases.contains(where: { $0.value == "APP_APPLE_VISION_PRO" }) {
-                screenshotDisplayTypeSchema.cases.append(EnumCase(id: "Apple Vision Pro", value: "APP_APPLE_VISION_PRO"))
+                screenshotDisplayTypeSchema.cases.append(EnumCase(id: "appAppleVisionPro", value: "APP_APPLE_VISION_PRO"))
             }
+            screenshotDisplayTypeSchema.cases.sort(using: KeyPathComparator(\.id))
             components.schemas["ScreenshotDisplayType"] = .enum(screenshotDisplayTypeSchema)
         }
 
