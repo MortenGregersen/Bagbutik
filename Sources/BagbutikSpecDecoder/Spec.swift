@@ -199,6 +199,21 @@ public struct Spec: Decodable {
             components.schemas["ScreenshotDisplayType"] = .enum(screenshotDisplayTypeSchema)
         }
 
+        // Change the shcema ref of the `data` property on *WithoutIncludesResponse
+        // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as .
+        let schemaNamesWithoutIncludesResponses = components.schemas.keys.filter { $0.hasSuffix("WithoutIncludesResponse") }
+        schemaNamesWithoutIncludesResponses.forEach { schemaName in
+            let schemaRefName = schemaName.replacingOccurrences(of: "WithoutIncludesResponse", with: "")
+            if case .object(var responseSchema) = components.schemas[schemaName] {
+                if schemaRefName.hasSuffix("s") {
+                    responseSchema.properties["data"]?.type = .arrayOfSchemaRef(String(schemaRefName.dropLast(1)))
+                } else {
+                    responseSchema.properties["data"]?.type = .schemaRef(schemaRefName)
+                }
+                components.schemas[schemaName] = .object(responseSchema)
+            }
+        }
+
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],

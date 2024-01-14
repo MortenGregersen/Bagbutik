@@ -510,7 +510,7 @@ final class SpecTests: XCTestCase {
         var spec = try! jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         spec.addForgottenIncludeParameters()
         guard let operation = spec.paths["/v1/appInfos/{id}"]?.operations[0],
-              case .include(let type) = operation.parameters?.first(where: { if case .include = $0 { return true } else { return false }}),
+              case .include(let type) = operation.parameters?.first(where: { if case .include = $0 { true } else { false }}),
               case .enum(_, let values) = type
         else {
             XCTFail(); return
@@ -895,13 +895,108 @@ final class SpecTests: XCTestCase {
         let platformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
         XCTAssertEqual(platformCaseValues.count, 4)
         XCTAssertTrue(platformCaseValues.contains("VISION_OS"))
-        
+
         guard case .enum(let screenshotDisplayTypeSchema) = spec.components.schemas["ScreenshotDisplayType"] else {
             XCTFail(); return
         }
         let screenshotDisplayTypeCaseValues = screenshotDisplayTypeSchema.cases.map(\.value)
         XCTAssertEqual(screenshotDisplayTypeCaseValues.count, 4)
         XCTAssertTrue(screenshotDisplayTypeCaseValues.contains("APP_APPLE_VISION_PRO"))
+    }
+
+    func testApplyManualPatches_WithoutIncludes() throws {
+        let specString = """
+        {
+            "paths": {},
+            "components": {
+                "schemas": {
+                    "ErrorResponse" : {
+                        "type" : "object",
+                        "properties" : {
+                            "errors" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "string"
+                                        },
+                                        "code" : {
+                                            "type" : "string"
+                                        },
+                                        "title" : {
+                                            "type" : "string"
+                                        },
+                                        "detail" : {
+                                            "type" : "string"
+                                        },
+                                        "source" : {
+                                            "oneOf" : [ {
+                                                "$ref" : "#/components/schemas/ErrorSourcePointer"
+                                            }, {
+                                                "$ref" : "#/components/schemas/ErrorSourceParameter"
+                                            } ]
+                                        }
+                                    },
+                                    "required" : [ "code", "detail", "title", "status" ]
+                                }
+                            }
+                        }
+                    },
+                    "AppWithoutIncludesResponse" : {
+                        "type" : "object",
+                        "title" : "AppWithoutIncludesResponse",
+                        "properties" : {
+                            "data" : {
+                                "$ref" : "#/components/schemas/PrereleaseVersion"
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/DocumentLinks"
+                            }
+                        },
+                        "required" : [ "data", "links" ]
+                    },
+                    "AppsWithoutIncludesResponse" : {
+                        "type" : "object",
+                        "title" : "AppsWithoutIncludesResponse",
+                        "properties" : {
+                            "data" : {
+                                "type" : "array",
+                                "items" : {
+                                    "$ref" : "#/components/schemas/User"
+                                }
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/PagedDocumentLinks"
+                            },
+                            "meta" : {
+                                "$ref" : "#/components/schemas/PagingInformation"
+                            }
+                        },
+                        "required" : [ "data", "links" ]
+                    }
+                }
+            }
+        }
+        """
+        let jsonDecoder = JSONDecoder()
+        var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
+        try spec.applyManualPatches()
+
+        guard case .object(let responseSchema) = spec.components.schemas["AppWithoutIncludesResponse"],
+              case .schemaRef(let responseSchemaDataRef) = responseSchema.properties["data"]?.type else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(responseSchemaDataRef, "App")
+
+        guard case .object(let responseSchema) = spec.components.schemas["AppsWithoutIncludesResponse"],
+              case .arrayOfSchemaRef(let responseSchemaDataRef) = responseSchema.properties["data"]?.type else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(responseSchemaDataRef, "App")
     }
 
     func testApplyManualPatches_Error() throws {
