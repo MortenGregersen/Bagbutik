@@ -203,10 +203,17 @@ public struct Spec: Decodable {
         // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as .
         let schemaNamesWithoutIncludesResponses = components.schemas.keys.filter { $0.hasSuffix("WithoutIncludesResponse") }
         schemaNamesWithoutIncludesResponses.forEach { schemaName in
-            let schemaRefName = schemaName.replacingOccurrences(of: "WithoutIncludesResponse", with: "")
+            var schemaRefName = schemaName
+                .replacingOccurrences(of: "WithoutIncludesResponse", with: "")
+                .replacingOccurrences(of: "PreRelease", with: "Prerelease")
             if case .object(var responseSchema) = components.schemas[schemaName] {
                 if schemaRefName.hasSuffix("s") {
-                    responseSchema.properties["data"]?.type = .arrayOfSchemaRef(String(schemaRefName.dropLast(1)))
+                    if schemaRefName.hasSuffix("ies") {
+                        schemaRefName = schemaRefName.replacingOccurrences(of: "ies", with: "y")
+                    } else {
+                        schemaRefName = String(schemaRefName.dropLast(1))
+                    }
+                    responseSchema.properties["data"]?.type = .arrayOfSchemaRef(schemaRefName)
                 } else {
                     responseSchema.properties["data"]?.type = .schemaRef(schemaRefName)
                 }

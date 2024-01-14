@@ -977,6 +977,44 @@ final class SpecTests: XCTestCase {
                             }
                         },
                         "required" : [ "data", "links" ]
+                    },
+                    "AppCategoriesWithoutIncludesResponse" : {
+                        "type" : "object",
+                        "title" : "AppCategoriesWithoutIncludesResponse",
+                        "properties" : {
+                            "data" : {
+                                "type" : "array",
+                                "items" : {
+                                    "$ref" : "#/components/schemas/AppCategory"
+                                }
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/PagedDocumentLinks"
+                            },
+                            "meta" : {
+                                "$ref" : "#/components/schemas/PagingInformation"
+                            }
+                        },
+                        "required" : [ "data", "links" ]
+                    },
+                    "PreReleaseVersionsWithoutIncludesResponse" : {
+                        "type" : "object",
+                        "title" : "PreReleaseVersionsWithoutIncludesResponse",
+                        "properties" : {
+                            "data" : {
+                                "type" : "array",
+                                "items" : {
+                                    "$ref" : "#/components/schemas/App"
+                                }
+                            },
+                            "links" : {
+                                "$ref" : "#/components/schemas/PagedDocumentLinks"
+                            },
+                            "meta" : {
+                                "$ref" : "#/components/schemas/PagingInformation"
+                            }
+                        },
+                        "required" : [ "data", "links" ]
                     }
                 }
             }
@@ -997,6 +1035,18 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(responseSchemaDataRef, "App")
+        
+        guard case .object(let responseSchema) = spec.components.schemas["AppCategoriesWithoutIncludesResponse"],
+              case .arrayOfSchemaRef(let responseSchemaDataRef) = responseSchema.properties["data"]?.type else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(responseSchemaDataRef, "AppCategory")
+        
+        guard case .object(let responseSchema) = spec.components.schemas["PreReleaseVersionsWithoutIncludesResponse"],
+              case .arrayOfSchemaRef(let responseSchemaDataRef) = responseSchema.properties["data"]?.type else {
+            XCTFail(); return
+        }
+        XCTAssertEqual(responseSchemaDataRef, "PrereleaseVersion")
     }
 
     func testApplyManualPatches_Error() throws {
