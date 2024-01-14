@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 public struct PreReleaseVersionsWithoutIncludesResponse: Codable, PagedResponse {
-    public typealias Data = App
+    public typealias Data = PrereleaseVersion
 
-    public let data: [App]
+    public let data: [PrereleaseVersion]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [App],
+    public init(data: [PrereleaseVersion],
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {

@@ -2,10 +2,10 @@ import Bagbutik_Core
 import Foundation
 
 public struct PrereleaseVersionWithoutIncludesResponse: Codable {
-    public let data: Build
+    public let data: PrereleaseVersion
     public let links: DocumentLinks
 
-    public init(data: Build,
+    public init(data: PrereleaseVersion,
                 links: DocumentLinks)
     {
         self.data = data

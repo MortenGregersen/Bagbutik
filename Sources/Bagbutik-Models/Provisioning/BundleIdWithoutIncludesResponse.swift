@@ -2,10 +2,10 @@ import Bagbutik_Core
 import Foundation
 
 public struct BundleIdWithoutIncludesResponse: Codable {
-    public let data: Profile
+    public let data: BundleId
     public let links: DocumentLinks
 
-    public init(data: Profile,
+    public init(data: BundleId,
                 links: DocumentLinks)
     {
         self.data = data

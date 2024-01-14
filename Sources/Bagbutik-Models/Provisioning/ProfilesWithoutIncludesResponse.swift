@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 public struct ProfilesWithoutIncludesResponse: Codable, PagedResponse {
-    public typealias Data = BundleId
+    public typealias Data = Profile
 
-    public let data: [BundleId]
+    public let data: [Profile]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [BundleId],
+    public init(data: [Profile],
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {

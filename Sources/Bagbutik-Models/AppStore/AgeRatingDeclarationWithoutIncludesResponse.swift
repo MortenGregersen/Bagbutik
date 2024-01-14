@@ -2,10 +2,10 @@ import Bagbutik_Core
 import Foundation
 
 public struct AgeRatingDeclarationWithoutIncludesResponse: Codable {
-    public let data: AppStoreVersion
+    public let data: AgeRatingDeclaration
     public let links: DocumentLinks
 
-    public init(data: AppStoreVersion,
+    public init(data: AgeRatingDeclaration,
                 links: DocumentLinks)
     {
         self.data = data

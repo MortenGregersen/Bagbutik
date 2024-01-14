@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 public struct CertificatesWithoutIncludesResponse: Codable, PagedResponse {
-    public typealias Data = Profile
+    public typealias Data = Certificate
 
-    public let data: [Profile]
+    public let data: [Certificate]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [Profile],
+    public init(data: [Certificate],
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {
