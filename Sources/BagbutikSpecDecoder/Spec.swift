@@ -200,7 +200,7 @@ public struct Spec: Decodable {
         }
 
         // Change the shcema ref of the `data` property on *WithoutIncludesResponse
-        // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as .
+        // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as FB13540097.
         let schemaNamesWithoutIncludesResponses = components.schemas.keys.filter { $0.hasSuffix("WithoutIncludesResponse") }
         schemaNamesWithoutIncludesResponses.forEach { schemaName in
             var schemaRefName = schemaName
