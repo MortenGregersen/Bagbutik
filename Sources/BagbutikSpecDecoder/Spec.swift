@@ -188,6 +188,15 @@ public struct Spec: Decodable {
             }
             components.schemas["Platform"] = .enum(platformSchema)
         }
+        
+        // Add the `APP_APPLE_VISION_PRO` to ScreenshotDisplayType
+        // Apple's OpenAPI spec doesn't include visionOS for Screenshot Display Types. Reported to Apple 14/1/24 as FB.
+        if case .enum(var screenshotDisplayTypeSchema) = components.schemas["ScreenshotDisplayType"] {
+            if !screenshotDisplayTypeSchema.cases.contains(where: { $0.value == "APP_APPLE_VISION_PRO" }) {
+                screenshotDisplayTypeSchema.cases.append(EnumCase(id: "Apple Vision Pro", value: "APP_APPLE_VISION_PRO"))
+            }
+            components.schemas["ScreenshotDisplayType"] = .enum(screenshotDisplayTypeSchema)
+        }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
