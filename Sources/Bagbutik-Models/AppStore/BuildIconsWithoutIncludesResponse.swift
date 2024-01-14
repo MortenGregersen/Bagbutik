@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 public struct BuildIconsWithoutIncludesResponse: Codable, PagedResponse {
-    public typealias Data = Build
+    public typealias Data = BuildIcon
 
-    public let data: [Build]
+    public let data: [BuildIcon]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [Build],
+    public init(data: [BuildIcon],
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {

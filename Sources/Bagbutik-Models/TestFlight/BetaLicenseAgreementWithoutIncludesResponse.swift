@@ -2,10 +2,10 @@ import Bagbutik_Core
 import Foundation
 
 public struct BetaLicenseAgreementWithoutIncludesResponse: Codable {
-    public let data: App
+    public let data: BetaLicenseAgreement
     public let links: DocumentLinks
 
-    public init(data: App,
+    public init(data: BetaLicenseAgreement,
                 links: DocumentLinks)
     {
         self.data = data

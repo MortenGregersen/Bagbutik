@@ -2,10 +2,10 @@ import Bagbutik_Core
 import Foundation
 
 public struct BuildWithoutIncludesResponse: Codable {
-    public let data: BuildBetaDetail
+    public let data: Build
     public let links: DocumentLinks
 
-    public init(data: BuildBetaDetail,
+    public init(data: Build,
                 links: DocumentLinks)
     {
         self.data = data

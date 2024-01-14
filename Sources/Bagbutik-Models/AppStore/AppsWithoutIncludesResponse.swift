@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 public struct AppsWithoutIncludesResponse: Codable, PagedResponse {
-    public typealias Data = User
+    public typealias Data = App
 
-    public let data: [User]
+    public let data: [App]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [User],
+    public init(data: [App],
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {

@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 public struct BetaTestersWithoutIncludesResponse: Codable, PagedResponse {
-    public typealias Data = Build
+    public typealias Data = BetaTester
 
-    public let data: [Build]
+    public let data: [BetaTester]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
 
-    public init(data: [Build],
+    public init(data: [BetaTester],
                 links: PagedDocumentLinks,
                 meta: PagingInformation? = nil)
     {
