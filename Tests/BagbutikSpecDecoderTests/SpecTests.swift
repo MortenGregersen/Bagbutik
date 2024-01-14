@@ -835,6 +835,10 @@ final class SpecTests: XCTestCase {
                         "type" : "string",
                         "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
                     },
+                    "ScreenshotDisplayType" : {
+                        "type" : "string",
+                        "enum" : [ "APP_IPHONE_67", "APP_APPLE_TV", "APP_DESKTOP" ]
+                    }
                 }
             }
         }
@@ -891,6 +895,13 @@ final class SpecTests: XCTestCase {
         let platformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
         XCTAssertEqual(platformCaseValues.count, 4)
         XCTAssertTrue(platformCaseValues.contains("VISION_OS"))
+        
+        guard case .enum(let screenshotDisplayTypeSchema) = spec.components.schemas["ScreenshotDisplayType"] else {
+            XCTFail(); return
+        }
+        let screenshotDisplayTypeCaseValues = screenshotDisplayTypeSchema.cases.map(\.value)
+        XCTAssertEqual(screenshotDisplayTypeCaseValues.count, 4)
+        XCTAssertTrue(screenshotDisplayTypeCaseValues.contains("APP_APPLE_VISION_PRO"))
     }
 
     func testApplyManualPatches_Error() throws {
