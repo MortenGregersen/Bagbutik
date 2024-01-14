@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser",
         "state": {
           "branch": null,
-          "revision": "df9ee6676cd5b3bf5b330ec7568a5644f547201b",
-          "version": "1.1.3"
+          "revision": "c8ed701b513cf5177118a175d85fbbbcd707ab41",
+          "version": "1.3.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/apple/swift-crypto",
         "state": {
           "branch": null,
-          "revision": "d9825fa541df64b1a7b182178d61b9a82730d01f",
-          "version": "2.1.0"
+          "revision": "60f13f60c4d093691934dc6cfdf5f508ada1f894",
+          "version": "2.6.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "665c3c58923ee8ac36d3e44b17dc185229cce301",
-          "version": "0.49.13"
+          "revision": "fef156a6135e584985ed26713dd2e9ee41f952cb",
+          "version": "0.53.0"
         }
       },
       {
