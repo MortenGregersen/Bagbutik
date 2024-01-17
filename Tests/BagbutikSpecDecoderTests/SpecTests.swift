@@ -835,6 +835,10 @@ final class SpecTests: XCTestCase {
                         "type" : "string",
                         "enum" : [ "IOS", "MAC_OS", "TV_OS" ]
                     },
+                    "UserRole" : {
+                        "type" : "string",
+                        "enum" : [ "ADMIN", "FINANCE", "ACCOUNT_HOLDER" ]
+                    },
                     "ScreenshotDisplayType" : {
                         "type" : "string",
                         "enum" : [ "APP_IPHONE_67", "APP_APPLE_TV", "APP_DESKTOP" ]
@@ -895,6 +899,13 @@ final class SpecTests: XCTestCase {
         let platformCaseValues = bundleIdPlatformSchema.cases.map(\.value)
         XCTAssertEqual(platformCaseValues.count, 4)
         XCTAssertTrue(platformCaseValues.contains("VISION_OS"))
+        
+        guard case .enum(let userRoleSchema) = spec.components.schemas["UserRole"] else {
+            XCTFail(); return
+        }
+        let userRoleCaseValues = userRoleSchema.cases.map(\.value)
+        XCTAssertEqual(userRoleCaseValues.count, 4)
+        XCTAssertTrue(userRoleCaseValues.contains("GENERATE_INDIVIDUAL_KEYS"))
 
         guard case .enum(let screenshotDisplayTypeSchema) = spec.components.schemas["ScreenshotDisplayType"] else {
             XCTFail(); return

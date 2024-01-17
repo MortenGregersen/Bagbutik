@@ -179,6 +179,15 @@ public struct Spec: Decodable {
             deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
             components.schemas["Device"] = .object(deviceSchema)
         }
+        
+        // Add the case `GENERATE_INDIVIDUAL_KEYS` to UserRole
+        // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 17/1/24 as FB13546172.
+        if case .enum(var userRoleSchema) = components.schemas["UserRole"] {
+            if !userRoleSchema.cases.contains(where: { $0.value == "GENERATE_INDIVIDUAL_KEYS" }) {
+                userRoleSchema.cases.append(EnumCase(id: "generateIndividualKeys", value: "GENERATE_INDIVIDUAL_KEYS"))
+            }
+            components.schemas["UserRole"] = .enum(userRoleSchema)
+        }
 
         // Add the case `VISION_OS` to Platform
         // Apple's OpenAPI spec doesn't include visionOS for App Categories. Reported to Apple 28/8/23 as FB13071298.
