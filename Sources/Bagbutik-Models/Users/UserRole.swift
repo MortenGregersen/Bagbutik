@@ -36,4 +36,5 @@ public enum UserRole: String, ParameterValue, Codable, CaseIterable {
     case cloudManagedDeveloperId = "CLOUD_MANAGED_DEVELOPER_ID"
     /// Permission to submit requests for apps and software to be signed by a cloud-managed Apple Distribution certificate. App Store Connect automatically creates a certificate if one doesn’t exist. The system grants this permission by default to Account Holder and Admin roles. Account Holder, Admin, and App Manager roles may grant access to this permission to other users with App Manager or Developer roles. This permission requires that the user has access to Certificates, Identifiers & Profiles.
     case cloudManagedAppDistribution = "CLOUD_MANAGED_APP_DISTRIBUTION"
+    case generateIndividualKeys = "GENERATE_INDIVIDUAL_KEYS"
 }
