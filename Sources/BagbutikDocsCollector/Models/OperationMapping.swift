@@ -462,6 +462,7 @@ enum OperationMapping {
         "gameCenterGroups-get_collection": "read_group_information",
         "gameCenterGroups-get_instance": "read_group_information_for_a_specific_group",
         "gameCenterGroups-update_instance": "modify_a_group",
+        "gameCenterLeaderboardEntrySubmissions-create_instance": "create_a_game_center_leaderboard_score",
         "gameCenterLeaderboardImages-create_instance": "create_a_leaderboard_image",
         "gameCenterLeaderboardImages-delete_instance": "delete_a_leaderboard_image",
         "gameCenterLeaderboardImages-get_instance": "read_leaderboard_image_information",
