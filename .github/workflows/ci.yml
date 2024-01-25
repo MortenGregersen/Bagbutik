@@ -39,6 +39,6 @@ jobs:
     name: Build and Test (Linux)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Test
       run: swift test -v
