@@ -133,6 +133,8 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         } else if let oneOfOptions = try container.decodeIfPresent([OneOfOption].self, forKey: .oneOf),
                   let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
             self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
+        } else if container.codingPath.last?.stringValue == "additionalProperties" {
+            self = .schema(.init(name: "AdditionalProperties", url: ""))
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Property type not known")
         }
