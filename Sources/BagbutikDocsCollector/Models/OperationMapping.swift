@@ -543,6 +543,7 @@ enum OperationMapping {
         "gameCenterMatchmakingTeams-create_instance": "create_a_team",
         "gameCenterMatchmakingTeams-delete_instance": "delete_a_team",
         "gameCenterMatchmakingTeams-update_instance": "modify_a_team",
+        "gameCenterPlayerAchievementSubmissions-create_instance": "create_a_game_center_player_achievement",
         "inAppPurchaseAppStoreReviewScreenshots-create_instance": "create_an_in-app_purchase_review_screenshot",
         "inAppPurchaseAppStoreReviewScreenshots-delete_instance": "delete_a_review_screenshot_for_an_in-app_purchase",
         "inAppPurchaseAppStoreReviewScreenshots-get_instance": "read_in-app_purchase_review_screenshot_information",
