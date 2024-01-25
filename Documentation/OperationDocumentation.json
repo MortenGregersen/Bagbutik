@@ -83468,6 +83468,126 @@
       }
     ]
   },
+  "gameCenterLeaderboardEntrySubmissions-create_instance" : {
+    "abstract" : [
+      {
+        "text" : "Add a new score for a player to a leaderboard."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/game_center",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/game_center\/game_center_leaderboards_scores"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/create_a_game_center_leaderboard_score"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Create a Game Center leaderboard score"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Created",
+            "status" : 201
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
   "gameCenterLeaderboardImages-create_instance" : {
     "abstract" : [
       {
