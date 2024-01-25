@@ -179,7 +179,7 @@ public struct Spec: Decodable {
             deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
             components.schemas["Device"] = .object(deviceSchema)
         }
-        
+
         // Add the case `GENERATE_INDIVIDUAL_KEYS` to UserRole
         // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 17/1/24 as FB13546172.
         if case .enum(var userRoleSchema) = components.schemas["UserRole"] {
@@ -251,15 +251,17 @@ public struct Spec: Decodable {
         // On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
         errorSchema.requiredProperties.removeAll(where: { $0 == "detail" })
 
-        // Add `meta` property to ErrorResponse.Errors
-        // In Apple's OpenAPI spec and documentation the `meta` property is not mentioned (last checked 12/1/23).
+        // Add `associatedErrors` to the `meta` property on ErrorResponse.Errors
+        // In Apple's OpenAPI spec and documentation the `meta` property does not include the `associatedErrors` (last checked 26/1/24).
         // But it is observed when creating a ReviewSubmissionItem with an AppStoreVersion fails.
-        if errorSchema.properties["meta"] == nil {
+        if let metaProperty = errorSchema.properties["meta"],
+           case .dictionary = metaProperty.type {
             errorSchema.properties["meta"] = Property(type: .schema(.init(
                 name: "Meta",
                 url: "",
                 properties: [
-                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors")))
+                    "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
+                    "additionalProperties": metaProperty
                 ])))
         }
 

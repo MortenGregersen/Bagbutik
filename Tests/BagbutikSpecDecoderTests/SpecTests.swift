@@ -824,9 +824,13 @@ final class SpecTests: XCTestCase {
                                             }, {
                                                 "$ref" : "#/components/schemas/ErrorSourceParameter"
                                             } ]
+                                        },
+                                        "meta" : {
+                                            "type" : "object",
+                                            "additionalProperties" : { }
                                         }
                                     },
-                                    "required" : [ "code", "detail", "title", "status" ]
+                                    "required" : [ "code", "detail", "status", "title" ]
                                 }
                             }
                         }
