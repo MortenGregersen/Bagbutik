@@ -270,6 +270,10 @@ final class PropertyTypeTests: XCTestCase {
             "xcodeMetrics" : {
                 "type" : "object"
             },
+            "meta" : {
+                "type" : "object",
+                "additionalProperties" : { }
+            },
             "days" : {
                 "type" : "array",
                 "items" : {
@@ -283,15 +287,21 @@ final class PropertyTypeTests: XCTestCase {
         let propertyTypes = try jsonDecoder.decode([String: PropertyType].self, from: json.data(using: .utf8)!)
         // Then
         guard let xcodeMetricsPropertyType = propertyTypes["xcodeMetrics"],
-              case let .schema(schema) = xcodeMetricsPropertyType else {
+              case let .schema(xcodeMetericsSchema) = xcodeMetricsPropertyType else {
             return XCTFail("Wrong property type")
         }
-        XCTAssertEqual(schema.name, "XcodeMetrics")
-        XCTAssertEqual(schema.properties.count, 0)
-        guard let daysPropertyType = propertyTypes["days"], case let .enumSchema(enumSchema) = daysPropertyType else {
+        XCTAssertEqual(xcodeMetericsSchema.name, "XcodeMetrics")
+        XCTAssertEqual(xcodeMetericsSchema.properties.count, 0)
+        
+        guard let metaPropertyType = propertyTypes["meta"] else {
             return XCTFail("Wrong property type")
         }
-        XCTAssertEqual(enumSchema.name, "Items")
-        XCTAssertEqual(enumSchema.cases.count, 7)
+        XCTAssertEqual(metaPropertyType.description, "[String: AdditionalProperties]")
+        
+        guard let daysPropertyType = propertyTypes["days"], case let .enumSchema(daysSchema) = daysPropertyType else {
+            return XCTFail("Wrong property type")
+        }
+        XCTAssertEqual(daysSchema.name, "Items")
+        XCTAssertEqual(daysSchema.cases.count, 7)
     }
 }
