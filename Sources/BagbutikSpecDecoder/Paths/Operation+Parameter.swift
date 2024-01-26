@@ -93,6 +93,8 @@ public extension Operation {
                     } else {
                         self = .simple(type: .init(type: itemType))
                     }
+                } else if type == "string", let values = try? container.decodeIfPresent([String].self, forKey: .enum) {
+                    self = .enum(type: type.capitalizingFirstLetter(), values: values)
                 } else {
                     self = .simple(type: .init(type: type))
                 }

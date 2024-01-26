@@ -181,4 +181,46 @@ final class ParameterTests: XCTestCase {
         guard case let .simple(type) = paramaterValueType else { return XCTFail("Wrong parameter type") }
         XCTAssertEqual(type, .integer)
     }
+    
+    func testEnum() throws {
+        // Given
+        let json = #"""
+        {
+            "name" : "granularity",
+            "in" : "query",
+            "description" : "the granularity of the per-group dataset",
+            "schema" : {
+                "type" : "string",
+                "enum" : [ "P1D", "PT1H", "PT15M" ]
+            },
+            "style" : "form",
+            "explode" : false,
+            "required" : true,
+            "examples" : {
+                "PnD" : {
+                    "value" : "P7D"
+                },
+                "PTnH" : {
+                    "value" : "PT10H"
+                },
+                "PTnM" : {
+                    "value" : "PT10M"
+                },
+                "PTn.nS" : {
+                    "value" : "PT10.5S"
+                },
+                "PnDTnHnMn.nS" : {
+                    "value" : "P7DT10H10M10.5S"
+                }
+            }
+        }
+        """#
+        // When
+        let paramater = try jsonDecoder.decode(BagbutikSpecDecoder.Operation.Parameter.self, from: json.data(using: .utf8)!)
+        // Then
+        guard case let .custom(name, type, description) = paramater else { return XCTFail("Wrong parameter type") }
+        XCTAssertEqual(name, "granularity")
+        XCTAssertEqual(type, .enum(type: "String", values: ["P1D", "PT1H", "PT15M"]))
+        XCTAssertEqual(description, "the granularity of the per-group dataset")
+    }
 }
