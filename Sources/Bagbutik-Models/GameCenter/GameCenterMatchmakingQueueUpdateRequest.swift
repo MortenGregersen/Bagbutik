@@ -28,18 +28,22 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
         public let id: String
         /// The type of resource.
         public var type: String { "gameCenterMatchmakingQueues" }
+        public var attributes: Attributes?
         public var relationships: Relationships?
 
         public init(id: String,
+                    attributes: Attributes? = nil,
                     relationships: Relationships? = nil)
         {
             self.id = id
+            self.attributes = attributes
             self.relationships = relationships
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             id = try container.decode(String.self, forKey: .id)
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
             relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
             if try container.decode(String.self, forKey: .type) != type {
                 throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
@@ -50,13 +54,23 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(id, forKey: .id)
             try container.encode(type, forKey: .type)
+            try container.encodeIfPresent(attributes, forKey: .attributes)
             try container.encodeIfPresent(relationships, forKey: .relationships)
         }
 
         private enum CodingKeys: String, CodingKey {
+            case attributes
             case id
             case relationships
             case type
+        }
+
+        public struct Attributes: Codable {
+            public var classicMatchmakingBundleIds: [String]?
+
+            public init(classicMatchmakingBundleIds: [String]? = nil) {
+                self.classicMatchmakingBundleIds = classicMatchmakingBundleIds
+            }
         }
 
         /**

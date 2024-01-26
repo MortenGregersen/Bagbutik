@@ -19,12 +19,12 @@ public extension Request {
     static func getMetricsForBetaTesterUsageInAppV1(id: String,
                                                     filters: [GetMetricsForBetaTesterUsageInAppV1.Filter]? = nil,
                                                     groupBy: GetMetricsForBetaTesterUsageInAppV1.GroupBy? = nil,
-                                                    period: String? = nil,
+                                                    period: GetMetricsForBetaTesterUsageInAppV1.Period? = nil,
                                                     limit: Int? = nil) -> Request<AppsBetaTesterUsagesV1MetricResponse, ErrorResponse>
     {
         var customs = [String: String]()
         if let groupBy { customs["groupBy"] = groupBy.rawValue }
-        if let period { customs["period"] = period }
+        if let period { customs["period"] = period.rawValue }
         return .init(path: "/v1/apps/\(id)/metrics/betaTesterUsages", method: .get, parameters: .init(filters: filters,
                                                                                                       limit: limit,
                                                                                                       customs: customs))
@@ -45,5 +45,15 @@ public enum GetMetricsForBetaTesterUsageInAppV1 {
      */
     public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
         case betaTesters
+    }
+
+    /**
+     The duration of the reporting period
+     */
+    public enum Period: String, ParameterValue, Codable, CaseIterable {
+        case P7D
+        case P30D
+        case P90D
+        case P365D
     }
 }

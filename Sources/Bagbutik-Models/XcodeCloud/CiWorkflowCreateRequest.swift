@@ -62,7 +62,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
 
         /**
          # CiWorkflowCreateRequest.Data.Attributes
-         The attributes you set that describe the new Workflows resource.
+         The attributes you set that describe the new Xcode Cloud workflow resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/attributes>
@@ -72,7 +72,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             public let actions: [CiAction]
             /// A start condition that starts new builds for changes to a branch.
             public var branchStartCondition: CiBranchStartCondition?
-            /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
+            /// A Boolean value that indicates whether Xcode Cloud needs to perform a clean build.
             public let clean: Bool
             /// The relative path to your Xcode project or workspace.
             public let containerFilePath: String
@@ -82,7 +82,13 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
             public let isEnabled: Bool
             /// A Boolean value that indicates whether edits to the workflow are restricted.
             public var isLockedForEditing: Bool?
-            /// The name of the workflow you want to create; for example, `My New Workflow`.
+            /// A start condition that you use to manually start a workflow for specific branch patterns.
+            public var manualBranchStartCondition: CiManualBranchStartCondition?
+            /// A start condition that you use to manually start a workflow for specific pull request patterns.
+            public var manualPullRequestStartCondition: CiManualPullRequestStartCondition?
+            /// A start condition that you use to manually start a workflow or specific tag patterns.
+            public var manualTagStartCondition: CiManualTagStartCondition?
+            /// The name of the workflow you create, for example, `My New Workflow`.
             public let name: String
             /// A start condition that starts new builds for changes to a pull request.
             public var pullRequestStartCondition: CiPullRequestStartCondition?
@@ -98,6 +104,9 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                         description: String,
                         isEnabled: Bool,
                         isLockedForEditing: Bool? = nil,
+                        manualBranchStartCondition: CiManualBranchStartCondition? = nil,
+                        manualPullRequestStartCondition: CiManualPullRequestStartCondition? = nil,
+                        manualTagStartCondition: CiManualTagStartCondition? = nil,
                         name: String,
                         pullRequestStartCondition: CiPullRequestStartCondition? = nil,
                         scheduledStartCondition: CiScheduledStartCondition? = nil,
@@ -110,6 +119,9 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                 self.description = description
                 self.isEnabled = isEnabled
                 self.isLockedForEditing = isLockedForEditing
+                self.manualBranchStartCondition = manualBranchStartCondition
+                self.manualPullRequestStartCondition = manualPullRequestStartCondition
+                self.manualTagStartCondition = manualTagStartCondition
                 self.name = name
                 self.pullRequestStartCondition = pullRequestStartCondition
                 self.scheduledStartCondition = scheduledStartCondition

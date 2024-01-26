@@ -48,8 +48,6 @@ public struct InAppPurchaseV2: Codable, Identifiable {
     }
 
     public struct Attributes: Codable {
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var availableInAllTerritories: Bool? = nil
         public var contentHosting: Bool?
         public var familySharable: Bool?
         public var inAppPurchaseType: InAppPurchaseType?
@@ -57,26 +55,6 @@ public struct InAppPurchaseV2: Codable, Identifiable {
         public var productId: String?
         public var reviewNote: String?
         public var state: InAppPurchaseState?
-
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(availableInAllTerritories: Bool? = nil,
-                    contentHosting: Bool? = nil,
-                    familySharable: Bool? = nil,
-                    inAppPurchaseType: InAppPurchaseType? = nil,
-                    name: String? = nil,
-                    productId: String? = nil,
-                    reviewNote: String? = nil,
-                    state: InAppPurchaseState? = nil)
-        {
-            self.availableInAllTerritories = availableInAllTerritories
-            self.contentHosting = contentHosting
-            self.familySharable = familySharable
-            self.inAppPurchaseType = inAppPurchaseType
-            self.name = name
-            self.productId = productId
-            self.reviewNote = reviewNote
-            self.state = state
-        }
 
         public init(contentHosting: Bool? = nil,
                     familySharable: Bool? = nil,

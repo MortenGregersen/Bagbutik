@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # CiArtifact
- The data structure that represents an Artifacts resource.
+ The data structure that represents the output of an Xcode Cloud build action resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
@@ -54,7 +54,7 @@ public struct CiArtifact: Codable, Identifiable {
 
     /**
      # CiArtifact.Attributes
-     The attributes that describe an Artifacts resource.
+     The attributes that describe the output of an artifact resource.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact/attributes>
@@ -87,6 +87,7 @@ public struct CiArtifact: Codable, Identifiable {
             case resultBundle = "RESULT_BUNDLE"
             case testProducts = "TEST_PRODUCTS"
             case xcodebuildProducts = "XCODEBUILD_PRODUCTS"
+            case stapledNotarizedArchive = "STAPLED_NOTARIZED_ARCHIVE"
         }
     }
 }

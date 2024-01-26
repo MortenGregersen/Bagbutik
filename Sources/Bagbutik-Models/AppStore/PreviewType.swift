@@ -24,4 +24,5 @@ public enum PreviewType: String, ParameterValue, Codable, CaseIterable {
     case iPad97 = "IPAD_97"
     case desktop = "DESKTOP"
     case appleTV = "APPLE_TV"
+    case appleVisionPro = "APPLE_VISION_PRO"
 }

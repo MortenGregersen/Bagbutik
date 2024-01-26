@@ -67,10 +67,14 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/attributes>
      */
     public struct Attributes: Codable {
+        public var classicMatchmakingBundleIds: [String]?
         /// A name for the queue that’s unique within the scope of your development team.
         public var referenceName: String?
 
-        public init(referenceName: String? = nil) {
+        public init(classicMatchmakingBundleIds: [String]? = nil,
+                    referenceName: String? = nil)
+        {
+            self.classicMatchmakingBundleIds = classicMatchmakingBundleIds
             self.referenceName = referenceName
         }
     }

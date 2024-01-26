@@ -37,6 +37,7 @@ public enum ListMatchmakingQueuesForGameCenterMatchmakingRuleSetV1 {
         case gameCenterMatchmakingRuleSets([GameCenterMatchmakingRuleSets])
 
         public enum GameCenterMatchmakingQueues: String, ParameterValue, Codable, CaseIterable {
+            case classicMatchmakingBundleIds
             case experimentRuleSet
             case referenceName
             case ruleSet

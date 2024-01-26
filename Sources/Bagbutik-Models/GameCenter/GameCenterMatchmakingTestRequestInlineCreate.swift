@@ -64,13 +64,13 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
         public let appVersion: String
         /// The bundle ID of the game that makes the request.
         public let bundleId: String
-        /// The language and region that the player who initiates this match request uses.
+        /// The language and region that the player who initiates this match request uses. The default value is `EN-US`.
         public var locale: Locale?
-        /// The physical location where this request originates.
+        /// The physical location where this request originates. The default value is `0, 0`.
         public var location: Location?
-        /// The maximum number of players that can join the match. This is the same value as the `GKMatchRequest.`[maxPlayers](https://developer.apple.com/documentation/gamekit/gkmatchrequest/1521083-maxplayers) property that you set when submitting a request from a native app.
+        /// The maximum number of players that can join the match. This is the same value as the `GKMatchRequest.`[maxPlayers](https://developer.apple.com/documentation/gamekit/gkmatchrequest/1521083-maxplayers) property that you set when submitting a request from a native app. The default value is `16`.
         public var maxPlayers: Int?
-        /// The minimum number of players that can join the match. This is the same value as the `GKMatchRequest.`[minPlayers](https://developer.apple.com/documentation/gamekit/gkmatchrequest/1520550-minplayers) property that you set when submitting a request from a native app.
+        /// The minimum number of players that can join the match. This is the same value as the `GKMatchRequest.`[minPlayers](https://developer.apple.com/documentation/gamekit/gkmatchrequest/1520550-minplayers) property that you set when submitting a request from a native app. The default value is `2`.
         public var minPlayers: Int?
         /// The platform of the game that makes the request.
         public let platform: Platform

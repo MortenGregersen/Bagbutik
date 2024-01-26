@@ -61,7 +61,6 @@ public enum ListSubscriptionGroupsForAppV1 {
 
         public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
-            case availableInAllTerritories
             case familySharable
             case group
             case groupLevel

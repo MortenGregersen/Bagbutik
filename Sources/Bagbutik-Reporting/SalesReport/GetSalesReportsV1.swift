@@ -6,8 +6,7 @@ public extension Request {
      # Download Sales and Trends Reports
      Download sales and trends reports filtered by your specified criteria.
 
-     For more information, see [Sales and Trends reports](https://help.apple.com/itc/appssalesandtrends/#/itc37a18bcbf).
-     Each sales report type has specific valid values for `reportType`, `reportSubType`, `frequency`, and `version`. Using other values results in an error. For more details on each report type, see [About Reports](https://help.apple.com/itc/appssalesandtrends/#/itc37a18bcbf).
+     Each sales report type has specific valid values for `reportType`, `reportSubType`, `frequency`, and `version`. If you use other types, it results in an error. For more details on each report type, see [Download and view reports](https://developer.apple.com/help/app-store-connect/view-sales-and-trends/download-and-view-reports).
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/download_sales_and_trends_reports>
@@ -50,6 +49,9 @@ public enum GetSalesReportsV1 {
         public enum ReportSubType: String, ParameterValue, Codable, CaseIterable {
             case summary = "SUMMARY"
             case detailed = "DETAILED"
+            case summaryInstallType = "SUMMARY_INSTALL_TYPE"
+            case summaryTerritory = "SUMMARY_TERRITORY"
+            case summaryChannel = "SUMMARY_CHANNEL"
         }
 
         public enum ReportType: String, ParameterValue, Codable, CaseIterable {
@@ -60,6 +62,7 @@ public enum GetSalesReportsV1 {
             case subscriptionEvent = "SUBSCRIPTION_EVENT"
             case subscriber = "SUBSCRIBER"
             case subscriptionOfferCodeRedemption = "SUBSCRIPTION_OFFER_CODE_REDEMPTION"
+            case installs = "INSTALLS"
         }
     }
 }

@@ -83,6 +83,9 @@ public struct CiWorkflow: Codable, Identifiable {
         public var isLockedForEditing: Bool?
         /// The date and time when the workflow was last modified.
         public var lastModifiedDate: Date?
+        public var manualBranchStartCondition: CiManualBranchStartCondition?
+        public var manualPullRequestStartCondition: CiManualPullRequestStartCondition?
+        public var manualTagStartCondition: CiManualTagStartCondition?
         /// The name of the Xcode Cloud workflow; for example, `My Workflow`.
         public var name: String?
         /// The workflow’s start condition for pull request changes.
@@ -100,6 +103,9 @@ public struct CiWorkflow: Codable, Identifiable {
                     isEnabled: Bool? = nil,
                     isLockedForEditing: Bool? = nil,
                     lastModifiedDate: Date? = nil,
+                    manualBranchStartCondition: CiManualBranchStartCondition? = nil,
+                    manualPullRequestStartCondition: CiManualPullRequestStartCondition? = nil,
+                    manualTagStartCondition: CiManualTagStartCondition? = nil,
                     name: String? = nil,
                     pullRequestStartCondition: CiPullRequestStartCondition? = nil,
                     scheduledStartCondition: CiScheduledStartCondition? = nil,
@@ -113,6 +119,9 @@ public struct CiWorkflow: Codable, Identifiable {
             self.isEnabled = isEnabled
             self.isLockedForEditing = isLockedForEditing
             self.lastModifiedDate = lastModifiedDate
+            self.manualBranchStartCondition = manualBranchStartCondition
+            self.manualPullRequestStartCondition = manualPullRequestStartCondition
+            self.manualTagStartCondition = manualTagStartCondition
             self.name = name
             self.pullRequestStartCondition = pullRequestStartCondition
             self.scheduledStartCondition = scheduledStartCondition
