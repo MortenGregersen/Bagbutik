@@ -13,6 +13,7 @@ public extension Request {
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
      - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
@@ -20,11 +21,13 @@ public extension Request {
                                              fields: [ListBuildRunsForCiWorkflowV1.Field]? = nil,
                                              filters: [ListBuildRunsForCiWorkflowV1.Filter]? = nil,
                                              includes: [ListBuildRunsForCiWorkflowV1.Include]? = nil,
+                                             sorts: [ListBuildRunsForCiWorkflowV1.Sort]? = nil,
                                              limits: [ListBuildRunsForCiWorkflowV1.Limit]? = nil) -> Request<CiBuildRunsResponse, ErrorResponse>
     {
         .init(path: "/v1/ciWorkflows/\(id)/buildRuns", method: .get, parameters: .init(fields: fields,
                                                                                        filters: filters,
                                                                                        includes: includes,
+                                                                                       sorts: sorts,
                                                                                        limits: limits))
     }
 }
@@ -121,6 +124,9 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case isLockedForEditing
             case lastModifiedDate
             case macOsVersion
+            case manualBranchStartCondition
+            case manualPullRequestStartCondition
+            case manualTagStartCondition
             case name
             case product
             case pullRequestStartCondition
@@ -172,6 +178,14 @@ public enum ListBuildRunsForCiWorkflowV1 {
         case pullRequest
         case sourceBranchOrTag
         case workflow
+    }
+
+    /**
+     Attributes by which to sort.
+     */
+    public enum Sort: String, SortParameter, CaseIterable {
+        case numberAscending = "number"
+        case numberDescending = "-number"
     }
 
     /**

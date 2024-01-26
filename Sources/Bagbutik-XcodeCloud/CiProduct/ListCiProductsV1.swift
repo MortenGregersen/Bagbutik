@@ -139,6 +139,9 @@ public enum ListCiProductsV1 {
             case isLockedForEditing
             case lastModifiedDate
             case macOsVersion
+            case manualBranchStartCondition
+            case manualPullRequestStartCondition
+            case manualTagStartCondition
             case name
             case product
             case pullRequestStartCondition

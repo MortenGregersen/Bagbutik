@@ -89,6 +89,9 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
             public var isEnabled: Bool?
             /// A Boolean value that indicates whether edits to the workflow are restricted.
             public var isLockedForEditing: Bool?
+            public var manualBranchStartCondition: CiManualBranchStartCondition?
+            public var manualPullRequestStartCondition: CiManualPullRequestStartCondition?
+            public var manualTagStartCondition: CiManualTagStartCondition?
             /// The name of the workflow you want to create; for example, `My Workflow`.
             public var name: String?
             /// The workflow’s start condition for pull request changes.
@@ -105,6 +108,9 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                         description: String? = nil,
                         isEnabled: Bool? = nil,
                         isLockedForEditing: Bool? = nil,
+                        manualBranchStartCondition: CiManualBranchStartCondition? = nil,
+                        manualPullRequestStartCondition: CiManualPullRequestStartCondition? = nil,
+                        manualTagStartCondition: CiManualTagStartCondition? = nil,
                         name: String? = nil,
                         pullRequestStartCondition: CiPullRequestStartCondition? = nil,
                         scheduledStartCondition: CiScheduledStartCondition? = nil,
@@ -117,6 +123,9 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                 self.description = description
                 self.isEnabled = isEnabled
                 self.isLockedForEditing = isLockedForEditing
+                self.manualBranchStartCondition = manualBranchStartCondition
+                self.manualPullRequestStartCondition = manualPullRequestStartCondition
+                self.manualTagStartCondition = manualTagStartCondition
                 self.name = name
                 self.pullRequestStartCondition = pullRequestStartCondition
                 self.scheduledStartCondition = scheduledStartCondition

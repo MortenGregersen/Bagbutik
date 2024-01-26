@@ -42,7 +42,13 @@ public enum GetMetricsForExperimentMatchmakingRequestInGameCenterMatchmakingQueu
         /// Filter by 'gameCenterDetail' relationship dimension
         case gameCenterDetail([String])
         /// Filter by 'result' attribute dimension
-        case result([String])
+        case result([Result])
+
+        public enum Result: String, ParameterValue, Codable, CaseIterable {
+            case matched = "MATCHED"
+            case canceled = "CANCELED"
+            case expired = "EXPIRED"
+        }
     }
 
     /**

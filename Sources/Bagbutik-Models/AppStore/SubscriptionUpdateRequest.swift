@@ -53,29 +53,11 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var availableInAllTerritories: Bool? = nil
             public var familySharable: Bool?
             public var groupLevel: Int?
             public var name: String?
             public var reviewNote: String?
             public var subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod?
-
-            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-            public init(availableInAllTerritories: Bool? = nil,
-                        familySharable: Bool? = nil,
-                        groupLevel: Int? = nil,
-                        name: String? = nil,
-                        reviewNote: String? = nil,
-                        subscriptionPeriod: Subscription.Attributes.SubscriptionPeriod? = nil)
-            {
-                self.availableInAllTerritories = availableInAllTerritories
-                self.familySharable = familySharable
-                self.groupLevel = groupLevel
-                self.name = name
-                self.reviewNote = reviewNote
-                self.subscriptionPeriod = subscriptionPeriod
-            }
 
             public init(familySharable: Bool? = nil,
                         groupLevel: Int? = nil,

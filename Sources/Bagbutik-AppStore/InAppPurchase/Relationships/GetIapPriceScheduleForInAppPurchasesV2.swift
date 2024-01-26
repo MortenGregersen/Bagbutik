@@ -59,7 +59,6 @@ public enum GetIapPriceScheduleForInAppPurchasesV2 {
         public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
-            case availableInAllTerritories
             case content
             case contentHosting
             case familySharable

@@ -40,7 +40,13 @@ public enum GetMetricsForClassicMatchmakingRequestInGameCenterDetailV1 {
      */
     public enum Filter: FilterParameter {
         /// Filter by 'result' attribute dimension
-        case result([String])
+        case result([Result])
+
+        public enum Result: String, ParameterValue, Codable, CaseIterable {
+            case matched = "MATCHED"
+            case canceled = "CANCELED"
+            case expired = "EXPIRED"
+        }
     }
 
     /**

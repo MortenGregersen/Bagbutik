@@ -17,11 +17,11 @@ public extension Request {
      */
     static func getMetricsForBetaTesterUsageInBetaTesterV1(id: String,
                                                            filters: [GetMetricsForBetaTesterUsageInBetaTesterV1.Filter]? = nil,
-                                                           period: String? = nil,
+                                                           period: GetMetricsForBetaTesterUsageInBetaTesterV1.Period? = nil,
                                                            limit: Int? = nil) -> Request<BetaTesterUsagesV1MetricResponse, ErrorResponse>
     {
         var customs = [String: String]()
-        if let period { customs["period"] = period }
+        if let period { customs["period"] = period.rawValue }
         return .init(path: "/v1/betaTesters/\(id)/metrics/betaTesterUsages", method: .get, parameters: .init(filters: filters,
                                                                                                              limit: limit,
                                                                                                              customs: customs))
@@ -31,9 +31,21 @@ public extension Request {
 public enum GetMetricsForBetaTesterUsageInBetaTesterV1 {
     /**
      Attributes, relationships, and IDs by which to filter.
+
+     Required: `apps`
      */
     public enum Filter: FilterParameter {
         /// Filter by 'apps' relationship dimension
         case apps([String])
+    }
+
+    /**
+     The duration of the reporting period
+     */
+    public enum Period: String, ParameterValue, Codable, CaseIterable {
+        case P7D
+        case P30D
+        case P90D
+        case P365D
     }
 }

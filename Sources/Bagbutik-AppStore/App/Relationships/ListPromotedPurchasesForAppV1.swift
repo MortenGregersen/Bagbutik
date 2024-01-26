@@ -43,7 +43,6 @@ public enum ListPromotedPurchasesForAppV1 {
         public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
-            case availableInAllTerritories
             case content
             case contentHosting
             case familySharable
@@ -84,7 +83,6 @@ public enum ListPromotedPurchasesForAppV1 {
 
         public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
-            case availableInAllTerritories
             case familySharable
             case group
             case groupLevel

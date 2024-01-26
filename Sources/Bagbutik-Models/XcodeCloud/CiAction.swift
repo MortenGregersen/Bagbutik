@@ -3,13 +3,13 @@ import Foundation
 
 /**
  # CiAction
- The data structure that represents an Actions resource.
+ The data structure that represents an Xcode Cloud workflow action resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciaction>
  */
 public struct CiAction: Codable {
-    /// The type of the action.
+    /// The type of the action. The `actionType` options are `BUILD`, `ANALYZE`, `TEST`, and `ARCHIVE`.
     public var actionType: CiActionType?
     /// A type that indicates whether a build’s artifact is eligible for release on the App Store.
     public var buildDistributionAudience: BuildAudienceType?
@@ -17,7 +17,7 @@ public struct CiAction: Codable {
     public var destination: Destination?
     /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
     public var isRequiredToPass: Bool?
-    /// The name of the action; for example, archive or test.
+    /// The name of the action, for example, archive or test.
     public var name: String?
     /// The platform Xcode Cloud uses for the action.
     public var platform: Platform?
@@ -54,6 +54,8 @@ public struct CiAction: Codable {
         case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
         case anyMac = "ANY_MAC"
         case anyMacCatalyst = "ANY_MAC_CATALYST"
+        case anyVisionosDevice = "ANY_VISIONOS_DEVICE"
+        case anyVisionosSimulator = "ANY_VISIONOS_SIMULATOR"
     }
 
     public enum Platform: String, Codable, CaseIterable {
@@ -61,6 +63,7 @@ public struct CiAction: Codable {
         case iOS = "IOS"
         case tvOS = "TVOS"
         case watchos = "WATCHOS"
+        case visionos = "VISIONOS"
     }
 
     /**

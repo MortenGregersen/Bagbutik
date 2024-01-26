@@ -13,6 +13,7 @@ public extension Request {
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
      - Parameter includes: Relationship data to include in the response
+     - Parameter sorts: Attributes by which to sort
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
@@ -20,11 +21,13 @@ public extension Request {
                                             fields: [ListBuildRunsForCiProductV1.Field]? = nil,
                                             filters: [ListBuildRunsForCiProductV1.Filter]? = nil,
                                             includes: [ListBuildRunsForCiProductV1.Include]? = nil,
+                                            sorts: [ListBuildRunsForCiProductV1.Sort]? = nil,
                                             limits: [ListBuildRunsForCiProductV1.Limit]? = nil) -> Request<CiBuildRunsResponse, ErrorResponse>
     {
         .init(path: "/v1/ciProducts/\(id)/buildRuns", method: .get, parameters: .init(fields: fields,
                                                                                       filters: filters,
                                                                                       includes: includes,
+                                                                                      sorts: sorts,
                                                                                       limits: limits))
     }
 }
@@ -121,6 +124,9 @@ public enum ListBuildRunsForCiProductV1 {
             case isLockedForEditing
             case lastModifiedDate
             case macOsVersion
+            case manualBranchStartCondition
+            case manualPullRequestStartCondition
+            case manualTagStartCondition
             case name
             case product
             case pullRequestStartCondition
@@ -172,6 +178,14 @@ public enum ListBuildRunsForCiProductV1 {
         case pullRequest
         case sourceBranchOrTag
         case workflow
+    }
+
+    /**
+     Attributes by which to sort.
+     */
+    public enum Sort: String, SortParameter, CaseIterable {
+        case numberAscending = "number"
+        case numberDescending = "-number"
     }
 
     /**

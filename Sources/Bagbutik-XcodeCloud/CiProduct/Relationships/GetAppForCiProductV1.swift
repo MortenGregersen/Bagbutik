@@ -366,7 +366,6 @@ public enum GetAppForCiProductV1 {
             case app
             case appStoreReviewScreenshot
             case apps
-            case availableInAllTerritories
             case content
             case contentHosting
             case familySharable
