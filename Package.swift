@@ -59,10 +59,10 @@ let package = Package(
             targets: ["BagbutikCLI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.1.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.17"),
-        .package(url: "https://github.com/apple/swift-crypto", from: "2.0.0"),
-        .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.2"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.0"),
+        .package(url: "https://github.com/apple/swift-crypto", from: "3.2.0"),
+        .package(url: "https://github.com/marmelroy/Zip", from: "2.1.2"),
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
