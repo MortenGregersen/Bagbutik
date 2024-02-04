@@ -13,7 +13,7 @@ import FoundationNetworking
 struct BagbutikCLI: AsyncParsableCommand {
     static var configuration = CommandConfiguration(
         abstract: "A utility for downloading spec and generating models and endpoints.",
-        subcommands: [Generate.self, DownloadNewestDocs.self, DownloadNewestSpec.self],
+        subcommands: [Generate.self, CheckFeedback.self, DownloadNewestDocs.self, DownloadNewestSpec.self],
         defaultSubcommand: Generate.self)
 
     struct Generate: AsyncParsableCommand {
@@ -39,6 +39,28 @@ struct BagbutikCLI: AsyncParsableCommand {
             let outputDirURL = URL(fileURLWithPath: outputPath)
             let documentationDirURL = URL(fileURLWithPath: documentationPath)
             try await Generator().generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)
+        }
+    }
+    
+    struct CheckFeedback: AsyncParsableCommand {
+        static var configuration = CommandConfiguration(abstract: "Check if the manual applied patched to the specs are still needed. If the path to a spec is omitted, the newest version is downloaded from Apple.")
+        
+        @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
+        var specPath: String?
+
+        @Option(name: .shortAndLong, help: "The folder containing the fetched documentation. Should contain a \(DocsFilename.operationDocumentation.filename), a \(DocsFilename.schemaDocumentation.filename) and a \(DocsFilename.schemaMapping.filename).")
+        var documentationPath = "./Documentation"
+        
+        func run() async throws {
+            let specFileURL: URL
+            if let specPath = specPath {
+                specFileURL = URL(fileURLWithPath: specPath)
+            } else {
+                print("No path to a spec is supplied. Will download the newest version from Apple.")
+                specFileURL = try await downloadNewestSpec()
+            }
+            let documentationDirURL = URL(fileURLWithPath: documentationPath)
+            try await FeedbackChecker().checkFeedback(specFileURL: specFileURL, documentationDirURL: documentationDirURL)
         }
     }
 

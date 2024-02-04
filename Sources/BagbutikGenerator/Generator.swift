@@ -3,7 +3,7 @@ import BagbutikSpecDecoder
 import Foundation
 
 /// Errors that can occur when generating
-public enum GeneratorError: Error {
+public enum GeneratorError: Error, Equatable {
     /// The URL is not a file URL
     case notFileUrl(FileURLType)
     /// The operation has no documentation
@@ -23,8 +23,6 @@ public enum GeneratorError: Error {
         case documentationDirUrl
     }
 }
-
-extension GeneratorError: Equatable {}
 
 /**
  An alias for a function loading a spec from a file URL
@@ -73,10 +71,10 @@ public class Generator {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
         guard documentationDirURL.isFileURL else { throw GeneratorError.notFileUrl(.documentationDirUrl) }
-        print("🔍 Loading spec \(specFileURL)...")
+        print("🔍 Loading spec \(specFileURL.path)...")
         let spec = try loadSpec(specFileURL)
 
-        print("🔍 Loading docs \(documentationDirURL)...")
+        print("🔍 Loading docs \(documentationDirURL.path)...")
         try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try docsLoader.applyManualDocumentation()
 
@@ -167,7 +165,7 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    internal static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
         switch schema {

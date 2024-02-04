@@ -86,7 +86,7 @@ public class DocsFetcher {
 
     public func fetchAllDocs(specFileURL: URL, outputDirURL: URL) async throws {
         guard specFileURL.isFileURL else { throw DocsFetcherError.notFileUrl(.specFileURL) }
-        print("🔍 Loading spec \(specFileURL)...")
+        print("🔍 Loading spec \(specFileURL.path)...")
         let spec = try loadSpec(specFileURL)
 
         var operationDocumentationById = [String: Documentation]()
