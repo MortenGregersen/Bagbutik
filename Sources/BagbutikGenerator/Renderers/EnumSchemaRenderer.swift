@@ -34,17 +34,19 @@ public class EnumSchemaRenderer: Renderer {
             .reversed()
             .joined(separator: ", ")
         rendered += "public enum \(enumSchema.name): \(enumSchema.type.capitalized), \(protocols) {\n"
-        let cases = enumSchema.cases.map { enumCase -> EnumCase in
-            var enumCase = enumCase
-            enumCase.documentation = documentation?.cases[enumCase.value]
-            return enumCase
-        }
-        cases.forEach {
-            if let caseDocumentation = $0.documentation {
-                rendered += "///\(caseDocumentation)\n"
+        enumSchema.cases
+            .sorted(by: { $0.id < $1.id })
+            .map { enumCase -> EnumCase in
+                var enumCase = enumCase
+                enumCase.documentation = documentation?.cases[enumCase.value]
+                return enumCase
             }
-            rendered += "case \($0.id) = \"\($0.value)\"\n"
-        }
+            .forEach {
+                if let caseDocumentation = $0.documentation {
+                    rendered += "///\(caseDocumentation)\n"
+                }
+                rendered += "case \($0.id) = \"\($0.value)\"\n"
+            }
         rendered += "}"
         return try SwiftFormat.format(rendered)
     }

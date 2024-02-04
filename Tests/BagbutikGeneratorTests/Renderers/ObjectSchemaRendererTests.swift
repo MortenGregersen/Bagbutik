@@ -507,8 +507,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public enum Preference: String, Codable, CaseIterable {
-                case tabs = "TABS"
                 case spaces = "SPACES"
+                case tabs = "TABS"
             }
         }
 
