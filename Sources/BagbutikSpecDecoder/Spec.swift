@@ -194,44 +194,25 @@ public struct Spec: Decodable {
             patchedSchemas.append(.enum(userRoleSchema))
         }
 
-        // Add the case `VISION_OS` to Platform
-        // Apple's OpenAPI spec doesn't include visionOS for App Categories. Reported to Apple 28/8/23 as FB13071298.
-        if case .enum(var platformSchema) = components.schemas["Platform"] {
-            if !platformSchema.cases.contains(where: { $0.value == "VISION_OS" }) {
-                platformSchema.cases.append(EnumCase(id: "visionOS", value: "VISION_OS", documentation: "A string that represents visionOS."))
-            }
-            components.schemas["Platform"] = .enum(platformSchema)
-            patchedSchemas.append(.enum(platformSchema))
-        }
-
-        // Add the `APP_APPLE_VISION_PRO` to ScreenshotDisplayType
-        // Apple's OpenAPI spec doesn't include visionOS for Screenshot Display Types. Reported to Apple 14/1/24 as FB13539766.
-        if case .enum(var screenshotDisplayTypeSchema) = components.schemas["ScreenshotDisplayType"] {
-            if !screenshotDisplayTypeSchema.cases.contains(where: { $0.value == "APP_APPLE_VISION_PRO" }) {
-                screenshotDisplayTypeSchema.cases.append(EnumCase(id: "appAppleVisionPro", value: "APP_APPLE_VISION_PRO"))
-            }
-            screenshotDisplayTypeSchema.cases.sort(by: { $0.id < $1.id })
-            components.schemas["ScreenshotDisplayType"] = .enum(screenshotDisplayTypeSchema)
-            patchedSchemas.append(.enum(screenshotDisplayTypeSchema))
-        }
-
         // Change the shcema ref of the `data` property on *WithoutIncludesResponse
         // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as FB13540097.
-        let schemaNamesWithoutIncludesResponses = components.schemas.keys.filter { $0.hasSuffix("WithoutIncludesResponse") }
-        schemaNamesWithoutIncludesResponses.forEach { schemaName in
-            let schemaRefName = schemaName
-                .replacingOccurrences(of: "WithoutIncludesResponse", with: "")
-                .replacingOccurrences(of: "PreRelease", with: "Prerelease")
-            if case .object(var responseSchema) = components.schemas[schemaName] {
-                if schemaRefName.hasSuffix("s") {
-                    responseSchema.properties["data"]?.type = .arrayOfSchemaRef(schemaRefName.singularized())
-                } else {
-                    responseSchema.properties["data"]?.type = .schemaRef(schemaRefName)
+        components.schemas.keys
+            .filter { $0.hasSuffix("WithoutIncludesResponse") }
+            .filter { $0 != "AppCategoriesWithoutIncludesResponse" && $0 != "AppCategoryWithoutIncludesResponse" }
+            .forEach { schemaName in
+                let schemaRefName = schemaName
+                    .replacingOccurrences(of: "WithoutIncludesResponse", with: "")
+                    .replacingOccurrences(of: "PreRelease", with: "Prerelease")
+                if case .object(var responseSchema) = components.schemas[schemaName] {
+                    if schemaRefName.hasSuffix("s") {
+                        responseSchema.properties["data"]?.type = .arrayOfSchemaRef(schemaRefName.singularized())
+                    } else {
+                        responseSchema.properties["data"]?.type = .schemaRef(schemaRefName)
+                    }
+                    components.schemas[schemaName] = .object(responseSchema)
+                    patchedSchemas.append(.object(responseSchema))
                 }
-                components.schemas[schemaName] = .object(responseSchema)
-                patchedSchemas.append(.object(responseSchema))
             }
-        }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
