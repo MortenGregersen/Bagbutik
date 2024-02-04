@@ -138,9 +138,9 @@ Right now there are 7 libraries with endpoints:
 * `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
 
-## Manual workarounds applied
+## Manual patches applied to OpenAPI Spec
 
-The Open API Spec provided by Apple do not always align with the data received from the API. Whenever such mismatches are identified, feedback is submitted to Apple
+The OpenAPI Spec provided by Apple do not always align with the data received from the API. Whenever such mismatches are identified, feedback is submitted to Apple and a patch is applied. Whenever an issue is resolved, the patch is removed again.
 
 ### Currently open feedback and applied patches
 
@@ -164,7 +164,7 @@ In the OpenAPI spec for the App Store Connect API the "BundleIdPlatform" schema 
 
 ##### Description
 
-Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong schema ref for the “data” property. This is both the case in the Open API Spec and the Docs on developer.apple.com.
+Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong schema ref for the “data” property. This is both the case in the OpenAPI Spec and the Docs on developer.apple.com.
 
 As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
 
