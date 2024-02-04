@@ -171,7 +171,6 @@ As an example, the data property of “BetaTestersWithoutIncludesResponse” ref
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
-  * In version 1.8 of the OpenAPI spec for the App Store Connect API, the schema “xcodeMetrics” has no properties or attributes.
   * Submitted: March 21st 2022.
   * Resolved: July 12th 2022 (Spec version 2.0).
 
