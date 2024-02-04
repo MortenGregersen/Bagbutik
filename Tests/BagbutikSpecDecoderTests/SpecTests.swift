@@ -834,10 +834,6 @@ final class SpecTests: XCTestCase {
                                 }
                             }
                         }
-                    },
-                    "UserRole" : {
-                        "type" : "string",
-                        "enum" : [ "ADMIN", "FINANCE", "ACCOUNT_HOLDER" ]
                     }
                 }
             }
@@ -888,13 +884,6 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(errorSchemaRef, "Errors")
-
-        guard case .enum(let userRoleSchema) = spec.components.schemas["UserRole"] else {
-            XCTFail(); return
-        }
-        let userRoleCaseValues = userRoleSchema.cases.map(\.value)
-        XCTAssertEqual(userRoleCaseValues.count, 4)
-        XCTAssertTrue(userRoleCaseValues.contains("GENERATE_INDIVIDUAL_KEYS"))
     }
 
     func testApplyManualPatches_WithoutIncludes() throws {
