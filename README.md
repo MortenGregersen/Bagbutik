@@ -140,9 +140,9 @@ Right now there are 7 libraries with endpoints:
 
 ## Manual workarounds applied
 
-The spec Apple provides doesn't always match the data coming from the API. Everytime such a case is found, a feedback has been submitted to Apple.
+The Open API Spec provided by Apple do not always align with the data received from the API. Whenever such mismatches are identified, feedback is submitted to Apple
 
-### Currently open feedback and patches
+### Currently open feedback and applied patches
 
 * **FB8977648**: App Store Connect API is missing the "UNIVERSAL" type for the BundleIdPlatform schema
   * Submitted: January 21st 2021.
@@ -152,7 +152,7 @@ The spec Apple provides doesn't always match the data coming from the API. Every
   * Submitted: January 14th 2024.
   * Confirmed by Apple: January 31st 2024
 
-### Closed feedaback (workarounds removed)
+### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
   * Submitted: March 21st 2022.
