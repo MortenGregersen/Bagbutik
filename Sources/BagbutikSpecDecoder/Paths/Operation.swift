@@ -116,14 +116,14 @@ public struct Operation: Decodable, Equatable {
             return "get\(name.capitalizingFirstLetter().singularized())"
         } else if let result = getCollectionRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            if operationId == "salesReports-get_collection" || operationId == "financeReports-get_collection" {
+            if ["salesReports-get_collection", "financeReports-get_collection"].contains(operationId) {
                 return "get\(name.capitalizingFirstLetter())"
             }
             return "list\(name.capitalizingFirstLetter())"
         } else if let result = getMetricsRegex.firstMatch(in: operationId, options: [], range: range) {
             let metric = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let relationship = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            return "getMetricsFor\(metric.singularized().capitalizingFirstLetter())In\(relationship.singularized().capitalizingFirstLetter())"
+            return "getMetricsFor\(metric.capitalizingFirstLetter().singularized())In\(relationship.capitalizingFirstLetter().singularized())"
         } else if let result = getToOneRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
@@ -142,9 +142,7 @@ public struct Operation: Decodable, Equatable {
             return "list\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = createInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            if operationId == "ciBuildRuns-create_instance" {
-                return "start\(name.capitalizingFirstLetter().singularized())"
-            }
+            if operationId == "ciBuildRuns-create_instance" { return "start\(name.capitalizingFirstLetter().singularized())" }
             return "create\(name.capitalizingFirstLetter().singularized())"
         } else if let result = createToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])

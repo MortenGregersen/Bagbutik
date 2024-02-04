@@ -259,8 +259,8 @@ final class OperationRendererTests: XCTestCase {
                 }
 
                 public enum Vehicles: String, ParameterValue, Codable, CaseIterable {
-                    case car
                     case bicycle
+                    case car
                 }
             }
 
@@ -283,8 +283,8 @@ final class OperationRendererTests: XCTestCase {
                 }
 
                 public enum VehiclesProperties: String, ParameterValue, Codable, CaseIterable {
-                    case car
                     case bicycle
+                    case car
                 }
             }
 

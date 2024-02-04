@@ -377,6 +377,71 @@ final class OperationTests: XCTestCase {
         XCTAssertEqual(getOperation?.errorResponseType, "ErrorResponse")
     }
 
+    func testGetVersionedName() throws {
+        // Given
+        let json = #"""
+        {
+            "get" : {
+                "tags" : [ "SandboxTesters" ],
+                "operationId" : "sandboxTestersV2-get_collection",
+                "parameters" : [ {
+                    "name" : "fields[sandboxTesters]",
+                    "in" : "query",
+                    "description" : "the fields to include for returned resources of type sandboxTesters",
+                    "schema" : {
+                        "type" : "array",
+                        "items" : {
+                            "type" : "string",
+                            "enum" : [ "acAccountName", "applePayCompatible", "firstName", "interruptPurchases", "lastName", "subscriptionRenewalRate", "territory" ]
+                        }
+                    },
+                    "style" : "form",
+                    "explode" : false,
+                    "required" : false
+                }, {
+                    "name" : "limit",
+                    "in" : "query",
+                    "description" : "maximum resources per page",
+                    "schema" : {
+                        "type" : "integer",
+                        "maximum" : 200
+                    },
+                    "style" : "form"
+                } ],
+                "responses" : {
+                    "400" : {
+                        "description" : "Parameter error(s)",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "200" : {
+                        "description" : "List of SandboxTesters",
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/SandboxTestersV2Response"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """#
+        // When
+        let operations = try jsonDecoder.decode([String: BagbutikSpecDecoder.Operation].self, from: json.data(using: .utf8)!)
+        // Then
+        let getOperation = operations["get"]
+        XCTAssertEqual(getOperation?.name, "listSandboxTestersV2")
+        let path = Path(path: "/v2/sandboxTesters", info: .init(mainType: "betaTesters", version: "V2", isRelationship: false), operations: [getOperation!])
+        XCTAssertEqual(getOperation?.getVersionedName(path: path), "ListSandboxTestersV2")
+    }
+
     func testGetName() throws {
         XCTAssertEqual(try Operation.getName(forId: "users-get_instance"), "getUser")
         XCTAssertEqual(try Operation.getName(forId: "users-get_collection"), "listUsers")
