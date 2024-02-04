@@ -168,6 +168,16 @@ Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong sc
 
 As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
 
+#### **FB12292035**: ErrorResponse.Errors has required optional "detail" and no "associatedErrors" in "meta"
+
+* Submitted: June 9th 2023.
+
+In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
+On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
+
+In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
+But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
