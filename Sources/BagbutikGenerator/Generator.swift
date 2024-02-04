@@ -167,7 +167,7 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    private static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+    internal static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
         throws -> (name: String, contents: String, url: String?) {
         let renderedSchema: String
         switch schema {

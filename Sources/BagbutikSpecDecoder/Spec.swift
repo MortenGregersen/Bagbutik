@@ -6,6 +6,8 @@ public struct Spec: Decodable {
     public var paths: [String: Path]
     /// The components contained in the spec
     public var components: Components
+    /// The schemas patched manually
+    public private(set) var patchedSchemas = [Schema]()
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -157,6 +159,7 @@ public struct Spec: Decodable {
                 bundleIdPlatformSchema.cases.append(EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."))
             }
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
+            patchedSchemas.append(.enum(bundleIdPlatformSchema))
         }
 
         // Add the case `PROCESSING` to Device.Status
@@ -178,6 +181,7 @@ public struct Spec: Decodable {
             deviceAttributesSchema.properties["status"] = statusProperty
             deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
             components.schemas["Device"] = .object(deviceSchema)
+            patchedSchemas.append(.object(deviceSchema))
         }
 
         // Add the case `GENERATE_INDIVIDUAL_KEYS` to UserRole
@@ -187,6 +191,7 @@ public struct Spec: Decodable {
                 userRoleSchema.cases.append(EnumCase(id: "generateIndividualKeys", value: "GENERATE_INDIVIDUAL_KEYS"))
             }
             components.schemas["UserRole"] = .enum(userRoleSchema)
+            patchedSchemas.append(.enum(userRoleSchema))
         }
 
         // Add the case `VISION_OS` to Platform
@@ -196,6 +201,7 @@ public struct Spec: Decodable {
                 platformSchema.cases.append(EnumCase(id: "visionOS", value: "VISION_OS", documentation: "A string that represents visionOS."))
             }
             components.schemas["Platform"] = .enum(platformSchema)
+            patchedSchemas.append(.enum(platformSchema))
         }
 
         // Add the `APP_APPLE_VISION_PRO` to ScreenshotDisplayType
@@ -206,27 +212,24 @@ public struct Spec: Decodable {
             }
             screenshotDisplayTypeSchema.cases.sort(by: { $0.id < $1.id })
             components.schemas["ScreenshotDisplayType"] = .enum(screenshotDisplayTypeSchema)
+            patchedSchemas.append(.enum(screenshotDisplayTypeSchema))
         }
 
         // Change the shcema ref of the `data` property on *WithoutIncludesResponse
         // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as FB13540097.
         let schemaNamesWithoutIncludesResponses = components.schemas.keys.filter { $0.hasSuffix("WithoutIncludesResponse") }
         schemaNamesWithoutIncludesResponses.forEach { schemaName in
-            var schemaRefName = schemaName
+            let schemaRefName = schemaName
                 .replacingOccurrences(of: "WithoutIncludesResponse", with: "")
                 .replacingOccurrences(of: "PreRelease", with: "Prerelease")
             if case .object(var responseSchema) = components.schemas[schemaName] {
                 if schemaRefName.hasSuffix("s") {
-                    if schemaRefName.hasSuffix("ies") {
-                        schemaRefName = schemaRefName.replacingOccurrences(of: "ies", with: "y")
-                    } else {
-                        schemaRefName = String(schemaRefName.dropLast(1))
-                    }
-                    responseSchema.properties["data"]?.type = .arrayOfSchemaRef(schemaRefName)
+                    responseSchema.properties["data"]?.type = .arrayOfSchemaRef(schemaRefName.singularized())
                 } else {
                     responseSchema.properties["data"]?.type = .schemaRef(schemaRefName)
                 }
                 components.schemas[schemaName] = .object(responseSchema)
+                patchedSchemas.append(.object(responseSchema))
             }
         }
 
@@ -267,6 +270,7 @@ public struct Spec: Decodable {
 
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
+        patchedSchemas.append(.object(errorResponseSchema))
     }
 
     /// A wrapper for schemas to ease decoding
