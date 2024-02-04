@@ -165,7 +165,7 @@ final class DocsFetcherTests: XCTestCase {
         try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)
         // Then
         XCTAssertEqual(printer.printedLogs, [
-            "🔍 Loading spec file:///Users/steve/spec.json...",
+            "🔍 Loading spec /Users/steve/spec.json...",
             "Fetching documentation for operation \'users-get_collection\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/list_users.json)",
             "Fetching documentation for operation \'users-visibleApps-get_to_many_relationship\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/get_all_visible_app_resource_ids_for_a_user.json)",
             "Fetching documentation for schema \'Platform\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/platform.json)",
@@ -259,7 +259,7 @@ final class DocsFetcherTests: XCTestCase {
         try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)
         // Then
         XCTAssertEqual(printer.printedLogs, [
-            "🔍 Loading spec file:///Users/steve/spec.json...",
+            "🔍 Loading spec /Users/steve/spec.json...",
             "⚠️ Documentation URL missing for operation: 'invalid'",
             "Saving operation documentation to: /Users/steve/output/OperationDocumentation.json",
             "Saving schema documentation to: /Users/steve/output/SchemaDocumentation.json",
