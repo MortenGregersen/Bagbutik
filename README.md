@@ -137,3 +137,35 @@ Right now there are 7 libraries with endpoints:
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
 * `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
+
+## Manual workarounds applied
+
+The spec Apple provides doesn't always match the data coming from the API. Everytime such a case is found, a feedback has been submitted to Apple.
+
+### Currently open feedback and patches
+
+* **FB8977648**: App Store Connect API is missing the "UNIVERSAL" type for the BundleIdPlatform schema
+  * Submitted: January 21st 2021.
+  * Updated: October 14th 2022 - the type "SERVICES" is also missing.
+
+* **FB13540097**: App Store Connect API Spec and Docs has wrong schema ref for the "data" property on almost all of the schemas ending in “WithoutIncludesResponse”
+  * Submitted: January 14th 2024.
+  * Confirmed by Apple: January 31st 2024
+
+### Closed feedaback (workarounds removed)
+
+* **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
+  * Submitted: March 21st 2022.
+  * Resolved: July 12th 2022 (Spec version 2.0).
+
+* **FB10029609**: Required 'links' property missing on included BuildBundle
+  * Submitted: May 27th 2022.
+  * Resolved: At least since May 23rd 2023.
+
+* **FB13071298**: App Store Connect API Spec is missing "VISION_OS" type for the Platform schema
+  * Submitted: August 28th 2023.
+  * Resolved: January 25th 2024 (Spec version 3.2).
+
+* **FB13539766**: App Store Connect API Spec is missing "APP_APPLE_VISION_PRO" type for the Screenshot Display Type schema
+  * Submitted: January 14th 2024.
+  * Resolved: January 25th 2024 (Spec version 3.2).
