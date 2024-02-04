@@ -144,17 +144,34 @@ The Open API Spec provided by Apple do not always align with the data received f
 
 ### Currently open feedback and applied patches
 
-* **FB8977648**: App Store Connect API is missing the "UNIVERSAL" type for the BundleIdPlatform schema
-  * Submitted: January 21st 2021.
-  * Updated: October 14th 2022 - the type "SERVICES" is also missing.
+#### **FB8977648**: The "BundleIdPlatform" schema is missing "UNIVERSAL" and "SERVICES"
 
-* **FB13540097**: App Store Connect API Spec and Docs has wrong schema ref for the "data" property on almost all of the schemas ending in “WithoutIncludesResponse”
-  * Submitted: January 14th 2024.
-  * Confirmed by Apple: January 31st 2024
+* Submitted: January 21st 2021.
+* Updated: October 14th 2022 - the type "SERVICES" is also missing.
+
+**Title:** App Store Connect API is missing the "UNIVERSAL" type for the BundleIdPlatform schema
+
+##### Description
+
+In the OpenAPI spec for the App Store Connect API the "BundleIdPlatform" schema is said to only be "IOS" or "MAC_OS". This is not right as universal apps (iOS and macOS) has a "UNIVERSAL" platform.
+
+#### **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
+
+* Submitted: January 14th 2024.
+* Confirmed by Apple: January 31st 2024
+
+**Title:** App Store Connect API Spec and Docs has wrong schema ref for the "data" property on almost all of the schemas ending in “WithoutIncludesResponse”
+
+##### Description
+
+Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong schema ref for the “data” property. This is both the case in the Open API Spec and the Docs on developer.apple.com.
+
+As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
 
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
+  * In version 1.8 of the OpenAPI spec for the App Store Connect API, the schema “xcodeMetrics” has no properties or attributes.
   * Submitted: March 21st 2022.
   * Resolved: July 12th 2022 (Spec version 2.0).
 
