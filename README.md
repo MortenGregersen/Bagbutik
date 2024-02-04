@@ -137,3 +137,61 @@ Right now there are 7 libraries with endpoints:
 * `Bagbutik-TestFlight`: Manage your [beta testing program, including beta testers and groups, apps, App Clips, and builds](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers).
 * `Bagbutik-Users`: Manage [users](https://developer.apple.com/documentation/appstoreconnectapi/users) and [email invitations to join](https://developer.apple.com/documentation/appstoreconnectapi/user_invitations) your App Store Connect team.
 * `Bagbutik-XcodeCloud`: Automate [reading Xcode Cloud data, managing workflows, and starting builds](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds).
+
+## Manual patches applied to OpenAPI Spec
+
+The OpenAPI Spec provided by Apple do not always align with the data received from the API. Whenever such mismatches are identified, feedback is submitted to Apple and a patch is applied. Whenever an issue is resolved, the patch is removed again.
+
+### Currently open feedback and applied patches
+
+#### **FB8977648**: The "BundleIdPlatform" schema is missing "UNIVERSAL" and "SERVICES"
+
+* Submitted: January 21st 2021.
+* Updated: October 14th 2022 - the type "SERVICES" is also missing.
+
+**Title:** App Store Connect API is missing the "UNIVERSAL" type for the BundleIdPlatform schema
+
+##### Description
+
+In the OpenAPI spec for the App Store Connect API the "BundleIdPlatform" schema is said to only be "IOS" or "MAC_OS". This is not right as universal apps (iOS and macOS) has a "UNIVERSAL" platform.
+
+#### **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
+
+* Submitted: January 14th 2024.
+* Confirmed by Apple: January 31st 2024
+
+**Title:** App Store Connect API Spec and Docs has wrong schema ref for the "data" property on almost all of the schemas ending in “WithoutIncludesResponse”
+
+##### Description
+
+Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong schema ref for the “data” property. This is both the case in the OpenAPI Spec and the Docs on developer.apple.com.
+
+As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
+
+#### **FB12292035**: ErrorResponse.Errors has required optional "detail" and no "associatedErrors" in "meta"
+
+* Submitted: June 9th 2023.
+
+In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
+On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
+
+In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
+But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
+
+### Closed feedback (removed patches)
+
+* **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
+  * Submitted: March 21st 2022.
+  * Resolved: July 12th 2022 (Spec version 2.0).
+
+* **FB10029609**: Required 'links' property missing on included BuildBundle
+  * Submitted: May 27th 2022.
+  * Resolved: At least since May 23rd 2023.
+
+* **FB13071298**: App Store Connect API Spec is missing "VISION_OS" type for the Platform schema
+  * Submitted: August 28th 2023.
+  * Resolved: January 25th 2024 (Spec version 3.2).
+
+* **FB13539766**: App Store Connect API Spec is missing "APP_APPLE_VISION_PRO" type for the Screenshot Display Type schema
+  * Submitted: January 14th 2024.
+  * Resolved: January 25th 2024 (Spec version 3.2).
