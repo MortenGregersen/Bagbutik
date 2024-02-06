@@ -117,11 +117,11 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
             case educationJapan = "EDUCATION_JAPAN"
             case entertainment = "ENTERTAINMENT"
             case evCharger = "EV_CHARGER"
-            case financialUsd = "FINANCIAL_USD"
             case financialCny = "FINANCIAL_CNY"
+            case financialEur = "FINANCIAL_EUR"
             case financialGbp = "FINANCIAL_GBP"
             case financialJpy = "FINANCIAL_JPY"
-            case financialEur = "FINANCIAL_EUR"
+            case financialUsd = "FINANCIAL_USD"
             case fitness = "FITNESS"
             case foodAndDrink = "FOOD_AND_DRINK"
             case gas = "GAS"
@@ -296,8 +296,6 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
 
             public enum MapAction: String, Codable, CaseIterable {
                 case buyTickets = "BUY_TICKETS"
-                case viewAvailability = "VIEW_AVAILABILITY"
-                case viewPricing = "VIEW_PRICING"
                 case hotelBookRoom = "HOTEL_BOOK_ROOM"
                 case parkingReserveParking = "PARKING_RESERVE_PARKING"
                 case restaurantJoinWaitlist = "RESTAURANT_JOIN_WAITLIST"
@@ -305,9 +303,11 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
                 case restaurantOrderFood = "RESTAURANT_ORDER_FOOD"
                 case restaurantOrderTakeout = "RESTAURANT_ORDER_TAKEOUT"
                 case restaurantReservation = "RESTAURANT_RESERVATION"
-                case scheduleAppointment = "SCHEDULE_APPOINTMENT"
                 case restaurantViewMenu = "RESTAURANT_VIEW_MENU"
+                case scheduleAppointment = "SCHEDULE_APPOINTMENT"
                 case theaterNowPlaying = "THEATER_NOW_PLAYING"
+                case viewAvailability = "VIEW_AVAILABILITY"
+                case viewPricing = "VIEW_PRICING"
             }
 
             /**
@@ -343,22 +343,22 @@ public struct AppClipAdvancedExperience: Codable, Identifiable {
             }
 
             public enum Relationship: String, Codable, CaseIterable {
-                case owner = "OWNER"
                 case authorized = "AUTHORIZED"
                 case other = "OTHER"
+                case owner = "OWNER"
             }
         }
 
         public enum PlaceStatus: String, Codable, CaseIterable {
-            case pending = "PENDING"
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
+            case pending = "PENDING"
         }
 
         public enum Status: String, Codable, CaseIterable {
-            case received = "RECEIVED"
-            case deactivated = "DEACTIVATED"
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
+            case deactivated = "DEACTIVATED"
+            case received = "RECEIVED"
         }
     }
 

@@ -80,32 +80,32 @@ public struct InAppPurchase: Codable, Identifiable {
 
         public enum InAppPurchaseType: String, Codable, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
-            case nonConsumable = "NON_CONSUMABLE"
             case consumable = "CONSUMABLE"
-            case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
             case freeSubscription = "FREE_SUBSCRIPTION"
+            case nonConsumable = "NON_CONSUMABLE"
+            case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
         }
 
         public enum State: String, Codable, CaseIterable {
-            case created = "CREATED"
-            case developerSignedOff = "DEVELOPER_SIGNED_OFF"
-            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
-            case deletionInProgress = "DELETION_IN_PROGRESS"
             case approved = "APPROVED"
+            case created = "CREATED"
             case deleted = "DELETED"
-            case removedFromSale = "REMOVED_FROM_SALE"
+            case deletionInProgress = "DELETION_IN_PROGRESS"
+            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case waitingForUpload = "WAITING_FOR_UPLOAD"
-            case processingContent = "PROCESSING_CONTENT"
-            case replaced = "REPLACED"
-            case rejected = "REJECTED"
-            case waitingForScreenshot = "WAITING_FOR_SCREENSHOT"
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case missingMetadata = "MISSING_METADATA"
-            case readyToSubmit = "READY_TO_SUBMIT"
-            case waitingForReview = "WAITING_FOR_REVIEW"
+            case developerSignedOff = "DEVELOPER_SIGNED_OFF"
             case inReview = "IN_REVIEW"
+            case missingMetadata = "MISSING_METADATA"
             case pendingDeveloperRelease = "PENDING_DEVELOPER_RELEASE"
+            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
+            case processingContent = "PROCESSING_CONTENT"
+            case readyToSubmit = "READY_TO_SUBMIT"
+            case rejected = "REJECTED"
+            case removedFromSale = "REMOVED_FROM_SALE"
+            case replaced = "REPLACED"
+            case waitingForReview = "WAITING_FOR_REVIEW"
+            case waitingForScreenshot = "WAITING_FOR_SCREENSHOT"
+            case waitingForUpload = "WAITING_FOR_UPLOAD"
         }
     }
 

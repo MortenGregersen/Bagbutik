@@ -262,8 +262,6 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
 
                 public enum MapAction: String, Codable, CaseIterable {
                     case buyTickets = "BUY_TICKETS"
-                    case viewAvailability = "VIEW_AVAILABILITY"
-                    case viewPricing = "VIEW_PRICING"
                     case hotelBookRoom = "HOTEL_BOOK_ROOM"
                     case parkingReserveParking = "PARKING_RESERVE_PARKING"
                     case restaurantJoinWaitlist = "RESTAURANT_JOIN_WAITLIST"
@@ -271,9 +269,11 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                     case restaurantOrderFood = "RESTAURANT_ORDER_FOOD"
                     case restaurantOrderTakeout = "RESTAURANT_ORDER_TAKEOUT"
                     case restaurantReservation = "RESTAURANT_RESERVATION"
-                    case scheduleAppointment = "SCHEDULE_APPOINTMENT"
                     case restaurantViewMenu = "RESTAURANT_VIEW_MENU"
+                    case scheduleAppointment = "SCHEDULE_APPOINTMENT"
                     case theaterNowPlaying = "THEATER_NOW_PLAYING"
+                    case viewAvailability = "VIEW_AVAILABILITY"
+                    case viewPricing = "VIEW_PRICING"
                 }
 
                 /**
@@ -309,9 +309,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, RequestBody {
                 }
 
                 public enum Relationship: String, Codable, CaseIterable {
-                    case owner = "OWNER"
                     case authorized = "AUTHORIZED"
                     case other = "OTHER"
+                    case owner = "OWNER"
                 }
             }
         }

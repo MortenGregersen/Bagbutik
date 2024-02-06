@@ -145,8 +145,8 @@ public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, PagedRe
 
         public enum Granularity: String, Codable, CaseIterable {
             case P1D
-            case PT1H
             case PT15M
+            case PT1H
         }
     }
 }

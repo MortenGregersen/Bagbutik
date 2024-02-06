@@ -113,8 +113,8 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
             case EL_GR = "EL-GR"
             case EN_AU = "EN-AU"
             case EN_GB = "EN-GB"
-            case EN_US = "EN-US"
             case EN_KY = "EN-KY"
+            case EN_US = "EN-US"
             case ES_ES = "ES-ES"
             case ES_MX = "ES-MX"
             case FI_FI = "FI-FI"
@@ -142,8 +142,8 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
             case TR_TR = "TR-TR"
             case UK_UA = "UK-UA"
             case ZH_CN = "ZH-CN"
-            case ZH_TW = "ZH-TW"
             case ZH_HK = "ZH-HK"
+            case ZH_TW = "ZH-TW"
         }
     }
 

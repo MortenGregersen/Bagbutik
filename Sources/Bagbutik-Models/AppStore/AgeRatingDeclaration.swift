@@ -170,75 +170,75 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
         }
 
         public enum AlcoholTobaccoOrDrugUseOrReferences: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum Contests: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum GamblingSimulated: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum HorrorOrFearThemes: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum MatureOrSuggestiveThemes: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum MedicalOrTreatmentInformation: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ProfanityOrCrudeHumor: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum SexualContentGraphicAndNudity: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum SexualContentOrNudity: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ViolenceCartoonOrFantasy: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ViolenceRealistic: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
     }
 }

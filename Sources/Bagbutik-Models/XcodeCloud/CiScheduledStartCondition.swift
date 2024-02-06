@@ -54,19 +54,19 @@ public struct CiScheduledStartCondition: Codable {
         }
 
         public enum Frequency: String, Codable, CaseIterable {
-            case weekly = "WEEKLY"
             case daily = "DAILY"
             case hourly = "HOURLY"
+            case weekly = "WEEKLY"
         }
 
         public enum Items: String, Codable, CaseIterable {
-            case sunday = "SUNDAY"
+            case friday = "FRIDAY"
             case monday = "MONDAY"
+            case saturday = "SATURDAY"
+            case sunday = "SUNDAY"
+            case thursday = "THURSDAY"
             case tuesday = "TUESDAY"
             case wednesday = "WEDNESDAY"
-            case thursday = "THURSDAY"
-            case friday = "FRIDAY"
-            case saturday = "SATURDAY"
         }
     }
 }

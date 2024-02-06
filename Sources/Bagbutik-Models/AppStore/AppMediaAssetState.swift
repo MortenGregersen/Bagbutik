@@ -24,8 +24,8 @@ public struct AppMediaAssetState: Codable {
 
     public enum State: String, Codable, CaseIterable {
         case awaitingUpload = "AWAITING_UPLOAD"
-        case uploadComplete = "UPLOAD_COMPLETE"
         case complete = "COMPLETE"
         case failed = "FAILED"
+        case uploadComplete = "UPLOAD_COMPLETE"
     }
 }

@@ -144,9 +144,9 @@ public enum ListPreReleaseVersionsV1 {
         case version([String])
 
         public enum BuildsProcessingState: String, ParameterValue, Codable, CaseIterable {
-            case processing = "PROCESSING"
             case failed = "FAILED"
             case invalid = "INVALID"
+            case processing = "PROCESSING"
             case valid = "VALID"
         }
     }

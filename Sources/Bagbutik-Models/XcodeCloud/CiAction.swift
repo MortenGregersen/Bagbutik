@@ -48,22 +48,22 @@ public struct CiAction: Codable {
     public enum Destination: String, Codable, CaseIterable {
         case anyIosDevice = "ANY_IOS_DEVICE"
         case anyIosSimulator = "ANY_IOS_SIMULATOR"
-        case anyTvosDevice = "ANY_TVOS_DEVICE"
-        case anyTvosSimulator = "ANY_TVOS_SIMULATOR"
-        case anyWatchosDevice = "ANY_WATCHOS_DEVICE"
-        case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
         case anyMac = "ANY_MAC"
         case anyMacCatalyst = "ANY_MAC_CATALYST"
+        case anyTvosDevice = "ANY_TVOS_DEVICE"
+        case anyTvosSimulator = "ANY_TVOS_SIMULATOR"
         case anyVisionosDevice = "ANY_VISIONOS_DEVICE"
         case anyVisionosSimulator = "ANY_VISIONOS_SIMULATOR"
+        case anyWatchosDevice = "ANY_WATCHOS_DEVICE"
+        case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
     }
 
     public enum Platform: String, Codable, CaseIterable {
-        case macOS = "MACOS"
         case iOS = "IOS"
+        case macOS = "MACOS"
         case tvOS = "TVOS"
-        case watchos = "WATCHOS"
         case visionos = "VISIONOS"
+        case watchos = "WATCHOS"
     }
 
     /**
@@ -91,8 +91,8 @@ public struct CiAction: Codable {
         }
 
         public enum Kind: String, Codable, CaseIterable {
-            case useSchemeSettings = "USE_SCHEME_SETTINGS"
             case specificTestPlans = "SPECIFIC_TEST_PLANS"
+            case useSchemeSettings = "USE_SCHEME_SETTINGS"
         }
     }
 }

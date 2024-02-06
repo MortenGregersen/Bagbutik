@@ -41,28 +41,28 @@ public enum GetSalesReportsV1 {
 
         public enum Frequency: String, ParameterValue, Codable, CaseIterable {
             case daily = "DAILY"
-            case weekly = "WEEKLY"
             case monthly = "MONTHLY"
+            case weekly = "WEEKLY"
             case yearly = "YEARLY"
         }
 
         public enum ReportSubType: String, ParameterValue, Codable, CaseIterable {
-            case summary = "SUMMARY"
             case detailed = "DETAILED"
+            case summary = "SUMMARY"
+            case summaryChannel = "SUMMARY_CHANNEL"
             case summaryInstallType = "SUMMARY_INSTALL_TYPE"
             case summaryTerritory = "SUMMARY_TERRITORY"
-            case summaryChannel = "SUMMARY_CHANNEL"
         }
 
         public enum ReportType: String, ParameterValue, Codable, CaseIterable {
-            case sales = "SALES"
-            case preOrder = "PRE_ORDER"
+            case installs = "INSTALLS"
             case newsstand = "NEWSSTAND"
+            case preOrder = "PRE_ORDER"
+            case sales = "SALES"
+            case subscriber = "SUBSCRIBER"
             case subscription = "SUBSCRIPTION"
             case subscriptionEvent = "SUBSCRIPTION_EVENT"
-            case subscriber = "SUBSCRIBER"
             case subscriptionOfferCodeRedemption = "SUBSCRIPTION_OFFER_CODE_REDEMPTION"
-            case installs = "INSTALLS"
         }
     }
 }
