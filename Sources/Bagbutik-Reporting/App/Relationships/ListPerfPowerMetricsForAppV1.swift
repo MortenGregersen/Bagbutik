@@ -35,12 +35,12 @@ public enum ListPerfPowerMetricsForAppV1 {
         case platform([Platform])
 
         public enum MetricType: String, ParameterValue, Codable, CaseIterable {
+            case animation = "ANIMATION"
+            case battery = "BATTERY"
             case disk = "DISK"
             case hang = "HANG"
-            case battery = "BATTERY"
             case launch = "LAUNCH"
             case memory = "MEMORY"
-            case animation = "ANIMATION"
             case termination = "TERMINATION"
         }
 

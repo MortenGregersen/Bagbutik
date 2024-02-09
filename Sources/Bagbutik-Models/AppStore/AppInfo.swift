@@ -70,52 +70,69 @@ public struct AppInfo: Codable, Identifiable {
         /// The app’s age rating as it appears on the App Store for all platforms.
         public var appStoreAgeRating: AppStoreAgeRating?
         /// The state of an app version in the App Store.
-        public var appStoreState: AppStoreVersionState?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appStoreState: AppStoreVersionState? = nil
         /// The app’s age rating as it appears on the App Store in Brazil for all platforms.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var brazilAgeRating: BrazilAgeRating? = nil
         public var brazilAgeRatingV2: BrazilAgeRatingV2?
         /// A Made for Kids app’s age band.
         public var kidsAgeBand: KidsAgeBand?
+        public var state: State?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appStoreAgeRating: AppStoreAgeRating? = nil,
                     appStoreState: AppStoreVersionState? = nil,
                     brazilAgeRating: BrazilAgeRating? = nil,
                     brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
-                    kidsAgeBand: KidsAgeBand? = nil)
+                    kidsAgeBand: KidsAgeBand? = nil,
+                    state: State? = nil)
         {
             self.appStoreAgeRating = appStoreAgeRating
             self.appStoreState = appStoreState
             self.brazilAgeRating = brazilAgeRating
             self.brazilAgeRatingV2 = brazilAgeRatingV2
             self.kidsAgeBand = kidsAgeBand
+            self.state = state
         }
 
         public init(appStoreAgeRating: AppStoreAgeRating? = nil,
-                    appStoreState: AppStoreVersionState? = nil,
                     brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
-                    kidsAgeBand: KidsAgeBand? = nil)
+                    kidsAgeBand: KidsAgeBand? = nil,
+                    state: State? = nil)
         {
             self.appStoreAgeRating = appStoreAgeRating
-            self.appStoreState = appStoreState
             self.brazilAgeRatingV2 = brazilAgeRatingV2
             self.kidsAgeBand = kidsAgeBand
+            self.state = state
         }
 
         public enum BrazilAgeRatingV2: String, Codable, CaseIterable {
-            case selfRatedL = "SELF_RATED_L"
-            case selfRatedTen = "SELF_RATED_TEN"
-            case selfRatedTwelve = "SELF_RATED_TWELVE"
-            case selfRatedFourteen = "SELF_RATED_FOURTEEN"
-            case selfRatedSixteen = "SELF_RATED_SIXTEEN"
-            case selfRatedEighteen = "SELF_RATED_EIGHTEEN"
+            case officialEighteen = "OFFICIAL_EIGHTEEN"
+            case officialFourteen = "OFFICIAL_FOURTEEN"
             case officialL = "OFFICIAL_L"
+            case officialSixteen = "OFFICIAL_SIXTEEN"
             case officialTen = "OFFICIAL_TEN"
             case officialTwelve = "OFFICIAL_TWELVE"
-            case officialFourteen = "OFFICIAL_FOURTEEN"
-            case officialSixteen = "OFFICIAL_SIXTEEN"
-            case officialEighteen = "OFFICIAL_EIGHTEEN"
+            case selfRatedEighteen = "SELF_RATED_EIGHTEEN"
+            case selfRatedFourteen = "SELF_RATED_FOURTEEN"
+            case selfRatedL = "SELF_RATED_L"
+            case selfRatedSixteen = "SELF_RATED_SIXTEEN"
+            case selfRatedTen = "SELF_RATED_TEN"
+            case selfRatedTwelve = "SELF_RATED_TWELVE"
+        }
+
+        public enum State: String, Codable, CaseIterable {
+            case accepted = "ACCEPTED"
+            case developerRejected = "DEVELOPER_REJECTED"
+            case inReview = "IN_REVIEW"
+            case pendingRelease = "PENDING_RELEASE"
+            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
+            case readyForDistribution = "READY_FOR_DISTRIBUTION"
+            case readyForReview = "READY_FOR_REVIEW"
+            case rejected = "REJECTED"
+            case replacedWithNewInfo = "REPLACED_WITH_NEW_INFO"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

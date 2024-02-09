@@ -90,16 +90,16 @@ public enum ListSubscriptionGroupsForAppV1 {
         case subscriptions_state([SubscriptionsState])
 
         public enum SubscriptionsState: String, ParameterValue, Codable, CaseIterable {
-            case missingMetadata = "MISSING_METADATA"
-            case readyToSubmit = "READY_TO_SUBMIT"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
-            case pendingBinaryApproval = "PENDING_BINARY_APPROVAL"
             case approved = "APPROVED"
+            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case removedFromSale = "REMOVED_FROM_SALE"
+            case inReview = "IN_REVIEW"
+            case missingMetadata = "MISSING_METADATA"
+            case pendingBinaryApproval = "PENDING_BINARY_APPROVAL"
+            case readyToSubmit = "READY_TO_SUBMIT"
             case rejected = "REJECTED"
+            case removedFromSale = "REMOVED_FROM_SALE"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

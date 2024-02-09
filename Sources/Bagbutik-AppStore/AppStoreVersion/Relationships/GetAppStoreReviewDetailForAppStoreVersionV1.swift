@@ -63,6 +63,7 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
 
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
+            case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
             case appStoreReviewDetail
@@ -72,6 +73,7 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
+            case appVersionState
             case build
             case copyright
             case createdDate
@@ -80,6 +82,7 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case earliestReleaseDate
             case platform
             case releaseType
+            case reviewType
             case routingAppCoverage
             case versionString
         }

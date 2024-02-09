@@ -43,6 +43,7 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -71,6 +72,7 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder

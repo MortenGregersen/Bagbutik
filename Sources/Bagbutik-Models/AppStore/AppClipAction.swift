@@ -10,6 +10,6 @@ import Foundation
  */
 public enum AppClipAction: String, ParameterValue, Codable, CaseIterable {
     case open = "OPEN"
-    case view = "VIEW"
     case play = "PLAY"
+    case view = "VIEW"
 }

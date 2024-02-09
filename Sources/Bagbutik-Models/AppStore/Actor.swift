@@ -62,10 +62,10 @@ public struct Actor: Codable, Identifiable {
         }
 
         public enum ActorType: String, Codable, CaseIterable {
-            case user = "USER"
             case apiKey = "API_KEY"
-            case xcodeCloud = "XCODE_CLOUD"
             case apple = "APPLE"
+            case user = "USER"
+            case xcodeCloud = "XCODE_CLOUD"
         }
     }
 }

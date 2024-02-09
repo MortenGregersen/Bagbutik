@@ -69,6 +69,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
 
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
+            case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
             case appStoreReviewDetail
@@ -78,6 +79,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
+            case appVersionState
             case build
             case copyright
             case createdDate
@@ -86,11 +88,13 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case earliestReleaseDate
             case platform
             case releaseType
+            case reviewType
             case routingAppCoverage
             case versionString
         }
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -119,6 +123,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder
@@ -146,15 +151,15 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
         case state([State])
 
         public enum State: String, ParameterValue, Codable, CaseIterable {
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case readyForReview = "READY_FOR_REVIEW"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
-            case rejected = "REJECTED"
             case completed = "COMPLETED"
+            case inReview = "IN_REVIEW"
+            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
+            case readyForReview = "READY_FOR_REVIEW"
+            case rejected = "REJECTED"
             case stopped = "STOPPED"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

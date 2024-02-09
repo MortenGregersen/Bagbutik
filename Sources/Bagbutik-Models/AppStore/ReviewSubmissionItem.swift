@@ -55,9 +55,9 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
         }
 
         public enum State: String, Codable, CaseIterable {
-            case readyForReview = "READY_FOR_REVIEW"
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
+            case readyForReview = "READY_FOR_REVIEW"
             case rejected = "REJECTED"
             case removed = "REMOVED"
         }

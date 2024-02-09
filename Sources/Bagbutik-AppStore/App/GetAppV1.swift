@@ -31,6 +31,8 @@ public enum GetAppV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
+        /// The fields to include for returned resources of type alternativeDistributionKeys
+        case alternativeDistributionKeys([AlternativeDistributionKeys])
         /// The fields to include for returned resources of type appAvailabilities
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appAvailabilities([AppAvailabilities])
@@ -83,6 +85,8 @@ public enum GetAppV1 {
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
+        /// The fields to include for returned resources of type marketplaceSearchDetails
+        case marketplaceSearchDetails([MarketplaceSearchDetails])
         /// The fields to include for returned resources of type perfPowerMetrics
         case perfPowerMetrics([PerfPowerMetrics])
         /// The fields to include for returned resources of type preReleaseVersions
@@ -98,6 +102,11 @@ public enum GetAppV1 {
         /// The fields to include for returned resources of type territories
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case territories([Territories])
+
+        public enum AlternativeDistributionKeys: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case publicKey
+        }
 
         public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
             case app
@@ -172,6 +181,7 @@ public enum GetAppV1 {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+            case state
         }
 
         public enum AppPreOrders: String, ParameterValue, Codable, CaseIterable {
@@ -218,6 +228,7 @@ public enum GetAppV1 {
 
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
+            case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
             case appStoreReviewDetail
@@ -227,6 +238,7 @@ public enum GetAppV1 {
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
+            case appVersionState
             case build
             case copyright
             case createdDate
@@ -235,11 +247,13 @@ public enum GetAppV1 {
             case earliestReleaseDate
             case platform
             case releaseType
+            case reviewType
             case routingAppCoverage
             case versionString
         }
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -268,6 +282,7 @@ public enum GetAppV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder
@@ -427,6 +442,11 @@ public enum GetAppV1 {
             case referenceName
             case reviewNote
             case state
+        }
+
+        public enum MarketplaceSearchDetails: String, ParameterValue, Codable, CaseIterable {
+            case app
+            case catalogUrl
         }
 
         public enum PerfPowerMetrics: String, ParameterValue, Codable, CaseIterable {

@@ -68,18 +68,21 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             public var earliestReleaseDate: Date?
             public let platform: Platform
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
+            public var reviewType: AppStoreVersion.Attributes.ReviewType?
             public let versionString: String
 
             public init(copyright: String? = nil,
                         earliestReleaseDate: Date? = nil,
                         platform: Platform,
                         releaseType: AppStoreVersion.Attributes.ReleaseType? = nil,
+                        reviewType: AppStoreVersion.Attributes.ReviewType? = nil,
                         versionString: String)
             {
                 self.copyright = copyright
                 self.earliestReleaseDate = earliestReleaseDate
                 self.platform = platform
                 self.releaseType = releaseType
+                self.reviewType = reviewType
                 self.versionString = versionString
             }
         }

@@ -44,6 +44,7 @@ public enum ListInAppPurchasesForAppV1 {
         case inAppPurchases([InAppPurchases])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -72,6 +73,7 @@ public enum ListInAppPurchasesForAppV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder
@@ -110,10 +112,10 @@ public enum ListInAppPurchasesForAppV1 {
 
         public enum InAppPurchaseType: String, ParameterValue, Codable, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
-            case nonConsumable = "NON_CONSUMABLE"
             case consumable = "CONSUMABLE"
-            case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
             case freeSubscription = "FREE_SUBSCRIPTION"
+            case nonConsumable = "NON_CONSUMABLE"
+            case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
         }
     }
 

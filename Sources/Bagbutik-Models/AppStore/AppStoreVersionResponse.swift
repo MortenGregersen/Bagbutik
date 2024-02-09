@@ -22,6 +22,13 @@ public struct AppStoreVersionResponse: Codable {
         self.links = links
     }
 
+    public func getAlternativeDistributionPackage() -> AlternativeDistributionPackage? {
+        included?.compactMap { relationship -> AlternativeDistributionPackage? in
+            guard case let .alternativeDistributionPackage(alternativeDistributionPackage) = relationship else { return nil }
+            return alternativeDistributionPackage
+        }.first { $0.id == data.relationships?.alternativeDistributionPackage?.data?.id }
+    }
+
     public func getApp() -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }
@@ -109,6 +116,7 @@ public struct AppStoreVersionResponse: Codable {
 
     public enum Included: Codable {
         case ageRatingDeclaration(AgeRatingDeclaration)
+        case alternativeDistributionPackage(AlternativeDistributionPackage)
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
         case appStoreReviewDetail(AppStoreReviewDetail)
@@ -123,6 +131,8 @@ public struct AppStoreVersionResponse: Codable {
         public init(from decoder: Decoder) throws {
             if let ageRatingDeclaration = try? AgeRatingDeclaration(from: decoder) {
                 self = .ageRatingDeclaration(ageRatingDeclaration)
+            } else if let alternativeDistributionPackage = try? AlternativeDistributionPackage(from: decoder) {
+                self = .alternativeDistributionPackage(alternativeDistributionPackage)
             } else if let app = try? App(from: decoder) {
                 self = .app(app)
             } else if let appClipDefaultExperience = try? AppClipDefaultExperience(from: decoder) {
@@ -152,6 +162,8 @@ public struct AppStoreVersionResponse: Codable {
         public func encode(to encoder: Encoder) throws {
             switch self {
             case let .ageRatingDeclaration(value):
+                try value.encode(to: encoder)
+            case let .alternativeDistributionPackage(value):
                 try value.encode(to: encoder)
             case let .app(value):
                 try value.encode(to: encoder)

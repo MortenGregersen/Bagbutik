@@ -101,20 +101,20 @@ public struct Profile: Codable, Identifiable {
         }
 
         public enum ProfileType: String, ParameterValue, Codable, CaseIterable {
-            case iOSAppDevelopment = "IOS_APP_DEVELOPMENT"
-            case iOSAppStore = "IOS_APP_STORE"
             case iOSAppAdhoc = "IOS_APP_ADHOC"
+            case iOSAppDevelopment = "IOS_APP_DEVELOPMENT"
             case iOSAppInhouse = "IOS_APP_INHOUSE"
+            case iOSAppStore = "IOS_APP_STORE"
             case macAppDevelopment = "MAC_APP_DEVELOPMENT"
-            case macAppStore = "MAC_APP_STORE"
             case macAppDirect = "MAC_APP_DIRECT"
-            case tvOSAppDevelopment = "TVOS_APP_DEVELOPMENT"
-            case tvOSAppStore = "TVOS_APP_STORE"
-            case tvOSAppAdhoc = "TVOS_APP_ADHOC"
-            case tvOSAppInhouse = "TVOS_APP_INHOUSE"
+            case macAppStore = "MAC_APP_STORE"
             case macCatalystAppDevelopment = "MAC_CATALYST_APP_DEVELOPMENT"
-            case macCatalystAppStore = "MAC_CATALYST_APP_STORE"
             case macCatalystAppDirect = "MAC_CATALYST_APP_DIRECT"
+            case macCatalystAppStore = "MAC_CATALYST_APP_STORE"
+            case tvOSAppAdhoc = "TVOS_APP_ADHOC"
+            case tvOSAppDevelopment = "TVOS_APP_DEVELOPMENT"
+            case tvOSAppInhouse = "TVOS_APP_INHOUSE"
+            case tvOSAppStore = "TVOS_APP_STORE"
         }
     }
 

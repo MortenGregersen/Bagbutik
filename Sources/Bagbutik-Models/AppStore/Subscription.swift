@@ -74,25 +74,25 @@ public struct Subscription: Codable, Identifiable {
         }
 
         public enum State: String, Codable, CaseIterable {
-            case missingMetadata = "MISSING_METADATA"
-            case readyToSubmit = "READY_TO_SUBMIT"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
-            case pendingBinaryApproval = "PENDING_BINARY_APPROVAL"
             case approved = "APPROVED"
+            case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
-            case removedFromSale = "REMOVED_FROM_SALE"
+            case inReview = "IN_REVIEW"
+            case missingMetadata = "MISSING_METADATA"
+            case pendingBinaryApproval = "PENDING_BINARY_APPROVAL"
+            case readyToSubmit = "READY_TO_SUBMIT"
             case rejected = "REJECTED"
+            case removedFromSale = "REMOVED_FROM_SALE"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
 
         public enum SubscriptionPeriod: String, Codable, CaseIterable {
-            case oneWeek = "ONE_WEEK"
             case oneMonth = "ONE_MONTH"
-            case twoMonths = "TWO_MONTHS"
-            case threeMonths = "THREE_MONTHS"
-            case sixMonths = "SIX_MONTHS"
+            case oneWeek = "ONE_WEEK"
             case oneYear = "ONE_YEAR"
+            case sixMonths = "SIX_MONTHS"
+            case threeMonths = "THREE_MONTHS"
+            case twoMonths = "TWO_MONTHS"
         }
     }
 

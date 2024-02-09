@@ -60,6 +60,7 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
      <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration/attributes>
      */
     public struct Attributes: Codable {
+        public var ageRatingOverride: AgeRatingOverride?
         /// Declaration for alcohol, tobacco, or drug use.
         public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
         /// Declaration for contests.
@@ -82,7 +83,8 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
         /// Declaration for profanity or crude humor.
         public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
         /// Declaration for a 17+ rating, provided as a Boolean value.
-        public var seventeenPlus: Bool?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var seventeenPlus: Bool? = nil
         /// Declaration for graphic sexual content and nudity.
         public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
         /// Declaration for sexual content or nudity.
@@ -97,7 +99,8 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
         public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
+        public init(ageRatingOverride: AgeRatingOverride? = nil,
+                    alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
                     contests: Contests? = nil,
                     gambling: Bool? = nil,
                     gamblingAndContests: Bool? = nil,
@@ -115,6 +118,7 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
                     violenceRealistic: ViolenceRealistic? = nil,
                     violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
         {
+            self.ageRatingOverride = ageRatingOverride
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
             self.gambling = gambling
@@ -134,7 +138,8 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
             self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public init(alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
+        public init(ageRatingOverride: AgeRatingOverride? = nil,
+                    alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences? = nil,
                     contests: Contests? = nil,
                     gambling: Bool? = nil,
                     gamblingSimulated: GamblingSimulated? = nil,
@@ -143,7 +148,6 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
                     matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
                     medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
                     profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
-                    seventeenPlus: Bool? = nil,
                     sexualContentGraphicAndNudity: SexualContentGraphicAndNudity? = nil,
                     sexualContentOrNudity: SexualContentOrNudity? = nil,
                     unrestrictedWebAccess: Bool? = nil,
@@ -151,6 +155,7 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
                     violenceRealistic: ViolenceRealistic? = nil,
                     violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic? = nil)
         {
+            self.ageRatingOverride = ageRatingOverride
             self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
             self.contests = contests
             self.gambling = gambling
@@ -160,7 +165,6 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
             self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
             self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
             self.profanityOrCrudeHumor = profanityOrCrudeHumor
-            self.seventeenPlus = seventeenPlus
             self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
             self.sexualContentOrNudity = sexualContentOrNudity
             self.unrestrictedWebAccess = unrestrictedWebAccess
@@ -169,76 +173,82 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
             self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AlcoholTobaccoOrDrugUseOrReferences: String, Codable, CaseIterable {
+        public enum AgeRatingOverride: String, Codable, CaseIterable {
             case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case seventeenPlus = "SEVENTEEN_PLUS"
+            case unrated = "UNRATED"
+        }
+
+        public enum AlcoholTobaccoOrDrugUseOrReferences: String, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum Contests: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum GamblingSimulated: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum HorrorOrFearThemes: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum MatureOrSuggestiveThemes: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum MedicalOrTreatmentInformation: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ProfanityOrCrudeHumor: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum SexualContentGraphicAndNudity: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum SexualContentOrNudity: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ViolenceCartoonOrFantasy: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ViolenceRealistic: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
 
         public enum ViolenceRealisticProlongedGraphicOrSadistic: String, Codable, CaseIterable {
-            case none = "NONE"
-            case infrequentOrMild = "INFREQUENT_OR_MILD"
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
+            case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
         }
     }
 }

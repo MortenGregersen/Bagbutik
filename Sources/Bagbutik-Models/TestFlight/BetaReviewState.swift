@@ -9,8 +9,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/betareviewstate>
  */
 public enum BetaReviewState: String, ParameterValue, Codable, CaseIterable {
-    case waitingForReview = "WAITING_FOR_REVIEW"
+    case approved = "APPROVED"
     case inReview = "IN_REVIEW"
     case rejected = "REJECTED"
-    case approved = "APPROVED"
+    case waitingForReview = "WAITING_FOR_REVIEW"
 }

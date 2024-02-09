@@ -34,6 +34,8 @@ public enum GetAppStoreVersionV1 {
         /// The fields to include for returned resources of type ageRatingDeclarations
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case ageRatingDeclarations([AgeRatingDeclarations])
+        /// The fields to include for returned resources of type alternativeDistributionPackages
+        case alternativeDistributionPackages([AlternativeDistributionPackages])
         /// The fields to include for returned resources of type appClipDefaultExperiences
         case appClipDefaultExperiences([AppClipDefaultExperiences])
         /// The fields to include for returned resources of type appStoreReviewDetails
@@ -57,6 +59,7 @@ public enum GetAppStoreVersionV1 {
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -74,6 +77,11 @@ public enum GetAppStoreVersionV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public enum AlternativeDistributionPackages: String, ParameterValue, Codable, CaseIterable {
+            case appStoreVersion
+            case versions
         }
 
         public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
@@ -141,6 +149,7 @@ public enum GetAppStoreVersionV1 {
 
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
+            case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
             case appStoreReviewDetail
@@ -150,6 +159,7 @@ public enum GetAppStoreVersionV1 {
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
+            case appVersionState
             case build
             case copyright
             case createdDate
@@ -158,6 +168,7 @@ public enum GetAppStoreVersionV1 {
             case earliestReleaseDate
             case platform
             case releaseType
+            case reviewType
             case routingAppCoverage
             case versionString
         }
@@ -215,6 +226,7 @@ public enum GetAppStoreVersionV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case ageRatingDeclaration
+        case alternativeDistributionPackage
         case app
         case appClipDefaultExperience
         case appStoreReviewDetail

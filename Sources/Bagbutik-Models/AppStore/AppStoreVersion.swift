@@ -62,38 +62,72 @@ public struct AppStoreVersion: Codable, Identifiable {
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
      */
     public struct Attributes: Codable {
-        public var appStoreState: AppStoreVersionState?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var appStoreState: AppStoreVersionState? = nil
+        public var appVersionState: AppVersionState?
         public var copyright: String?
         public var createdDate: Date?
         public var downloadable: Bool?
         public var earliestReleaseDate: Date?
         public var platform: Platform?
         public var releaseType: ReleaseType?
+        public var reviewType: ReviewType?
         public var versionString: String?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(appStoreState: AppStoreVersionState? = nil,
+                    appVersionState: AppVersionState? = nil,
                     copyright: String? = nil,
                     createdDate: Date? = nil,
                     downloadable: Bool? = nil,
                     earliestReleaseDate: Date? = nil,
                     platform: Platform? = nil,
                     releaseType: ReleaseType? = nil,
+                    reviewType: ReviewType? = nil,
                     versionString: String? = nil)
         {
             self.appStoreState = appStoreState
+            self.appVersionState = appVersionState
             self.copyright = copyright
             self.createdDate = createdDate
             self.downloadable = downloadable
             self.earliestReleaseDate = earliestReleaseDate
             self.platform = platform
             self.releaseType = releaseType
+            self.reviewType = reviewType
+            self.versionString = versionString
+        }
+
+        public init(appVersionState: AppVersionState? = nil,
+                    copyright: String? = nil,
+                    createdDate: Date? = nil,
+                    downloadable: Bool? = nil,
+                    earliestReleaseDate: Date? = nil,
+                    platform: Platform? = nil,
+                    releaseType: ReleaseType? = nil,
+                    reviewType: ReviewType? = nil,
+                    versionString: String? = nil)
+        {
+            self.appVersionState = appVersionState
+            self.copyright = copyright
+            self.createdDate = createdDate
+            self.downloadable = downloadable
+            self.earliestReleaseDate = earliestReleaseDate
+            self.platform = platform
+            self.releaseType = releaseType
+            self.reviewType = reviewType
             self.versionString = versionString
         }
 
         public enum ReleaseType: String, Codable, CaseIterable {
-            case manual = "MANUAL"
             case afterApproval = "AFTER_APPROVAL"
+            case manual = "MANUAL"
             case scheduled = "SCHEDULED"
+        }
+
+        public enum ReviewType: String, Codable, CaseIterable {
+            case appStore = "APP_STORE"
+            case notarization = "NOTARIZATION"
         }
     }
 
@@ -107,6 +141,7 @@ public struct AppStoreVersion: Codable, Identifiable {
     public struct Relationships: Codable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var ageRatingDeclaration: AgeRatingDeclaration? = nil
+        public var alternativeDistributionPackage: AlternativeDistributionPackage?
         public var app: App?
         /// The related Default App Clip Experiences resource.
         public var appClipDefaultExperience: AppClipDefaultExperience?
@@ -121,6 +156,7 @@ public struct AppStoreVersion: Codable, Identifiable {
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(ageRatingDeclaration: AgeRatingDeclaration? = nil,
+                    alternativeDistributionPackage: AlternativeDistributionPackage? = nil,
                     app: App? = nil,
                     appClipDefaultExperience: AppClipDefaultExperience? = nil,
                     appStoreReviewDetail: AppStoreReviewDetail? = nil,
@@ -133,6 +169,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                     routingAppCoverage: RoutingAppCoverage? = nil)
         {
             self.ageRatingDeclaration = ageRatingDeclaration
+            self.alternativeDistributionPackage = alternativeDistributionPackage
             self.app = app
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appStoreReviewDetail = appStoreReviewDetail
@@ -145,7 +182,8 @@ public struct AppStoreVersion: Codable, Identifiable {
             self.routingAppCoverage = routingAppCoverage
         }
 
-        public init(app: App? = nil,
+        public init(alternativeDistributionPackage: AlternativeDistributionPackage? = nil,
+                    app: App? = nil,
                     appClipDefaultExperience: AppClipDefaultExperience? = nil,
                     appStoreReviewDetail: AppStoreReviewDetail? = nil,
                     appStoreVersionExperiments: AppStoreVersionExperiments? = nil,
@@ -156,6 +194,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                     build: Build? = nil,
                     routingAppCoverage: RoutingAppCoverage? = nil)
         {
+            self.alternativeDistributionPackage = alternativeDistributionPackage
             self.app = app
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appStoreReviewDetail = appStoreReviewDetail
@@ -245,6 +284,92 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/links>
              */
+            public struct Links: Codable {
+                public var related: String?
+                public var itself: String?
+
+                public init(related: String? = nil,
+                            self itself: String? = nil)
+                {
+                    self.related = related
+                    self.itself = itself
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    related = try container.decodeIfPresent(String.self, forKey: .related)
+                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(related, forKey: .related)
+                    try container.encodeIfPresent(itself, forKey: .itself)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case itself = "self"
+                    case related
+                }
+            }
+        }
+
+        public struct AlternativeDistributionPackage: Codable {
+            @NullCodable public var data: Data?
+            public var links: Links?
+
+            public init(data: Data? = nil,
+                        links: Links? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                links = try container.decodeIfPresent(Links.self, forKey: .links)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(data, forKey: .data)
+                try container.encodeIfPresent(links, forKey: .links)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+
+            public struct Data: Codable, Identifiable {
+                public let id: String
+                public var type: String { "alternativeDistributionPackages" }
+
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    id = try container.decode(String.self, forKey: .id)
+                    if try container.decode(String.self, forKey: .type) != type {
+                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(id, forKey: .id)
+                    try container.encode(type, forKey: .type)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case id
+                    case type
+                }
+            }
+
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

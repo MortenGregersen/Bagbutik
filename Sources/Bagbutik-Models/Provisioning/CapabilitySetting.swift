@@ -39,13 +39,13 @@ public struct CapabilitySetting: Codable {
 
     public enum AllowedInstances: String, Codable, CaseIterable {
         case entry = "ENTRY"
-        case single = "SINGLE"
         case multiple = "MULTIPLE"
+        case single = "SINGLE"
     }
 
     public enum Key: String, Codable, CaseIterable {
-        case iCloudVersion = "ICLOUD_VERSION"
-        case dataProtectionPermissionLevel = "DATA_PROTECTION_PERMISSION_LEVEL"
         case appleIdAuthAppConsent = "APPLE_ID_AUTH_APP_CONSENT"
+        case dataProtectionPermissionLevel = "DATA_PROTECTION_PERMISSION_LEVEL"
+        case iCloudVersion = "ICLOUD_VERSION"
     }
 }

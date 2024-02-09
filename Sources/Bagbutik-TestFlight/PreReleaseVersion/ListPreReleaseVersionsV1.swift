@@ -43,6 +43,7 @@ public enum ListPreReleaseVersionsV1 {
         case preReleaseVersions([PreReleaseVersions])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -71,6 +72,7 @@ public enum ListPreReleaseVersionsV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder
@@ -144,9 +146,9 @@ public enum ListPreReleaseVersionsV1 {
         case version([String])
 
         public enum BuildsProcessingState: String, ParameterValue, Codable, CaseIterable {
-            case processing = "PROCESSING"
             case failed = "FAILED"
             case invalid = "INVALID"
+            case processing = "PROCESSING"
             case valid = "VALID"
         }
     }
