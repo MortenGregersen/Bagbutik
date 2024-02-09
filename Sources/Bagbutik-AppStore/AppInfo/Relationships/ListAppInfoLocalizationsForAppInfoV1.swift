@@ -64,6 +64,7 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+            case state
         }
     }
 

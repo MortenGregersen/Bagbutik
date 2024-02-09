@@ -74,18 +74,22 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             public var downloadable: Bool?
             public var earliestReleaseDate: Date?
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
+            /// `NOTARIZATION` is alternative app marketplace distribution. All eligible app versions default to both `APP_STORE` and `NOTARIZATION. `An app can be distributed on either or both.
+            public var reviewType: AppStoreVersion.Attributes.ReviewType?
             public var versionString: String?
 
             public init(copyright: String? = nil,
                         downloadable: Bool? = nil,
                         earliestReleaseDate: Date? = nil,
                         releaseType: AppStoreVersion.Attributes.ReleaseType? = nil,
+                        reviewType: AppStoreVersion.Attributes.ReviewType? = nil,
                         versionString: String? = nil)
             {
                 self.copyright = copyright
                 self.downloadable = downloadable
                 self.earliestReleaseDate = earliestReleaseDate
                 self.releaseType = releaseType
+                self.reviewType = reviewType
                 self.versionString = versionString
             }
         }

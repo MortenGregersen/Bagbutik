@@ -33,6 +33,8 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type ageRatingDeclarations
         case ageRatingDeclarations([AgeRatingDeclarations])
+        /// The fields to include for returned resources of type alternativeDistributionPackages
+        case alternativeDistributionPackages([AlternativeDistributionPackages])
         /// The fields to include for returned resources of type appClipDefaultExperiences
         case appClipDefaultExperiences([AppClipDefaultExperiences])
         /// The fields to include for returned resources of type appStoreReviewDetails
@@ -55,6 +57,7 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
         case routingAppCoverages([RoutingAppCoverages])
 
         public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -72,6 +75,11 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
             case violenceCartoonOrFantasy
             case violenceRealistic
             case violenceRealisticProlongedGraphicOrSadistic
+        }
+
+        public enum AlternativeDistributionPackages: String, ParameterValue, Codable, CaseIterable {
+            case appStoreVersion
+            case versions
         }
 
         public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
@@ -139,6 +147,7 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
 
         public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
+            case alternativeDistributionPackage
             case app
             case appClipDefaultExperience
             case appStoreReviewDetail
@@ -148,6 +157,7 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
             case appStoreVersionLocalizations
             case appStoreVersionPhasedRelease
             case appStoreVersionSubmission
+            case appVersionState
             case build
             case copyright
             case createdDate
@@ -156,11 +166,13 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
             case earliestReleaseDate
             case platform
             case releaseType
+            case reviewType
             case routingAppCoverage
             case versionString
         }
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -189,6 +201,7 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder
@@ -250,6 +263,7 @@ public enum GetAppStoreVersionForGameCenterAppVersionV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case ageRatingDeclaration
+        case alternativeDistributionPackage
         case app
         case appClipDefaultExperience
         case appStoreReviewDetail

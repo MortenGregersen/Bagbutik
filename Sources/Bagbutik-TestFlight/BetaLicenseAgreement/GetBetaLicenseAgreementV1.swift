@@ -34,6 +34,7 @@ public enum GetBetaLicenseAgreementV1 {
         case betaLicenseAgreements([BetaLicenseAgreements])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -62,6 +63,7 @@ public enum GetBetaLicenseAgreementV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder

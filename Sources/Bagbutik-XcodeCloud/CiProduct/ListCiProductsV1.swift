@@ -46,6 +46,7 @@ public enum ListCiProductsV1 {
         case scmRepositories([ScmRepositories])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -74,6 +75,7 @@ public enum ListCiProductsV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder

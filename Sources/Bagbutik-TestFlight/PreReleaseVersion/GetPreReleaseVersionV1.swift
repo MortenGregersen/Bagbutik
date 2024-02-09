@@ -39,6 +39,7 @@ public enum GetPreReleaseVersionV1 {
         case preReleaseVersions([PreReleaseVersions])
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -67,6 +68,7 @@ public enum GetPreReleaseVersionV1 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder

@@ -43,6 +43,7 @@ public enum GetAppInfoV1 {
         case appInfos([AppInfos])
 
         public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+            case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
             case gambling
@@ -93,6 +94,7 @@ public enum GetAppInfoV1 {
             case secondaryCategory
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
+            case state
         }
     }
 

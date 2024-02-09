@@ -70,6 +70,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest/data/attributes>
          */
         public struct Attributes: Codable {
+            public var ageRatingOverride: AgeRatingDeclaration.Attributes.AgeRatingOverride?
             /// Declaration for alcohol, tobacco, or drug use.
             public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?
             /// Declaration for contests.
@@ -92,7 +93,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             /// Declaration for profanity or crude humor.
             public var profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor?
             /// Declaration for a 17+ rating, provided as a Boolean value.
-            public var seventeenPlus: Bool?
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var seventeenPlus: Bool? = nil
             /// Declaration for graphic sexual content and nudity.
             public var sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity?
             /// Declaration for sexual content or nudity.
@@ -107,7 +109,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             public var violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic?
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-            public init(alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
+            public init(ageRatingOverride: AgeRatingDeclaration.Attributes.AgeRatingOverride? = nil,
+                        alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
                         gambling: Bool? = nil,
                         gamblingAndContests: Bool? = nil,
@@ -125,6 +128,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                         violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic? = nil,
                         violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic? = nil)
             {
+                self.ageRatingOverride = ageRatingOverride
                 self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
                 self.contests = contests
                 self.gambling = gambling
@@ -144,7 +148,8 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                 self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
             }
 
-            public init(alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
+            public init(ageRatingOverride: AgeRatingDeclaration.Attributes.AgeRatingOverride? = nil,
+                        alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences? = nil,
                         contests: AgeRatingDeclaration.Attributes.Contests? = nil,
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
@@ -153,7 +158,6 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                         matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes? = nil,
                         medicalOrTreatmentInformation: AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation? = nil,
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
-                        seventeenPlus: Bool? = nil,
                         sexualContentGraphicAndNudity: AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity? = nil,
                         sexualContentOrNudity: AgeRatingDeclaration.Attributes.SexualContentOrNudity? = nil,
                         unrestrictedWebAccess: Bool? = nil,
@@ -161,6 +165,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                         violenceRealistic: AgeRatingDeclaration.Attributes.ViolenceRealistic? = nil,
                         violenceRealisticProlongedGraphicOrSadistic: AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic? = nil)
             {
+                self.ageRatingOverride = ageRatingOverride
                 self.alcoholTobaccoOrDrugUseOrReferences = alcoholTobaccoOrDrugUseOrReferences
                 self.contests = contests
                 self.gambling = gambling
@@ -170,7 +175,6 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                 self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
                 self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
                 self.profanityOrCrudeHumor = profanityOrCrudeHumor
-                self.seventeenPlus = seventeenPlus
                 self.sexualContentGraphicAndNudity = sexualContentGraphicAndNudity
                 self.sexualContentOrNudity = sexualContentOrNudity
                 self.unrestrictedWebAccess = unrestrictedWebAccess

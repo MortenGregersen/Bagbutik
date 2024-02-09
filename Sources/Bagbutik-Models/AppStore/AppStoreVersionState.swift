@@ -15,6 +15,7 @@ public enum AppStoreVersionState: String, ParameterValue, Codable, CaseIterable 
     case inReview = "IN_REVIEW"
     case invalidBinary = "INVALID_BINARY"
     case metadataRejected = "METADATA_REJECTED"
+    case notApplicable = "NOT_APPLICABLE"
     case pendingAppleRelease = "PENDING_APPLE_RELEASE"
     case pendingContract = "PENDING_CONTRACT"
     case pendingDeveloperRelease = "PENDING_DEVELOPER_RELEASE"

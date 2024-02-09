@@ -50,6 +50,7 @@ public enum ListEqualizationsForAppPricePointsV3 {
         }
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
+            case alternativeDistributionKey
             case appAvailability
             case appClips
             case appCustomProductPages
@@ -78,6 +79,7 @@ public enum ListEqualizationsForAppPricePointsV3 {
             case inAppPurchases
             case inAppPurchasesV2
             case isOrEverWasMadeForKids
+            case marketplaceSearchDetail
             case name
             case perfPowerMetrics
             case preOrder
