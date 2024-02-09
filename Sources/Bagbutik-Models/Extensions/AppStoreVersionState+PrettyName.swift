@@ -8,6 +8,7 @@ public extension AppStoreVersionState {
         case .inReview: return "In Review"
         case .invalidBinary: return "Invalid Binary"
         case .metadataRejected: return "Metadata Rejected"
+        case .notApplicable: return "Not Applicable"
         case .pendingAppleRelease: return "Pending Apple Release"
         case .pendingContract: return "Pending Agreement"
         case .pendingDeveloperRelease: return "Pending Developer Release"
