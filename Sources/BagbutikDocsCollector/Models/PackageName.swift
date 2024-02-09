@@ -4,6 +4,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     case appStore
     case core
     case gameCenter
+    case marketplaces
     case provisioning
     case reporting
     case testFlight
@@ -22,6 +23,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return "Core"
         case .gameCenter:
             return "GameCenter"
+        case .marketplaces:
+            return "Marketplaces"
         case .provisioning:
             return "Provisioning"
         case .reporting:
@@ -43,6 +46,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return "doc://com.apple.documentation/documentation/appstoreconnectapi"
         case .gameCenter:
             return Self.pathPrefix.appending("bagbutik-game_center")
+        case .marketplaces:
+            return Self.pathPrefix.appending("bagbutik-marketplaces")
         case .provisioning:
             return Self.pathPrefix.appending("bagbutik-provisioning")
         case .reporting:
@@ -65,6 +70,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             return .core
         case pathPrefix.appending("game_center"):
             return .gameCenter
+        case pathPrefix.appending("app_distribution_for_alternative_marketplaces"):
+            return .marketplaces
         case pathPrefix.appending("bundle_ids"),
              pathPrefix.appending("bundle_id_capabilities"),
              pathPrefix.appending("certificates"),
