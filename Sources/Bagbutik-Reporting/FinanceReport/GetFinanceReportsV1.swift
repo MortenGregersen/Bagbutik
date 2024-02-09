@@ -36,8 +36,8 @@ public enum GetFinanceReportsV1 {
         case vendorNumber([String])
 
         public enum ReportType: String, ParameterValue, Codable, CaseIterable {
-            case financial = "FINANCIAL"
             case financeDetail = "FINANCE_DETAIL"
+            case financial = "FINANCIAL"
         }
     }
 }

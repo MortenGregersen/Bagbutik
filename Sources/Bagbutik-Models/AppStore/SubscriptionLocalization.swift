@@ -65,10 +65,10 @@ public struct SubscriptionLocalization: Codable, Identifiable {
         }
 
         public enum State: String, Codable, CaseIterable {
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case waitingForReview = "WAITING_FOR_REVIEW"
             case approved = "APPROVED"
+            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case rejected = "REJECTED"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

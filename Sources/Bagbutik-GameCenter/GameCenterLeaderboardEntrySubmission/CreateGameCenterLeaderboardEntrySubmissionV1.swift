@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center leaderboard score
+     # POST /v1/gameCenterLeaderboardEntrySubmissions
      Add a new score for a player to a leaderboard.
 
      Full documentation:

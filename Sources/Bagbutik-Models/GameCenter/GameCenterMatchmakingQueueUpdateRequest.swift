@@ -65,6 +65,13 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
             case type
         }
 
+        /**
+         # GameCenterMatchmakingQueueUpdateRequest.Data.Attributes
+         The attributes for a queue that you modify.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/attributes>
+         */
         public struct Attributes: Codable {
             public var classicMatchmakingBundleIds: [String]?
 

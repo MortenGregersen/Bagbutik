@@ -95,15 +95,15 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
         case status([Status])
 
         public enum PlaceStatus: String, ParameterValue, Codable, CaseIterable {
-            case pending = "PENDING"
             case matched = "MATCHED"
             case noMatch = "NO_MATCH"
+            case pending = "PENDING"
         }
 
         public enum Status: String, ParameterValue, Codable, CaseIterable {
-            case received = "RECEIVED"
-            case deactivated = "DEACTIVATED"
             case appTransferInProgress = "APP_TRANSFER_IN_PROGRESS"
+            case deactivated = "DEACTIVATED"
+            case received = "RECEIVED"
         }
     }
 

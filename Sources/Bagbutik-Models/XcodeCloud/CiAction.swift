@@ -9,7 +9,7 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/ciaction>
  */
 public struct CiAction: Codable {
-    /// The type of the action. The `actionType` options are `BUILD`, `ANALYZE`, `TEST`, and `ARCHIVE`.
+    /// The type of the action.
     public var actionType: CiActionType?
     /// A type that indicates whether a build’s artifact is eligible for release on the App Store.
     public var buildDistributionAudience: BuildAudienceType?
@@ -17,7 +17,7 @@ public struct CiAction: Codable {
     public var destination: Destination?
     /// A Boolean value that indicates whether the action must succeed in order for a build to succeed.
     public var isRequiredToPass: Bool?
-    /// The name of the action, for example, archive or test.
+    /// The name of the action; for example, archive or test.
     public var name: String?
     /// The platform Xcode Cloud uses for the action.
     public var platform: Platform?
@@ -48,22 +48,22 @@ public struct CiAction: Codable {
     public enum Destination: String, Codable, CaseIterable {
         case anyIosDevice = "ANY_IOS_DEVICE"
         case anyIosSimulator = "ANY_IOS_SIMULATOR"
-        case anyTvosDevice = "ANY_TVOS_DEVICE"
-        case anyTvosSimulator = "ANY_TVOS_SIMULATOR"
-        case anyWatchosDevice = "ANY_WATCHOS_DEVICE"
-        case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
         case anyMac = "ANY_MAC"
         case anyMacCatalyst = "ANY_MAC_CATALYST"
+        case anyTvosDevice = "ANY_TVOS_DEVICE"
+        case anyTvosSimulator = "ANY_TVOS_SIMULATOR"
         case anyVisionosDevice = "ANY_VISIONOS_DEVICE"
         case anyVisionosSimulator = "ANY_VISIONOS_SIMULATOR"
+        case anyWatchosDevice = "ANY_WATCHOS_DEVICE"
+        case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
     }
 
     public enum Platform: String, Codable, CaseIterable {
-        case macOS = "MACOS"
         case iOS = "IOS"
+        case macOS = "MACOS"
         case tvOS = "TVOS"
-        case watchos = "WATCHOS"
         case visionos = "VISIONOS"
+        case watchos = "WATCHOS"
     }
 
     /**
@@ -91,8 +91,8 @@ public struct CiAction: Codable {
         }
 
         public enum Kind: String, Codable, CaseIterable {
-            case useSchemeSettings = "USE_SCHEME_SETTINGS"
             case specificTestPlans = "SPECIFIC_TEST_PLANS"
+            case useSchemeSettings = "USE_SCHEME_SETTINGS"
         }
     }
 }

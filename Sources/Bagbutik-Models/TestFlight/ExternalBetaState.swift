@@ -9,16 +9,16 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/externalbetastate>
  */
 public enum ExternalBetaState: String, Codable, CaseIterable {
+    case betaApproved = "BETA_APPROVED"
+    case betaRejected = "BETA_REJECTED"
+    case expired = "EXPIRED"
+    case inBetaReview = "IN_BETA_REVIEW"
+    case inBetaTesting = "IN_BETA_TESTING"
+    case inExportComplianceReview = "IN_EXPORT_COMPLIANCE_REVIEW"
+    case missingExportCompliance = "MISSING_EXPORT_COMPLIANCE"
     case processing = "PROCESSING"
     case processingException = "PROCESSING_EXCEPTION"
-    case missingExportCompliance = "MISSING_EXPORT_COMPLIANCE"
-    case readyForBetaTesting = "READY_FOR_BETA_TESTING"
-    case inBetaTesting = "IN_BETA_TESTING"
-    case expired = "EXPIRED"
     case readyForBetaSubmission = "READY_FOR_BETA_SUBMISSION"
-    case inExportComplianceReview = "IN_EXPORT_COMPLIANCE_REVIEW"
+    case readyForBetaTesting = "READY_FOR_BETA_TESTING"
     case waitingForBetaReview = "WAITING_FOR_BETA_REVIEW"
-    case inBetaReview = "IN_BETA_REVIEW"
-    case betaRejected = "BETA_REJECTED"
-    case betaApproved = "BETA_APPROVED"
 }

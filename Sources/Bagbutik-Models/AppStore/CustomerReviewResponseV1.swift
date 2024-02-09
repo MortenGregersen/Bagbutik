@@ -84,8 +84,8 @@ public struct CustomerReviewResponseV1: Codable, Identifiable {
         }
 
         public enum State: String, Codable, CaseIterable {
-            case published = "PUBLISHED"
             case pendingPublish = "PENDING_PUBLISH"
+            case published = "PUBLISHED"
         }
     }
 

@@ -22,7 +22,7 @@ public struct CiFilesAndFoldersRule: Codable {
     }
 
     public enum Mode: String, Codable, CaseIterable {
-        case startIfAnyFileMatches = "START_IF_ANY_FILE_MATCHES"
         case doNotStartIfAllFilesMatch = "DO_NOT_START_IF_ALL_FILES_MATCH"
+        case startIfAnyFileMatches = "START_IF_ANY_FILE_MATCHES"
     }
 }

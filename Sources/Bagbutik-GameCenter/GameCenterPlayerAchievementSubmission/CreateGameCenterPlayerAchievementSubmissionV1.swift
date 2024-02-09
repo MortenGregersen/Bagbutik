@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create a Game Center player achievement
+     # POST /v1/gameCenterPlayerAchievementSubmissions
      Add a new entry for a player’s score for a Game Center achievement.
 
      Full documentation:

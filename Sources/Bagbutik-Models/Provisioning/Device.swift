@@ -86,17 +86,17 @@ public struct Device: Codable, Identifiable {
         }
 
         public enum DeviceClass: String, Codable, CaseIterable {
+            case appleTV = "APPLE_TV"
             case appleWatch = "APPLE_WATCH"
             case iPad = "IPAD"
             case iPhone = "IPHONE"
             case iPod = "IPOD"
-            case appleTV = "APPLE_TV"
             case mac = "MAC"
         }
 
         public enum Status: String, ParameterValue, Codable, CaseIterable {
-            case enabled = "ENABLED"
             case disabled = "DISABLED"
+            case enabled = "ENABLED"
             case processing = "PROCESSING"
         }
     }
