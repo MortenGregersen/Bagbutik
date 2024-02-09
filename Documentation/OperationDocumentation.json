@@ -482,6 +482,1835 @@
       }
     ]
   },
+  "alternativeDistributionKeys-create_instance" : {
+    "abstract" : [
+      {
+        "text" : "Add an alternative distribution key for your alternative marketplace app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_keys"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/add_an_alternative_distribution_key"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Add an alternative distribution key"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Created",
+            "status" : 201
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "alternativeDistributionKeys-delete_instance" : {
+    "abstract" : [
+      {
+        "text" : "Read the public key information for a specific alternative distribution key."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_keys"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_alternative_distribution_key_information"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read alternative distribution key information"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternative Distribution Key` resource ID from the [Read an app’s alternative distribution key](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_an_app_s_alternative_distribution_key) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionKeys]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "alternativeDistributionKeys-get_instance" : {
+    "abstract" : [
+      {
+        "text" : "Remove an alternative distribution key from your account."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_keys"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/remove_an_alternative_distribution_key"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Remove an alternative distribution key"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternative Distribution Key` resource ID from the [Read an app’s alternative distribution key](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_an_app_s_alternative_distribution_key) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "No Content",
+            "status" : 204
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "alternativeDistributionPackageDeltas-get_instance" : {
+    "abstract" : [
+      {
+        "text" : "Get detail information about specific alternative distribution package deltas."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_information_for_alternative_distribution_package_deltas"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read information for alternative distribution package deltas"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackageDeltas `resource ID from the [List deltas information](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_deltas_information) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageDeltas]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "alternativeDistributionPackages-create_instance" : {
+    "abstract" : [
+      {
+        "text" : "Create an alternative distribution package for an app store version."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/create_an_alternative_distribution_package"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Create an alternative distribution package"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Created",
+            "status" : 201
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "alternativeDistributionPackages-get_instance" : {
+    "abstract" : [
+      {
+        "text" : "Get information about a specific alternative distribution package."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_alternative_distribution_package_information"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read alternative distribution package information"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackage` resource ID from the [Read an App Store version’s alternative distribution package](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_an_app_store_version_s_alternative_distribution_package) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackages]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "include"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[versions]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "alternativeDistributionPackages-versions-get_to_many_related" : {
+    "abstract" : [
+      {
+        "text" : "Get version detail information about a specific alternative distribution package."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_version_information_for_an_alternative_distribution_package"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read version information for an alternative distribution package"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackage` resource ID from the [Read an App Store version’s alternative distribution package](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_an_app_store_version_s_alternative_distribution_package) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageDeltas]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVariants]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackages]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "filter[state]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "include"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[deltas]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[variants]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "alternativeDistributionPackageVariants-get_instance" : {
+    "abstract" : [
+      {
+        "text" : "Get detail information about specific alternative distribution package variants."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_information_for_an_alternative_distribution_package_variants"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read information for an alternative distribution package variants"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackageVariants `resource ID from the [List variants information](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_variants_information) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVariants]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "alternativeDistributionPackageVersions-deltas-get_to_many_related" : {
+    "abstract" : [
+      {
+        "text" : "List deltas for a specific alternative distribution package version."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/list_deltas_information"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "List deltas information"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackageVersions `resource ID from the [Read version information for an alternative distribution package](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_version_information_for_an_alternative_distribution_package) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageDeltas]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "alternativeDistributionPackageVersions-get_instance" : {
+    "abstract" : [
+      {
+        "text" : "Get detail information about a specific alternative distribution package version."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_information_for_an_alternative_distribution_package_version"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read information for an alternative distribution package version"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackageVersions `resource ID from the [Read version information for an alternative distribution package](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_version_information_for_an_alternative_distribution_package) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageDeltas]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVariants]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "include"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[deltas]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[variants]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "alternativeDistributionPackageVersions-variants-get_to_many_related" : {
+    "abstract" : [
+      {
+        "text" : "List variants for specific alternative distribution package version."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/list_variants_information"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "List variants information"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternativeDistributionPackageVersions `resource ID from the [Read version information for an alternative distribution package](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_version_information_for_an_alternative_distribution_package) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVariants]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
   "appAvailabilities-availableTerritories-get_to_many_related" : {
     "abstract" : [
       {
@@ -20986,6 +22815,166 @@
       }
     ]
   },
+  "apps-alternativeDistributionKey-get_to_one_related" : {
+    "abstract" : [
+      {
+        "text" : "Get the alternative distribution keys for a specific app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store\/apps"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_an_app_s_alternative_distribution_key"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read an app’s alternative distribution key"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `apps` ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_apps) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionKeys]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
   "apps-appAvailability-get_to_one_related" : {
     "abstract" : [
       {
@@ -28727,6 +30716,158 @@
               }
             ],
             "name" : "sort"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "apps-marketplaceSearchDetail-get_to_one_related" : {
+    "abstract" : [
+      {
+        "text" : "Get the alternative marketplace search detail URL for an app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_search_configurations"
+        ],
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store\/apps"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_the_marketplace_search_detail_url"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read the marketplace search detail URL"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `apps` ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_apps) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[marketplaceSearchDetails]"
           }
         ],
         "kind" : "restParameters",
@@ -39294,6 +41435,201 @@
                 "inlineContent" : [
                   {
                     "text" : "Resource not found.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "appStoreVersions-alternativeDistributionPackage-get_to_one_related" : {
+    "abstract" : [
+      {
+        "text" : "Read the alternative distribution package for a specific App Store version."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/alternative_distribution_packages"
+        ],
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store\/app_metadata",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_store\/app_metadata\/app_store_versions"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_an_app_store_version_s_alternative_distribution_package"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read an App Store version’s alternative distribution package"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `appStoreVersions `resource ID from the [List All App Store Versions for an App](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_all_app_store_versions_for_an_app) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackageVersions]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[alternativeDistributionPackages]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "include"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit[versions]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
                     "type" : "text"
                   }
                 ],
@@ -102074,6 +104410,1495 @@
                 "inlineContent" : [
                   {
                     "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "marketplaceDomains-create_instance" : {
+    "abstract" : [
+      {
+        "text" : "Add an alternative marketplace domain to your account."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_domains"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/add_a_marketplace_domain"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Add a marketplace domain"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Created",
+            "status" : 201
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "marketplaceDomains-delete_instance" : {
+    "abstract" : [
+      {
+        "text" : "Delete the alternative marketplace search domain for an app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_domains"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/delete_a_marketplace_domain"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Delete a marketplace domain"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `alternative Distribution Key` resource ID from the [List marketplace domains](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_marketplace_domains) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "No Content",
+            "status" : 204
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "marketplaceDomains-get_collection" : {
+    "abstract" : [
+      {
+        "text" : "List all the alternative marketplace domains for your account."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_domains"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/list_marketplace_domains"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "List marketplace domains"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[marketplaceDomains]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "marketplaceDomains-get_instance" : {
+    "abstract" : [
+      {
+        "text" : "Read information for a specific alternative marketplace domain."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_domains"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_marketplace_domain_information"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read marketplace domain information"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `marketplace domain` resource ID from the [List marketplace domains](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/list_marketplace_domains) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[marketplaceDomains]"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "marketplaceSearchDetails-create_instance" : {
+    "abstract" : [
+      {
+        "text" : "Add an alternative marketplace search detail URL for an app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_search_configurations"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/add_a_marketplace_search_detail_url"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Add a marketplace search detail URL"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Created",
+            "status" : 201
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "marketplaceSearchDetails-delete_instance" : {
+    "abstract" : [
+      {
+        "text" : "Delete the alternative marketplace search detail URL for an app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_search_configurations"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/delete_a_marketplace_search_detail_url"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Delete a marketplace search detail URL"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `marketplace search details` resource ID from the [Read the marketplace search detail URL](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_the_marketplace_search_detail_url) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "No Content",
+            "status" : 204
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "marketplaceSearchDetails-update_instance" : {
+    "abstract" : [
+      {
+        "text" : "Update the alternative marketplace search detail URL for an app."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/marketplace_search_configurations"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/modify_a_marketplace_search_detail_url"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Modify a marketplace search detail URL"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `marketplace search details` resource ID from the [Read the marketplace search detail URL](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_the_marketplace_search_detail_url) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "marketplaceWebhooks-create_instance" : {
+    "abstract" : [
+      {
+        "text" : "Add a new endpoint URL and secret for alternative distribution package notifications."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/notifications"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/add_a_marketplace_webhook_configuration"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Add a marketplace webhook configuration"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Created",
+            "status" : 201
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "Each provider has a single marketplace webhooks `endpointUrl`, so if you operate mutliple marketplaces all notifications come to a single endpoint. The notification payload contains the `marketplaceAppId.`",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
+      }
+    ]
+  },
+  "marketplaceWebhooks-delete_instance" : {
+    "abstract" : [
+      {
+        "text" : "Delete a specific marketplace notifcation endpoint URL."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/notifications"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/delete_a_marketplace_webhook_configuration"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Delete a marketplace webhook configuration"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `marketplaceWebhooks` resource ID from the [Read marketplace webhook information](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_marketplace_webhook_information) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "No Content",
+            "status" : 204
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Conflict",
+            "status" : 409
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "marketplaceWebhooks-get_collection" : {
+    "abstract" : [
+      {
+        "text" : "Get the endpoint URL for alternative distribution package notifications."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/notifications"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/read_marketplace_webhook_information"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Read marketplace webhook information"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[marketplaceWebhooks]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          }
+        ],
+        "kind" : "restResponses"
+      }
+    ]
+  },
+  "marketplaceWebhooks-update_instance" : {
+    "abstract" : [
+      {
+        "text" : "Update the endpoint URL and secret for alternative distribution package notifications."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces",
+          "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/app_distribution_for_alternative_marketplaces\/notifications"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.documentation\/documentation\/appstoreconnectapi\/modify_a_marketplace_webhook_configuration"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "Modify a marketplace webhook configuration"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `marketplaceWebhooks` resource ID from the [Read marketplace webhook information](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/read_marketplace_webhook_information) response.",
                     "type" : "text"
                   }
                 ],
