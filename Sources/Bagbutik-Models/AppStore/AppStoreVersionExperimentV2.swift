@@ -74,15 +74,15 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
         }
 
         public enum State: String, Codable, CaseIterable {
-            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case readyForReview = "READY_FOR_REVIEW"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
-            case rejected = "REJECTED"
             case completed = "COMPLETED"
+            case inReview = "IN_REVIEW"
+            case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
+            case readyForReview = "READY_FOR_REVIEW"
+            case rejected = "REJECTED"
             case stopped = "STOPPED"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

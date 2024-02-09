@@ -72,12 +72,12 @@ public struct PerfPowerMetric: Codable, Identifiable {
         }
 
         public enum MetricType: String, Codable, CaseIterable {
+            case animation = "ANIMATION"
+            case battery = "BATTERY"
             case disk = "DISK"
             case hang = "HANG"
-            case battery = "BATTERY"
             case launch = "LAUNCH"
             case memory = "MEMORY"
-            case animation = "ANIMATION"
             case termination = "TERMINATION"
         }
 

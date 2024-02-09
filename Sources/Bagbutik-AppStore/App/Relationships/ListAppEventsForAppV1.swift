@@ -74,16 +74,16 @@ public enum ListAppEventsForAppV1 {
         case id([String])
 
         public enum EventState: String, ParameterValue, Codable, CaseIterable {
-            case draft = "DRAFT"
-            case readyForReview = "READY_FOR_REVIEW"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case rejected = "REJECTED"
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
-            case published = "PUBLISHED"
-            case past = "PAST"
             case archived = "ARCHIVED"
+            case draft = "DRAFT"
+            case inReview = "IN_REVIEW"
+            case past = "PAST"
+            case published = "PUBLISHED"
+            case readyForReview = "READY_FOR_REVIEW"
+            case rejected = "REJECTED"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

@@ -32,11 +32,11 @@ public struct CapabilityOption: Codable {
     }
 
     public enum Key: String, Codable, CaseIterable {
-        case xcode5 = "XCODE_5"
-        case xcode6 = "XCODE_6"
         case completeProtection = "COMPLETE_PROTECTION"
+        case primaryAppConsent = "PRIMARY_APP_CONSENT"
         case protectedUnlessOpen = "PROTECTED_UNLESS_OPEN"
         case protectedUntilFirstUserAuth = "PROTECTED_UNTIL_FIRST_USER_AUTH"
-        case primaryAppConsent = "PRIMARY_APP_CONSENT"
+        case xcode5 = "XCODE_5"
+        case xcode6 = "XCODE_6"
     }
 }

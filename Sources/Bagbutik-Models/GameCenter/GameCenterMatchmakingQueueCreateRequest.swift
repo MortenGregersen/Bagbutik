@@ -65,7 +65,6 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            /// If you provide a bundle identifier in this array, Game Center adds requests to this queue instead of the classic matchmaking queue. Once in this queue, Game Center applies the queueʼs rules to classic matchmaking requests instead applying standard classic matchmaking rules.
             public var classicMatchmakingBundleIds: [String]?
             /// A name for the queue that’s unique within the scope of your development team.
             public let referenceName: String

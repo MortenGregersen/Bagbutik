@@ -101,26 +101,26 @@ public struct AppEvent: Codable, Identifiable {
         }
 
         public enum Badge: String, Codable, CaseIterable {
-            case liveEvent = "LIVE_EVENT"
-            case premiere = "PREMIERE"
             case challenge = "CHALLENGE"
             case competition = "COMPETITION"
-            case newSeason = "NEW_SEASON"
+            case liveEvent = "LIVE_EVENT"
             case majorUpdate = "MAJOR_UPDATE"
+            case newSeason = "NEW_SEASON"
+            case premiere = "PREMIERE"
             case specialEvent = "SPECIAL_EVENT"
         }
 
         public enum EventState: String, Codable, CaseIterable {
-            case draft = "DRAFT"
-            case readyForReview = "READY_FOR_REVIEW"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case rejected = "REJECTED"
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
-            case published = "PUBLISHED"
-            case past = "PAST"
             case archived = "ARCHIVED"
+            case draft = "DRAFT"
+            case inReview = "IN_REVIEW"
+            case past = "PAST"
+            case published = "PUBLISHED"
+            case readyForReview = "READY_FOR_REVIEW"
+            case rejected = "REJECTED"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
 
         public enum Priority: String, Codable, CaseIterable {
@@ -129,18 +129,18 @@ public struct AppEvent: Codable, Identifiable {
         }
 
         public enum PurchaseRequirement: String, Codable, CaseIterable {
-            case noCostAssociated = "NO_COST_ASSOCIATED"
             case inAppPurchase = "IN_APP_PURCHASE"
-            case subscription = "SUBSCRIPTION"
             case inAppPurchaseAndSubscription = "IN_APP_PURCHASE_AND_SUBSCRIPTION"
             case inAppPurchaseOrSubscription = "IN_APP_PURCHASE_OR_SUBSCRIPTION"
+            case noCostAssociated = "NO_COST_ASSOCIATED"
+            case subscription = "SUBSCRIPTION"
         }
 
         public enum Purpose: String, Codable, CaseIterable {
             case appropriateForAllUsers = "APPROPRIATE_FOR_ALL_USERS"
             case attractNewUsers = "ATTRACT_NEW_USERS"
-            case keepActiveUsersInformed = "KEEP_ACTIVE_USERS_INFORMED"
             case bringBackLapsedUsers = "BRING_BACK_LAPSED_USERS"
+            case keepActiveUsersInformed = "KEEP_ACTIVE_USERS_INFORMED"
         }
 
         public struct TerritorySchedules: Codable {

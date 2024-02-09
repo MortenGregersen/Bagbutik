@@ -159,13 +159,13 @@ public enum ListReviewSubmissionsForAppV1 {
         case state([State])
 
         public enum State: String, ParameterValue, Codable, CaseIterable {
-            case readyForReview = "READY_FOR_REVIEW"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case inReview = "IN_REVIEW"
-            case unresolvedIssues = "UNRESOLVED_ISSUES"
             case canceling = "CANCELING"
-            case completing = "COMPLETING"
             case complete = "COMPLETE"
+            case completing = "COMPLETING"
+            case inReview = "IN_REVIEW"
+            case readyForReview = "READY_FOR_REVIEW"
+            case unresolvedIssues = "UNRESOLVED_ISSUES"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 

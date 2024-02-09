@@ -9,8 +9,8 @@ import Foundation
  <https://developer.apple.com/documentation/appstoreconnectapi/citestdestinationkind>
  */
 public enum CiTestDestinationKind: String, Codable, CaseIterable {
-    /// The test destination is a simulated device.
-    case simulator = "SIMULATOR"
     /// The test destination is a Mac.
     case mac = "MAC"
+    /// The test destination is a simulated device.
+    case simulator = "SIMULATOR"
 }

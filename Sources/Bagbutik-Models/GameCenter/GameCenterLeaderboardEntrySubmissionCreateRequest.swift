@@ -60,7 +60,6 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Reques
             public let bundleId: String
             public var challengeIds: [String]?
             public var context: String?
-            /// For `gamePlayerID` see : [gamePlayerID](https://developer.apple.com/documentation/gamekit/gkplayer/3113960-gameplayerid)For `teamPlayerID` see: [teamPlayerID](https://developer.apple.com/documentation/gamekit/gkplayer/3174857-teamplayerid)
             public let scopedPlayerId: String
             public let score: String
             public var submittedDate: Date?

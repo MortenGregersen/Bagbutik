@@ -91,8 +91,8 @@ public struct AppStoreVersion: Codable, Identifiable {
         }
 
         public enum ReleaseType: String, Codable, CaseIterable {
-            case manual = "MANUAL"
             case afterApproval = "AFTER_APPROVAL"
+            case manual = "MANUAL"
             case scheduled = "SCHEDULED"
         }
     }

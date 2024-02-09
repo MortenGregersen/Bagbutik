@@ -45,9 +45,9 @@ public enum GetMetricsForMatchmakingRequestInGameCenterMatchmakingQueueV1 {
         case result([Result])
 
         public enum Result: String, ParameterValue, Codable, CaseIterable {
-            case matched = "MATCHED"
             case canceled = "CANCELED"
             case expired = "EXPIRED"
+            case matched = "MATCHED"
         }
     }
 
@@ -70,8 +70,8 @@ public enum GetMetricsForMatchmakingRequestInGameCenterMatchmakingQueueV1 {
      */
     public enum Granularity: String, ParameterValue, Codable, CaseIterable {
         case P1D
-        case PT1H
         case PT15M
+        case PT1H
     }
 
     /**

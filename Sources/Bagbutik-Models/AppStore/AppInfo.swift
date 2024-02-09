@@ -104,18 +104,18 @@ public struct AppInfo: Codable, Identifiable {
         }
 
         public enum BrazilAgeRatingV2: String, Codable, CaseIterable {
-            case selfRatedL = "SELF_RATED_L"
-            case selfRatedTen = "SELF_RATED_TEN"
-            case selfRatedTwelve = "SELF_RATED_TWELVE"
-            case selfRatedFourteen = "SELF_RATED_FOURTEEN"
-            case selfRatedSixteen = "SELF_RATED_SIXTEEN"
-            case selfRatedEighteen = "SELF_RATED_EIGHTEEN"
+            case officialEighteen = "OFFICIAL_EIGHTEEN"
+            case officialFourteen = "OFFICIAL_FOURTEEN"
             case officialL = "OFFICIAL_L"
+            case officialSixteen = "OFFICIAL_SIXTEEN"
             case officialTen = "OFFICIAL_TEN"
             case officialTwelve = "OFFICIAL_TWELVE"
-            case officialFourteen = "OFFICIAL_FOURTEEN"
-            case officialSixteen = "OFFICIAL_SIXTEEN"
-            case officialEighteen = "OFFICIAL_EIGHTEEN"
+            case selfRatedEighteen = "SELF_RATED_EIGHTEEN"
+            case selfRatedFourteen = "SELF_RATED_FOURTEEN"
+            case selfRatedL = "SELF_RATED_L"
+            case selfRatedSixteen = "SELF_RATED_SIXTEEN"
+            case selfRatedTen = "SELF_RATED_TEN"
+            case selfRatedTwelve = "SELF_RATED_TWELVE"
         }
     }
 

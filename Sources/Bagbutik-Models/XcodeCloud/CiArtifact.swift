@@ -85,9 +85,9 @@ public struct CiArtifact: Codable, Identifiable {
             case archiveExport = "ARCHIVE_EXPORT"
             case logBundle = "LOG_BUNDLE"
             case resultBundle = "RESULT_BUNDLE"
+            case stapledNotarizedArchive = "STAPLED_NOTARIZED_ARCHIVE"
             case testProducts = "TEST_PRODUCTS"
             case xcodebuildProducts = "XCODEBUILD_PRODUCTS"
-            case stapledNotarizedArchive = "STAPLED_NOTARIZED_ARCHIVE"
         }
     }
 }

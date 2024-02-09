@@ -77,13 +77,13 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
         }
 
         public enum State: String, Codable, CaseIterable {
+            case approved = "APPROVED"
             case awaitingUpload = "AWAITING_UPLOAD"
-            case uploadComplete = "UPLOAD_COMPLETE"
             case failed = "FAILED"
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
-            case waitingForReview = "WAITING_FOR_REVIEW"
-            case approved = "APPROVED"
             case rejected = "REJECTED"
+            case uploadComplete = "UPLOAD_COMPLETE"
+            case waitingForReview = "WAITING_FOR_REVIEW"
         }
     }
 
