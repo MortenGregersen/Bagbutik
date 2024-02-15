@@ -156,6 +156,16 @@ The OpenAPI Spec provided by Apple do not always align with the data received fr
 
 In the OpenAPI spec for the App Store Connect API the "BundleIdPlatform" schema is said to only be "IOS" or "MAC_OS". This is not right as universal apps (iOS and macOS) has a "UNIVERSAL" platform.
 
+#### **FB12292035**: ErrorResponse.Errors has required optional "detail" and no "associatedErrors" in "meta"
+
+* Submitted: June 9th 2023.
+
+In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
+On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
+
+In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
+But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
+
 #### **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
 
 * Submitted: January 14th 2024.
@@ -169,15 +179,11 @@ Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong sc
 
 As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
 
-#### **FB12292035**: ErrorResponse.Errors has required optional "detail" and no "associatedErrors" in "meta"
+#### **FB13621277**: App Store Connect API Spec is missing "GENERATE_INDIVIDUAL_KEYS" type for the User Role schema
 
-* Submitted: June 9th 2023.
+* Submitted: February 15th 2024.
 
-In Apple's OpenAPI spec the `detail` property on `ErrorResponse.Errors` is marked as `required`.
-On 12/1/23 some errors (with status code 409) has been observed, with no `detail`.
-
-In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
-But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
+In the OpenAPI spec for the App Store Connect API the “UserRole” schema is said to not include "GENERATE_INDIVIDUAL_KEYS”. This is not right as “Users” endpoints can have a “GENERATE_INDIVIDUAL_KEYS” type.
 
 ### Closed feedback (removed patches)
 

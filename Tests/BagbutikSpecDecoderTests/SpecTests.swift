@@ -997,6 +997,10 @@ final class SpecTests: XCTestCase {
                             }
                         },
                         "required" : [ "data", "links" ]
+                    },
+                    "UserRole" : {
+                        "type" : "string",
+                        "enum" : [ "ADMIN", "FINANCE", "ACCOUNT_HOLDER" ]
                     }
                 }
             }
@@ -1017,18 +1021,25 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(responseSchemaDataRef, "App")
-        
+
         guard case .object(let responseSchema) = spec.components.schemas["AppCategoriesWithoutIncludesResponse"],
               case .arrayOfSchemaRef(let responseSchemaDataRef) = responseSchema.properties["data"]?.type else {
             XCTFail(); return
         }
         XCTAssertEqual(responseSchemaDataRef, "AppCategory")
-        
+
         guard case .object(let responseSchema) = spec.components.schemas["PreReleaseVersionsWithoutIncludesResponse"],
               case .arrayOfSchemaRef(let responseSchemaDataRef) = responseSchema.properties["data"]?.type else {
             XCTFail(); return
         }
         XCTAssertEqual(responseSchemaDataRef, "PrereleaseVersion")
+
+        guard case .enum(let userRoleSchema) = spec.components.schemas["UserRole"] else {
+            XCTFail(); return
+        }
+        let userRoleCaseValues = userRoleSchema.cases.map(\.value)
+        XCTAssertEqual(userRoleCaseValues.count, 4)
+        XCTAssertTrue(userRoleCaseValues.contains("GENERATE_INDIVIDUAL_KEYS"))
     }
 
     func testApplyManualPatches_Error() throws {
