@@ -2,7 +2,6 @@ import ArgumentParser
 import BagbutikDocsCollector
 import BagbutikGenerator
 import Foundation
-import Zip
 #if canImport(FoundationNetworking)
 // Linux support
 import BagbutikPolyfill
@@ -112,7 +111,7 @@ struct BagbutikCLI: AsyncParsableCommand {
                 try FileManager.default.removeItem(at: zipFileURL)
             }
             try FileManager.default.moveItem(at: locationURL, to: zipFileURL)
-            try Zip.unzipFile(zipFileURL, destination: unzippedLocationURL, overwrite: true, password: nil)
+            try Process.unzip(file: zipFileURL, destination: unzippedLocationURL)
             let files = try FileManager.default.contentsOfDirectory(atPath: unzippedLocationURL.path)
             guard let specFileName = files.first(where: { $0.hasSuffix(".json") }) else { throw CLIError.malformedSpecZip }
             let unzippedSpecFileURL = unzippedLocationURL.appendingPathComponent(specFileName)
