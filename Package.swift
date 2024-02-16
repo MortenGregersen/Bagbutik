@@ -66,7 +66,6 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.53.0"),
         .package(url: "https://github.com/apple/swift-crypto", from: "3.2.0"),
-        .package(url: "https://github.com/marmelroy/Zip", revision: "bca30f6d6c7d37cbc4aa8f6b0002e281dcc36195"),
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [
@@ -89,8 +88,7 @@ let package = Package(
                 "BagbutikGenerator",
                 "BagbutikDocsCollector",
                 .target(name: "BagbutikPolyfill", condition: .when(platforms: [.linux])),
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "Zip"
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),
         // Internal targets
         .target(
