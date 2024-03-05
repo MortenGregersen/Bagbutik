@@ -33,6 +33,8 @@ public enum GetAppV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type alternativeDistributionKeys
         case alternativeDistributionKeys([AlternativeDistributionKeys])
+        /// The fields to include for returned resources of type analyticsReportRequests
+        case analyticsReportRequests([AnalyticsReportRequests])
         /// The fields to include for returned resources of type appAvailabilities
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appAvailabilities([AppAvailabilities])
@@ -106,6 +108,13 @@ public enum GetAppV1 {
         public enum AlternativeDistributionKeys: String, ParameterValue, Codable, CaseIterable {
             case app
             case publicKey
+        }
+
+        public enum AnalyticsReportRequests: String, ParameterValue, Codable, CaseIterable {
+            case accessType
+            case app
+            case reports
+            case stoppedDueToInactivity
         }
 
         public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
@@ -254,6 +263,7 @@ public enum GetAppV1 {
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
+            case analyticsReportRequests
             case appAvailability
             case appClips
             case appCustomProductPages
