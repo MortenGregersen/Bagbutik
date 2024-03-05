@@ -50,14 +50,17 @@ public struct AlternativeDistributionPackageVariant: Codable, Identifiable {
 
     public struct Attributes: Codable {
         public var alternativeDistributionKeyBlob: String?
+        public var fileChecksum: String?
         public var url: String?
         public var urlExpirationDate: Date?
 
         public init(alternativeDistributionKeyBlob: String? = nil,
+                    fileChecksum: String? = nil,
                     url: String? = nil,
                     urlExpirationDate: Date? = nil)
         {
             self.alternativeDistributionKeyBlob = alternativeDistributionKeyBlob
+            self.fileChecksum = fileChecksum
             self.url = url
             self.urlExpirationDate = urlExpirationDate
         }

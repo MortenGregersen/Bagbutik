@@ -55,16 +55,19 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
     }
 
     public struct Attributes: Codable {
+        public var fileChecksum: String?
         public var state: State?
         public var url: String?
         public var urlExpirationDate: Date?
         public var version: String?
 
-        public init(state: State? = nil,
+        public init(fileChecksum: String? = nil,
+                    state: State? = nil,
                     url: String? = nil,
                     urlExpirationDate: Date? = nil,
                     version: String? = nil)
         {
+            self.fileChecksum = fileChecksum
             self.state = state
             self.url = url
             self.urlExpirationDate = urlExpirationDate
