@@ -18,81 +18,82 @@ public enum PackageName: CaseIterable, Codable, Equatable {
     public var docsSectionName: String {
         switch self {
         case .appStore:
-            return "AppStore"
+            "AppStore"
         case .core:
-            return "Core"
+            "Core"
         case .gameCenter:
-            return "GameCenter"
+            "GameCenter"
         case .marketplaces:
-            return "Marketplaces"
+            "Marketplaces"
         case .provisioning:
-            return "Provisioning"
+            "Provisioning"
         case .reporting:
-            return "Reporting"
+            "Reporting"
         case .testFlight:
-            return "TestFlight"
+            "TestFlight"
         case .users:
-            return "Users"
+            "Users"
         case .xcodeCloud:
-            return "XcodeCloud"
+            "XcodeCloud"
         }
     }
 
     var path: String {
         switch self {
         case .appStore:
-            return Self.pathPrefix.appending("app_store")
+            Self.pathPrefix.appending("app_store")
         case .core:
-            return "doc://com.apple.documentation/documentation/appstoreconnectapi"
+            "doc://com.apple.documentation/documentation/appstoreconnectapi"
         case .gameCenter:
-            return Self.pathPrefix.appending("bagbutik-game_center")
+            Self.pathPrefix.appending("bagbutik-game_center")
         case .marketplaces:
-            return Self.pathPrefix.appending("bagbutik-marketplaces")
+            Self.pathPrefix.appending("bagbutik-marketplaces")
         case .provisioning:
-            return Self.pathPrefix.appending("bagbutik-provisioning")
+            Self.pathPrefix.appending("bagbutik-provisioning")
         case .reporting:
-            return Self.pathPrefix.appending("bagbutik-reporting")
+            Self.pathPrefix.appending("bagbutik-reporting")
         case .testFlight:
-            return Self.pathPrefix.appending("prerelease_versions_and_beta_testers")
+            Self.pathPrefix.appending("prerelease_versions_and_beta_testers")
         case .users:
-            return Self.pathPrefix.appending("bagbutik-usersAndRoles")
+            Self.pathPrefix.appending("bagbutik-usersAndRoles")
         case .xcodeCloud:
-            return Self.pathPrefix.appending("xcode_cloud_workflows_and_builds")
+            Self.pathPrefix.appending("xcode_cloud_workflows_and_builds")
         }
     }
 
     static func resolvePackageName(from path: String) -> PackageName? {
         switch path {
-        case Self.appStore.path:
-            return .appStore
+        case appStore.path:
+            .appStore
         case pathPrefix.appending("large_data_sets"),
              pathPrefix.appending("errorresponse"):
-            return .core
+            .core
         case pathPrefix.appending("game_center"):
-            return .gameCenter
+            .gameCenter
         case pathPrefix.appending("app_distribution_for_alternative_marketplaces"):
-            return .marketplaces
+            .marketplaces
         case pathPrefix.appending("bundle_ids"),
              pathPrefix.appending("bundle_id_capabilities"),
              pathPrefix.appending("certificates"),
              pathPrefix.appending("devices"),
              pathPrefix.appending("profiles"),
-             Self.provisioning.path:
-            return .provisioning
-        case pathPrefix.appending("sales_and_finance_reports"),
+             provisioning.path:
+            .provisioning
+        case pathPrefix.appending("sales_and_finance"),
              pathPrefix.appending("power_and_performance_metrics_and_logs"),
-             Self.reporting.path:
-            return .reporting
-        case Self.testFlight.path:
-            return .testFlight
+             pathPrefix.appending("analytics"),
+             reporting.path:
+            .reporting
+        case testFlight.path:
+            .testFlight
         case pathPrefix.appending("users"),
              pathPrefix.appending("user_invitations"),
-             Self.users.path:
-            return .users
-        case Self.xcodeCloud.path:
-            return .xcodeCloud
+             users.path:
+            .users
+        case xcodeCloud.path:
+            .xcodeCloud
         default:
-            return nil
+            nil
         }
     }
 
