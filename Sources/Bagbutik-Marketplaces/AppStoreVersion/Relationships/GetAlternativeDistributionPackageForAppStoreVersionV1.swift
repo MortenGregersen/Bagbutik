@@ -39,6 +39,7 @@ public enum GetAlternativeDistributionPackageForAppStoreVersionV1 {
         public enum AlternativeDistributionPackageVersions: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionPackage
             case deltas
+            case fileChecksum
             case state
             case url
             case urlExpirationDate

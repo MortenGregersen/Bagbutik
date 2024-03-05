@@ -33,6 +33,7 @@ public enum ListDeltasForAlternativeDistributionPackageVersionV1 {
 
         public enum AlternativeDistributionPackageDeltas: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
+            case fileChecksum
             case url
             case urlExpirationDate
         }
