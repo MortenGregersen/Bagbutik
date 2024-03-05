@@ -28,7 +28,7 @@ class PackageNameTests: XCTestCase {
     }
 
     func testResolvePackageNameReporting() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("sales_and_finance_reports")), .reporting)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("sales_and_finance")), .reporting)
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("power_and_performance_metrics_and_logs")), .reporting)
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("analytics")), .reporting)
         XCTAssertEqual(PackageName.resolvePackageName(from: PackageName.reporting.path), .reporting)

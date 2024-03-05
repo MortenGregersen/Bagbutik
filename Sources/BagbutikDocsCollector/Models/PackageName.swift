@@ -79,7 +79,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
              pathPrefix.appending("profiles"),
              provisioning.path:
             .provisioning
-        case pathPrefix.appending("sales_and_finance_reports"),
+        case pathPrefix.appending("sales_and_finance"),
              pathPrefix.appending("power_and_performance_metrics_and_logs"),
              pathPrefix.appending("analytics"),
              reporting.path:
