@@ -45,14 +45,12 @@ public enum ListVersionsForAlternativeDistributionPackageV1 {
 
         public enum AlternativeDistributionPackageDeltas: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
-            case fileChecksum
             case url
             case urlExpirationDate
         }
 
         public enum AlternativeDistributionPackageVariants: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
-            case fileChecksum
             case url
             case urlExpirationDate
         }
@@ -60,7 +58,6 @@ public enum ListVersionsForAlternativeDistributionPackageV1 {
         public enum AlternativeDistributionPackageVersions: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionPackage
             case deltas
-            case fileChecksum
             case state
             case url
             case urlExpirationDate

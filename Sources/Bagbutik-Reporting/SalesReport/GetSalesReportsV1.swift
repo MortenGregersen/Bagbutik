@@ -55,7 +55,6 @@ public enum GetSalesReportsV1 {
         }
 
         public enum ReportType: String, ParameterValue, Codable, CaseIterable {
-            case firstAnnual = "FIRST_ANNUAL"
             case installs = "INSTALLS"
             case newsstand = "NEWSSTAND"
             case preOrder = "PRE_ORDER"

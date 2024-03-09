@@ -11,15 +11,12 @@ public extension Request {
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
-     - Parameter includes: Relationship data to include in the response
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
     static func getBuildBetaDetailForBuildV1(id: String,
-                                             fields: [GetBuildBetaDetailForBuildV1.Field]? = nil,
-                                             includes: [GetBuildBetaDetailForBuildV1.Include]? = nil) -> Request<BuildBetaDetailResponse, ErrorResponse>
+                                             fields: [GetBuildBetaDetailForBuildV1.Field]? = nil) -> Request<BuildBetaDetailWithoutIncludesResponse, ErrorResponse>
     {
-        .init(path: "/v1/builds/\(id)/buildBetaDetail", method: .get, parameters: .init(fields: fields,
-                                                                                        includes: includes))
+        .init(path: "/v1/builds/\(id)/buildBetaDetail", method: .get, parameters: .init(fields: fields))
     }
 }
 
@@ -30,8 +27,6 @@ public enum GetBuildBetaDetailForBuildV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type buildBetaDetails
         case buildBetaDetails([BuildBetaDetails])
-        /// The fields to include for returned resources of type builds
-        case builds([Builds])
 
         public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
             case autoNotifyEnabled
@@ -39,39 +34,5 @@ public enum GetBuildBetaDetailForBuildV1 {
             case externalBuildState
             case internalBuildState
         }
-
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
-            case app
-            case appEncryptionDeclaration
-            case appStoreVersion
-            case betaAppReviewSubmission
-            case betaBuildLocalizations
-            case betaGroups
-            case buildAudienceType
-            case buildBetaDetail
-            case buildBundles
-            case computedMinMacOsVersion
-            case diagnosticSignatures
-            case expirationDate
-            case expired
-            case iconAssetToken
-            case icons
-            case individualTesters
-            case lsMinimumSystemVersion
-            case minOsVersion
-            case perfPowerMetrics
-            case preReleaseVersion
-            case processingState
-            case uploadedDate
-            case usesNonExemptEncryption
-            case version
-        }
-    }
-
-    /**
-     Relationship data to include in the response.
-     */
-    public enum Include: String, IncludeParameter, CaseIterable {
-        case build
     }
 }

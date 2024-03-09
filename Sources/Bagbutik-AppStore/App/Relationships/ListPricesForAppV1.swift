@@ -53,7 +53,6 @@ public enum ListPricesForAppV1 {
 
         public enum Apps: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
-            case analyticsReportRequests
             case appAvailability
             case appClips
             case appCustomProductPages

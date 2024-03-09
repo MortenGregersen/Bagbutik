@@ -30,7 +30,6 @@ public enum GetAlternativeDistributionPackageVariantV1 {
 
         public enum AlternativeDistributionPackageVariants: String, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
-            case fileChecksum
             case url
             case urlExpirationDate
         }

@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Clear Purchase History for a Sandbox Tester
-     Remove purchase history from a Sandobx Apple ID
+     Remove purchase history from a Sandbox Apple ID.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/clear_purchase_history_for_a_sandbox_tester>
