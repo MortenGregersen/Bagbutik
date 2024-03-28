@@ -10,7 +10,8 @@ public extension CertificateType {
         case .macInstallerDistribution: return "Mac Installer Distribution"
         case .macAppDevelopment: return "Mac Development"
         case .developerIdKext: return "Developer ID Installer"
-        case .developerIdApplication: return "Developer ID Application"
+        case .developerIdApplication: return "Developer ID Application Previous Sub-CA"
+        case .developerIdApplicationG2: return "Developer ID Application G2 Sub-CA"
         case .passTypeId: return "Pass Type ID Certificate"
         // Not mentioned in documentation: https://developer.apple.com/support/certificates
         case .passTypeIdWithNfc: return "Pass Type ID with NFC Certificate"
