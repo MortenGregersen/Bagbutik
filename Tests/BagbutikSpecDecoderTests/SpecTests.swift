@@ -1001,6 +1001,10 @@ final class SpecTests: XCTestCase {
                     "UserRole" : {
                         "type" : "string",
                         "enum" : [ "ADMIN", "FINANCE", "ACCOUNT_HOLDER" ]
+                    },
+                    "CertificateType" : {
+                        "type" : "string",
+                        "enum" : [ "DISTRIBUTION", "DEVELOPMENT", "DEVELOPER_ID_APPLICATION" ]
                     }
                 }
             }
@@ -1040,6 +1044,13 @@ final class SpecTests: XCTestCase {
         let userRoleCaseValues = userRoleSchema.cases.map(\.value)
         XCTAssertEqual(userRoleCaseValues.count, 4)
         XCTAssertTrue(userRoleCaseValues.contains("GENERATE_INDIVIDUAL_KEYS"))
+        
+        guard case .enum(let certificateTypeSchema) = spec.components.schemas["CertificateType"] else {
+            XCTFail(); return
+        }
+        let certificateTypeCaseValues = certificateTypeSchema.cases.map(\.value)
+        XCTAssertEqual(certificateTypeCaseValues.count, 4)
+        XCTAssertTrue(certificateTypeCaseValues.contains("DEVELOPER_ID_APPLICATION_G2"))
     }
 
     func testApplyManualPatches_Error() throws {
