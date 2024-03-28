@@ -179,12 +179,6 @@ Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong sc
 
 As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
 
-#### **FB13621277**: App Store Connect API Spec is missing "GENERATE_INDIVIDUAL_KEYS" type for the User Role schema
-
-* Submitted: February 15th 2024.
-
-In the OpenAPI spec for the App Store Connect API the “UserRole” schema is said to not include "GENERATE_INDIVIDUAL_KEYS”. This is not right as “Users” endpoints can have a “GENERATE_INDIVIDUAL_KEYS” type.
-
 #### **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
 
 * Submitted: March 28th 2024.

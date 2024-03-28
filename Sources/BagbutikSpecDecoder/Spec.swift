@@ -183,16 +183,6 @@ public struct Spec: Decodable {
             components.schemas["Device"] = .object(deviceSchema)
             patchedSchemas.append(.object(deviceSchema))
         }
-
-        // Add the case `GENERATE_INDIVIDUAL_KEYS` to UserRole
-        // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 17/1/24 as FB13546172.
-        if case .enum(var userRoleSchema) = components.schemas["UserRole"] {
-            if !userRoleSchema.cases.contains(where: { $0.value == "GENERATE_INDIVIDUAL_KEYS" }) {
-                userRoleSchema.cases.append(EnumCase(id: "generateIndividualKeys", value: "GENERATE_INDIVIDUAL_KEYS"))
-            }
-            components.schemas["UserRole"] = .enum(userRoleSchema)
-            patchedSchemas.append(.enum(userRoleSchema))
-        }
         
         // Add the case `DEVELOPER_ID_APPLICATION_G2` to CertificateType
         // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 28/3/24 as FB13701181.
