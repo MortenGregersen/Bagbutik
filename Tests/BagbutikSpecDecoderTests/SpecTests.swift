@@ -998,10 +998,6 @@ final class SpecTests: XCTestCase {
                         },
                         "required" : [ "data", "links" ]
                     },
-                    "UserRole" : {
-                        "type" : "string",
-                        "enum" : [ "ADMIN", "FINANCE", "ACCOUNT_HOLDER" ]
-                    },
                     "CertificateType" : {
                         "type" : "string",
                         "enum" : [ "DISTRIBUTION", "DEVELOPMENT", "DEVELOPER_ID_APPLICATION" ]
@@ -1037,13 +1033,6 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(responseSchemaDataRef, "PrereleaseVersion")
-
-        guard case .enum(let userRoleSchema) = spec.components.schemas["UserRole"] else {
-            XCTFail(); return
-        }
-        let userRoleCaseValues = userRoleSchema.cases.map(\.value)
-        XCTAssertEqual(userRoleCaseValues.count, 4)
-        XCTAssertTrue(userRoleCaseValues.contains("GENERATE_INDIVIDUAL_KEYS"))
         
         guard case .enum(let certificateTypeSchema) = spec.components.schemas["CertificateType"] else {
             XCTFail(); return
