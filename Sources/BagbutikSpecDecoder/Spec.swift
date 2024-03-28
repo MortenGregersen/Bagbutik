@@ -193,6 +193,16 @@ public struct Spec: Decodable {
             components.schemas["UserRole"] = .enum(userRoleSchema)
             patchedSchemas.append(.enum(userRoleSchema))
         }
+        
+        // Add the case `DEVELOPER_ID_APPLICATION_G2` to CertificateType
+        // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 28/3/24 as FB13701181.
+        if case .enum(var certificateTypeSchema) = components.schemas["CertificateType"] {
+            if !certificateTypeSchema.cases.contains(where: { $0.value == "DEVELOPER_ID_APPLICATION_G2" }) {
+                certificateTypeSchema.cases.append(EnumCase(id: "developerIdApplicationG2", value: "DEVELOPER_ID_APPLICATION_G2"))
+            }
+            components.schemas["CertificateType"] = .enum(certificateTypeSchema)
+            patchedSchemas.append(.enum(certificateTypeSchema))
+        }
 
         // Change the shcema ref of the `data` property on *WithoutIncludesResponse
         // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as FB13540097.

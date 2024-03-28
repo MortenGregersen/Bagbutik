@@ -185,6 +185,14 @@ As an example, the data property of “BetaTestersWithoutIncludesResponse” ref
 
 In the OpenAPI spec for the App Store Connect API the “UserRole” schema is said to not include "GENERATE_INDIVIDUAL_KEYS”. This is not right as “Users” endpoints can have a “GENERATE_INDIVIDUAL_KEYS” type.
 
+#### **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
+
+* Submitted: March 28th 2024.
+
+In the OpenAPI spec for the App Store Connect API the “CertificateType” schema is said to not include "DEVELOPER_ID_APPLICATION_G2”. This is not right as “Certificates” endpoints can have a “DEVELOPER_ID_APPLICATION_G2” type.
+
+When creating certificates on [the developer portal](https://developer.apple.com/account/resources/certificates/add), it is also possible to select the G2 Sub-CA (which corresponds to “DEVELOPER_ID_APPLICATION_G2”.
+
 ### Closed feedback (removed patches)
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec

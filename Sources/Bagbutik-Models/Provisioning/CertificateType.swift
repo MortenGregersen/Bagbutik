@@ -10,6 +10,7 @@ import Foundation
  */
 public enum CertificateType: String, ParameterValue, Codable, CaseIterable {
     case developerIdApplication = "DEVELOPER_ID_APPLICATION"
+    case developerIdApplicationG2 = "DEVELOPER_ID_APPLICATION_G2"
     case developerIdKext = "DEVELOPER_ID_KEXT"
     case development = "DEVELOPMENT"
     case distribution = "DISTRIBUTION"
