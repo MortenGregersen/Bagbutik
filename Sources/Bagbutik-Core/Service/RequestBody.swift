@@ -9,6 +9,7 @@ public protocol RequestBody: Encodable {
 public extension RequestBody {
     var jsonData: Data {
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
         return try! encoder.encode(self)
     }
 }
