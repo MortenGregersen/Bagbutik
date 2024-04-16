@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify a marketplace search detail URL
-     Update the alternative marketplace search detail URL for an app.
+     Update the search detail URL for the alternative marketplace.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_marketplace_search_detail_url>

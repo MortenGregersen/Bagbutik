@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read the marketplace search detail URL
-     Get the alternative marketplace search detail URL for an app.
+     Get search detail URL for the alternative marketplace.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/read_the_marketplace_search_detail_url>

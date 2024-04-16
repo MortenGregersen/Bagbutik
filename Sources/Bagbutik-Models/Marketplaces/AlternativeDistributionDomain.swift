@@ -2,19 +2,16 @@ import Bagbutik_Core
 import Foundation
 
 /**
- # AlternativeDistributionPackageDelta
- The data structure that represents an alternative distribution package delta resource.
-
- For more information about the responses that include alternative distribution package delta objects, see ``AlternativeDistributionPackageDeltaResponse`` or ``AlternativeDistributionPackageDeltasResponse``.
+ # AlternativeDistributionDomain
+ The data structure that represents an alternative distribution domain resource.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedelta>
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain>
  */
-public struct AlternativeDistributionPackageDelta: Codable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution package delta.
+public struct AlternativeDistributionDomain: Codable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
-    public var type: String { "alternativeDistributionPackageDeltas" }
+    public var type: String { "alternativeDistributionDomains" }
     public var attributes: Attributes?
 
     public init(id: String,
@@ -51,21 +48,25 @@ public struct AlternativeDistributionPackageDelta: Codable, Identifiable {
         case type
     }
 
-    public struct Attributes: Codable {
-        public var alternativeDistributionKeyBlob: String?
-        public var fileChecksum: String?
-        public var url: String?
-        public var urlExpirationDate: Date?
+    /**
+     # AlternativeDistributionDomain.Attributes
+     Attributes that describe an alternative distribution domain resource.
 
-        public init(alternativeDistributionKeyBlob: String? = nil,
-                    fileChecksum: String? = nil,
-                    url: String? = nil,
-                    urlExpirationDate: Date? = nil)
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain/attributes>
+     */
+    public struct Attributes: Codable {
+        public var createdDate: Date?
+        public var domain: String?
+        public var referenceName: String?
+
+        public init(createdDate: Date? = nil,
+                    domain: String? = nil,
+                    referenceName: String? = nil)
         {
-            self.alternativeDistributionKeyBlob = alternativeDistributionKeyBlob
-            self.fileChecksum = fileChecksum
-            self.url = url
-            self.urlExpirationDate = urlExpirationDate
+            self.createdDate = createdDate
+            self.domain = domain
+            self.referenceName = referenceName
         }
     }
 }

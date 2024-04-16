@@ -6,7 +6,7 @@ public extension Request {
      # Add a marketplace webhook configuration
      Add a new endpoint URL and secret for alternative distribution package notifications.
 
-     Each provider has a single marketplace webhooks `endpointUrl`, so if you operate mutliple marketplaces all notifications come to a single endpoint. The notification payload contains the `marketplaceAppId.`
+     Each developer account has a single marketplace webhooks `endpointUrl`, so if you operate mutliple marketplaces all notifications come to a single endpoint. The notification payload contains the `marketplaceAppId.`
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/add_a_marketplace_webhook_configuration>

@@ -48,6 +48,13 @@ public struct MarketplaceWebhook: Codable, Identifiable {
         case type
     }
 
+    /**
+     # MarketplaceWebhook.Attributes
+     The attribute that describes the url where you will recieve notifications.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook/attributes>
+     */
     public struct Attributes: Codable {
         public var endpointUrl: String?
 
