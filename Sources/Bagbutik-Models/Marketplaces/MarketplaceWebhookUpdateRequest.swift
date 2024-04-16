@@ -65,6 +65,7 @@ public struct MarketplaceWebhookUpdateRequest: Codable, RequestBody {
          */
         public struct Attributes: Codable {
             public var endpointUrl: String?
+            /// An arbitrary string. Alternative marketplaces use this secret string to verify the incoming requests from Apple about changes to apps. For more information about webhook-style validation, see [Github's Validating webhook deliveries](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries#about-validating-webhook-deliveries).For more information about implementing Hash-based Message Authentication Code (HMAC) security in your notifications webhook, see [Processing alternative app marketplace notifications](https://developer.apple.com/documentation/appdistribution/processing-alternative-marketplace-notifications).
             public var secret: String?
 
             public init(endpointUrl: String? = nil,

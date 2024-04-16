@@ -5,10 +5,13 @@ import Foundation
  # AlternativeDistributionPackageVersion
  The data structure that represents an alternative distribution package version resource.
 
+ For more information about the responses that includes alternative distribution package version objects, see ``AlternativeDistributionPackageVersionResponse`` or ``AlternativeDistributionPackageVersionsResponse``.
+
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversion>
  */
 public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
+    /// An opaque resource ID that uniquely identifies the alternative distribution package version.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackageVersions" }

@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Add an alternative distribution key
-     Add an alternative distribution key for your alternative marketplace app.
+     Add an alternative distribution key for your alternative marketplace app or web distribution.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/add_an_alternative_distribution_key>

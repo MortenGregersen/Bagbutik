@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Delete a marketplace search detail URL
-     Delete the alternative marketplace search detail URL for an app.
+     Delete search detail URL for the alternative marketplace.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_marketplace_search_detail_url>

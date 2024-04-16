@@ -5,10 +5,13 @@ import Foundation
  # AlternativeDistributionPackage
  The data structure that represents an alternative distribution package resource.
 
+ To learn more about the response that includes this alternative distribution package object, see ``AlternativeDistributionPackageResponse``.
+
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage>
  */
 public struct AlternativeDistributionPackage: Codable, Identifiable {
+    /// An opaque resource ID that uniquely identifies the alternative distribution package.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackages" }
@@ -48,6 +51,15 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
         case type
     }
 
+    /**
+     # AlternativeDistributionPackage.Relationships
+     The data structure that represents the relationships of an alternative distribution package resource.
+
+     For more information on the object that owns these relationships, see ``AlternativeDistributionPackage``.
+
+     Full documentation:
+     <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships>
+     */
     public struct Relationships: Codable {
         public var versions: Versions?
 
@@ -55,6 +67,15 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
             self.versions = versions
         }
 
+        /**
+         # AlternativeDistributionPackage.Relationships.Versions
+         The data structure that represents the versions for the relationships of an alternative distribution package resource.
+
+         For more information on the object that owns these versions, see ``AlternativeDistributionPackage/Relationships``.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships/versions>
+         */
         public struct Versions: Codable {
             @NullCodable public var data: [Data]?
             public var links: Links?
@@ -89,7 +110,17 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
                 case meta
             }
 
+            /**
+             # AlternativeDistributionPackage.Relationships.Versions.Data
+             The data structure that represents a version for the relationships of an alternative distribution package resource.
+
+             For more information on the object that owns this version data, see ``AlternativeDistributionPackage/Relationships/Versions``.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships/versions/data>
+             */
             public struct Data: Codable, Identifiable {
+                /// An opaque resource ID that uniquely identifies the alternative distribution package version.
                 public let id: String
                 public var type: String { "alternativeDistributionPackageVersions" }
 
@@ -117,6 +148,15 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
                 }
             }
 
+            /**
+             # AlternativeDistributionPackage.Relationships.Versions.Links
+             The data structure that represents links to a version for the relationships of an alternative distribution package resource.
+
+             For more information on the object that owns this version data, see ``AlternativeDistributionPackage/Relationships/Versions``.
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships/versions/links>
+             */
             public struct Links: Codable {
                 public var related: String?
                 public var itself: String?

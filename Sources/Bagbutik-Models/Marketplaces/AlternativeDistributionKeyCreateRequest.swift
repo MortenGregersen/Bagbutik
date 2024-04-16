@@ -5,6 +5,8 @@ import Foundation
  # AlternativeDistributionKeyCreateRequest
  The request body you use to create an alternative distribution key.
 
+ Use this object to create a new alternative distribution key association in App Store Connect. For more infomation about the request that includes this request body, see [Add an alternative distribution key](https://developer.apple.com/documentation/appstoreconnectapi/add_an_alternative_distribution_key).
+
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeycreaterequest>
  */
@@ -51,13 +53,13 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
 
         /**
          # AlternativeDistributionKeyCreateRequest.Data.Attributes
-         The attribute you set that describes the public key used to create a new resource.
+         The attributes you set that describe the public key used to create a new resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeycreaterequest/data/attributes>
          */
         public struct Attributes: Codable {
-            /// To learn more about creating this `publicKey `see, [Creating keys and establishing alternative marketplace connections](https://developer.apple.com/documentation/appstoreconnectapi/app_distribution_for_alternative_marketplaces/alternative_distribution_keys/creating_keys_and_establishing_alternative_marketplace_connections).
+            /// To learn more about creating this `publicKey `see, [Creating keys and establishing alternative marketplace connections](https://developer.apple.com/documentation/appstoreconnectapi/alternative_marketplaces_and_web_distribution/alternative_distribution_keys/creating_keys_and_establishing_alternative_marketplace_connections) or [Creating and configuring keys for web distribution](https://developer.apple.com/documentation/appstoreconnectapi/alternative_marketplaces_and_web_distribution/alternative_distribution_keys/creating_and_configuring_keys_for_web_distribution).
             public let publicKey: String
 
             public init(publicKey: String) {
@@ -88,12 +90,13 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
 
                 /**
                  # AlternativeDistributionKeyCreateRequest.Data.Relationships.App.Data
-                 The app that is associted with the alternative distribution key.
+                 The app that is associated with the alternative distribution key.
 
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeycreaterequest/data/relationships/app/data>
                  */
                 public struct Data: Codable, Identifiable {
+                    /// This is the Apple app ID for the Marketplace app or your web distribution app. An opaque resource ID that uniquely identifies the resource. Obtain the `apps` ID from the [List Apps](https://developer.apple.com/documentation/appstoreconnectapi/list_apps) response.
                     public let id: String
                     public var type: String { "apps" }
 

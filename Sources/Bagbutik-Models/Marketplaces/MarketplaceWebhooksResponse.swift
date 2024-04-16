@@ -5,6 +5,8 @@ import Foundation
  # MarketplaceWebhooksResponse
  A response that contains a list of a marketplace webhook resources.
 
+ Use this object with [Read marketplace webhook information](https://developer.apple.com/documentation/appstoreconnectapi/read_marketplace_webhook_information).
+
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhooksresponse>
  */
