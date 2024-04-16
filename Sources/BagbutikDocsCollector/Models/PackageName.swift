@@ -70,7 +70,8 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             .core
         case pathPrefix.appending("game_center"):
             .gameCenter
-        case pathPrefix.appending("app_distribution_for_alternative_marketplaces"):
+        case pathPrefix.appending("app_distribution_for_alternative_marketplaces"),
+             pathPrefix.appending("alternative_marketplaces_and_web_distribution"):
             .marketplaces
         case pathPrefix.appending("bundle_ids"),
              pathPrefix.appending("bundle_id_capabilities"),

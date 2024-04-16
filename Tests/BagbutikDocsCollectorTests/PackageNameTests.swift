@@ -17,6 +17,17 @@ class PackageNameTests: XCTestCase {
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("errorresponse")), .core)
         XCTAssertEqual(PackageName.resolvePackageName(from: PackageName.core.path), nil)
     }
+    
+    func testResolvePackageNameGameCenter() {
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("game_center")), .gameCenter)
+        XCTAssertEqual(PackageName.resolvePackageName(from: PackageName.gameCenter.path), nil)
+    }
+    
+    func testResolvePackageNameMarketplaces() {
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("app_distribution_for_alternative_marketplaces")), .marketplaces)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("alternative_marketplaces_and_web_distribution")), .marketplaces)
+        XCTAssertEqual(PackageName.resolvePackageName(from: PackageName.marketplaces.path), nil)
+    }
 
     func testResolvePackageNameProvisioning() {
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("bundle_ids")), .provisioning)
