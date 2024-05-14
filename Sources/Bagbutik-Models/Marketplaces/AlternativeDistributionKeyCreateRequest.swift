@@ -20,10 +20,10 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
     public struct Data: Codable {
         public var type: String { "alternativeDistributionKeys" }
         public let attributes: Attributes
-        public let relationships: Relationships
+        public var relationships: Relationships?
 
         public init(attributes: Attributes,
-                    relationships: Relationships)
+                    relationships: Relationships? = nil)
         {
             self.attributes = attributes
             self.relationships = relationships
@@ -32,7 +32,7 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
+            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
             if try container.decode(String.self, forKey: .type) != type {
                 throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
             }
@@ -42,7 +42,7 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(type, forKey: .type)
             try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
+            try container.encodeIfPresent(relationships, forKey: .relationships)
         }
 
         private enum CodingKeys: String, CodingKey {
@@ -68,9 +68,9 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
         }
 
         public struct Relationships: Codable {
-            public let app: App
+            public var app: App?
 
-            public init(app: App) {
+            public init(app: App? = nil) {
                 self.app = app
             }
 
@@ -82,10 +82,24 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
              <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeycreaterequest/data/relationships/app>
              */
             public struct App: Codable {
-                public let data: Data
+                @NullCodable public var data: Data?
 
-                public init(data: Data) {
+                public init(data: Data? = nil) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**
