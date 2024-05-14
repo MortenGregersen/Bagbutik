@@ -9,6 +9,7 @@ enum OperationMapping {
         "alternativeDistributionDomains-get_instance": "read_alternative_distribution_domain_information",
         "alternativeDistributionKeys-create_instance": "add_an_alternative_distribution_key",
         "alternativeDistributionKeys-delete_instance": "read_alternative_distribution_key_information",
+        "alternativeDistributionKeys-get_collection": "list_alternative_distribution_keys",
         "alternativeDistributionKeys-get_instance": "remove_an_alternative_distribution_key",
         "alternativeDistributionPackageDeltas-get_instance": "read_information_for_alternative_distribution_package_deltas",
         "alternativeDistributionPackageVariants-get_instance": "read_information_for_an_alternative_distribution_package_variants",
