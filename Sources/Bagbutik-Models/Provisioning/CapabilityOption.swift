@@ -32,32 +32,23 @@ public struct CapabilityOption: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        description = try container.decodeIfPresent(String.self, forKey: .description)
-        enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled)
-        enabledByDefault = try container.decodeIfPresent(Bool.self, forKey: .enabledByDefault)
-        key = try container.decodeIfPresent(Key.self, forKey: .key)
-        name = try container.decodeIfPresent(String.self, forKey: .name)
-        supportsWildcard = try container.decodeIfPresent(Bool.self, forKey: .supportsWildcard)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        description = try container.decodeIfPresent(String.self, forKey: "description")
+        enabled = try container.decodeIfPresent(Bool.self, forKey: "enabled")
+        enabledByDefault = try container.decodeIfPresent(Bool.self, forKey: "enabledByDefault")
+        key = try container.decodeIfPresent(Key.self, forKey: "key")
+        name = try container.decodeIfPresent(String.self, forKey: "name")
+        supportsWildcard = try container.decodeIfPresent(Bool.self, forKey: "supportsWildcard")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(description, forKey: .description)
-        try container.encodeIfPresent(enabled, forKey: .enabled)
-        try container.encodeIfPresent(enabledByDefault, forKey: .enabledByDefault)
-        try container.encodeIfPresent(key, forKey: .key)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(supportsWildcard, forKey: .supportsWildcard)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case description
-        case enabled
-        case enabledByDefault
-        case key
-        case name
-        case supportsWildcard
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(description, forKey: "description")
+        try container.encodeIfPresent(enabled, forKey: "enabled")
+        try container.encodeIfPresent(enabledByDefault, forKey: "enabledByDefault")
+        try container.encodeIfPresent(key, forKey: "key")
+        try container.encodeIfPresent(name, forKey: "name")
+        try container.encodeIfPresent(supportsWildcard, forKey: "supportsWildcard")
     }
 
     public enum Key: String, Codable, CaseIterable {

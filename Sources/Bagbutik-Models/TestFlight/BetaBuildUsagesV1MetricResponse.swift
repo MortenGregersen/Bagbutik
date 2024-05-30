@@ -23,23 +23,17 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([Data].self, forKey: .data)
-        links = try container.decode(PagedDocumentLinks.self, forKey: .links)
-        meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([Data].self, forKey: "data")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-        try container.encode(links, forKey: .links)
-        try container.encodeIfPresent(meta, forKey: .meta)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
-        case links
-        case meta
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
     }
 
     public struct Data: Codable {
@@ -54,20 +48,15 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: .dataPoints)
-            dimensions = try container.decodeIfPresent(Dimensions.self, forKey: .dimensions)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: "dataPoints")
+            dimensions = try container.decodeIfPresent(Dimensions.self, forKey: "dimensions")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(dataPoints, forKey: .dataPoints)
-            try container.encodeIfPresent(dimensions, forKey: .dimensions)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case dataPoints
-            case dimensions
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(dataPoints, forKey: "dataPoints")
+            try container.encodeIfPresent(dimensions, forKey: "dimensions")
         }
 
         public struct DataPoints: Codable {
@@ -85,23 +74,17 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                end = try container.decodeIfPresent(Date.self, forKey: .end)
-                start = try container.decodeIfPresent(Date.self, forKey: .start)
-                values = try container.decodeIfPresent(Values.self, forKey: .values)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                end = try container.decodeIfPresent(Date.self, forKey: "end")
+                start = try container.decodeIfPresent(Date.self, forKey: "start")
+                values = try container.decodeIfPresent(Values.self, forKey: "values")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(end, forKey: .end)
-                try container.encodeIfPresent(start, forKey: .start)
-                try container.encodeIfPresent(values, forKey: .values)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case end
-                case start
-                case values
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(end, forKey: "end")
+                try container.encodeIfPresent(start, forKey: "start")
+                try container.encodeIfPresent(values, forKey: "values")
             }
 
             public struct Values: Codable {
@@ -125,29 +108,21 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    crashCount = try container.decodeIfPresent(Int.self, forKey: .crashCount)
-                    feedbackCount = try container.decodeIfPresent(Int.self, forKey: .feedbackCount)
-                    installCount = try container.decodeIfPresent(Int.self, forKey: .installCount)
-                    inviteCount = try container.decodeIfPresent(Int.self, forKey: .inviteCount)
-                    sessionCount = try container.decodeIfPresent(Int.self, forKey: .sessionCount)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    crashCount = try container.decodeIfPresent(Int.self, forKey: "crashCount")
+                    feedbackCount = try container.decodeIfPresent(Int.self, forKey: "feedbackCount")
+                    installCount = try container.decodeIfPresent(Int.self, forKey: "installCount")
+                    inviteCount = try container.decodeIfPresent(Int.self, forKey: "inviteCount")
+                    sessionCount = try container.decodeIfPresent(Int.self, forKey: "sessionCount")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(crashCount, forKey: .crashCount)
-                    try container.encodeIfPresent(feedbackCount, forKey: .feedbackCount)
-                    try container.encodeIfPresent(installCount, forKey: .installCount)
-                    try container.encodeIfPresent(inviteCount, forKey: .inviteCount)
-                    try container.encodeIfPresent(sessionCount, forKey: .sessionCount)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case crashCount
-                    case feedbackCount
-                    case installCount
-                    case inviteCount
-                    case sessionCount
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(crashCount, forKey: "crashCount")
+                    try container.encodeIfPresent(feedbackCount, forKey: "feedbackCount")
+                    try container.encodeIfPresent(installCount, forKey: "installCount")
+                    try container.encodeIfPresent(inviteCount, forKey: "inviteCount")
+                    try container.encodeIfPresent(sessionCount, forKey: "sessionCount")
                 }
             }
         }
@@ -160,17 +135,13 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                bundleIds = try container.decodeIfPresent(BundleIds.self, forKey: .bundleIds)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                bundleIds = try container.decodeIfPresent(BundleIds.self, forKey: "bundleIds")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(bundleIds, forKey: .bundleIds)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case bundleIds
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(bundleIds, forKey: "bundleIds")
             }
 
             public struct BundleIds: Codable {
@@ -181,17 +152,13 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    links = try container.decodeIfPresent(Links.self, forKey: .links)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    links = try container.decodeIfPresent(Links.self, forKey: "links")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(links, forKey: .links)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case links
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(links, forKey: "links")
                 }
 
                 public struct Links: Codable {
@@ -202,17 +169,13 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        groupBy = try container.decodeIfPresent(String.self, forKey: .groupBy)
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        groupBy = try container.decodeIfPresent(String.self, forKey: "groupBy")
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encodeIfPresent(groupBy, forKey: .groupBy)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case groupBy
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encodeIfPresent(groupBy, forKey: "groupBy")
                     }
                 }
             }

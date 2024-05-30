@@ -26,23 +26,17 @@ public struct ScmProviderType: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
-        isOnPremise = try container.decodeIfPresent(Bool.self, forKey: .isOnPremise)
-        kind = try container.decodeIfPresent(Kind.self, forKey: .kind)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        displayName = try container.decodeIfPresent(String.self, forKey: "displayName")
+        isOnPremise = try container.decodeIfPresent(Bool.self, forKey: "isOnPremise")
+        kind = try container.decodeIfPresent(Kind.self, forKey: "kind")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(displayName, forKey: .displayName)
-        try container.encodeIfPresent(isOnPremise, forKey: .isOnPremise)
-        try container.encodeIfPresent(kind, forKey: .kind)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case displayName
-        case isOnPremise
-        case kind
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(displayName, forKey: "displayName")
+        try container.encodeIfPresent(isOnPremise, forKey: "isOnPremise")
+        try container.encodeIfPresent(kind, forKey: "kind")
     }
 
     public enum Kind: String, Codable, CaseIterable {

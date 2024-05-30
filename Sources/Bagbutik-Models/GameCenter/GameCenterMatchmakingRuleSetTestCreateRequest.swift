@@ -22,20 +22,15 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
-        included = try container.decodeIfPresent([Included].self, forKey: .included)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-        try container.encodeIfPresent(included, forKey: .included)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
-        case included
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
     }
 
     /**
@@ -54,22 +49,17 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(relationships, forKey: "relationships")
         }
 
         /**
@@ -91,20 +81,15 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                matchmakingRequests = try container.decode(MatchmakingRequests.self, forKey: .matchmakingRequests)
-                matchmakingRuleSet = try container.decode(MatchmakingRuleSet.self, forKey: .matchmakingRuleSet)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                matchmakingRequests = try container.decode(MatchmakingRequests.self, forKey: "matchmakingRequests")
+                matchmakingRuleSet = try container.decode(MatchmakingRuleSet.self, forKey: "matchmakingRuleSet")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(matchmakingRequests, forKey: .matchmakingRequests)
-                try container.encode(matchmakingRuleSet, forKey: .matchmakingRuleSet)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case matchmakingRequests
-                case matchmakingRuleSet
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(matchmakingRequests, forKey: "matchmakingRequests")
+                try container.encode(matchmakingRuleSet, forKey: "matchmakingRuleSet")
             }
 
             /**
@@ -122,17 +107,13 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode([Data].self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode([Data].self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -153,22 +134,17 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }
@@ -188,17 +164,13 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -219,22 +191,17 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }
@@ -263,10 +230,6 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
             case let .gameCenterMatchmakingTestRequestInlineCreate(value):
                 try value.encode(to: encoder)
             }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
         }
     }
 }

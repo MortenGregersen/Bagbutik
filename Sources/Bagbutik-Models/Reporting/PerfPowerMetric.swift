@@ -24,28 +24,21 @@ public struct PerfPowerMetric: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     /**
@@ -72,23 +65,17 @@ public struct PerfPowerMetric: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            deviceType = try container.decodeIfPresent(String.self, forKey: .deviceType)
-            metricType = try container.decodeIfPresent(MetricType.self, forKey: .metricType)
-            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            deviceType = try container.decodeIfPresent(String.self, forKey: "deviceType")
+            metricType = try container.decodeIfPresent(MetricType.self, forKey: "metricType")
+            platform = try container.decodeIfPresent(Platform.self, forKey: "platform")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(deviceType, forKey: .deviceType)
-            try container.encodeIfPresent(metricType, forKey: .metricType)
-            try container.encodeIfPresent(platform, forKey: .platform)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case deviceType
-            case metricType
-            case platform
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(deviceType, forKey: "deviceType")
+            try container.encodeIfPresent(metricType, forKey: "metricType")
+            try container.encodeIfPresent(platform, forKey: "platform")
         }
 
         public enum MetricType: String, Codable, CaseIterable {

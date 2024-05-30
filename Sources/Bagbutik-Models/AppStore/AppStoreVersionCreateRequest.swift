@@ -16,17 +16,13 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -49,25 +45,19 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(attributes, forKey: "attributes")
+            try container.encode(relationships, forKey: "relationships")
         }
 
         /**
@@ -101,32 +91,23 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
-                earliestReleaseDate = try container.decodeIfPresent(Date.self, forKey: .earliestReleaseDate)
-                platform = try container.decode(Platform.self, forKey: .platform)
-                releaseType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReleaseType.self, forKey: .releaseType)
-                reviewType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReviewType.self, forKey: .reviewType)
-                versionString = try container.decode(String.self, forKey: .versionString)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                copyright = try container.decodeIfPresent(String.self, forKey: "copyright")
+                earliestReleaseDate = try container.decodeIfPresent(Date.self, forKey: "earliestReleaseDate")
+                platform = try container.decode(Platform.self, forKey: "platform")
+                releaseType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReleaseType.self, forKey: "releaseType")
+                reviewType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReviewType.self, forKey: "reviewType")
+                versionString = try container.decode(String.self, forKey: "versionString")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(copyright, forKey: .copyright)
-                try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
-                try container.encode(platform, forKey: .platform)
-                try container.encodeIfPresent(releaseType, forKey: .releaseType)
-                try container.encodeIfPresent(reviewType, forKey: .reviewType)
-                try container.encode(versionString, forKey: .versionString)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case copyright
-                case earliestReleaseDate
-                case platform
-                case releaseType
-                case reviewType
-                case versionString
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(copyright, forKey: "copyright")
+                try container.encodeIfPresent(earliestReleaseDate, forKey: "earliestReleaseDate")
+                try container.encode(platform, forKey: "platform")
+                try container.encodeIfPresent(releaseType, forKey: "releaseType")
+                try container.encodeIfPresent(reviewType, forKey: "reviewType")
+                try container.encode(versionString, forKey: "versionString")
             }
         }
 
@@ -152,23 +133,17 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                app = try container.decode(App.self, forKey: .app)
-                appStoreVersionLocalizations = try container.decodeIfPresent(AppStoreVersionLocalizations.self, forKey: .appStoreVersionLocalizations)
-                build = try container.decodeIfPresent(Build.self, forKey: .build)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                app = try container.decode(App.self, forKey: "app")
+                appStoreVersionLocalizations = try container.decodeIfPresent(AppStoreVersionLocalizations.self, forKey: "appStoreVersionLocalizations")
+                build = try container.decodeIfPresent(Build.self, forKey: "build")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(app, forKey: .app)
-                try container.encodeIfPresent(appStoreVersionLocalizations, forKey: .appStoreVersionLocalizations)
-                try container.encodeIfPresent(build, forKey: .build)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case app
-                case appStoreVersionLocalizations
-                case build
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(app, forKey: "app")
+                try container.encodeIfPresent(appStoreVersionLocalizations, forKey: "appStoreVersionLocalizations")
+                try container.encodeIfPresent(build, forKey: "build")
             }
 
             /**
@@ -186,17 +161,13 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -215,22 +186,17 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }
@@ -243,17 +209,13 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent([Data].self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent([Data].self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -265,22 +227,17 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }
@@ -300,17 +257,13 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -329,22 +282,17 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }

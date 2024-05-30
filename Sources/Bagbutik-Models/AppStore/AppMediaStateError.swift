@@ -20,19 +20,14 @@ public struct AppMediaStateError: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        code = try container.decodeIfPresent(String.self, forKey: .code)
-        description = try container.decodeIfPresent(String.self, forKey: .description)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        code = try container.decodeIfPresent(String.self, forKey: "code")
+        description = try container.decodeIfPresent(String.self, forKey: "description")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(code, forKey: .code)
-        try container.encodeIfPresent(description, forKey: .description)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case code
-        case description
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(code, forKey: "code")
+        try container.encodeIfPresent(description, forKey: "description")
     }
 }

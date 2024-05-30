@@ -16,17 +16,13 @@ public struct PagingInformation: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        paging = try container.decode(Paging.self, forKey: .paging)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        paging = try container.decode(Paging.self, forKey: "paging")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(paging, forKey: .paging)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case paging
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(paging, forKey: "paging")
     }
 
     /**
@@ -55,20 +51,15 @@ public struct PagingInformation: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            limit = try container.decode(Int.self, forKey: .limit)
-            total = try container.decodeIfPresent(Int.self, forKey: .total)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            limit = try container.decode(Int.self, forKey: "limit")
+            total = try container.decodeIfPresent(Int.self, forKey: "total")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(limit, forKey: .limit)
-            try container.encodeIfPresent(total, forKey: .total)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case limit
-            case total
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(limit, forKey: "limit")
+            try container.encodeIfPresent(total, forKey: "total")
         }
     }
 }

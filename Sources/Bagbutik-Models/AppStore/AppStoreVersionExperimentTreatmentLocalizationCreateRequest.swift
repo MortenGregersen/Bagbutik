@@ -9,17 +9,13 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     public struct Data: Codable {
@@ -35,25 +31,19 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(attributes, forKey: "attributes")
+            try container.encode(relationships, forKey: "relationships")
         }
 
         public struct Attributes: Codable {
@@ -64,17 +54,13 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                locale = try container.decode(String.self, forKey: .locale)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                locale = try container.decode(String.self, forKey: "locale")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(locale, forKey: .locale)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case locale
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(locale, forKey: "locale")
             }
         }
 
@@ -86,17 +72,13 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                appStoreVersionExperimentTreatment = try container.decode(AppStoreVersionExperimentTreatment.self, forKey: .appStoreVersionExperimentTreatment)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                appStoreVersionExperimentTreatment = try container.decode(AppStoreVersionExperimentTreatment.self, forKey: "appStoreVersionExperimentTreatment")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(appStoreVersionExperimentTreatment, forKey: .appStoreVersionExperimentTreatment)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case appStoreVersionExperimentTreatment
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(appStoreVersionExperimentTreatment, forKey: "appStoreVersionExperimentTreatment")
             }
 
             public struct AppStoreVersionExperimentTreatment: Codable {
@@ -107,17 +89,13 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -129,22 +107,17 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }

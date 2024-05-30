@@ -23,23 +23,17 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([Data].self, forKey: .data)
-        links = try container.decode(PagedDocumentLinks.self, forKey: .links)
-        meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([Data].self, forKey: "data")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-        try container.encode(links, forKey: .links)
-        try container.encodeIfPresent(meta, forKey: .meta)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
-        case links
-        case meta
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
     }
 
     /**
@@ -62,20 +56,15 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: .dataPoints)
-            granularity = try container.decodeIfPresent(Granularity.self, forKey: .granularity)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: "dataPoints")
+            granularity = try container.decodeIfPresent(Granularity.self, forKey: "granularity")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(dataPoints, forKey: .dataPoints)
-            try container.encodeIfPresent(granularity, forKey: .granularity)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case dataPoints
-            case granularity
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(dataPoints, forKey: "dataPoints")
+            try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
         /**
@@ -102,23 +91,17 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                end = try container.decodeIfPresent(Date.self, forKey: .end)
-                start = try container.decodeIfPresent(Date.self, forKey: .start)
-                values = try container.decodeIfPresent(Values.self, forKey: .values)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                end = try container.decodeIfPresent(Date.self, forKey: "end")
+                start = try container.decodeIfPresent(Date.self, forKey: "start")
+                values = try container.decodeIfPresent(Values.self, forKey: "values")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(end, forKey: .end)
-                try container.encodeIfPresent(start, forKey: .start)
-                try container.encodeIfPresent(values, forKey: .values)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case end
-                case start
-                case values
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(end, forKey: "end")
+                try container.encodeIfPresent(start, forKey: "start")
+                try container.encodeIfPresent(values, forKey: "values")
             }
 
             /**
@@ -150,26 +133,19 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    averageNumberOfRequests = try container.decodeIfPresent(Double.self, forKey: .averageNumberOfRequests)
-                    count = try container.decodeIfPresent(Int.self, forKey: .count)
-                    p50NumberOfRequests = try container.decodeIfPresent(Double.self, forKey: .p50NumberOfRequests)
-                    p95NumberOfRequests = try container.decodeIfPresent(Double.self, forKey: .p95NumberOfRequests)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    averageNumberOfRequests = try container.decodeIfPresent(Double.self, forKey: "averageNumberOfRequests")
+                    count = try container.decodeIfPresent(Int.self, forKey: "count")
+                    p50NumberOfRequests = try container.decodeIfPresent(Double.self, forKey: "p50NumberOfRequests")
+                    p95NumberOfRequests = try container.decodeIfPresent(Double.self, forKey: "p95NumberOfRequests")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(averageNumberOfRequests, forKey: .averageNumberOfRequests)
-                    try container.encodeIfPresent(count, forKey: .count)
-                    try container.encodeIfPresent(p50NumberOfRequests, forKey: .p50NumberOfRequests)
-                    try container.encodeIfPresent(p95NumberOfRequests, forKey: .p95NumberOfRequests)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case averageNumberOfRequests
-                    case count
-                    case p50NumberOfRequests
-                    case p95NumberOfRequests
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(averageNumberOfRequests, forKey: "averageNumberOfRequests")
+                    try container.encodeIfPresent(count, forKey: "count")
+                    try container.encodeIfPresent(p50NumberOfRequests, forKey: "p50NumberOfRequests")
+                    try container.encodeIfPresent(p95NumberOfRequests, forKey: "p95NumberOfRequests")
                 }
             }
         }

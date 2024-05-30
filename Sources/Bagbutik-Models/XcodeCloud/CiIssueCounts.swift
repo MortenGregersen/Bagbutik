@@ -30,25 +30,18 @@ public struct CiIssueCounts: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        analyzerWarnings = try container.decodeIfPresent(Int.self, forKey: .analyzerWarnings)
-        errors = try container.decodeIfPresent(Int.self, forKey: .errors)
-        testFailures = try container.decodeIfPresent(Int.self, forKey: .testFailures)
-        warnings = try container.decodeIfPresent(Int.self, forKey: .warnings)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        analyzerWarnings = try container.decodeIfPresent(Int.self, forKey: "analyzerWarnings")
+        errors = try container.decodeIfPresent(Int.self, forKey: "errors")
+        testFailures = try container.decodeIfPresent(Int.self, forKey: "testFailures")
+        warnings = try container.decodeIfPresent(Int.self, forKey: "warnings")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(analyzerWarnings, forKey: .analyzerWarnings)
-        try container.encodeIfPresent(errors, forKey: .errors)
-        try container.encodeIfPresent(testFailures, forKey: .testFailures)
-        try container.encodeIfPresent(warnings, forKey: .warnings)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case analyzerWarnings
-        case errors
-        case testFailures
-        case warnings
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(analyzerWarnings, forKey: "analyzerWarnings")
+        try container.encodeIfPresent(errors, forKey: "errors")
+        try container.encodeIfPresent(testFailures, forKey: "testFailures")
+        try container.encodeIfPresent(warnings, forKey: "warnings")
     }
 }

@@ -13,11 +13,7 @@ public struct Gzip: BinaryResponse {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 }

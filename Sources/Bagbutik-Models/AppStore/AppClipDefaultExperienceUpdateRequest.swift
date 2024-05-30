@@ -17,17 +17,13 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -57,28 +53,21 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            id = try container.decode(String.self, forKey: "id")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-            try container.encodeIfPresent(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(id, forKey: "id")
+            try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
+            try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
         /**
@@ -97,17 +86,13 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                action = try container.decodeIfPresent(AppClipAction.self, forKey: .action)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                action = try container.decodeIfPresent(AppClipAction.self, forKey: "action")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(action, forKey: .action)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case action
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(action, forKey: "action")
             }
         }
 
@@ -127,17 +112,13 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                releaseWithAppStoreVersion = try container.decodeIfPresent(ReleaseWithAppStoreVersion.self, forKey: .releaseWithAppStoreVersion)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                releaseWithAppStoreVersion = try container.decodeIfPresent(ReleaseWithAppStoreVersion.self, forKey: "releaseWithAppStoreVersion")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(releaseWithAppStoreVersion, forKey: .releaseWithAppStoreVersion)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case releaseWithAppStoreVersion
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(releaseWithAppStoreVersion, forKey: "releaseWithAppStoreVersion")
             }
 
             /**
@@ -156,17 +137,13 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decodeIfPresent(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -187,22 +164,17 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }

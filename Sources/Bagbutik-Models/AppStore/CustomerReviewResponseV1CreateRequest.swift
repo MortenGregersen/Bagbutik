@@ -17,17 +17,13 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -53,25 +49,19 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(attributes, forKey: "attributes")
+            try container.encode(relationships, forKey: "relationships")
         }
 
         /**
@@ -90,17 +80,13 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                responseBody = try container.decode(String.self, forKey: .responseBody)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                responseBody = try container.decode(String.self, forKey: "responseBody")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(responseBody, forKey: .responseBody)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case responseBody
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(responseBody, forKey: "responseBody")
             }
         }
 
@@ -120,17 +106,13 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                review = try container.decode(Review.self, forKey: .review)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                review = try container.decode(Review.self, forKey: "review")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(review, forKey: .review)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case review
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(review, forKey: "review")
             }
 
             /**
@@ -149,17 +131,13 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -180,22 +158,17 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }

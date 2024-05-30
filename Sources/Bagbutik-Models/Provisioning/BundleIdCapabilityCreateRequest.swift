@@ -17,17 +17,13 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -50,25 +46,19 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(attributes, forKey: "attributes")
+            try container.encode(relationships, forKey: "relationships")
         }
 
         /**
@@ -90,20 +80,15 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                capabilityType = try container.decode(CapabilityType.self, forKey: .capabilityType)
-                settings = try container.decodeIfPresent([CapabilitySetting].self, forKey: .settings)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                capabilityType = try container.decode(CapabilityType.self, forKey: "capabilityType")
+                settings = try container.decodeIfPresent([CapabilitySetting].self, forKey: "settings")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(capabilityType, forKey: .capabilityType)
-                try container.encodeIfPresent(settings, forKey: .settings)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case capabilityType
-                case settings
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(capabilityType, forKey: "capabilityType")
+                try container.encodeIfPresent(settings, forKey: "settings")
             }
         }
 
@@ -122,17 +107,13 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                bundleId = try container.decode(BundleId.self, forKey: .bundleId)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                bundleId = try container.decode(BundleId.self, forKey: "bundleId")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(bundleId, forKey: .bundleId)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case bundleId
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(bundleId, forKey: "bundleId")
             }
 
             /**
@@ -150,17 +131,13 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -179,22 +156,17 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }

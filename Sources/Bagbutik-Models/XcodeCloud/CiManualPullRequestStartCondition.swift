@@ -13,19 +13,14 @@ public struct CiManualPullRequestStartCondition: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        destination = try container.decodeIfPresent(CiBranchPatterns.self, forKey: .destination)
-        source = try container.decodeIfPresent(CiBranchPatterns.self, forKey: .source)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        destination = try container.decodeIfPresent(CiBranchPatterns.self, forKey: "destination")
+        source = try container.decodeIfPresent(CiBranchPatterns.self, forKey: "source")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(destination, forKey: .destination)
-        try container.encodeIfPresent(source, forKey: .source)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case destination
-        case source
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(destination, forKey: "destination")
+        try container.encodeIfPresent(source, forKey: "source")
     }
 }

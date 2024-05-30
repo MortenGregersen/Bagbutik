@@ -22,20 +22,15 @@ public struct CiBranchPatterns: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        isAllMatch = try container.decodeIfPresent(Bool.self, forKey: .isAllMatch)
-        patterns = try container.decodeIfPresent([Patterns].self, forKey: .patterns)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        isAllMatch = try container.decodeIfPresent(Bool.self, forKey: "isAllMatch")
+        patterns = try container.decodeIfPresent([Patterns].self, forKey: "patterns")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(isAllMatch, forKey: .isAllMatch)
-        try container.encodeIfPresent(patterns, forKey: .patterns)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case isAllMatch
-        case patterns
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(isAllMatch, forKey: "isAllMatch")
+        try container.encodeIfPresent(patterns, forKey: "patterns")
     }
 
     /**
@@ -59,20 +54,15 @@ public struct CiBranchPatterns: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            isPrefix = try container.decodeIfPresent(Bool.self, forKey: .isPrefix)
-            pattern = try container.decodeIfPresent(String.self, forKey: .pattern)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            isPrefix = try container.decodeIfPresent(Bool.self, forKey: "isPrefix")
+            pattern = try container.decodeIfPresent(String.self, forKey: "pattern")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(isPrefix, forKey: .isPrefix)
-            try container.encodeIfPresent(pattern, forKey: .pattern)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case isPrefix
-            case pattern
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(isPrefix, forKey: "isPrefix")
+            try container.encodeIfPresent(pattern, forKey: "pattern")
         }
     }
 }

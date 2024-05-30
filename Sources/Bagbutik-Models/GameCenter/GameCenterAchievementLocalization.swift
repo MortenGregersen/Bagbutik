@@ -20,31 +20,23 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
+        try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
     public struct Attributes: Codable {
@@ -65,26 +57,19 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            afterEarnedDescription = try container.decodeIfPresent(String.self, forKey: .afterEarnedDescription)
-            beforeEarnedDescription = try container.decodeIfPresent(String.self, forKey: .beforeEarnedDescription)
-            locale = try container.decodeIfPresent(String.self, forKey: .locale)
-            name = try container.decodeIfPresent(String.self, forKey: .name)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            afterEarnedDescription = try container.decodeIfPresent(String.self, forKey: "afterEarnedDescription")
+            beforeEarnedDescription = try container.decodeIfPresent(String.self, forKey: "beforeEarnedDescription")
+            locale = try container.decodeIfPresent(String.self, forKey: "locale")
+            name = try container.decodeIfPresent(String.self, forKey: "name")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(afterEarnedDescription, forKey: .afterEarnedDescription)
-            try container.encodeIfPresent(beforeEarnedDescription, forKey: .beforeEarnedDescription)
-            try container.encodeIfPresent(locale, forKey: .locale)
-            try container.encodeIfPresent(name, forKey: .name)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case afterEarnedDescription
-            case beforeEarnedDescription
-            case locale
-            case name
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(afterEarnedDescription, forKey: "afterEarnedDescription")
+            try container.encodeIfPresent(beforeEarnedDescription, forKey: "beforeEarnedDescription")
+            try container.encodeIfPresent(locale, forKey: "locale")
+            try container.encodeIfPresent(name, forKey: "name")
         }
     }
 
@@ -100,20 +85,15 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            gameCenterAchievement = try container.decodeIfPresent(GameCenterAchievement.self, forKey: .gameCenterAchievement)
-            gameCenterAchievementImage = try container.decodeIfPresent(GameCenterAchievementImage.self, forKey: .gameCenterAchievementImage)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            gameCenterAchievement = try container.decodeIfPresent(GameCenterAchievement.self, forKey: "gameCenterAchievement")
+            gameCenterAchievementImage = try container.decodeIfPresent(GameCenterAchievementImage.self, forKey: "gameCenterAchievementImage")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(gameCenterAchievement, forKey: .gameCenterAchievement)
-            try container.encodeIfPresent(gameCenterAchievementImage, forKey: .gameCenterAchievementImage)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case gameCenterAchievement
-            case gameCenterAchievementImage
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(gameCenterAchievement, forKey: "gameCenterAchievement")
+            try container.encodeIfPresent(gameCenterAchievementImage, forKey: "gameCenterAchievementImage")
         }
 
         public struct GameCenterAchievement: Codable {
@@ -128,20 +108,15 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             public struct Data: Codable, Identifiable {
@@ -153,22 +128,17 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -184,20 +154,15 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -214,20 +179,15 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             public struct Data: Codable, Identifiable {
@@ -239,22 +199,17 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -270,20 +225,15 @@ public struct GameCenterAchievementLocalization: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

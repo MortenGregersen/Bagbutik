@@ -32,31 +32,23 @@ public struct Build: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
+        try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
     /**
@@ -113,47 +105,33 @@ public struct Build: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            buildAudienceType = try container.decodeIfPresent(BuildAudienceType.self, forKey: .buildAudienceType)
-            computedMinMacOsVersion = try container.decodeIfPresent(String.self, forKey: .computedMinMacOsVersion)
-            expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
-            expired = try container.decodeIfPresent(Bool.self, forKey: .expired)
-            iconAssetToken = try container.decodeIfPresent(ImageAsset.self, forKey: .iconAssetToken)
-            lsMinimumSystemVersion = try container.decodeIfPresent(String.self, forKey: .lsMinimumSystemVersion)
-            minOsVersion = try container.decodeIfPresent(String.self, forKey: .minOsVersion)
-            processingState = try container.decodeIfPresent(ProcessingState.self, forKey: .processingState)
-            uploadedDate = try container.decodeIfPresent(Date.self, forKey: .uploadedDate)
-            usesNonExemptEncryption = try container.decodeIfPresent(Bool.self, forKey: .usesNonExemptEncryption)
-            version = try container.decodeIfPresent(String.self, forKey: .version)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            buildAudienceType = try container.decodeIfPresent(BuildAudienceType.self, forKey: "buildAudienceType")
+            computedMinMacOsVersion = try container.decodeIfPresent(String.self, forKey: "computedMinMacOsVersion")
+            expirationDate = try container.decodeIfPresent(Date.self, forKey: "expirationDate")
+            expired = try container.decodeIfPresent(Bool.self, forKey: "expired")
+            iconAssetToken = try container.decodeIfPresent(ImageAsset.self, forKey: "iconAssetToken")
+            lsMinimumSystemVersion = try container.decodeIfPresent(String.self, forKey: "lsMinimumSystemVersion")
+            minOsVersion = try container.decodeIfPresent(String.self, forKey: "minOsVersion")
+            processingState = try container.decodeIfPresent(ProcessingState.self, forKey: "processingState")
+            uploadedDate = try container.decodeIfPresent(Date.self, forKey: "uploadedDate")
+            usesNonExemptEncryption = try container.decodeIfPresent(Bool.self, forKey: "usesNonExemptEncryption")
+            version = try container.decodeIfPresent(String.self, forKey: "version")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(buildAudienceType, forKey: .buildAudienceType)
-            try container.encodeIfPresent(computedMinMacOsVersion, forKey: .computedMinMacOsVersion)
-            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
-            try container.encodeIfPresent(expired, forKey: .expired)
-            try container.encodeIfPresent(iconAssetToken, forKey: .iconAssetToken)
-            try container.encodeIfPresent(lsMinimumSystemVersion, forKey: .lsMinimumSystemVersion)
-            try container.encodeIfPresent(minOsVersion, forKey: .minOsVersion)
-            try container.encodeIfPresent(processingState, forKey: .processingState)
-            try container.encodeIfPresent(uploadedDate, forKey: .uploadedDate)
-            try container.encodeIfPresent(usesNonExemptEncryption, forKey: .usesNonExemptEncryption)
-            try container.encodeIfPresent(version, forKey: .version)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case buildAudienceType
-            case computedMinMacOsVersion
-            case expirationDate
-            case expired
-            case iconAssetToken
-            case lsMinimumSystemVersion
-            case minOsVersion
-            case processingState
-            case uploadedDate
-            case usesNonExemptEncryption
-            case version
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(buildAudienceType, forKey: "buildAudienceType")
+            try container.encodeIfPresent(computedMinMacOsVersion, forKey: "computedMinMacOsVersion")
+            try container.encodeIfPresent(expirationDate, forKey: "expirationDate")
+            try container.encodeIfPresent(expired, forKey: "expired")
+            try container.encodeIfPresent(iconAssetToken, forKey: "iconAssetToken")
+            try container.encodeIfPresent(lsMinimumSystemVersion, forKey: "lsMinimumSystemVersion")
+            try container.encodeIfPresent(minOsVersion, forKey: "minOsVersion")
+            try container.encodeIfPresent(processingState, forKey: "processingState")
+            try container.encodeIfPresent(uploadedDate, forKey: "uploadedDate")
+            try container.encodeIfPresent(usesNonExemptEncryption, forKey: "usesNonExemptEncryption")
+            try container.encodeIfPresent(version, forKey: "version")
         }
 
         public enum ProcessingState: String, ParameterValue, Codable, CaseIterable {
@@ -211,47 +189,33 @@ public struct Build: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            app = try container.decodeIfPresent(App.self, forKey: .app)
-            appEncryptionDeclaration = try container.decodeIfPresent(AppEncryptionDeclaration.self, forKey: .appEncryptionDeclaration)
-            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
-            betaAppReviewSubmission = try container.decodeIfPresent(BetaAppReviewSubmission.self, forKey: .betaAppReviewSubmission)
-            betaBuildLocalizations = try container.decodeIfPresent(BetaBuildLocalizations.self, forKey: .betaBuildLocalizations)
-            betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: .betaGroups)
-            buildBetaDetail = try container.decodeIfPresent(BuildBetaDetail.self, forKey: .buildBetaDetail)
-            buildBundles = try container.decodeIfPresent(BuildBundles.self, forKey: .buildBundles)
-            icons = try container.decodeIfPresent(Icons.self, forKey: .icons)
-            individualTesters = try container.decodeIfPresent(IndividualTesters.self, forKey: .individualTesters)
-            preReleaseVersion = try container.decodeIfPresent(PreReleaseVersion.self, forKey: .preReleaseVersion)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            app = try container.decodeIfPresent(App.self, forKey: "app")
+            appEncryptionDeclaration = try container.decodeIfPresent(AppEncryptionDeclaration.self, forKey: "appEncryptionDeclaration")
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: "appStoreVersion")
+            betaAppReviewSubmission = try container.decodeIfPresent(BetaAppReviewSubmission.self, forKey: "betaAppReviewSubmission")
+            betaBuildLocalizations = try container.decodeIfPresent(BetaBuildLocalizations.self, forKey: "betaBuildLocalizations")
+            betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: "betaGroups")
+            buildBetaDetail = try container.decodeIfPresent(BuildBetaDetail.self, forKey: "buildBetaDetail")
+            buildBundles = try container.decodeIfPresent(BuildBundles.self, forKey: "buildBundles")
+            icons = try container.decodeIfPresent(Icons.self, forKey: "icons")
+            individualTesters = try container.decodeIfPresent(IndividualTesters.self, forKey: "individualTesters")
+            preReleaseVersion = try container.decodeIfPresent(PreReleaseVersion.self, forKey: "preReleaseVersion")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(app, forKey: .app)
-            try container.encodeIfPresent(appEncryptionDeclaration, forKey: .appEncryptionDeclaration)
-            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
-            try container.encodeIfPresent(betaAppReviewSubmission, forKey: .betaAppReviewSubmission)
-            try container.encodeIfPresent(betaBuildLocalizations, forKey: .betaBuildLocalizations)
-            try container.encodeIfPresent(betaGroups, forKey: .betaGroups)
-            try container.encodeIfPresent(buildBetaDetail, forKey: .buildBetaDetail)
-            try container.encodeIfPresent(buildBundles, forKey: .buildBundles)
-            try container.encodeIfPresent(icons, forKey: .icons)
-            try container.encodeIfPresent(individualTesters, forKey: .individualTesters)
-            try container.encodeIfPresent(preReleaseVersion, forKey: .preReleaseVersion)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case app
-            case appEncryptionDeclaration
-            case appStoreVersion
-            case betaAppReviewSubmission
-            case betaBuildLocalizations
-            case betaGroups
-            case buildBetaDetail
-            case buildBundles
-            case icons
-            case individualTesters
-            case preReleaseVersion
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(app, forKey: "app")
+            try container.encodeIfPresent(appEncryptionDeclaration, forKey: "appEncryptionDeclaration")
+            try container.encodeIfPresent(appStoreVersion, forKey: "appStoreVersion")
+            try container.encodeIfPresent(betaAppReviewSubmission, forKey: "betaAppReviewSubmission")
+            try container.encodeIfPresent(betaBuildLocalizations, forKey: "betaBuildLocalizations")
+            try container.encodeIfPresent(betaGroups, forKey: "betaGroups")
+            try container.encodeIfPresent(buildBetaDetail, forKey: "buildBetaDetail")
+            try container.encodeIfPresent(buildBundles, forKey: "buildBundles")
+            try container.encodeIfPresent(icons, forKey: "icons")
+            try container.encodeIfPresent(individualTesters, forKey: "individualTesters")
+            try container.encodeIfPresent(preReleaseVersion, forKey: "preReleaseVersion")
         }
 
         /**
@@ -273,20 +237,15 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             /**
@@ -307,22 +266,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -345,20 +299,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -382,20 +331,15 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             /**
@@ -416,22 +360,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -454,20 +393,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -491,20 +425,15 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             /**
@@ -523,22 +452,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -561,20 +485,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -598,20 +517,15 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             /**
@@ -632,22 +546,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -670,20 +579,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -710,23 +614,17 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
             }
 
             /**
@@ -747,22 +645,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -785,20 +678,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -826,23 +714,17 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
             }
 
             public struct Data: Codable, Identifiable {
@@ -854,22 +736,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -885,20 +762,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -922,20 +794,15 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             /**
@@ -956,22 +823,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -994,20 +856,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -1037,23 +894,17 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
             }
 
             /**
@@ -1074,22 +925,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -1114,20 +960,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -1154,23 +995,17 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
             }
 
             /**
@@ -1189,22 +1024,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -1227,20 +1057,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -1267,23 +1092,17 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent([Data].self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-                try container.encodeIfPresent(meta, forKey: .meta)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
-                case meta
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
             }
 
             /**
@@ -1304,22 +1123,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -1342,20 +1156,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
@@ -1379,20 +1188,15 @@ public struct Build: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             /**
@@ -1413,22 +1217,17 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -1451,20 +1250,15 @@ public struct Build: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

@@ -29,28 +29,20 @@ public struct UploadOperation: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        length = try container.decodeIfPresent(Int.self, forKey: .length)
-        method = try container.decodeIfPresent(String.self, forKey: .method)
-        offset = try container.decodeIfPresent(Int.self, forKey: .offset)
-        requestHeaders = try container.decodeIfPresent([HttpHeader].self, forKey: .requestHeaders)
-        url = try container.decodeIfPresent(String.self, forKey: .url)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        length = try container.decodeIfPresent(Int.self, forKey: "length")
+        method = try container.decodeIfPresent(String.self, forKey: "method")
+        offset = try container.decodeIfPresent(Int.self, forKey: "offset")
+        requestHeaders = try container.decodeIfPresent([HttpHeader].self, forKey: "requestHeaders")
+        url = try container.decodeIfPresent(String.self, forKey: "url")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(length, forKey: .length)
-        try container.encodeIfPresent(method, forKey: .method)
-        try container.encodeIfPresent(offset, forKey: .offset)
-        try container.encodeIfPresent(requestHeaders, forKey: .requestHeaders)
-        try container.encodeIfPresent(url, forKey: .url)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case length
-        case method
-        case offset
-        case requestHeaders
-        case url
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(length, forKey: "length")
+        try container.encodeIfPresent(method, forKey: "method")
+        try container.encodeIfPresent(offset, forKey: "offset")
+        try container.encodeIfPresent(requestHeaders, forKey: "requestHeaders")
+        try container.encodeIfPresent(url, forKey: "url")
     }
 }

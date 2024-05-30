@@ -16,17 +16,13 @@ public struct MarketplaceDomainCreateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     public struct Data: Codable {
@@ -38,22 +34,17 @@ public struct MarketplaceDomainCreateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(attributes, forKey: "attributes")
         }
 
         public struct Attributes: Codable {
@@ -68,20 +59,15 @@ public struct MarketplaceDomainCreateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                domain = try container.decode(String.self, forKey: .domain)
-                referenceName = try container.decode(String.self, forKey: .referenceName)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                domain = try container.decode(String.self, forKey: "domain")
+                referenceName = try container.decode(String.self, forKey: "referenceName")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(domain, forKey: .domain)
-                try container.encode(referenceName, forKey: .referenceName)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case domain
-                case referenceName
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(domain, forKey: "domain")
+                try container.encode(referenceName, forKey: "referenceName")
             }
         }
     }

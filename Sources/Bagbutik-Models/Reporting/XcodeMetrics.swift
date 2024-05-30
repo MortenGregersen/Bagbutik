@@ -26,23 +26,17 @@ public struct XcodeMetrics: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        insights = try container.decodeIfPresent(Insights.self, forKey: .insights)
-        productData = try container.decodeIfPresent([ProductData].self, forKey: .productData)
-        version = try container.decodeIfPresent(String.self, forKey: .version)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        insights = try container.decodeIfPresent(Insights.self, forKey: "insights")
+        productData = try container.decodeIfPresent([ProductData].self, forKey: "productData")
+        version = try container.decodeIfPresent(String.self, forKey: "version")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(insights, forKey: .insights)
-        try container.encodeIfPresent(productData, forKey: .productData)
-        try container.encodeIfPresent(version, forKey: .version)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case insights
-        case productData
-        case version
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(insights, forKey: "insights")
+        try container.encodeIfPresent(productData, forKey: "productData")
+        try container.encodeIfPresent(version, forKey: "version")
     }
 
     /**
@@ -66,20 +60,15 @@ public struct XcodeMetrics: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            regressions = try container.decodeIfPresent([MetricsInsight].self, forKey: .regressions)
-            trendingUp = try container.decodeIfPresent([MetricsInsight].self, forKey: .trendingUp)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            regressions = try container.decodeIfPresent([MetricsInsight].self, forKey: "regressions")
+            trendingUp = try container.decodeIfPresent([MetricsInsight].self, forKey: "trendingUp")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(regressions, forKey: .regressions)
-            try container.encodeIfPresent(trendingUp, forKey: .trendingUp)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case regressions
-            case trendingUp
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(regressions, forKey: "regressions")
+            try container.encodeIfPresent(trendingUp, forKey: "trendingUp")
         }
     }
 
@@ -104,20 +93,15 @@ public struct XcodeMetrics: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            metricCategories = try container.decodeIfPresent([MetricCategories].self, forKey: .metricCategories)
-            platform = try container.decodeIfPresent(String.self, forKey: .platform)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            metricCategories = try container.decodeIfPresent([MetricCategories].self, forKey: "metricCategories")
+            platform = try container.decodeIfPresent(String.self, forKey: "platform")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(metricCategories, forKey: .metricCategories)
-            try container.encodeIfPresent(platform, forKey: .platform)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case metricCategories
-            case platform
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(metricCategories, forKey: "metricCategories")
+            try container.encodeIfPresent(platform, forKey: "platform")
         }
 
         /**
@@ -141,20 +125,15 @@ public struct XcodeMetrics: Codable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                identifier = try container.decodeIfPresent(MetricCategory.self, forKey: .identifier)
-                metrics = try container.decodeIfPresent([Metrics].self, forKey: .metrics)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                identifier = try container.decodeIfPresent(MetricCategory.self, forKey: "identifier")
+                metrics = try container.decodeIfPresent([Metrics].self, forKey: "metrics")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(identifier, forKey: .identifier)
-                try container.encodeIfPresent(metrics, forKey: .metrics)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case identifier
-                case metrics
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(identifier, forKey: "identifier")
+                try container.encodeIfPresent(metrics, forKey: "metrics")
             }
 
             /**
@@ -186,26 +165,19 @@ public struct XcodeMetrics: Codable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    datasets = try container.decodeIfPresent([Datasets].self, forKey: .datasets)
-                    goalKeys = try container.decodeIfPresent([GoalKeys].self, forKey: .goalKeys)
-                    identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
-                    unit = try container.decodeIfPresent(Unit.self, forKey: .unit)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    datasets = try container.decodeIfPresent([Datasets].self, forKey: "datasets")
+                    goalKeys = try container.decodeIfPresent([GoalKeys].self, forKey: "goalKeys")
+                    identifier = try container.decodeIfPresent(String.self, forKey: "identifier")
+                    unit = try container.decodeIfPresent(Unit.self, forKey: "unit")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(datasets, forKey: .datasets)
-                    try container.encodeIfPresent(goalKeys, forKey: .goalKeys)
-                    try container.encodeIfPresent(identifier, forKey: .identifier)
-                    try container.encodeIfPresent(unit, forKey: .unit)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case datasets
-                    case goalKeys
-                    case identifier
-                    case unit
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(datasets, forKey: "datasets")
+                    try container.encodeIfPresent(goalKeys, forKey: "goalKeys")
+                    try container.encodeIfPresent(identifier, forKey: "identifier")
+                    try container.encodeIfPresent(unit, forKey: "unit")
                 }
 
                 /**
@@ -229,20 +201,15 @@ public struct XcodeMetrics: Codable {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        filterCriteria = try container.decodeIfPresent(FilterCriteria.self, forKey: .filterCriteria)
-                        points = try container.decodeIfPresent([Points].self, forKey: .points)
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        filterCriteria = try container.decodeIfPresent(FilterCriteria.self, forKey: "filterCriteria")
+                        points = try container.decodeIfPresent([Points].self, forKey: "points")
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encodeIfPresent(filterCriteria, forKey: .filterCriteria)
-                        try container.encodeIfPresent(points, forKey: .points)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case filterCriteria
-                        case points
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encodeIfPresent(filterCriteria, forKey: "filterCriteria")
+                        try container.encodeIfPresent(points, forKey: "points")
                     }
 
                     /**
@@ -270,23 +237,17 @@ public struct XcodeMetrics: Codable {
                         }
 
                         public init(from decoder: Decoder) throws {
-                            let container = try decoder.container(keyedBy: CodingKeys.self)
-                            device = try container.decodeIfPresent(String.self, forKey: .device)
-                            deviceMarketingName = try container.decodeIfPresent(String.self, forKey: .deviceMarketingName)
-                            percentile = try container.decodeIfPresent(String.self, forKey: .percentile)
+                            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                            device = try container.decodeIfPresent(String.self, forKey: "device")
+                            deviceMarketingName = try container.decodeIfPresent(String.self, forKey: "deviceMarketingName")
+                            percentile = try container.decodeIfPresent(String.self, forKey: "percentile")
                         }
 
                         public func encode(to encoder: Encoder) throws {
-                            var container = encoder.container(keyedBy: CodingKeys.self)
-                            try container.encodeIfPresent(device, forKey: .device)
-                            try container.encodeIfPresent(deviceMarketingName, forKey: .deviceMarketingName)
-                            try container.encodeIfPresent(percentile, forKey: .percentile)
-                        }
-
-                        private enum CodingKeys: String, CodingKey {
-                            case device
-                            case deviceMarketingName
-                            case percentile
+                            var container = encoder.container(keyedBy: AnyCodingKey.self)
+                            try container.encodeIfPresent(device, forKey: "device")
+                            try container.encodeIfPresent(deviceMarketingName, forKey: "deviceMarketingName")
+                            try container.encodeIfPresent(percentile, forKey: "percentile")
                         }
                     }
 
@@ -323,29 +284,21 @@ public struct XcodeMetrics: Codable {
                         }
 
                         public init(from decoder: Decoder) throws {
-                            let container = try decoder.container(keyedBy: CodingKeys.self)
-                            errorMargin = try container.decodeIfPresent(Double.self, forKey: .errorMargin)
-                            goal = try container.decodeIfPresent(String.self, forKey: .goal)
-                            percentageBreakdown = try container.decodeIfPresent(PercentageBreakdown.self, forKey: .percentageBreakdown)
-                            value = try container.decodeIfPresent(Double.self, forKey: .value)
-                            version = try container.decodeIfPresent(String.self, forKey: .version)
+                            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                            errorMargin = try container.decodeIfPresent(Double.self, forKey: "errorMargin")
+                            goal = try container.decodeIfPresent(String.self, forKey: "goal")
+                            percentageBreakdown = try container.decodeIfPresent(PercentageBreakdown.self, forKey: "percentageBreakdown")
+                            value = try container.decodeIfPresent(Double.self, forKey: "value")
+                            version = try container.decodeIfPresent(String.self, forKey: "version")
                         }
 
                         public func encode(to encoder: Encoder) throws {
-                            var container = encoder.container(keyedBy: CodingKeys.self)
-                            try container.encodeIfPresent(errorMargin, forKey: .errorMargin)
-                            try container.encodeIfPresent(goal, forKey: .goal)
-                            try container.encodeIfPresent(percentageBreakdown, forKey: .percentageBreakdown)
-                            try container.encodeIfPresent(value, forKey: .value)
-                            try container.encodeIfPresent(version, forKey: .version)
-                        }
-
-                        private enum CodingKeys: String, CodingKey {
-                            case errorMargin
-                            case goal
-                            case percentageBreakdown
-                            case value
-                            case version
+                            var container = encoder.container(keyedBy: AnyCodingKey.self)
+                            try container.encodeIfPresent(errorMargin, forKey: "errorMargin")
+                            try container.encodeIfPresent(goal, forKey: "goal")
+                            try container.encodeIfPresent(percentageBreakdown, forKey: "percentageBreakdown")
+                            try container.encodeIfPresent(value, forKey: "value")
+                            try container.encodeIfPresent(version, forKey: "version")
                         }
 
                         /**
@@ -369,20 +322,15 @@ public struct XcodeMetrics: Codable {
                             }
 
                             public init(from decoder: Decoder) throws {
-                                let container = try decoder.container(keyedBy: CodingKeys.self)
-                                subSystemLabel = try container.decodeIfPresent(String.self, forKey: .subSystemLabel)
-                                value = try container.decodeIfPresent(Double.self, forKey: .value)
+                                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                                subSystemLabel = try container.decodeIfPresent(String.self, forKey: "subSystemLabel")
+                                value = try container.decodeIfPresent(Double.self, forKey: "value")
                             }
 
                             public func encode(to encoder: Encoder) throws {
-                                var container = encoder.container(keyedBy: CodingKeys.self)
-                                try container.encodeIfPresent(subSystemLabel, forKey: .subSystemLabel)
-                                try container.encodeIfPresent(value, forKey: .value)
-                            }
-
-                            private enum CodingKeys: String, CodingKey {
-                                case subSystemLabel
-                                case value
+                                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                                try container.encodeIfPresent(subSystemLabel, forKey: "subSystemLabel")
+                                try container.encodeIfPresent(value, forKey: "value")
                             }
                         }
                     }
@@ -413,23 +361,17 @@ public struct XcodeMetrics: Codable {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        goalKey = try container.decodeIfPresent(String.self, forKey: .goalKey)
-                        lowerBound = try container.decodeIfPresent(Int.self, forKey: .lowerBound)
-                        upperBound = try container.decodeIfPresent(Int.self, forKey: .upperBound)
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        goalKey = try container.decodeIfPresent(String.self, forKey: "goalKey")
+                        lowerBound = try container.decodeIfPresent(Int.self, forKey: "lowerBound")
+                        upperBound = try container.decodeIfPresent(Int.self, forKey: "upperBound")
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encodeIfPresent(goalKey, forKey: .goalKey)
-                        try container.encodeIfPresent(lowerBound, forKey: .lowerBound)
-                        try container.encodeIfPresent(upperBound, forKey: .upperBound)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case goalKey
-                        case lowerBound
-                        case upperBound
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encodeIfPresent(goalKey, forKey: "goalKey")
+                        try container.encodeIfPresent(lowerBound, forKey: "lowerBound")
+                        try container.encodeIfPresent(upperBound, forKey: "upperBound")
                     }
                 }
 
@@ -454,20 +396,15 @@ public struct XcodeMetrics: Codable {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
-                        identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        displayName = try container.decodeIfPresent(String.self, forKey: "displayName")
+                        identifier = try container.decodeIfPresent(String.self, forKey: "identifier")
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encodeIfPresent(displayName, forKey: .displayName)
-                        try container.encodeIfPresent(identifier, forKey: .identifier)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case displayName
-                        case identifier
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encodeIfPresent(displayName, forKey: "displayName")
+                        try container.encodeIfPresent(identifier, forKey: "identifier")
                     }
                 }
             }

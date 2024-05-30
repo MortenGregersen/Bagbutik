@@ -17,17 +17,13 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -53,25 +49,19 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            id = try container.decode(String.self, forKey: "id")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(id, forKey: "id")
+            try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
         /**
@@ -119,38 +109,27 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                contactEmail = try container.decodeIfPresent(String.self, forKey: .contactEmail)
-                contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
-                contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
-                contactPhone = try container.decodeIfPresent(String.self, forKey: .contactPhone)
-                demoAccountName = try container.decodeIfPresent(String.self, forKey: .demoAccountName)
-                demoAccountPassword = try container.decodeIfPresent(String.self, forKey: .demoAccountPassword)
-                demoAccountRequired = try container.decodeIfPresent(Bool.self, forKey: .demoAccountRequired)
-                notes = try container.decodeIfPresent(String.self, forKey: .notes)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                contactEmail = try container.decodeIfPresent(String.self, forKey: "contactEmail")
+                contactFirstName = try container.decodeIfPresent(String.self, forKey: "contactFirstName")
+                contactLastName = try container.decodeIfPresent(String.self, forKey: "contactLastName")
+                contactPhone = try container.decodeIfPresent(String.self, forKey: "contactPhone")
+                demoAccountName = try container.decodeIfPresent(String.self, forKey: "demoAccountName")
+                demoAccountPassword = try container.decodeIfPresent(String.self, forKey: "demoAccountPassword")
+                demoAccountRequired = try container.decodeIfPresent(Bool.self, forKey: "demoAccountRequired")
+                notes = try container.decodeIfPresent(String.self, forKey: "notes")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(contactEmail, forKey: .contactEmail)
-                try container.encodeIfPresent(contactFirstName, forKey: .contactFirstName)
-                try container.encodeIfPresent(contactLastName, forKey: .contactLastName)
-                try container.encodeIfPresent(contactPhone, forKey: .contactPhone)
-                try container.encodeIfPresent(demoAccountName, forKey: .demoAccountName)
-                try container.encodeIfPresent(demoAccountPassword, forKey: .demoAccountPassword)
-                try container.encodeIfPresent(demoAccountRequired, forKey: .demoAccountRequired)
-                try container.encodeIfPresent(notes, forKey: .notes)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case contactEmail
-                case contactFirstName
-                case contactLastName
-                case contactPhone
-                case demoAccountName
-                case demoAccountPassword
-                case demoAccountRequired
-                case notes
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(contactEmail, forKey: "contactEmail")
+                try container.encodeIfPresent(contactFirstName, forKey: "contactFirstName")
+                try container.encodeIfPresent(contactLastName, forKey: "contactLastName")
+                try container.encodeIfPresent(contactPhone, forKey: "contactPhone")
+                try container.encodeIfPresent(demoAccountName, forKey: "demoAccountName")
+                try container.encodeIfPresent(demoAccountPassword, forKey: "demoAccountPassword")
+                try container.encodeIfPresent(demoAccountRequired, forKey: "demoAccountRequired")
+                try container.encodeIfPresent(notes, forKey: "notes")
             }
         }
     }

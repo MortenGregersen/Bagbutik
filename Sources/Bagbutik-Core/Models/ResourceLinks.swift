@@ -16,16 +16,12 @@ public struct ResourceLinks: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        itself = try container.decodeIfPresent(String.self, forKey: .itself)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        itself = try container.decodeIfPresent(String.self, forKey: "self")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(itself, forKey: .itself)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case itself = "self"
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(itself, forKey: "self")
     }
 }

@@ -22,20 +22,15 @@ public struct CiScheduledStartCondition: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        schedule = try container.decodeIfPresent(Schedule.self, forKey: .schedule)
-        source = try container.decodeIfPresent(CiBranchPatterns.self, forKey: .source)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        schedule = try container.decodeIfPresent(Schedule.self, forKey: "schedule")
+        source = try container.decodeIfPresent(CiBranchPatterns.self, forKey: "source")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(schedule, forKey: .schedule)
-        try container.encodeIfPresent(source, forKey: .source)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case schedule
-        case source
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(schedule, forKey: "schedule")
+        try container.encodeIfPresent(source, forKey: "source")
     }
 
     /**
@@ -71,29 +66,21 @@ public struct CiScheduledStartCondition: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            days = try container.decodeIfPresent(Items.self, forKey: .days)
-            frequency = try container.decodeIfPresent(Frequency.self, forKey: .frequency)
-            hour = try container.decodeIfPresent(Int.self, forKey: .hour)
-            minute = try container.decodeIfPresent(Int.self, forKey: .minute)
-            timezone = try container.decodeIfPresent(String.self, forKey: .timezone)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            days = try container.decodeIfPresent(Items.self, forKey: "days")
+            frequency = try container.decodeIfPresent(Frequency.self, forKey: "frequency")
+            hour = try container.decodeIfPresent(Int.self, forKey: "hour")
+            minute = try container.decodeIfPresent(Int.self, forKey: "minute")
+            timezone = try container.decodeIfPresent(String.self, forKey: "timezone")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(days, forKey: .days)
-            try container.encodeIfPresent(frequency, forKey: .frequency)
-            try container.encodeIfPresent(hour, forKey: .hour)
-            try container.encodeIfPresent(minute, forKey: .minute)
-            try container.encodeIfPresent(timezone, forKey: .timezone)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case days
-            case frequency
-            case hour
-            case minute
-            case timezone
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(days, forKey: "days")
+            try container.encodeIfPresent(frequency, forKey: "frequency")
+            try container.encodeIfPresent(hour, forKey: "hour")
+            try container.encodeIfPresent(minute, forKey: "minute")
+            try container.encodeIfPresent(timezone, forKey: "timezone")
         }
 
         public enum Frequency: String, Codable, CaseIterable {

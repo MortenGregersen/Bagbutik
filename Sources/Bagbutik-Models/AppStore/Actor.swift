@@ -17,28 +17,21 @@ public struct Actor: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     public struct Attributes: Codable {
@@ -62,29 +55,21 @@ public struct Actor: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            actorType = try container.decodeIfPresent(ActorType.self, forKey: .actorType)
-            apiKeyId = try container.decodeIfPresent(String.self, forKey: .apiKeyId)
-            userEmail = try container.decodeIfPresent(String.self, forKey: .userEmail)
-            userFirstName = try container.decodeIfPresent(String.self, forKey: .userFirstName)
-            userLastName = try container.decodeIfPresent(String.self, forKey: .userLastName)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            actorType = try container.decodeIfPresent(ActorType.self, forKey: "actorType")
+            apiKeyId = try container.decodeIfPresent(String.self, forKey: "apiKeyId")
+            userEmail = try container.decodeIfPresent(String.self, forKey: "userEmail")
+            userFirstName = try container.decodeIfPresent(String.self, forKey: "userFirstName")
+            userLastName = try container.decodeIfPresent(String.self, forKey: "userLastName")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(actorType, forKey: .actorType)
-            try container.encodeIfPresent(apiKeyId, forKey: .apiKeyId)
-            try container.encodeIfPresent(userEmail, forKey: .userEmail)
-            try container.encodeIfPresent(userFirstName, forKey: .userFirstName)
-            try container.encodeIfPresent(userLastName, forKey: .userLastName)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case actorType
-            case apiKeyId
-            case userEmail
-            case userFirstName
-            case userLastName
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(actorType, forKey: "actorType")
+            try container.encodeIfPresent(apiKeyId, forKey: "apiKeyId")
+            try container.encodeIfPresent(userEmail, forKey: "userEmail")
+            try container.encodeIfPresent(userFirstName, forKey: "userFirstName")
+            try container.encodeIfPresent(userLastName, forKey: "userLastName")
         }
 
         public enum ActorType: String, Codable, CaseIterable {

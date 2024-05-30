@@ -22,20 +22,15 @@ public struct CiFilesAndFoldersRule: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        matchers = try container.decodeIfPresent([CiStartConditionFileMatcher].self, forKey: .matchers)
-        mode = try container.decodeIfPresent(Mode.self, forKey: .mode)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        matchers = try container.decodeIfPresent([CiStartConditionFileMatcher].self, forKey: "matchers")
+        mode = try container.decodeIfPresent(Mode.self, forKey: "mode")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(matchers, forKey: .matchers)
-        try container.encodeIfPresent(mode, forKey: .mode)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case matchers
-        case mode
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(matchers, forKey: "matchers")
+        try container.encodeIfPresent(mode, forKey: "mode")
     }
 
     public enum Mode: String, Codable, CaseIterable {

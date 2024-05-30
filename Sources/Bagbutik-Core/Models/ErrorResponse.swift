@@ -16,17 +16,13 @@ public struct ErrorResponse: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        errors = try container.decodeIfPresent([Errors].self, forKey: .errors)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        errors = try container.decodeIfPresent([Errors].self, forKey: "errors")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(errors, forKey: .errors)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case errors
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(errors, forKey: "errors")
     }
 
     /**
@@ -71,35 +67,25 @@ public struct ErrorResponse: Codable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            code = try container.decode(String.self, forKey: .code)
-            detail = try container.decodeIfPresent(String.self, forKey: .detail)
-            id = try container.decodeIfPresent(String.self, forKey: .id)
-            meta = try container.decodeIfPresent(Meta.self, forKey: .meta)
-            source = try container.decodeIfPresent(Source.self, forKey: .source)
-            status = try container.decode(String.self, forKey: .status)
-            title = try container.decode(String.self, forKey: .title)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            code = try container.decode(String.self, forKey: "code")
+            detail = try container.decodeIfPresent(String.self, forKey: "detail")
+            id = try container.decodeIfPresent(String.self, forKey: "id")
+            meta = try container.decodeIfPresent(Meta.self, forKey: "meta")
+            source = try container.decodeIfPresent(Source.self, forKey: "source")
+            status = try container.decode(String.self, forKey: "status")
+            title = try container.decode(String.self, forKey: "title")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(code, forKey: .code)
-            try container.encodeIfPresent(detail, forKey: .detail)
-            try container.encodeIfPresent(id, forKey: .id)
-            try container.encodeIfPresent(meta, forKey: .meta)
-            try container.encodeIfPresent(source, forKey: .source)
-            try container.encode(status, forKey: .status)
-            try container.encode(title, forKey: .title)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case code
-            case detail
-            case id
-            case meta
-            case source
-            case status
-            case title
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(code, forKey: "code")
+            try container.encodeIfPresent(detail, forKey: "detail")
+            try container.encodeIfPresent(id, forKey: "id")
+            try container.encodeIfPresent(meta, forKey: "meta")
+            try container.encodeIfPresent(source, forKey: "source")
+            try container.encode(status, forKey: "status")
+            try container.encode(title, forKey: "title")
         }
 
         public struct Meta: Codable {
@@ -114,20 +100,15 @@ public struct ErrorResponse: Codable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                additionalProperties = try container.decodeIfPresent([String: String].self, forKey: .additionalProperties)
-                associatedErrors = try container.decodeIfPresent([String: [Errors]].self, forKey: .associatedErrors)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                additionalProperties = try container.decodeIfPresent([String: String].self, forKey: "additionalProperties")
+                associatedErrors = try container.decodeIfPresent([String: [Errors]].self, forKey: "associatedErrors")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(additionalProperties, forKey: .additionalProperties)
-                try container.encodeIfPresent(associatedErrors, forKey: .associatedErrors)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case additionalProperties
-                case associatedErrors
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(additionalProperties, forKey: "additionalProperties")
+                try container.encodeIfPresent(associatedErrors, forKey: "associatedErrors")
             }
         }
 
@@ -153,10 +134,6 @@ public struct ErrorResponse: Codable {
                 case let .parameter(value):
                     try value.encode(to: encoder)
                 }
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case type
             }
         }
     }

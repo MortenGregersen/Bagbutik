@@ -26,22 +26,16 @@ public struct CiStartConditionFileMatcher: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        directory = try container.decodeIfPresent(String.self, forKey: .directory)
-        fileExtension = try container.decodeIfPresent(String.self, forKey: .fileExtension)
-        fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        directory = try container.decodeIfPresent(String.self, forKey: "directory")
+        fileExtension = try container.decodeIfPresent(String.self, forKey: "fileExtension")
+        fileName = try container.decodeIfPresent(String.self, forKey: "fileName")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(directory, forKey: .directory)
-        try container.encodeIfPresent(fileExtension, forKey: .fileExtension)
-        try container.encodeIfPresent(fileName, forKey: .fileName)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case directory
-        case fileExtension
-        case fileName
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(directory, forKey: "directory")
+        try container.encodeIfPresent(fileExtension, forKey: "fileExtension")
+        try container.encodeIfPresent(fileName, forKey: "fileName")
     }
 }

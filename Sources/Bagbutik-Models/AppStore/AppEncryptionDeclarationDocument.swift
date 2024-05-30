@@ -17,28 +17,21 @@ public struct AppEncryptionDeclarationDocument: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     public struct Attributes: Codable {
@@ -68,35 +61,25 @@ public struct AppEncryptionDeclarationDocument: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
-            assetToken = try container.decodeIfPresent(String.self, forKey: .assetToken)
-            downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
-            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
-            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
-            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
-            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: "assetDeliveryState")
+            assetToken = try container.decodeIfPresent(String.self, forKey: "assetToken")
+            downloadUrl = try container.decodeIfPresent(String.self, forKey: "downloadUrl")
+            fileName = try container.decodeIfPresent(String.self, forKey: "fileName")
+            fileSize = try container.decodeIfPresent(Int.self, forKey: "fileSize")
+            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: "sourceFileChecksum")
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: "uploadOperations")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
-            try container.encodeIfPresent(assetToken, forKey: .assetToken)
-            try container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
-            try container.encodeIfPresent(fileName, forKey: .fileName)
-            try container.encodeIfPresent(fileSize, forKey: .fileSize)
-            try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
-            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case assetDeliveryState
-            case assetToken
-            case downloadUrl
-            case fileName
-            case fileSize
-            case sourceFileChecksum
-            case uploadOperations
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(assetDeliveryState, forKey: "assetDeliveryState")
+            try container.encodeIfPresent(assetToken, forKey: "assetToken")
+            try container.encodeIfPresent(downloadUrl, forKey: "downloadUrl")
+            try container.encodeIfPresent(fileName, forKey: "fileName")
+            try container.encodeIfPresent(fileSize, forKey: "fileSize")
+            try container.encodeIfPresent(sourceFileChecksum, forKey: "sourceFileChecksum")
+            try container.encodeIfPresent(uploadOperations, forKey: "uploadOperations")
         }
     }
 }

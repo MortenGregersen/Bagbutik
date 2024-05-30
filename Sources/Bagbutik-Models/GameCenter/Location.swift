@@ -22,19 +22,14 @@ public struct Location: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        latitude = try container.decodeIfPresent(Double.self, forKey: .latitude)
-        longitude = try container.decodeIfPresent(Double.self, forKey: .longitude)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        latitude = try container.decodeIfPresent(Double.self, forKey: "latitude")
+        longitude = try container.decodeIfPresent(Double.self, forKey: "longitude")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(latitude, forKey: .latitude)
-        try container.encodeIfPresent(longitude, forKey: .longitude)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case latitude
-        case longitude
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(latitude, forKey: "latitude")
+        try container.encodeIfPresent(longitude, forKey: "longitude")
     }
 }

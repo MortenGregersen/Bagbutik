@@ -28,28 +28,21 @@ public struct Certificate: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     /**
@@ -86,35 +79,25 @@ public struct Certificate: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            certificateContent = try container.decodeIfPresent(String.self, forKey: .certificateContent)
-            certificateType = try container.decodeIfPresent(CertificateType.self, forKey: .certificateType)
-            displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
-            expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
-            name = try container.decodeIfPresent(String.self, forKey: .name)
-            platform = try container.decodeIfPresent(BundleIdPlatform.self, forKey: .platform)
-            serialNumber = try container.decodeIfPresent(String.self, forKey: .serialNumber)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            certificateContent = try container.decodeIfPresent(String.self, forKey: "certificateContent")
+            certificateType = try container.decodeIfPresent(CertificateType.self, forKey: "certificateType")
+            displayName = try container.decodeIfPresent(String.self, forKey: "displayName")
+            expirationDate = try container.decodeIfPresent(Date.self, forKey: "expirationDate")
+            name = try container.decodeIfPresent(String.self, forKey: "name")
+            platform = try container.decodeIfPresent(BundleIdPlatform.self, forKey: "platform")
+            serialNumber = try container.decodeIfPresent(String.self, forKey: "serialNumber")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(certificateContent, forKey: .certificateContent)
-            try container.encodeIfPresent(certificateType, forKey: .certificateType)
-            try container.encodeIfPresent(displayName, forKey: .displayName)
-            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
-            try container.encodeIfPresent(name, forKey: .name)
-            try container.encodeIfPresent(platform, forKey: .platform)
-            try container.encodeIfPresent(serialNumber, forKey: .serialNumber)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case certificateContent
-            case certificateType
-            case displayName
-            case expirationDate
-            case name
-            case platform
-            case serialNumber
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(certificateContent, forKey: "certificateContent")
+            try container.encodeIfPresent(certificateType, forKey: "certificateType")
+            try container.encodeIfPresent(displayName, forKey: "displayName")
+            try container.encodeIfPresent(expirationDate, forKey: "expirationDate")
+            try container.encodeIfPresent(name, forKey: "name")
+            try container.encodeIfPresent(platform, forKey: "platform")
+            try container.encodeIfPresent(serialNumber, forKey: "serialNumber")
         }
     }
 }

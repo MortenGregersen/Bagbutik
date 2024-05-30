@@ -16,17 +16,13 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -49,25 +45,19 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            id = try container.decode(String.self, forKey: "id")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(id, forKey: "id")
+            try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
         /**
@@ -101,32 +91,23 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                description = try container.decodeIfPresent(String.self, forKey: .description)
-                keywords = try container.decodeIfPresent(String.self, forKey: .keywords)
-                marketingUrl = try container.decodeIfPresent(String.self, forKey: .marketingUrl)
-                promotionalText = try container.decodeIfPresent(String.self, forKey: .promotionalText)
-                supportUrl = try container.decodeIfPresent(String.self, forKey: .supportUrl)
-                whatsNew = try container.decodeIfPresent(String.self, forKey: .whatsNew)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                description = try container.decodeIfPresent(String.self, forKey: "description")
+                keywords = try container.decodeIfPresent(String.self, forKey: "keywords")
+                marketingUrl = try container.decodeIfPresent(String.self, forKey: "marketingUrl")
+                promotionalText = try container.decodeIfPresent(String.self, forKey: "promotionalText")
+                supportUrl = try container.decodeIfPresent(String.self, forKey: "supportUrl")
+                whatsNew = try container.decodeIfPresent(String.self, forKey: "whatsNew")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(description, forKey: .description)
-                try container.encodeIfPresent(keywords, forKey: .keywords)
-                try container.encodeIfPresent(marketingUrl, forKey: .marketingUrl)
-                try container.encodeIfPresent(promotionalText, forKey: .promotionalText)
-                try container.encodeIfPresent(supportUrl, forKey: .supportUrl)
-                try container.encodeIfPresent(whatsNew, forKey: .whatsNew)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case description
-                case keywords
-                case marketingUrl
-                case promotionalText
-                case supportUrl
-                case whatsNew
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(description, forKey: "description")
+                try container.encodeIfPresent(keywords, forKey: "keywords")
+                try container.encodeIfPresent(marketingUrl, forKey: "marketingUrl")
+                try container.encodeIfPresent(promotionalText, forKey: "promotionalText")
+                try container.encodeIfPresent(supportUrl, forKey: "supportUrl")
+                try container.encodeIfPresent(whatsNew, forKey: "whatsNew")
             }
         }
     }

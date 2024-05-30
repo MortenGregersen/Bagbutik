@@ -20,31 +20,23 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-        try container.encodeIfPresent(relationships, forKey: .relationships)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case relationships
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
+        try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
     public struct Attributes: Codable {
@@ -68,29 +60,21 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            active = try container.decodeIfPresent(Bool.self, forKey: .active)
-            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
-            customCode = try container.decodeIfPresent(String.self, forKey: .customCode)
-            expirationDate = try container.decodeIfPresent(String.self, forKey: .expirationDate)
-            numberOfCodes = try container.decodeIfPresent(Int.self, forKey: .numberOfCodes)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            active = try container.decodeIfPresent(Bool.self, forKey: "active")
+            createdDate = try container.decodeIfPresent(Date.self, forKey: "createdDate")
+            customCode = try container.decodeIfPresent(String.self, forKey: "customCode")
+            expirationDate = try container.decodeIfPresent(String.self, forKey: "expirationDate")
+            numberOfCodes = try container.decodeIfPresent(Int.self, forKey: "numberOfCodes")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(active, forKey: .active)
-            try container.encodeIfPresent(createdDate, forKey: .createdDate)
-            try container.encodeIfPresent(customCode, forKey: .customCode)
-            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
-            try container.encodeIfPresent(numberOfCodes, forKey: .numberOfCodes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case active
-            case createdDate
-            case customCode
-            case expirationDate
-            case numberOfCodes
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(active, forKey: "active")
+            try container.encodeIfPresent(createdDate, forKey: "createdDate")
+            try container.encodeIfPresent(customCode, forKey: "customCode")
+            try container.encodeIfPresent(expirationDate, forKey: "expirationDate")
+            try container.encodeIfPresent(numberOfCodes, forKey: "numberOfCodes")
         }
     }
 
@@ -102,17 +86,13 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            offerCode = try container.decodeIfPresent(OfferCode.self, forKey: .offerCode)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            offerCode = try container.decodeIfPresent(OfferCode.self, forKey: "offerCode")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(offerCode, forKey: .offerCode)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case offerCode
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(offerCode, forKey: "offerCode")
         }
 
         public struct OfferCode: Codable {
@@ -127,20 +107,15 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
-                links = try container.decodeIfPresent(Links.self, forKey: .links)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-                try container.encodeIfPresent(links, forKey: .links)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
             }
 
             public struct Data: Codable, Identifiable {
@@ -152,22 +127,17 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
 
@@ -183,20 +153,15 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    related = try container.decodeIfPresent(String.self, forKey: .related)
-                    itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    related = try container.decodeIfPresent(String.self, forKey: "related")
+                    itself = try container.decodeIfPresent(String.self, forKey: "self")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(related, forKey: .related)
-                    try container.encodeIfPresent(itself, forKey: .itself)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case itself = "self"
-                    case related
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(related, forKey: "related")
+                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

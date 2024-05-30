@@ -28,28 +28,21 @@ public struct CiArtifact: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     /**
@@ -81,26 +74,19 @@ public struct CiArtifact: Codable, Identifiable {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
-            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
-            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
-            fileType = try container.decodeIfPresent(FileType.self, forKey: .fileType)
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            downloadUrl = try container.decodeIfPresent(String.self, forKey: "downloadUrl")
+            fileName = try container.decodeIfPresent(String.self, forKey: "fileName")
+            fileSize = try container.decodeIfPresent(Int.self, forKey: "fileSize")
+            fileType = try container.decodeIfPresent(FileType.self, forKey: "fileType")
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
-            try container.encodeIfPresent(fileName, forKey: .fileName)
-            try container.encodeIfPresent(fileSize, forKey: .fileSize)
-            try container.encodeIfPresent(fileType, forKey: .fileType)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case downloadUrl
-            case fileName
-            case fileSize
-            case fileType
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(downloadUrl, forKey: "downloadUrl")
+            try container.encodeIfPresent(fileName, forKey: "fileName")
+            try container.encodeIfPresent(fileSize, forKey: "fileSize")
+            try container.encodeIfPresent(fileType, forKey: "fileType")
         }
 
         public enum FileType: String, Codable, CaseIterable {

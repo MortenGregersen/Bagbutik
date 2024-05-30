@@ -17,17 +17,13 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     /**
@@ -53,25 +49,19 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            attributes = try container.decode(Attributes.self, forKey: .attributes)
-            relationships = try container.decode(Relationships.self, forKey: .relationships)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decode(Attributes.self, forKey: "attributes")
+            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(type, forKey: .type)
-            try container.encode(attributes, forKey: .attributes)
-            try container.encode(relationships, forKey: .relationships)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case relationships
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(type, forKey: "type")
+            try container.encode(attributes, forKey: "attributes")
+            try container.encode(relationships, forKey: "relationships")
         }
 
         /**
@@ -95,20 +85,15 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                locale = try container.decode(String.self, forKey: .locale)
-                title = try container.decode(String.self, forKey: .title)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                locale = try container.decode(String.self, forKey: "locale")
+                title = try container.decode(String.self, forKey: "title")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(locale, forKey: .locale)
-                try container.encode(title, forKey: .title)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case locale
-                case title
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(locale, forKey: "locale")
+                try container.encode(title, forKey: "title")
             }
         }
 
@@ -128,17 +113,13 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                betaAppClipInvocation = try container.decode(BetaAppClipInvocation.self, forKey: .betaAppClipInvocation)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                betaAppClipInvocation = try container.decode(BetaAppClipInvocation.self, forKey: "betaAppClipInvocation")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(betaAppClipInvocation, forKey: .betaAppClipInvocation)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case betaAppClipInvocation
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(betaAppClipInvocation, forKey: "betaAppClipInvocation")
             }
 
             /**
@@ -157,17 +138,13 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try container.decode(Data.self, forKey: .data)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(data, forKey: .data)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case data
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                 }
 
                 /**
@@ -188,22 +165,17 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        id = try container.decode(String.self, forKey: .id)
-                        if try container.decode(String.self, forKey: .type) != type {
-                            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                         }
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(id, forKey: .id)
-                        try container.encode(type, forKey: .type)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case id
-                        case type
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
                     }
                 }
             }

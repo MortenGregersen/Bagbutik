@@ -9,17 +9,13 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(Data.self, forKey: .data)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case data
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
     }
 
     public struct Data: Codable, Identifiable {
@@ -35,25 +31,19 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            id = try container.decode(String.self, forKey: "id")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(id, forKey: "id")
+            try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
         public struct Attributes: Codable {
@@ -86,38 +76,27 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                badge = try container.decodeIfPresent(AppEvent.Attributes.Badge.self, forKey: .badge)
-                deepLink = try container.decodeIfPresent(String.self, forKey: .deepLink)
-                primaryLocale = try container.decodeIfPresent(String.self, forKey: .primaryLocale)
-                priority = try container.decodeIfPresent(AppEvent.Attributes.Priority.self, forKey: .priority)
-                purchaseRequirement = try container.decodeIfPresent(AppEvent.Attributes.PurchaseRequirement.self, forKey: .purchaseRequirement)
-                purpose = try container.decodeIfPresent(AppEvent.Attributes.Purpose.self, forKey: .purpose)
-                referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
-                territorySchedules = try container.decodeIfPresent([TerritorySchedules].self, forKey: .territorySchedules)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                badge = try container.decodeIfPresent(AppEvent.Attributes.Badge.self, forKey: "badge")
+                deepLink = try container.decodeIfPresent(String.self, forKey: "deepLink")
+                primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
+                priority = try container.decodeIfPresent(AppEvent.Attributes.Priority.self, forKey: "priority")
+                purchaseRequirement = try container.decodeIfPresent(AppEvent.Attributes.PurchaseRequirement.self, forKey: "purchaseRequirement")
+                purpose = try container.decodeIfPresent(AppEvent.Attributes.Purpose.self, forKey: "purpose")
+                referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
+                territorySchedules = try container.decodeIfPresent([TerritorySchedules].self, forKey: "territorySchedules")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(badge, forKey: .badge)
-                try container.encodeIfPresent(deepLink, forKey: .deepLink)
-                try container.encodeIfPresent(primaryLocale, forKey: .primaryLocale)
-                try container.encodeIfPresent(priority, forKey: .priority)
-                try container.encodeIfPresent(purchaseRequirement, forKey: .purchaseRequirement)
-                try container.encodeIfPresent(purpose, forKey: .purpose)
-                try container.encodeIfPresent(referenceName, forKey: .referenceName)
-                try container.encodeIfPresent(territorySchedules, forKey: .territorySchedules)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case badge
-                case deepLink
-                case primaryLocale
-                case priority
-                case purchaseRequirement
-                case purpose
-                case referenceName
-                case territorySchedules
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(badge, forKey: "badge")
+                try container.encodeIfPresent(deepLink, forKey: "deepLink")
+                try container.encodeIfPresent(primaryLocale, forKey: "primaryLocale")
+                try container.encodeIfPresent(priority, forKey: "priority")
+                try container.encodeIfPresent(purchaseRequirement, forKey: "purchaseRequirement")
+                try container.encodeIfPresent(purpose, forKey: "purpose")
+                try container.encodeIfPresent(referenceName, forKey: "referenceName")
+                try container.encodeIfPresent(territorySchedules, forKey: "territorySchedules")
             }
 
             public struct TerritorySchedules: Codable {
@@ -138,26 +117,19 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    eventEnd = try container.decodeIfPresent(Date.self, forKey: .eventEnd)
-                    eventStart = try container.decodeIfPresent(Date.self, forKey: .eventStart)
-                    publishStart = try container.decodeIfPresent(Date.self, forKey: .publishStart)
-                    territories = try container.decodeIfPresent([String].self, forKey: .territories)
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    eventEnd = try container.decodeIfPresent(Date.self, forKey: "eventEnd")
+                    eventStart = try container.decodeIfPresent(Date.self, forKey: "eventStart")
+                    publishStart = try container.decodeIfPresent(Date.self, forKey: "publishStart")
+                    territories = try container.decodeIfPresent([String].self, forKey: "territories")
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encodeIfPresent(eventEnd, forKey: .eventEnd)
-                    try container.encodeIfPresent(eventStart, forKey: .eventStart)
-                    try container.encodeIfPresent(publishStart, forKey: .publishStart)
-                    try container.encodeIfPresent(territories, forKey: .territories)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case eventEnd
-                    case eventStart
-                    case publishStart
-                    case territories
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(eventEnd, forKey: "eventEnd")
+                    try container.encodeIfPresent(eventStart, forKey: "eventStart")
+                    try container.encodeIfPresent(publishStart, forKey: "publishStart")
+                    try container.encodeIfPresent(territories, forKey: "territories")
                 }
             }
         }
