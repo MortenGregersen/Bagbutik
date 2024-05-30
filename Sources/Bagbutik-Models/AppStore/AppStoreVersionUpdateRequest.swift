@@ -15,6 +15,20 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppStoreVersionUpdateRequest.Data
      The data element of the request body.
@@ -92,6 +106,35 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                 self.reviewType = reviewType
                 self.versionString = versionString
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+                downloadable = try container.decodeIfPresent(Bool.self, forKey: .downloadable)
+                earliestReleaseDate = try container.decodeIfPresent(Date.self, forKey: .earliestReleaseDate)
+                releaseType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReleaseType.self, forKey: .releaseType)
+                reviewType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReviewType.self, forKey: .reviewType)
+                versionString = try container.decodeIfPresent(String.self, forKey: .versionString)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(copyright, forKey: .copyright)
+                try container.encodeIfPresent(downloadable, forKey: .downloadable)
+                try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
+                try container.encodeIfPresent(releaseType, forKey: .releaseType)
+                try container.encodeIfPresent(reviewType, forKey: .reviewType)
+                try container.encodeIfPresent(versionString, forKey: .versionString)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case copyright
+                case downloadable
+                case earliestReleaseDate
+                case releaseType
+                case reviewType
+                case versionString
+            }
         }
 
         /**
@@ -111,6 +154,23 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
             {
                 self.appClipDefaultExperience = appClipDefaultExperience
                 self.build = build
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appClipDefaultExperience = try container.decodeIfPresent(AppClipDefaultExperience.self, forKey: .appClipDefaultExperience)
+                build = try container.decodeIfPresent(Build.self, forKey: .build)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(appClipDefaultExperience, forKey: .appClipDefaultExperience)
+                try container.encodeIfPresent(build, forKey: .build)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appClipDefaultExperience
+                case build
             }
 
             /**

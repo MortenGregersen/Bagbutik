@@ -71,6 +71,23 @@ public struct AppPreOrder: Codable, Identifiable {
             self.appReleaseDate = appReleaseDate
             self.preOrderAvailableDate = preOrderAvailableDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appReleaseDate = try container.decodeIfPresent(String.self, forKey: .appReleaseDate)
+            preOrderAvailableDate = try container.decodeIfPresent(String.self, forKey: .preOrderAvailableDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appReleaseDate, forKey: .appReleaseDate)
+            try container.encodeIfPresent(preOrderAvailableDate, forKey: .preOrderAvailableDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appReleaseDate
+            case preOrderAvailableDate
+        }
     }
 
     /**
@@ -85,6 +102,20 @@ public struct AppPreOrder: Codable, Identifiable {
 
         public init(app: App? = nil) {
             self.app = app
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
         }
 
         /**

@@ -61,6 +61,32 @@ public struct Actor: Codable, Identifiable {
             self.userLastName = userLastName
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            actorType = try container.decodeIfPresent(ActorType.self, forKey: .actorType)
+            apiKeyId = try container.decodeIfPresent(String.self, forKey: .apiKeyId)
+            userEmail = try container.decodeIfPresent(String.self, forKey: .userEmail)
+            userFirstName = try container.decodeIfPresent(String.self, forKey: .userFirstName)
+            userLastName = try container.decodeIfPresent(String.self, forKey: .userLastName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(actorType, forKey: .actorType)
+            try container.encodeIfPresent(apiKeyId, forKey: .apiKeyId)
+            try container.encodeIfPresent(userEmail, forKey: .userEmail)
+            try container.encodeIfPresent(userFirstName, forKey: .userFirstName)
+            try container.encodeIfPresent(userLastName, forKey: .userLastName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case actorType
+            case apiKeyId
+            case userEmail
+            case userFirstName
+            case userLastName
+        }
+
         public enum ActorType: String, Codable, CaseIterable {
             case apiKey = "API_KEY"
             case apple = "APPLE"

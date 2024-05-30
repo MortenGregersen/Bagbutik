@@ -16,6 +16,20 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # CiBuildRunCreateRequest.Data
      The data element of the request you use to start a new Xcode Cloud build.
@@ -74,6 +88,20 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
             public init(clean: Bool? = nil) {
                 self.clean = clean
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                clean = try container.decodeIfPresent(Bool.self, forKey: .clean)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(clean, forKey: .clean)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case clean
+            }
         }
 
         /**
@@ -102,6 +130,29 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                 self.pullRequest = pullRequest
                 self.sourceBranchOrTag = sourceBranchOrTag
                 self.workflow = workflow
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                buildRun = try container.decodeIfPresent(BuildRun.self, forKey: .buildRun)
+                pullRequest = try container.decodeIfPresent(PullRequest.self, forKey: .pullRequest)
+                sourceBranchOrTag = try container.decodeIfPresent(SourceBranchOrTag.self, forKey: .sourceBranchOrTag)
+                workflow = try container.decodeIfPresent(Workflow.self, forKey: .workflow)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(buildRun, forKey: .buildRun)
+                try container.encodeIfPresent(pullRequest, forKey: .pullRequest)
+                try container.encodeIfPresent(sourceBranchOrTag, forKey: .sourceBranchOrTag)
+                try container.encodeIfPresent(workflow, forKey: .workflow)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case buildRun
+                case pullRequest
+                case sourceBranchOrTag
+                case workflow
             }
 
             /**

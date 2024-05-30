@@ -60,6 +60,26 @@ public struct SubscriptionPricePoint: Codable, Identifiable {
             self.proceeds = proceeds
             self.proceedsYear2 = proceedsYear2
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            customerPrice = try container.decodeIfPresent(String.self, forKey: .customerPrice)
+            proceeds = try container.decodeIfPresent(String.self, forKey: .proceeds)
+            proceedsYear2 = try container.decodeIfPresent(String.self, forKey: .proceedsYear2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(customerPrice, forKey: .customerPrice)
+            try container.encodeIfPresent(proceeds, forKey: .proceeds)
+            try container.encodeIfPresent(proceedsYear2, forKey: .proceedsYear2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case customerPrice
+            case proceeds
+            case proceedsYear2
+        }
     }
 
     public struct Relationships: Codable {
@@ -67,6 +87,20 @@ public struct SubscriptionPricePoint: Codable, Identifiable {
 
         public init(territory: Territory? = nil) {
             self.territory = territory
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case territory
         }
 
         public struct Territory: Codable {

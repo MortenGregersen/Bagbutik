@@ -67,6 +67,20 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
         public init(agreementText: String? = nil) {
             self.agreementText = agreementText
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            agreementText = try container.decodeIfPresent(String.self, forKey: .agreementText)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(agreementText, forKey: .agreementText)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case agreementText
+        }
     }
 
     /**
@@ -85,6 +99,23 @@ public struct EndUserLicenseAgreement: Codable, Identifiable {
         {
             self.app = app
             self.territories = territories
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            territories = try container.decodeIfPresent(Territories.self, forKey: .territories)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(territories, forKey: .territories)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case territories
         }
 
         /**

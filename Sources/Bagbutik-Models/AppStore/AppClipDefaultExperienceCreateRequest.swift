@@ -16,6 +16,20 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppClipDefaultExperienceCreateRequest.Data
      The data element of the request body.
@@ -74,6 +88,20 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
             public init(action: AppClipAction? = nil) {
                 self.action = action
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                action = try container.decodeIfPresent(AppClipAction.self, forKey: .action)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(action, forKey: .action)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case action
+            }
         }
 
         /**
@@ -100,6 +128,26 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                 self.releaseWithAppStoreVersion = releaseWithAppStoreVersion
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appClip = try container.decode(AppClip.self, forKey: .appClip)
+                appClipDefaultExperienceTemplate = try container.decodeIfPresent(AppClipDefaultExperienceTemplate.self, forKey: .appClipDefaultExperienceTemplate)
+                releaseWithAppStoreVersion = try container.decodeIfPresent(ReleaseWithAppStoreVersion.self, forKey: .releaseWithAppStoreVersion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appClip, forKey: .appClip)
+                try container.encodeIfPresent(appClipDefaultExperienceTemplate, forKey: .appClipDefaultExperienceTemplate)
+                try container.encodeIfPresent(releaseWithAppStoreVersion, forKey: .releaseWithAppStoreVersion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appClip
+                case appClipDefaultExperienceTemplate
+                case releaseWithAppStoreVersion
+            }
+
             /**
              # AppClipDefaultExperienceCreateRequest.Data.Relationships.AppClip
              The relationship to the App Clips resource you set with the request that creates a Default App Clip Experiences resource.
@@ -113,6 +161,20 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

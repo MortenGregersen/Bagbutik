@@ -119,6 +119,47 @@ public struct AppStoreVersion: Codable, Identifiable {
             self.versionString = versionString
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreState = try container.decodeIfPresent(AppStoreVersionState.self, forKey: .appStoreState)
+            appVersionState = try container.decodeIfPresent(AppVersionState.self, forKey: .appVersionState)
+            copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            downloadable = try container.decodeIfPresent(Bool.self, forKey: .downloadable)
+            earliestReleaseDate = try container.decodeIfPresent(Date.self, forKey: .earliestReleaseDate)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            releaseType = try container.decodeIfPresent(ReleaseType.self, forKey: .releaseType)
+            reviewType = try container.decodeIfPresent(ReviewType.self, forKey: .reviewType)
+            versionString = try container.decodeIfPresent(String.self, forKey: .versionString)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreState, forKey: .appStoreState)
+            try container.encodeIfPresent(appVersionState, forKey: .appVersionState)
+            try container.encodeIfPresent(copyright, forKey: .copyright)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(downloadable, forKey: .downloadable)
+            try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(releaseType, forKey: .releaseType)
+            try container.encodeIfPresent(reviewType, forKey: .reviewType)
+            try container.encodeIfPresent(versionString, forKey: .versionString)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreState
+            case appVersionState
+            case copyright
+            case createdDate
+            case downloadable
+            case earliestReleaseDate
+            case platform
+            case releaseType
+            case reviewType
+            case versionString
+        }
+
         public enum ReleaseType: String, Codable, CaseIterable {
             case afterApproval = "AFTER_APPROVAL"
             case manual = "MANUAL"
@@ -205,6 +246,53 @@ public struct AppStoreVersion: Codable, Identifiable {
             self.appStoreVersionSubmission = appStoreVersionSubmission
             self.build = build
             self.routingAppCoverage = routingAppCoverage
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            ageRatingDeclaration = try container.decodeIfPresent(AgeRatingDeclaration.self, forKey: .ageRatingDeclaration)
+            alternativeDistributionPackage = try container.decodeIfPresent(AlternativeDistributionPackage.self, forKey: .alternativeDistributionPackage)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appClipDefaultExperience = try container.decodeIfPresent(AppClipDefaultExperience.self, forKey: .appClipDefaultExperience)
+            appStoreReviewDetail = try container.decodeIfPresent(AppStoreReviewDetail.self, forKey: .appStoreReviewDetail)
+            appStoreVersionExperiments = try container.decodeIfPresent(AppStoreVersionExperiments.self, forKey: .appStoreVersionExperiments)
+            appStoreVersionExperimentsV2 = try container.decodeIfPresent(AppStoreVersionExperimentsV2.self, forKey: .appStoreVersionExperimentsV2)
+            appStoreVersionLocalizations = try container.decodeIfPresent(AppStoreVersionLocalizations.self, forKey: .appStoreVersionLocalizations)
+            appStoreVersionPhasedRelease = try container.decodeIfPresent(AppStoreVersionPhasedRelease.self, forKey: .appStoreVersionPhasedRelease)
+            appStoreVersionSubmission = try container.decodeIfPresent(AppStoreVersionSubmission.self, forKey: .appStoreVersionSubmission)
+            build = try container.decodeIfPresent(Build.self, forKey: .build)
+            routingAppCoverage = try container.decodeIfPresent(RoutingAppCoverage.self, forKey: .routingAppCoverage)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(ageRatingDeclaration, forKey: .ageRatingDeclaration)
+            try container.encodeIfPresent(alternativeDistributionPackage, forKey: .alternativeDistributionPackage)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appClipDefaultExperience, forKey: .appClipDefaultExperience)
+            try container.encodeIfPresent(appStoreReviewDetail, forKey: .appStoreReviewDetail)
+            try container.encodeIfPresent(appStoreVersionExperiments, forKey: .appStoreVersionExperiments)
+            try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: .appStoreVersionExperimentsV2)
+            try container.encodeIfPresent(appStoreVersionLocalizations, forKey: .appStoreVersionLocalizations)
+            try container.encodeIfPresent(appStoreVersionPhasedRelease, forKey: .appStoreVersionPhasedRelease)
+            try container.encodeIfPresent(appStoreVersionSubmission, forKey: .appStoreVersionSubmission)
+            try container.encodeIfPresent(build, forKey: .build)
+            try container.encodeIfPresent(routingAppCoverage, forKey: .routingAppCoverage)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case ageRatingDeclaration
+            case alternativeDistributionPackage
+            case app
+            case appClipDefaultExperience
+            case appStoreReviewDetail
+            case appStoreVersionExperiments
+            case appStoreVersionExperimentsV2
+            case appStoreVersionLocalizations
+            case appStoreVersionPhasedRelease
+            case appStoreVersionSubmission
+            case build
+            case routingAppCoverage
         }
 
         /**

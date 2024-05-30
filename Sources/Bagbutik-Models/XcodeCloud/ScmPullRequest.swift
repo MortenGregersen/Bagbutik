@@ -114,6 +114,50 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
             self.title = title
             self.webUrl = webUrl
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            destinationBranchName = try container.decodeIfPresent(String.self, forKey: .destinationBranchName)
+            destinationRepositoryName = try container.decodeIfPresent(String.self, forKey: .destinationRepositoryName)
+            destinationRepositoryOwner = try container.decodeIfPresent(String.self, forKey: .destinationRepositoryOwner)
+            isClosed = try container.decodeIfPresent(Bool.self, forKey: .isClosed)
+            isCrossRepository = try container.decodeIfPresent(Bool.self, forKey: .isCrossRepository)
+            number = try container.decodeIfPresent(Int.self, forKey: .number)
+            sourceBranchName = try container.decodeIfPresent(String.self, forKey: .sourceBranchName)
+            sourceRepositoryName = try container.decodeIfPresent(String.self, forKey: .sourceRepositoryName)
+            sourceRepositoryOwner = try container.decodeIfPresent(String.self, forKey: .sourceRepositoryOwner)
+            title = try container.decodeIfPresent(String.self, forKey: .title)
+            webUrl = try container.decodeIfPresent(String.self, forKey: .webUrl)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(destinationBranchName, forKey: .destinationBranchName)
+            try container.encodeIfPresent(destinationRepositoryName, forKey: .destinationRepositoryName)
+            try container.encodeIfPresent(destinationRepositoryOwner, forKey: .destinationRepositoryOwner)
+            try container.encodeIfPresent(isClosed, forKey: .isClosed)
+            try container.encodeIfPresent(isCrossRepository, forKey: .isCrossRepository)
+            try container.encodeIfPresent(number, forKey: .number)
+            try container.encodeIfPresent(sourceBranchName, forKey: .sourceBranchName)
+            try container.encodeIfPresent(sourceRepositoryName, forKey: .sourceRepositoryName)
+            try container.encodeIfPresent(sourceRepositoryOwner, forKey: .sourceRepositoryOwner)
+            try container.encodeIfPresent(title, forKey: .title)
+            try container.encodeIfPresent(webUrl, forKey: .webUrl)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case destinationBranchName
+            case destinationRepositoryName
+            case destinationRepositoryOwner
+            case isClosed
+            case isCrossRepository
+            case number
+            case sourceBranchName
+            case sourceRepositoryName
+            case sourceRepositoryOwner
+            case title
+            case webUrl
+        }
     }
 
     /**
@@ -129,6 +173,20 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
 
         public init(repository: Repository? = nil) {
             self.repository = repository
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            repository = try container.decodeIfPresent(Repository.self, forKey: .repository)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(repository, forKey: .repository)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case repository
         }
 
         /**

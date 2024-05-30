@@ -63,6 +63,29 @@ public struct InAppPurchaseContent: Codable, Identifiable {
             self.lastModifiedDate = lastModifiedDate
             self.url = url
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            lastModifiedDate = try container.decodeIfPresent(Date.self, forKey: .lastModifiedDate)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(lastModifiedDate, forKey: .lastModifiedDate)
+            try container.encodeIfPresent(url, forKey: .url)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case fileName
+            case fileSize
+            case lastModifiedDate
+            case url
+        }
     }
 
     public struct Relationships: Codable {
@@ -70,6 +93,20 @@ public struct InAppPurchaseContent: Codable, Identifiable {
 
         public init(inAppPurchaseV2: InAppPurchaseV2? = nil) {
             self.inAppPurchaseV2 = inAppPurchaseV2
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseV2
         }
 
         public struct InAppPurchaseV2: Codable {

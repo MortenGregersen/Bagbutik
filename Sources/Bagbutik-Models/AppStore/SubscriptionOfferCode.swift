@@ -75,6 +75,41 @@ public struct SubscriptionOfferCode: Codable, Identifiable {
             self.offerMode = offerMode
             self.totalNumberOfCodes = totalNumberOfCodes
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            active = try container.decodeIfPresent(Bool.self, forKey: .active)
+            customerEligibilities = try container.decodeIfPresent([SubscriptionCustomerEligibility].self, forKey: .customerEligibilities)
+            duration = try container.decodeIfPresent(SubscriptionOfferDuration.self, forKey: .duration)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            numberOfPeriods = try container.decodeIfPresent(Int.self, forKey: .numberOfPeriods)
+            offerEligibility = try container.decodeIfPresent(SubscriptionOfferEligibility.self, forKey: .offerEligibility)
+            offerMode = try container.decodeIfPresent(SubscriptionOfferMode.self, forKey: .offerMode)
+            totalNumberOfCodes = try container.decodeIfPresent(Int.self, forKey: .totalNumberOfCodes)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(active, forKey: .active)
+            try container.encodeIfPresent(customerEligibilities, forKey: .customerEligibilities)
+            try container.encodeIfPresent(duration, forKey: .duration)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(numberOfPeriods, forKey: .numberOfPeriods)
+            try container.encodeIfPresent(offerEligibility, forKey: .offerEligibility)
+            try container.encodeIfPresent(offerMode, forKey: .offerMode)
+            try container.encodeIfPresent(totalNumberOfCodes, forKey: .totalNumberOfCodes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case active
+            case customerEligibilities
+            case duration
+            case name
+            case numberOfPeriods
+            case offerEligibility
+            case offerMode
+            case totalNumberOfCodes
+        }
     }
 
     public struct Relationships: Codable {
@@ -92,6 +127,29 @@ public struct SubscriptionOfferCode: Codable, Identifiable {
             self.oneTimeUseCodes = oneTimeUseCodes
             self.prices = prices
             self.subscription = subscription
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            customCodes = try container.decodeIfPresent(CustomCodes.self, forKey: .customCodes)
+            oneTimeUseCodes = try container.decodeIfPresent(OneTimeUseCodes.self, forKey: .oneTimeUseCodes)
+            prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(customCodes, forKey: .customCodes)
+            try container.encodeIfPresent(oneTimeUseCodes, forKey: .oneTimeUseCodes)
+            try container.encodeIfPresent(prices, forKey: .prices)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case customCodes
+            case oneTimeUseCodes
+            case prices
+            case subscription
         }
 
         public struct CustomCodes: Codable {

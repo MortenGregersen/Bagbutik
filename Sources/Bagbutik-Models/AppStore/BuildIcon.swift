@@ -68,5 +68,25 @@ public struct BuildIcon: Codable, Identifiable {
             self.iconType = iconType
             self.name = name
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            iconAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .iconAsset)
+            iconType = try container.decodeIfPresent(IconAssetType.self, forKey: .iconType)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(iconAsset, forKey: .iconAsset)
+            try container.encodeIfPresent(iconType, forKey: .iconType)
+            try container.encodeIfPresent(name, forKey: .name)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case iconAsset
+            case iconType
+            case name
+        }
     }
 }

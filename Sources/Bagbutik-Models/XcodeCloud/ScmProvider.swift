@@ -71,5 +71,22 @@ public struct ScmProvider: Codable, Identifiable {
             self.scmProviderType = scmProviderType
             self.url = url
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            scmProviderType = try container.decodeIfPresent(ScmProviderType.self, forKey: .scmProviderType)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(scmProviderType, forKey: .scmProviderType)
+            try container.encodeIfPresent(url, forKey: .url)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case scmProviderType
+            case url
+        }
     }
 }

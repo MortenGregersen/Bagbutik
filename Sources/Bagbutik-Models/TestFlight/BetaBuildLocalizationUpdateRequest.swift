@@ -16,6 +16,20 @@ public struct BetaBuildLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaBuildLocalizationUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,20 @@ public struct BetaBuildLocalizationUpdateRequest: Codable, RequestBody {
 
             public init(whatsNew: String? = nil) {
                 self.whatsNew = whatsNew
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                whatsNew = try container.decodeIfPresent(String.self, forKey: .whatsNew)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(whatsNew, forKey: .whatsNew)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case whatsNew
             }
         }
     }

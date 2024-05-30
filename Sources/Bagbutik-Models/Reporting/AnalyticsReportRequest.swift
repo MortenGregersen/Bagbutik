@@ -74,6 +74,23 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
             self.stoppedDueToInactivity = stoppedDueToInactivity
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            accessType = try container.decodeIfPresent(AccessType.self, forKey: .accessType)
+            stoppedDueToInactivity = try container.decodeIfPresent(Bool.self, forKey: .stoppedDueToInactivity)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(accessType, forKey: .accessType)
+            try container.encodeIfPresent(stoppedDueToInactivity, forKey: .stoppedDueToInactivity)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case accessType
+            case stoppedDueToInactivity
+        }
+
         public enum AccessType: String, Codable, CaseIterable {
             case oneTimeSnapshot = "ONE_TIME_SNAPSHOT"
             case ongoing = "ONGOING"
@@ -85,6 +102,20 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
 
         public init(reports: Reports? = nil) {
             self.reports = reports
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            reports = try container.decodeIfPresent(Reports.self, forKey: .reports)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(reports, forKey: .reports)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case reports
         }
 
         public struct Reports: Codable {

@@ -54,6 +54,20 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             self.state = state
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case state
+        }
+
         public enum State: String, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
@@ -81,6 +95,32 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             self.appStoreVersion = appStoreVersion
             self.appStoreVersionExperiment = appStoreVersionExperiment
             self.appStoreVersionExperimentV2 = appStoreVersionExperimentV2
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appCustomProductPageVersion = try container.decodeIfPresent(AppCustomProductPageVersion.self, forKey: .appCustomProductPageVersion)
+            appEvent = try container.decodeIfPresent(AppEvent.self, forKey: .appEvent)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+            appStoreVersionExperiment = try container.decodeIfPresent(AppStoreVersionExperiment.self, forKey: .appStoreVersionExperiment)
+            appStoreVersionExperimentV2 = try container.decodeIfPresent(AppStoreVersionExperimentV2.self, forKey: .appStoreVersionExperimentV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appCustomProductPageVersion, forKey: .appCustomProductPageVersion)
+            try container.encodeIfPresent(appEvent, forKey: .appEvent)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+            try container.encodeIfPresent(appStoreVersionExperiment, forKey: .appStoreVersionExperiment)
+            try container.encodeIfPresent(appStoreVersionExperimentV2, forKey: .appStoreVersionExperimentV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appCustomProductPageVersion
+            case appEvent
+            case appStoreVersion
+            case appStoreVersionExperiment
+            case appStoreVersionExperimentV2
         }
 
         public struct AppCustomProductPageVersion: Codable {

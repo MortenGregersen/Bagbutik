@@ -61,5 +61,25 @@ public struct MarketplaceDomain: Codable, Identifiable {
             self.domain = domain
             self.referenceName = referenceName
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            domain = try container.decodeIfPresent(String.self, forKey: .domain)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(domain, forKey: .domain)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case createdDate
+            case domain
+            case referenceName
+        }
     }
 }

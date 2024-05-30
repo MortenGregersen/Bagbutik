@@ -16,6 +16,20 @@ public struct BuildUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BuildUpdateRequest.Data
      The data element of the request body.
@@ -86,6 +100,23 @@ public struct BuildUpdateRequest: Codable, RequestBody {
                 self.expired = expired
                 self.usesNonExemptEncryption = usesNonExemptEncryption
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                expired = try container.decodeIfPresent(Bool.self, forKey: .expired)
+                usesNonExemptEncryption = try container.decodeIfPresent(Bool.self, forKey: .usesNonExemptEncryption)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(expired, forKey: .expired)
+                try container.encodeIfPresent(usesNonExemptEncryption, forKey: .usesNonExemptEncryption)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case expired
+                case usesNonExemptEncryption
+            }
         }
 
         /**
@@ -100,6 +131,20 @@ public struct BuildUpdateRequest: Codable, RequestBody {
 
             public init(appEncryptionDeclaration: AppEncryptionDeclaration? = nil) {
                 self.appEncryptionDeclaration = appEncryptionDeclaration
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appEncryptionDeclaration = try container.decodeIfPresent(AppEncryptionDeclaration.self, forKey: .appEncryptionDeclaration)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(appEncryptionDeclaration, forKey: .appEncryptionDeclaration)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appEncryptionDeclaration
             }
 
             /**

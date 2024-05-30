@@ -16,6 +16,20 @@ public struct ProfileCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # ProfileCreateRequest.Data
      The data element of the request body.
@@ -74,6 +88,23 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 self.name = name
                 self.profileType = profileType
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decode(String.self, forKey: .name)
+                profileType = try container.decode(Profile.Attributes.ProfileType.self, forKey: .profileType)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(name, forKey: .name)
+                try container.encode(profileType, forKey: .profileType)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+                case profileType
+            }
         }
 
         /**
@@ -97,6 +128,26 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                 self.devices = devices
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                bundleId = try container.decode(BundleId.self, forKey: .bundleId)
+                certificates = try container.decode(Certificates.self, forKey: .certificates)
+                devices = try container.decodeIfPresent(Devices.self, forKey: .devices)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(bundleId, forKey: .bundleId)
+                try container.encode(certificates, forKey: .certificates)
+                try container.encodeIfPresent(devices, forKey: .devices)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case bundleId
+                case certificates
+                case devices
+            }
+
             /**
              # ProfileCreateRequest.Data.Relationships.BundleId
              The relationships to other resources that you can set with this request.
@@ -109,6 +160,20 @@ public struct ProfileCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**
@@ -159,6 +224,20 @@ public struct ProfileCreateRequest: Codable, RequestBody {
 
                 public init(data: [Data]) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

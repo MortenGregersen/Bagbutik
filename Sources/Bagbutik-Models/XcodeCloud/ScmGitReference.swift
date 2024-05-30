@@ -86,6 +86,29 @@ public struct ScmGitReference: Codable, Identifiable {
             self.kind = kind
             self.name = name
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            canonicalName = try container.decodeIfPresent(String.self, forKey: .canonicalName)
+            isDeleted = try container.decodeIfPresent(Bool.self, forKey: .isDeleted)
+            kind = try container.decodeIfPresent(CiGitRefKind.self, forKey: .kind)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(canonicalName, forKey: .canonicalName)
+            try container.encodeIfPresent(isDeleted, forKey: .isDeleted)
+            try container.encodeIfPresent(kind, forKey: .kind)
+            try container.encodeIfPresent(name, forKey: .name)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case canonicalName
+            case isDeleted
+            case kind
+            case name
+        }
     }
 
     /**
@@ -101,6 +124,20 @@ public struct ScmGitReference: Codable, Identifiable {
 
         public init(repository: Repository? = nil) {
             self.repository = repository
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            repository = try container.decodeIfPresent(Repository.self, forKey: .repository)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(repository, forKey: .repository)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case repository
         }
 
         /**

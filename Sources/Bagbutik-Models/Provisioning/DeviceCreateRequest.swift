@@ -16,6 +16,20 @@ public struct DeviceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # DeviceCreateRequest.Data
      The data element of the request body.
@@ -69,6 +83,26 @@ public struct DeviceCreateRequest: Codable, RequestBody {
                 self.name = name
                 self.platform = platform
                 self.udid = udid
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decode(String.self, forKey: .name)
+                platform = try container.decode(BundleIdPlatform.self, forKey: .platform)
+                udid = try container.decode(String.self, forKey: .udid)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(name, forKey: .name)
+                try container.encode(platform, forKey: .platform)
+                try container.encode(udid, forKey: .udid)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+                case platform
+                case udid
             }
         }
     }

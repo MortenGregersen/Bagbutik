@@ -60,6 +60,20 @@ public struct GameCenterLeaderboardSetRelease: Codable, Identifiable {
         public init(live: Bool? = nil) {
             self.live = live
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            live = try container.decodeIfPresent(Bool.self, forKey: .live)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(live, forKey: .live)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case live
+        }
     }
 
     public struct Relationships: Codable {
@@ -71,6 +85,23 @@ public struct GameCenterLeaderboardSetRelease: Codable, Identifiable {
         {
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterLeaderboardSet = gameCenterLeaderboardSet
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: .gameCenterDetail)
+            gameCenterLeaderboardSet = try container.decodeIfPresent(GameCenterLeaderboardSet.self, forKey: .gameCenterLeaderboardSet)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterDetail, forKey: .gameCenterDetail)
+            try container.encodeIfPresent(gameCenterLeaderboardSet, forKey: .gameCenterLeaderboardSet)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterDetail
+            case gameCenterLeaderboardSet
         }
 
         public struct GameCenterDetail: Codable {

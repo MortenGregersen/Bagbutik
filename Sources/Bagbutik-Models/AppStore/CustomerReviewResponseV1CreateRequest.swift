@@ -16,6 +16,20 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # CustomerReviewResponseV1CreateRequest.Data
      The data element of the request body for creating a response to a customer review.
@@ -74,6 +88,20 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
             public init(responseBody: String) {
                 self.responseBody = responseBody
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                responseBody = try container.decode(String.self, forKey: .responseBody)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(responseBody, forKey: .responseBody)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case responseBody
+            }
         }
 
         /**
@@ -91,6 +119,20 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
                 self.review = review
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                review = try container.decode(Review.self, forKey: .review)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(review, forKey: .review)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case review
+            }
+
             /**
              # CustomerReviewResponseV1CreateRequest.Data.Relationships.Review
              The data and links that describe the relationship between the resources.
@@ -104,6 +146,20 @@ public struct CustomerReviewResponseV1CreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

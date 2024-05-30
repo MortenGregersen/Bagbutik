@@ -73,6 +73,32 @@ public struct GameCenterLeaderboardLocalization: Codable, Identifiable {
             self.locale = locale
             self.name = name
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            formatterOverride = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: .formatterOverride)
+            formatterSuffix = try container.decodeIfPresent(String.self, forKey: .formatterSuffix)
+            formatterSuffixSingular = try container.decodeIfPresent(String.self, forKey: .formatterSuffixSingular)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(formatterOverride, forKey: .formatterOverride)
+            try container.encodeIfPresent(formatterSuffix, forKey: .formatterSuffix)
+            try container.encodeIfPresent(formatterSuffixSingular, forKey: .formatterSuffixSingular)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(name, forKey: .name)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case formatterOverride
+            case formatterSuffix
+            case formatterSuffixSingular
+            case locale
+            case name
+        }
     }
 
     public struct Relationships: Codable {
@@ -84,6 +110,23 @@ public struct GameCenterLeaderboardLocalization: Codable, Identifiable {
         {
             self.gameCenterLeaderboard = gameCenterLeaderboard
             self.gameCenterLeaderboardImage = gameCenterLeaderboardImage
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterLeaderboard = try container.decodeIfPresent(GameCenterLeaderboard.self, forKey: .gameCenterLeaderboard)
+            gameCenterLeaderboardImage = try container.decodeIfPresent(GameCenterLeaderboardImage.self, forKey: .gameCenterLeaderboardImage)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterLeaderboard, forKey: .gameCenterLeaderboard)
+            try container.encodeIfPresent(gameCenterLeaderboardImage, forKey: .gameCenterLeaderboardImage)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterLeaderboard
+            case gameCenterLeaderboardImage
         }
 
         public struct GameCenterLeaderboard: Codable {

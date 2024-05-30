@@ -73,5 +73,37 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Identifiable {
             self.submittedDate = submittedDate
             self.vendorIdentifier = vendorIdentifier
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            bundleId = try container.decodeIfPresent(String.self, forKey: .bundleId)
+            challengeIds = try container.decodeIfPresent([String].self, forKey: .challengeIds)
+            context = try container.decodeIfPresent(String.self, forKey: .context)
+            scopedPlayerId = try container.decodeIfPresent(String.self, forKey: .scopedPlayerId)
+            score = try container.decodeIfPresent(String.self, forKey: .score)
+            submittedDate = try container.decodeIfPresent(Date.self, forKey: .submittedDate)
+            vendorIdentifier = try container.decodeIfPresent(String.self, forKey: .vendorIdentifier)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(challengeIds, forKey: .challengeIds)
+            try container.encodeIfPresent(context, forKey: .context)
+            try container.encodeIfPresent(scopedPlayerId, forKey: .scopedPlayerId)
+            try container.encodeIfPresent(score, forKey: .score)
+            try container.encodeIfPresent(submittedDate, forKey: .submittedDate)
+            try container.encodeIfPresent(vendorIdentifier, forKey: .vendorIdentifier)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case bundleId
+            case challengeIds
+            case context
+            case scopedPlayerId
+            case score
+            case submittedDate
+            case vendorIdentifier
+        }
     }
 }

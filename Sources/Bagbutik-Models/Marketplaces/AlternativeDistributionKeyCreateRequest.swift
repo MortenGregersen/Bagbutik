@@ -17,6 +17,20 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "alternativeDistributionKeys" }
         public let attributes: Attributes
@@ -65,6 +79,20 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
             public init(publicKey: String) {
                 self.publicKey = publicKey
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                publicKey = try container.decode(String.self, forKey: .publicKey)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(publicKey, forKey: .publicKey)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case publicKey
+            }
         }
 
         public struct Relationships: Codable {
@@ -72,6 +100,20 @@ public struct AlternativeDistributionKeyCreateRequest: Codable, RequestBody {
 
             public init(app: App? = nil) {
                 self.app = app
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decodeIfPresent(App.self, forKey: .app)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(app, forKey: .app)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
             }
 
             /**

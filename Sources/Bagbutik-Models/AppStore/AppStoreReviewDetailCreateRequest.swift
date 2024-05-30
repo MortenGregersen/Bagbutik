@@ -15,6 +15,20 @@ public struct AppStoreReviewDetailCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppStoreReviewDetailCreateRequest.Data
      The data element of the request body.
@@ -91,6 +105,41 @@ public struct AppStoreReviewDetailCreateRequest: Codable, RequestBody {
                 self.demoAccountRequired = demoAccountRequired
                 self.notes = notes
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                contactEmail = try container.decodeIfPresent(String.self, forKey: .contactEmail)
+                contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
+                contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
+                contactPhone = try container.decodeIfPresent(String.self, forKey: .contactPhone)
+                demoAccountName = try container.decodeIfPresent(String.self, forKey: .demoAccountName)
+                demoAccountPassword = try container.decodeIfPresent(String.self, forKey: .demoAccountPassword)
+                demoAccountRequired = try container.decodeIfPresent(Bool.self, forKey: .demoAccountRequired)
+                notes = try container.decodeIfPresent(String.self, forKey: .notes)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(contactEmail, forKey: .contactEmail)
+                try container.encodeIfPresent(contactFirstName, forKey: .contactFirstName)
+                try container.encodeIfPresent(contactLastName, forKey: .contactLastName)
+                try container.encodeIfPresent(contactPhone, forKey: .contactPhone)
+                try container.encodeIfPresent(demoAccountName, forKey: .demoAccountName)
+                try container.encodeIfPresent(demoAccountPassword, forKey: .demoAccountPassword)
+                try container.encodeIfPresent(demoAccountRequired, forKey: .demoAccountRequired)
+                try container.encodeIfPresent(notes, forKey: .notes)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case contactEmail
+                case contactFirstName
+                case contactLastName
+                case contactPhone
+                case demoAccountName
+                case demoAccountPassword
+                case demoAccountRequired
+                case notes
+            }
         }
 
         /**
@@ -107,6 +156,20 @@ public struct AppStoreReviewDetailCreateRequest: Codable, RequestBody {
                 self.appStoreVersion = appStoreVersion
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appStoreVersion = try container.decode(AppStoreVersion.self, forKey: .appStoreVersion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appStoreVersion, forKey: .appStoreVersion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appStoreVersion
+            }
+
             /**
              # AppStoreReviewDetailCreateRequest.Data.Relationships.AppStoreVersion
              The relationships to other resources that you can set with this request.
@@ -119,6 +182,20 @@ public struct AppStoreReviewDetailCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

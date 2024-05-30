@@ -61,6 +61,26 @@ public struct PromotedPurchase: Codable, Identifiable {
             self.visibleForAllUsers = visibleForAllUsers
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            visibleForAllUsers = try container.decodeIfPresent(Bool.self, forKey: .visibleForAllUsers)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(enabled, forKey: .enabled)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(visibleForAllUsers, forKey: .visibleForAllUsers)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case enabled
+            case state
+            case visibleForAllUsers
+        }
+
         public enum State: String, Codable, CaseIterable {
             case approved = "APPROVED"
             case inReview = "IN_REVIEW"
@@ -81,6 +101,26 @@ public struct PromotedPurchase: Codable, Identifiable {
             self.inAppPurchaseV2 = inAppPurchaseV2
             self.promotionImages = promotionImages
             self.subscription = subscription
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+            promotionImages = try container.decodeIfPresent(PromotionImages.self, forKey: .promotionImages)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+            try container.encodeIfPresent(promotionImages, forKey: .promotionImages)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseV2
+            case promotionImages
+            case subscription
         }
 
         public struct InAppPurchaseV2: Codable {

@@ -8,6 +8,20 @@ public struct InAppPurchaseSubmissionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "inAppPurchaseSubmissions" }
         public let relationships: Relationships
@@ -42,11 +56,39 @@ public struct InAppPurchaseSubmissionCreateRequest: Codable, RequestBody {
                 self.inAppPurchaseV2 = inAppPurchaseV2
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                inAppPurchaseV2 = try container.decode(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case inAppPurchaseV2
+            }
+
             public struct InAppPurchaseV2: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

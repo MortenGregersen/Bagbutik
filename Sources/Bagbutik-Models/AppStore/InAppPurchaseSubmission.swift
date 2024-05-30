@@ -48,6 +48,20 @@ public struct InAppPurchaseSubmission: Codable, Identifiable {
             self.inAppPurchaseV2 = inAppPurchaseV2
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseV2
+        }
+
         public struct InAppPurchaseV2: Codable {
             @NullCodable public var data: Data?
             public var links: Links?

@@ -76,6 +76,23 @@ public struct AppPricePoint: Codable, Identifiable {
             self.customerPrice = customerPrice
             self.proceeds = proceeds
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            customerPrice = try container.decodeIfPresent(String.self, forKey: .customerPrice)
+            proceeds = try container.decodeIfPresent(String.self, forKey: .proceeds)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(customerPrice, forKey: .customerPrice)
+            try container.encodeIfPresent(proceeds, forKey: .proceeds)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case customerPrice
+            case proceeds
+        }
     }
 
     /**
@@ -94,6 +111,23 @@ public struct AppPricePoint: Codable, Identifiable {
         {
             self.priceTier = priceTier
             self.territory = territory
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            priceTier = try container.decodeIfPresent(PriceTier.self, forKey: .priceTier)
+            territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(priceTier, forKey: .priceTier)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case priceTier
+            case territory
         }
 
         /**

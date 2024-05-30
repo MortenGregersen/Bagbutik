@@ -133,6 +133,50 @@ public struct App: Codable, Identifiable {
             self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            availableInNewTerritories = try container.decodeIfPresent(Bool.self, forKey: .availableInNewTerritories)
+            bundleId = try container.decodeIfPresent(String.self, forKey: .bundleId)
+            contentRightsDeclaration = try container.decodeIfPresent(ContentRightsDeclaration.self, forKey: .contentRightsDeclaration)
+            isOrEverWasMadeForKids = try container.decodeIfPresent(Bool.self, forKey: .isOrEverWasMadeForKids)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            primaryLocale = try container.decodeIfPresent(String.self, forKey: .primaryLocale)
+            sku = try container.decodeIfPresent(String.self, forKey: .sku)
+            subscriptionStatusUrl = try container.decodeIfPresent(String.self, forKey: .subscriptionStatusUrl)
+            subscriptionStatusUrlForSandbox = try container.decodeIfPresent(String.self, forKey: .subscriptionStatusUrlForSandbox)
+            subscriptionStatusUrlVersion = try container.decodeIfPresent(SubscriptionStatusUrlVersion.self, forKey: .subscriptionStatusUrlVersion)
+            subscriptionStatusUrlVersionForSandbox = try container.decodeIfPresent(SubscriptionStatusUrlVersion.self, forKey: .subscriptionStatusUrlVersionForSandbox)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(availableInNewTerritories, forKey: .availableInNewTerritories)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(contentRightsDeclaration, forKey: .contentRightsDeclaration)
+            try container.encodeIfPresent(isOrEverWasMadeForKids, forKey: .isOrEverWasMadeForKids)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(primaryLocale, forKey: .primaryLocale)
+            try container.encodeIfPresent(sku, forKey: .sku)
+            try container.encodeIfPresent(subscriptionStatusUrl, forKey: .subscriptionStatusUrl)
+            try container.encodeIfPresent(subscriptionStatusUrlForSandbox, forKey: .subscriptionStatusUrlForSandbox)
+            try container.encodeIfPresent(subscriptionStatusUrlVersion, forKey: .subscriptionStatusUrlVersion)
+            try container.encodeIfPresent(subscriptionStatusUrlVersionForSandbox, forKey: .subscriptionStatusUrlVersionForSandbox)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case availableInNewTerritories
+            case bundleId
+            case contentRightsDeclaration
+            case isOrEverWasMadeForKids
+            case name
+            case primaryLocale
+            case sku
+            case subscriptionStatusUrl
+            case subscriptionStatusUrlForSandbox
+            case subscriptionStatusUrlVersion
+            case subscriptionStatusUrlVersionForSandbox
+        }
+
         public enum ContentRightsDeclaration: String, Codable, CaseIterable {
             case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"
             case usesThirdPartyContent = "USES_THIRD_PARTY_CONTENT"
@@ -296,6 +340,95 @@ public struct App: Codable, Identifiable {
             self.reviewSubmissions = reviewSubmissions
             self.subscriptionGracePeriod = subscriptionGracePeriod
             self.subscriptionGroups = subscriptionGroups
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appClips = try container.decodeIfPresent(AppClips.self, forKey: .appClips)
+            appCustomProductPages = try container.decodeIfPresent(AppCustomProductPages.self, forKey: .appCustomProductPages)
+            appEncryptionDeclarations = try container.decodeIfPresent(AppEncryptionDeclarations.self, forKey: .appEncryptionDeclarations)
+            appEvents = try container.decodeIfPresent(AppEvents.self, forKey: .appEvents)
+            appInfos = try container.decodeIfPresent(AppInfos.self, forKey: .appInfos)
+            appStoreVersionExperimentsV2 = try container.decodeIfPresent(AppStoreVersionExperimentsV2.self, forKey: .appStoreVersionExperimentsV2)
+            appStoreVersions = try container.decodeIfPresent(AppStoreVersions.self, forKey: .appStoreVersions)
+            availableTerritories = try container.decodeIfPresent(AvailableTerritories.self, forKey: .availableTerritories)
+            betaAppLocalizations = try container.decodeIfPresent(BetaAppLocalizations.self, forKey: .betaAppLocalizations)
+            betaAppReviewDetail = try container.decodeIfPresent(BetaAppReviewDetail.self, forKey: .betaAppReviewDetail)
+            betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: .betaGroups)
+            betaLicenseAgreement = try container.decodeIfPresent(BetaLicenseAgreement.self, forKey: .betaLicenseAgreement)
+            builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+            ciProduct = try container.decodeIfPresent(CiProduct.self, forKey: .ciProduct)
+            endUserLicenseAgreement = try container.decodeIfPresent(EndUserLicenseAgreement.self, forKey: .endUserLicenseAgreement)
+            gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: .gameCenterDetail)
+            gameCenterEnabledVersions = try container.decodeIfPresent(GameCenterEnabledVersions.self, forKey: .gameCenterEnabledVersions)
+            inAppPurchases = try container.decodeIfPresent(InAppPurchases.self, forKey: .inAppPurchases)
+            inAppPurchasesV2 = try container.decodeIfPresent(InAppPurchasesV2.self, forKey: .inAppPurchasesV2)
+            preOrder = try container.decodeIfPresent(PreOrder.self, forKey: .preOrder)
+            preReleaseVersions = try container.decodeIfPresent(PreReleaseVersions.self, forKey: .preReleaseVersions)
+            prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+            promotedPurchases = try container.decodeIfPresent(PromotedPurchases.self, forKey: .promotedPurchases)
+            reviewSubmissions = try container.decodeIfPresent(ReviewSubmissions.self, forKey: .reviewSubmissions)
+            subscriptionGracePeriod = try container.decodeIfPresent(SubscriptionGracePeriod.self, forKey: .subscriptionGracePeriod)
+            subscriptionGroups = try container.decodeIfPresent(SubscriptionGroups.self, forKey: .subscriptionGroups)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appClips, forKey: .appClips)
+            try container.encodeIfPresent(appCustomProductPages, forKey: .appCustomProductPages)
+            try container.encodeIfPresent(appEncryptionDeclarations, forKey: .appEncryptionDeclarations)
+            try container.encodeIfPresent(appEvents, forKey: .appEvents)
+            try container.encodeIfPresent(appInfos, forKey: .appInfos)
+            try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: .appStoreVersionExperimentsV2)
+            try container.encodeIfPresent(appStoreVersions, forKey: .appStoreVersions)
+            try container.encodeIfPresent(availableTerritories, forKey: .availableTerritories)
+            try container.encodeIfPresent(betaAppLocalizations, forKey: .betaAppLocalizations)
+            try container.encodeIfPresent(betaAppReviewDetail, forKey: .betaAppReviewDetail)
+            try container.encodeIfPresent(betaGroups, forKey: .betaGroups)
+            try container.encodeIfPresent(betaLicenseAgreement, forKey: .betaLicenseAgreement)
+            try container.encodeIfPresent(builds, forKey: .builds)
+            try container.encodeIfPresent(ciProduct, forKey: .ciProduct)
+            try container.encodeIfPresent(endUserLicenseAgreement, forKey: .endUserLicenseAgreement)
+            try container.encodeIfPresent(gameCenterDetail, forKey: .gameCenterDetail)
+            try container.encodeIfPresent(gameCenterEnabledVersions, forKey: .gameCenterEnabledVersions)
+            try container.encodeIfPresent(inAppPurchases, forKey: .inAppPurchases)
+            try container.encodeIfPresent(inAppPurchasesV2, forKey: .inAppPurchasesV2)
+            try container.encodeIfPresent(preOrder, forKey: .preOrder)
+            try container.encodeIfPresent(preReleaseVersions, forKey: .preReleaseVersions)
+            try container.encodeIfPresent(prices, forKey: .prices)
+            try container.encodeIfPresent(promotedPurchases, forKey: .promotedPurchases)
+            try container.encodeIfPresent(reviewSubmissions, forKey: .reviewSubmissions)
+            try container.encodeIfPresent(subscriptionGracePeriod, forKey: .subscriptionGracePeriod)
+            try container.encodeIfPresent(subscriptionGroups, forKey: .subscriptionGroups)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appClips
+            case appCustomProductPages
+            case appEncryptionDeclarations
+            case appEvents
+            case appInfos
+            case appStoreVersionExperimentsV2
+            case appStoreVersions
+            case availableTerritories
+            case betaAppLocalizations
+            case betaAppReviewDetail
+            case betaGroups
+            case betaLicenseAgreement
+            case builds
+            case ciProduct
+            case endUserLicenseAgreement
+            case gameCenterDetail
+            case gameCenterEnabledVersions
+            case inAppPurchases
+            case inAppPurchasesV2
+            case preOrder
+            case preReleaseVersions
+            case prices
+            case promotedPurchases
+            case reviewSubmissions
+            case subscriptionGracePeriod
+            case subscriptionGroups
         }
 
         /**

@@ -78,6 +78,23 @@ public struct PrereleaseVersion: Codable, Identifiable {
             self.platform = platform
             self.version = version
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            version = try container.decodeIfPresent(String.self, forKey: .version)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(version, forKey: .version)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case platform
+            case version
+        }
     }
 
     /**
@@ -96,6 +113,23 @@ public struct PrereleaseVersion: Codable, Identifiable {
         {
             self.app = app
             self.builds = builds
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(builds, forKey: .builds)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case builds
         }
 
         /**

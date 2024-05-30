@@ -12,6 +12,23 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([SubscriptionPromotionalOfferPriceInlineCreate].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionPromotionalOffers" }
@@ -51,6 +68,20 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
 
             public init(prices: Prices? = nil) {
                 self.prices = prices
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(prices, forKey: .prices)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case prices
             }
 
             public struct Prices: Codable {

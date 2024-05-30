@@ -8,6 +8,20 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "gameCenterAchievementLocalizations" }
         public let attributes: Attributes
@@ -58,6 +72,29 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
                 self.locale = locale
                 self.name = name
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                afterEarnedDescription = try container.decode(String.self, forKey: .afterEarnedDescription)
+                beforeEarnedDescription = try container.decode(String.self, forKey: .beforeEarnedDescription)
+                locale = try container.decode(String.self, forKey: .locale)
+                name = try container.decode(String.self, forKey: .name)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(afterEarnedDescription, forKey: .afterEarnedDescription)
+                try container.encode(beforeEarnedDescription, forKey: .beforeEarnedDescription)
+                try container.encode(locale, forKey: .locale)
+                try container.encode(name, forKey: .name)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case afterEarnedDescription
+                case beforeEarnedDescription
+                case locale
+                case name
+            }
         }
 
         public struct Relationships: Codable {
@@ -67,11 +104,39 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
                 self.gameCenterAchievement = gameCenterAchievement
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                gameCenterAchievement = try container.decode(GameCenterAchievement.self, forKey: .gameCenterAchievement)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(gameCenterAchievement, forKey: .gameCenterAchievement)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case gameCenterAchievement
+            }
+
             public struct GameCenterAchievement: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

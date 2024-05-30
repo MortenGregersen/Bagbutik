@@ -84,5 +84,37 @@ public struct Certificate: Codable, Identifiable {
             self.platform = platform
             self.serialNumber = serialNumber
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            certificateContent = try container.decodeIfPresent(String.self, forKey: .certificateContent)
+            certificateType = try container.decodeIfPresent(CertificateType.self, forKey: .certificateType)
+            displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
+            expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            platform = try container.decodeIfPresent(BundleIdPlatform.self, forKey: .platform)
+            serialNumber = try container.decodeIfPresent(String.self, forKey: .serialNumber)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(certificateContent, forKey: .certificateContent)
+            try container.encodeIfPresent(certificateType, forKey: .certificateType)
+            try container.encodeIfPresent(displayName, forKey: .displayName)
+            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(serialNumber, forKey: .serialNumber)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case certificateContent
+            case certificateType
+            case displayName
+            case expirationDate
+            case name
+            case platform
+            case serialNumber
+        }
     }
 }

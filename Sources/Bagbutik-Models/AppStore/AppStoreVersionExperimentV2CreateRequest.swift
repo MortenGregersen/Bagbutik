@@ -8,6 +8,20 @@ public struct AppStoreVersionExperimentV2CreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "appStoreVersionExperiments" }
         public let attributes: Attributes
@@ -55,6 +69,26 @@ public struct AppStoreVersionExperimentV2CreateRequest: Codable, RequestBody {
                 self.platform = platform
                 self.trafficProportion = trafficProportion
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decode(String.self, forKey: .name)
+                platform = try container.decode(Platform.self, forKey: .platform)
+                trafficProportion = try container.decode(Int.self, forKey: .trafficProportion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(name, forKey: .name)
+                try container.encode(platform, forKey: .platform)
+                try container.encode(trafficProportion, forKey: .trafficProportion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+                case platform
+                case trafficProportion
+            }
         }
 
         public struct Relationships: Codable {
@@ -64,11 +98,39 @@ public struct AppStoreVersionExperimentV2CreateRequest: Codable, RequestBody {
                 self.app = app
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+            }
+
             public struct App: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

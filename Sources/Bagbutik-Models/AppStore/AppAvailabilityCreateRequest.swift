@@ -8,6 +8,20 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "appAvailabilities" }
         public let attributes: Attributes
@@ -48,6 +62,20 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
             public init(availableInNewTerritories: Bool) {
                 self.availableInNewTerritories = availableInNewTerritories
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                availableInNewTerritories = try container.decode(Bool.self, forKey: .availableInNewTerritories)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(availableInNewTerritories, forKey: .availableInNewTerritories)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case availableInNewTerritories
+            }
         }
 
         public struct Relationships: Codable {
@@ -61,11 +89,42 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
                 self.availableTerritories = availableTerritories
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+                availableTerritories = try container.decode(AvailableTerritories.self, forKey: .availableTerritories)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+                try container.encode(availableTerritories, forKey: .availableTerritories)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+                case availableTerritories
+            }
+
             public struct App: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -102,6 +161,20 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
 
                 public init(data: [Data]) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

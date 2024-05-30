@@ -72,6 +72,38 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             self.reviewNote = reviewNote
             self.state = state
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            contentHosting = try container.decodeIfPresent(Bool.self, forKey: .contentHosting)
+            familySharable = try container.decodeIfPresent(Bool.self, forKey: .familySharable)
+            inAppPurchaseType = try container.decodeIfPresent(InAppPurchaseType.self, forKey: .inAppPurchaseType)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            productId = try container.decodeIfPresent(String.self, forKey: .productId)
+            reviewNote = try container.decodeIfPresent(String.self, forKey: .reviewNote)
+            state = try container.decodeIfPresent(InAppPurchaseState.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(contentHosting, forKey: .contentHosting)
+            try container.encodeIfPresent(familySharable, forKey: .familySharable)
+            try container.encodeIfPresent(inAppPurchaseType, forKey: .inAppPurchaseType)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(productId, forKey: .productId)
+            try container.encodeIfPresent(reviewNote, forKey: .reviewNote)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case contentHosting
+            case familySharable
+            case inAppPurchaseType
+            case name
+            case productId
+            case reviewNote
+            case state
+        }
     }
 
     public struct Relationships: Codable {
@@ -98,6 +130,38 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             self.inAppPurchaseLocalizations = inAppPurchaseLocalizations
             self.pricePoints = pricePoints
             self.promotedPurchase = promotedPurchase
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreReviewScreenshot = try container.decodeIfPresent(AppStoreReviewScreenshot.self, forKey: .appStoreReviewScreenshot)
+            content = try container.decodeIfPresent(Content.self, forKey: .content)
+            iapPriceSchedule = try container.decodeIfPresent(IapPriceSchedule.self, forKey: .iapPriceSchedule)
+            inAppPurchaseAvailability = try container.decodeIfPresent(InAppPurchaseAvailability.self, forKey: .inAppPurchaseAvailability)
+            inAppPurchaseLocalizations = try container.decodeIfPresent(InAppPurchaseLocalizations.self, forKey: .inAppPurchaseLocalizations)
+            pricePoints = try container.decodeIfPresent(PricePoints.self, forKey: .pricePoints)
+            promotedPurchase = try container.decodeIfPresent(PromotedPurchase.self, forKey: .promotedPurchase)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreReviewScreenshot, forKey: .appStoreReviewScreenshot)
+            try container.encodeIfPresent(content, forKey: .content)
+            try container.encodeIfPresent(iapPriceSchedule, forKey: .iapPriceSchedule)
+            try container.encodeIfPresent(inAppPurchaseAvailability, forKey: .inAppPurchaseAvailability)
+            try container.encodeIfPresent(inAppPurchaseLocalizations, forKey: .inAppPurchaseLocalizations)
+            try container.encodeIfPresent(pricePoints, forKey: .pricePoints)
+            try container.encodeIfPresent(promotedPurchase, forKey: .promotedPurchase)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreReviewScreenshot
+            case content
+            case iapPriceSchedule
+            case inAppPurchaseAvailability
+            case inAppPurchaseLocalizations
+            case pricePoints
+            case promotedPurchase
         }
 
         public struct AppStoreReviewScreenshot: Codable {

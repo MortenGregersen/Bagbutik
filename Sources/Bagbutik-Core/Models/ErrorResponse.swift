@@ -15,6 +15,20 @@ public struct ErrorResponse: Codable {
         self.errors = errors
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        errors = try container.decodeIfPresent([Errors].self, forKey: .errors)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(errors, forKey: .errors)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case errors
+    }
+
     /**
      # ErrorResponse.Errors
      The details about an error that are returned when an API request isn’t successful.
@@ -56,6 +70,38 @@ public struct ErrorResponse: Codable {
             self.title = title
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            code = try container.decode(String.self, forKey: .code)
+            detail = try container.decodeIfPresent(String.self, forKey: .detail)
+            id = try container.decodeIfPresent(String.self, forKey: .id)
+            meta = try container.decodeIfPresent(Meta.self, forKey: .meta)
+            source = try container.decodeIfPresent(Source.self, forKey: .source)
+            status = try container.decode(String.self, forKey: .status)
+            title = try container.decode(String.self, forKey: .title)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(code, forKey: .code)
+            try container.encodeIfPresent(detail, forKey: .detail)
+            try container.encodeIfPresent(id, forKey: .id)
+            try container.encodeIfPresent(meta, forKey: .meta)
+            try container.encodeIfPresent(source, forKey: .source)
+            try container.encode(status, forKey: .status)
+            try container.encode(title, forKey: .title)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case code
+            case detail
+            case id
+            case meta
+            case source
+            case status
+            case title
+        }
+
         public struct Meta: Codable {
             public var additionalProperties: [String: String]?
             public var associatedErrors: [String: [Errors]]?
@@ -65,6 +111,23 @@ public struct ErrorResponse: Codable {
             {
                 self.additionalProperties = additionalProperties
                 self.associatedErrors = associatedErrors
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                additionalProperties = try container.decodeIfPresent([String: String].self, forKey: .additionalProperties)
+                associatedErrors = try container.decodeIfPresent([String: [Errors]].self, forKey: .associatedErrors)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(additionalProperties, forKey: .additionalProperties)
+                try container.encodeIfPresent(associatedErrors, forKey: .associatedErrors)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case additionalProperties
+                case associatedErrors
             }
         }
 

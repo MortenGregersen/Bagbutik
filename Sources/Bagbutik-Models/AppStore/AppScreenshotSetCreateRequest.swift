@@ -15,6 +15,20 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppScreenshotSetCreateRequest.Data
      The data element of the request body.
@@ -69,6 +83,20 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
             public init(screenshotDisplayType: ScreenshotDisplayType) {
                 self.screenshotDisplayType = screenshotDisplayType
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                screenshotDisplayType = try container.decode(ScreenshotDisplayType.self, forKey: .screenshotDisplayType)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(screenshotDisplayType, forKey: .screenshotDisplayType)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case screenshotDisplayType
+            }
         }
 
         /**
@@ -90,6 +118,26 @@ public struct AppScreenshotSetCreateRequest: Codable, RequestBody {
                 self.appCustomProductPageLocalization = appCustomProductPageLocalization
                 self.appStoreVersionExperimentTreatmentLocalization = appStoreVersionExperimentTreatmentLocalization
                 self.appStoreVersionLocalization = appStoreVersionLocalization
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appCustomProductPageLocalization = try container.decodeIfPresent(AppCustomProductPageLocalization.self, forKey: .appCustomProductPageLocalization)
+                appStoreVersionExperimentTreatmentLocalization = try container.decodeIfPresent(AppStoreVersionExperimentTreatmentLocalization.self, forKey: .appStoreVersionExperimentTreatmentLocalization)
+                appStoreVersionLocalization = try container.decodeIfPresent(AppStoreVersionLocalization.self, forKey: .appStoreVersionLocalization)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(appCustomProductPageLocalization, forKey: .appCustomProductPageLocalization)
+                try container.encodeIfPresent(appStoreVersionExperimentTreatmentLocalization, forKey: .appStoreVersionExperimentTreatmentLocalization)
+                try container.encodeIfPresent(appStoreVersionLocalization, forKey: .appStoreVersionLocalization)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appCustomProductPageLocalization
+                case appStoreVersionExperimentTreatmentLocalization
+                case appStoreVersionLocalization
             }
 
             public struct AppCustomProductPageLocalization: Codable {

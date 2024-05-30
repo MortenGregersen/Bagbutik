@@ -16,6 +16,20 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppClipHeaderImageCreateRequest.Data
      The data element of the request body.
@@ -79,6 +93,23 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
                 self.fileName = fileName
                 self.fileSize = fileSize
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                fileName = try container.decode(String.self, forKey: .fileName)
+                fileSize = try container.decode(Int.self, forKey: .fileSize)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(fileName, forKey: .fileName)
+                try container.encode(fileSize, forKey: .fileSize)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case fileName
+                case fileSize
+            }
         }
 
         /**
@@ -96,6 +127,20 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
                 self.appClipDefaultExperienceLocalization = appClipDefaultExperienceLocalization
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appClipDefaultExperienceLocalization = try container.decode(AppClipDefaultExperienceLocalization.self, forKey: .appClipDefaultExperienceLocalization)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appClipDefaultExperienceLocalization, forKey: .appClipDefaultExperienceLocalization)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appClipDefaultExperienceLocalization
+            }
+
             /**
              # AppClipHeaderImageCreateRequest.Data.Relationships.AppClipDefaultExperienceLocalization
              The relationship to the Default App Clip Experience Localizations resource you set with the request that creates an App Clip Header Images resource.
@@ -109,6 +154,20 @@ public struct AppClipHeaderImageCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

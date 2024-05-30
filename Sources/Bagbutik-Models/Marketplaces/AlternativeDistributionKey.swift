@@ -67,5 +67,19 @@ public struct AlternativeDistributionKey: Codable, Identifiable {
         public init(publicKey: String? = nil) {
             self.publicKey = publicKey
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            publicKey = try container.decodeIfPresent(String.self, forKey: .publicKey)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(publicKey, forKey: .publicKey)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case publicKey
+        }
     }
 }

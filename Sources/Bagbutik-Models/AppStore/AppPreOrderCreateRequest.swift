@@ -15,6 +15,20 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppPreOrderCreateRequest.Data
      The data element of the request body.
@@ -69,6 +83,20 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
             public init(appReleaseDate: String? = nil) {
                 self.appReleaseDate = appReleaseDate
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appReleaseDate = try container.decodeIfPresent(String.self, forKey: .appReleaseDate)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(appReleaseDate, forKey: .appReleaseDate)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appReleaseDate
+            }
         }
 
         /**
@@ -85,6 +113,20 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
                 self.app = app
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+            }
+
             /**
              # AppPreOrderCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
@@ -97,6 +139,20 @@ public struct AppPreOrderCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

@@ -67,6 +67,20 @@ public struct AppPreviewSet: Codable, Identifiable {
         public init(previewType: PreviewType? = nil) {
             self.previewType = previewType
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            previewType = try container.decodeIfPresent(PreviewType.self, forKey: .previewType)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(previewType, forKey: .previewType)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case previewType
+        }
     }
 
     /**
@@ -91,6 +105,29 @@ public struct AppPreviewSet: Codable, Identifiable {
             self.appPreviews = appPreviews
             self.appStoreVersionExperimentTreatmentLocalization = appStoreVersionExperimentTreatmentLocalization
             self.appStoreVersionLocalization = appStoreVersionLocalization
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appCustomProductPageLocalization = try container.decodeIfPresent(AppCustomProductPageLocalization.self, forKey: .appCustomProductPageLocalization)
+            appPreviews = try container.decodeIfPresent(AppPreviews.self, forKey: .appPreviews)
+            appStoreVersionExperimentTreatmentLocalization = try container.decodeIfPresent(AppStoreVersionExperimentTreatmentLocalization.self, forKey: .appStoreVersionExperimentTreatmentLocalization)
+            appStoreVersionLocalization = try container.decodeIfPresent(AppStoreVersionLocalization.self, forKey: .appStoreVersionLocalization)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appCustomProductPageLocalization, forKey: .appCustomProductPageLocalization)
+            try container.encodeIfPresent(appPreviews, forKey: .appPreviews)
+            try container.encodeIfPresent(appStoreVersionExperimentTreatmentLocalization, forKey: .appStoreVersionExperimentTreatmentLocalization)
+            try container.encodeIfPresent(appStoreVersionLocalization, forKey: .appStoreVersionLocalization)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appCustomProductPageLocalization
+            case appPreviews
+            case appStoreVersionExperimentTreatmentLocalization
+            case appStoreVersionLocalization
         }
 
         public struct AppCustomProductPageLocalization: Codable {

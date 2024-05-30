@@ -8,6 +8,20 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionGracePeriods" }
@@ -57,6 +71,29 @@ public struct SubscriptionGracePeriodUpdateRequest: Codable, RequestBody {
                 self.optIn = optIn
                 self.renewalType = renewalType
                 self.sandboxOptIn = sandboxOptIn
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                duration = try container.decodeIfPresent(SubscriptionGracePeriodDuration.self, forKey: .duration)
+                optIn = try container.decodeIfPresent(Bool.self, forKey: .optIn)
+                renewalType = try container.decodeIfPresent(SubscriptionGracePeriod.Attributes.RenewalType.self, forKey: .renewalType)
+                sandboxOptIn = try container.decodeIfPresent(Bool.self, forKey: .sandboxOptIn)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(duration, forKey: .duration)
+                try container.encodeIfPresent(optIn, forKey: .optIn)
+                try container.encodeIfPresent(renewalType, forKey: .renewalType)
+                try container.encodeIfPresent(sandboxOptIn, forKey: .sandboxOptIn)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case duration
+                case optIn
+                case renewalType
+                case sandboxOptIn
             }
         }
     }

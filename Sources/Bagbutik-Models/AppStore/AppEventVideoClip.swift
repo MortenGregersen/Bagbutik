@@ -75,6 +75,41 @@ public struct AppEventVideoClip: Codable, Identifiable {
             self.uploadOperations = uploadOperations
             self.videoUrl = videoUrl
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appEventAssetType = try container.decodeIfPresent(AppEventAssetType.self, forKey: .appEventAssetType)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            previewFrameTimeCode = try container.decodeIfPresent(String.self, forKey: .previewFrameTimeCode)
+            previewImage = try container.decodeIfPresent(ImageAsset.self, forKey: .previewImage)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+            videoUrl = try container.decodeIfPresent(String.self, forKey: .videoUrl)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appEventAssetType, forKey: .appEventAssetType)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(previewFrameTimeCode, forKey: .previewFrameTimeCode)
+            try container.encodeIfPresent(previewImage, forKey: .previewImage)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+            try container.encodeIfPresent(videoUrl, forKey: .videoUrl)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appEventAssetType
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case previewFrameTimeCode
+            case previewImage
+            case uploadOperations
+            case videoUrl
+        }
     }
 
     public struct Relationships: Codable {
@@ -82,6 +117,20 @@ public struct AppEventVideoClip: Codable, Identifiable {
 
         public init(appEventLocalization: AppEventLocalization? = nil) {
             self.appEventLocalization = appEventLocalization
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appEventLocalization = try container.decodeIfPresent(AppEventLocalization.self, forKey: .appEventLocalization)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appEventLocalization, forKey: .appEventLocalization)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appEventLocalization
         }
 
         public struct AppEventLocalization: Codable {

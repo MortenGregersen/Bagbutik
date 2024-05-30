@@ -76,6 +76,26 @@ public struct DiagnosticSignature: Codable, Identifiable {
             self.weight = weight
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            diagnosticType = try container.decodeIfPresent(DiagnosticType.self, forKey: .diagnosticType)
+            signature = try container.decodeIfPresent(String.self, forKey: .signature)
+            weight = try container.decodeIfPresent(Double.self, forKey: .weight)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(diagnosticType, forKey: .diagnosticType)
+            try container.encodeIfPresent(signature, forKey: .signature)
+            try container.encodeIfPresent(weight, forKey: .weight)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case diagnosticType
+            case signature
+            case weight
+        }
+
         public enum DiagnosticType: String, Codable, CaseIterable {
             case diskWrites = "DISK_WRITES"
             case hangs = "HANGS"

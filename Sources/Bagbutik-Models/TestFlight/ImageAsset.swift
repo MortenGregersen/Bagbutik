@@ -21,4 +21,24 @@ public struct ImageAsset: Codable {
         self.templateUrl = templateUrl
         self.width = width
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        height = try container.decodeIfPresent(Int.self, forKey: .height)
+        templateUrl = try container.decodeIfPresent(String.self, forKey: .templateUrl)
+        width = try container.decodeIfPresent(Int.self, forKey: .width)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(height, forKey: .height)
+        try container.encodeIfPresent(templateUrl, forKey: .templateUrl)
+        try container.encodeIfPresent(width, forKey: .width)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case height
+        case templateUrl
+        case width
+    }
 }

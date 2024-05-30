@@ -22,6 +22,26 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
         self.meta = meta
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode([Data].self, forKey: .data)
+        links = try container.decode(PagedDocumentLinks.self, forKey: .links)
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(meta, forKey: .meta)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case links
+        case meta
+    }
+
     /**
      # GameCenterMatchmakingNumberRuleResultsV1MetricResponse.Data
      The data structure in a response body for numeric rule results.
@@ -42,6 +62,26 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
             self.dataPoints = dataPoints
             self.dimensions = dimensions
             self.granularity = granularity
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: .dataPoints)
+            dimensions = try container.decodeIfPresent(Dimensions.self, forKey: .dimensions)
+            granularity = try container.decodeIfPresent(Granularity.self, forKey: .granularity)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(dataPoints, forKey: .dataPoints)
+            try container.encodeIfPresent(dimensions, forKey: .dimensions)
+            try container.encodeIfPresent(granularity, forKey: .granularity)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case dataPoints
+            case dimensions
+            case granularity
         }
 
         /**
@@ -65,6 +105,26 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
                 self.end = end
                 self.start = start
                 self.values = values
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                end = try container.decodeIfPresent(Date.self, forKey: .end)
+                start = try container.decodeIfPresent(Date.self, forKey: .start)
+                values = try container.decodeIfPresent(Values.self, forKey: .values)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(end, forKey: .end)
+                try container.encodeIfPresent(start, forKey: .start)
+                try container.encodeIfPresent(values, forKey: .values)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case end
+                case start
+                case values
             }
 
             /**
@@ -94,6 +154,29 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
                     self.p50Result = p50Result
                     self.p95Result = p95Result
                 }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    averageResult = try container.decodeIfPresent(Double.self, forKey: .averageResult)
+                    count = try container.decodeIfPresent(Int.self, forKey: .count)
+                    p50Result = try container.decodeIfPresent(Double.self, forKey: .p50Result)
+                    p95Result = try container.decodeIfPresent(Double.self, forKey: .p95Result)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(averageResult, forKey: .averageResult)
+                    try container.encodeIfPresent(count, forKey: .count)
+                    try container.encodeIfPresent(p50Result, forKey: .p50Result)
+                    try container.encodeIfPresent(p95Result, forKey: .p95Result)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case averageResult
+                    case count
+                    case p50Result
+                    case p95Result
+                }
             }
         }
 
@@ -111,6 +194,20 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
                 self.gameCenterMatchmakingQueue = gameCenterMatchmakingQueue
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                gameCenterMatchmakingQueue = try container.decodeIfPresent(GameCenterMatchmakingQueue.self, forKey: .gameCenterMatchmakingQueue)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(gameCenterMatchmakingQueue, forKey: .gameCenterMatchmakingQueue)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case gameCenterMatchmakingQueue
+            }
+
             /**
              # GameCenterMatchmakingNumberRuleResultsV1MetricResponse.Data.Dimensions.GameCenterMatchmakingQueue
              The details of the data about the queue.
@@ -123,6 +220,20 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
 
                 public init(links: Links? = nil) {
                     self.links = links
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    links = try container.decodeIfPresent(Links.self, forKey: .links)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(links, forKey: .links)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case links
                 }
 
                 /**
@@ -143,6 +254,23 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
                     {
                         self.groupBy = groupBy
                         self.related = related
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        groupBy = try container.decodeIfPresent(String.self, forKey: .groupBy)
+                        related = try container.decodeIfPresent(String.self, forKey: .related)
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encodeIfPresent(groupBy, forKey: .groupBy)
+                        try container.encodeIfPresent(related, forKey: .related)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case groupBy
+                        case related
                     }
                 }
             }

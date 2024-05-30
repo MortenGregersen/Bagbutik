@@ -74,6 +74,26 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
             self.platform = platform
             self.versionString = versionString
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            iconAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .iconAsset)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            versionString = try container.decodeIfPresent(String.self, forKey: .versionString)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(iconAsset, forKey: .iconAsset)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(versionString, forKey: .versionString)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case iconAsset
+            case platform
+            case versionString
+        }
     }
 
     /**
@@ -92,6 +112,23 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
         {
             self.app = app
             self.compatibleVersions = compatibleVersions
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            compatibleVersions = try container.decodeIfPresent(CompatibleVersions.self, forKey: .compatibleVersions)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(compatibleVersions, forKey: .compatibleVersions)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case compatibleVersions
         }
 
         /**

@@ -51,6 +51,23 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
             self.endDate = endDate
             self.startDate = startDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            endDate = try container.decodeIfPresent(String.self, forKey: .endDate)
+            startDate = try container.decodeIfPresent(String.self, forKey: .startDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(endDate, forKey: .endDate)
+            try container.encodeIfPresent(startDate, forKey: .startDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case endDate
+            case startDate
+        }
     }
 
     public struct Relationships: Codable {
@@ -62,6 +79,23 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
         {
             self.inAppPurchasePricePoint = inAppPurchasePricePoint
             self.inAppPurchaseV2 = inAppPurchaseV2
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchasePricePoint = try container.decodeIfPresent(InAppPurchasePricePoint.self, forKey: .inAppPurchasePricePoint)
+            inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchasePricePoint, forKey: .inAppPurchasePricePoint)
+            try container.encodeIfPresent(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchasePricePoint
+            case inAppPurchaseV2
         }
 
         public struct InAppPurchasePricePoint: Codable {

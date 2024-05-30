@@ -8,6 +8,20 @@ public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appCustomProductPages" }
@@ -51,6 +65,23 @@ public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
             {
                 self.name = name
                 self.visible = visible
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+                visible = try container.decodeIfPresent(Bool.self, forKey: .visible)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(name, forKey: .name)
+                try container.encodeIfPresent(visible, forKey: .visible)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+                case visible
             }
         }
     }

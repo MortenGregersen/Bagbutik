@@ -8,6 +8,20 @@ public struct ReviewSubmissionItemUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "reviewSubmissionItems" }
@@ -51,6 +65,23 @@ public struct ReviewSubmissionItemUpdateRequest: Codable, RequestBody {
             {
                 self.removed = removed
                 self.resolved = resolved
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                removed = try container.decodeIfPresent(Bool.self, forKey: .removed)
+                resolved = try container.decodeIfPresent(Bool.self, forKey: .resolved)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(removed, forKey: .removed)
+                try container.encodeIfPresent(resolved, forKey: .resolved)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case removed
+                case resolved
             }
         }
     }

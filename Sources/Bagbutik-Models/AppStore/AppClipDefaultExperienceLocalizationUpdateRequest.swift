@@ -16,6 +16,20 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppClipDefaultExperienceLocalizationUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,20 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
 
             public init(subtitle: String? = nil) {
                 self.subtitle = subtitle
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(subtitle, forKey: .subtitle)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case subtitle
             }
         }
     }

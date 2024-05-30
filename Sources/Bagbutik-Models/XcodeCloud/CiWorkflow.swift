@@ -127,6 +127,62 @@ public struct CiWorkflow: Codable, Identifiable {
             self.scheduledStartCondition = scheduledStartCondition
             self.tagStartCondition = tagStartCondition
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            actions = try container.decodeIfPresent([CiAction].self, forKey: .actions)
+            branchStartCondition = try container.decodeIfPresent(CiBranchStartCondition.self, forKey: .branchStartCondition)
+            clean = try container.decodeIfPresent(Bool.self, forKey: .clean)
+            containerFilePath = try container.decodeIfPresent(String.self, forKey: .containerFilePath)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            isEnabled = try container.decodeIfPresent(Bool.self, forKey: .isEnabled)
+            isLockedForEditing = try container.decodeIfPresent(Bool.self, forKey: .isLockedForEditing)
+            lastModifiedDate = try container.decodeIfPresent(Date.self, forKey: .lastModifiedDate)
+            manualBranchStartCondition = try container.decodeIfPresent(CiManualBranchStartCondition.self, forKey: .manualBranchStartCondition)
+            manualPullRequestStartCondition = try container.decodeIfPresent(CiManualPullRequestStartCondition.self, forKey: .manualPullRequestStartCondition)
+            manualTagStartCondition = try container.decodeIfPresent(CiManualTagStartCondition.self, forKey: .manualTagStartCondition)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            pullRequestStartCondition = try container.decodeIfPresent(CiPullRequestStartCondition.self, forKey: .pullRequestStartCondition)
+            scheduledStartCondition = try container.decodeIfPresent(CiScheduledStartCondition.self, forKey: .scheduledStartCondition)
+            tagStartCondition = try container.decodeIfPresent(CiTagStartCondition.self, forKey: .tagStartCondition)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(actions, forKey: .actions)
+            try container.encodeIfPresent(branchStartCondition, forKey: .branchStartCondition)
+            try container.encodeIfPresent(clean, forKey: .clean)
+            try container.encodeIfPresent(containerFilePath, forKey: .containerFilePath)
+            try container.encodeIfPresent(description, forKey: .description)
+            try container.encodeIfPresent(isEnabled, forKey: .isEnabled)
+            try container.encodeIfPresent(isLockedForEditing, forKey: .isLockedForEditing)
+            try container.encodeIfPresent(lastModifiedDate, forKey: .lastModifiedDate)
+            try container.encodeIfPresent(manualBranchStartCondition, forKey: .manualBranchStartCondition)
+            try container.encodeIfPresent(manualPullRequestStartCondition, forKey: .manualPullRequestStartCondition)
+            try container.encodeIfPresent(manualTagStartCondition, forKey: .manualTagStartCondition)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(pullRequestStartCondition, forKey: .pullRequestStartCondition)
+            try container.encodeIfPresent(scheduledStartCondition, forKey: .scheduledStartCondition)
+            try container.encodeIfPresent(tagStartCondition, forKey: .tagStartCondition)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case actions
+            case branchStartCondition
+            case clean
+            case containerFilePath
+            case description
+            case isEnabled
+            case isLockedForEditing
+            case lastModifiedDate
+            case manualBranchStartCondition
+            case manualPullRequestStartCondition
+            case manualTagStartCondition
+            case name
+            case pullRequestStartCondition
+            case scheduledStartCondition
+            case tagStartCondition
+        }
     }
 
     /**
@@ -155,6 +211,29 @@ public struct CiWorkflow: Codable, Identifiable {
             self.product = product
             self.repository = repository
             self.xcodeVersion = xcodeVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            macOsVersion = try container.decodeIfPresent(MacOsVersion.self, forKey: .macOsVersion)
+            product = try container.decodeIfPresent(Product.self, forKey: .product)
+            repository = try container.decodeIfPresent(Repository.self, forKey: .repository)
+            xcodeVersion = try container.decodeIfPresent(XcodeVersion.self, forKey: .xcodeVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(macOsVersion, forKey: .macOsVersion)
+            try container.encodeIfPresent(product, forKey: .product)
+            try container.encodeIfPresent(repository, forKey: .repository)
+            try container.encodeIfPresent(xcodeVersion, forKey: .xcodeVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case macOsVersion
+            case product
+            case repository
+            case xcodeVersion
         }
 
         /**

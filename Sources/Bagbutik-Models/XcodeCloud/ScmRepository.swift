@@ -90,6 +90,32 @@ public struct ScmRepository: Codable, Identifiable {
             self.repositoryName = repositoryName
             self.sshCloneUrl = sshCloneUrl
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            httpCloneUrl = try container.decodeIfPresent(String.self, forKey: .httpCloneUrl)
+            lastAccessedDate = try container.decodeIfPresent(Date.self, forKey: .lastAccessedDate)
+            ownerName = try container.decodeIfPresent(String.self, forKey: .ownerName)
+            repositoryName = try container.decodeIfPresent(String.self, forKey: .repositoryName)
+            sshCloneUrl = try container.decodeIfPresent(String.self, forKey: .sshCloneUrl)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(httpCloneUrl, forKey: .httpCloneUrl)
+            try container.encodeIfPresent(lastAccessedDate, forKey: .lastAccessedDate)
+            try container.encodeIfPresent(ownerName, forKey: .ownerName)
+            try container.encodeIfPresent(repositoryName, forKey: .repositoryName)
+            try container.encodeIfPresent(sshCloneUrl, forKey: .sshCloneUrl)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case httpCloneUrl
+            case lastAccessedDate
+            case ownerName
+            case repositoryName
+            case sshCloneUrl
+        }
     }
 
     /**
@@ -110,6 +136,23 @@ public struct ScmRepository: Codable, Identifiable {
         {
             self.defaultBranch = defaultBranch
             self.scmProvider = scmProvider
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            defaultBranch = try container.decodeIfPresent(DefaultBranch.self, forKey: .defaultBranch)
+            scmProvider = try container.decodeIfPresent(ScmProvider.self, forKey: .scmProvider)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(defaultBranch, forKey: .defaultBranch)
+            try container.encodeIfPresent(scmProvider, forKey: .scmProvider)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case defaultBranch
+            case scmProvider
         }
 
         /**

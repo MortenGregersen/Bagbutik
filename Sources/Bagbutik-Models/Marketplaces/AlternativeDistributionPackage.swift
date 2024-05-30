@@ -67,6 +67,20 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
             self.versions = versions
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            versions = try container.decodeIfPresent(Versions.self, forKey: .versions)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(versions, forKey: .versions)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case versions
+        }
+
         /**
          # AlternativeDistributionPackage.Relationships.Versions
          The data structure that represents the versions for the relationships of an alternative distribution package resource.

@@ -8,6 +8,20 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "appEventScreenshots" }
         public let attributes: Attributes
@@ -55,6 +69,26 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
                 self.fileName = fileName
                 self.fileSize = fileSize
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appEventAssetType = try container.decode(AppEventAssetType.self, forKey: .appEventAssetType)
+                fileName = try container.decode(String.self, forKey: .fileName)
+                fileSize = try container.decode(Int.self, forKey: .fileSize)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appEventAssetType, forKey: .appEventAssetType)
+                try container.encode(fileName, forKey: .fileName)
+                try container.encode(fileSize, forKey: .fileSize)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appEventAssetType
+                case fileName
+                case fileSize
+            }
         }
 
         public struct Relationships: Codable {
@@ -64,11 +98,39 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
                 self.appEventLocalization = appEventLocalization
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appEventLocalization = try container.decode(AppEventLocalization.self, forKey: .appEventLocalization)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appEventLocalization, forKey: .appEventLocalization)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appEventLocalization
+            }
+
             public struct AppEventLocalization: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

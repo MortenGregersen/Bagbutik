@@ -82,6 +82,29 @@ public struct BundleId: Codable, Identifiable {
             self.platform = platform
             self.seedId = seedId
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            platform = try container.decodeIfPresent(BundleIdPlatform.self, forKey: .platform)
+            seedId = try container.decodeIfPresent(String.self, forKey: .seedId)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(identifier, forKey: .identifier)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(seedId, forKey: .seedId)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case identifier
+            case name
+            case platform
+            case seedId
+        }
     }
 
     /**
@@ -103,6 +126,26 @@ public struct BundleId: Codable, Identifiable {
             self.app = app
             self.bundleIdCapabilities = bundleIdCapabilities
             self.profiles = profiles
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            bundleIdCapabilities = try container.decodeIfPresent(BundleIdCapabilities.self, forKey: .bundleIdCapabilities)
+            profiles = try container.decodeIfPresent(Profiles.self, forKey: .profiles)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(bundleIdCapabilities, forKey: .bundleIdCapabilities)
+            try container.encodeIfPresent(profiles, forKey: .profiles)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case bundleIdCapabilities
+            case profiles
         }
 
         /**

@@ -78,6 +78,29 @@ public struct InAppPurchase: Codable, Identifiable {
             self.state = state
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseType = try container.decodeIfPresent(InAppPurchaseType.self, forKey: .inAppPurchaseType)
+            productId = try container.decodeIfPresent(String.self, forKey: .productId)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseType, forKey: .inAppPurchaseType)
+            try container.encodeIfPresent(productId, forKey: .productId)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseType
+            case productId
+            case referenceName
+            case state
+        }
+
         public enum InAppPurchaseType: String, Codable, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
             case consumable = "CONSUMABLE"
@@ -121,6 +144,20 @@ public struct InAppPurchase: Codable, Identifiable {
 
         public init(apps: Apps? = nil) {
             self.apps = apps
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            apps = try container.decodeIfPresent(Apps.self, forKey: .apps)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(apps, forKey: .apps)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case apps
         }
 
         /**

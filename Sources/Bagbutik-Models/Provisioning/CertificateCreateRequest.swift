@@ -16,6 +16,20 @@ public struct CertificateCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # CertificateCreateRequest.Data
      The data element of the request body.
@@ -66,6 +80,23 @@ public struct CertificateCreateRequest: Codable, RequestBody {
             {
                 self.certificateType = certificateType
                 self.csrContent = csrContent
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                certificateType = try container.decode(CertificateType.self, forKey: .certificateType)
+                csrContent = try container.decode(String.self, forKey: .csrContent)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(certificateType, forKey: .certificateType)
+                try container.encode(csrContent, forKey: .csrContent)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case certificateType
+                case csrContent
             }
         }
     }

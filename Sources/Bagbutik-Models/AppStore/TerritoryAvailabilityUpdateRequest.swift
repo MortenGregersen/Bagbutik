@@ -15,6 +15,20 @@ public struct TerritoryAvailabilityUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "territoryAvailabilities" }
@@ -61,6 +75,26 @@ public struct TerritoryAvailabilityUpdateRequest: Codable, RequestBody {
                 self.available = available
                 self.preOrderEnabled = preOrderEnabled
                 self.releaseDate = releaseDate
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                available = try container.decodeIfPresent(Bool.self, forKey: .available)
+                preOrderEnabled = try container.decodeIfPresent(Bool.self, forKey: .preOrderEnabled)
+                releaseDate = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(available, forKey: .available)
+                try container.encodeIfPresent(preOrderEnabled, forKey: .preOrderEnabled)
+                try container.encodeIfPresent(releaseDate, forKey: .releaseDate)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case available
+                case preOrderEnabled
+                case releaseDate
             }
         }
     }

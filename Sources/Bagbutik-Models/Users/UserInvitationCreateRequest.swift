@@ -16,6 +16,20 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # UserInvitationCreateRequest.Data
      The data element of the request body.
@@ -95,6 +109,35 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
                 self.provisioningAllowed = provisioningAllowed
                 self.roles = roles
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                allAppsVisible = try container.decodeIfPresent(Bool.self, forKey: .allAppsVisible)
+                email = try container.decode(String.self, forKey: .email)
+                firstName = try container.decode(String.self, forKey: .firstName)
+                lastName = try container.decode(String.self, forKey: .lastName)
+                provisioningAllowed = try container.decodeIfPresent(Bool.self, forKey: .provisioningAllowed)
+                roles = try container.decode([UserRole].self, forKey: .roles)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(allAppsVisible, forKey: .allAppsVisible)
+                try container.encode(email, forKey: .email)
+                try container.encode(firstName, forKey: .firstName)
+                try container.encode(lastName, forKey: .lastName)
+                try container.encodeIfPresent(provisioningAllowed, forKey: .provisioningAllowed)
+                try container.encode(roles, forKey: .roles)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case allAppsVisible
+                case email
+                case firstName
+                case lastName
+                case provisioningAllowed
+                case roles
+            }
         }
 
         /**
@@ -109,6 +152,20 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
 
             public init(visibleApps: VisibleApps? = nil) {
                 self.visibleApps = visibleApps
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                visibleApps = try container.decodeIfPresent(VisibleApps.self, forKey: .visibleApps)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(visibleApps, forKey: .visibleApps)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case visibleApps
             }
 
             /**

@@ -73,6 +73,38 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             self.trafficProportion = trafficProportion
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            endDate = try container.decodeIfPresent(Date.self, forKey: .endDate)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            reviewRequired = try container.decodeIfPresent(Bool.self, forKey: .reviewRequired)
+            startDate = try container.decodeIfPresent(Date.self, forKey: .startDate)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            trafficProportion = try container.decodeIfPresent(Int.self, forKey: .trafficProportion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(endDate, forKey: .endDate)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(reviewRequired, forKey: .reviewRequired)
+            try container.encodeIfPresent(startDate, forKey: .startDate)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(trafficProportion, forKey: .trafficProportion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case endDate
+            case name
+            case platform
+            case reviewRequired
+            case startDate
+            case state
+            case trafficProportion
+        }
+
         public enum State: String, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
@@ -101,6 +133,29 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             self.appStoreVersionExperimentTreatments = appStoreVersionExperimentTreatments
             self.controlVersions = controlVersions
             self.latestControlVersion = latestControlVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appStoreVersionExperimentTreatments = try container.decodeIfPresent(AppStoreVersionExperimentTreatments.self, forKey: .appStoreVersionExperimentTreatments)
+            controlVersions = try container.decodeIfPresent(ControlVersions.self, forKey: .controlVersions)
+            latestControlVersion = try container.decodeIfPresent(LatestControlVersion.self, forKey: .latestControlVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appStoreVersionExperimentTreatments, forKey: .appStoreVersionExperimentTreatments)
+            try container.encodeIfPresent(controlVersions, forKey: .controlVersions)
+            try container.encodeIfPresent(latestControlVersion, forKey: .latestControlVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case appStoreVersionExperimentTreatments
+            case controlVersions
+            case latestControlVersion
         }
 
         public struct App: Codable {

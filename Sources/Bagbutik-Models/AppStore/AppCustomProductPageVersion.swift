@@ -58,6 +58,23 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
             self.version = version
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            version = try container.decodeIfPresent(String.self, forKey: .version)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(version, forKey: .version)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case state
+            case version
+        }
+
         public enum State: String, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
@@ -79,6 +96,23 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
         {
             self.appCustomProductPage = appCustomProductPage
             self.appCustomProductPageLocalizations = appCustomProductPageLocalizations
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appCustomProductPage = try container.decodeIfPresent(AppCustomProductPage.self, forKey: .appCustomProductPage)
+            appCustomProductPageLocalizations = try container.decodeIfPresent(AppCustomProductPageLocalizations.self, forKey: .appCustomProductPageLocalizations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appCustomProductPage, forKey: .appCustomProductPage)
+            try container.encodeIfPresent(appCustomProductPageLocalizations, forKey: .appCustomProductPageLocalizations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appCustomProductPage
+            case appCustomProductPageLocalizations
         }
 
         public struct AppCustomProductPage: Codable {

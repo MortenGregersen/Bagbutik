@@ -16,6 +16,20 @@ public struct GameCenterMatchmakingTeamUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingTeamUpdateRequest.Data
      The data structure of the request body you use to modify a team.
@@ -77,6 +91,23 @@ public struct GameCenterMatchmakingTeamUpdateRequest: Codable, RequestBody {
             {
                 self.maxPlayers = maxPlayers
                 self.minPlayers = minPlayers
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                maxPlayers = try container.decodeIfPresent(Int.self, forKey: .maxPlayers)
+                minPlayers = try container.decodeIfPresent(Int.self, forKey: .minPlayers)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(maxPlayers, forKey: .maxPlayers)
+                try container.encodeIfPresent(minPlayers, forKey: .minPlayers)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case maxPlayers
+                case minPlayers
             }
         }
     }

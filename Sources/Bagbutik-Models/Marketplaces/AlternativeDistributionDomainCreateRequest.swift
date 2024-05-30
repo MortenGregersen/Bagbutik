@@ -15,6 +15,20 @@ public struct AlternativeDistributionDomainCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "alternativeDistributionDomains" }
         public let attributes: Attributes
@@ -58,6 +72,23 @@ public struct AlternativeDistributionDomainCreateRequest: Codable, RequestBody {
             {
                 self.domain = domain
                 self.referenceName = referenceName
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                domain = try container.decode(String.self, forKey: .domain)
+                referenceName = try container.decode(String.self, forKey: .referenceName)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(domain, forKey: .domain)
+                try container.encode(referenceName, forKey: .referenceName)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case domain
+                case referenceName
             }
         }
     }

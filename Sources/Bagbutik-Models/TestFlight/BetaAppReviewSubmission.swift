@@ -77,6 +77,23 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
             self.betaReviewState = betaReviewState
             self.submittedDate = submittedDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            betaReviewState = try container.decodeIfPresent(BetaReviewState.self, forKey: .betaReviewState)
+            submittedDate = try container.decodeIfPresent(Date.self, forKey: .submittedDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(betaReviewState, forKey: .betaReviewState)
+            try container.encodeIfPresent(submittedDate, forKey: .submittedDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case betaReviewState
+            case submittedDate
+        }
     }
 
     /**
@@ -91,6 +108,20 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
 
         public init(build: Build? = nil) {
             self.build = build
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            build = try container.decodeIfPresent(Build.self, forKey: .build)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(build, forKey: .build)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case build
         }
 
         /**

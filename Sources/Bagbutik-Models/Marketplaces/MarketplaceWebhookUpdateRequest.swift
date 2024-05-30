@@ -15,6 +15,20 @@ public struct MarketplaceWebhookUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # MarketplaceWebhookUpdateRequest.Data
      The data structure that represent a marketplace webhook resource.
@@ -73,6 +87,23 @@ public struct MarketplaceWebhookUpdateRequest: Codable, RequestBody {
             {
                 self.endpointUrl = endpointUrl
                 self.secret = secret
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                endpointUrl = try container.decodeIfPresent(String.self, forKey: .endpointUrl)
+                secret = try container.decodeIfPresent(String.self, forKey: .secret)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
+                try container.encodeIfPresent(secret, forKey: .secret)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case endpointUrl
+                case secret
             }
         }
     }

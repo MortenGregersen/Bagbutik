@@ -15,6 +15,20 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppStoreVersionPhasedReleaseUpdateRequest.Data
      The data element of the request body.
@@ -68,6 +82,20 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, RequestBody {
 
             public init(phasedReleaseState: PhasedReleaseState? = nil) {
                 self.phasedReleaseState = phasedReleaseState
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                phasedReleaseState = try container.decodeIfPresent(PhasedReleaseState.self, forKey: .phasedReleaseState)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(phasedReleaseState, forKey: .phasedReleaseState)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case phasedReleaseState
             }
         }
     }

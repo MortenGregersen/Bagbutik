@@ -51,6 +51,23 @@ public struct SubscriptionPriceInlineCreate: Codable, Identifiable {
             self.preserveCurrentPrice = preserveCurrentPrice
             self.startDate = startDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            preserveCurrentPrice = try container.decodeIfPresent(Bool.self, forKey: .preserveCurrentPrice)
+            startDate = try container.decodeIfPresent(String.self, forKey: .startDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(preserveCurrentPrice, forKey: .preserveCurrentPrice)
+            try container.encodeIfPresent(startDate, forKey: .startDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case preserveCurrentPrice
+            case startDate
+        }
     }
 
     public struct Relationships: Codable {
@@ -65,6 +82,26 @@ public struct SubscriptionPriceInlineCreate: Codable, Identifiable {
             self.subscription = subscription
             self.subscriptionPricePoint = subscriptionPricePoint
             self.territory = territory
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+            subscriptionPricePoint = try container.decodeIfPresent(SubscriptionPricePoint.self, forKey: .subscriptionPricePoint)
+            territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+            try container.encodeIfPresent(subscriptionPricePoint, forKey: .subscriptionPricePoint)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case subscription
+            case subscriptionPricePoint
+            case territory
         }
 
         public struct Subscription: Codable {

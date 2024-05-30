@@ -150,6 +150,59 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
             self.createdDate = createdDate
             self.exempt = exempt
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appDescription = try container.decodeIfPresent(String.self, forKey: .appDescription)
+            appEncryptionDeclarationState = try container.decodeIfPresent(AppEncryptionDeclarationState.self, forKey: .appEncryptionDeclarationState)
+            availableOnFrenchStore = try container.decodeIfPresent(Bool.self, forKey: .availableOnFrenchStore)
+            codeValue = try container.decodeIfPresent(String.self, forKey: .codeValue)
+            containsProprietaryCryptography = try container.decodeIfPresent(Bool.self, forKey: .containsProprietaryCryptography)
+            containsThirdPartyCryptography = try container.decodeIfPresent(Bool.self, forKey: .containsThirdPartyCryptography)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            documentName = try container.decodeIfPresent(String.self, forKey: .documentName)
+            documentType = try container.decodeIfPresent(String.self, forKey: .documentType)
+            documentUrl = try container.decodeIfPresent(String.self, forKey: .documentUrl)
+            exempt = try container.decodeIfPresent(Bool.self, forKey: .exempt)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            uploadedDate = try container.decodeIfPresent(Date.self, forKey: .uploadedDate)
+            usesEncryption = try container.decodeIfPresent(Bool.self, forKey: .usesEncryption)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appDescription, forKey: .appDescription)
+            try container.encodeIfPresent(appEncryptionDeclarationState, forKey: .appEncryptionDeclarationState)
+            try container.encodeIfPresent(availableOnFrenchStore, forKey: .availableOnFrenchStore)
+            try container.encodeIfPresent(codeValue, forKey: .codeValue)
+            try container.encodeIfPresent(containsProprietaryCryptography, forKey: .containsProprietaryCryptography)
+            try container.encodeIfPresent(containsThirdPartyCryptography, forKey: .containsThirdPartyCryptography)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(documentName, forKey: .documentName)
+            try container.encodeIfPresent(documentType, forKey: .documentType)
+            try container.encodeIfPresent(documentUrl, forKey: .documentUrl)
+            try container.encodeIfPresent(exempt, forKey: .exempt)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(uploadedDate, forKey: .uploadedDate)
+            try container.encodeIfPresent(usesEncryption, forKey: .usesEncryption)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appDescription
+            case appEncryptionDeclarationState
+            case availableOnFrenchStore
+            case codeValue
+            case containsProprietaryCryptography
+            case containsThirdPartyCryptography
+            case createdDate
+            case documentName
+            case documentType
+            case documentUrl
+            case exempt
+            case platform
+            case uploadedDate
+            case usesEncryption
+        }
     }
 
     /**
@@ -180,6 +233,26 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
         {
             self.app = app
             self.appEncryptionDeclarationDocument = appEncryptionDeclarationDocument
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appEncryptionDeclarationDocument = try container.decodeIfPresent(AppEncryptionDeclarationDocument.self, forKey: .appEncryptionDeclarationDocument)
+            builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appEncryptionDeclarationDocument, forKey: .appEncryptionDeclarationDocument)
+            try container.encodeIfPresent(builds, forKey: .builds)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case appEncryptionDeclarationDocument
+            case builds
         }
 
         /**

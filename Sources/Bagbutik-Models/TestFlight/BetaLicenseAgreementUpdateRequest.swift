@@ -16,6 +16,20 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaLicenseAgreementUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,20 @@ public struct BetaLicenseAgreementUpdateRequest: Codable, RequestBody {
 
             public init(agreementText: String? = nil) {
                 self.agreementText = agreementText
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                agreementText = try container.decodeIfPresent(String.self, forKey: .agreementText)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(agreementText, forKey: .agreementText)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case agreementText
             }
         }
     }

@@ -16,6 +16,20 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaAppClipInvocationUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,20 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, RequestBody {
 
             public init(url: String? = nil) {
                 self.url = url
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                url = try container.decodeIfPresent(String.self, forKey: .url)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(url, forKey: .url)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case url
             }
         }
     }

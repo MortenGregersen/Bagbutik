@@ -89,6 +89,41 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
             self.demoAccountRequired = demoAccountRequired
             self.notes = notes
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            contactEmail = try container.decodeIfPresent(String.self, forKey: .contactEmail)
+            contactFirstName = try container.decodeIfPresent(String.self, forKey: .contactFirstName)
+            contactLastName = try container.decodeIfPresent(String.self, forKey: .contactLastName)
+            contactPhone = try container.decodeIfPresent(String.self, forKey: .contactPhone)
+            demoAccountName = try container.decodeIfPresent(String.self, forKey: .demoAccountName)
+            demoAccountPassword = try container.decodeIfPresent(String.self, forKey: .demoAccountPassword)
+            demoAccountRequired = try container.decodeIfPresent(Bool.self, forKey: .demoAccountRequired)
+            notes = try container.decodeIfPresent(String.self, forKey: .notes)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(contactEmail, forKey: .contactEmail)
+            try container.encodeIfPresent(contactFirstName, forKey: .contactFirstName)
+            try container.encodeIfPresent(contactLastName, forKey: .contactLastName)
+            try container.encodeIfPresent(contactPhone, forKey: .contactPhone)
+            try container.encodeIfPresent(demoAccountName, forKey: .demoAccountName)
+            try container.encodeIfPresent(demoAccountPassword, forKey: .demoAccountPassword)
+            try container.encodeIfPresent(demoAccountRequired, forKey: .demoAccountRequired)
+            try container.encodeIfPresent(notes, forKey: .notes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case contactEmail
+            case contactFirstName
+            case contactLastName
+            case contactPhone
+            case demoAccountName
+            case demoAccountPassword
+            case demoAccountRequired
+            case notes
+        }
     }
 
     /**
@@ -107,6 +142,23 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
         {
             self.appStoreReviewAttachments = appStoreReviewAttachments
             self.appStoreVersion = appStoreVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreReviewAttachments = try container.decodeIfPresent(AppStoreReviewAttachments.self, forKey: .appStoreReviewAttachments)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreReviewAttachments, forKey: .appStoreReviewAttachments)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreReviewAttachments
+            case appStoreVersion
         }
 
         /**

@@ -69,6 +69,23 @@ public struct AnalyticsReportInstance: Codable, Identifiable {
             self.processingDate = processingDate
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            granularity = try container.decodeIfPresent(Granularity.self, forKey: .granularity)
+            processingDate = try container.decodeIfPresent(String.self, forKey: .processingDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(granularity, forKey: .granularity)
+            try container.encodeIfPresent(processingDate, forKey: .processingDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case granularity
+            case processingDate
+        }
+
         public enum Granularity: String, Codable, CaseIterable {
             case daily = "DAILY"
             case monthly = "MONTHLY"

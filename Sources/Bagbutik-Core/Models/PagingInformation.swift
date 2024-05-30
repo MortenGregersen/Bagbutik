@@ -15,6 +15,20 @@ public struct PagingInformation: Codable {
         self.paging = paging
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        paging = try container.decode(Paging.self, forKey: .paging)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(paging, forKey: .paging)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case paging
+    }
+
     /**
      # PagingInformation.Paging
      Paging details such as the total number of resources and the per-page limit.
@@ -38,6 +52,23 @@ public struct PagingInformation: Codable {
         {
             self.limit = limit
             self.total = total
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            limit = try container.decode(Int.self, forKey: .limit)
+            total = try container.decodeIfPresent(Int.self, forKey: .total)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(limit, forKey: .limit)
+            try container.encodeIfPresent(total, forKey: .total)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case limit
+            case total
         }
     }
 }

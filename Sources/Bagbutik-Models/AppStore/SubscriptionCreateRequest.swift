@@ -8,6 +8,20 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "subscriptions" }
         public let attributes: Attributes
@@ -64,6 +78,35 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
                 self.reviewNote = reviewNote
                 self.subscriptionPeriod = subscriptionPeriod
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                familySharable = try container.decodeIfPresent(Bool.self, forKey: .familySharable)
+                groupLevel = try container.decodeIfPresent(Int.self, forKey: .groupLevel)
+                name = try container.decode(String.self, forKey: .name)
+                productId = try container.decode(String.self, forKey: .productId)
+                reviewNote = try container.decodeIfPresent(String.self, forKey: .reviewNote)
+                subscriptionPeriod = try container.decodeIfPresent(Subscription.Attributes.SubscriptionPeriod.self, forKey: .subscriptionPeriod)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(familySharable, forKey: .familySharable)
+                try container.encodeIfPresent(groupLevel, forKey: .groupLevel)
+                try container.encode(name, forKey: .name)
+                try container.encode(productId, forKey: .productId)
+                try container.encodeIfPresent(reviewNote, forKey: .reviewNote)
+                try container.encodeIfPresent(subscriptionPeriod, forKey: .subscriptionPeriod)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case familySharable
+                case groupLevel
+                case name
+                case productId
+                case reviewNote
+                case subscriptionPeriod
+            }
         }
 
         public struct Relationships: Codable {
@@ -73,11 +116,39 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
                 self.group = group
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                group = try container.decode(Group.self, forKey: .group)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(group, forKey: .group)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case group
+            }
+
             public struct Group: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

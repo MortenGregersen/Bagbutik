@@ -77,6 +77,32 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
             self.version = version
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            fileChecksum = try container.decodeIfPresent(String.self, forKey: .fileChecksum)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+            urlExpirationDate = try container.decodeIfPresent(Date.self, forKey: .urlExpirationDate)
+            version = try container.decodeIfPresent(String.self, forKey: .version)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(fileChecksum, forKey: .fileChecksum)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(url, forKey: .url)
+            try container.encodeIfPresent(urlExpirationDate, forKey: .urlExpirationDate)
+            try container.encodeIfPresent(version, forKey: .version)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case fileChecksum
+            case state
+            case url
+            case urlExpirationDate
+            case version
+        }
+
         public enum State: String, Codable, CaseIterable {
             case completed = "COMPLETED"
             case replaced = "REPLACED"
@@ -95,6 +121,26 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
             self.alternativeDistributionPackage = alternativeDistributionPackage
             self.deltas = deltas
             self.variants = variants
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            alternativeDistributionPackage = try container.decodeIfPresent(AlternativeDistributionPackage.self, forKey: .alternativeDistributionPackage)
+            deltas = try container.decodeIfPresent(Deltas.self, forKey: .deltas)
+            variants = try container.decodeIfPresent(Variants.self, forKey: .variants)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(alternativeDistributionPackage, forKey: .alternativeDistributionPackage)
+            try container.encodeIfPresent(deltas, forKey: .deltas)
+            try container.encodeIfPresent(variants, forKey: .variants)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case alternativeDistributionPackage
+            case deltas
+            case variants
         }
 
         public struct AlternativeDistributionPackage: Codable {

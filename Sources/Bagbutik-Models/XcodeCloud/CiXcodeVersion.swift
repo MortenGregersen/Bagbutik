@@ -83,6 +83,26 @@ public struct CiXcodeVersion: Codable, Identifiable {
             self.version = version
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            testDestinations = try container.decodeIfPresent([TestDestinations].self, forKey: .testDestinations)
+            version = try container.decodeIfPresent(String.self, forKey: .version)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(testDestinations, forKey: .testDestinations)
+            try container.encodeIfPresent(version, forKey: .version)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case name
+            case testDestinations
+            case version
+        }
+
         /**
          # CiXcodeVersion.Attributes.TestDestinations
          The test destinations available for an Xcode version.
@@ -111,6 +131,29 @@ public struct CiXcodeVersion: Codable, Identifiable {
                 self.kind = kind
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                availableRuntimes = try container.decodeIfPresent([AvailableRuntimes].self, forKey: .availableRuntimes)
+                deviceTypeIdentifier = try container.decodeIfPresent(String.self, forKey: .deviceTypeIdentifier)
+                deviceTypeName = try container.decodeIfPresent(String.self, forKey: .deviceTypeName)
+                kind = try container.decodeIfPresent(CiTestDestinationKind.self, forKey: .kind)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(availableRuntimes, forKey: .availableRuntimes)
+                try container.encodeIfPresent(deviceTypeIdentifier, forKey: .deviceTypeIdentifier)
+                try container.encodeIfPresent(deviceTypeName, forKey: .deviceTypeName)
+                try container.encodeIfPresent(kind, forKey: .kind)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case availableRuntimes
+                case deviceTypeIdentifier
+                case deviceTypeName
+                case kind
+            }
+
             /**
              # CiXcodeVersion.Attributes.TestDestinations.AvailableRuntimes
              The data structure that represents the available runtimes for test destinations of an Xcode Versions resource.
@@ -130,6 +173,23 @@ public struct CiXcodeVersion: Codable, Identifiable {
                     self.runtimeIdentifier = runtimeIdentifier
                     self.runtimeName = runtimeName
                 }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    runtimeIdentifier = try container.decodeIfPresent(String.self, forKey: .runtimeIdentifier)
+                    runtimeName = try container.decodeIfPresent(String.self, forKey: .runtimeName)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(runtimeIdentifier, forKey: .runtimeIdentifier)
+                    try container.encodeIfPresent(runtimeName, forKey: .runtimeName)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case runtimeIdentifier
+                    case runtimeName
+                }
             }
         }
     }
@@ -147,6 +207,20 @@ public struct CiXcodeVersion: Codable, Identifiable {
 
         public init(macOsVersions: MacOsVersions? = nil) {
             self.macOsVersions = macOsVersions
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            macOsVersions = try container.decodeIfPresent(MacOsVersions.self, forKey: .macOsVersions)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(macOsVersions, forKey: .macOsVersions)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case macOsVersions
         }
 
         /**

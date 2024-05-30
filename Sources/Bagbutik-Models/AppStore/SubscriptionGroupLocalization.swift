@@ -64,6 +64,29 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
             self.state = state
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            customAppName = try container.decodeIfPresent(String.self, forKey: .customAppName)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(customAppName, forKey: .customAppName)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case customAppName
+            case locale
+            case name
+            case state
+        }
+
         public enum State: String, Codable, CaseIterable {
             case approved = "APPROVED"
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
@@ -77,6 +100,20 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
 
         public init(subscriptionGroup: SubscriptionGroup? = nil) {
             self.subscriptionGroup = subscriptionGroup
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            subscriptionGroup = try container.decodeIfPresent(SubscriptionGroup.self, forKey: .subscriptionGroup)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(subscriptionGroup, forKey: .subscriptionGroup)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case subscriptionGroup
         }
 
         public struct SubscriptionGroup: Codable {

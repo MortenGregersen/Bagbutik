@@ -16,6 +16,20 @@ public struct UserUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # UserUpdateRequest.Data
      The data element of the request body.
@@ -90,6 +104,26 @@ public struct UserUpdateRequest: Codable, RequestBody {
                 self.provisioningAllowed = provisioningAllowed
                 self.roles = roles
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                allAppsVisible = try container.decodeIfPresent(Bool.self, forKey: .allAppsVisible)
+                provisioningAllowed = try container.decodeIfPresent(Bool.self, forKey: .provisioningAllowed)
+                roles = try container.decodeIfPresent([UserRole].self, forKey: .roles)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(allAppsVisible, forKey: .allAppsVisible)
+                try container.encodeIfPresent(provisioningAllowed, forKey: .provisioningAllowed)
+                try container.encodeIfPresent(roles, forKey: .roles)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case allAppsVisible
+                case provisioningAllowed
+                case roles
+            }
         }
 
         /**
@@ -104,6 +138,20 @@ public struct UserUpdateRequest: Codable, RequestBody {
 
             public init(visibleApps: VisibleApps? = nil) {
                 self.visibleApps = visibleApps
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                visibleApps = try container.decodeIfPresent(VisibleApps.self, forKey: .visibleApps)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(visibleApps, forKey: .visibleApps)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case visibleApps
             }
 
             /**

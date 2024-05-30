@@ -61,5 +61,19 @@ public struct Territory: Codable, Identifiable {
         public init(currency: String? = nil) {
             self.currency = currency
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            currency = try container.decodeIfPresent(String.self, forKey: .currency)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(currency, forKey: .currency)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case currency
+        }
     }
 }

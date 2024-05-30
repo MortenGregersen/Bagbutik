@@ -52,6 +52,23 @@ public struct SubscriptionOfferCodePrice: Codable, Identifiable {
             self.territory = territory
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            subscriptionPricePoint = try container.decodeIfPresent(SubscriptionPricePoint.self, forKey: .subscriptionPricePoint)
+            territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(subscriptionPricePoint, forKey: .subscriptionPricePoint)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case subscriptionPricePoint
+            case territory
+        }
+
         public struct SubscriptionPricePoint: Codable {
             @NullCodable public var data: Data?
             public var links: Links?

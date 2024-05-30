@@ -15,6 +15,20 @@ public struct GameCenterLeaderboardLocalizationUpdateRequest: Codable, RequestBo
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "gameCenterLeaderboardLocalizations" }
@@ -64,6 +78,29 @@ public struct GameCenterLeaderboardLocalizationUpdateRequest: Codable, RequestBo
                 self.formatterSuffix = formatterSuffix
                 self.formatterSuffixSingular = formatterSuffixSingular
                 self.name = name
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                formatterOverride = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: .formatterOverride)
+                formatterSuffix = try container.decodeIfPresent(String.self, forKey: .formatterSuffix)
+                formatterSuffixSingular = try container.decodeIfPresent(String.self, forKey: .formatterSuffixSingular)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(formatterOverride, forKey: .formatterOverride)
+                try container.encodeIfPresent(formatterSuffix, forKey: .formatterSuffix)
+                try container.encodeIfPresent(formatterSuffixSingular, forKey: .formatterSuffixSingular)
+                try container.encodeIfPresent(name, forKey: .name)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case formatterOverride
+                case formatterSuffix
+                case formatterSuffixSingular
+                case name
             }
         }
     }

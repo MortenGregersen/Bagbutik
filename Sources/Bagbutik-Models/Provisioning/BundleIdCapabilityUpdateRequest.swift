@@ -16,6 +16,20 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BundleIdCapabilityUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,23 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
             {
                 self.capabilityType = capabilityType
                 self.settings = settings
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                capabilityType = try container.decodeIfPresent(CapabilityType.self, forKey: .capabilityType)
+                settings = try container.decodeIfPresent([CapabilitySetting].self, forKey: .settings)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(capabilityType, forKey: .capabilityType)
+                try container.encodeIfPresent(settings, forKey: .settings)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case capabilityType
+                case settings
             }
         }
     }

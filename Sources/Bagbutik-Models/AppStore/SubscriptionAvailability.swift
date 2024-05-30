@@ -53,6 +53,20 @@ public struct SubscriptionAvailability: Codable, Identifiable {
         public init(availableInNewTerritories: Bool? = nil) {
             self.availableInNewTerritories = availableInNewTerritories
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            availableInNewTerritories = try container.decodeIfPresent(Bool.self, forKey: .availableInNewTerritories)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(availableInNewTerritories, forKey: .availableInNewTerritories)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case availableInNewTerritories
+        }
     }
 
     public struct Relationships: Codable {
@@ -64,6 +78,23 @@ public struct SubscriptionAvailability: Codable, Identifiable {
         {
             self.availableTerritories = availableTerritories
             self.subscription = subscription
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            availableTerritories = try container.decodeIfPresent(AvailableTerritories.self, forKey: .availableTerritories)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(availableTerritories, forKey: .availableTerritories)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case availableTerritories
+            case subscription
         }
 
         public struct AvailableTerritories: Codable {

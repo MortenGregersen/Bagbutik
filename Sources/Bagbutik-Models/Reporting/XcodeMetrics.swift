@@ -25,6 +25,26 @@ public struct XcodeMetrics: Codable {
         self.version = version
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        insights = try container.decodeIfPresent(Insights.self, forKey: .insights)
+        productData = try container.decodeIfPresent([ProductData].self, forKey: .productData)
+        version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(insights, forKey: .insights)
+        try container.encodeIfPresent(productData, forKey: .productData)
+        try container.encodeIfPresent(version, forKey: .version)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case insights
+        case productData
+        case version
+    }
+
     /**
      # xcodeMetrics.Insights
      Analysis of power and performance data collected for your app that includes regressions and trends.
@@ -43,6 +63,23 @@ public struct XcodeMetrics: Codable {
         {
             self.regressions = regressions
             self.trendingUp = trendingUp
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            regressions = try container.decodeIfPresent([MetricsInsight].self, forKey: .regressions)
+            trendingUp = try container.decodeIfPresent([MetricsInsight].self, forKey: .trendingUp)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(regressions, forKey: .regressions)
+            try container.encodeIfPresent(trendingUp, forKey: .trendingUp)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case regressions
+            case trendingUp
         }
     }
 
@@ -66,6 +103,23 @@ public struct XcodeMetrics: Codable {
             self.platform = platform
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            metricCategories = try container.decodeIfPresent([MetricCategories].self, forKey: .metricCategories)
+            platform = try container.decodeIfPresent(String.self, forKey: .platform)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(metricCategories, forKey: .metricCategories)
+            try container.encodeIfPresent(platform, forKey: .platform)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case metricCategories
+            case platform
+        }
+
         /**
          # xcodeMetrics.ProductData.MetricCategories
          A metric category and its associated array of data and measurements.
@@ -84,6 +138,23 @@ public struct XcodeMetrics: Codable {
             {
                 self.identifier = identifier
                 self.metrics = metrics
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                identifier = try container.decodeIfPresent(MetricCategory.self, forKey: .identifier)
+                metrics = try container.decodeIfPresent([Metrics].self, forKey: .metrics)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(identifier, forKey: .identifier)
+                try container.encodeIfPresent(metrics, forKey: .metrics)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case identifier
+                case metrics
             }
 
             /**
@@ -114,6 +185,29 @@ public struct XcodeMetrics: Codable {
                     self.unit = unit
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    datasets = try container.decodeIfPresent([Datasets].self, forKey: .datasets)
+                    goalKeys = try container.decodeIfPresent([GoalKeys].self, forKey: .goalKeys)
+                    identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
+                    unit = try container.decodeIfPresent(Unit.self, forKey: .unit)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encodeIfPresent(datasets, forKey: .datasets)
+                    try container.encodeIfPresent(goalKeys, forKey: .goalKeys)
+                    try container.encodeIfPresent(identifier, forKey: .identifier)
+                    try container.encodeIfPresent(unit, forKey: .unit)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case datasets
+                    case goalKeys
+                    case identifier
+                    case unit
+                }
+
                 /**
                  # xcodeMetrics.ProductData.MetricCategories.Metrics.Datasets
                  A set of data containing metric values for each app version, filtered by percentile and device type.
@@ -132,6 +226,23 @@ public struct XcodeMetrics: Codable {
                     {
                         self.filterCriteria = filterCriteria
                         self.points = points
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        filterCriteria = try container.decodeIfPresent(FilterCriteria.self, forKey: .filterCriteria)
+                        points = try container.decodeIfPresent([Points].self, forKey: .points)
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encodeIfPresent(filterCriteria, forKey: .filterCriteria)
+                        try container.encodeIfPresent(points, forKey: .points)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case filterCriteria
+                        case points
                     }
 
                     /**
@@ -156,6 +267,26 @@ public struct XcodeMetrics: Codable {
                             self.device = device
                             self.deviceMarketingName = deviceMarketingName
                             self.percentile = percentile
+                        }
+
+                        public init(from decoder: Decoder) throws {
+                            let container = try decoder.container(keyedBy: CodingKeys.self)
+                            device = try container.decodeIfPresent(String.self, forKey: .device)
+                            deviceMarketingName = try container.decodeIfPresent(String.self, forKey: .deviceMarketingName)
+                            percentile = try container.decodeIfPresent(String.self, forKey: .percentile)
+                        }
+
+                        public func encode(to encoder: Encoder) throws {
+                            var container = encoder.container(keyedBy: CodingKeys.self)
+                            try container.encodeIfPresent(device, forKey: .device)
+                            try container.encodeIfPresent(deviceMarketingName, forKey: .deviceMarketingName)
+                            try container.encodeIfPresent(percentile, forKey: .percentile)
+                        }
+
+                        private enum CodingKeys: String, CodingKey {
+                            case device
+                            case deviceMarketingName
+                            case percentile
                         }
                     }
 
@@ -191,6 +322,32 @@ public struct XcodeMetrics: Codable {
                             self.version = version
                         }
 
+                        public init(from decoder: Decoder) throws {
+                            let container = try decoder.container(keyedBy: CodingKeys.self)
+                            errorMargin = try container.decodeIfPresent(Double.self, forKey: .errorMargin)
+                            goal = try container.decodeIfPresent(String.self, forKey: .goal)
+                            percentageBreakdown = try container.decodeIfPresent(PercentageBreakdown.self, forKey: .percentageBreakdown)
+                            value = try container.decodeIfPresent(Double.self, forKey: .value)
+                            version = try container.decodeIfPresent(String.self, forKey: .version)
+                        }
+
+                        public func encode(to encoder: Encoder) throws {
+                            var container = encoder.container(keyedBy: CodingKeys.self)
+                            try container.encodeIfPresent(errorMargin, forKey: .errorMargin)
+                            try container.encodeIfPresent(goal, forKey: .goal)
+                            try container.encodeIfPresent(percentageBreakdown, forKey: .percentageBreakdown)
+                            try container.encodeIfPresent(value, forKey: .value)
+                            try container.encodeIfPresent(version, forKey: .version)
+                        }
+
+                        private enum CodingKeys: String, CodingKey {
+                            case errorMargin
+                            case goal
+                            case percentageBreakdown
+                            case value
+                            case version
+                        }
+
                         /**
                          # xcodeMetrics.ProductData.MetricCategories.Metrics.Datasets.Points.PercentageBreakdown
                          A metric subtype and the percentage of the metric value it contributes.
@@ -209,6 +366,23 @@ public struct XcodeMetrics: Codable {
                             {
                                 self.subSystemLabel = subSystemLabel
                                 self.value = value
+                            }
+
+                            public init(from decoder: Decoder) throws {
+                                let container = try decoder.container(keyedBy: CodingKeys.self)
+                                subSystemLabel = try container.decodeIfPresent(String.self, forKey: .subSystemLabel)
+                                value = try container.decodeIfPresent(Double.self, forKey: .value)
+                            }
+
+                            public func encode(to encoder: Encoder) throws {
+                                var container = encoder.container(keyedBy: CodingKeys.self)
+                                try container.encodeIfPresent(subSystemLabel, forKey: .subSystemLabel)
+                                try container.encodeIfPresent(value, forKey: .value)
+                            }
+
+                            private enum CodingKeys: String, CodingKey {
+                                case subSystemLabel
+                                case value
                             }
                         }
                     }
@@ -237,6 +411,26 @@ public struct XcodeMetrics: Codable {
                         self.lowerBound = lowerBound
                         self.upperBound = upperBound
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        goalKey = try container.decodeIfPresent(String.self, forKey: .goalKey)
+                        lowerBound = try container.decodeIfPresent(Int.self, forKey: .lowerBound)
+                        upperBound = try container.decodeIfPresent(Int.self, forKey: .upperBound)
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encodeIfPresent(goalKey, forKey: .goalKey)
+                        try container.encodeIfPresent(lowerBound, forKey: .lowerBound)
+                        try container.encodeIfPresent(upperBound, forKey: .upperBound)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case goalKey
+                        case lowerBound
+                        case upperBound
+                    }
                 }
 
                 /**
@@ -257,6 +451,23 @@ public struct XcodeMetrics: Codable {
                     {
                         self.displayName = displayName
                         self.identifier = identifier
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: CodingKeys.self)
+                        displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
+                        identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: CodingKeys.self)
+                        try container.encodeIfPresent(displayName, forKey: .displayName)
+                        try container.encodeIfPresent(identifier, forKey: .identifier)
+                    }
+
+                    private enum CodingKeys: String, CodingKey {
+                        case displayName
+                        case identifier
                     }
                 }
             }

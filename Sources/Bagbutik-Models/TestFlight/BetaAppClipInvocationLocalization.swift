@@ -71,5 +71,22 @@ public struct BetaAppClipInvocationLocalization: Codable, Identifiable {
             self.locale = locale
             self.title = title
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            title = try container.decodeIfPresent(String.self, forKey: .title)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(title, forKey: .title)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case title
+        }
     }
 }

@@ -60,6 +60,32 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
             self.offerCode = offerCode
             self.offerMode = offerMode
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            duration = try container.decode(SubscriptionOfferDuration.self, forKey: .duration)
+            name = try container.decode(String.self, forKey: .name)
+            numberOfPeriods = try container.decode(Int.self, forKey: .numberOfPeriods)
+            offerCode = try container.decode(String.self, forKey: .offerCode)
+            offerMode = try container.decode(SubscriptionOfferMode.self, forKey: .offerMode)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(duration, forKey: .duration)
+            try container.encode(name, forKey: .name)
+            try container.encode(numberOfPeriods, forKey: .numberOfPeriods)
+            try container.encode(offerCode, forKey: .offerCode)
+            try container.encode(offerMode, forKey: .offerMode)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case duration
+            case name
+            case numberOfPeriods
+            case offerCode
+            case offerMode
+        }
     }
 
     public struct Relationships: Codable {
@@ -71,6 +97,23 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
         {
             self.prices = prices
             self.subscription = subscription
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(prices, forKey: .prices)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case prices
+            case subscription
         }
 
         public struct Prices: Codable {

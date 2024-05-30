@@ -67,6 +67,38 @@ public struct SandboxTesterV2: Codable, Identifiable {
             self.territory = territory
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            acAccountName = try container.decodeIfPresent(String.self, forKey: .acAccountName)
+            applePayCompatible = try container.decodeIfPresent(Bool.self, forKey: .applePayCompatible)
+            firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
+            interruptPurchases = try container.decodeIfPresent(Bool.self, forKey: .interruptPurchases)
+            lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
+            subscriptionRenewalRate = try container.decodeIfPresent(SubscriptionRenewalRate.self, forKey: .subscriptionRenewalRate)
+            territory = try container.decodeIfPresent(TerritoryCode.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(acAccountName, forKey: .acAccountName)
+            try container.encodeIfPresent(applePayCompatible, forKey: .applePayCompatible)
+            try container.encodeIfPresent(firstName, forKey: .firstName)
+            try container.encodeIfPresent(interruptPurchases, forKey: .interruptPurchases)
+            try container.encodeIfPresent(lastName, forKey: .lastName)
+            try container.encodeIfPresent(subscriptionRenewalRate, forKey: .subscriptionRenewalRate)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case acAccountName
+            case applePayCompatible
+            case firstName
+            case interruptPurchases
+            case lastName
+            case subscriptionRenewalRate
+            case territory
+        }
+
         public enum SubscriptionRenewalRate: String, Codable, CaseIterable {
             case monthlyRenewalEveryFifteenMinutes = "MONTHLY_RENEWAL_EVERY_FIFTEEN_MINUTES"
             case monthlyRenewalEveryFiveMinutes = "MONTHLY_RENEWAL_EVERY_FIVE_MINUTES"

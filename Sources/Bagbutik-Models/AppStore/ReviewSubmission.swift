@@ -61,6 +61,26 @@ public struct ReviewSubmission: Codable, Identifiable {
             self.submittedDate = submittedDate
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            platform = try container.decodeIfPresent(Platform.self, forKey: .platform)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+            submittedDate = try container.decodeIfPresent(Date.self, forKey: .submittedDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(state, forKey: .state)
+            try container.encodeIfPresent(submittedDate, forKey: .submittedDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case platform
+            case state
+            case submittedDate
+        }
+
         public enum State: String, ParameterValue, Codable, CaseIterable {
             case canceling = "CANCELING"
             case complete = "COMPLETE"
@@ -90,6 +110,32 @@ public struct ReviewSubmission: Codable, Identifiable {
             self.items = items
             self.lastUpdatedByActor = lastUpdatedByActor
             self.submittedByActor = submittedByActor
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appStoreVersionForReview = try container.decodeIfPresent(AppStoreVersionForReview.self, forKey: .appStoreVersionForReview)
+            items = try container.decodeIfPresent(Items.self, forKey: .items)
+            lastUpdatedByActor = try container.decodeIfPresent(LastUpdatedByActor.self, forKey: .lastUpdatedByActor)
+            submittedByActor = try container.decodeIfPresent(SubmittedByActor.self, forKey: .submittedByActor)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appStoreVersionForReview, forKey: .appStoreVersionForReview)
+            try container.encodeIfPresent(items, forKey: .items)
+            try container.encodeIfPresent(lastUpdatedByActor, forKey: .lastUpdatedByActor)
+            try container.encodeIfPresent(submittedByActor, forKey: .submittedByActor)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case appStoreVersionForReview
+            case items
+            case lastUpdatedByActor
+            case submittedByActor
         }
 
         public struct App: Codable {

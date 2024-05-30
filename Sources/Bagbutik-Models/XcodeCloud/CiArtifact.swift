@@ -80,6 +80,29 @@ public struct CiArtifact: Codable, Identifiable {
             self.fileType = fileType
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            downloadUrl = try container.decodeIfPresent(String.self, forKey: .downloadUrl)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            fileType = try container.decodeIfPresent(FileType.self, forKey: .fileType)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(fileType, forKey: .fileType)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case downloadUrl
+            case fileName
+            case fileSize
+            case fileType
+        }
+
         public enum FileType: String, Codable, CaseIterable {
             case archive = "ARCHIVE"
             case archiveExport = "ARCHIVE_EXPORT"

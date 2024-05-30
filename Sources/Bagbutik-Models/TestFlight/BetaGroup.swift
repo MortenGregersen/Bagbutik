@@ -111,6 +111,50 @@ public struct BetaGroup: Codable, Identifiable {
             self.publicLinkLimit = publicLinkLimit
             self.publicLinkLimitEnabled = publicLinkLimitEnabled
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            feedbackEnabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackEnabled)
+            hasAccessToAllBuilds = try container.decodeIfPresent(Bool.self, forKey: .hasAccessToAllBuilds)
+            iosBuildsAvailableForAppleSiliconMac = try container.decodeIfPresent(Bool.self, forKey: .iosBuildsAvailableForAppleSiliconMac)
+            isInternalGroup = try container.decodeIfPresent(Bool.self, forKey: .isInternalGroup)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            publicLink = try container.decodeIfPresent(String.self, forKey: .publicLink)
+            publicLinkEnabled = try container.decodeIfPresent(Bool.self, forKey: .publicLinkEnabled)
+            publicLinkId = try container.decodeIfPresent(String.self, forKey: .publicLinkId)
+            publicLinkLimit = try container.decodeIfPresent(Int.self, forKey: .publicLinkLimit)
+            publicLinkLimitEnabled = try container.decodeIfPresent(Bool.self, forKey: .publicLinkLimitEnabled)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(feedbackEnabled, forKey: .feedbackEnabled)
+            try container.encodeIfPresent(hasAccessToAllBuilds, forKey: .hasAccessToAllBuilds)
+            try container.encodeIfPresent(iosBuildsAvailableForAppleSiliconMac, forKey: .iosBuildsAvailableForAppleSiliconMac)
+            try container.encodeIfPresent(isInternalGroup, forKey: .isInternalGroup)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(publicLink, forKey: .publicLink)
+            try container.encodeIfPresent(publicLinkEnabled, forKey: .publicLinkEnabled)
+            try container.encodeIfPresent(publicLinkId, forKey: .publicLinkId)
+            try container.encodeIfPresent(publicLinkLimit, forKey: .publicLinkLimit)
+            try container.encodeIfPresent(publicLinkLimitEnabled, forKey: .publicLinkLimitEnabled)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case createdDate
+            case feedbackEnabled
+            case hasAccessToAllBuilds
+            case iosBuildsAvailableForAppleSiliconMac
+            case isInternalGroup
+            case name
+            case publicLink
+            case publicLinkEnabled
+            case publicLinkId
+            case publicLinkLimit
+            case publicLinkLimitEnabled
+        }
     }
 
     /**
@@ -132,6 +176,26 @@ public struct BetaGroup: Codable, Identifiable {
             self.app = app
             self.betaTesters = betaTesters
             self.builds = builds
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            betaTesters = try container.decodeIfPresent(BetaTesters.self, forKey: .betaTesters)
+            builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(betaTesters, forKey: .betaTesters)
+            try container.encodeIfPresent(builds, forKey: .builds)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case betaTesters
+            case builds
         }
 
         /**

@@ -92,6 +92,44 @@ public struct AppPreview: Codable, Identifiable {
             self.uploadOperations = uploadOperations
             self.videoUrl = videoUrl
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            mimeType = try container.decodeIfPresent(String.self, forKey: .mimeType)
+            previewFrameTimeCode = try container.decodeIfPresent(String.self, forKey: .previewFrameTimeCode)
+            previewImage = try container.decodeIfPresent(ImageAsset.self, forKey: .previewImage)
+            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+            videoUrl = try container.decodeIfPresent(String.self, forKey: .videoUrl)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(mimeType, forKey: .mimeType)
+            try container.encodeIfPresent(previewFrameTimeCode, forKey: .previewFrameTimeCode)
+            try container.encodeIfPresent(previewImage, forKey: .previewImage)
+            try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+            try container.encodeIfPresent(videoUrl, forKey: .videoUrl)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case mimeType
+            case previewFrameTimeCode
+            case previewImage
+            case sourceFileChecksum
+            case uploadOperations
+            case videoUrl
+        }
     }
 
     /**
@@ -106,6 +144,20 @@ public struct AppPreview: Codable, Identifiable {
 
         public init(appPreviewSet: AppPreviewSet? = nil) {
             self.appPreviewSet = appPreviewSet
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appPreviewSet = try container.decodeIfPresent(AppPreviewSet.self, forKey: .appPreviewSet)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appPreviewSet, forKey: .appPreviewSet)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appPreviewSet
         }
 
         /**

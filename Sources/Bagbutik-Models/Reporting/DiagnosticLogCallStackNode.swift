@@ -64,4 +64,54 @@ public struct DiagnosticLogCallStackNode: Codable {
         self.subFrames = subFrames
         self.symbolName = symbolName
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        address = try container.decodeIfPresent(String.self, forKey: .address)
+        binaryName = try container.decodeIfPresent(String.self, forKey: .binaryName)
+        binaryUUID = try container.decodeIfPresent(String.self, forKey: .binaryUUID)
+        fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+        insightsCategory = try container.decodeIfPresent(String.self, forKey: .insightsCategory)
+        isBlameFrame = try container.decodeIfPresent(Bool.self, forKey: .isBlameFrame)
+        lineNumber = try container.decodeIfPresent(String.self, forKey: .lineNumber)
+        offsetIntoBinaryTextSegment = try container.decodeIfPresent(String.self, forKey: .offsetIntoBinaryTextSegment)
+        offsetIntoSymbol = try container.decodeIfPresent(String.self, forKey: .offsetIntoSymbol)
+        rawFrame = try container.decodeIfPresent(String.self, forKey: .rawFrame)
+        sampleCount = try container.decodeIfPresent(Int.self, forKey: .sampleCount)
+        subFrames = try container.decodeIfPresent([DiagnosticLogCallStackNode].self, forKey: .subFrames)
+        symbolName = try container.decodeIfPresent(String.self, forKey: .symbolName)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(binaryName, forKey: .binaryName)
+        try container.encodeIfPresent(binaryUUID, forKey: .binaryUUID)
+        try container.encodeIfPresent(fileName, forKey: .fileName)
+        try container.encodeIfPresent(insightsCategory, forKey: .insightsCategory)
+        try container.encodeIfPresent(isBlameFrame, forKey: .isBlameFrame)
+        try container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+        try container.encodeIfPresent(offsetIntoBinaryTextSegment, forKey: .offsetIntoBinaryTextSegment)
+        try container.encodeIfPresent(offsetIntoSymbol, forKey: .offsetIntoSymbol)
+        try container.encodeIfPresent(rawFrame, forKey: .rawFrame)
+        try container.encodeIfPresent(sampleCount, forKey: .sampleCount)
+        try container.encodeIfPresent(subFrames, forKey: .subFrames)
+        try container.encodeIfPresent(symbolName, forKey: .symbolName)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case address
+        case binaryName
+        case binaryUUID
+        case fileName
+        case insightsCategory
+        case isBlameFrame
+        case lineNumber
+        case offsetIntoBinaryTextSegment
+        case offsetIntoSymbol
+        case rawFrame
+        case sampleCount
+        case subFrames
+        case symbolName
+    }
 }

@@ -16,6 +16,20 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaBuildLocalizationCreateRequest.Data
      The data element of the request body.
@@ -81,6 +95,23 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
                 self.locale = locale
                 self.whatsNew = whatsNew
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                locale = try container.decode(String.self, forKey: .locale)
+                whatsNew = try container.decodeIfPresent(String.self, forKey: .whatsNew)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(locale, forKey: .locale)
+                try container.encodeIfPresent(whatsNew, forKey: .whatsNew)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case locale
+                case whatsNew
+            }
         }
 
         /**
@@ -97,6 +128,20 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                build = try container.decode(Build.self, forKey: .build)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(build, forKey: .build)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case build
+            }
+
             /**
              # BetaBuildLocalizationCreateRequest.Data.Relationships.Build
              The relationships to other resources that you can set with this request.
@@ -109,6 +154,20 @@ public struct BetaBuildLocalizationCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

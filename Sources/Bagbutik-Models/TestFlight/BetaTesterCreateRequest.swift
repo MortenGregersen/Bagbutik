@@ -16,6 +16,20 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaTesterCreateRequest.Data
      The data element of the request body.
@@ -83,6 +97,26 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                 self.firstName = firstName
                 self.lastName = lastName
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                email = try container.decode(String.self, forKey: .email)
+                firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
+                lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(email, forKey: .email)
+                try container.encodeIfPresent(firstName, forKey: .firstName)
+                try container.encodeIfPresent(lastName, forKey: .lastName)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case email
+                case firstName
+                case lastName
+            }
         }
 
         /**
@@ -101,6 +135,23 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
             {
                 self.betaGroups = betaGroups
                 self.builds = builds
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: .betaGroups)
+                builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(betaGroups, forKey: .betaGroups)
+                try container.encodeIfPresent(builds, forKey: .builds)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case betaGroups
+                case builds
             }
 
             /**

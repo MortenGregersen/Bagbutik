@@ -64,6 +64,23 @@ public struct GameCenterLeaderboardSetLocalization: Codable, Identifiable {
             self.locale = locale
             self.name = name
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(name, forKey: .name)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case name
+        }
     }
 
     public struct Relationships: Codable {
@@ -75,6 +92,23 @@ public struct GameCenterLeaderboardSetLocalization: Codable, Identifiable {
         {
             self.gameCenterLeaderboardSet = gameCenterLeaderboardSet
             self.gameCenterLeaderboardSetImage = gameCenterLeaderboardSetImage
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterLeaderboardSet = try container.decodeIfPresent(GameCenterLeaderboardSet.self, forKey: .gameCenterLeaderboardSet)
+            gameCenterLeaderboardSetImage = try container.decodeIfPresent(GameCenterLeaderboardSetImage.self, forKey: .gameCenterLeaderboardSetImage)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterLeaderboardSet, forKey: .gameCenterLeaderboardSet)
+            try container.encodeIfPresent(gameCenterLeaderboardSetImage, forKey: .gameCenterLeaderboardSetImage)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterLeaderboardSet
+            case gameCenterLeaderboardSetImage
         }
 
         public struct GameCenterLeaderboardSet: Codable {

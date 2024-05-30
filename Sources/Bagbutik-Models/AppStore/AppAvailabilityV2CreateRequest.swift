@@ -19,6 +19,23 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([TerritoryAvailabilityInlineCreate].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     public struct Data: Codable {
         public var type: String { "appAvailabilities" }
         public let attributes: Attributes
@@ -59,6 +76,20 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
             public init(availableInNewTerritories: Bool) {
                 self.availableInNewTerritories = availableInNewTerritories
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                availableInNewTerritories = try container.decode(Bool.self, forKey: .availableInNewTerritories)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(availableInNewTerritories, forKey: .availableInNewTerritories)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case availableInNewTerritories
+            }
         }
 
         public struct Relationships: Codable {
@@ -72,11 +103,42 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
                 self.territoryAvailabilities = territoryAvailabilities
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+                territoryAvailabilities = try container.decode(TerritoryAvailabilities.self, forKey: .territoryAvailabilities)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+                try container.encode(territoryAvailabilities, forKey: .territoryAvailabilities)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+                case territoryAvailabilities
+            }
+
             public struct App: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -113,6 +175,20 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
 
                 public init(data: [Data]) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

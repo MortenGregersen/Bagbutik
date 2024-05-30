@@ -72,6 +72,38 @@ public struct AppEventScreenshot: Codable, Identifiable {
             self.imageAsset = imageAsset
             self.uploadOperations = uploadOperations
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appEventAssetType = try container.decodeIfPresent(AppEventAssetType.self, forKey: .appEventAssetType)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            assetToken = try container.decodeIfPresent(String.self, forKey: .assetToken)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            imageAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .imageAsset)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appEventAssetType, forKey: .appEventAssetType)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(assetToken, forKey: .assetToken)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(imageAsset, forKey: .imageAsset)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appEventAssetType
+            case assetDeliveryState
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case uploadOperations
+        }
     }
 
     public struct Relationships: Codable {
@@ -79,6 +111,20 @@ public struct AppEventScreenshot: Codable, Identifiable {
 
         public init(appEventLocalization: AppEventLocalization? = nil) {
             self.appEventLocalization = appEventLocalization
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appEventLocalization = try container.decodeIfPresent(AppEventLocalization.self, forKey: .appEventLocalization)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appEventLocalization, forKey: .appEventLocalization)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appEventLocalization
         }
 
         public struct AppEventLocalization: Codable {

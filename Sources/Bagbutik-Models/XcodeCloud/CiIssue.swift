@@ -80,6 +80,29 @@ public struct CiIssue: Codable, Identifiable {
             self.message = message
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            category = try container.decodeIfPresent(String.self, forKey: .category)
+            fileSource = try container.decodeIfPresent(FileLocation.self, forKey: .fileSource)
+            issueType = try container.decodeIfPresent(IssueType.self, forKey: .issueType)
+            message = try container.decodeIfPresent(String.self, forKey: .message)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(category, forKey: .category)
+            try container.encodeIfPresent(fileSource, forKey: .fileSource)
+            try container.encodeIfPresent(issueType, forKey: .issueType)
+            try container.encodeIfPresent(message, forKey: .message)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case category
+            case fileSource
+            case issueType
+            case message
+        }
+
         public enum IssueType: String, Codable, CaseIterable {
             case analyzerWarning = "ANALYZER_WARNING"
             case error = "ERROR"

@@ -71,5 +71,25 @@ public struct AnalyticsReportSegment: Codable, Identifiable {
             self.sizeInBytes = sizeInBytes
             self.url = url
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            checksum = try container.decodeIfPresent(String.self, forKey: .checksum)
+            sizeInBytes = try container.decodeIfPresent(Int.self, forKey: .sizeInBytes)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(checksum, forKey: .checksum)
+            try container.encodeIfPresent(sizeInBytes, forKey: .sizeInBytes)
+            try container.encodeIfPresent(url, forKey: .url)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case checksum
+            case sizeInBytes
+            case url
+        }
     }
 }

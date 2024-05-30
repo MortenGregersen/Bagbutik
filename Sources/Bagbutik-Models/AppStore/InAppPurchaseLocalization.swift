@@ -64,6 +64,29 @@ public struct InAppPurchaseLocalization: Codable, Identifiable {
             self.state = state
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(description, forKey: .description)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case description
+            case locale
+            case name
+            case state
+        }
+
         public enum State: String, Codable, CaseIterable {
             case approved = "APPROVED"
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
@@ -77,6 +100,20 @@ public struct InAppPurchaseLocalization: Codable, Identifiable {
 
         public init(inAppPurchaseV2: InAppPurchaseV2? = nil) {
             self.inAppPurchaseV2 = inAppPurchaseV2
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseV2
         }
 
         public struct InAppPurchaseV2: Codable {

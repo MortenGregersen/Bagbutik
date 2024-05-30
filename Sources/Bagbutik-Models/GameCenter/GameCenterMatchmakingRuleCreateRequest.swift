@@ -16,6 +16,20 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingRuleCreateRequest.Data
      The data structure of the request body you use to create a rule.
@@ -90,6 +104,32 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
                 self.type = type
                 self.weight = weight
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                description = try container.decode(String.self, forKey: .description)
+                expression = try container.decode(String.self, forKey: .expression)
+                referenceName = try container.decode(String.self, forKey: .referenceName)
+                type = try container.decode(GameCenterMatchmakingRule.Attributes.AttributesType.self, forKey: .type)
+                weight = try container.decodeIfPresent(Double.self, forKey: .weight)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(description, forKey: .description)
+                try container.encode(expression, forKey: .expression)
+                try container.encode(referenceName, forKey: .referenceName)
+                try container.encode(type, forKey: .type)
+                try container.encodeIfPresent(weight, forKey: .weight)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case description
+                case expression
+                case referenceName
+                case type
+                case weight
+            }
         }
 
         /**
@@ -106,6 +146,20 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
                 self.ruleSet = ruleSet
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                ruleSet = try container.decode(RuleSet.self, forKey: .ruleSet)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(ruleSet, forKey: .ruleSet)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case ruleSet
+            }
+
             /**
              # GameCenterMatchmakingRuleCreateRequest.Data.Relationships.RuleSet
              The relationship to the rule set that you provide when you create a rule.
@@ -118,6 +172,20 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

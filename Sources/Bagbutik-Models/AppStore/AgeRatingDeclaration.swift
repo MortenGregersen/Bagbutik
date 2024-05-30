@@ -173,6 +173,71 @@ public struct AgeRatingDeclaration: Codable, Identifiable {
             self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            ageRatingOverride = try container.decodeIfPresent(AgeRatingOverride.self, forKey: .ageRatingOverride)
+            alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AlcoholTobaccoOrDrugUseOrReferences.self, forKey: .alcoholTobaccoOrDrugUseOrReferences)
+            contests = try container.decodeIfPresent(Contests.self, forKey: .contests)
+            gambling = try container.decodeIfPresent(Bool.self, forKey: .gambling)
+            gamblingAndContests = try container.decodeIfPresent(Bool.self, forKey: .gamblingAndContests)
+            gamblingSimulated = try container.decodeIfPresent(GamblingSimulated.self, forKey: .gamblingSimulated)
+            horrorOrFearThemes = try container.decodeIfPresent(HorrorOrFearThemes.self, forKey: .horrorOrFearThemes)
+            kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: .kidsAgeBand)
+            matureOrSuggestiveThemes = try container.decodeIfPresent(MatureOrSuggestiveThemes.self, forKey: .matureOrSuggestiveThemes)
+            medicalOrTreatmentInformation = try container.decodeIfPresent(MedicalOrTreatmentInformation.self, forKey: .medicalOrTreatmentInformation)
+            profanityOrCrudeHumor = try container.decodeIfPresent(ProfanityOrCrudeHumor.self, forKey: .profanityOrCrudeHumor)
+            seventeenPlus = try container.decodeIfPresent(Bool.self, forKey: .seventeenPlus)
+            sexualContentGraphicAndNudity = try container.decodeIfPresent(SexualContentGraphicAndNudity.self, forKey: .sexualContentGraphicAndNudity)
+            sexualContentOrNudity = try container.decodeIfPresent(SexualContentOrNudity.self, forKey: .sexualContentOrNudity)
+            unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: .unrestrictedWebAccess)
+            violenceCartoonOrFantasy = try container.decodeIfPresent(ViolenceCartoonOrFantasy.self, forKey: .violenceCartoonOrFantasy)
+            violenceRealistic = try container.decodeIfPresent(ViolenceRealistic.self, forKey: .violenceRealistic)
+            violenceRealisticProlongedGraphicOrSadistic = try container.decodeIfPresent(ViolenceRealisticProlongedGraphicOrSadistic.self, forKey: .violenceRealisticProlongedGraphicOrSadistic)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(ageRatingOverride, forKey: .ageRatingOverride)
+            try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: .alcoholTobaccoOrDrugUseOrReferences)
+            try container.encodeIfPresent(contests, forKey: .contests)
+            try container.encodeIfPresent(gambling, forKey: .gambling)
+            try container.encodeIfPresent(gamblingAndContests, forKey: .gamblingAndContests)
+            try container.encodeIfPresent(gamblingSimulated, forKey: .gamblingSimulated)
+            try container.encodeIfPresent(horrorOrFearThemes, forKey: .horrorOrFearThemes)
+            try container.encodeIfPresent(kidsAgeBand, forKey: .kidsAgeBand)
+            try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: .matureOrSuggestiveThemes)
+            try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: .medicalOrTreatmentInformation)
+            try container.encodeIfPresent(profanityOrCrudeHumor, forKey: .profanityOrCrudeHumor)
+            try container.encodeIfPresent(seventeenPlus, forKey: .seventeenPlus)
+            try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: .sexualContentGraphicAndNudity)
+            try container.encodeIfPresent(sexualContentOrNudity, forKey: .sexualContentOrNudity)
+            try container.encodeIfPresent(unrestrictedWebAccess, forKey: .unrestrictedWebAccess)
+            try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: .violenceCartoonOrFantasy)
+            try container.encodeIfPresent(violenceRealistic, forKey: .violenceRealistic)
+            try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: .violenceRealisticProlongedGraphicOrSadistic)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case ageRatingOverride
+            case alcoholTobaccoOrDrugUseOrReferences
+            case contests
+            case gambling
+            case gamblingAndContests
+            case gamblingSimulated
+            case horrorOrFearThemes
+            case kidsAgeBand
+            case matureOrSuggestiveThemes
+            case medicalOrTreatmentInformation
+            case profanityOrCrudeHumor
+            case seventeenPlus
+            case sexualContentGraphicAndNudity
+            case sexualContentOrNudity
+            case unrestrictedWebAccess
+            case violenceCartoonOrFantasy
+            case violenceRealistic
+            case violenceRealisticProlongedGraphicOrSadistic
+        }
+
         public enum AgeRatingOverride: String, Codable, CaseIterable {
             case none = "NONE"
             case seventeenPlus = "SEVENTEEN_PLUS"

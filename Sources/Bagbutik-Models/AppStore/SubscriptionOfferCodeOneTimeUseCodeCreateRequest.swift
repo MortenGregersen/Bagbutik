@@ -8,6 +8,20 @@ public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Request
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "subscriptionOfferCodeOneTimeUseCodes" }
         public let attributes: Attributes
@@ -52,6 +66,23 @@ public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Request
                 self.expirationDate = expirationDate
                 self.numberOfCodes = numberOfCodes
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                expirationDate = try container.decode(String.self, forKey: .expirationDate)
+                numberOfCodes = try container.decode(Int.self, forKey: .numberOfCodes)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(expirationDate, forKey: .expirationDate)
+                try container.encode(numberOfCodes, forKey: .numberOfCodes)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case expirationDate
+                case numberOfCodes
+            }
         }
 
         public struct Relationships: Codable {
@@ -61,11 +92,39 @@ public struct SubscriptionOfferCodeOneTimeUseCodeCreateRequest: Codable, Request
                 self.offerCode = offerCode
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                offerCode = try container.decode(OfferCode.self, forKey: .offerCode)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(offerCode, forKey: .offerCode)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case offerCode
+            }
+
             public struct OfferCode: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

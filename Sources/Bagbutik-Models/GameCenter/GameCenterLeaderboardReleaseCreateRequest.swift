@@ -15,6 +15,20 @@ public struct GameCenterLeaderboardReleaseCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "gameCenterLeaderboardReleases" }
         public let relationships: Relationships
@@ -53,11 +67,42 @@ public struct GameCenterLeaderboardReleaseCreateRequest: Codable, RequestBody {
                 self.gameCenterLeaderboard = gameCenterLeaderboard
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                gameCenterDetail = try container.decode(GameCenterDetail.self, forKey: .gameCenterDetail)
+                gameCenterLeaderboard = try container.decode(GameCenterLeaderboard.self, forKey: .gameCenterLeaderboard)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(gameCenterDetail, forKey: .gameCenterDetail)
+                try container.encode(gameCenterLeaderboard, forKey: .gameCenterLeaderboard)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case gameCenterDetail
+                case gameCenterLeaderboard
+            }
+
             public struct GameCenterDetail: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -94,6 +139,20 @@ public struct GameCenterLeaderboardReleaseCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

@@ -17,6 +17,20 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AnalyticsReportRequestCreateRequest.Data
      The data structure that represents an analytics report request create request resource.
@@ -72,6 +86,20 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
             public init(accessType: AnalyticsReportRequest.Attributes.AccessType) {
                 self.accessType = accessType
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                accessType = try container.decode(AnalyticsReportRequest.Attributes.AccessType.self, forKey: .accessType)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(accessType, forKey: .accessType)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case accessType
+            }
         }
 
         public struct Relationships: Codable {
@@ -81,11 +109,39 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
                 self.app = app
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+            }
+
             public struct App: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

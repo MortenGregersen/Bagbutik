@@ -63,6 +63,29 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Identifiable {
             self.expirationDate = expirationDate
             self.numberOfCodes = numberOfCodes
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            active = try container.decodeIfPresent(Bool.self, forKey: .active)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            expirationDate = try container.decodeIfPresent(String.self, forKey: .expirationDate)
+            numberOfCodes = try container.decodeIfPresent(Int.self, forKey: .numberOfCodes)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(active, forKey: .active)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try container.encodeIfPresent(numberOfCodes, forKey: .numberOfCodes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case active
+            case createdDate
+            case expirationDate
+            case numberOfCodes
+        }
     }
 
     public struct Relationships: Codable {
@@ -70,6 +93,20 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Identifiable {
 
         public init(offerCode: OfferCode? = nil) {
             self.offerCode = offerCode
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            offerCode = try container.decodeIfPresent(OfferCode.self, forKey: .offerCode)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(offerCode, forKey: .offerCode)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case offerCode
         }
 
         public struct OfferCode: Codable {

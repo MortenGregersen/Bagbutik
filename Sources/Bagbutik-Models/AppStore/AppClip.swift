@@ -73,6 +73,20 @@ public struct AppClip: Codable, Identifiable {
         public init(bundleId: String? = nil) {
             self.bundleId = bundleId
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            bundleId = try container.decodeIfPresent(String.self, forKey: .bundleId)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case bundleId
+        }
     }
 
     /**
@@ -93,6 +107,23 @@ public struct AppClip: Codable, Identifiable {
         {
             self.app = app
             self.appClipDefaultExperiences = appClipDefaultExperiences
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appClipDefaultExperiences = try container.decodeIfPresent(AppClipDefaultExperiences.self, forKey: .appClipDefaultExperiences)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appClipDefaultExperiences, forKey: .appClipDefaultExperiences)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case appClipDefaultExperiences
         }
 
         /**

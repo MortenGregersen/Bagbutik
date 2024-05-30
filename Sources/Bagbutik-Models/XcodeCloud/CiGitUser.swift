@@ -20,4 +20,21 @@ public struct CiGitUser: Codable {
         self.avatarUrl = avatarUrl
         self.displayName = displayName
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        avatarUrl = try container.decodeIfPresent(String.self, forKey: .avatarUrl)
+        displayName = try container.decodeIfPresent(String.self, forKey: .displayName)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(avatarUrl, forKey: .avatarUrl)
+        try container.encodeIfPresent(displayName, forKey: .displayName)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case avatarUrl
+        case displayName
+    }
 }

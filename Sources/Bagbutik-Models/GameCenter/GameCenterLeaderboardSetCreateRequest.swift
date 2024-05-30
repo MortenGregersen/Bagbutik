@@ -15,6 +15,20 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "gameCenterLeaderboardSets" }
         public let attributes: Attributes
@@ -59,6 +73,23 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                 self.referenceName = referenceName
                 self.vendorIdentifier = vendorIdentifier
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                referenceName = try container.decode(String.self, forKey: .referenceName)
+                vendorIdentifier = try container.decode(String.self, forKey: .vendorIdentifier)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(referenceName, forKey: .referenceName)
+                try container.encode(vendorIdentifier, forKey: .vendorIdentifier)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case referenceName
+                case vendorIdentifier
+            }
         }
 
         public struct Relationships: Codable {
@@ -73,6 +104,26 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                 self.gameCenterDetail = gameCenterDetail
                 self.gameCenterGroup = gameCenterGroup
                 self.gameCenterLeaderboards = gameCenterLeaderboards
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: .gameCenterDetail)
+                gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: .gameCenterGroup)
+                gameCenterLeaderboards = try container.decodeIfPresent(GameCenterLeaderboards.self, forKey: .gameCenterLeaderboards)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(gameCenterDetail, forKey: .gameCenterDetail)
+                try container.encodeIfPresent(gameCenterGroup, forKey: .gameCenterGroup)
+                try container.encodeIfPresent(gameCenterLeaderboards, forKey: .gameCenterLeaderboards)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case gameCenterDetail
+                case gameCenterGroup
+                case gameCenterLeaderboards
             }
 
             public struct GameCenterDetail: Codable {

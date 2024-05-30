@@ -92,6 +92,50 @@ public struct GameCenterLeaderboard: Codable, Identifiable {
             self.vendorIdentifier = vendorIdentifier
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            archived = try container.decodeIfPresent(Bool.self, forKey: .archived)
+            defaultFormatter = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: .defaultFormatter)
+            recurrenceDuration = try container.decodeIfPresent(String.self, forKey: .recurrenceDuration)
+            recurrenceRule = try container.decodeIfPresent(String.self, forKey: .recurrenceRule)
+            recurrenceStartDate = try container.decodeIfPresent(Date.self, forKey: .recurrenceStartDate)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+            scoreRangeEnd = try container.decodeIfPresent(String.self, forKey: .scoreRangeEnd)
+            scoreRangeStart = try container.decodeIfPresent(String.self, forKey: .scoreRangeStart)
+            scoreSortType = try container.decodeIfPresent(ScoreSortType.self, forKey: .scoreSortType)
+            submissionType = try container.decodeIfPresent(SubmissionType.self, forKey: .submissionType)
+            vendorIdentifier = try container.decodeIfPresent(String.self, forKey: .vendorIdentifier)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(archived, forKey: .archived)
+            try container.encodeIfPresent(defaultFormatter, forKey: .defaultFormatter)
+            try container.encodeIfPresent(recurrenceDuration, forKey: .recurrenceDuration)
+            try container.encodeIfPresent(recurrenceRule, forKey: .recurrenceRule)
+            try container.encodeIfPresent(recurrenceStartDate, forKey: .recurrenceStartDate)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+            try container.encodeIfPresent(scoreRangeEnd, forKey: .scoreRangeEnd)
+            try container.encodeIfPresent(scoreRangeStart, forKey: .scoreRangeStart)
+            try container.encodeIfPresent(scoreSortType, forKey: .scoreSortType)
+            try container.encodeIfPresent(submissionType, forKey: .submissionType)
+            try container.encodeIfPresent(vendorIdentifier, forKey: .vendorIdentifier)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case archived
+            case defaultFormatter
+            case recurrenceDuration
+            case recurrenceRule
+            case recurrenceStartDate
+            case referenceName
+            case scoreRangeEnd
+            case scoreRangeStart
+            case scoreSortType
+            case submissionType
+            case vendorIdentifier
+        }
+
         public enum ScoreSortType: String, Codable, CaseIterable {
             case asc = "ASC"
             case desc = "DESC"
@@ -124,6 +168,35 @@ public struct GameCenterLeaderboard: Codable, Identifiable {
             self.groupLeaderboard = groupLeaderboard
             self.localizations = localizations
             self.releases = releases
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: .gameCenterDetail)
+            gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: .gameCenterGroup)
+            gameCenterLeaderboardSets = try container.decodeIfPresent(GameCenterLeaderboardSets.self, forKey: .gameCenterLeaderboardSets)
+            groupLeaderboard = try container.decodeIfPresent(GroupLeaderboard.self, forKey: .groupLeaderboard)
+            localizations = try container.decodeIfPresent(Localizations.self, forKey: .localizations)
+            releases = try container.decodeIfPresent(Releases.self, forKey: .releases)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterDetail, forKey: .gameCenterDetail)
+            try container.encodeIfPresent(gameCenterGroup, forKey: .gameCenterGroup)
+            try container.encodeIfPresent(gameCenterLeaderboardSets, forKey: .gameCenterLeaderboardSets)
+            try container.encodeIfPresent(groupLeaderboard, forKey: .groupLeaderboard)
+            try container.encodeIfPresent(localizations, forKey: .localizations)
+            try container.encodeIfPresent(releases, forKey: .releases)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterDetail
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case groupLeaderboard
+            case localizations
+            case releases
         }
 
         public struct GameCenterDetail: Codable {

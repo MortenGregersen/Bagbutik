@@ -8,6 +8,20 @@ public struct AppEventScreenshotUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appEventScreenshots" }
@@ -47,6 +61,20 @@ public struct AppEventScreenshotUpdateRequest: Codable, RequestBody {
 
             public init(uploaded: Bool? = nil) {
                 self.uploaded = uploaded
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                uploaded = try container.decodeIfPresent(Bool.self, forKey: .uploaded)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(uploaded, forKey: .uploaded)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case uploaded
             }
         }
     }

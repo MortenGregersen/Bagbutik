@@ -60,6 +60,26 @@ public struct AppCustomProductPage: Codable, Identifiable {
             self.url = url
             self.visible = visible
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+            visible = try container.decodeIfPresent(Bool.self, forKey: .visible)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(url, forKey: .url)
+            try container.encodeIfPresent(visible, forKey: .visible)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case name
+            case url
+            case visible
+        }
     }
 
     public struct Relationships: Codable {
@@ -71,6 +91,23 @@ public struct AppCustomProductPage: Codable, Identifiable {
         {
             self.app = app
             self.appCustomProductPageVersions = appCustomProductPageVersions
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appCustomProductPageVersions = try container.decodeIfPresent(AppCustomProductPageVersions.self, forKey: .appCustomProductPageVersions)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appCustomProductPageVersions, forKey: .appCustomProductPageVersions)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case appCustomProductPageVersions
         }
 
         public struct App: Codable {

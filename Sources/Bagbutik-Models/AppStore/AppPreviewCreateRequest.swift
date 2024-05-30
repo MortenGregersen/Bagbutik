@@ -15,6 +15,20 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppPreviewCreateRequest.Data
      The data element of the request body.
@@ -79,6 +93,29 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
                 self.mimeType = mimeType
                 self.previewFrameTimeCode = previewFrameTimeCode
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                fileName = try container.decode(String.self, forKey: .fileName)
+                fileSize = try container.decode(Int.self, forKey: .fileSize)
+                mimeType = try container.decodeIfPresent(String.self, forKey: .mimeType)
+                previewFrameTimeCode = try container.decodeIfPresent(String.self, forKey: .previewFrameTimeCode)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(fileName, forKey: .fileName)
+                try container.encode(fileSize, forKey: .fileSize)
+                try container.encodeIfPresent(mimeType, forKey: .mimeType)
+                try container.encodeIfPresent(previewFrameTimeCode, forKey: .previewFrameTimeCode)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case fileName
+                case fileSize
+                case mimeType
+                case previewFrameTimeCode
+            }
         }
 
         /**
@@ -95,6 +132,20 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
                 self.appPreviewSet = appPreviewSet
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appPreviewSet = try container.decode(AppPreviewSet.self, forKey: .appPreviewSet)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appPreviewSet, forKey: .appPreviewSet)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appPreviewSet
+            }
+
             /**
              # AppPreviewCreateRequest.Data.Relationships.AppPreviewSet
              The relationships to other resources that you can set with this request.
@@ -107,6 +158,20 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

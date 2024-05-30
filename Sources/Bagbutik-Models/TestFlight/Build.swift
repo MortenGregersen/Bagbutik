@@ -112,6 +112,50 @@ public struct Build: Codable, Identifiable {
             self.version = version
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            buildAudienceType = try container.decodeIfPresent(BuildAudienceType.self, forKey: .buildAudienceType)
+            computedMinMacOsVersion = try container.decodeIfPresent(String.self, forKey: .computedMinMacOsVersion)
+            expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
+            expired = try container.decodeIfPresent(Bool.self, forKey: .expired)
+            iconAssetToken = try container.decodeIfPresent(ImageAsset.self, forKey: .iconAssetToken)
+            lsMinimumSystemVersion = try container.decodeIfPresent(String.self, forKey: .lsMinimumSystemVersion)
+            minOsVersion = try container.decodeIfPresent(String.self, forKey: .minOsVersion)
+            processingState = try container.decodeIfPresent(ProcessingState.self, forKey: .processingState)
+            uploadedDate = try container.decodeIfPresent(Date.self, forKey: .uploadedDate)
+            usesNonExemptEncryption = try container.decodeIfPresent(Bool.self, forKey: .usesNonExemptEncryption)
+            version = try container.decodeIfPresent(String.self, forKey: .version)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(buildAudienceType, forKey: .buildAudienceType)
+            try container.encodeIfPresent(computedMinMacOsVersion, forKey: .computedMinMacOsVersion)
+            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try container.encodeIfPresent(expired, forKey: .expired)
+            try container.encodeIfPresent(iconAssetToken, forKey: .iconAssetToken)
+            try container.encodeIfPresent(lsMinimumSystemVersion, forKey: .lsMinimumSystemVersion)
+            try container.encodeIfPresent(minOsVersion, forKey: .minOsVersion)
+            try container.encodeIfPresent(processingState, forKey: .processingState)
+            try container.encodeIfPresent(uploadedDate, forKey: .uploadedDate)
+            try container.encodeIfPresent(usesNonExemptEncryption, forKey: .usesNonExemptEncryption)
+            try container.encodeIfPresent(version, forKey: .version)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case buildAudienceType
+            case computedMinMacOsVersion
+            case expirationDate
+            case expired
+            case iconAssetToken
+            case lsMinimumSystemVersion
+            case minOsVersion
+            case processingState
+            case uploadedDate
+            case usesNonExemptEncryption
+            case version
+        }
+
         public enum ProcessingState: String, ParameterValue, Codable, CaseIterable {
             case failed = "FAILED"
             case invalid = "INVALID"
@@ -164,6 +208,50 @@ public struct Build: Codable, Identifiable {
             self.icons = icons
             self.individualTesters = individualTesters
             self.preReleaseVersion = preReleaseVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appEncryptionDeclaration = try container.decodeIfPresent(AppEncryptionDeclaration.self, forKey: .appEncryptionDeclaration)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+            betaAppReviewSubmission = try container.decodeIfPresent(BetaAppReviewSubmission.self, forKey: .betaAppReviewSubmission)
+            betaBuildLocalizations = try container.decodeIfPresent(BetaBuildLocalizations.self, forKey: .betaBuildLocalizations)
+            betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: .betaGroups)
+            buildBetaDetail = try container.decodeIfPresent(BuildBetaDetail.self, forKey: .buildBetaDetail)
+            buildBundles = try container.decodeIfPresent(BuildBundles.self, forKey: .buildBundles)
+            icons = try container.decodeIfPresent(Icons.self, forKey: .icons)
+            individualTesters = try container.decodeIfPresent(IndividualTesters.self, forKey: .individualTesters)
+            preReleaseVersion = try container.decodeIfPresent(PreReleaseVersion.self, forKey: .preReleaseVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appEncryptionDeclaration, forKey: .appEncryptionDeclaration)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+            try container.encodeIfPresent(betaAppReviewSubmission, forKey: .betaAppReviewSubmission)
+            try container.encodeIfPresent(betaBuildLocalizations, forKey: .betaBuildLocalizations)
+            try container.encodeIfPresent(betaGroups, forKey: .betaGroups)
+            try container.encodeIfPresent(buildBetaDetail, forKey: .buildBetaDetail)
+            try container.encodeIfPresent(buildBundles, forKey: .buildBundles)
+            try container.encodeIfPresent(icons, forKey: .icons)
+            try container.encodeIfPresent(individualTesters, forKey: .individualTesters)
+            try container.encodeIfPresent(preReleaseVersion, forKey: .preReleaseVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case appEncryptionDeclaration
+            case appStoreVersion
+            case betaAppReviewSubmission
+            case betaBuildLocalizations
+            case betaGroups
+            case buildBetaDetail
+            case buildBundles
+            case icons
+            case individualTesters
+            case preReleaseVersion
         }
 
         /**

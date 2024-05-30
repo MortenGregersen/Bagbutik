@@ -67,5 +67,28 @@ public struct AlternativeDistributionPackageVariant: Codable, Identifiable {
             self.url = url
             self.urlExpirationDate = urlExpirationDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            alternativeDistributionKeyBlob = try container.decodeIfPresent(String.self, forKey: .alternativeDistributionKeyBlob)
+            fileChecksum = try container.decodeIfPresent(String.self, forKey: .fileChecksum)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+            urlExpirationDate = try container.decodeIfPresent(Date.self, forKey: .urlExpirationDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(alternativeDistributionKeyBlob, forKey: .alternativeDistributionKeyBlob)
+            try container.encodeIfPresent(fileChecksum, forKey: .fileChecksum)
+            try container.encodeIfPresent(url, forKey: .url)
+            try container.encodeIfPresent(urlExpirationDate, forKey: .urlExpirationDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case alternativeDistributionKeyBlob
+            case fileChecksum
+            case url
+            case urlExpirationDate
+        }
     }
 }

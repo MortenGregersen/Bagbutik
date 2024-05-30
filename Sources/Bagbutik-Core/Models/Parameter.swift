@@ -14,4 +14,18 @@ public struct Parameter: Codable {
     public init(parameter: String? = nil) {
         self.parameter = parameter
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        parameter = try container.decodeIfPresent(String.self, forKey: .parameter)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(parameter, forKey: .parameter)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case parameter
+    }
 }

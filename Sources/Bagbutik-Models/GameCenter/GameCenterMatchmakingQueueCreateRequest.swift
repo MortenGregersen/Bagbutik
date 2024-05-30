@@ -16,6 +16,20 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingQueueCreateRequest.Data
      The data structure of the request body you use to create a queue.
@@ -75,6 +89,23 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
                 self.classicMatchmakingBundleIds = classicMatchmakingBundleIds
                 self.referenceName = referenceName
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                classicMatchmakingBundleIds = try container.decodeIfPresent([String].self, forKey: .classicMatchmakingBundleIds)
+                referenceName = try container.decode(String.self, forKey: .referenceName)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(classicMatchmakingBundleIds, forKey: .classicMatchmakingBundleIds)
+                try container.encode(referenceName, forKey: .referenceName)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case classicMatchmakingBundleIds
+                case referenceName
+            }
         }
 
         /**
@@ -95,6 +126,23 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
             {
                 self.experimentRuleSet = experimentRuleSet
                 self.ruleSet = ruleSet
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                experimentRuleSet = try container.decodeIfPresent(ExperimentRuleSet.self, forKey: .experimentRuleSet)
+                ruleSet = try container.decode(RuleSet.self, forKey: .ruleSet)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(experimentRuleSet, forKey: .experimentRuleSet)
+                try container.encode(ruleSet, forKey: .ruleSet)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case experimentRuleSet
+                case ruleSet
             }
 
             /**
@@ -177,6 +225,20 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

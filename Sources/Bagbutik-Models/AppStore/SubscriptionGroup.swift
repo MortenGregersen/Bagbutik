@@ -53,6 +53,20 @@ public struct SubscriptionGroup: Codable, Identifiable {
         public init(referenceName: String? = nil) {
             self.referenceName = referenceName
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case referenceName
+        }
     }
 
     public struct Relationships: Codable {
@@ -64,6 +78,23 @@ public struct SubscriptionGroup: Codable, Identifiable {
         {
             self.subscriptionGroupLocalizations = subscriptionGroupLocalizations
             self.subscriptions = subscriptions
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            subscriptionGroupLocalizations = try container.decodeIfPresent(SubscriptionGroupLocalizations.self, forKey: .subscriptionGroupLocalizations)
+            subscriptions = try container.decodeIfPresent(Subscriptions.self, forKey: .subscriptions)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(subscriptionGroupLocalizations, forKey: .subscriptionGroupLocalizations)
+            try container.encodeIfPresent(subscriptions, forKey: .subscriptions)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case subscriptionGroupLocalizations
+            case subscriptions
         }
 
         public struct SubscriptionGroupLocalizations: Codable {

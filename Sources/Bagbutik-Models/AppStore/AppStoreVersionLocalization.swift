@@ -86,6 +86,38 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
             self.supportUrl = supportUrl
             self.whatsNew = whatsNew
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            keywords = try container.decodeIfPresent(String.self, forKey: .keywords)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            marketingUrl = try container.decodeIfPresent(String.self, forKey: .marketingUrl)
+            promotionalText = try container.decodeIfPresent(String.self, forKey: .promotionalText)
+            supportUrl = try container.decodeIfPresent(String.self, forKey: .supportUrl)
+            whatsNew = try container.decodeIfPresent(String.self, forKey: .whatsNew)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(description, forKey: .description)
+            try container.encodeIfPresent(keywords, forKey: .keywords)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(marketingUrl, forKey: .marketingUrl)
+            try container.encodeIfPresent(promotionalText, forKey: .promotionalText)
+            try container.encodeIfPresent(supportUrl, forKey: .supportUrl)
+            try container.encodeIfPresent(whatsNew, forKey: .whatsNew)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case description
+            case keywords
+            case locale
+            case marketingUrl
+            case promotionalText
+            case supportUrl
+            case whatsNew
+        }
     }
 
     /**
@@ -107,6 +139,26 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
             self.appStoreVersion = appStoreVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appPreviewSets = try container.decodeIfPresent(AppPreviewSets.self, forKey: .appPreviewSets)
+            appScreenshotSets = try container.decodeIfPresent(AppScreenshotSets.self, forKey: .appScreenshotSets)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appPreviewSets, forKey: .appPreviewSets)
+            try container.encodeIfPresent(appScreenshotSets, forKey: .appScreenshotSets)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersion
         }
 
         /**

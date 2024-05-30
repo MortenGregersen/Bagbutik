@@ -94,6 +94,35 @@ public struct CustomerReview: Codable, Identifiable {
             self.territory = territory
             self.title = title
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            body = try container.decodeIfPresent(String.self, forKey: .body)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            rating = try container.decodeIfPresent(Int.self, forKey: .rating)
+            reviewerNickname = try container.decodeIfPresent(String.self, forKey: .reviewerNickname)
+            territory = try container.decodeIfPresent(TerritoryCode.self, forKey: .territory)
+            title = try container.decodeIfPresent(String.self, forKey: .title)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(body, forKey: .body)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(rating, forKey: .rating)
+            try container.encodeIfPresent(reviewerNickname, forKey: .reviewerNickname)
+            try container.encodeIfPresent(territory, forKey: .territory)
+            try container.encodeIfPresent(title, forKey: .title)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case body
+            case createdDate
+            case rating
+            case reviewerNickname
+            case territory
+            case title
+        }
     }
 
     /**
@@ -109,6 +138,20 @@ public struct CustomerReview: Codable, Identifiable {
 
         public init(response: Response? = nil) {
             self.response = response
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            response = try container.decodeIfPresent(Response.self, forKey: .response)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(response, forKey: .response)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case response
         }
 
         /**

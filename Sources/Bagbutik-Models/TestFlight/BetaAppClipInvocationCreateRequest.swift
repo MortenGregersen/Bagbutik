@@ -21,6 +21,23 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([BetaAppClipInvocationLocalizationInlineCreate].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     /**
      # BetaAppClipInvocationCreateRequest.Data
      The data element of the request body.
@@ -79,6 +96,20 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
             public init(url: String) {
                 self.url = url
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                url = try container.decode(String.self, forKey: .url)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(url, forKey: .url)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case url
+            }
         }
 
         /**
@@ -101,6 +132,23 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                 self.buildBundle = buildBundle
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                betaAppClipInvocationLocalizations = try container.decode(BetaAppClipInvocationLocalizations.self, forKey: .betaAppClipInvocationLocalizations)
+                buildBundle = try container.decode(BuildBundle.self, forKey: .buildBundle)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(betaAppClipInvocationLocalizations, forKey: .betaAppClipInvocationLocalizations)
+                try container.encode(buildBundle, forKey: .buildBundle)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case betaAppClipInvocationLocalizations
+                case buildBundle
+            }
+
             /**
              # BetaAppClipInvocationCreateRequest.Data.Relationships.BetaAppClipInvocationLocalizations
              The relationship to the Beta App Clip Invocation Localizations resource you set with the request that creates a Beta App Clip Invocations resource.
@@ -114,6 +162,20 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
 
                 public init(data: [Data]) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**
@@ -167,6 +229,20 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

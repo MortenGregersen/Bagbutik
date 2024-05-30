@@ -80,6 +80,32 @@ public struct RoutingAppCoverage: Codable, Identifiable {
             self.sourceFileChecksum = sourceFileChecksum
             self.uploadOperations = uploadOperations
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case sourceFileChecksum
+            case uploadOperations
+        }
     }
 
     /**
@@ -94,6 +120,20 @@ public struct RoutingAppCoverage: Codable, Identifiable {
 
         public init(appStoreVersion: AppStoreVersion? = nil) {
             self.appStoreVersion = appStoreVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreVersion
         }
 
         /**

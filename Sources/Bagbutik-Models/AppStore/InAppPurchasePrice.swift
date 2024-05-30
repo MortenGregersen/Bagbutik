@@ -60,6 +60,26 @@ public struct InAppPurchasePrice: Codable, Identifiable {
             self.manual = manual
             self.startDate = startDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            endDate = try container.decodeIfPresent(String.self, forKey: .endDate)
+            manual = try container.decodeIfPresent(Bool.self, forKey: .manual)
+            startDate = try container.decodeIfPresent(String.self, forKey: .startDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(endDate, forKey: .endDate)
+            try container.encodeIfPresent(manual, forKey: .manual)
+            try container.encodeIfPresent(startDate, forKey: .startDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case endDate
+            case manual
+            case startDate
+        }
     }
 
     public struct Relationships: Codable {
@@ -71,6 +91,23 @@ public struct InAppPurchasePrice: Codable, Identifiable {
         {
             self.inAppPurchasePricePoint = inAppPurchasePricePoint
             self.territory = territory
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchasePricePoint = try container.decodeIfPresent(InAppPurchasePricePoint.self, forKey: .inAppPurchasePricePoint)
+            territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchasePricePoint, forKey: .inAppPurchasePricePoint)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchasePricePoint
+            case territory
         }
 
         public struct InAppPurchasePricePoint: Codable {

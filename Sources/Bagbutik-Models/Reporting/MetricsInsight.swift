@@ -49,6 +49,44 @@ public struct MetricsInsight: Codable {
         self.summaryString = summaryString
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        highImpact = try container.decodeIfPresent(Bool.self, forKey: .highImpact)
+        latestVersion = try container.decodeIfPresent(String.self, forKey: .latestVersion)
+        maxLatestVersionValue = try container.decodeIfPresent(Double.self, forKey: .maxLatestVersionValue)
+        metric = try container.decodeIfPresent(String.self, forKey: .metric)
+        metricCategory = try container.decodeIfPresent(MetricCategory.self, forKey: .metricCategory)
+        populations = try container.decodeIfPresent([Populations].self, forKey: .populations)
+        referenceVersions = try container.decodeIfPresent(String.self, forKey: .referenceVersions)
+        subSystemLabel = try container.decodeIfPresent(String.self, forKey: .subSystemLabel)
+        summaryString = try container.decodeIfPresent(String.self, forKey: .summaryString)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(highImpact, forKey: .highImpact)
+        try container.encodeIfPresent(latestVersion, forKey: .latestVersion)
+        try container.encodeIfPresent(maxLatestVersionValue, forKey: .maxLatestVersionValue)
+        try container.encodeIfPresent(metric, forKey: .metric)
+        try container.encodeIfPresent(metricCategory, forKey: .metricCategory)
+        try container.encodeIfPresent(populations, forKey: .populations)
+        try container.encodeIfPresent(referenceVersions, forKey: .referenceVersions)
+        try container.encodeIfPresent(subSystemLabel, forKey: .subSystemLabel)
+        try container.encodeIfPresent(summaryString, forKey: .summaryString)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case highImpact
+        case latestVersion
+        case maxLatestVersionValue
+        case metric
+        case metricCategory
+        case populations
+        case referenceVersions
+        case subSystemLabel
+        case summaryString
+    }
+
     /**
      # MetricsInsight.Populations
      The value of a metric for a device type on the latest app version, and its percent change as compared with previous app versions.
@@ -83,6 +121,35 @@ public struct MetricsInsight: Codable {
             self.percentile = percentile
             self.referenceAverageValue = referenceAverageValue
             self.summaryString = summaryString
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            deltaPercentage = try container.decodeIfPresent(Double.self, forKey: .deltaPercentage)
+            device = try container.decodeIfPresent(String.self, forKey: .device)
+            latestVersionValue = try container.decodeIfPresent(Double.self, forKey: .latestVersionValue)
+            percentile = try container.decodeIfPresent(String.self, forKey: .percentile)
+            referenceAverageValue = try container.decodeIfPresent(Double.self, forKey: .referenceAverageValue)
+            summaryString = try container.decodeIfPresent(String.self, forKey: .summaryString)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(deltaPercentage, forKey: .deltaPercentage)
+            try container.encodeIfPresent(device, forKey: .device)
+            try container.encodeIfPresent(latestVersionValue, forKey: .latestVersionValue)
+            try container.encodeIfPresent(percentile, forKey: .percentile)
+            try container.encodeIfPresent(referenceAverageValue, forKey: .referenceAverageValue)
+            try container.encodeIfPresent(summaryString, forKey: .summaryString)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case deltaPercentage
+            case device
+            case latestVersionValue
+            case percentile
+            case referenceAverageValue
+            case summaryString
         }
     }
 }

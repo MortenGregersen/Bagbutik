@@ -15,6 +15,26 @@ public struct InAppPurchasePriceScheduleResponse: Codable {
         self.links = links
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(InAppPurchasePriceSchedule.self, forKey: .data)
+        included = try container.decodeIfPresent([Included].self, forKey: .included)
+        links = try container.decode(DocumentLinks.self, forKey: .links)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+        try container.encode(links, forKey: .links)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+        case links
+    }
+
     public func getAutomaticPrices() -> [InAppPurchasePrice] {
         guard let automaticPriceIds = data.relationships?.automaticPrices?.data?.map(\.id),
               let automaticPrices = included?.compactMap({ relationship -> InAppPurchasePrice? in

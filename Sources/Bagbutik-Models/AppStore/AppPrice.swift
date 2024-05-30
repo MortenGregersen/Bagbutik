@@ -70,6 +70,23 @@ public struct AppPrice: Codable, Identifiable {
             self.priceTier = priceTier
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            priceTier = try container.decodeIfPresent(PriceTier.self, forKey: .priceTier)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(priceTier, forKey: .priceTier)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case priceTier
+        }
+
         /**
          # AppPrice.Relationships.App
          The data and links that describe the relationship between the resources.

@@ -8,6 +8,20 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "appCustomProductPageLocalizations" }
         public let attributes: Attributes
@@ -52,6 +66,23 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
                 self.locale = locale
                 self.promotionalText = promotionalText
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                locale = try container.decode(String.self, forKey: .locale)
+                promotionalText = try container.decodeIfPresent(String.self, forKey: .promotionalText)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(locale, forKey: .locale)
+                try container.encodeIfPresent(promotionalText, forKey: .promotionalText)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case locale
+                case promotionalText
+            }
         }
 
         public struct Relationships: Codable {
@@ -61,11 +92,39 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
                 self.appCustomProductPageVersion = appCustomProductPageVersion
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appCustomProductPageVersion = try container.decode(AppCustomProductPageVersion.self, forKey: .appCustomProductPageVersion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appCustomProductPageVersion, forKey: .appCustomProductPageVersion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appCustomProductPageVersion
+            }
+
             public struct AppCustomProductPageVersion: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

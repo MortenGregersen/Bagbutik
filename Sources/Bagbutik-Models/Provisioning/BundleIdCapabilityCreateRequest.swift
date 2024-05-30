@@ -16,6 +16,20 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BundleIdCapabilityCreateRequest.Data
      The data element of the request body.
@@ -74,6 +88,23 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
                 self.capabilityType = capabilityType
                 self.settings = settings
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                capabilityType = try container.decode(CapabilityType.self, forKey: .capabilityType)
+                settings = try container.decodeIfPresent([CapabilitySetting].self, forKey: .settings)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(capabilityType, forKey: .capabilityType)
+                try container.encodeIfPresent(settings, forKey: .settings)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case capabilityType
+                case settings
+            }
         }
 
         /**
@@ -90,6 +121,20 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
                 self.bundleId = bundleId
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                bundleId = try container.decode(BundleId.self, forKey: .bundleId)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(bundleId, forKey: .bundleId)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case bundleId
+            }
+
             /**
              # BundleIdCapabilityCreateRequest.Data.Relationships.BundleId
              The relationships to other resources that you can set with this request.
@@ -102,6 +147,20 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

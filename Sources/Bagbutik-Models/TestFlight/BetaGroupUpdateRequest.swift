@@ -16,6 +16,20 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaGroupUpdateRequest.Data
      The data element of the request body.
@@ -92,6 +106,35 @@ public struct BetaGroupUpdateRequest: Codable, RequestBody {
                 self.publicLinkEnabled = publicLinkEnabled
                 self.publicLinkLimit = publicLinkLimit
                 self.publicLinkLimitEnabled = publicLinkLimitEnabled
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                feedbackEnabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackEnabled)
+                iosBuildsAvailableForAppleSiliconMac = try container.decodeIfPresent(Bool.self, forKey: .iosBuildsAvailableForAppleSiliconMac)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+                publicLinkEnabled = try container.decodeIfPresent(Bool.self, forKey: .publicLinkEnabled)
+                publicLinkLimit = try container.decodeIfPresent(Int.self, forKey: .publicLinkLimit)
+                publicLinkLimitEnabled = try container.decodeIfPresent(Bool.self, forKey: .publicLinkLimitEnabled)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(feedbackEnabled, forKey: .feedbackEnabled)
+                try container.encodeIfPresent(iosBuildsAvailableForAppleSiliconMac, forKey: .iosBuildsAvailableForAppleSiliconMac)
+                try container.encodeIfPresent(name, forKey: .name)
+                try container.encodeIfPresent(publicLinkEnabled, forKey: .publicLinkEnabled)
+                try container.encodeIfPresent(publicLinkLimit, forKey: .publicLinkLimit)
+                try container.encodeIfPresent(publicLinkLimitEnabled, forKey: .publicLinkLimitEnabled)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case feedbackEnabled
+                case iosBuildsAvailableForAppleSiliconMac
+                case name
+                case publicLinkEnabled
+                case publicLinkLimit
+                case publicLinkLimitEnabled
             }
         }
     }

@@ -74,6 +74,32 @@ public struct TerritoryAvailability: Codable, Identifiable {
             self.releaseDate = releaseDate
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            available = try container.decodeIfPresent(Bool.self, forKey: .available)
+            contentStatuses = try container.decodeIfPresent(Items.self, forKey: .contentStatuses)
+            preOrderEnabled = try container.decodeIfPresent(Bool.self, forKey: .preOrderEnabled)
+            preOrderPublishDate = try container.decodeIfPresent(String.self, forKey: .preOrderPublishDate)
+            releaseDate = try container.decodeIfPresent(String.self, forKey: .releaseDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(available, forKey: .available)
+            try container.encodeIfPresent(contentStatuses, forKey: .contentStatuses)
+            try container.encodeIfPresent(preOrderEnabled, forKey: .preOrderEnabled)
+            try container.encodeIfPresent(preOrderPublishDate, forKey: .preOrderPublishDate)
+            try container.encodeIfPresent(releaseDate, forKey: .releaseDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case available
+            case contentStatuses
+            case preOrderEnabled
+            case preOrderPublishDate
+            case releaseDate
+        }
+
         public enum Items: String, Codable, CaseIterable {
             case available = "AVAILABLE"
             case availableForPreorder = "AVAILABLE_FOR_PREORDER"
@@ -116,6 +142,20 @@ public struct TerritoryAvailability: Codable, Identifiable {
 
         public init(territory: Territory? = nil) {
             self.territory = territory
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(territory, forKey: .territory)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case territory
         }
 
         public struct Territory: Codable {

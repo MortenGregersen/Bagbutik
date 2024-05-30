@@ -96,6 +96,35 @@ public struct BetaAppLocalization: Codable, Identifiable {
             self.privacyPolicyUrl = privacyPolicyUrl
             self.tvOsPrivacyPolicy = tvOsPrivacyPolicy
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            description = try container.decodeIfPresent(String.self, forKey: .description)
+            feedbackEmail = try container.decodeIfPresent(String.self, forKey: .feedbackEmail)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            marketingUrl = try container.decodeIfPresent(String.self, forKey: .marketingUrl)
+            privacyPolicyUrl = try container.decodeIfPresent(String.self, forKey: .privacyPolicyUrl)
+            tvOsPrivacyPolicy = try container.decodeIfPresent(String.self, forKey: .tvOsPrivacyPolicy)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(description, forKey: .description)
+            try container.encodeIfPresent(feedbackEmail, forKey: .feedbackEmail)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(marketingUrl, forKey: .marketingUrl)
+            try container.encodeIfPresent(privacyPolicyUrl, forKey: .privacyPolicyUrl)
+            try container.encodeIfPresent(tvOsPrivacyPolicy, forKey: .tvOsPrivacyPolicy)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case description
+            case feedbackEmail
+            case locale
+            case marketingUrl
+            case privacyPolicyUrl
+            case tvOsPrivacyPolicy
+        }
     }
 
     /**
@@ -110,6 +139,20 @@ public struct BetaAppLocalization: Codable, Identifiable {
 
         public init(app: App? = nil) {
             self.app = app
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
         }
 
         /**

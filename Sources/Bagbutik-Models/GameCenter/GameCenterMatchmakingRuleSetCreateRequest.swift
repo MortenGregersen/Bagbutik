@@ -16,6 +16,20 @@ public struct GameCenterMatchmakingRuleSetCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingRuleSetCreateRequest.Data
      The data structure of the request body you use to create a rule set.
@@ -79,6 +93,29 @@ public struct GameCenterMatchmakingRuleSetCreateRequest: Codable, RequestBody {
                 self.minPlayers = minPlayers
                 self.referenceName = referenceName
                 self.ruleLanguageVersion = ruleLanguageVersion
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                maxPlayers = try container.decode(Int.self, forKey: .maxPlayers)
+                minPlayers = try container.decode(Int.self, forKey: .minPlayers)
+                referenceName = try container.decode(String.self, forKey: .referenceName)
+                ruleLanguageVersion = try container.decode(Int.self, forKey: .ruleLanguageVersion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(maxPlayers, forKey: .maxPlayers)
+                try container.encode(minPlayers, forKey: .minPlayers)
+                try container.encode(referenceName, forKey: .referenceName)
+                try container.encode(ruleLanguageVersion, forKey: .ruleLanguageVersion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case maxPlayers
+                case minPlayers
+                case referenceName
+                case ruleLanguageVersion
             }
         }
     }

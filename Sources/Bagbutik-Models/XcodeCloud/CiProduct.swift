@@ -83,6 +83,26 @@ public struct CiProduct: Codable, Identifiable {
             self.productType = productType
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            productType = try container.decodeIfPresent(ProductType.self, forKey: .productType)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(productType, forKey: .productType)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case createdDate
+            case name
+            case productType
+        }
+
         public enum ProductType: String, ParameterValue, Codable, CaseIterable {
             case app = "APP"
             case framework = "FRAMEWORK"
@@ -111,6 +131,26 @@ public struct CiProduct: Codable, Identifiable {
             self.app = app
             self.bundleId = bundleId
             self.primaryRepositories = primaryRepositories
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            bundleId = try container.decodeIfPresent(BundleId.self, forKey: .bundleId)
+            primaryRepositories = try container.decodeIfPresent(PrimaryRepositories.self, forKey: .primaryRepositories)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(primaryRepositories, forKey: .primaryRepositories)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
+            case bundleId
+            case primaryRepositories
         }
 
         /**

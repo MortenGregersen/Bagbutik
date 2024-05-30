@@ -8,6 +8,20 @@ public struct AppStoreVersionExperimentUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionExperiments" }
@@ -54,6 +68,26 @@ public struct AppStoreVersionExperimentUpdateRequest: Codable, RequestBody {
                 self.name = name
                 self.started = started
                 self.trafficProportion = trafficProportion
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+                started = try container.decodeIfPresent(Bool.self, forKey: .started)
+                trafficProportion = try container.decodeIfPresent(Int.self, forKey: .trafficProportion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(name, forKey: .name)
+                try container.encodeIfPresent(started, forKey: .started)
+                try container.encodeIfPresent(trafficProportion, forKey: .trafficProportion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+                case started
+                case trafficProportion
             }
         }
     }

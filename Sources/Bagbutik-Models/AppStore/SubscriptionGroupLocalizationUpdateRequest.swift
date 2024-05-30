@@ -8,6 +8,20 @@ public struct SubscriptionGroupLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionGroupLocalizations" }
@@ -51,6 +65,23 @@ public struct SubscriptionGroupLocalizationUpdateRequest: Codable, RequestBody {
             {
                 self.customAppName = customAppName
                 self.name = name
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                customAppName = try container.decodeIfPresent(String.self, forKey: .customAppName)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(customAppName, forKey: .customAppName)
+                try container.encodeIfPresent(name, forKey: .name)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case customAppName
+                case name
             }
         }
     }

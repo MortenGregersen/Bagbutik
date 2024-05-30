@@ -8,6 +8,20 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "subscriptionPrices" }
         public var attributes: Attributes?
@@ -52,6 +66,23 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
                 self.preserveCurrentPrice = preserveCurrentPrice
                 self.startDate = startDate
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                preserveCurrentPrice = try container.decodeIfPresent(Bool.self, forKey: .preserveCurrentPrice)
+                startDate = try container.decodeIfPresent(String.self, forKey: .startDate)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(preserveCurrentPrice, forKey: .preserveCurrentPrice)
+                try container.encodeIfPresent(startDate, forKey: .startDate)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case preserveCurrentPrice
+                case startDate
+            }
         }
 
         public struct Relationships: Codable {
@@ -68,11 +99,45 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
                 self.territory = territory
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                subscription = try container.decode(Subscription.self, forKey: .subscription)
+                subscriptionPricePoint = try container.decode(SubscriptionPricePoint.self, forKey: .subscriptionPricePoint)
+                territory = try container.decodeIfPresent(Territory.self, forKey: .territory)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(subscription, forKey: .subscription)
+                try container.encode(subscriptionPricePoint, forKey: .subscriptionPricePoint)
+                try container.encodeIfPresent(territory, forKey: .territory)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case subscription
+                case subscriptionPricePoint
+                case territory
+            }
+
             public struct Subscription: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {
@@ -109,6 +174,20 @@ public struct SubscriptionPriceCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

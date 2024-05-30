@@ -85,6 +85,29 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
             self.referenceName = referenceName
             self.ruleLanguageVersion = ruleLanguageVersion
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            maxPlayers = try container.decodeIfPresent(Int.self, forKey: .maxPlayers)
+            minPlayers = try container.decodeIfPresent(Int.self, forKey: .minPlayers)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+            ruleLanguageVersion = try container.decodeIfPresent(Int.self, forKey: .ruleLanguageVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(maxPlayers, forKey: .maxPlayers)
+            try container.encodeIfPresent(minPlayers, forKey: .minPlayers)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+            try container.encodeIfPresent(ruleLanguageVersion, forKey: .ruleLanguageVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case maxPlayers
+            case minPlayers
+            case referenceName
+            case ruleLanguageVersion
+        }
     }
 
     /**
@@ -109,6 +132,26 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
             self.matchmakingQueues = matchmakingQueues
             self.rules = rules
             self.teams = teams
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            matchmakingQueues = try container.decodeIfPresent(MatchmakingQueues.self, forKey: .matchmakingQueues)
+            rules = try container.decodeIfPresent(Rules.self, forKey: .rules)
+            teams = try container.decodeIfPresent(Teams.self, forKey: .teams)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(matchmakingQueues, forKey: .matchmakingQueues)
+            try container.encodeIfPresent(rules, forKey: .rules)
+            try container.encodeIfPresent(teams, forKey: .teams)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case matchmakingQueues
+            case rules
+            case teams
         }
 
         /**

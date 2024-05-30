@@ -8,6 +8,20 @@ public struct SandboxTesterV2UpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "sandboxTesters" }
@@ -54,6 +68,26 @@ public struct SandboxTesterV2UpdateRequest: Codable, RequestBody {
                 self.interruptPurchases = interruptPurchases
                 self.subscriptionRenewalRate = subscriptionRenewalRate
                 self.territory = territory
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                interruptPurchases = try container.decodeIfPresent(Bool.self, forKey: .interruptPurchases)
+                subscriptionRenewalRate = try container.decodeIfPresent(SandboxTesterV2.Attributes.SubscriptionRenewalRate.self, forKey: .subscriptionRenewalRate)
+                territory = try container.decodeIfPresent(TerritoryCode.self, forKey: .territory)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(interruptPurchases, forKey: .interruptPurchases)
+                try container.encodeIfPresent(subscriptionRenewalRate, forKey: .subscriptionRenewalRate)
+                try container.encodeIfPresent(territory, forKey: .territory)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case interruptPurchases
+                case subscriptionRenewalRate
+                case territory
             }
         }
     }

@@ -8,6 +8,20 @@ public struct SubscriptionLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptionLocalizations" }
@@ -51,6 +65,23 @@ public struct SubscriptionLocalizationUpdateRequest: Codable, RequestBody {
             {
                 self.description = description
                 self.name = name
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                description = try container.decodeIfPresent(String.self, forKey: .description)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(description, forKey: .description)
+                try container.encodeIfPresent(name, forKey: .name)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case description
+                case name
             }
         }
     }

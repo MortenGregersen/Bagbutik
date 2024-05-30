@@ -19,6 +19,23 @@ public struct AppUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([AppPriceInlineCreate].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     /**
      # AppUpdateRequest.Data
      The data element of the request body.
@@ -120,6 +137,41 @@ public struct AppUpdateRequest: Codable, RequestBody {
                 self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
                 self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                availableInNewTerritories = try container.decodeIfPresent(Bool.self, forKey: .availableInNewTerritories)
+                bundleId = try container.decodeIfPresent(String.self, forKey: .bundleId)
+                contentRightsDeclaration = try container.decodeIfPresent(App.Attributes.ContentRightsDeclaration.self, forKey: .contentRightsDeclaration)
+                primaryLocale = try container.decodeIfPresent(String.self, forKey: .primaryLocale)
+                subscriptionStatusUrl = try container.decodeIfPresent(String.self, forKey: .subscriptionStatusUrl)
+                subscriptionStatusUrlForSandbox = try container.decodeIfPresent(String.self, forKey: .subscriptionStatusUrlForSandbox)
+                subscriptionStatusUrlVersion = try container.decodeIfPresent(SubscriptionStatusUrlVersion.self, forKey: .subscriptionStatusUrlVersion)
+                subscriptionStatusUrlVersionForSandbox = try container.decodeIfPresent(SubscriptionStatusUrlVersion.self, forKey: .subscriptionStatusUrlVersionForSandbox)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(availableInNewTerritories, forKey: .availableInNewTerritories)
+                try container.encodeIfPresent(bundleId, forKey: .bundleId)
+                try container.encodeIfPresent(contentRightsDeclaration, forKey: .contentRightsDeclaration)
+                try container.encodeIfPresent(primaryLocale, forKey: .primaryLocale)
+                try container.encodeIfPresent(subscriptionStatusUrl, forKey: .subscriptionStatusUrl)
+                try container.encodeIfPresent(subscriptionStatusUrlForSandbox, forKey: .subscriptionStatusUrlForSandbox)
+                try container.encodeIfPresent(subscriptionStatusUrlVersion, forKey: .subscriptionStatusUrlVersion)
+                try container.encodeIfPresent(subscriptionStatusUrlVersionForSandbox, forKey: .subscriptionStatusUrlVersionForSandbox)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case availableInNewTerritories
+                case bundleId
+                case contentRightsDeclaration
+                case primaryLocale
+                case subscriptionStatusUrl
+                case subscriptionStatusUrlForSandbox
+                case subscriptionStatusUrlVersion
+                case subscriptionStatusUrlVersionForSandbox
+            }
         }
 
         /**
@@ -144,6 +196,23 @@ public struct AppUpdateRequest: Codable, RequestBody {
             }
 
             public init() {}
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                availableTerritories = try container.decodeIfPresent(AvailableTerritories.self, forKey: .availableTerritories)
+                prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(availableTerritories, forKey: .availableTerritories)
+                try container.encodeIfPresent(prices, forKey: .prices)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case availableTerritories
+                case prices
+            }
 
             /**
              # AppUpdateRequest.Data.Relationships.AvailableTerritories

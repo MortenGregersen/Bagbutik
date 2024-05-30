@@ -16,6 +16,20 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AgeRatingDeclarationUpdateRequest.Data
      The data element of the request body.
@@ -181,6 +195,71 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                 self.violenceCartoonOrFantasy = violenceCartoonOrFantasy
                 self.violenceRealistic = violenceRealistic
                 self.violenceRealisticProlongedGraphicOrSadistic = violenceRealisticProlongedGraphicOrSadistic
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                ageRatingOverride = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AgeRatingOverride.self, forKey: .ageRatingOverride)
+                alcoholTobaccoOrDrugUseOrReferences = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences.self, forKey: .alcoholTobaccoOrDrugUseOrReferences)
+                contests = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.Contests.self, forKey: .contests)
+                gambling = try container.decodeIfPresent(Bool.self, forKey: .gambling)
+                gamblingAndContests = try container.decodeIfPresent(Bool.self, forKey: .gamblingAndContests)
+                gamblingSimulated = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GamblingSimulated.self, forKey: .gamblingSimulated)
+                horrorOrFearThemes = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.HorrorOrFearThemes.self, forKey: .horrorOrFearThemes)
+                kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: .kidsAgeBand)
+                matureOrSuggestiveThemes = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes.self, forKey: .matureOrSuggestiveThemes)
+                medicalOrTreatmentInformation = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation.self, forKey: .medicalOrTreatmentInformation)
+                profanityOrCrudeHumor = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor.self, forKey: .profanityOrCrudeHumor)
+                seventeenPlus = try container.decodeIfPresent(Bool.self, forKey: .seventeenPlus)
+                sexualContentGraphicAndNudity = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.SexualContentGraphicAndNudity.self, forKey: .sexualContentGraphicAndNudity)
+                sexualContentOrNudity = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.SexualContentOrNudity.self, forKey: .sexualContentOrNudity)
+                unrestrictedWebAccess = try container.decodeIfPresent(Bool.self, forKey: .unrestrictedWebAccess)
+                violenceCartoonOrFantasy = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ViolenceCartoonOrFantasy.self, forKey: .violenceCartoonOrFantasy)
+                violenceRealistic = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ViolenceRealistic.self, forKey: .violenceRealistic)
+                violenceRealisticProlongedGraphicOrSadistic = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ViolenceRealisticProlongedGraphicOrSadistic.self, forKey: .violenceRealisticProlongedGraphicOrSadistic)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(ageRatingOverride, forKey: .ageRatingOverride)
+                try container.encodeIfPresent(alcoholTobaccoOrDrugUseOrReferences, forKey: .alcoholTobaccoOrDrugUseOrReferences)
+                try container.encodeIfPresent(contests, forKey: .contests)
+                try container.encodeIfPresent(gambling, forKey: .gambling)
+                try container.encodeIfPresent(gamblingAndContests, forKey: .gamblingAndContests)
+                try container.encodeIfPresent(gamblingSimulated, forKey: .gamblingSimulated)
+                try container.encodeIfPresent(horrorOrFearThemes, forKey: .horrorOrFearThemes)
+                try container.encodeIfPresent(kidsAgeBand, forKey: .kidsAgeBand)
+                try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: .matureOrSuggestiveThemes)
+                try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: .medicalOrTreatmentInformation)
+                try container.encodeIfPresent(profanityOrCrudeHumor, forKey: .profanityOrCrudeHumor)
+                try container.encodeIfPresent(seventeenPlus, forKey: .seventeenPlus)
+                try container.encodeIfPresent(sexualContentGraphicAndNudity, forKey: .sexualContentGraphicAndNudity)
+                try container.encodeIfPresent(sexualContentOrNudity, forKey: .sexualContentOrNudity)
+                try container.encodeIfPresent(unrestrictedWebAccess, forKey: .unrestrictedWebAccess)
+                try container.encodeIfPresent(violenceCartoonOrFantasy, forKey: .violenceCartoonOrFantasy)
+                try container.encodeIfPresent(violenceRealistic, forKey: .violenceRealistic)
+                try container.encodeIfPresent(violenceRealisticProlongedGraphicOrSadistic, forKey: .violenceRealisticProlongedGraphicOrSadistic)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case ageRatingOverride
+                case alcoholTobaccoOrDrugUseOrReferences
+                case contests
+                case gambling
+                case gamblingAndContests
+                case gamblingSimulated
+                case horrorOrFearThemes
+                case kidsAgeBand
+                case matureOrSuggestiveThemes
+                case medicalOrTreatmentInformation
+                case profanityOrCrudeHumor
+                case seventeenPlus
+                case sexualContentGraphicAndNudity
+                case sexualContentOrNudity
+                case unrestrictedWebAccess
+                case violenceCartoonOrFantasy
+                case violenceRealistic
+                case violenceRealisticProlongedGraphicOrSadistic
             }
         }
     }

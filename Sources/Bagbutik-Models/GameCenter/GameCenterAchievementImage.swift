@@ -73,6 +73,32 @@ public struct GameCenterAchievementImage: Codable, Identifiable {
             self.imageAsset = imageAsset
             self.uploadOperations = uploadOperations
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            imageAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .imageAsset)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(imageAsset, forKey: .imageAsset)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case imageAsset
+            case uploadOperations
+        }
     }
 
     public struct Relationships: Codable {
@@ -80,6 +106,20 @@ public struct GameCenterAchievementImage: Codable, Identifiable {
 
         public init(gameCenterAchievementLocalization: GameCenterAchievementLocalization? = nil) {
             self.gameCenterAchievementLocalization = gameCenterAchievementLocalization
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterAchievementLocalization = try container.decodeIfPresent(GameCenterAchievementLocalization.self, forKey: .gameCenterAchievementLocalization)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterAchievementLocalization, forKey: .gameCenterAchievementLocalization)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterAchievementLocalization
         }
 
         public struct GameCenterAchievementLocalization: Codable {

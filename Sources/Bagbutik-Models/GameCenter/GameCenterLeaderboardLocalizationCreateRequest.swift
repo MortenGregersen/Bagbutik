@@ -15,6 +15,20 @@ public struct GameCenterLeaderboardLocalizationCreateRequest: Codable, RequestBo
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "gameCenterLeaderboardLocalizations" }
         public let attributes: Attributes
@@ -68,6 +82,32 @@ public struct GameCenterLeaderboardLocalizationCreateRequest: Codable, RequestBo
                 self.locale = locale
                 self.name = name
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                formatterOverride = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: .formatterOverride)
+                formatterSuffix = try container.decodeIfPresent(String.self, forKey: .formatterSuffix)
+                formatterSuffixSingular = try container.decodeIfPresent(String.self, forKey: .formatterSuffixSingular)
+                locale = try container.decode(String.self, forKey: .locale)
+                name = try container.decode(String.self, forKey: .name)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(formatterOverride, forKey: .formatterOverride)
+                try container.encodeIfPresent(formatterSuffix, forKey: .formatterSuffix)
+                try container.encodeIfPresent(formatterSuffixSingular, forKey: .formatterSuffixSingular)
+                try container.encode(locale, forKey: .locale)
+                try container.encode(name, forKey: .name)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case formatterOverride
+                case formatterSuffix
+                case formatterSuffixSingular
+                case locale
+                case name
+            }
         }
 
         public struct Relationships: Codable {
@@ -77,11 +117,39 @@ public struct GameCenterLeaderboardLocalizationCreateRequest: Codable, RequestBo
                 self.gameCenterLeaderboard = gameCenterLeaderboard
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                gameCenterLeaderboard = try container.decode(GameCenterLeaderboard.self, forKey: .gameCenterLeaderboard)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(gameCenterLeaderboard, forKey: .gameCenterLeaderboard)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case gameCenterLeaderboard
+            }
+
             public struct GameCenterLeaderboard: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

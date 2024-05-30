@@ -107,6 +107,35 @@ public struct AppInfo: Codable, Identifiable {
             self.state = state
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreAgeRating = try container.decodeIfPresent(AppStoreAgeRating.self, forKey: .appStoreAgeRating)
+            appStoreState = try container.decodeIfPresent(AppStoreVersionState.self, forKey: .appStoreState)
+            brazilAgeRating = try container.decodeIfPresent(BrazilAgeRating.self, forKey: .brazilAgeRating)
+            brazilAgeRatingV2 = try container.decodeIfPresent(BrazilAgeRatingV2.self, forKey: .brazilAgeRatingV2)
+            kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: .kidsAgeBand)
+            state = try container.decodeIfPresent(State.self, forKey: .state)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreAgeRating, forKey: .appStoreAgeRating)
+            try container.encodeIfPresent(appStoreState, forKey: .appStoreState)
+            try container.encodeIfPresent(brazilAgeRating, forKey: .brazilAgeRating)
+            try container.encodeIfPresent(brazilAgeRatingV2, forKey: .brazilAgeRatingV2)
+            try container.encodeIfPresent(kidsAgeBand, forKey: .kidsAgeBand)
+            try container.encodeIfPresent(state, forKey: .state)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreAgeRating
+            case appStoreState
+            case brazilAgeRating
+            case brazilAgeRatingV2
+            case kidsAgeBand
+            case state
+        }
+
         public enum BrazilAgeRatingV2: String, Codable, CaseIterable {
             case officialEighteen = "OFFICIAL_EIGHTEEN"
             case officialFourteen = "OFFICIAL_FOURTEEN"
@@ -173,6 +202,44 @@ public struct AppInfo: Codable, Identifiable {
             self.secondaryCategory = secondaryCategory
             self.secondarySubcategoryOne = secondarySubcategoryOne
             self.secondarySubcategoryTwo = secondarySubcategoryTwo
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            ageRatingDeclaration = try container.decodeIfPresent(AgeRatingDeclaration.self, forKey: .ageRatingDeclaration)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            appInfoLocalizations = try container.decodeIfPresent(AppInfoLocalizations.self, forKey: .appInfoLocalizations)
+            primaryCategory = try container.decodeIfPresent(PrimaryCategory.self, forKey: .primaryCategory)
+            primarySubcategoryOne = try container.decodeIfPresent(PrimarySubcategoryOne.self, forKey: .primarySubcategoryOne)
+            primarySubcategoryTwo = try container.decodeIfPresent(PrimarySubcategoryTwo.self, forKey: .primarySubcategoryTwo)
+            secondaryCategory = try container.decodeIfPresent(SecondaryCategory.self, forKey: .secondaryCategory)
+            secondarySubcategoryOne = try container.decodeIfPresent(SecondarySubcategoryOne.self, forKey: .secondarySubcategoryOne)
+            secondarySubcategoryTwo = try container.decodeIfPresent(SecondarySubcategoryTwo.self, forKey: .secondarySubcategoryTwo)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(ageRatingDeclaration, forKey: .ageRatingDeclaration)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(appInfoLocalizations, forKey: .appInfoLocalizations)
+            try container.encodeIfPresent(primaryCategory, forKey: .primaryCategory)
+            try container.encodeIfPresent(primarySubcategoryOne, forKey: .primarySubcategoryOne)
+            try container.encodeIfPresent(primarySubcategoryTwo, forKey: .primarySubcategoryTwo)
+            try container.encodeIfPresent(secondaryCategory, forKey: .secondaryCategory)
+            try container.encodeIfPresent(secondarySubcategoryOne, forKey: .secondarySubcategoryOne)
+            try container.encodeIfPresent(secondarySubcategoryTwo, forKey: .secondarySubcategoryTwo)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case ageRatingDeclaration
+            case app
+            case appInfoLocalizations
+            case primaryCategory
+            case primarySubcategoryOne
+            case primarySubcategoryTwo
+            case secondaryCategory
+            case secondarySubcategoryOne
+            case secondarySubcategoryTwo
         }
 
         /**

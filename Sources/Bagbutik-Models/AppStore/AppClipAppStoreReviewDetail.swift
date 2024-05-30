@@ -73,6 +73,20 @@ public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
         public init(invocationUrls: [String]? = nil) {
             self.invocationUrls = invocationUrls
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            invocationUrls = try container.decodeIfPresent([String].self, forKey: .invocationUrls)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(invocationUrls, forKey: .invocationUrls)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case invocationUrls
+        }
     }
 
     /**
@@ -88,6 +102,20 @@ public struct AppClipAppStoreReviewDetail: Codable, Identifiable {
 
         public init(appClipDefaultExperience: AppClipDefaultExperience? = nil) {
             self.appClipDefaultExperience = appClipDefaultExperience
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appClipDefaultExperience = try container.decodeIfPresent(AppClipDefaultExperience.self, forKey: .appClipDefaultExperience)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appClipDefaultExperience, forKey: .appClipDefaultExperience)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appClipDefaultExperience
         }
 
         /**

@@ -86,6 +86,29 @@ public struct BetaTester: Codable, Identifiable {
             self.inviteType = inviteType
             self.lastName = lastName
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            email = try container.decodeIfPresent(String.self, forKey: .email)
+            firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
+            inviteType = try container.decodeIfPresent(BetaInviteType.self, forKey: .inviteType)
+            lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(email, forKey: .email)
+            try container.encodeIfPresent(firstName, forKey: .firstName)
+            try container.encodeIfPresent(inviteType, forKey: .inviteType)
+            try container.encodeIfPresent(lastName, forKey: .lastName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case email
+            case firstName
+            case inviteType
+            case lastName
+        }
     }
 
     /**
@@ -107,6 +130,26 @@ public struct BetaTester: Codable, Identifiable {
             self.apps = apps
             self.betaGroups = betaGroups
             self.builds = builds
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            apps = try container.decodeIfPresent(Apps.self, forKey: .apps)
+            betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: .betaGroups)
+            builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(apps, forKey: .apps)
+            try container.encodeIfPresent(betaGroups, forKey: .betaGroups)
+            try container.encodeIfPresent(builds, forKey: .builds)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case apps
+            case betaGroups
+            case builds
         }
 
         /**

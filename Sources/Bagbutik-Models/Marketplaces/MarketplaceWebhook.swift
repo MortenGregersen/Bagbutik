@@ -61,5 +61,19 @@ public struct MarketplaceWebhook: Codable, Identifiable {
         public init(endpointUrl: String? = nil) {
             self.endpointUrl = endpointUrl
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            endpointUrl = try container.decodeIfPresent(String.self, forKey: .endpointUrl)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case endpointUrl
+        }
     }
 }

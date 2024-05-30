@@ -53,6 +53,20 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
         public init(locale: String? = nil) {
             self.locale = locale
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(locale, forKey: .locale)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+        }
     }
 
     public struct Relationships: Codable {
@@ -67,6 +81,26 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
             self.appPreviewSets = appPreviewSets
             self.appScreenshotSets = appScreenshotSets
             self.appStoreVersionExperimentTreatment = appStoreVersionExperimentTreatment
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appPreviewSets = try container.decodeIfPresent(AppPreviewSets.self, forKey: .appPreviewSets)
+            appScreenshotSets = try container.decodeIfPresent(AppScreenshotSets.self, forKey: .appScreenshotSets)
+            appStoreVersionExperimentTreatment = try container.decodeIfPresent(AppStoreVersionExperimentTreatment.self, forKey: .appStoreVersionExperimentTreatment)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appPreviewSets, forKey: .appPreviewSets)
+            try container.encodeIfPresent(appScreenshotSets, forKey: .appScreenshotSets)
+            try container.encodeIfPresent(appStoreVersionExperimentTreatment, forKey: .appStoreVersionExperimentTreatment)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appPreviewSets
+            case appScreenshotSets
+            case appStoreVersionExperimentTreatment
         }
 
         public struct AppPreviewSets: Codable {

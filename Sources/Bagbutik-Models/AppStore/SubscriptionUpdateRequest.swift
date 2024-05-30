@@ -12,6 +12,23 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([Included].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "subscriptions" }
@@ -71,6 +88,32 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                 self.reviewNote = reviewNote
                 self.subscriptionPeriod = subscriptionPeriod
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                familySharable = try container.decodeIfPresent(Bool.self, forKey: .familySharable)
+                groupLevel = try container.decodeIfPresent(Int.self, forKey: .groupLevel)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+                reviewNote = try container.decodeIfPresent(String.self, forKey: .reviewNote)
+                subscriptionPeriod = try container.decodeIfPresent(Subscription.Attributes.SubscriptionPeriod.self, forKey: .subscriptionPeriod)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(familySharable, forKey: .familySharable)
+                try container.encodeIfPresent(groupLevel, forKey: .groupLevel)
+                try container.encodeIfPresent(name, forKey: .name)
+                try container.encodeIfPresent(reviewNote, forKey: .reviewNote)
+                try container.encodeIfPresent(subscriptionPeriod, forKey: .subscriptionPeriod)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case familySharable
+                case groupLevel
+                case name
+                case reviewNote
+                case subscriptionPeriod
+            }
         }
 
         public struct Relationships: Codable {
@@ -85,6 +128,26 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                 self.introductoryOffers = introductoryOffers
                 self.prices = prices
                 self.promotionalOffers = promotionalOffers
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                introductoryOffers = try container.decodeIfPresent(IntroductoryOffers.self, forKey: .introductoryOffers)
+                prices = try container.decodeIfPresent(Prices.self, forKey: .prices)
+                promotionalOffers = try container.decodeIfPresent(PromotionalOffers.self, forKey: .promotionalOffers)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(introductoryOffers, forKey: .introductoryOffers)
+                try container.encodeIfPresent(prices, forKey: .prices)
+                try container.encodeIfPresent(promotionalOffers, forKey: .promotionalOffers)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case introductoryOffers
+                case prices
+                case promotionalOffers
             }
 
             public struct IntroductoryOffers: Codable {

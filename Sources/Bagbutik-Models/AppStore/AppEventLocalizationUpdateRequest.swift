@@ -8,6 +8,20 @@ public struct AppEventLocalizationUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "appEventLocalizations" }
@@ -54,6 +68,26 @@ public struct AppEventLocalizationUpdateRequest: Codable, RequestBody {
                 self.longDescription = longDescription
                 self.name = name
                 self.shortDescription = shortDescription
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                longDescription = try container.decodeIfPresent(String.self, forKey: .longDescription)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+                shortDescription = try container.decodeIfPresent(String.self, forKey: .shortDescription)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(longDescription, forKey: .longDescription)
+                try container.encodeIfPresent(name, forKey: .name)
+                try container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case longDescription
+                case name
+                case shortDescription
             }
         }
     }

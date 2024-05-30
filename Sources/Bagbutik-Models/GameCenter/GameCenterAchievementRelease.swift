@@ -60,6 +60,20 @@ public struct GameCenterAchievementRelease: Codable, Identifiable {
         public init(live: Bool? = nil) {
             self.live = live
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            live = try container.decodeIfPresent(Bool.self, forKey: .live)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(live, forKey: .live)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case live
+        }
     }
 
     public struct Relationships: Codable {
@@ -71,6 +85,23 @@ public struct GameCenterAchievementRelease: Codable, Identifiable {
         {
             self.gameCenterAchievement = gameCenterAchievement
             self.gameCenterDetail = gameCenterDetail
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterAchievement = try container.decodeIfPresent(GameCenterAchievement.self, forKey: .gameCenterAchievement)
+            gameCenterDetail = try container.decodeIfPresent(GameCenterDetail.self, forKey: .gameCenterDetail)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterAchievement, forKey: .gameCenterAchievement)
+            try container.encodeIfPresent(gameCenterDetail, forKey: .gameCenterDetail)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterAchievement
+            case gameCenterDetail
         }
 
         public struct GameCenterAchievement: Codable {

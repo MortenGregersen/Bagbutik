@@ -67,6 +67,20 @@ public struct AppCategory: Codable, Identifiable {
         public init(platforms: [Platform]? = nil) {
             self.platforms = platforms
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            platforms = try container.decodeIfPresent([Platform].self, forKey: .platforms)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(platforms, forKey: .platforms)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case platforms
+        }
     }
 
     /**
@@ -85,6 +99,23 @@ public struct AppCategory: Codable, Identifiable {
         {
             self.parent = parent
             self.subcategories = subcategories
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            parent = try container.decodeIfPresent(Parent.self, forKey: .parent)
+            subcategories = try container.decodeIfPresent(Subcategories.self, forKey: .subcategories)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(parent, forKey: .parent)
+            try container.encodeIfPresent(subcategories, forKey: .subcategories)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case parent
+            case subcategories
         }
 
         /**

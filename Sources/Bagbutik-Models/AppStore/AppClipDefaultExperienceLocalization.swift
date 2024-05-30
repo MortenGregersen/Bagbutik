@@ -78,6 +78,23 @@ public struct AppClipDefaultExperienceLocalization: Codable, Identifiable {
             self.locale = locale
             self.subtitle = subtitle
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(subtitle, forKey: .subtitle)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case subtitle
+        }
     }
 
     /**
@@ -98,6 +115,23 @@ public struct AppClipDefaultExperienceLocalization: Codable, Identifiable {
         {
             self.appClipDefaultExperience = appClipDefaultExperience
             self.appClipHeaderImage = appClipHeaderImage
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appClipDefaultExperience = try container.decodeIfPresent(AppClipDefaultExperience.self, forKey: .appClipDefaultExperience)
+            appClipHeaderImage = try container.decodeIfPresent(AppClipHeaderImage.self, forKey: .appClipHeaderImage)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appClipDefaultExperience, forKey: .appClipDefaultExperience)
+            try container.encodeIfPresent(appClipHeaderImage, forKey: .appClipHeaderImage)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appClipDefaultExperience
+            case appClipHeaderImage
         }
 
         /**

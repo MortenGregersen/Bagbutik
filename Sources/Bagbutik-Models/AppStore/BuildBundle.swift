@@ -139,6 +139,68 @@ public struct BuildBundle: Codable, Identifiable {
             self.usesLocationServices = usesLocationServices
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            bundleId = try container.decodeIfPresent(String.self, forKey: .bundleId)
+            bundleType = try container.decodeIfPresent(BundleType.self, forKey: .bundleType)
+            dSYMUrl = try container.decodeIfPresent(String.self, forKey: .dSYMUrl)
+            deviceProtocols = try container.decodeIfPresent([String].self, forKey: .deviceProtocols)
+            entitlements = try container.decodeIfPresent([String: [String: String]].self, forKey: .entitlements)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            hasOnDemandResources = try container.decodeIfPresent(Bool.self, forKey: .hasOnDemandResources)
+            hasPrerenderedIcon = try container.decodeIfPresent(Bool.self, forKey: .hasPrerenderedIcon)
+            hasSirikit = try container.decodeIfPresent(Bool.self, forKey: .hasSirikit)
+            includesSymbols = try container.decodeIfPresent(Bool.self, forKey: .includesSymbols)
+            isIosBuildMacAppStoreCompatible = try container.decodeIfPresent(Bool.self, forKey: .isIosBuildMacAppStoreCompatible)
+            locales = try container.decodeIfPresent([String].self, forKey: .locales)
+            platformBuild = try container.decodeIfPresent(String.self, forKey: .platformBuild)
+            requiredCapabilities = try container.decodeIfPresent([String].self, forKey: .requiredCapabilities)
+            sdkBuild = try container.decodeIfPresent(String.self, forKey: .sdkBuild)
+            supportedArchitectures = try container.decodeIfPresent([String].self, forKey: .supportedArchitectures)
+            usesLocationServices = try container.decodeIfPresent(Bool.self, forKey: .usesLocationServices)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(bundleType, forKey: .bundleType)
+            try container.encodeIfPresent(dSYMUrl, forKey: .dSYMUrl)
+            try container.encodeIfPresent(deviceProtocols, forKey: .deviceProtocols)
+            try container.encodeIfPresent(entitlements, forKey: .entitlements)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(hasOnDemandResources, forKey: .hasOnDemandResources)
+            try container.encodeIfPresent(hasPrerenderedIcon, forKey: .hasPrerenderedIcon)
+            try container.encodeIfPresent(hasSirikit, forKey: .hasSirikit)
+            try container.encodeIfPresent(includesSymbols, forKey: .includesSymbols)
+            try container.encodeIfPresent(isIosBuildMacAppStoreCompatible, forKey: .isIosBuildMacAppStoreCompatible)
+            try container.encodeIfPresent(locales, forKey: .locales)
+            try container.encodeIfPresent(platformBuild, forKey: .platformBuild)
+            try container.encodeIfPresent(requiredCapabilities, forKey: .requiredCapabilities)
+            try container.encodeIfPresent(sdkBuild, forKey: .sdkBuild)
+            try container.encodeIfPresent(supportedArchitectures, forKey: .supportedArchitectures)
+            try container.encodeIfPresent(usesLocationServices, forKey: .usesLocationServices)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case bundleId
+            case bundleType
+            case dSYMUrl
+            case deviceProtocols
+            case entitlements
+            case fileName
+            case hasOnDemandResources
+            case hasPrerenderedIcon
+            case hasSirikit
+            case includesSymbols
+            case isIosBuildMacAppStoreCompatible
+            case locales
+            case platformBuild
+            case requiredCapabilities
+            case sdkBuild
+            case supportedArchitectures
+            case usesLocationServices
+        }
+
         public enum BundleType: String, Codable, CaseIterable {
             case app = "APP"
             case appClip = "APP_CLIP"
@@ -171,6 +233,29 @@ public struct BuildBundle: Codable, Identifiable {
             self.appClipDomainDebugStatus = appClipDomainDebugStatus
             self.betaAppClipInvocations = betaAppClipInvocations
             self.buildBundleFileSizes = buildBundleFileSizes
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appClipDomainCacheStatus = try container.decodeIfPresent(AppClipDomainCacheStatus.self, forKey: .appClipDomainCacheStatus)
+            appClipDomainDebugStatus = try container.decodeIfPresent(AppClipDomainDebugStatus.self, forKey: .appClipDomainDebugStatus)
+            betaAppClipInvocations = try container.decodeIfPresent(BetaAppClipInvocations.self, forKey: .betaAppClipInvocations)
+            buildBundleFileSizes = try container.decodeIfPresent(BuildBundleFileSizes.self, forKey: .buildBundleFileSizes)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appClipDomainCacheStatus, forKey: .appClipDomainCacheStatus)
+            try container.encodeIfPresent(appClipDomainDebugStatus, forKey: .appClipDomainDebugStatus)
+            try container.encodeIfPresent(betaAppClipInvocations, forKey: .betaAppClipInvocations)
+            try container.encodeIfPresent(buildBundleFileSizes, forKey: .buildBundleFileSizes)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appClipDomainCacheStatus
+            case appClipDomainDebugStatus
+            case betaAppClipInvocations
+            case buildBundleFileSizes
         }
 
         /**

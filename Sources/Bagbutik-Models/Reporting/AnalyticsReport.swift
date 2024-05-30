@@ -61,6 +61,23 @@ public struct AnalyticsReport: Codable, Identifiable {
             self.name = name
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            category = try container.decodeIfPresent(Category.self, forKey: .category)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(category, forKey: .category)
+            try container.encodeIfPresent(name, forKey: .name)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case category
+            case name
+        }
+
         public enum Category: String, Codable, CaseIterable {
             case appStoreEngagement = "APP_STORE_ENGAGEMENT"
             case appUsage = "APP_USAGE"

@@ -75,6 +75,41 @@ public struct InAppPurchaseAppStoreReviewScreenshot: Codable, Identifiable {
             self.sourceFileChecksum = sourceFileChecksum
             self.uploadOperations = uploadOperations
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            assetToken = try container.decodeIfPresent(String.self, forKey: .assetToken)
+            assetType = try container.decodeIfPresent(String.self, forKey: .assetType)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            imageAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .imageAsset)
+            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(assetToken, forKey: .assetToken)
+            try container.encodeIfPresent(assetType, forKey: .assetType)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(imageAsset, forKey: .imageAsset)
+            try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case assetDeliveryState
+            case assetToken
+            case assetType
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case uploadOperations
+        }
     }
 
     public struct Relationships: Codable {
@@ -82,6 +117,20 @@ public struct InAppPurchaseAppStoreReviewScreenshot: Codable, Identifiable {
 
         public init(inAppPurchaseV2: InAppPurchaseV2? = nil) {
             self.inAppPurchaseV2 = inAppPurchaseV2
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            inAppPurchaseV2 = try container.decodeIfPresent(InAppPurchaseV2.self, forKey: .inAppPurchaseV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(inAppPurchaseV2, forKey: .inAppPurchaseV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case inAppPurchaseV2
         }
 
         public struct InAppPurchaseV2: Codable {

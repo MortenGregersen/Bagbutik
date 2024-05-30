@@ -16,6 +16,20 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppClipDefaultExperienceUpdateRequest.Data
      The data element of the request body.
@@ -81,6 +95,20 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
             public init(action: AppClipAction? = nil) {
                 self.action = action
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                action = try container.decodeIfPresent(AppClipAction.self, forKey: .action)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(action, forKey: .action)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case action
+            }
         }
 
         /**
@@ -96,6 +124,20 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
 
             public init(releaseWithAppStoreVersion: ReleaseWithAppStoreVersion? = nil) {
                 self.releaseWithAppStoreVersion = releaseWithAppStoreVersion
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                releaseWithAppStoreVersion = try container.decodeIfPresent(ReleaseWithAppStoreVersion.self, forKey: .releaseWithAppStoreVersion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(releaseWithAppStoreVersion, forKey: .releaseWithAppStoreVersion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case releaseWithAppStoreVersion
             }
 
             /**

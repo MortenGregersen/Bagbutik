@@ -73,6 +73,20 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
         public init(agreementText: String? = nil) {
             self.agreementText = agreementText
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            agreementText = try container.decodeIfPresent(String.self, forKey: .agreementText)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(agreementText, forKey: .agreementText)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case agreementText
+        }
     }
 
     /**
@@ -87,6 +101,20 @@ public struct BetaLicenseAgreement: Codable, Identifiable {
 
         public init(app: App? = nil) {
             self.app = app
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(app, forKey: .app)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case app
         }
 
         /**

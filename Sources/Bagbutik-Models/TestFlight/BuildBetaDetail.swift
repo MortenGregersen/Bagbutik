@@ -82,6 +82,26 @@ public struct BuildBetaDetail: Codable, Identifiable {
             self.externalBuildState = externalBuildState
             self.internalBuildState = internalBuildState
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            autoNotifyEnabled = try container.decodeIfPresent(Bool.self, forKey: .autoNotifyEnabled)
+            externalBuildState = try container.decodeIfPresent(ExternalBetaState.self, forKey: .externalBuildState)
+            internalBuildState = try container.decodeIfPresent(InternalBetaState.self, forKey: .internalBuildState)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(autoNotifyEnabled, forKey: .autoNotifyEnabled)
+            try container.encodeIfPresent(externalBuildState, forKey: .externalBuildState)
+            try container.encodeIfPresent(internalBuildState, forKey: .internalBuildState)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case autoNotifyEnabled
+            case externalBuildState
+            case internalBuildState
+        }
     }
 
     /**
@@ -96,6 +116,20 @@ public struct BuildBetaDetail: Codable, Identifiable {
 
         public init(build: Build? = nil) {
             self.build = build
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            build = try container.decodeIfPresent(Build.self, forKey: .build)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(build, forKey: .build)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case build
         }
 
         /**

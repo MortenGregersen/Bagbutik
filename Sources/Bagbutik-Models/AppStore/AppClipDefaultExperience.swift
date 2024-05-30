@@ -73,6 +73,20 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
         public init(action: AppClipAction? = nil) {
             self.action = action
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            action = try container.decodeIfPresent(AppClipAction.self, forKey: .action)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(action, forKey: .action)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case action
+        }
     }
 
     /**
@@ -101,6 +115,29 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
             self.appClipAppStoreReviewDetail = appClipAppStoreReviewDetail
             self.appClipDefaultExperienceLocalizations = appClipDefaultExperienceLocalizations
             self.releaseWithAppStoreVersion = releaseWithAppStoreVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appClip = try container.decodeIfPresent(AppClip.self, forKey: .appClip)
+            appClipAppStoreReviewDetail = try container.decodeIfPresent(AppClipAppStoreReviewDetail.self, forKey: .appClipAppStoreReviewDetail)
+            appClipDefaultExperienceLocalizations = try container.decodeIfPresent(AppClipDefaultExperienceLocalizations.self, forKey: .appClipDefaultExperienceLocalizations)
+            releaseWithAppStoreVersion = try container.decodeIfPresent(ReleaseWithAppStoreVersion.self, forKey: .releaseWithAppStoreVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appClip, forKey: .appClip)
+            try container.encodeIfPresent(appClipAppStoreReviewDetail, forKey: .appClipAppStoreReviewDetail)
+            try container.encodeIfPresent(appClipDefaultExperienceLocalizations, forKey: .appClipDefaultExperienceLocalizations)
+            try container.encodeIfPresent(releaseWithAppStoreVersion, forKey: .releaseWithAppStoreVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appClip
+            case appClipAppStoreReviewDetail
+            case appClipDefaultExperienceLocalizations
+            case releaseWithAppStoreVersion
         }
 
         /**

@@ -63,6 +63,29 @@ public struct AppEventLocalization: Codable, Identifiable {
             self.name = name
             self.shortDescription = shortDescription
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            longDescription = try container.decodeIfPresent(String.self, forKey: .longDescription)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            shortDescription = try container.decodeIfPresent(String.self, forKey: .shortDescription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(longDescription, forKey: .longDescription)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(shortDescription, forKey: .shortDescription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case longDescription
+            case name
+            case shortDescription
+        }
     }
 
     public struct Relationships: Codable {
@@ -77,6 +100,26 @@ public struct AppEventLocalization: Codable, Identifiable {
             self.appEvent = appEvent
             self.appEventScreenshots = appEventScreenshots
             self.appEventVideoClips = appEventVideoClips
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appEvent = try container.decodeIfPresent(AppEvent.self, forKey: .appEvent)
+            appEventScreenshots = try container.decodeIfPresent(AppEventScreenshots.self, forKey: .appEventScreenshots)
+            appEventVideoClips = try container.decodeIfPresent(AppEventVideoClips.self, forKey: .appEventVideoClips)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appEvent, forKey: .appEvent)
+            try container.encodeIfPresent(appEventScreenshots, forKey: .appEventScreenshots)
+            try container.encodeIfPresent(appEventVideoClips, forKey: .appEventVideoClips)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appEvent
+            case appEventScreenshots
+            case appEventVideoClips
         }
 
         public struct AppEvent: Codable {

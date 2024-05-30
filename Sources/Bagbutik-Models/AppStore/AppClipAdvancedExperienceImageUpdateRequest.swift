@@ -16,6 +16,20 @@ public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, RequestBody 
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppClipAdvancedExperienceImageUpdateRequest.Data
      The data element of the request body.
@@ -78,6 +92,23 @@ public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, RequestBody 
             {
                 self.sourceFileChecksum = sourceFileChecksum
                 self.uploaded = uploaded
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
+                uploaded = try container.decodeIfPresent(Bool.self, forKey: .uploaded)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
+                try container.encodeIfPresent(uploaded, forKey: .uploaded)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case sourceFileChecksum
+                case uploaded
             }
         }
     }

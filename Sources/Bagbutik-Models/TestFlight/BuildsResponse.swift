@@ -30,6 +30,29 @@ public struct BuildsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode([Build].self, forKey: .data)
+        included = try container.decodeIfPresent([Included].self, forKey: .included)
+        links = try container.decode(PagedDocumentLinks.self, forKey: .links)
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: .meta)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+        try container.encode(links, forKey: .links)
+        try container.encodeIfPresent(meta, forKey: .meta)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+        case links
+        case meta
+    }
+
     public func getApp(for build: Build) -> App? {
         included?.compactMap { relationship -> App? in
             guard case let .app(app) = relationship else { return nil }

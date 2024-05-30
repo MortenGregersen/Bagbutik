@@ -46,6 +46,23 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
             self.appCustomProductPageLocalizations = appCustomProductPageLocalizations
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appCustomProductPage = try container.decodeIfPresent(AppCustomProductPage.self, forKey: .appCustomProductPage)
+            appCustomProductPageLocalizations = try container.decodeIfPresent(AppCustomProductPageLocalizations.self, forKey: .appCustomProductPageLocalizations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appCustomProductPage, forKey: .appCustomProductPage)
+            try container.encodeIfPresent(appCustomProductPageLocalizations, forKey: .appCustomProductPageLocalizations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appCustomProductPage
+            case appCustomProductPageLocalizations
+        }
+
         public struct AppCustomProductPage: Codable {
             @NullCodable public var data: Data?
 

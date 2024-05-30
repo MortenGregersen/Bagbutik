@@ -12,6 +12,23 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([Included].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     public struct Data: Codable {
         public var type: String { "appCustomProductPages" }
         public let attributes: Attributes
@@ -52,6 +69,20 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
             public init(name: String) {
                 self.name = name
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decode(String.self, forKey: .name)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(name, forKey: .name)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+            }
         }
 
         public struct Relationships: Codable {
@@ -71,11 +102,48 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                 self.customProductPageTemplate = customProductPageTemplate
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+                appCustomProductPageVersions = try container.decodeIfPresent(AppCustomProductPageVersions.self, forKey: .appCustomProductPageVersions)
+                appStoreVersionTemplate = try container.decodeIfPresent(AppStoreVersionTemplate.self, forKey: .appStoreVersionTemplate)
+                customProductPageTemplate = try container.decodeIfPresent(CustomProductPageTemplate.self, forKey: .customProductPageTemplate)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+                try container.encodeIfPresent(appCustomProductPageVersions, forKey: .appCustomProductPageVersions)
+                try container.encodeIfPresent(appStoreVersionTemplate, forKey: .appStoreVersionTemplate)
+                try container.encodeIfPresent(customProductPageTemplate, forKey: .customProductPageTemplate)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+                case appCustomProductPageVersions
+                case appStoreVersionTemplate
+                case customProductPageTemplate
+            }
+
             public struct App: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

@@ -48,6 +48,20 @@ public struct SubscriptionSubmission: Codable, Identifiable {
             self.subscription = subscription
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            subscription = try container.decodeIfPresent(Subscription.self, forKey: .subscription)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(subscription, forKey: .subscription)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case subscription
+        }
+
         public struct Subscription: Codable {
             @NullCodable public var data: Data?
             public var links: Links?

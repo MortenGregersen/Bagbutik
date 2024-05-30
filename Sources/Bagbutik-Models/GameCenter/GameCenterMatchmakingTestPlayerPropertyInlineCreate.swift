@@ -64,5 +64,22 @@ public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Iden
             self.playerId = playerId
             self.properties = properties
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            playerId = try container.decode(String.self, forKey: .playerId)
+            properties = try container.decodeIfPresent([Property].self, forKey: .properties)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(playerId, forKey: .playerId)
+            try container.encodeIfPresent(properties, forKey: .properties)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case playerId
+            case properties
+        }
     }
 }

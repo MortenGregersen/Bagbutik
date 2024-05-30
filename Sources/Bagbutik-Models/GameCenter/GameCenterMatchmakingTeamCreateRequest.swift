@@ -15,6 +15,20 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingTeamCreateRequest.Data
      The data structure of the request body you use to create a team.
@@ -79,6 +93,26 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
                 self.minPlayers = minPlayers
                 self.referenceName = referenceName
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                maxPlayers = try container.decode(Int.self, forKey: .maxPlayers)
+                minPlayers = try container.decode(Int.self, forKey: .minPlayers)
+                referenceName = try container.decode(String.self, forKey: .referenceName)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(maxPlayers, forKey: .maxPlayers)
+                try container.encode(minPlayers, forKey: .minPlayers)
+                try container.encode(referenceName, forKey: .referenceName)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case maxPlayers
+                case minPlayers
+                case referenceName
+            }
         }
 
         /**
@@ -95,6 +129,20 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
                 self.ruleSet = ruleSet
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                ruleSet = try container.decode(RuleSet.self, forKey: .ruleSet)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(ruleSet, forKey: .ruleSet)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case ruleSet
+            }
+
             /**
              # GameCenterMatchmakingTeamCreateRequest.Data.Relationships.RuleSet
              The relationship to the rule set that you provide when you create a team.
@@ -107,6 +155,20 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

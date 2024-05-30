@@ -54,5 +54,19 @@ public struct MarketplaceSearchDetail: Codable, Identifiable {
         public init(catalogUrl: String? = nil) {
             self.catalogUrl = catalogUrl
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            catalogUrl = try container.decodeIfPresent(String.self, forKey: .catalogUrl)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(catalogUrl, forKey: .catalogUrl)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case catalogUrl
+        }
     }
 }

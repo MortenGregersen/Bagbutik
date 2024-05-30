@@ -94,6 +94,35 @@ public struct AppClipHeaderImage: Codable, Identifiable {
             self.sourceFileChecksum = sourceFileChecksum
             self.uploadOperations = uploadOperations
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            assetDeliveryState = try container.decodeIfPresent(AppMediaAssetState.self, forKey: .assetDeliveryState)
+            fileName = try container.decodeIfPresent(String.self, forKey: .fileName)
+            fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize)
+            imageAsset = try container.decodeIfPresent(ImageAsset.self, forKey: .imageAsset)
+            sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: .sourceFileChecksum)
+            uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: .uploadOperations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(assetDeliveryState, forKey: .assetDeliveryState)
+            try container.encodeIfPresent(fileName, forKey: .fileName)
+            try container.encodeIfPresent(fileSize, forKey: .fileSize)
+            try container.encodeIfPresent(imageAsset, forKey: .imageAsset)
+            try container.encodeIfPresent(sourceFileChecksum, forKey: .sourceFileChecksum)
+            try container.encodeIfPresent(uploadOperations, forKey: .uploadOperations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case assetDeliveryState
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case uploadOperations
+        }
     }
 
     /**
@@ -109,6 +138,20 @@ public struct AppClipHeaderImage: Codable, Identifiable {
 
         public init(appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization? = nil) {
             self.appClipDefaultExperienceLocalization = appClipDefaultExperienceLocalization
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appClipDefaultExperienceLocalization = try container.decodeIfPresent(AppClipDefaultExperienceLocalization.self, forKey: .appClipDefaultExperienceLocalization)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appClipDefaultExperienceLocalization, forKey: .appClipDefaultExperienceLocalization)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appClipDefaultExperienceLocalization
         }
 
         /**

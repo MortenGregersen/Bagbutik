@@ -8,6 +8,20 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable {
         public var type: String { "appEncryptionDeclarationDocuments" }
         public let attributes: Attributes
@@ -52,6 +66,23 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
                 self.fileName = fileName
                 self.fileSize = fileSize
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                fileName = try container.decode(String.self, forKey: .fileName)
+                fileSize = try container.decode(Int.self, forKey: .fileSize)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(fileName, forKey: .fileName)
+                try container.encode(fileSize, forKey: .fileSize)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case fileName
+                case fileSize
+            }
         }
 
         public struct Relationships: Codable {
@@ -61,11 +92,39 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
                 self.appEncryptionDeclaration = appEncryptionDeclaration
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appEncryptionDeclaration = try container.decode(AppEncryptionDeclaration.self, forKey: .appEncryptionDeclaration)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appEncryptionDeclaration, forKey: .appEncryptionDeclaration)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appEncryptionDeclaration
+            }
+
             public struct AppEncryptionDeclaration: Codable {
                 public let data: Data
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 public struct Data: Codable, Identifiable {

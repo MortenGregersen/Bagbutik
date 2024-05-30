@@ -16,6 +16,20 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # DeviceUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,23 @@ public struct DeviceUpdateRequest: Codable, RequestBody {
             {
                 self.name = name
                 self.status = status
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                name = try container.decodeIfPresent(String.self, forKey: .name)
+                status = try container.decodeIfPresent(Device.Attributes.Status.self, forKey: .status)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(name, forKey: .name)
+                try container.encodeIfPresent(status, forKey: .status)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case name
+                case status
             }
         }
     }

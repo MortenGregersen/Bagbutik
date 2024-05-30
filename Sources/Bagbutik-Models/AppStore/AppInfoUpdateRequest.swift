@@ -16,6 +16,20 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppInfoUpdateRequest.Data
      The data element of the request body.
@@ -88,6 +102,35 @@ public struct AppInfoUpdateRequest: Codable, RequestBody {
                 self.secondaryCategory = secondaryCategory
                 self.secondarySubcategoryOne = secondarySubcategoryOne
                 self.secondarySubcategoryTwo = secondarySubcategoryTwo
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                primaryCategory = try container.decodeIfPresent(PrimaryCategory.self, forKey: .primaryCategory)
+                primarySubcategoryOne = try container.decodeIfPresent(PrimarySubcategoryOne.self, forKey: .primarySubcategoryOne)
+                primarySubcategoryTwo = try container.decodeIfPresent(PrimarySubcategoryTwo.self, forKey: .primarySubcategoryTwo)
+                secondaryCategory = try container.decodeIfPresent(SecondaryCategory.self, forKey: .secondaryCategory)
+                secondarySubcategoryOne = try container.decodeIfPresent(SecondarySubcategoryOne.self, forKey: .secondarySubcategoryOne)
+                secondarySubcategoryTwo = try container.decodeIfPresent(SecondarySubcategoryTwo.self, forKey: .secondarySubcategoryTwo)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(primaryCategory, forKey: .primaryCategory)
+                try container.encodeIfPresent(primarySubcategoryOne, forKey: .primarySubcategoryOne)
+                try container.encodeIfPresent(primarySubcategoryTwo, forKey: .primarySubcategoryTwo)
+                try container.encodeIfPresent(secondaryCategory, forKey: .secondaryCategory)
+                try container.encodeIfPresent(secondarySubcategoryOne, forKey: .secondarySubcategoryOne)
+                try container.encodeIfPresent(secondarySubcategoryTwo, forKey: .secondarySubcategoryTwo)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case primaryCategory
+                case primarySubcategoryOne
+                case primarySubcategoryTwo
+                case secondaryCategory
+                case secondarySubcategoryOne
+                case secondarySubcategoryTwo
             }
 
             /**

@@ -15,6 +15,20 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppStoreVersionCreateRequest.Data
      The data element of the request body.
@@ -85,6 +99,35 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 self.reviewType = reviewType
                 self.versionString = versionString
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+                earliestReleaseDate = try container.decodeIfPresent(Date.self, forKey: .earliestReleaseDate)
+                platform = try container.decode(Platform.self, forKey: .platform)
+                releaseType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReleaseType.self, forKey: .releaseType)
+                reviewType = try container.decodeIfPresent(AppStoreVersion.Attributes.ReviewType.self, forKey: .reviewType)
+                versionString = try container.decode(String.self, forKey: .versionString)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(copyright, forKey: .copyright)
+                try container.encodeIfPresent(earliestReleaseDate, forKey: .earliestReleaseDate)
+                try container.encode(platform, forKey: .platform)
+                try container.encodeIfPresent(releaseType, forKey: .releaseType)
+                try container.encodeIfPresent(reviewType, forKey: .reviewType)
+                try container.encode(versionString, forKey: .versionString)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case copyright
+                case earliestReleaseDate
+                case platform
+                case releaseType
+                case reviewType
+                case versionString
+            }
         }
 
         /**
@@ -108,6 +151,26 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+                appStoreVersionLocalizations = try container.decodeIfPresent(AppStoreVersionLocalizations.self, forKey: .appStoreVersionLocalizations)
+                build = try container.decodeIfPresent(Build.self, forKey: .build)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+                try container.encodeIfPresent(appStoreVersionLocalizations, forKey: .appStoreVersionLocalizations)
+                try container.encodeIfPresent(build, forKey: .build)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+                case appStoreVersionLocalizations
+                case build
+            }
+
             /**
              # AppStoreVersionCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
@@ -120,6 +183,20 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

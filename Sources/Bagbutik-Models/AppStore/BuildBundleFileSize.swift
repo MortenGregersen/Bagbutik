@@ -79,5 +79,28 @@ public struct BuildBundleFileSize: Codable, Identifiable {
             self.installBytes = installBytes
             self.osVersion = osVersion
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            deviceModel = try container.decodeIfPresent(String.self, forKey: .deviceModel)
+            downloadBytes = try container.decodeIfPresent(Int.self, forKey: .downloadBytes)
+            installBytes = try container.decodeIfPresent(Int.self, forKey: .installBytes)
+            osVersion = try container.decodeIfPresent(String.self, forKey: .osVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(deviceModel, forKey: .deviceModel)
+            try container.encodeIfPresent(downloadBytes, forKey: .downloadBytes)
+            try container.encodeIfPresent(installBytes, forKey: .installBytes)
+            try container.encodeIfPresent(osVersion, forKey: .osVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case deviceModel
+            case downloadBytes
+            case installBytes
+            case osVersion
+        }
     }
 }

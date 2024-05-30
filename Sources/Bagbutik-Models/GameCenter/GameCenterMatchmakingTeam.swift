@@ -75,5 +75,25 @@ public struct GameCenterMatchmakingTeam: Codable, Identifiable {
             self.minPlayers = minPlayers
             self.referenceName = referenceName
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            maxPlayers = try container.decodeIfPresent(Int.self, forKey: .maxPlayers)
+            minPlayers = try container.decodeIfPresent(Int.self, forKey: .minPlayers)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(maxPlayers, forKey: .maxPlayers)
+            try container.encodeIfPresent(minPlayers, forKey: .minPlayers)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case maxPlayers
+            case minPlayers
+            case referenceName
+        }
     }
 }

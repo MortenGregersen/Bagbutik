@@ -16,6 +16,20 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaGroupCreateRequest.Data
      The data element of the request body.
@@ -96,6 +110,38 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 self.publicLinkLimit = publicLinkLimit
                 self.publicLinkLimitEnabled = publicLinkLimitEnabled
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                feedbackEnabled = try container.decodeIfPresent(Bool.self, forKey: .feedbackEnabled)
+                hasAccessToAllBuilds = try container.decodeIfPresent(Bool.self, forKey: .hasAccessToAllBuilds)
+                isInternalGroup = try container.decodeIfPresent(Bool.self, forKey: .isInternalGroup)
+                name = try container.decode(String.self, forKey: .name)
+                publicLinkEnabled = try container.decodeIfPresent(Bool.self, forKey: .publicLinkEnabled)
+                publicLinkLimit = try container.decodeIfPresent(Int.self, forKey: .publicLinkLimit)
+                publicLinkLimitEnabled = try container.decodeIfPresent(Bool.self, forKey: .publicLinkLimitEnabled)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(feedbackEnabled, forKey: .feedbackEnabled)
+                try container.encodeIfPresent(hasAccessToAllBuilds, forKey: .hasAccessToAllBuilds)
+                try container.encodeIfPresent(isInternalGroup, forKey: .isInternalGroup)
+                try container.encode(name, forKey: .name)
+                try container.encodeIfPresent(publicLinkEnabled, forKey: .publicLinkEnabled)
+                try container.encodeIfPresent(publicLinkLimit, forKey: .publicLinkLimit)
+                try container.encodeIfPresent(publicLinkLimitEnabled, forKey: .publicLinkLimitEnabled)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case feedbackEnabled
+                case hasAccessToAllBuilds
+                case isInternalGroup
+                case name
+                case publicLinkEnabled
+                case publicLinkLimit
+                case publicLinkLimitEnabled
+            }
         }
 
         /**
@@ -119,6 +165,26 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
                 self.builds = builds
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+                betaTesters = try container.decodeIfPresent(BetaTesters.self, forKey: .betaTesters)
+                builds = try container.decodeIfPresent(Builds.self, forKey: .builds)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+                try container.encodeIfPresent(betaTesters, forKey: .betaTesters)
+                try container.encodeIfPresent(builds, forKey: .builds)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+                case betaTesters
+                case builds
+            }
+
             /**
              # BetaGroupCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
@@ -131,6 +197,20 @@ public struct BetaGroupCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

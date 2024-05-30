@@ -15,6 +15,20 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # EndUserLicenseAgreementCreateRequest.Data
      The data element of the request body.
@@ -69,6 +83,20 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
             public init(agreementText: String) {
                 self.agreementText = agreementText
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                agreementText = try container.decode(String.self, forKey: .agreementText)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(agreementText, forKey: .agreementText)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case agreementText
+            }
         }
 
         /**
@@ -89,6 +117,23 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
                 self.territories = territories
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                app = try container.decode(App.self, forKey: .app)
+                territories = try container.decode(Territories.self, forKey: .territories)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(app, forKey: .app)
+                try container.encode(territories, forKey: .territories)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case app
+                case territories
+            }
+
             /**
              # EndUserLicenseAgreementCreateRequest.Data.Relationships.App
              The relationships to other resources that you can set with this request.
@@ -101,6 +146,20 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**
@@ -151,6 +210,20 @@ public struct EndUserLicenseAgreementCreateRequest: Codable, RequestBody {
 
                 public init(data: [Data]) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

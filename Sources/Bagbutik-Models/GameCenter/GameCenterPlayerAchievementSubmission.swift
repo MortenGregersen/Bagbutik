@@ -63,5 +63,34 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Identifiable {
             self.submittedDate = submittedDate
             self.vendorIdentifier = vendorIdentifier
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            bundleId = try container.decodeIfPresent(String.self, forKey: .bundleId)
+            challengeIds = try container.decodeIfPresent([String].self, forKey: .challengeIds)
+            percentageAchieved = try container.decodeIfPresent(Int.self, forKey: .percentageAchieved)
+            scopedPlayerId = try container.decodeIfPresent(String.self, forKey: .scopedPlayerId)
+            submittedDate = try container.decodeIfPresent(Date.self, forKey: .submittedDate)
+            vendorIdentifier = try container.decodeIfPresent(String.self, forKey: .vendorIdentifier)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(challengeIds, forKey: .challengeIds)
+            try container.encodeIfPresent(percentageAchieved, forKey: .percentageAchieved)
+            try container.encodeIfPresent(scopedPlayerId, forKey: .scopedPlayerId)
+            try container.encodeIfPresent(submittedDate, forKey: .submittedDate)
+            try container.encodeIfPresent(vendorIdentifier, forKey: .vendorIdentifier)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case bundleId
+            case challengeIds
+            case percentageAchieved
+            case scopedPlayerId
+            case submittedDate
+            case vendorIdentifier
+        }
     }
 }

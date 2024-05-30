@@ -51,6 +51,23 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiabl
             self.locale = locale
             self.promotionalText = promotionalText
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decode(String.self, forKey: .locale)
+            promotionalText = try container.decodeIfPresent(String.self, forKey: .promotionalText)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(locale, forKey: .locale)
+            try container.encodeIfPresent(promotionalText, forKey: .promotionalText)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case promotionalText
+        }
     }
 
     public struct Relationships: Codable {
@@ -58,6 +75,20 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiabl
 
         public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil) {
             self.appCustomProductPageVersion = appCustomProductPageVersion
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appCustomProductPageVersion = try container.decodeIfPresent(AppCustomProductPageVersion.self, forKey: .appCustomProductPageVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appCustomProductPageVersion, forKey: .appCustomProductPageVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appCustomProductPageVersion
         }
 
         public struct AppCustomProductPageVersion: Codable {

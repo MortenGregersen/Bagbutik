@@ -16,6 +16,20 @@ public struct GameCenterMatchmakingRuleUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # GameCenterMatchmakingRuleUpdateRequest.Data
      The data structure of the request body you use to modify a rule.
@@ -80,6 +94,26 @@ public struct GameCenterMatchmakingRuleUpdateRequest: Codable, RequestBody {
                 self.description = description
                 self.expression = expression
                 self.weight = weight
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                description = try container.decodeIfPresent(String.self, forKey: .description)
+                expression = try container.decodeIfPresent(String.self, forKey: .expression)
+                weight = try container.decodeIfPresent(Double.self, forKey: .weight)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(description, forKey: .description)
+                try container.encodeIfPresent(expression, forKey: .expression)
+                try container.encodeIfPresent(weight, forKey: .weight)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case description
+                case expression
+                case weight
             }
         }
     }

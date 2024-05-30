@@ -15,6 +15,20 @@ public struct GameCenterAchievementUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "gameCenterAchievements" }
@@ -67,6 +81,32 @@ public struct GameCenterAchievementUpdateRequest: Codable, RequestBody {
                 self.referenceName = referenceName
                 self.repeatable = repeatable
                 self.showBeforeEarned = showBeforeEarned
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                archived = try container.decodeIfPresent(Bool.self, forKey: .archived)
+                points = try container.decodeIfPresent(Int.self, forKey: .points)
+                referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+                repeatable = try container.decodeIfPresent(Bool.self, forKey: .repeatable)
+                showBeforeEarned = try container.decodeIfPresent(Bool.self, forKey: .showBeforeEarned)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(archived, forKey: .archived)
+                try container.encodeIfPresent(points, forKey: .points)
+                try container.encodeIfPresent(referenceName, forKey: .referenceName)
+                try container.encodeIfPresent(repeatable, forKey: .repeatable)
+                try container.encodeIfPresent(showBeforeEarned, forKey: .showBeforeEarned)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case archived
+                case points
+                case referenceName
+                case repeatable
+                case showBeforeEarned
             }
         }
     }

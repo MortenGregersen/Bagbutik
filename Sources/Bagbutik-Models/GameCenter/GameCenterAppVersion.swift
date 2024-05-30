@@ -60,6 +60,20 @@ public struct GameCenterAppVersion: Codable, Identifiable {
         public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(enabled, forKey: .enabled)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case enabled
+        }
     }
 
     public struct Relationships: Codable {
@@ -71,6 +85,23 @@ public struct GameCenterAppVersion: Codable, Identifiable {
         {
             self.appStoreVersion = appStoreVersion
             self.compatibilityVersions = compatibilityVersions
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+            compatibilityVersions = try container.decodeIfPresent(CompatibilityVersions.self, forKey: .compatibilityVersions)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+            try container.encodeIfPresent(compatibilityVersions, forKey: .compatibilityVersions)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreVersion
+            case compatibilityVersions
         }
 
         public struct AppStoreVersion: Codable {

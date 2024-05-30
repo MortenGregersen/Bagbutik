@@ -82,6 +82,47 @@ public struct AppEvent: Codable, Identifiable {
             self.territorySchedules = territorySchedules
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            archivedTerritorySchedules = try container.decodeIfPresent([ArchivedTerritorySchedules].self, forKey: .archivedTerritorySchedules)
+            badge = try container.decodeIfPresent(Badge.self, forKey: .badge)
+            deepLink = try container.decodeIfPresent(String.self, forKey: .deepLink)
+            eventState = try container.decodeIfPresent(EventState.self, forKey: .eventState)
+            primaryLocale = try container.decodeIfPresent(String.self, forKey: .primaryLocale)
+            priority = try container.decodeIfPresent(Priority.self, forKey: .priority)
+            purchaseRequirement = try container.decodeIfPresent(PurchaseRequirement.self, forKey: .purchaseRequirement)
+            purpose = try container.decodeIfPresent(Purpose.self, forKey: .purpose)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+            territorySchedules = try container.decodeIfPresent([TerritorySchedules].self, forKey: .territorySchedules)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(archivedTerritorySchedules, forKey: .archivedTerritorySchedules)
+            try container.encodeIfPresent(badge, forKey: .badge)
+            try container.encodeIfPresent(deepLink, forKey: .deepLink)
+            try container.encodeIfPresent(eventState, forKey: .eventState)
+            try container.encodeIfPresent(primaryLocale, forKey: .primaryLocale)
+            try container.encodeIfPresent(priority, forKey: .priority)
+            try container.encodeIfPresent(purchaseRequirement, forKey: .purchaseRequirement)
+            try container.encodeIfPresent(purpose, forKey: .purpose)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+            try container.encodeIfPresent(territorySchedules, forKey: .territorySchedules)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case archivedTerritorySchedules
+            case badge
+            case deepLink
+            case eventState
+            case primaryLocale
+            case priority
+            case purchaseRequirement
+            case purpose
+            case referenceName
+            case territorySchedules
+        }
+
         public struct ArchivedTerritorySchedules: Codable {
             public var eventEnd: Date?
             public var eventStart: Date?
@@ -97,6 +138,29 @@ public struct AppEvent: Codable, Identifiable {
                 self.eventStart = eventStart
                 self.publishStart = publishStart
                 self.territories = territories
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                eventEnd = try container.decodeIfPresent(Date.self, forKey: .eventEnd)
+                eventStart = try container.decodeIfPresent(Date.self, forKey: .eventStart)
+                publishStart = try container.decodeIfPresent(Date.self, forKey: .publishStart)
+                territories = try container.decodeIfPresent([String].self, forKey: .territories)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(eventEnd, forKey: .eventEnd)
+                try container.encodeIfPresent(eventStart, forKey: .eventStart)
+                try container.encodeIfPresent(publishStart, forKey: .publishStart)
+                try container.encodeIfPresent(territories, forKey: .territories)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case eventEnd
+                case eventStart
+                case publishStart
+                case territories
             }
         }
 
@@ -159,6 +223,29 @@ public struct AppEvent: Codable, Identifiable {
                 self.publishStart = publishStart
                 self.territories = territories
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                eventEnd = try container.decodeIfPresent(Date.self, forKey: .eventEnd)
+                eventStart = try container.decodeIfPresent(Date.self, forKey: .eventStart)
+                publishStart = try container.decodeIfPresent(Date.self, forKey: .publishStart)
+                territories = try container.decodeIfPresent([String].self, forKey: .territories)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(eventEnd, forKey: .eventEnd)
+                try container.encodeIfPresent(eventStart, forKey: .eventStart)
+                try container.encodeIfPresent(publishStart, forKey: .publishStart)
+                try container.encodeIfPresent(territories, forKey: .territories)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case eventEnd
+                case eventStart
+                case publishStart
+                case territories
+            }
         }
     }
 
@@ -167,6 +254,20 @@ public struct AppEvent: Codable, Identifiable {
 
         public init(localizations: Localizations? = nil) {
             self.localizations = localizations
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            localizations = try container.decodeIfPresent(Localizations.self, forKey: .localizations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(localizations, forKey: .localizations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case localizations
         }
 
         public struct Localizations: Codable {

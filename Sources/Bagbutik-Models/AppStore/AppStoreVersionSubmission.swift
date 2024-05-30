@@ -62,6 +62,20 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
             self.appStoreVersion = appStoreVersion
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreVersion = try container.decodeIfPresent(AppStoreVersion.self, forKey: .appStoreVersion)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreVersion, forKey: .appStoreVersion)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreVersion
+        }
+
         /**
          # AppStoreVersionSubmission.Relationships.AppStoreVersion
          The data and links that describe the relationship between the resources.

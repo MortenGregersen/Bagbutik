@@ -63,6 +63,29 @@ public struct AppStoreVersionExperimentTreatment: Codable, Identifiable {
             self.name = name
             self.promotedDate = promotedDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appIcon = try container.decodeIfPresent(ImageAsset.self, forKey: .appIcon)
+            appIconName = try container.decodeIfPresent(String.self, forKey: .appIconName)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            promotedDate = try container.decodeIfPresent(Date.self, forKey: .promotedDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appIcon, forKey: .appIcon)
+            try container.encodeIfPresent(appIconName, forKey: .appIconName)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(promotedDate, forKey: .promotedDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appIcon
+            case appIconName
+            case name
+            case promotedDate
+        }
     }
 
     public struct Relationships: Codable {
@@ -77,6 +100,26 @@ public struct AppStoreVersionExperimentTreatment: Codable, Identifiable {
             self.appStoreVersionExperiment = appStoreVersionExperiment
             self.appStoreVersionExperimentTreatmentLocalizations = appStoreVersionExperimentTreatmentLocalizations
             self.appStoreVersionExperimentV2 = appStoreVersionExperimentV2
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            appStoreVersionExperiment = try container.decodeIfPresent(AppStoreVersionExperiment.self, forKey: .appStoreVersionExperiment)
+            appStoreVersionExperimentTreatmentLocalizations = try container.decodeIfPresent(AppStoreVersionExperimentTreatmentLocalizations.self, forKey: .appStoreVersionExperimentTreatmentLocalizations)
+            appStoreVersionExperimentV2 = try container.decodeIfPresent(AppStoreVersionExperimentV2.self, forKey: .appStoreVersionExperimentV2)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(appStoreVersionExperiment, forKey: .appStoreVersionExperiment)
+            try container.encodeIfPresent(appStoreVersionExperimentTreatmentLocalizations, forKey: .appStoreVersionExperimentTreatmentLocalizations)
+            try container.encodeIfPresent(appStoreVersionExperimentV2, forKey: .appStoreVersionExperimentV2)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case appStoreVersionExperiment
+            case appStoreVersionExperimentTreatmentLocalizations
+            case appStoreVersionExperimentV2
         }
 
         public struct AppStoreVersionExperiment: Codable {

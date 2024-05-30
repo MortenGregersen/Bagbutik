@@ -16,6 +16,20 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BuildBetaDetailUpdateRequest.Data
      The data element of the request body.
@@ -73,6 +87,20 @@ public struct BuildBetaDetailUpdateRequest: Codable, RequestBody {
 
             public init(autoNotifyEnabled: Bool? = nil) {
                 self.autoNotifyEnabled = autoNotifyEnabled
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                autoNotifyEnabled = try container.decodeIfPresent(Bool.self, forKey: .autoNotifyEnabled)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(autoNotifyEnabled, forKey: .autoNotifyEnabled)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case autoNotifyEnabled
             }
         }
     }

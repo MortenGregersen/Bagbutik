@@ -21,6 +21,23 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
         self.included = included
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+        included = try container.decodeIfPresent([Included].self, forKey: .included)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(included, forKey: .included)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+        case included
+    }
+
     /**
      # GameCenterMatchmakingRuleSetTestCreateRequest.Data
      The data structure of the request body for testing a rule set.
@@ -73,6 +90,23 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                 self.matchmakingRuleSet = matchmakingRuleSet
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                matchmakingRequests = try container.decode(MatchmakingRequests.self, forKey: .matchmakingRequests)
+                matchmakingRuleSet = try container.decode(MatchmakingRuleSet.self, forKey: .matchmakingRuleSet)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(matchmakingRequests, forKey: .matchmakingRequests)
+                try container.encode(matchmakingRuleSet, forKey: .matchmakingRuleSet)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case matchmakingRequests
+                case matchmakingRuleSet
+            }
+
             /**
              # GameCenterMatchmakingRuleSetTestCreateRequest.Data.Relationships.MatchmakingRequests
              The data structure representing the sample match requests.
@@ -85,6 +119,20 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
 
                 public init(data: [Data]) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode([Data].self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**
@@ -137,6 +185,20 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

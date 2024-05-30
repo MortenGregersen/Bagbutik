@@ -15,6 +15,20 @@ public struct GameCenterAppVersionUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "gameCenterAppVersions" }
@@ -54,6 +68,20 @@ public struct GameCenterAppVersionUpdateRequest: Codable, RequestBody {
 
             public init(enabled: Bool? = nil) {
                 self.enabled = enabled
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(enabled, forKey: .enabled)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case enabled
             }
         }
     }

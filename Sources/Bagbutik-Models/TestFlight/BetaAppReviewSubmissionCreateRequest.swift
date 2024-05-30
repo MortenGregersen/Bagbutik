@@ -16,6 +16,20 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # BetaAppReviewSubmissionCreateRequest.Data
      The data element of the request body.
@@ -66,6 +80,20 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
                 self.build = build
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                build = try container.decode(Build.self, forKey: .build)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(build, forKey: .build)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case build
+            }
+
             /**
              # BetaAppReviewSubmissionCreateRequest.Data.Relationships.Build
              The relationships to other resources that you can set with this request.
@@ -78,6 +106,20 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

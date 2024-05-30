@@ -102,6 +102,41 @@ public struct CiBuildAction: Codable, Identifiable {
             self.name = name
             self.startedDate = startedDate
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            actionType = try container.decodeIfPresent(CiActionType.self, forKey: .actionType)
+            completionStatus = try container.decodeIfPresent(CiCompletionStatus.self, forKey: .completionStatus)
+            executionProgress = try container.decodeIfPresent(CiExecutionProgress.self, forKey: .executionProgress)
+            finishedDate = try container.decodeIfPresent(Date.self, forKey: .finishedDate)
+            isRequiredToPass = try container.decodeIfPresent(Bool.self, forKey: .isRequiredToPass)
+            issueCounts = try container.decodeIfPresent(CiIssueCounts.self, forKey: .issueCounts)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            startedDate = try container.decodeIfPresent(Date.self, forKey: .startedDate)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(actionType, forKey: .actionType)
+            try container.encodeIfPresent(completionStatus, forKey: .completionStatus)
+            try container.encodeIfPresent(executionProgress, forKey: .executionProgress)
+            try container.encodeIfPresent(finishedDate, forKey: .finishedDate)
+            try container.encodeIfPresent(isRequiredToPass, forKey: .isRequiredToPass)
+            try container.encodeIfPresent(issueCounts, forKey: .issueCounts)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(startedDate, forKey: .startedDate)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case actionType
+            case completionStatus
+            case executionProgress
+            case finishedDate
+            case isRequiredToPass
+            case issueCounts
+            case name
+            case startedDate
+        }
     }
 
     /**
@@ -117,6 +152,20 @@ public struct CiBuildAction: Codable, Identifiable {
 
         public init(buildRun: BuildRun? = nil) {
             self.buildRun = buildRun
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            buildRun = try container.decodeIfPresent(BuildRun.self, forKey: .buildRun)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(buildRun, forKey: .buildRun)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case buildRun
         }
 
         /**

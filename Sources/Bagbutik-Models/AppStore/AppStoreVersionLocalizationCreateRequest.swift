@@ -15,6 +15,20 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     /**
      # AppStoreVersionLocalizationCreateRequest.Data
      The data element of the request body.
@@ -88,6 +102,38 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
                 self.supportUrl = supportUrl
                 self.whatsNew = whatsNew
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                description = try container.decodeIfPresent(String.self, forKey: .description)
+                keywords = try container.decodeIfPresent(String.self, forKey: .keywords)
+                locale = try container.decode(String.self, forKey: .locale)
+                marketingUrl = try container.decodeIfPresent(String.self, forKey: .marketingUrl)
+                promotionalText = try container.decodeIfPresent(String.self, forKey: .promotionalText)
+                supportUrl = try container.decodeIfPresent(String.self, forKey: .supportUrl)
+                whatsNew = try container.decodeIfPresent(String.self, forKey: .whatsNew)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(description, forKey: .description)
+                try container.encodeIfPresent(keywords, forKey: .keywords)
+                try container.encode(locale, forKey: .locale)
+                try container.encodeIfPresent(marketingUrl, forKey: .marketingUrl)
+                try container.encodeIfPresent(promotionalText, forKey: .promotionalText)
+                try container.encodeIfPresent(supportUrl, forKey: .supportUrl)
+                try container.encodeIfPresent(whatsNew, forKey: .whatsNew)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case description
+                case keywords
+                case locale
+                case marketingUrl
+                case promotionalText
+                case supportUrl
+                case whatsNew
+            }
         }
 
         /**
@@ -104,6 +150,20 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
                 self.appStoreVersion = appStoreVersion
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                appStoreVersion = try container.decode(AppStoreVersion.self, forKey: .appStoreVersion)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encode(appStoreVersion, forKey: .appStoreVersion)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case appStoreVersion
+            }
+
             /**
              # AppStoreVersionLocalizationCreateRequest.Data.Relationships.AppStoreVersion
              The relationships to other resources that you can set with this request.
@@ -116,6 +176,20 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
 
                 public init(data: Data) {
                     self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    data = try container.decode(Data.self, forKey: .data)
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: CodingKeys.self)
+                    try container.encode(data, forKey: .data)
+                }
+
+                private enum CodingKeys: String, CodingKey {
+                    case data
                 }
 
                 /**

@@ -15,6 +15,20 @@ public struct MarketplaceSearchDetailUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(Data.self, forKey: .data)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(data, forKey: .data)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "marketplaceSearchDetails" }
@@ -54,6 +68,20 @@ public struct MarketplaceSearchDetailUpdateRequest: Codable, RequestBody {
 
             public init(catalogUrl: String? = nil) {
                 self.catalogUrl = catalogUrl
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                catalogUrl = try container.decodeIfPresent(String.self, forKey: .catalogUrl)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(catalogUrl, forKey: .catalogUrl)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case catalogUrl
             }
         }
     }

@@ -66,6 +66,20 @@ public struct GameCenterMatchmakingRuleSetTest: Codable, Identifiable {
             self.matchmakingResults = matchmakingResults
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            matchmakingResults = try container.decodeIfPresent([MatchmakingResults].self, forKey: .matchmakingResults)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(matchmakingResults, forKey: .matchmakingResults)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case matchmakingResults
+        }
+
         /**
          # GameCenterMatchmakingRuleSetTest.Attributes.MatchmakingResults
          The data structure representing the results of a match request.
@@ -84,6 +98,23 @@ public struct GameCenterMatchmakingRuleSetTest: Codable, Identifiable {
             {
                 self.requestName = requestName
                 self.teamAssignments = teamAssignments
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                requestName = try container.decodeIfPresent(String.self, forKey: .requestName)
+                teamAssignments = try container.decodeIfPresent([GameCenterMatchmakingTeamAssignment].self, forKey: .teamAssignments)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+                try container.encodeIfPresent(requestName, forKey: .requestName)
+                try container.encodeIfPresent(teamAssignments, forKey: .teamAssignments)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case requestName
+                case teamAssignments
             }
         }
     }

@@ -71,6 +71,23 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiab
             self.locale = locale
             self.title = title
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decode(String.self, forKey: .locale)
+            title = try container.decode(String.self, forKey: .title)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(locale, forKey: .locale)
+            try container.encode(title, forKey: .title)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case title
+        }
     }
 
     /**
@@ -86,6 +103,20 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiab
 
         public init(betaAppClipInvocation: BetaAppClipInvocation? = nil) {
             self.betaAppClipInvocation = betaAppClipInvocation
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            betaAppClipInvocation = try container.decodeIfPresent(BetaAppClipInvocation.self, forKey: .betaAppClipInvocation)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(betaAppClipInvocation, forKey: .betaAppClipInvocation)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case betaAppClipInvocation
         }
 
         /**

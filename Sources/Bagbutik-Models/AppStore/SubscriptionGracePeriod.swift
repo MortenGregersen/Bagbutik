@@ -58,6 +58,29 @@ public struct SubscriptionGracePeriod: Codable, Identifiable {
             self.sandboxOptIn = sandboxOptIn
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            duration = try container.decodeIfPresent(SubscriptionGracePeriodDuration.self, forKey: .duration)
+            optIn = try container.decodeIfPresent(Bool.self, forKey: .optIn)
+            renewalType = try container.decodeIfPresent(RenewalType.self, forKey: .renewalType)
+            sandboxOptIn = try container.decodeIfPresent(Bool.self, forKey: .sandboxOptIn)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(duration, forKey: .duration)
+            try container.encodeIfPresent(optIn, forKey: .optIn)
+            try container.encodeIfPresent(renewalType, forKey: .renewalType)
+            try container.encodeIfPresent(sandboxOptIn, forKey: .sandboxOptIn)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case duration
+            case optIn
+            case renewalType
+            case sandboxOptIn
+        }
+
         public enum RenewalType: String, Codable, CaseIterable {
             case allRenewals = "ALL_RENEWALS"
             case paidToPaidOnly = "PAID_TO_PAID_ONLY"

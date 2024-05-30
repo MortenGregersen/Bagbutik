@@ -60,6 +60,20 @@ public struct GameCenterGroup: Codable, Identifiable {
         public init(referenceName: String? = nil) {
             self.referenceName = referenceName
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            referenceName = try container.decodeIfPresent(String.self, forKey: .referenceName)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(referenceName, forKey: .referenceName)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case referenceName
+        }
     }
 
     public struct Relationships: Codable {
@@ -77,6 +91,29 @@ public struct GameCenterGroup: Codable, Identifiable {
             self.gameCenterDetails = gameCenterDetails
             self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
             self.gameCenterLeaderboards = gameCenterLeaderboards
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            gameCenterAchievements = try container.decodeIfPresent(GameCenterAchievements.self, forKey: .gameCenterAchievements)
+            gameCenterDetails = try container.decodeIfPresent(GameCenterDetails.self, forKey: .gameCenterDetails)
+            gameCenterLeaderboardSets = try container.decodeIfPresent(GameCenterLeaderboardSets.self, forKey: .gameCenterLeaderboardSets)
+            gameCenterLeaderboards = try container.decodeIfPresent(GameCenterLeaderboards.self, forKey: .gameCenterLeaderboards)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(gameCenterAchievements, forKey: .gameCenterAchievements)
+            try container.encodeIfPresent(gameCenterDetails, forKey: .gameCenterDetails)
+            try container.encodeIfPresent(gameCenterLeaderboardSets, forKey: .gameCenterLeaderboardSets)
+            try container.encodeIfPresent(gameCenterLeaderboards, forKey: .gameCenterLeaderboards)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case gameCenterAchievements
+            case gameCenterDetails
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboards
         }
 
         public struct GameCenterAchievements: Codable {

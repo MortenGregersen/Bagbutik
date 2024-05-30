@@ -80,6 +80,23 @@ public struct BetaBuildLocalization: Codable, Identifiable {
             self.locale = locale
             self.whatsNew = whatsNew
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            locale = try container.decodeIfPresent(String.self, forKey: .locale)
+            whatsNew = try container.decodeIfPresent(String.self, forKey: .whatsNew)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(locale, forKey: .locale)
+            try container.encodeIfPresent(whatsNew, forKey: .whatsNew)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case locale
+            case whatsNew
+        }
     }
 
     /**
@@ -94,6 +111,20 @@ public struct BetaBuildLocalization: Codable, Identifiable {
 
         public init(build: Build? = nil) {
             self.build = build
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            build = try container.decodeIfPresent(Build.self, forKey: .build)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(build, forKey: .build)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case build
         }
 
         /**

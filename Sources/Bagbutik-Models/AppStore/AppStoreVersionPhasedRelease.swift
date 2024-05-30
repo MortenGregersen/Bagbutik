@@ -71,5 +71,28 @@ public struct AppStoreVersionPhasedRelease: Codable, Identifiable {
             self.startDate = startDate
             self.totalPauseDuration = totalPauseDuration
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            currentDayNumber = try container.decodeIfPresent(Int.self, forKey: .currentDayNumber)
+            phasedReleaseState = try container.decodeIfPresent(PhasedReleaseState.self, forKey: .phasedReleaseState)
+            startDate = try container.decodeIfPresent(Date.self, forKey: .startDate)
+            totalPauseDuration = try container.decodeIfPresent(Int.self, forKey: .totalPauseDuration)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(currentDayNumber, forKey: .currentDayNumber)
+            try container.encodeIfPresent(phasedReleaseState, forKey: .phasedReleaseState)
+            try container.encodeIfPresent(startDate, forKey: .startDate)
+            try container.encodeIfPresent(totalPauseDuration, forKey: .totalPauseDuration)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case currentDayNumber
+            case phasedReleaseState
+            case startDate
+            case totalPauseDuration
+        }
     }
 }

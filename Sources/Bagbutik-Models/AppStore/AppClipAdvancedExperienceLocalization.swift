@@ -75,5 +75,25 @@ public struct AppClipAdvancedExperienceLocalization: Codable, Identifiable {
             self.subtitle = subtitle
             self.title = title
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            language = try container.decodeIfPresent(AppClipAdvancedExperienceLanguage.self, forKey: .language)
+            subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
+            title = try container.decodeIfPresent(String.self, forKey: .title)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(language, forKey: .language)
+            try container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try container.encodeIfPresent(title, forKey: .title)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case language
+            case subtitle
+            case title
+        }
     }
 }

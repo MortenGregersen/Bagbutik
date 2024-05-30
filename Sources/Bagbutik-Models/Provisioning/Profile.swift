@@ -95,6 +95,41 @@ public struct Profile: Codable, Identifiable {
             self.uuid = uuid
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            createdDate = try container.decodeIfPresent(Date.self, forKey: .createdDate)
+            expirationDate = try container.decodeIfPresent(Date.self, forKey: .expirationDate)
+            name = try container.decodeIfPresent(String.self, forKey: .name)
+            platform = try container.decodeIfPresent(BundleIdPlatform.self, forKey: .platform)
+            profileContent = try container.decodeIfPresent(String.self, forKey: .profileContent)
+            profileState = try container.decodeIfPresent(ProfileState.self, forKey: .profileState)
+            profileType = try container.decodeIfPresent(ProfileType.self, forKey: .profileType)
+            uuid = try container.decodeIfPresent(String.self, forKey: .uuid)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(createdDate, forKey: .createdDate)
+            try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
+            try container.encodeIfPresent(name, forKey: .name)
+            try container.encodeIfPresent(platform, forKey: .platform)
+            try container.encodeIfPresent(profileContent, forKey: .profileContent)
+            try container.encodeIfPresent(profileState, forKey: .profileState)
+            try container.encodeIfPresent(profileType, forKey: .profileType)
+            try container.encodeIfPresent(uuid, forKey: .uuid)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case createdDate
+            case expirationDate
+            case name
+            case platform
+            case profileContent
+            case profileState
+            case profileType
+            case uuid
+        }
+
         public enum ProfileState: String, ParameterValue, Codable, CaseIterable {
             case active = "ACTIVE"
             case invalid = "INVALID"
@@ -137,6 +172,26 @@ public struct Profile: Codable, Identifiable {
             self.bundleId = bundleId
             self.certificates = certificates
             self.devices = devices
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            bundleId = try container.decodeIfPresent(BundleId.self, forKey: .bundleId)
+            certificates = try container.decodeIfPresent(Certificates.self, forKey: .certificates)
+            devices = try container.decodeIfPresent(Devices.self, forKey: .devices)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(bundleId, forKey: .bundleId)
+            try container.encodeIfPresent(certificates, forKey: .certificates)
+            try container.encodeIfPresent(devices, forKey: .devices)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case bundleId
+            case certificates
+            case devices
         }
 
         /**

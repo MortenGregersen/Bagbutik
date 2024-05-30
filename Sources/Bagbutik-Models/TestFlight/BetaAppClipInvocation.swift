@@ -73,6 +73,20 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
         public init(url: String? = nil) {
             self.url = url
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            url = try container.decodeIfPresent(String.self, forKey: .url)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(url, forKey: .url)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case url
+        }
     }
 
     /**
@@ -88,6 +102,20 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
 
         public init(betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations? = nil) {
             self.betaAppClipInvocationLocalizations = betaAppClipInvocationLocalizations
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            betaAppClipInvocationLocalizations = try container.decodeIfPresent(BetaAppClipInvocationLocalizations.self, forKey: .betaAppClipInvocationLocalizations)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(betaAppClipInvocationLocalizations, forKey: .betaAppClipInvocationLocalizations)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case betaAppClipInvocationLocalizations
         }
 
         /**

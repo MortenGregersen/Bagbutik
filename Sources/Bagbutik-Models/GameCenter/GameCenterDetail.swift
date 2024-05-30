@@ -64,6 +64,23 @@ public struct GameCenterDetail: Codable, Identifiable {
             self.arcadeEnabled = arcadeEnabled
             self.challengeEnabled = challengeEnabled
         }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            arcadeEnabled = try container.decodeIfPresent(Bool.self, forKey: .arcadeEnabled)
+            challengeEnabled = try container.decodeIfPresent(Bool.self, forKey: .challengeEnabled)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(arcadeEnabled, forKey: .arcadeEnabled)
+            try container.encodeIfPresent(challengeEnabled, forKey: .challengeEnabled)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case arcadeEnabled
+            case challengeEnabled
+        }
     }
 
     public struct Relationships: Codable {
@@ -102,6 +119,50 @@ public struct GameCenterDetail: Codable, Identifiable {
             self.gameCenterLeaderboards = gameCenterLeaderboards
             self.leaderboardReleases = leaderboardReleases
             self.leaderboardSetReleases = leaderboardSetReleases
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            achievementReleases = try container.decodeIfPresent(AchievementReleases.self, forKey: .achievementReleases)
+            app = try container.decodeIfPresent(App.self, forKey: .app)
+            defaultGroupLeaderboard = try container.decodeIfPresent(DefaultGroupLeaderboard.self, forKey: .defaultGroupLeaderboard)
+            defaultLeaderboard = try container.decodeIfPresent(DefaultLeaderboard.self, forKey: .defaultLeaderboard)
+            gameCenterAchievements = try container.decodeIfPresent(GameCenterAchievements.self, forKey: .gameCenterAchievements)
+            gameCenterAppVersions = try container.decodeIfPresent(GameCenterAppVersions.self, forKey: .gameCenterAppVersions)
+            gameCenterGroup = try container.decodeIfPresent(GameCenterGroup.self, forKey: .gameCenterGroup)
+            gameCenterLeaderboardSets = try container.decodeIfPresent(GameCenterLeaderboardSets.self, forKey: .gameCenterLeaderboardSets)
+            gameCenterLeaderboards = try container.decodeIfPresent(GameCenterLeaderboards.self, forKey: .gameCenterLeaderboards)
+            leaderboardReleases = try container.decodeIfPresent(LeaderboardReleases.self, forKey: .leaderboardReleases)
+            leaderboardSetReleases = try container.decodeIfPresent(LeaderboardSetReleases.self, forKey: .leaderboardSetReleases)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(achievementReleases, forKey: .achievementReleases)
+            try container.encodeIfPresent(app, forKey: .app)
+            try container.encodeIfPresent(defaultGroupLeaderboard, forKey: .defaultGroupLeaderboard)
+            try container.encodeIfPresent(defaultLeaderboard, forKey: .defaultLeaderboard)
+            try container.encodeIfPresent(gameCenterAchievements, forKey: .gameCenterAchievements)
+            try container.encodeIfPresent(gameCenterAppVersions, forKey: .gameCenterAppVersions)
+            try container.encodeIfPresent(gameCenterGroup, forKey: .gameCenterGroup)
+            try container.encodeIfPresent(gameCenterLeaderboardSets, forKey: .gameCenterLeaderboardSets)
+            try container.encodeIfPresent(gameCenterLeaderboards, forKey: .gameCenterLeaderboards)
+            try container.encodeIfPresent(leaderboardReleases, forKey: .leaderboardReleases)
+            try container.encodeIfPresent(leaderboardSetReleases, forKey: .leaderboardSetReleases)
+        }
+
+        private enum CodingKeys: String, CodingKey {
+            case achievementReleases
+            case app
+            case defaultGroupLeaderboard
+            case defaultLeaderboard
+            case gameCenterAchievements
+            case gameCenterAppVersions
+            case gameCenterGroup
+            case gameCenterLeaderboardSets
+            case gameCenterLeaderboards
+            case leaderboardReleases
+            case leaderboardSetReleases
         }
 
         public struct AchievementReleases: Codable {
