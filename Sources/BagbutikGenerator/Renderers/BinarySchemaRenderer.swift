@@ -17,8 +17,20 @@ public class BinarySchemaRenderer: Renderer {
             public static func from(data: Data) -> \(binarySchema.name) {
                 return Self.init(data: data)
             }
-        }
 
+            public init(data: Data) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                self.data = try container.decode(Data.self, forKey: .data)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case data = "data"
+            }
+        }
         """
         if let url = binarySchema.url,
            case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),

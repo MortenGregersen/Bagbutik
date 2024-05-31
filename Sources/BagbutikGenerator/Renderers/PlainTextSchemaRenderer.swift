@@ -18,6 +18,19 @@ public class PlainTextSchemaRenderer: Renderer {
             public static func from(text: String) -> \(plainTextSchema.name) {
                 return Self.init(text: text)
             }
+
+            public init(text: String) {
+                self.text = text
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                self.text = try container.decode(String.self, forKey: .text)
+            }
+
+            private enum CodingKeys: String, CodingKey {
+                case text = "text"
+            }
         }
         
         """
