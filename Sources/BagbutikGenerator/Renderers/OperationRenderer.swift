@@ -1,7 +1,6 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// Errors that can occur when rendering an operation
 public enum OperationRendererError: Error {
@@ -203,7 +202,7 @@ public class OperationRenderer: Renderer {
                 return structContent.joined(separator: "\n\n")
             }
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 
     private static let pathParameterRegex = try! NSRegularExpression(pattern: #"\{(.*)\}"#, options: [])

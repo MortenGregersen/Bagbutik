@@ -1,6 +1,5 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
-import SwiftFormat
 
 /// A renderer which renders enum schemas
 public class EnumSchemaRenderer: Renderer {
@@ -48,6 +47,6 @@ public class EnumSchemaRenderer: Renderer {
                 rendered += "case \($0.id) = \"\($0.value)\"\n"
             }
         rendered += "}"
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 }

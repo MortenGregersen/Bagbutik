@@ -1,6 +1,5 @@
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// A renderer which renders one of schemas
 public class OneOfSchemaRenderer {
@@ -63,6 +62,6 @@ public class OneOfSchemaRenderer {
             }
         }
         """
-        return try SwiftFormat.format(rendered)
+        return rendered
     }
 }

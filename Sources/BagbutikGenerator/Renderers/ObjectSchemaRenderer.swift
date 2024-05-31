@@ -1,7 +1,6 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// A renderer which renders object schemas
 public class ObjectSchemaRenderer: Renderer {
@@ -109,7 +108,7 @@ public class ObjectSchemaRenderer: Renderer {
             })
             return structContent.joined(separator: "\n\n")
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 
     private struct PropertiesInfo {

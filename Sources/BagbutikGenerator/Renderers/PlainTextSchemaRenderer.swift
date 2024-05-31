@@ -1,6 +1,5 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
-import SwiftFormat
 
 /// A renderer which renders plain text schemas
 public class PlainTextSchemaRenderer: Renderer {
@@ -27,6 +26,6 @@ public class PlainTextSchemaRenderer: Renderer {
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 }
