@@ -40,7 +40,7 @@ public class ObjectSchemaRenderer: Renderer {
         if objectSchema.properties["links"]?.type == .schemaRef("PagedDocumentLinks") {
             protocols.append("PagedResponse")
         }
-        rendered += renderStruct(named: objectSchema.name, protocols: protocols) {
+        rendered += try renderStruct(named: objectSchema.name, protocols: protocols) {
             let propertiesInfo = PropertiesInfo(for: objectSchema, documentation: documentation, docsLoader: docsLoader)
             var structContent = [String]()
             if case .arrayOfSchemaRef(let schemaRef) = objectSchema.properties["data"]?.type {
@@ -93,12 +93,12 @@ public class ObjectSchemaRenderer: Renderer {
                 return functionContent
             }))
             structContent.append(contentsOf: createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas))
-            structContent.append(contentsOf: objectSchema.subSchemas.map { subSchema -> String in
+            structContent.append(contentsOf: try objectSchema.subSchemas.map { subSchema -> String in
                 switch subSchema {
                 case .objectSchema(let objectSchema):
-                    return try! render(objectSchema: objectSchema, otherSchemas: otherSchemas)
+                    return try render(objectSchema: objectSchema, otherSchemas: otherSchemas)
                 case .enumSchema(let enumSchema):
-                    return try! EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema)
+                    return try EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema)
                 case .oneOf(let name, let oneOfSchema):
                     return try! OneOfSchemaRenderer(docsLoader: docsLoader).render(name: name, oneOfSchema: oneOfSchema)
                 }
