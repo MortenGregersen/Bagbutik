@@ -23,6 +23,15 @@ final class BinarySchemaRendererTests: XCTestCase {
             public static func from(data: Data) -> Gzip {
                 return Self(data: data)
             }
+
+            public init(data: Data) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decode(Data.self, forKey: "data")
+            }
         }
 
         """#)
@@ -42,6 +51,15 @@ final class BinarySchemaRendererTests: XCTestCase {
 
             public static func from(data: Data) -> Gzip {
                 return Self(data: data)
+            }
+
+            public init(data: Data) {
+                self.data = data
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decode(Data.self, forKey: "data")
             }
         }
 

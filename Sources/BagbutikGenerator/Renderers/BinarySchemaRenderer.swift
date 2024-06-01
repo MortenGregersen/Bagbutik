@@ -15,7 +15,7 @@ public class BinarySchemaRenderer: Renderer {
             public let data: Data
 
             public static func from(data: Data) -> \(binarySchema.name) {
-                return Self.init(data: data)
+                return Self(data: data)
             }
 
             public init(data: Data) {
