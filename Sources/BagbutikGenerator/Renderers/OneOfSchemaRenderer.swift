@@ -2,7 +2,7 @@ import BagbutikSpecDecoder
 import Foundation
 
 /// A renderer which renders one of schemas
-public class OneOfSchemaRenderer {
+public class OneOfSchemaRenderer: Renderer {
     /**
      Render an one of schema
 
@@ -12,14 +12,11 @@ public class OneOfSchemaRenderer {
      - Returns: The rendered one of schema
      */
     public func render(name: String, oneOfSchema: OneOfSchema) throws -> String {
-        var rendered = "public enum \(name): Codable {\n"
         let options = oneOfSchema.options
             .map { EnumCase(id: $0.schemaName.lowercasedFirstLetter(), value: $0.schemaName) }
             .sorted { $0.id < $1.id }
-        options.forEach {
-            rendered += "case \($0.id)(\($0.value))\n"
-        }
-        rendered += "\npublic init(from decoder: Decoder) throws {\n"
+
+        var rendered = "public init(from decoder: Decoder) throws {\n"
         options.enumerated().forEach {
             let option = $0.element
             var renderedOption = """
@@ -54,10 +51,16 @@ public class OneOfSchemaRenderer {
             """
         }
         rendered += """
-                }
             }
         }
         """
-        return rendered
+        
+        rendered = renderEnum(named: name,
+                              protocols: ["Codable"],
+                              cases: options,
+                              caseValueIsAssociated: true,
+                              content: rendered)
+        
+        return try format(rendered)
     }
 }

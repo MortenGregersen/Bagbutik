@@ -1,3 +1,4 @@
+@testable import BagbutikDocsCollector
 @testable import BagbutikGenerator
 @testable import BagbutikSpecDecoder
 import XCTest
@@ -5,7 +6,7 @@ import XCTest
 final class OneOfSchemaRendererTests: XCTestCase {
     func testRender() throws {
         // Given
-        let renderer = OneOfSchemaRenderer()
+        let renderer = OneOfSchemaRenderer(docsLoader: DocsLoader())
         let schema = OneOfSchema(options: [.schemaRef("BundleId"), .schemaRef("Certificate"), .schemaRef("Device")])
         // When
         let rendered = try renderer.render(name: "Included", oneOfSchema: schema)
@@ -38,10 +39,6 @@ final class OneOfSchemaRendererTests: XCTestCase {
                 case let .device(value):
                     try value.encode(to: encoder)
                 }
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case type
             }
         }
 

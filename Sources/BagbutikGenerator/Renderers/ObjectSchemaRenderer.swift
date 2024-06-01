@@ -100,7 +100,7 @@ public class ObjectSchemaRenderer: Renderer {
                 case .enumSchema(let enumSchema):
                     return try! EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema)
                 case .oneOf(let name, let oneOfSchema):
-                    return try! OneOfSchemaRenderer().render(name: name, oneOfSchema: oneOfSchema)
+                    return try! OneOfSchemaRenderer(docsLoader: docsLoader).render(name: name, oneOfSchema: oneOfSchema)
                 }
             })
             return structContent.joined(separator: "\n\n")
