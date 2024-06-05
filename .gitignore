@@ -3,3 +3,4 @@ xcuserdata
 .build
 coverage.lcov
 docs
+app_store_connect_api_openapi.json

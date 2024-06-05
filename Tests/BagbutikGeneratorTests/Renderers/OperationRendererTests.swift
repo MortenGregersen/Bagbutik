@@ -13,7 +13,7 @@ final class OperationRendererTests: XCTestCase {
                     .init(status: 200, reason: "OK", description: nil)
                 ])]
         )
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
@@ -54,7 +54,7 @@ final class OperationRendererTests: XCTestCase {
                     .init(status: 200, reason: "OK", description: nil)
                 ])]
         )
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .include(type: .enum(type: "string", values: ["pets"])),
             .limit(name: "pets", documentation: "maximum number of related pets returned (when they are included)", maximum: 10)
@@ -114,7 +114,7 @@ final class OperationRendererTests: XCTestCase {
                     .init(status: 200, reason: "OK", description: nil)
                 ])]
         )
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200),
             .custom(name: "period", type: Parameter.ParameterValueType.simple(type: .string), documentation: "the duration of the reporting period"),
@@ -171,7 +171,7 @@ final class OperationRendererTests: XCTestCase {
     func testRenderNoDocumentaion() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: [:])
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
@@ -205,7 +205,7 @@ final class OperationRendererTests: XCTestCase {
     func testRenderDeprecated() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: [:])
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200)
         ]
@@ -242,7 +242,7 @@ final class OperationRendererTests: XCTestCase {
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .fields(name: "name", type: .simple(type: .init(type: "string")), deprecated: false, documentation: "The name of the user"),
             .fields(name: "vehicles", type: .enum(type: "string", values: ["car", "bicycle"]), deprecated: true, documentation: "Fields for included vehicles"),
@@ -395,7 +395,7 @@ final class OperationRendererTests: XCTestCase {
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let requestBody = RequestBody(name: "UserUpdateRequest", documentation: "User representation")
         let operation = Operation(id: "apps-get_collection", name: "updateUser", method: .patch, requestBody: requestBody, successResponseType: "UpdateUserResponse", errorResponseType: "ErrorResponse")
         let parameters: [Path.Parameter] = [.init(name: "id", description: "Id of the user to update")]
@@ -442,7 +442,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)) {
+        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfExists(name: "hair"))
         }
@@ -459,7 +459,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)) {
+        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfInclude)
         }
@@ -476,7 +476,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader).render(operation: operation, in: path)) {
+        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
         }
@@ -487,7 +487,7 @@ final class OperationRendererTests: XCTestCase {
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
-        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .fields(name: "subscriptionOfferCodeOneTimeUseCodes", type: .enum(type: "String", values: ["active", "createdDate", "expirationDate", "numberOfCodes", "offerCode", "values"]), deprecated: false, documentation: ""),
             .fields(name: "subscriptionOfferCodeOneTimeUseCodeValues", type: .enum(type: "String", values: []), deprecated: false, documentation: ""),

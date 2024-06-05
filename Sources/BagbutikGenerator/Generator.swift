@@ -92,7 +92,7 @@ public class Generator {
         try removeChildren(at: coreModelsDirURL)
 
         try await withThrowingTaskGroup(of: Void.self) { taskGroup in
-            let operationRenderer = OperationRenderer(docsLoader: docsLoader)
+            let operationRenderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
             spec.paths.values.forEach { path in
                 taskGroup.addTask {
                     try path.operations.forEach { operation in
@@ -170,16 +170,16 @@ public class Generator {
         let renderedSchema: String
         switch schema {
         case .enum(let enumSchema):
-            renderedSchema = try EnumSchemaRenderer(docsLoader: docsLoader)
+            renderedSchema = try EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(enumSchema: enumSchema)
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer(docsLoader: docsLoader)
+            renderedSchema = try ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(objectSchema: objectSchema, otherSchemas: otherSchemas)
         case .binary(let binarySchema):
-            renderedSchema = try BinarySchemaRenderer(docsLoader: docsLoader)
+            renderedSchema = try BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(binarySchema: binarySchema)
         case .plainText(let plainTextSchema):
-            renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader)
+            renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(plainTextSchema: plainTextSchema)
         }
         var imports = ["import Foundation"]

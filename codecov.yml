@@ -1,5 +1,6 @@
 ignore:
   - "Sources/Bagbutik-Core/Models"
+  - "Sources/Bagbutik-Core/AnyCodingKey.swift"
   - "Sources/Bagbutik-Models/AppStore"
   - "Sources/Bagbutik-Models/GameCenter"
   - "Sources/Bagbutik-Models/Marketplaces"

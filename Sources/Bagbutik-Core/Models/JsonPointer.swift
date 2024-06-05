@@ -16,4 +16,14 @@ public struct JsonPointer: Codable {
     public init(pointer: String? = nil) {
         self.pointer = pointer
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        pointer = try container.decodeIfPresent(String.self, forKey: "pointer")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(pointer, forKey: "pointer")
+    }
 }

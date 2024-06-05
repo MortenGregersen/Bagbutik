@@ -25,6 +25,20 @@ public struct ScmProviderType: Codable {
         self.kind = kind
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        displayName = try container.decodeIfPresent(String.self, forKey: "displayName")
+        isOnPremise = try container.decodeIfPresent(Bool.self, forKey: "isOnPremise")
+        kind = try container.decodeIfPresent(Kind.self, forKey: "kind")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(displayName, forKey: "displayName")
+        try container.encodeIfPresent(isOnPremise, forKey: "isOnPremise")
+        try container.encodeIfPresent(kind, forKey: "kind")
+    }
+
     public enum Kind: String, Codable, CaseIterable {
         case bitbucketCloud = "BITBUCKET_CLOUD"
         case bitbucketServer = "BITBUCKET_SERVER"

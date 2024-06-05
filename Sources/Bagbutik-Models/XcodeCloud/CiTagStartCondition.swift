@@ -24,4 +24,18 @@ public struct CiTagStartCondition: Codable {
         self.filesAndFoldersRule = filesAndFoldersRule
         self.source = source
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        autoCancel = try container.decodeIfPresent(Bool.self, forKey: "autoCancel")
+        filesAndFoldersRule = try container.decodeIfPresent(CiFilesAndFoldersRule.self, forKey: "filesAndFoldersRule")
+        source = try container.decodeIfPresent(CiTagPatterns.self, forKey: "source")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(autoCancel, forKey: "autoCancel")
+        try container.encodeIfPresent(filesAndFoldersRule, forKey: "filesAndFoldersRule")
+        try container.encodeIfPresent(source, forKey: "source")
+    }
 }

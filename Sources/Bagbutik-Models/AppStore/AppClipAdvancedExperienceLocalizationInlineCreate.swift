@@ -24,25 +24,19 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Identi
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(String.self, forKey: .id)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decodeIfPresent(String.self, forKey: "id")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(id, forKey: "id")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     /**
@@ -67,6 +61,20 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Identi
             self.language = language
             self.subtitle = subtitle
             self.title = title
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            language = try container.decodeIfPresent(AppClipAdvancedExperienceLanguage.self, forKey: "language")
+            subtitle = try container.decodeIfPresent(String.self, forKey: "subtitle")
+            title = try container.decodeIfPresent(String.self, forKey: "title")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(language, forKey: "language")
+            try container.encodeIfPresent(subtitle, forKey: "subtitle")
+            try container.encodeIfPresent(title, forKey: "title")
         }
     }
 }

@@ -1,12 +1,16 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
+import Foundation
+import SwiftFormat
 
 /// A base class for the renderes which contains a default environment for Swift code rendering
 public class Renderer {
     let docsLoader: DocsLoader
+    let shouldFormat: Bool
     
-    public init(docsLoader: DocsLoader) {
+    public init(docsLoader: DocsLoader, shouldFormat: Bool = false) {
         self.docsLoader = docsLoader
+        self.shouldFormat = shouldFormat
     }
 
     internal func escapeReservedKeywords(in searchString: String) -> String {
@@ -132,6 +136,11 @@ public class Renderer {
             \(try content())
         }
         """
+    }
+    
+    internal func format(_ source: String) throws -> String {
+        guard shouldFormat else { return source }
+        return try SwiftFormat.format(source)
     }
     
     struct FunctionParameter {

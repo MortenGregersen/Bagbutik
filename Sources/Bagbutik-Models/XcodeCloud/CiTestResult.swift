@@ -28,28 +28,21 @@ public struct CiTestResult: Codable, Identifiable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        links = try container.decodeIfPresent(ResourceLinks.self, forKey: .links)
-        attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-        if try container.decode(String.self, forKey: .type) != type {
-            throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        id = try container.decode(String.self, forKey: "id")
+        links = try container.decodeIfPresent(ResourceLinks.self, forKey: "links")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+        if try container.decode(String.self, forKey: "type") != type {
+            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(links, forKey: .links)
-        try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(attributes, forKey: .attributes)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case attributes
-        case id
-        case links
-        case type
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(id, forKey: "id")
+        try container.encodeIfPresent(links, forKey: "links")
+        try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
     /**
@@ -88,6 +81,26 @@ public struct CiTestResult: Codable, Identifiable {
             self.status = status
         }
 
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            className = try container.decodeIfPresent(String.self, forKey: "className")
+            destinationTestResults = try container.decodeIfPresent([DestinationTestResults].self, forKey: "destinationTestResults")
+            fileSource = try container.decodeIfPresent(FileLocation.self, forKey: "fileSource")
+            message = try container.decodeIfPresent(String.self, forKey: "message")
+            name = try container.decodeIfPresent(String.self, forKey: "name")
+            status = try container.decodeIfPresent(CiTestStatus.self, forKey: "status")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(className, forKey: "className")
+            try container.encodeIfPresent(destinationTestResults, forKey: "destinationTestResults")
+            try container.encodeIfPresent(fileSource, forKey: "fileSource")
+            try container.encodeIfPresent(message, forKey: "message")
+            try container.encodeIfPresent(name, forKey: "name")
+            try container.encodeIfPresent(status, forKey: "status")
+        }
+
         /**
          # CiTestResult.Attributes.DestinationTestResults
          The results of a test action Xcode Cloud performed using a specific test destination.
@@ -118,6 +131,24 @@ public struct CiTestResult: Codable, Identifiable {
                 self.osVersion = osVersion
                 self.status = status
                 self.uuid = uuid
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                deviceName = try container.decodeIfPresent(String.self, forKey: "deviceName")
+                duration = try container.decodeIfPresent(Double.self, forKey: "duration")
+                osVersion = try container.decodeIfPresent(String.self, forKey: "osVersion")
+                status = try container.decodeIfPresent(CiTestStatus.self, forKey: "status")
+                uuid = try container.decodeIfPresent(String.self, forKey: "uuid")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(deviceName, forKey: "deviceName")
+                try container.encodeIfPresent(duration, forKey: "duration")
+                try container.encodeIfPresent(osVersion, forKey: "osVersion")
+                try container.encodeIfPresent(status, forKey: "status")
+                try container.encodeIfPresent(uuid, forKey: "uuid")
             }
         }
     }

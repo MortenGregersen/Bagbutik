@@ -15,6 +15,16 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, RequestBody {
         self.data = data
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(Data.self, forKey: "data")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+    }
+
     public struct Data: Codable, Identifiable {
         public let id: String
         public var type: String { "gameCenterLeaderboards" }
@@ -28,25 +38,19 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, RequestBody {
         }
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            id = try container.decode(String.self, forKey: .id)
-            attributes = try container.decodeIfPresent(Attributes.self, forKey: .attributes)
-            if try container.decode(String.self, forKey: .type) != type {
-                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            id = try container.decode(String.self, forKey: "id")
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            if try container.decode(String.self, forKey: "type") != type {
+                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
         }
 
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(id, forKey: .id)
-            try container.encode(type, forKey: .type)
-            try container.encodeIfPresent(attributes, forKey: .attributes)
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case attributes
-            case id
-            case type
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encode(id, forKey: "id")
+            try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
         public struct Attributes: Codable {
@@ -82,6 +86,34 @@ public struct GameCenterLeaderboardUpdateRequest: Codable, RequestBody {
                 self.scoreRangeStart = scoreRangeStart
                 self.scoreSortType = scoreSortType
                 self.submissionType = submissionType
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                archived = try container.decodeIfPresent(Bool.self, forKey: "archived")
+                defaultFormatter = try container.decodeIfPresent(GameCenterLeaderboardFormatter.self, forKey: "defaultFormatter")
+                recurrenceDuration = try container.decodeIfPresent(String.self, forKey: "recurrenceDuration")
+                recurrenceRule = try container.decodeIfPresent(String.self, forKey: "recurrenceRule")
+                recurrenceStartDate = try container.decodeIfPresent(Date.self, forKey: "recurrenceStartDate")
+                referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
+                scoreRangeEnd = try container.decodeIfPresent(String.self, forKey: "scoreRangeEnd")
+                scoreRangeStart = try container.decodeIfPresent(String.self, forKey: "scoreRangeStart")
+                scoreSortType = try container.decodeIfPresent(GameCenterLeaderboard.Attributes.ScoreSortType.self, forKey: "scoreSortType")
+                submissionType = try container.decodeIfPresent(GameCenterLeaderboard.Attributes.SubmissionType.self, forKey: "submissionType")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(archived, forKey: "archived")
+                try container.encodeIfPresent(defaultFormatter, forKey: "defaultFormatter")
+                try container.encodeIfPresent(recurrenceDuration, forKey: "recurrenceDuration")
+                try container.encodeIfPresent(recurrenceRule, forKey: "recurrenceRule")
+                try container.encodeIfPresent(recurrenceStartDate, forKey: "recurrenceStartDate")
+                try container.encodeIfPresent(referenceName, forKey: "referenceName")
+                try container.encodeIfPresent(scoreRangeEnd, forKey: "scoreRangeEnd")
+                try container.encodeIfPresent(scoreRangeStart, forKey: "scoreRangeStart")
+                try container.encodeIfPresent(scoreSortType, forKey: "scoreSortType")
+                try container.encodeIfPresent(submissionType, forKey: "submissionType")
             }
         }
     }

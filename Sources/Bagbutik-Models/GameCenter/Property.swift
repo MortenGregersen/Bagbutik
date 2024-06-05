@@ -20,4 +20,16 @@ public struct Property: Codable {
         self.key = key
         self.value = value
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        key = try container.decodeIfPresent(String.self, forKey: "key")
+        value = try container.decodeIfPresent(String.self, forKey: "value")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(key, forKey: "key")
+        try container.encodeIfPresent(value, forKey: "value")
+    }
 }

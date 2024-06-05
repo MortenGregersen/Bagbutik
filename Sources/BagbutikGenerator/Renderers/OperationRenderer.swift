@@ -1,7 +1,6 @@
 import BagbutikDocsCollector
 import BagbutikSpecDecoder
 import Foundation
-import SwiftFormat
 
 /// Errors that can occur when rendering an operation
 public enum OperationRendererError: Error {
@@ -119,7 +118,7 @@ public class OperationRenderer: Renderer {
         }
         if parametersInfo.requiresWrapperStruct {
             rendered += "\n\n"
-            rendered += renderStruct(named: operationName) {
+            rendered += try renderStruct(named: operationName) {
                 var structContent = [String]()
                 if !parametersInfo.fields.isEmpty {
                     structContent.append("""
@@ -183,11 +182,11 @@ public class OperationRenderer: Renderer {
                         cases: parametersInfo.sorts))
                     """)
                 }
-                parametersInfo.customs.sorted(by: { $0.key < $1.key }).forEach { _, value in
+                try parametersInfo.customs.sorted(by: { $0.key < $1.key }).forEach { _, value in
                     guard case .enum(let type, let values) = value.type else { return }
                     let enumName = value.name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
-                    let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
+                    let rendered = try EnumSchemaRenderer(docsLoader: docsLoader)
                         .render(enumSchema: enumSchema)
                     structContent.append("""
                     \(renderDocumentationBlock { value.documentation.capitalizingFirstLetter() })
@@ -207,7 +206,7 @@ public class OperationRenderer: Renderer {
                 return structContent.joined(separator: "\n\n")
             }
         }
-        return try SwiftFormat.format(rendered)
+        return try format(rendered)
     }
 
     private static let pathParameterRegex = try! NSRegularExpression(pattern: #"\{(.*)\}"#, options: [])
@@ -241,7 +240,7 @@ public class OperationRenderer: Renderer {
                         if values.count > 0 {
                             let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                             let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
-                            let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
+                            let rendered = try EnumSchemaRenderer(docsLoader: docsLoader)
                                 .render(enumSchema: enumSchema)
                             fieldSubSchemas[name] = rendered
                             fields.append(EnumCase(id: name, value: "[\(enumName)]", deprecated: deprecated, documentation: documentation))
@@ -254,7 +253,7 @@ public class OperationRenderer: Renderer {
                     case .enum(let type, let values):
                         let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                         let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
-                        let rendered = try! EnumSchemaRenderer(docsLoader: docsLoader)
+                        let rendered = try EnumSchemaRenderer(docsLoader: docsLoader)
                             .render(enumSchema: enumSchema)
                         filterSubSchemas[name] = rendered
                         filters.append(EnumCase(id: name, value: "[\(enumName)]", documentation: documentation))

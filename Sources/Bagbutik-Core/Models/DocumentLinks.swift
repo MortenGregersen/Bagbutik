@@ -18,16 +18,12 @@ public struct DocumentLinks: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        itself = try container.decode(String.self, forKey: .itself)
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        itself = try container.decode(String.self, forKey: "self")
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(itself, forKey: .itself)
-    }
-
-    private enum CodingKeys: String, CodingKey {
-        case itself = "self"
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(itself, forKey: "self")
     }
 }

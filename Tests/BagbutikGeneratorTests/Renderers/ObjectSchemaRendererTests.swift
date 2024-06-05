@@ -9,7 +9,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let docsLoader = DocsLoader(schemaDocumentationById: ["/person": .object(
             .init(id: "/person", title: "Person", abstract: nil, discussion: nil, properties: [:], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
@@ -23,6 +23,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public init(name: String? = nil) {
                 self.name = name
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(name, forKey: "name")
+            }
         }
 
         """#)
@@ -33,7 +43,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: "What is a person?", properties: ["name": .init(required: false, description: "The person's name")], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
@@ -57,6 +67,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public init(name: String? = nil) {
                 self.name = name
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(name, forKey: "name")
+            }
         }
 
         """#)
@@ -70,7 +90,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "name": .init(required: false, description: "The person's name")
             ], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.string), deprecated: true),
@@ -104,6 +124,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public init(age: Int? = nil) {
                 self.age = age
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                age = try container.decodeIfPresent(Int.self, forKey: "age")
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(age, forKey: "age")
+                try container.encodeIfPresent(name, forKey: "name")
+            }
         }
 
         """#)
@@ -116,7 +148,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "name": .init(required: false, description: "The person's name")
             ], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "PersonCreateRequest",
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
@@ -138,6 +170,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
             public init(name: String? = nil) {
                 self.name = name
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(name, forKey: "name")
+            }
         }
 
         """#)
@@ -150,7 +192,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "data": .init(required: true, description: "")
             ], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "PersonCarLinkageRequest",
                                   url: "some://url",
                                   properties: ["data": .init(type: .schema(.init(
@@ -179,17 +221,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                data = try container.decodeIfPresent(Data.self, forKey: .data)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(data, forKey: .data)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case data
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
             }
 
             /**
@@ -208,22 +246,17 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
 
                 public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
-                    id = try container.decode(String.self, forKey: .id)
-                    if try container.decode(String.self, forKey: .type) != type {
-                        throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                     }
                 }
 
                 public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
-                    try container.encode(id, forKey: .id)
-                    try container.encode(type, forKey: .type)
-                }
-
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case type
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
         }
@@ -241,7 +274,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "self": .init(required: false, description: "A reference to the person")
             ], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   properties: ["firstName": .init(type: .simple(.init(type: "string"))),
@@ -279,26 +312,19 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                firstName = try container.decode(String.self, forKey: .firstName)
-                id = try container.decodeIfPresent(String.self, forKey: .id)
-                lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
-                itself = try container.decodeIfPresent(String.self, forKey: .itself)
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                firstName = try container.decode(String.self, forKey: "firstName")
+                id = try container.decodeIfPresent(String.self, forKey: "id")
+                lastName = try container.decodeIfPresent(String.self, forKey: "lastName")
+                itself = try container.decodeIfPresent(String.self, forKey: "self")
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encode(firstName, forKey: .firstName)
-                try container.encodeIfPresent(id, forKey: .id)
-                try container.encodeIfPresent(lastName, forKey: .lastName)
-                try container.encodeIfPresent(itself, forKey: .itself)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case firstName
-                case id
-                case itself = "self"
-                case lastName
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(firstName, forKey: "firstName")
+                try container.encodeIfPresent(id, forKey: "id")
+                try container.encodeIfPresent(lastName, forKey: "lastName")
+                try container.encodeIfPresent(itself, forKey: "self")
             }
         }
 
@@ -312,7 +338,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 "attributes": .init(required: true, description: "The resource's attributes."),
             ], subDocumentationIds: []))]
         )
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let attributesSchema = ObjectSchema(name: "Attributes",
                                             url: "some://url/attributes",
                                             properties: ["age": .init(type: .simple(.init(type: "integer")))])
@@ -345,11 +371,33 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.attributes = attributes
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+                attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(name, forKey: "name")
+                try container.encodeIfPresent(attributes, forKey: "attributes")
+            }
+
             public struct Attributes: Codable {
                 public var age: Int?
 
                 public init(age: Int? = nil) {
                     self.age = age
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    age = try container.decodeIfPresent(Int.self, forKey: "age")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(age, forKey: "age")
                 }
             }
         }
@@ -367,7 +415,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             "some://url/relationships": .object(
                 .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let relationshipsSchema = ObjectSchema(name: "Relationships",
                                                url: "some://url/relationships",
                                                properties: ["children": .init(type: .arrayOfSchemaRef("Child"))])
@@ -400,6 +448,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.relationships = relationships
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+                relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(name, forKey: "name")
+                try container.encodeIfPresent(relationships, forKey: "relationships")
+            }
+
             /**
              # Relationships
              The relationships you included in the request and those on which you can operate.
@@ -412,6 +472,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
                 public init(children: [Child]? = nil) {
                     self.children = children
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    children = try container.decodeIfPresent([Child].self, forKey: "children")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(children, forKey: "children")
                 }
             }
         }
@@ -430,7 +500,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     "connection": .init(required: false, description: "The person's connection")
                 ], subDocumentationIds: []))
         ])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string"))),
@@ -469,6 +539,22 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.preference = preference
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                connection = try container.decodeIfPresent(Connection.self, forKey: "connection")
+                name = try container.decodeIfPresent(String.self, forKey: "name")
+                pet = try container.decodeIfPresent(Pet.self, forKey: "pet")
+                preference = try container.decodeIfPresent(Preference.self, forKey: "preference")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(connection, forKey: "connection")
+                try container.encodeIfPresent(name, forKey: "name")
+                try container.encodeIfPresent(pet, forKey: "pet")
+                try container.encodeIfPresent(preference, forKey: "preference")
+            }
+
             public enum Connection: Codable {
                 case computer(Computer)
                 case phone(Phone)
@@ -492,10 +578,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
                 }
-
-                private enum CodingKeys: String, CodingKey {
-                    case type
-                }
             }
 
             public struct Pet: Codable {
@@ -503,6 +585,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
                 public init(name: String? = nil) {
                     self.name = name
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    name = try container.decodeIfPresent(String.self, forKey: "name")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(name, forKey: "name")
                 }
             }
 
@@ -518,7 +610,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testPagedResponse() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "PersonsResponse",
                                   url: "some://url",
                                   properties: ["data": .init(type: .arrayOfSchemaRef("Person")),
@@ -540,6 +632,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.data = data
                 self.links = links
             }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decode([Person].self, forKey: "data")
+                links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encode(links, forKey: "links")
+            }
         }
 
         """#)
@@ -548,7 +652,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testGetterForIncludedNonPagedResponse() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(
             name: "BuildResponse",
             url: "some://url",
@@ -631,6 +735,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.included = included
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Build.self, forKey: "data")
+                included = try container.decodeIfPresent([Included].self, forKey: "included")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(data, forKey: "data")
+                try container.encodeIfPresent(included, forKey: "included")
+            }
+
             public func getIndividualTesters() -> [BetaTester] {
                 guard let individualTesterIds = data.relationships?.individualTesters?.data?.map(\.id),
                       let individualTesters = included?.compactMap({ relationship -> BetaTester? in
@@ -678,10 +794,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
                 }
-
-                private enum CodingKeys: String, CodingKey {
-                    case type
-                }
             }
         }
 
@@ -691,7 +803,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
     func testGetterForIncludedPagedResponse() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(
             name: "BuildsResponse",
             url: "some://url",
@@ -797,6 +909,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.included = included
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Build].self, forKey: "data")
+                included = try container.decodeIfPresent([Included].self, forKey: "included")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(data, forKey: "data")
+                try container.encodeIfPresent(included, forKey: "included")
+            }
+
             public func getIndividualTesters(for build: Build) -> [BetaTester] {
                 guard let individualTesterIds = build.relationships?.individualTesters?.data?.map(\.id),
                       let individualTesters = included?.compactMap({ relationship -> BetaTester? in
@@ -844,10 +968,6 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
                 }
-
-                private enum CodingKeys: String, CodingKey {
-                    case type
-                }
             }
         }
 
@@ -864,7 +984,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             "some://url/relationships": .object(
                 .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let attributesSchema = ObjectSchema(name: "Attributes",
                                             url: "some://url/attributes",
                                             properties: ["age": .init(type: .simple(.init(type: "integer")))])
@@ -909,31 +1029,23 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
 
             public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                age = try container.decodeIfPresent(Int.self, forKey: .age)
-                name = try container.decode(String.self, forKey: .name)
-                attributes = try container.decode(Attributes.self, forKey: .attributes)
-                relationships = try container.decodeIfPresent(Relationships.self, forKey: .relationships)
-                if try container.decode(String.self, forKey: .type) != type {
-                    throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                age = try container.decodeIfPresent(Int.self, forKey: "age")
+                name = try container.decode(String.self, forKey: "name")
+                attributes = try container.decode(Attributes.self, forKey: "attributes")
+                relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+                if try container.decode(String.self, forKey: "type") != type {
+                    throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                 }
             }
 
             public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: CodingKeys.self)
-                try container.encodeIfPresent(age, forKey: .age)
-                try container.encode(name, forKey: .name)
-                try container.encode(type, forKey: .type)
-                try container.encode(attributes, forKey: .attributes)
-                try container.encodeIfPresent(relationships, forKey: .relationships)
-            }
-
-            private enum CodingKeys: String, CodingKey {
-                case age
-                case attributes
-                case name
-                case relationships
-                case type
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(age, forKey: "age")
+                try container.encode(name, forKey: "name")
+                try container.encode(type, forKey: "type")
+                try container.encode(attributes, forKey: "attributes")
+                try container.encodeIfPresent(relationships, forKey: "relationships")
             }
 
             /**
@@ -950,6 +1062,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 public init(age: Int? = nil) {
                     self.age = age
                 }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    age = try container.decodeIfPresent(Int.self, forKey: "age")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(age, forKey: "age")
+                }
             }
 
             /**
@@ -965,6 +1087,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 public init(children: [Child]? = nil) {
                     self.children = children
                 }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    children = try container.decodeIfPresent([Child].self, forKey: "children")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(children, forKey: "children")
+                }
             }
         }
 
@@ -979,7 +1111,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             "some://url/relationships": .object(
                 .init(id: "/person/relationships", title: "Relationships", abstract: "The relationships you included in the request and those on which you can operate.", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let relationshipsSchema = ObjectSchema(name: "Relationships",
                                                url: "some://url/relationships",
                                                properties: ["bundleId": .init(type: .schema(.init(name: "BundleId", url: "some://url/relationship/bundleid", properties: [
@@ -1013,6 +1145,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.relationships = relationships
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                id = try container.decode(String.self, forKey: "id")
+                relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(id, forKey: "id")
+                try container.encodeIfPresent(relationships, forKey: "relationships")
+            }
+
             /**
              # Relationships
              The relationships you included in the request and those on which you can operate.
@@ -1027,6 +1171,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     self.bundleId = bundleId
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    bundleId = try container.decodeIfPresent(BundleId.self, forKey: "bundleId")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(bundleId, forKey: "bundleId")
+                }
+
                 public struct BundleId: Codable {
                     @NullCodable public var data: Data?
 
@@ -1035,17 +1189,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     }
 
                     public init(from decoder: Decoder) throws {
-                        let container = try decoder.container(keyedBy: CodingKeys.self)
-                        data = try container.decodeIfPresent(Data.self, forKey: .data)
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        data = try container.decodeIfPresent(Data.self, forKey: "data")
                     }
 
                     public func encode(to encoder: Encoder) throws {
-                        var container = encoder.container(keyedBy: CodingKeys.self)
-                        try container.encode(data, forKey: .data)
-                    }
-
-                    private enum CodingKeys: String, CodingKey {
-                        case data
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(data, forKey: "data")
                     }
 
                     public struct Data: Codable, Identifiable {
@@ -1057,22 +1207,17 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         }
 
                         public init(from decoder: Decoder) throws {
-                            let container = try decoder.container(keyedBy: CodingKeys.self)
-                            id = try container.decodeIfPresent(String.self, forKey: .id)
-                            if try container.decode(String.self, forKey: .type) != type {
-                                throw DecodingError.dataCorruptedError(forKey: .type, in: container, debugDescription: "Not matching \(type)")
+                            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                            id = try container.decodeIfPresent(String.self, forKey: "id")
+                            if try container.decode(String.self, forKey: "type") != type {
+                                throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
                             }
                         }
 
                         public func encode(to encoder: Encoder) throws {
-                            var container = encoder.container(keyedBy: CodingKeys.self)
-                            try container.encodeIfPresent(id, forKey: .id)
-                            try container.encode(type, forKey: .type)
-                        }
-
-                        private enum CodingKeys: String, CodingKey {
-                            case id
-                            case type
+                            var container = encoder.container(keyedBy: AnyCodingKey.self)
+                            try container.encodeIfPresent(id, forKey: "id")
+                            try container.encode(type, forKey: "type")
                         }
                     }
                 }
@@ -1105,7 +1250,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """
         let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["phoneNumber"]!
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
-        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader)
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
@@ -1122,6 +1267,20 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 self.intent = intent
                 self.number = number
                 self.type = type
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                intent = try container.decodeIfPresent(String.self, forKey: "intent")
+                number = try container.decodeIfPresent(String.self, forKey: "number")
+                type = try container.decode(PhoneNumberType.self, forKey: "type")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(intent, forKey: "intent")
+                try container.encodeIfPresent(number, forKey: "number")
+                try container.encode(type, forKey: "type")
             }
 
             public enum PhoneNumberType: String, Codable, CaseIterable {

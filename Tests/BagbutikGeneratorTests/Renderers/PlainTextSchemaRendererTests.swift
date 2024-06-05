@@ -10,7 +10,7 @@ final class PlainTextSchemaRendererTests: XCTestCase {
             "some://url": .object(
                 .init(id: "/csv", title: "Csv", abstract: "Some summary", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
-        let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader)
+        let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = PlainTextSchema(name: "Csv", url: "some://url")
         // When
         let rendered = try renderer.render(plainTextSchema: schema)
@@ -23,6 +23,15 @@ final class PlainTextSchemaRendererTests: XCTestCase {
             public static func from(text: String) -> Csv {
                 return Self(text: text)
             }
+
+            public init(text: String) {
+                self.text = text
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                text = try container.decode(String.self, forKey: "text")
+            }
         }
 
         """#)
@@ -31,7 +40,7 @@ final class PlainTextSchemaRendererTests: XCTestCase {
     func testRender_NoDocumentation() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
-        let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader)
+        let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = PlainTextSchema(name: "Csv", url: "some://url")
         // When
         let rendered = try renderer.render(plainTextSchema: schema)
@@ -42,6 +51,15 @@ final class PlainTextSchemaRendererTests: XCTestCase {
 
             public static func from(text: String) -> Csv {
                 return Self(text: text)
+            }
+
+            public init(text: String) {
+                self.text = text
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                text = try container.decode(String.self, forKey: "text")
             }
         }
 

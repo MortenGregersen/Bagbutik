@@ -24,6 +24,20 @@ public struct AppInfoResponse: Codable {
         self.links = links
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode(AppInfo.self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(DocumentLinks.self, forKey: "links")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+    }
+
     public func getAgeRatingDeclaration() -> AgeRatingDeclaration? {
         included?.compactMap { relationship -> AgeRatingDeclaration? in
             guard case let .ageRatingDeclaration(ageRatingDeclaration) = relationship else { return nil }
@@ -124,10 +138,6 @@ public struct AppInfoResponse: Codable {
             case let .appInfoLocalization(value):
                 try value.encode(to: encoder)
             }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
         }
     }
 }

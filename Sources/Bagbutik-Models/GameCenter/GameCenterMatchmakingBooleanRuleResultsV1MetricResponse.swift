@@ -22,6 +22,20 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
         self.meta = meta
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([Data].self, forKey: "data")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
+    }
+
     /**
      # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data
      The data structure in a response body for Boolean match request results.
@@ -42,6 +56,20 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
             self.dataPoints = dataPoints
             self.dimensions = dimensions
             self.granularity = granularity
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            dataPoints = try container.decodeIfPresent(DataPoints.self, forKey: "dataPoints")
+            dimensions = try container.decodeIfPresent(Dimensions.self, forKey: "dimensions")
+            granularity = try container.decodeIfPresent(Granularity.self, forKey: "granularity")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(dataPoints, forKey: "dataPoints")
+            try container.encodeIfPresent(dimensions, forKey: "dimensions")
+            try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
         /**
@@ -67,6 +95,20 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                 self.values = values
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                end = try container.decodeIfPresent(Date.self, forKey: "end")
+                start = try container.decodeIfPresent(Date.self, forKey: "start")
+                values = try container.decodeIfPresent(Values.self, forKey: "values")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(end, forKey: "end")
+                try container.encodeIfPresent(start, forKey: "start")
+                try container.encodeIfPresent(values, forKey: "values")
+            }
+
             /**
              # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.DataPoints.Values
              The values of the data points.
@@ -80,6 +122,16 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
 
                 public init(count: Int? = nil) {
                     self.count = count
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    count = try container.decodeIfPresent(Int.self, forKey: "count")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(count, forKey: "count")
                 }
             }
         }
@@ -102,6 +154,18 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                 self.result = result
             }
 
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                gameCenterMatchmakingQueue = try container.decodeIfPresent(GameCenterMatchmakingQueue.self, forKey: "gameCenterMatchmakingQueue")
+                result = try container.decodeIfPresent(Result.self, forKey: "result")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(gameCenterMatchmakingQueue, forKey: "gameCenterMatchmakingQueue")
+                try container.encodeIfPresent(result, forKey: "result")
+            }
+
             /**
              # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions.GameCenterMatchmakingQueue
              The details of the data about the queue.
@@ -114,6 +178,16 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
 
                 public init(links: Links? = nil) {
                     self.links = links
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    links = try container.decodeIfPresent(Links.self, forKey: "links")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(links, forKey: "links")
                 }
 
                 /**
@@ -135,6 +209,18 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                         self.groupBy = groupBy
                         self.related = related
                     }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        groupBy = try container.decodeIfPresent(String.self, forKey: "groupBy")
+                        related = try container.decodeIfPresent(String.self, forKey: "related")
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encodeIfPresent(groupBy, forKey: "groupBy")
+                        try container.encodeIfPresent(related, forKey: "related")
+                    }
                 }
             }
 
@@ -152,6 +238,16 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                     self.links = links
                 }
 
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    links = try container.decodeIfPresent(Links.self, forKey: "links")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(links, forKey: "links")
+                }
+
                 /**
                  # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions.Result.Links
                  The link representation of the results.
@@ -165,6 +261,16 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
 
                     public init(groupBy: String? = nil) {
                         self.groupBy = groupBy
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        groupBy = try container.decodeIfPresent(String.self, forKey: "groupBy")
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encodeIfPresent(groupBy, forKey: "groupBy")
                     }
                 }
             }

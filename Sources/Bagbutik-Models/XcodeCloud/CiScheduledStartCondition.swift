@@ -21,6 +21,18 @@ public struct CiScheduledStartCondition: Codable {
         self.source = source
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        schedule = try container.decodeIfPresent(Schedule.self, forKey: "schedule")
+        source = try container.decodeIfPresent(CiBranchPatterns.self, forKey: "source")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encodeIfPresent(schedule, forKey: "schedule")
+        try container.encodeIfPresent(source, forKey: "source")
+    }
+
     /**
      # CiScheduledStartCondition.Schedule
      The schedule of an Xcode Cloud workflow that starts a new build based on a schedule.
@@ -51,6 +63,24 @@ public struct CiScheduledStartCondition: Codable {
             self.hour = hour
             self.minute = minute
             self.timezone = timezone
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            days = try container.decodeIfPresent(Items.self, forKey: "days")
+            frequency = try container.decodeIfPresent(Frequency.self, forKey: "frequency")
+            hour = try container.decodeIfPresent(Int.self, forKey: "hour")
+            minute = try container.decodeIfPresent(Int.self, forKey: "minute")
+            timezone = try container.decodeIfPresent(String.self, forKey: "timezone")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(days, forKey: "days")
+            try container.encodeIfPresent(frequency, forKey: "frequency")
+            try container.encodeIfPresent(hour, forKey: "hour")
+            try container.encodeIfPresent(minute, forKey: "minute")
+            try container.encodeIfPresent(timezone, forKey: "timezone")
         }
 
         public enum Frequency: String, Codable, CaseIterable {

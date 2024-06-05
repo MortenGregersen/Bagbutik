@@ -27,6 +27,22 @@ public struct AppPreviewSetsResponse: Codable, PagedResponse {
         self.meta = meta
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+        data = try container.decode([AppPreviewSet].self, forKey: "data")
+        included = try container.decodeIfPresent([Included].self, forKey: "included")
+        links = try container.decode(PagedDocumentLinks.self, forKey: "links")
+        meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: AnyCodingKey.self)
+        try container.encode(data, forKey: "data")
+        try container.encodeIfPresent(included, forKey: "included")
+        try container.encode(links, forKey: "links")
+        try container.encodeIfPresent(meta, forKey: "meta")
+    }
+
     public func getAppCustomProductPageLocalization(for appPreviewSet: AppPreviewSet) -> AppCustomProductPageLocalization? {
         included?.compactMap { relationship -> AppCustomProductPageLocalization? in
             guard case let .appCustomProductPageLocalization(appCustomProductPageLocalization) = relationship else { return nil }
@@ -92,10 +108,6 @@ public struct AppPreviewSetsResponse: Codable, PagedResponse {
             case let .appStoreVersionLocalization(value):
                 try value.encode(to: encoder)
             }
-        }
-
-        private enum CodingKeys: String, CodingKey {
-            case type
         }
     }
 }
