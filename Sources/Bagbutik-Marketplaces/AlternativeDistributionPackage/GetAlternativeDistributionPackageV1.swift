@@ -18,7 +18,7 @@ public extension Request {
     static func getAlternativeDistributionPackageV1(id: String,
                                                     fields: [GetAlternativeDistributionPackageV1.Field]? = nil,
                                                     includes: [GetAlternativeDistributionPackageV1.Include]? = nil,
-                                                    limit: Int? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse>
+                                                    limit: GetAlternativeDistributionPackageV1.Limit? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse>
     {
         .init(path: "/v1/alternativeDistributionPackages/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                                  includes: includes,
@@ -58,5 +58,13 @@ public enum GetAlternativeDistributionPackageV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case versions
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related versions returned (when they are included) - maximum 50
+        case versions(Int)
     }
 }

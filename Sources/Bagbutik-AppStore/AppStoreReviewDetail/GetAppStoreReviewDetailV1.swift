@@ -18,7 +18,7 @@ public extension Request {
     static func getAppStoreReviewDetailV1(id: String,
                                           fields: [GetAppStoreReviewDetailV1.Field]? = nil,
                                           includes: [GetAppStoreReviewDetailV1.Include]? = nil,
-                                          limit: Int? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse>
+                                          limit: GetAppStoreReviewDetailV1.Limit? = nil) -> Request<AppStoreReviewDetailResponse, ErrorResponse>
     {
         .init(path: "/v1/appStoreReviewDetails/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                        includes: includes,
@@ -66,5 +66,13 @@ public enum GetAppStoreReviewDetailV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreReviewAttachments
         case appStoreVersion
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appStoreReviewAttachments returned (when they are included) - maximum 50
+        case appStoreReviewAttachments(Int)
     }
 }

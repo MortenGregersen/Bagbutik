@@ -17,7 +17,7 @@ public extension Request {
     static func getAppCustomProductPageVersionV1(id: String,
                                                  fields: [GetAppCustomProductPageVersionV1.Field]? = nil,
                                                  includes: [GetAppCustomProductPageVersionV1.Include]? = nil,
-                                                 limit: Int? = nil) -> Request<AppCustomProductPageVersionResponse, ErrorResponse>
+                                                 limit: GetAppCustomProductPageVersionV1.Limit? = nil) -> Request<AppCustomProductPageVersionResponse, ErrorResponse>
     {
         .init(path: "/v1/appCustomProductPageVersions/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                               includes: includes,
@@ -57,5 +57,13 @@ public enum GetAppCustomProductPageVersionV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appCustomProductPage
         case appCustomProductPageLocalizations
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appCustomProductPageLocalizations returned (when they are included) - maximum 50
+        case appCustomProductPageLocalizations(Int)
     }
 }

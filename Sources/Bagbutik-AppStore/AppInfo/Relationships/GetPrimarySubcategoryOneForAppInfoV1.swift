@@ -18,7 +18,7 @@ public extension Request {
     static func getPrimarySubcategoryOneForAppInfoV1(id: String,
                                                      fields: [GetPrimarySubcategoryOneForAppInfoV1.Field]? = nil,
                                                      includes: [GetPrimarySubcategoryOneForAppInfoV1.Include]? = nil,
-                                                     limit: Int? = nil) -> Request<AppCategoryResponse, ErrorResponse>
+                                                     limit: GetPrimarySubcategoryOneForAppInfoV1.Limit? = nil) -> Request<AppCategoryResponse, ErrorResponse>
     {
         .init(path: "/v1/appInfos/\(id)/primarySubcategoryOne", method: .get, parameters: .init(fields: fields,
                                                                                                 includes: includes,
@@ -47,5 +47,13 @@ public enum GetPrimarySubcategoryOneForAppInfoV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case parent
         case subcategories
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related subcategories returned (when they are included) - maximum 50
+        case subcategories(Int)
     }
 }

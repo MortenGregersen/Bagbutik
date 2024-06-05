@@ -18,7 +18,7 @@ public extension Request {
     static func getPreReleaseVersionV1(id: String,
                                        fields: [GetPreReleaseVersionV1.Field]? = nil,
                                        includes: [GetPreReleaseVersionV1.Include]? = nil,
-                                       limit: Int? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse>
+                                       limit: GetPreReleaseVersionV1.Limit? = nil) -> Request<PrereleaseVersionResponse, ErrorResponse>
     {
         .init(path: "/v1/preReleaseVersions/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                     includes: includes,
@@ -129,5 +129,13 @@ public enum GetPreReleaseVersionV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case builds
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related builds returned (when they are included) - maximum 50
+        case builds(Int)
     }
 }

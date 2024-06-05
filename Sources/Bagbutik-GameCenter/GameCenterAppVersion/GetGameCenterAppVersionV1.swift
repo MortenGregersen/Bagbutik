@@ -18,7 +18,7 @@ public extension Request {
     static func getGameCenterAppVersionV1(id: String,
                                           fields: [GetGameCenterAppVersionV1.Field]? = nil,
                                           includes: [GetGameCenterAppVersionV1.Include]? = nil,
-                                          limit: Int? = nil) -> Request<GameCenterAppVersionResponse, ErrorResponse>
+                                          limit: GetGameCenterAppVersionV1.Limit? = nil) -> Request<GameCenterAppVersionResponse, ErrorResponse>
     {
         .init(path: "/v1/gameCenterAppVersions/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                        includes: includes,
@@ -75,5 +75,13 @@ public enum GetGameCenterAppVersionV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreVersion
         case compatibilityVersions
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related compatibilityVersions returned (when they are included) - maximum 50
+        case compatibilityVersions(Int)
     }
 }

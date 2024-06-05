@@ -19,7 +19,7 @@ public extension Request {
     static func getInAppPurchaseV1(id: String,
                                    fields: [GetInAppPurchaseV1.Field]? = nil,
                                    includes: [GetInAppPurchaseV1.Include]? = nil,
-                                   limit: Int? = nil) -> Request<InAppPurchaseResponse, ErrorResponse>
+                                   limit: GetInAppPurchaseV1.Limit? = nil) -> Request<InAppPurchaseResponse, ErrorResponse>
     {
         .init(path: "/v1/inAppPurchases/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                 includes: includes,
@@ -49,5 +49,13 @@ public enum GetInAppPurchaseV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case apps
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related apps returned (when they are included) - maximum 50
+        case apps(Int)
     }
 }

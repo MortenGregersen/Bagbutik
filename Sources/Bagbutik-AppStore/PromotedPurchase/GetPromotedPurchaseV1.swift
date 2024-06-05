@@ -18,7 +18,7 @@ public extension Request {
     static func getPromotedPurchaseV1(id: String,
                                       fields: [GetPromotedPurchaseV1.Field]? = nil,
                                       includes: [GetPromotedPurchaseV1.Include]? = nil,
-                                      limit: Int? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
+                                      limit: GetPromotedPurchaseV1.Limit? = nil) -> Request<PromotedPurchaseResponse, ErrorResponse>
     {
         .init(path: "/v1/promotedPurchases/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                    includes: includes,
@@ -67,5 +67,13 @@ public enum GetPromotedPurchaseV1 {
         case inAppPurchaseV2
         case promotionImages
         case subscription
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related promotionImages returned (when they are included) - maximum 50
+        case promotionImages(Int)
     }
 }

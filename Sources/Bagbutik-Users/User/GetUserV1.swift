@@ -18,7 +18,7 @@ public extension Request {
     static func getUserV1(id: String,
                           fields: [GetUserV1.Field]? = nil,
                           includes: [GetUserV1.Include]? = nil,
-                          limit: Int? = nil) -> Request<UserResponse, ErrorResponse>
+                          limit: GetUserV1.Limit? = nil) -> Request<UserResponse, ErrorResponse>
     {
         .init(path: "/v1/users/\(id)", method: .get, parameters: .init(fields: fields,
                                                                        includes: includes,
@@ -102,5 +102,13 @@ public enum GetUserV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case visibleApps
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related visibleApps returned (when they are included) - maximum 50
+        case visibleApps(Int)
     }
 }

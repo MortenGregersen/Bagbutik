@@ -19,7 +19,7 @@ public extension Request {
     static func getAppAvailabilityV1(id: String,
                                      fields: [GetAppAvailabilityV1.Field]? = nil,
                                      includes: [GetAppAvailabilityV1.Include]? = nil,
-                                     limit: Int? = nil) -> Request<AppAvailabilityResponse, ErrorResponse>
+                                     limit: GetAppAvailabilityV1.Limit? = nil) -> Request<AppAvailabilityResponse, ErrorResponse>
     {
         .init(path: "/v1/appAvailabilities/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                    includes: includes,
@@ -54,5 +54,13 @@ public enum GetAppAvailabilityV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case availableTerritories
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
+        case availableTerritories(Int)
     }
 }

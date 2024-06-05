@@ -18,7 +18,7 @@ public extension Request {
     static func getAnalyticsReportRequestV1(id: String,
                                             fields: [GetAnalyticsReportRequestV1.Field]? = nil,
                                             includes: [GetAnalyticsReportRequestV1.Include]? = nil,
-                                            limit: Int? = nil) -> Request<AnalyticsReportRequestResponse, ErrorResponse>
+                                            limit: GetAnalyticsReportRequestV1.Limit? = nil) -> Request<AnalyticsReportRequestResponse, ErrorResponse>
     {
         .init(path: "/v1/analyticsReportRequests/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                          includes: includes,
@@ -55,5 +55,13 @@ public enum GetAnalyticsReportRequestV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case reports
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related reports returned (when they are included) - maximum 50
+        case reports(Int)
     }
 }

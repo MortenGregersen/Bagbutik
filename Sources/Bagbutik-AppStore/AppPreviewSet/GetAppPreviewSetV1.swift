@@ -18,7 +18,7 @@ public extension Request {
     static func getAppPreviewSetV1(id: String,
                                    fields: [GetAppPreviewSetV1.Field]? = nil,
                                    includes: [GetAppPreviewSetV1.Include]? = nil,
-                                   limit: Int? = nil) -> Request<AppPreviewSetResponse, ErrorResponse>
+                                   limit: GetAppPreviewSetV1.Limit? = nil) -> Request<AppPreviewSetResponse, ErrorResponse>
     {
         .init(path: "/v1/appPreviewSets/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                 includes: includes,
@@ -67,5 +67,13 @@ public enum GetAppPreviewSetV1 {
         case appPreviews
         case appStoreVersionExperimentTreatmentLocalization
         case appStoreVersionLocalization
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appPreviews returned (when they are included) - maximum 50
+        case appPreviews(Int)
     }
 }

@@ -18,7 +18,7 @@ public extension Request {
     static func getAppClipDefaultExperienceV1(id: String,
                                               fields: [GetAppClipDefaultExperienceV1.Field]? = nil,
                                               includes: [GetAppClipDefaultExperienceV1.Include]? = nil,
-                                              limit: Int? = nil) -> Request<AppClipDefaultExperienceResponse, ErrorResponse>
+                                              limit: GetAppClipDefaultExperienceV1.Limit? = nil) -> Request<AppClipDefaultExperienceResponse, ErrorResponse>
     {
         .init(path: "/v1/appClipDefaultExperiences/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                            includes: includes,
@@ -96,5 +96,13 @@ public enum GetAppClipDefaultExperienceV1 {
         case appClipAppStoreReviewDetail
         case appClipDefaultExperienceLocalizations
         case releaseWithAppStoreVersion
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appClipDefaultExperienceLocalizations returned (when they are included) - maximum 50
+        case appClipDefaultExperienceLocalizations(Int)
     }
 }

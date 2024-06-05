@@ -18,7 +18,7 @@ public extension Request {
     static func getAppEncryptionDeclarationV1(id: String,
                                               fields: [GetAppEncryptionDeclarationV1.Field]? = nil,
                                               includes: [GetAppEncryptionDeclarationV1.Include]? = nil,
-                                              limit: Int? = nil) -> Request<AppEncryptionDeclarationResponse, ErrorResponse>
+                                              limit: GetAppEncryptionDeclarationV1.Limit? = nil) -> Request<AppEncryptionDeclarationResponse, ErrorResponse>
     {
         .init(path: "/v1/appEncryptionDeclarations/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                            includes: includes,
@@ -128,5 +128,13 @@ public enum GetAppEncryptionDeclarationV1 {
         case app
         case appEncryptionDeclarationDocument
         case builds
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related builds returned (when they are included) - maximum 50
+        case builds(Int)
     }
 }

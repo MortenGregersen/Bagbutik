@@ -18,7 +18,7 @@ public extension Request {
     static func getUserInvitationV1(id: String,
                                     fields: [GetUserInvitationV1.Field]? = nil,
                                     includes: [GetUserInvitationV1.Include]? = nil,
-                                    limit: Int? = nil) -> Request<UserInvitationResponse, ErrorResponse>
+                                    limit: GetUserInvitationV1.Limit? = nil) -> Request<UserInvitationResponse, ErrorResponse>
     {
         .init(path: "/v1/userInvitations/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                  includes: includes,
@@ -103,5 +103,13 @@ public enum GetUserInvitationV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case visibleApps
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related visibleApps returned (when they are included) - maximum 50
+        case visibleApps(Int)
     }
 }

@@ -20,7 +20,7 @@ public extension Request {
     static func getBuildRunForCiBuildActionV1(id: String,
                                               fields: [GetBuildRunForCiBuildActionV1.Field]? = nil,
                                               includes: [GetBuildRunForCiBuildActionV1.Include]? = nil,
-                                              limit: Int? = nil) -> Request<CiBuildRunResponse, ErrorResponse>
+                                              limit: GetBuildRunForCiBuildActionV1.Limit? = nil) -> Request<CiBuildRunResponse, ErrorResponse>
     {
         .init(path: "/v1/ciBuildActions/\(id)/buildRun", method: .get, parameters: .init(fields: fields,
                                                                                          includes: includes,
@@ -166,5 +166,13 @@ public enum GetBuildRunForCiBuildActionV1 {
         case pullRequest
         case sourceBranchOrTag
         case workflow
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related builds returned (when they are included) - maximum 50
+        case builds(Int)
     }
 }

@@ -20,7 +20,7 @@ public extension Request {
     static func getCiProductV1(id: String,
                                fields: [GetCiProductV1.Field]? = nil,
                                includes: [GetCiProductV1.Include]? = nil,
-                               limit: Int? = nil) -> Request<CiProductResponse, ErrorResponse>
+                               limit: GetCiProductV1.Limit? = nil) -> Request<CiProductResponse, ErrorResponse>
     {
         .init(path: "/v1/ciProducts/\(id)", method: .get, parameters: .init(fields: fields,
                                                                             includes: includes,
@@ -173,5 +173,13 @@ public enum GetCiProductV1 {
         case app
         case bundleId
         case primaryRepositories
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related primaryRepositories returned (when they are included) - maximum 50
+        case primaryRepositories(Int)
     }
 }
