@@ -331,7 +331,7 @@ public class OperationRenderer: Renderer {
             }
             if limits.count > 0 {
                 let name = limits.count == 1 ? "limit" : "limits"
-                let type = if limits.first!.id == "limit" {
+                let type = if limits.count == 1 && limits.first!.id == "limit" {
                     "Int"
                 } else {
                     limits.count == 1 ? "\(operationWrapperName).Limit" : "[\(operationWrapperName).Limit]"
