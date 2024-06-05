@@ -10,7 +10,7 @@ final class BinarySchemaRendererTests: XCTestCase {
             "some://url": .object(
                 .init(id: "/gzip", title: "Gzip", abstract: "Some summary", discussion: nil, properties: [:], subDocumentationIds: []))
         ])
-        let renderer = BinarySchemaRenderer(docsLoader: docsLoader)
+        let renderer = BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = BinarySchema(name: "Gzip", url: "some://url")
         // When
         let rendered = try renderer.render(binarySchema: schema)
@@ -40,7 +40,7 @@ final class BinarySchemaRendererTests: XCTestCase {
     func testRender_NoDocumentation() throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
-        let renderer = BinarySchemaRenderer(docsLoader: docsLoader)
+        let renderer = BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = BinarySchema(name: "Gzip", url: "some://url")
         // When
         let rendered = try renderer.render(binarySchema: schema)

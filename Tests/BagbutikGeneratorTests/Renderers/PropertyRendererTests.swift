@@ -5,7 +5,7 @@ import XCTest
 final class PropertyRendererTests: XCTestCase {
     func testRenderNonReservedButOptional() throws {
         // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
+        let renderer = PropertyRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         // When
         let rendered = renderer.renderProperty(id: "name", type: "string", optional: true, isSimpleType: true)
         // Then
@@ -14,7 +14,7 @@ final class PropertyRendererTests: XCTestCase {
 
     func testRenderReservedButNotOptional() throws {
         // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
+        let renderer = PropertyRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         // When
         let rendered = renderer.renderProperty(id: "required", type: "bool", optional: false, isSimpleType: true)
         // Then
@@ -23,7 +23,7 @@ final class PropertyRendererTests: XCTestCase {
 
     func testNoNullCodableOnNonSimpleOptionalNotData() throws {
         // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
+        let renderer = PropertyRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         // When
         let rendered = renderer.renderProperty(id: "device", type: "Device", optional: true, isSimpleType: false)
         // Then
@@ -32,7 +32,7 @@ final class PropertyRendererTests: XCTestCase {
 
     func testNoNullCodableOnNonSimpleNotOptional() throws {
         // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
+        let renderer = PropertyRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         // When
         let rendered = renderer.renderProperty(id: "device", type: "Device", optional: false, isSimpleType: false)
         // Then
@@ -41,7 +41,7 @@ final class PropertyRendererTests: XCTestCase {
 
     func testRenderDeprecated() throws {
         // Given
-        let renderer = PropertyRenderer(docsLoader: DocsLoader())
+        let renderer = PropertyRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         // When
         let rendered = renderer.renderProperty(id: "name", type: "string", optional: true, isSimpleType: true, deprecated: true)
         // Then

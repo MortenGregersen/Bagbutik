@@ -5,13 +5,10 @@ import SwiftFormat
 
 /// A base class for the renderes which contains a default environment for Swift code rendering
 public class Renderer {
-    /// Only format by default when running in the tests.
-    public static let defaultShouldFormat = NSClassFromString("XCTest") != nil
-    
     let docsLoader: DocsLoader
     let shouldFormat: Bool
     
-    public init(docsLoader: DocsLoader, shouldFormat: Bool = defaultShouldFormat) {
+    public init(docsLoader: DocsLoader, shouldFormat: Bool = false) {
         self.docsLoader = docsLoader
         self.shouldFormat = shouldFormat
     }

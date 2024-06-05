@@ -6,7 +6,7 @@ import XCTest
 final class OneOfSchemaRendererTests: XCTestCase {
     func testRender() throws {
         // Given
-        let renderer = OneOfSchemaRenderer(docsLoader: DocsLoader())
+        let renderer = OneOfSchemaRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         let schema = OneOfSchema(options: [.schemaRef("BundleId"), .schemaRef("Certificate"), .schemaRef("Device")])
         // When
         let rendered = try renderer.render(name: "Included", oneOfSchema: schema)

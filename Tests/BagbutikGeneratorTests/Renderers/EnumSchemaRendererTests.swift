@@ -11,7 +11,7 @@ final class EnumSchemaRendererTests: XCTestCase {
             "IOS": "A string that represents iOS.",
             "TV_OS": "A string that represents tvOS."
         ]))])
-        let renderer = EnumSchemaRenderer(docsLoader: docsLoader)
+        let renderer = EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = EnumSchema(name: "Platform", type: "string", url: "/platform", caseValues: ["MAC_OS", "IOS", "TV_OS"])
         // When
         let rendered = try renderer.render(enumSchema: schema)
@@ -40,7 +40,7 @@ final class EnumSchemaRendererTests: XCTestCase {
 
     func testRenderWithAdditionalProtocol() throws {
         // Given
-        let renderer = EnumSchemaRenderer(docsLoader: DocsLoader())
+        let renderer = EnumSchemaRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         let schema = EnumSchema(name: "AppCategories", type: "string", caseValues: ["parent", "platforms", "subcategories"], additionalProtocols: ["ParameterValue"])
         // When
         let rendered = try renderer.render(enumSchema: schema)
