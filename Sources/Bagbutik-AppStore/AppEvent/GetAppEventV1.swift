@@ -17,11 +17,11 @@ public extension Request {
     static func getAppEventV1(id: String,
                               fields: [GetAppEventV1.Field]? = nil,
                               includes: [GetAppEventV1.Include]? = nil,
-                              limit: Int? = nil) -> Request<AppEventResponse, ErrorResponse>
+                              limit: GetAppEventV1.Limit? = nil) -> Request<AppEventResponse, ErrorResponse>
     {
         .init(path: "/v1/appEvents/\(id)", method: .get, parameters: .init(fields: fields,
                                                                            includes: includes,
-                                                                           limit: limit))
+                                                                           limits: limit.map { [$0] }))
     }
 }
 
@@ -66,5 +66,13 @@ public enum GetAppEventV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case localizations
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related localizations returned (when they are included) - maximum 50
+        case localizations(Int)
     }
 }

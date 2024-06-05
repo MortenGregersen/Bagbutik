@@ -19,11 +19,11 @@ public extension Request {
     static func getAppPriceTierV1(id: String,
                                   fields: [GetAppPriceTierV1.Field]? = nil,
                                   includes: [GetAppPriceTierV1.Include]? = nil,
-                                  limit: Int? = nil) -> Request<AppPriceTierResponse, ErrorResponse>
+                                  limit: GetAppPriceTierV1.Limit? = nil) -> Request<AppPriceTierResponse, ErrorResponse>
     {
         .init(path: "/v1/appPriceTiers/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                includes: includes,
-                                                                               limit: limit))
+                                                                               limits: limit.map { [$0] }))
     }
 }
 
@@ -55,5 +55,13 @@ public enum GetAppPriceTierV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case pricePoints
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related pricePoints returned (when they are included) - maximum 50
+        case pricePoints(Int)
     }
 }

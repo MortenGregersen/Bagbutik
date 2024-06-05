@@ -18,11 +18,11 @@ public extension Request {
     static func getReviewSubmissionV1(id: String,
                                       fields: [GetReviewSubmissionV1.Field]? = nil,
                                       includes: [GetReviewSubmissionV1.Include]? = nil,
-                                      limit: Int? = nil) -> Request<ReviewSubmissionResponse, ErrorResponse>
+                                      limit: GetReviewSubmissionV1.Limit? = nil) -> Request<ReviewSubmissionResponse, ErrorResponse>
     {
         .init(path: "/v1/reviewSubmissions/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                    includes: includes,
-                                                                                   limit: limit))
+                                                                                   limits: limit.map { [$0] }))
     }
 }
 
@@ -71,5 +71,13 @@ public enum GetReviewSubmissionV1 {
         case items
         case lastUpdatedByActor
         case submittedByActor
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related items returned (when they are included) - maximum 50
+        case items(Int)
     }
 }

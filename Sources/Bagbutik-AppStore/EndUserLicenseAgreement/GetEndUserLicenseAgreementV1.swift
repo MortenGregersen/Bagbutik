@@ -18,11 +18,11 @@ public extension Request {
     static func getEndUserLicenseAgreementV1(id: String,
                                              fields: [GetEndUserLicenseAgreementV1.Field]? = nil,
                                              includes: [GetEndUserLicenseAgreementV1.Include]? = nil,
-                                             limit: Int? = nil) -> Request<EndUserLicenseAgreementResponse, ErrorResponse>
+                                             limit: GetEndUserLicenseAgreementV1.Limit? = nil) -> Request<EndUserLicenseAgreementResponse, ErrorResponse>
     {
         .init(path: "/v1/endUserLicenseAgreements/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                           includes: includes,
-                                                                                          limit: limit))
+                                                                                          limits: limit.map { [$0] }))
     }
 }
 
@@ -53,5 +53,13 @@ public enum GetEndUserLicenseAgreementV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case territories
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related territories returned (when they are included) - maximum 50
+        case territories(Int)
     }
 }

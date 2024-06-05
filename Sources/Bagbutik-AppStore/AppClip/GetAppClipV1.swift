@@ -18,11 +18,11 @@ public extension Request {
     static func getAppClipV1(id: String,
                              fields: [GetAppClipV1.Field]? = nil,
                              includes: [GetAppClipV1.Include]? = nil,
-                             limit: Int? = nil) -> Request<AppClipResponse, ErrorResponse>
+                             limit: GetAppClipV1.Limit? = nil) -> Request<AppClipResponse, ErrorResponse>
     {
         .init(path: "/v1/appClips/\(id)", method: .get, parameters: .init(fields: fields,
                                                                           includes: includes,
-                                                                          limit: limit))
+                                                                          limits: limit.map { [$0] }))
     }
 }
 
@@ -77,5 +77,13 @@ public enum GetAppClipV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
         case appClipDefaultExperiences
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appClipDefaultExperiences returned (when they are included) - maximum 50
+        case appClipDefaultExperiences(Int)
     }
 }

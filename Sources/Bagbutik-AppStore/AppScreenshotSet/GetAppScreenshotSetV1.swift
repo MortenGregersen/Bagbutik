@@ -18,11 +18,11 @@ public extension Request {
     static func getAppScreenshotSetV1(id: String,
                                       fields: [GetAppScreenshotSetV1.Field]? = nil,
                                       includes: [GetAppScreenshotSetV1.Include]? = nil,
-                                      limit: Int? = nil) -> Request<AppScreenshotSetResponse, ErrorResponse>
+                                      limit: GetAppScreenshotSetV1.Limit? = nil) -> Request<AppScreenshotSetResponse, ErrorResponse>
     {
         .init(path: "/v1/appScreenshotSets/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                    includes: includes,
-                                                                                   limit: limit))
+                                                                                   limits: limit.map { [$0] }))
     }
 }
 
@@ -66,5 +66,13 @@ public enum GetAppScreenshotSetV1 {
         case appScreenshots
         case appStoreVersionExperimentTreatmentLocalization
         case appStoreVersionLocalization
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appScreenshots returned (when they are included) - maximum 50
+        case appScreenshots(Int)
     }
 }

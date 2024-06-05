@@ -17,11 +17,11 @@ public extension Request {
     static func getAppStoreVersionExperimentTreatmentV1(id: String,
                                                         fields: [GetAppStoreVersionExperimentTreatmentV1.Field]? = nil,
                                                         includes: [GetAppStoreVersionExperimentTreatmentV1.Include]? = nil,
-                                                        limit: Int? = nil) -> Request<AppStoreVersionExperimentTreatmentResponse, ErrorResponse>
+                                                        limit: GetAppStoreVersionExperimentTreatmentV1.Limit? = nil) -> Request<AppStoreVersionExperimentTreatmentResponse, ErrorResponse>
     {
         .init(path: "/v1/appStoreVersionExperimentTreatments/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                                      includes: includes,
-                                                                                                     limit: limit))
+                                                                                                     limits: limit.map { [$0] }))
     }
 }
 
@@ -60,5 +60,13 @@ public enum GetAppStoreVersionExperimentTreatmentV1 {
         case appStoreVersionExperiment
         case appStoreVersionExperimentTreatmentLocalizations
         case appStoreVersionExperimentV2
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included) - maximum 50
+        case appStoreVersionExperimentTreatmentLocalizations(Int)
     }
 }

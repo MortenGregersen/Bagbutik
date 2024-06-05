@@ -20,11 +20,11 @@ public extension Request {
     static func getCiMacOsVersionV1(id: String,
                                     fields: [GetCiMacOsVersionV1.Field]? = nil,
                                     includes: [GetCiMacOsVersionV1.Include]? = nil,
-                                    limit: Int? = nil) -> Request<CiMacOsVersionResponse, ErrorResponse>
+                                    limit: GetCiMacOsVersionV1.Limit? = nil) -> Request<CiMacOsVersionResponse, ErrorResponse>
     {
         .init(path: "/v1/ciMacOsVersions/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                  includes: includes,
-                                                                                 limit: limit))
+                                                                                 limits: limit.map { [$0] }))
     }
 }
 
@@ -57,5 +57,13 @@ public enum GetCiMacOsVersionV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case xcodeVersions
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related xcodeVersions returned (when they are included) - maximum 50
+        case xcodeVersions(Int)
     }
 }
