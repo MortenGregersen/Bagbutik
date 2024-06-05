@@ -95,17 +95,21 @@ public class OperationRenderer: Renderer {
                         funcContent += ", requestBody: requestBody"
                     }
                     if !parametersInfo.parameters.isEmpty {
-                        var parameterNamesToForward = parametersInfo.parameters
-                            .filter { parameter in !parametersInfo.customs.contains(where: { $0.value.name == parameter.name }) }
+                        var parameterKeyValues = parametersInfo.parameters
+                            .filter { parameter in
+                                !(parameter.name == "limit" && parametersInfo.limits.count == 1 && parametersInfo.limits.first!.id != "limit")
+                                    && !parametersInfo.customs.contains(where: { $0.value.name == parameter.name })
+                            }
                             .map(\.name)
+                            .map { "\($0): \($0)" }
+                        if parametersInfo.limits.count == 1, parametersInfo.limits.first!.id != "limit" {
+                            parameterKeyValues.append("limits: limit.map { [$0] }")
+                        }
                         if parametersInfo.customs.count > 0 {
-                            parameterNamesToForward.append("customs")
+                            parameterKeyValues.append("customs: customs")
                         }
                         funcContent += ", parameters: .init("
-                        funcContent += parameterNamesToForward
-                            .reduce(into: [String]()) { partialResult, parameterName in
-                                partialResult.append("\(parameterName): \(parameterName)")
-                            }.joined(separator: ",\n")
+                        funcContent += parameterKeyValues.joined(separator: ",\n")
                         funcContent += ")"
                     }
                     funcContent += ")"
@@ -190,7 +194,7 @@ public class OperationRenderer: Renderer {
                     \(rendered)
                     """)
                 }
-                if parametersInfo.limits.count > 1 {
+                if parametersInfo.limits.count > 0, !(parametersInfo.limits.count == 1 && parametersInfo.limits.first!.id == "limit") {
                     structContent.append("""
                     \(renderDocumentationBlock { "Number of included related resources to return." })
                     \(renderEnum(
@@ -330,18 +334,13 @@ public class OperationRenderer: Renderer {
                 parameters.append(.init(name: key, type: type, optional: true, documentation: value.documentation))
             }
             if limits.count > 0 {
-                let name: String
-                let type: String
-                let documentation: String
-                if limits.count == 1, let limit = limits.first {
-                    name = "limit"
-                    type = "Int"
-                    documentation = limit.documentation!
+                let name = limits.count == 1 ? "limit" : "limits"
+                let type = if limits.count == 1, limits.first!.id == "limit" {
+                    "Int"
                 } else {
-                    name = "limits"
-                    type = "[\(operationWrapperName).Limit]"
-                    documentation = "Number of resources to return"
+                    limits.count == 1 ? "\(operationWrapperName).Limit" : "[\(operationWrapperName).Limit]"
                 }
+                let documentation = limits.count == 1 ? limits.first!.documentation! : "Number of resources to return"
                 parameters.append(.init(name: name, type: type, optional: true, documentation: documentation))
             }
         }

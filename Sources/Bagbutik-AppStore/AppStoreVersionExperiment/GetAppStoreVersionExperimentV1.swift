@@ -19,11 +19,11 @@ public extension Request {
     static func getAppStoreVersionExperimentV1(id: String,
                                                fields: [GetAppStoreVersionExperimentV1.Field]? = nil,
                                                includes: [GetAppStoreVersionExperimentV1.Include]? = nil,
-                                               limit: Int? = nil) -> Request<AppStoreVersionExperimentResponse, ErrorResponse>
+                                               limit: GetAppStoreVersionExperimentV1.Limit? = nil) -> Request<AppStoreVersionExperimentResponse, ErrorResponse>
     {
         .init(path: "/v1/appStoreVersionExperiments/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                             includes: includes,
-                                                                                            limit: limit))
+                                                                                            limits: limit.map { [$0] }))
     }
 }
 
@@ -66,5 +66,13 @@ public enum GetAppStoreVersionExperimentV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreVersion
         case appStoreVersionExperimentTreatments
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appStoreVersionExperimentTreatments returned (when they are included) - maximum 50
+        case appStoreVersionExperimentTreatments(Int)
     }
 }

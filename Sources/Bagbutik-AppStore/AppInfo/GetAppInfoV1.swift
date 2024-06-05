@@ -20,11 +20,11 @@ public extension Request {
     static func getAppInfoV1(id: String,
                              fields: [GetAppInfoV1.Field]? = nil,
                              includes: [GetAppInfoV1.Include]? = nil,
-                             limit: Int? = nil) -> Request<AppInfoResponse, ErrorResponse>
+                             limit: GetAppInfoV1.Limit? = nil) -> Request<AppInfoResponse, ErrorResponse>
     {
         .init(path: "/v1/appInfos/\(id)", method: .get, parameters: .init(fields: fields,
                                                                           includes: includes,
-                                                                          limit: limit))
+                                                                          limits: limit.map { [$0] }))
     }
 }
 
@@ -111,5 +111,13 @@ public enum GetAppInfoV1 {
         case secondaryCategory
         case secondarySubcategoryOne
         case secondarySubcategoryTwo
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related appInfoLocalizations returned (when they are included) - maximum 50
+        case appInfoLocalizations(Int)
     }
 }

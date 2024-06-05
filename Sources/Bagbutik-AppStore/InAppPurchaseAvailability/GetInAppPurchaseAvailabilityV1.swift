@@ -18,11 +18,11 @@ public extension Request {
     static func getInAppPurchaseAvailabilityV1(id: String,
                                                fields: [GetInAppPurchaseAvailabilityV1.Field]? = nil,
                                                includes: [GetInAppPurchaseAvailabilityV1.Include]? = nil,
-                                               limit: Int? = nil) -> Request<InAppPurchaseAvailabilityResponse, ErrorResponse>
+                                               limit: GetInAppPurchaseAvailabilityV1.Limit? = nil) -> Request<InAppPurchaseAvailabilityResponse, ErrorResponse>
     {
         .init(path: "/v1/inAppPurchaseAvailabilities/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                              includes: includes,
-                                                                                             limit: limit))
+                                                                                             limits: limit.map { [$0] }))
     }
 }
 
@@ -52,5 +52,13 @@ public enum GetInAppPurchaseAvailabilityV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case availableTerritories
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
+        case availableTerritories(Int)
     }
 }

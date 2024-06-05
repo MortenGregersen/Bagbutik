@@ -18,11 +18,11 @@ public extension Request {
     static func getBetaAppClipInvocationV1(id: String,
                                            fields: [GetBetaAppClipInvocationV1.Field]? = nil,
                                            includes: [GetBetaAppClipInvocationV1.Include]? = nil,
-                                           limit: Int? = nil) -> Request<BetaAppClipInvocationResponse, ErrorResponse>
+                                           limit: GetBetaAppClipInvocationV1.Limit? = nil) -> Request<BetaAppClipInvocationResponse, ErrorResponse>
     {
         .init(path: "/v1/betaAppClipInvocations/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                         includes: includes,
-                                                                                        limit: limit))
+                                                                                        limits: limit.map { [$0] }))
     }
 }
 
@@ -46,5 +46,13 @@ public enum GetBetaAppClipInvocationV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case betaAppClipInvocationLocalizations
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related betaAppClipInvocationLocalizations returned (when they are included) - maximum 50
+        case betaAppClipInvocationLocalizations(Int)
     }
 }

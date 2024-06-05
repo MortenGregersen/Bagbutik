@@ -47,6 +47,66 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
+    func testRenderWithNoSimpleLimit() throws {
+        // Given
+        let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
+                .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
+                    .init(status: 200, reason: "OK", description: nil)
+                ])]
+        )
+        let renderer = OperationRenderer(docsLoader: docsLoader)
+        let parameters: [Parameter] = [
+            .include(type: .enum(type: "string", values: ["pets"])),
+            .limit(name: "pets", documentation: "maximum number of related pets returned (when they are included)", maximum: 10)
+        ]
+        let operation = Operation(id: "users-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
+        let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
+        // When
+        let rendered = try renderer.render(operation: operation, in: path)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        import Bagbutik_Core
+        import Bagbutik_Models
+
+        public extension Request {
+            /**
+             # No overview available
+
+             Full documentation:
+             <https://developer.apple.com/documentation/appstoreconnectapi/list_users>
+
+             - Parameter includes: Relationship data to include in the response
+             - Parameter limit: Maximum number of related pets returned (when they are included) - maximum 10
+             - Returns: A ``Request`` to send to an instance of ``BagbutikService``
+             */
+            static func listUsersV1(includes: [ListUsersV1.Include]? = nil,
+                                    limit: ListUsersV1.Limit? = nil) -> Request<UsersResponse, ErrorResponse>
+            {
+                .init(path: "/users", method: .get, parameters: .init(includes: includes,
+                                                                      limits: limit.map { [$0] }))
+            }
+        }
+        
+        public enum ListUsersV1 {
+            /**
+             Relationship data to include in the response.
+             */
+            public enum Include: String, IncludeParameter, CaseIterable {
+                case pets
+            }
+        
+            /**
+             Number of included related resources to return.
+             */
+            public enum Limit: LimitParameter {
+                /// Maximum number of related pets returned (when they are included) - maximum 10
+                case pets(Int)
+            }
+        }
+
+        """#)
+    }
+
     func testRenderCustomParameters() throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":

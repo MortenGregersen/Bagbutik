@@ -18,11 +18,11 @@ public extension Request {
     static func getSubscriptionAvailabilityForSubscriptionV1(id: String,
                                                              fields: [GetSubscriptionAvailabilityForSubscriptionV1.Field]? = nil,
                                                              includes: [GetSubscriptionAvailabilityForSubscriptionV1.Include]? = nil,
-                                                             limit: Int? = nil) -> Request<SubscriptionAvailabilityResponse, ErrorResponse>
+                                                             limit: GetSubscriptionAvailabilityForSubscriptionV1.Limit? = nil) -> Request<SubscriptionAvailabilityResponse, ErrorResponse>
     {
         .init(path: "/v1/subscriptions/\(id)/subscriptionAvailability", method: .get, parameters: .init(fields: fields,
                                                                                                         includes: includes,
-                                                                                                        limit: limit))
+                                                                                                        limits: limit.map { [$0] }))
     }
 }
 
@@ -75,5 +75,13 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case availableTerritories
         case subscription
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
+        case availableTerritories(Int)
     }
 }

@@ -18,11 +18,11 @@ public extension Request {
     static func getAlternativeDistributionPackageForAppStoreVersionV1(id: String,
                                                                       fields: [GetAlternativeDistributionPackageForAppStoreVersionV1.Field]? = nil,
                                                                       includes: [GetAlternativeDistributionPackageForAppStoreVersionV1.Include]? = nil,
-                                                                      limit: Int? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse>
+                                                                      limit: GetAlternativeDistributionPackageForAppStoreVersionV1.Limit? = nil) -> Request<AlternativeDistributionPackageResponse, ErrorResponse>
     {
         .init(path: "/v1/appStoreVersions/\(id)/alternativeDistributionPackage", method: .get, parameters: .init(fields: fields,
                                                                                                                  includes: includes,
-                                                                                                                 limit: limit))
+                                                                                                                 limits: limit.map { [$0] }))
     }
 }
 
@@ -58,5 +58,13 @@ public enum GetAlternativeDistributionPackageForAppStoreVersionV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case versions
+    }
+
+    /**
+     Number of included related resources to return.
+     */
+    public enum Limit: LimitParameter {
+        /// Maximum number of related versions returned (when they are included) - maximum 50
+        case versions(Int)
     }
 }
