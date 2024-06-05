@@ -22,7 +22,7 @@ public extension Request {
     {
         .init(path: "/v1/subscriptions/\(id)/subscriptionAvailability", method: .get, parameters: .init(fields: fields,
                                                                                                         includes: includes,
-                                                                                                        limit: limit))
+                                                                                                        limits: limit.map { [$0] }))
     }
 }
 

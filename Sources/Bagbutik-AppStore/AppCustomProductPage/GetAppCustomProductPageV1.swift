@@ -21,7 +21,7 @@ public extension Request {
     {
         .init(path: "/v1/appCustomProductPages/\(id)", method: .get, parameters: .init(fields: fields,
                                                                                        includes: includes,
-                                                                                       limit: limit))
+                                                                                       limits: limit.map { [$0] }))
     }
 }
 
