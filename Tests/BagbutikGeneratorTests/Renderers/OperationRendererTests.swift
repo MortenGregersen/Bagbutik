@@ -83,7 +83,7 @@ final class OperationRendererTests: XCTestCase {
                                     limit: ListUsersV1.Limit? = nil) -> Request<UsersResponse, ErrorResponse>
             {
                 .init(path: "/users", method: .get, parameters: .init(includes: includes,
-                                                                      limit: limit))
+                                                                      limits: limit.map { [$0] }))
             }
         }
         
