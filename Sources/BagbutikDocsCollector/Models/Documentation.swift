@@ -9,66 +9,66 @@ public enum Documentation: Codable, Equatable {
     public var id: String {
         switch self {
         case .enum(let documentation):
-            return documentation.id
+            documentation.id
         case .object(let documentation):
-            return documentation.id
+            documentation.id
         case .operation(let documentation):
-            return documentation.id
+            documentation.id
         }
     }
 
     public var hierarchy: Hierarchy {
         switch self {
         case .enum(let documentation):
-            return documentation.hierarchy
+            documentation.hierarchy
         case .object(let documentation):
-            return documentation.hierarchy
+            documentation.hierarchy
         case .operation(let documentation):
-            return documentation.hierarchy
+            documentation.hierarchy
         }
     }
 
     var title: String {
         switch self {
         case .enum(let documentation):
-            return documentation.title
+            documentation.title
         case .object(let documentation):
-            return documentation.title
+            documentation.title
         case .operation(let documentation):
-            return documentation.title
+            documentation.title
         }
     }
 
     var abstract: String? {
         switch self {
         case .enum(let documentation):
-            return documentation.abstract
+            documentation.abstract
         case .object(let documentation):
-            return documentation.abstract
+            documentation.abstract
         case .operation(let documentation):
-            return documentation.abstract
+            documentation.abstract
         }
     }
 
     var discussion: String? {
         switch self {
         case .enum(let documentation):
-            return documentation.discussion
+            documentation.discussion
         case .object(let documentation):
-            return documentation.discussion
+            documentation.discussion
         case .operation(let documentation):
-            return documentation.discussion
+            documentation.discussion
         }
     }
 
     var subDocumentationIds: [String] {
         switch self {
         case .enum:
-            return []
+            []
         case .object(let documentation):
-            return documentation.subDocumentationIds
+            documentation.subDocumentationIds
         case .operation:
-            return []
+            []
         }
     }
 
@@ -233,11 +233,10 @@ public enum Documentation: Codable, Equatable {
                 contentSections.append(.restBody([body]))
             }
             contentSections.append(.restResponses(documentation.responses.map { response in
-                let contents: [Content]
-                if let content = response.description.map({ Content(text: $0) }) {
-                    contents = [content]
+                let contents: [Content] = if let content = response.description.map({ Content(text: $0) }) {
+                    [content]
                 } else {
-                    contents = []
+                    []
                 }
                 return Response(status: response.status, reason: response.reason, contents: contents)
             }))
@@ -569,7 +568,7 @@ public enum Documentation: Codable, Equatable {
 
     public struct Response: Codable {
         let status: Int
-        let reason: String
+        let reason: String?
         let contents: [Content]?
 
         enum CodingKeys: CodingKey {
@@ -578,7 +577,7 @@ public enum Documentation: Codable, Equatable {
             case content
         }
 
-        init(status: Int, reason: String, contents: [Content]?) {
+        init(status: Int, reason: String?, contents: [Content]?) {
             self.status = status
             self.reason = reason
             self.contents = contents
@@ -587,7 +586,7 @@ public enum Documentation: Codable, Equatable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             status = try container.decode(Int.self, forKey: .status)
-            reason = try container.decode(String.self, forKey: .reason)
+            reason = try container.decodeIfPresent(String.self, forKey: .reason)
             contents = try (container.decodeIfPresent([Content].self, forKey: .content) ?? [])
                 .filter { $0.inlineContent.count > 0 }
         }
@@ -595,10 +594,8 @@ public enum Documentation: Codable, Equatable {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(status, forKey: .status)
-            try container.encode(reason, forKey: .reason)
-            if let contents {
-                try container.encode(contents, forKey: .content)
-            }
+            try container.encodeIfPresent(reason, forKey: .reason)
+            try container.encodeIfPresent(contents, forKey: .content)
         }
     }
 }
