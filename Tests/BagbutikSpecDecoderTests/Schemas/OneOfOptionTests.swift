@@ -32,13 +32,13 @@ final class OneOfOptionTests: XCTestCase {
         guard case let .objectSchema(objectSchema) = oneOfOptions[0],
               case let .schemaRef(refName) = oneOfOptions[1]
         else { return XCTFail("") }
-        XCTAssertEqual(oneOfOptions[0].schemaName, "SomeModel")
+        XCTAssertEqual(oneOfOptions[0].typeName, "SomeModel")
         XCTAssertEqual(objectSchema.name, "SomeModel")
         XCTAssertEqual(objectSchema.properties.count, 2)
         XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string).description)
         XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string).description)
         XCTAssertEqual(objectSchema.properties["vehicle"]?.deprecated, true)
-        XCTAssertEqual(oneOfOptions[1].schemaName, "AnotherModel")
+        XCTAssertEqual(oneOfOptions[1].typeName, "AnotherModel")
         XCTAssertEqual(refName, "AnotherModel")
     }
 

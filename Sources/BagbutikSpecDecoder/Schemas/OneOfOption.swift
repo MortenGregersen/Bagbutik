@@ -6,14 +6,18 @@ public enum OneOfOption: Decodable, Equatable {
     case objectSchema(ObjectSchema)
     /// A name of a schema
     case schemaRef(String)
+    /// A simple type
+    case simple(SimplePropertyType)
     
     /// The name of the associated schema
-    public var schemaName: String {
+    public var typeName: String {
         switch self {
         case .objectSchema(let objectSchema):
-            return objectSchema.name
+            objectSchema.name
         case .schemaRef(let schemaName):
-            return schemaName
+            schemaName
+        case .simple(let type):
+            type.description.lowercased()
         }
     }
     
@@ -29,7 +33,10 @@ public enum OneOfOption: Decodable, Equatable {
             self = .schemaRef(schemaName)
         } else if let type = try container.decodeIfPresent(String.self, forKey: .type),
                   type == "object" {
-            self = .objectSchema(try ObjectSchema(from: decoder))
+            self = try .objectSchema(ObjectSchema(from: decoder))
+        } else if let type = try container.decodeIfPresent(String.self, forKey: .type),
+                  type == "string" {
+            self = .simple(.string)
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "OneOf option not known")
         }

@@ -13,7 +13,7 @@ public class OneOfSchemaRenderer: Renderer {
      */
     public func render(name: String, oneOfSchema: OneOfSchema) throws -> String {
         let options = oneOfSchema.options
-            .map { EnumCase(id: $0.schemaName.lowercasedFirstLetter(), value: $0.schemaName) }
+            .map { EnumCase(id: $0.typeName.lowercasedFirstLetter(), value: $0.typeName) }
             .sorted { $0.id < $1.id }
 
         var rendered = "public init(from decoder: Decoder) throws {\n"
