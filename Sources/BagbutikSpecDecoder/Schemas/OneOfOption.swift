@@ -17,7 +17,7 @@ public enum OneOfOption: Decodable, Equatable {
         case .schemaRef(let schemaName):
             schemaName
         case .simple(let type):
-            type.description.lowercased()
+            type.description
         }
     }
     
