@@ -14,7 +14,7 @@ class PackageNameTests: XCTestCase {
 
     func testResolvePackageNameCore() {
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("large_data_sets")), .core)
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("errorresponse")), .core)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("interpreting_and_handling_errors")), .core)
         XCTAssertEqual(PackageName.resolvePackageName(from: PackageName.core.path), nil)
     }
     

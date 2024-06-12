@@ -66,7 +66,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         case appStore.path:
             .appStore
         case pathPrefix.appending("large_data_sets"),
-             pathPrefix.appending("errorresponse"):
+             pathPrefix.appending("interpreting_and_handling_errors"):
             .core
         case pathPrefix.appending("game_center"):
             .gameCenter
