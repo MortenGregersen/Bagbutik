@@ -199,7 +199,7 @@ final class ObjectSchemaTests: XCTestCase {
         guard case let .oneOf(associatedSchemaName, associatedOneOfSchema) = objectSchema.subSchemas[0] else { return XCTFail() }
         XCTAssertEqual(associatedSchemaName, "Associated")
         XCTAssertEqual(associatedOneOfSchema.options.count, 2)
-        XCTAssertEqual(associatedOneOfSchema.options[0].typeName, "string")
+        XCTAssertEqual(associatedOneOfSchema.options[0].typeName, "String")
         XCTAssertEqual(associatedOneOfSchema.options[1].typeName, "Properties")
     }
 
