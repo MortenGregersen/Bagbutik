@@ -86,7 +86,6 @@ public enum GetInAppPurchasesV2 {
         public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
-            case priceTier
             case proceeds
             case territory
         }

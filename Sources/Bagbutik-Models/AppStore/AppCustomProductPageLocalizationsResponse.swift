@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageLocalizationsResponse
+ A response that contains a list of alternative distribution package variant resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationsresponse>
+ */
 public struct AppCustomProductPageLocalizationsResponse: Codable, PagedResponse {
     public typealias Data = AppCustomProductPageLocalization
 

@@ -57,8 +57,6 @@ public enum ListBetaGroupsV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
             case betaAppLocalizations
             case betaAppReviewDetail
             case betaGroups
@@ -80,8 +78,6 @@ public enum ListBetaGroupsV1 {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
-            case pricePoints
-            case prices
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
@@ -119,6 +115,7 @@ public enum ListBetaGroupsV1 {
             case firstName
             case inviteType
             case lastName
+            case state
         }
 
         public enum Builds: String, ParameterValue, Codable, CaseIterable {

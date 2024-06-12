@@ -38,6 +38,7 @@ public enum ListDiagnosticSignaturesForBuildV1 {
 
         public enum DiagnosticSignatures: String, ParameterValue, Codable, CaseIterable {
             case diagnosticType
+            case insight
             case logs
             case signature
             case weight
@@ -54,6 +55,7 @@ public enum ListDiagnosticSignaturesForBuildV1 {
         public enum DiagnosticType: String, ParameterValue, Codable, CaseIterable {
             case diskWrites = "DISK_WRITES"
             case hangs = "HANGS"
+            case launches = "LAUNCHES"
         }
     }
 }

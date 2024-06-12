@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersion
+ The data structure that represents an app custom product page version resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversion>
+ */
 public struct AppCustomProductPageVersion: Codable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -40,24 +47,29 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
     }
 
     public struct Attributes: Codable {
+        public var deepLink: String?
         public var state: State?
         public var version: String?
 
-        public init(state: State? = nil,
+        public init(deepLink: String? = nil,
+                    state: State? = nil,
                     version: String? = nil)
         {
+            self.deepLink = deepLink
             self.state = state
             self.version = version
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            deepLink = try container.decodeIfPresent(String.self, forKey: "deepLink")
             state = try container.decodeIfPresent(State.self, forKey: "state")
             version = try container.decodeIfPresent(String.self, forKey: "version")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(deepLink, forKey: "deepLink")
             try container.encodeIfPresent(state, forKey: "state")
             try container.encodeIfPresent(version, forKey: "version")
         }

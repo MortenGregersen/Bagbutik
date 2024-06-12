@@ -44,7 +44,6 @@ public enum ListAutomaticPricesForInAppPurchasePriceScheduleV1 {
         public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
-            case priceTier
             case proceeds
             case territory
         }

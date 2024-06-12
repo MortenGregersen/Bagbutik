@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersionCreateRequest
+ The request body you use to create an app custom product page version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest>
+ */
 public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
     public let data: Data
 
@@ -20,14 +27,19 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
 
     public struct Data: Codable {
         public var type: String { "appCustomProductPageVersions" }
+        public var attributes: Attributes?
         public let relationships: Relationships
 
-        public init(relationships: Relationships) {
+        public init(attributes: Attributes? = nil,
+                    relationships: Relationships)
+        {
+            self.attributes = attributes
             self.relationships = relationships
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
             relationships = try container.decode(Relationships.self, forKey: "relationships")
             if try container.decode(String.self, forKey: "type") != type {
                 throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
@@ -37,7 +49,33 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, RequestBody {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encode(type, forKey: "type")
+            try container.encodeIfPresent(attributes, forKey: "attributes")
             try container.encode(relationships, forKey: "relationships")
+        }
+
+        /**
+         # AppCustomProductPageVersionCreateRequest.Data.Attributes
+         Attributes that describe an app customer product page version create request resource.
+
+         Full documentation:
+         <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/data/attributes>
+         */
+        public struct Attributes: Codable {
+            public var deepLink: String?
+
+            public init(deepLink: String? = nil) {
+                self.deepLink = deepLink
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                deepLink = try container.decodeIfPresent(String.self, forKey: "deepLink")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(deepLink, forKey: "deepLink")
+            }
         }
 
         public struct Relationships: Codable {

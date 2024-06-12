@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCustomProductPageLocalizations/{id}
+     # Read custom product page localization information
+     Get information about a specific app custom product page localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpagelocalizations_id>

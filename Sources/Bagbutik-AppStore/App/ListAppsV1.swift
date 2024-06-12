@@ -62,9 +62,6 @@ public enum ListAppsV1 {
         case appPricePoints([AppPricePoints])
         /// The fields to include for returned resources of type appPriceSchedules
         case appPriceSchedules([AppPriceSchedules])
-        /// The fields to include for returned resources of type appPrices
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        case appPrices([AppPrices])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersions
@@ -108,9 +105,6 @@ public enum ListAppsV1 {
         case subscriptionGracePeriods([SubscriptionGracePeriods])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
-        /// The fields to include for returned resources of type territories
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        case territories([Territories])
 
         public enum AlternativeDistributionKeys: String, ParameterValue, Codable, CaseIterable {
             case app
@@ -210,7 +204,6 @@ public enum ListAppsV1 {
             case app
             case customerPrice
             case equalizations
-            case priceTier
             case proceeds
             case territory
         }
@@ -220,11 +213,6 @@ public enum ListAppsV1 {
             case automaticPrices
             case baseTerritory
             case manualPrices
-        }
-
-        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
-            case app
-            case priceTier
         }
 
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
@@ -281,8 +269,6 @@ public enum ListAppsV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
             case betaAppLocalizations
             case betaAppReviewDetail
             case betaGroups
@@ -304,8 +290,6 @@ public enum ListAppsV1 {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
-            case pricePoints
-            case prices
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
@@ -515,10 +499,6 @@ public enum ListAppsV1 {
             case subscriptionGroupLocalizations
             case subscriptions
         }
-
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
-            case currency
-        }
     }
 
     /**
@@ -562,7 +542,6 @@ public enum ListAppsV1 {
         case appInfos
         case appStoreVersionExperimentsV2
         case appStoreVersions
-        case availableTerritories
         case betaAppLocalizations
         case betaAppReviewDetail
         case betaGroups
@@ -576,7 +555,6 @@ public enum ListAppsV1 {
         case inAppPurchasesV2
         case preOrder
         case preReleaseVersions
-        case prices
         case promotedPurchases
         case reviewSubmissions
         case subscriptionGracePeriod
@@ -613,8 +591,6 @@ public enum ListAppsV1 {
         case appStoreVersionExperimentsV2(Int)
         /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50
         case appStoreVersions(Int)
-        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
-        case availableTerritories(Int)
         /// Maximum number of related betaAppLocalizations returned (when they are included) - maximum 50
         case betaAppLocalizations(Int)
         /// Maximum number of related betaGroups returned (when they are included) - maximum 50
@@ -631,8 +607,6 @@ public enum ListAppsV1 {
         case limit(Int)
         /// Maximum number of related preReleaseVersions returned (when they are included) - maximum 50
         case preReleaseVersions(Int)
-        /// Maximum number of related prices returned (when they are included) - maximum 50
-        case prices(Int)
         /// Maximum number of related promotedPurchases returned (when they are included) - maximum 50
         case promotedPurchases(Int)
         /// Maximum number of related reviewSubmissions returned (when they are included) - maximum 50

@@ -2,13 +2,13 @@ import Bagbutik_Core
 import Foundation
 
 /**
- # AppCustomProductPageUpdateRequest
- The request body you use to update an app custom product page.
+ # AppCustomProductPageVersionUpdateRequest
+ The request body you use to update an app custom product page version.
 
  Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageupdaterequest>
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionupdaterequest>
  */
-public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
+public struct AppCustomProductPageVersionUpdateRequest: Codable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -27,7 +27,7 @@ public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
 
     public struct Data: Codable, Identifiable {
         public let id: String
-        public var type: String { "appCustomProductPages" }
+        public var type: String { "appCustomProductPageVersions" }
         public var attributes: Attributes?
 
         public init(id: String,
@@ -54,26 +54,20 @@ public struct AppCustomProductPageUpdateRequest: Codable, RequestBody {
         }
 
         public struct Attributes: Codable {
-            public var name: String?
-            public var visible: Bool?
+            public var deepLink: String?
 
-            public init(name: String? = nil,
-                        visible: Bool? = nil)
-            {
-                self.name = name
-                self.visible = visible
+            public init(deepLink: String? = nil) {
+                self.deepLink = deepLink
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                name = try container.decodeIfPresent(String.self, forKey: "name")
-                visible = try container.decodeIfPresent(Bool.self, forKey: "visible")
+                deepLink = try container.decodeIfPresent(String.self, forKey: "deepLink")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encodeIfPresent(name, forKey: "name")
-                try container.encodeIfPresent(visible, forKey: "visible")
+                try container.encodeIfPresent(deepLink, forKey: "deepLink")
             }
         }
     }

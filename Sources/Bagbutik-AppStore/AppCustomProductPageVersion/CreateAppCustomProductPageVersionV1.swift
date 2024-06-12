@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appCustomProductPageVersions
+     # Create a custom product page version
+     Add a version for your app custom product page.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appcustomproductpageversions>

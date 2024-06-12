@@ -53,7 +53,7 @@ public struct BetaTester: Codable, Identifiable {
 
     /**
      # BetaTester.Attributes
-     Attributes that describe a Beta Testers resource.
+     Attributes that describe a beta tester resource.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betatester/attributes>
@@ -67,16 +67,20 @@ public struct BetaTester: Codable, Identifiable {
         public var inviteType: BetaInviteType?
         /// The beta tester's last name.
         public var lastName: String?
+        /// The status of a beta tester.
+        public var state: BetaTesterState?
 
         public init(email: String? = nil,
                     firstName: String? = nil,
                     inviteType: BetaInviteType? = nil,
-                    lastName: String? = nil)
+                    lastName: String? = nil,
+                    state: BetaTesterState? = nil)
         {
             self.email = email
             self.firstName = firstName
             self.inviteType = inviteType
             self.lastName = lastName
+            self.state = state
         }
 
         public init(from decoder: Decoder) throws {
@@ -85,6 +89,7 @@ public struct BetaTester: Codable, Identifiable {
             firstName = try container.decodeIfPresent(String.self, forKey: "firstName")
             inviteType = try container.decodeIfPresent(BetaInviteType.self, forKey: "inviteType")
             lastName = try container.decodeIfPresent(String.self, forKey: "lastName")
+            state = try container.decodeIfPresent(BetaTesterState.self, forKey: "state")
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -93,6 +98,7 @@ public struct BetaTester: Codable, Identifiable {
             try container.encodeIfPresent(firstName, forKey: "firstName")
             try container.encodeIfPresent(inviteType, forKey: "inviteType")
             try container.encodeIfPresent(lastName, forKey: "lastName")
+            try container.encodeIfPresent(state, forKey: "state")
         }
     }
 

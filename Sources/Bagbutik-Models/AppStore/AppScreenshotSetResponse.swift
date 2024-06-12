@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppScreenshotSetResponse
- A response that contains a single App Screenshot Sets resource.
+ A response that contains a single app screenshot set resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetresponse>
