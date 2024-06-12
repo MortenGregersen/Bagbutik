@@ -13,8 +13,12 @@ public class OneOfSchemaRenderer: Renderer {
      */
     public func render(name: String, oneOfSchema: OneOfSchema) throws -> String {
         let options = oneOfSchema.options
-            .map { EnumCase(id: $0.schemaName.lowercasedFirstLetter(), value: $0.schemaName) }
+            .map { EnumCase(id: $0.typeName.lowercasedFirstLetter(), value: $0.typeName) }
             .sorted { $0.id < $1.id }
+        let subSchemas: [ObjectSchema] = oneOfSchema.options.compactMap { option in
+            guard case .objectSchema(let objectSchema) = option else { return nil }
+            return objectSchema
+        }
 
         var rendered = "public init(from decoder: Decoder) throws {\n"
         options.enumerated().forEach {
@@ -54,13 +58,21 @@ public class OneOfSchemaRenderer: Renderer {
             }
         }
         """
-        
+
+        let objectRenderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: false)
+        let renderedSubSchemas = try subSchemas.map { subSchema in
+            return try objectRenderer.render(objectSchema: subSchema, otherSchemas: [:])
+        }.joined(separator: "\n\n")
+        if !renderedSubSchemas.isEmpty {
+            rendered += "\n\n" + renderedSubSchemas
+        }
+
         rendered = renderEnum(named: name,
                               protocols: ["Codable"],
                               cases: options,
                               caseValueIsAssociated: true,
                               content: rendered)
-        
+
         return try format(rendered)
     }
 }

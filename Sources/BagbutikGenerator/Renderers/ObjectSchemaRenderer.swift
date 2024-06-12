@@ -217,7 +217,7 @@ public class ObjectSchemaRenderer: Renderer {
         }
         guard case .object(let dataSchema) = otherSchemas[dataSchemaName],
               case .schema(let relationshipsSchema) = dataSchema.properties["relationships"]?.type else { return [] }
-        return relationshipsSchema.properties.sorted(by: { $0.key < $1.key }).compactMap { relationship in
+        return relationshipsSchema.properties.sorted(by: { $0.key < $1.key }).compactMap { relationship -> String? in
             guard !relationship.value.deprecated, case .schema(let relationshipPropertySchema) = relationship.value.type else { return nil }
             let relationshipDataProperty = relationshipPropertySchema.properties["data"]
             let relationshipDataSchema: ObjectSchema
@@ -234,7 +234,7 @@ public class ObjectSchemaRenderer: Renderer {
             guard case .constant(let relationshipType) = relationshipDataSchema.properties["type"]?.type,
                   case .arrayOfOneOf(_, let includedOneOf) = includedProperty.type
             else { return nil }
-            let includedSchemaNames = includedOneOf.options.map(\.schemaName)
+            let includedSchemaNames = includedOneOf.options.map(\.typeName)
             guard let includedSchemaName = includedSchemaNames.compactMap({ includedSchemaName -> String? in
                 if case .object(let includedSchema) = otherSchemas[includedSchemaName],
                    case .constant(let includedType) = includedSchema.properties["type"]?.type,

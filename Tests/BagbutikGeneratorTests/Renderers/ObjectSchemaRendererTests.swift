@@ -794,6 +794,18 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         try value.encode(to: encoder)
                     }
                 }
+
+                public struct App: Codable {
+                    public init() {}
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    }
+                }
             }
         }
 

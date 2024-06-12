@@ -70,6 +70,8 @@ public struct ObjectSchema: Decodable, Equatable {
         } else {
             if container.codingPath.count > 2, container.codingPath[2].stringValue == "ReviewSubmission" {
                 name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
+            } else if container.codingPath.last?.intValue != nil, container.codingPath[container.codingPath.count-2].stringValue == "oneOf" {
+                name = "Properties"
             } else {
                 name = container.codingPath.last { $0.stringValue != "items" }!.stringValue.capitalizingFirstLetter()
             }

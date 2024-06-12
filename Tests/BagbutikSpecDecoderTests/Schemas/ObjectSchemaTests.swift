@@ -153,6 +153,55 @@ final class ObjectSchemaTests: XCTestCase {
         guard case let .objectSchema(singleObjectSchema) = objectSchema.subSchemas[6] else { return XCTFail() }
         XCTAssertEqual(singleObjectSchema.name, "SingleSubSchema")
     }
+    
+    func testDecodingOneOfWithSimpleType() throws {
+        // Given
+        let json = #"""
+        {
+            "ErrorLinks" : {
+                "type" : "object",
+                "properties" : {
+                    "associated" : {
+                        "oneOf" : [ {
+                            "type" : "string",
+                            "format" : "uri-reference"
+                        }, {
+                            "type" : "object",
+                            "properties" : {
+                                "href" : {
+                                    "type" : "string",
+                                    "format" : "uri-reference"
+                                },
+                                "meta" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "source" : {
+                                            "type" : "string"
+                                        }
+                                    }
+                                }
+                            }
+                        } ]
+                    }
+                }
+            }
+        }
+        """#
+        // When
+        let objectSchema = try decodeObjectSchema(from: json)
+        // Then
+        XCTAssertEqual(objectSchema.name, "ErrorLinks")
+        XCTAssertEqual(objectSchema.properties.count, 1)
+        XCTAssertEqual(objectSchema.subSchemas.count, 1)
+        
+        XCTAssertEqual(objectSchema.properties["associated"]?.type.description, "Associated")
+        
+        guard case let .oneOf(associatedSchemaName, associatedOneOfSchema) = objectSchema.subSchemas[0] else { return XCTFail() }
+        XCTAssertEqual(associatedSchemaName, "Associated")
+        XCTAssertEqual(associatedOneOfSchema.options.count, 2)
+        XCTAssertEqual(associatedOneOfSchema.options[0].typeName, "String")
+        XCTAssertEqual(associatedOneOfSchema.options[1].typeName, "Properties")
+    }
 
     func testDecodingUnknownPropertyType() throws {
         // Given

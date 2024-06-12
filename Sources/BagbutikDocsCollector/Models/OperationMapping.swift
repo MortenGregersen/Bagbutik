@@ -77,6 +77,7 @@ enum OperationMapping {
         "appCustomProductPageVersions-appCustomProductPageLocalizations-get_to_many_related": "get_v1_appcustomproductpageversions_id_appcustomproductpagelocalizations",
         "appCustomProductPageVersions-create_instance": "post_v1_appcustomproductpageversions",
         "appCustomProductPageVersions-get_instance": "get_v1_appcustomproductpageversions_id",
+        "appCustomProductPageVersions-update_instance": "modify_a_custom_product_page_version",
         "appCustomProductPages-appCustomProductPageVersions-get_to_many_related": "get_v1_appcustomproductpages_id_appcustomproductpageversions",
         "appCustomProductPages-create_instance": "post_v1_appcustomproductpages",
         "appCustomProductPages-delete_instance": "delete_v1_appcustomproductpages_id",

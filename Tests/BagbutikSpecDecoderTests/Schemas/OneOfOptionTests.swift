@@ -23,6 +23,10 @@ final class OneOfOptionTests: XCTestCase {
             },
             {
                 "$ref" : "#/components/schemas/AnotherModel"
+            },
+            {
+                "type" : "string",
+                "format" : "uri-reference"
             }
         ]
         """#
@@ -30,16 +34,19 @@ final class OneOfOptionTests: XCTestCase {
         let oneOfOptions = try jsonDecoder.decode([OneOfOption].self, from: json.data(using: .utf8)!)
         // Then
         guard case let .objectSchema(objectSchema) = oneOfOptions[0],
-              case let .schemaRef(refName) = oneOfOptions[1]
+              case let .schemaRef(refName) = oneOfOptions[1],
+              case let .simple(simpleName) = oneOfOptions[2]
         else { return XCTFail("") }
-        XCTAssertEqual(oneOfOptions[0].schemaName, "SomeModel")
+        XCTAssertEqual(oneOfOptions[0].typeName, "SomeModel")
         XCTAssertEqual(objectSchema.name, "SomeModel")
         XCTAssertEqual(objectSchema.properties.count, 2)
         XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string).description)
         XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string).description)
         XCTAssertEqual(objectSchema.properties["vehicle"]?.deprecated, true)
-        XCTAssertEqual(oneOfOptions[1].schemaName, "AnotherModel")
+        XCTAssertEqual(oneOfOptions[1].typeName, "AnotherModel")
         XCTAssertEqual(refName, "AnotherModel")
+        XCTAssertEqual(oneOfOptions[2].typeName, "String")
+        XCTAssertEqual(simpleName, .string)
     }
 
     func testDecodingUnknownOption() throws {
