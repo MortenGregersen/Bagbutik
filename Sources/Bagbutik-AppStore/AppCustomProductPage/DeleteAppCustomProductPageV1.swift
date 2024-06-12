@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Custom Product Page
+     # Delete an app custom product page
      Delete metadata that you configured for a custom product page.
 
      Full documentation:

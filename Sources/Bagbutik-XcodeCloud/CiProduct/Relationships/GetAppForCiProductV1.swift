@@ -43,8 +43,6 @@ public enum GetAppForCiProductV1 {
         case appInfos([AppInfos])
         /// The fields to include for returned resources of type appPreOrders
         case appPreOrders([AppPreOrders])
-        /// The fields to include for returned resources of type appPrices
-        case appPrices([AppPrices])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersions
@@ -81,8 +79,6 @@ public enum GetAppForCiProductV1 {
         case subscriptionGracePeriods([SubscriptionGracePeriods])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
-        /// The fields to include for returned resources of type territories
-        case territories([Territories])
 
         public enum AppClips: String, ParameterValue, Codable, CaseIterable {
             case app
@@ -160,11 +156,6 @@ public enum GetAppForCiProductV1 {
             case preOrderAvailableDate
         }
 
-        public enum AppPrices: String, ParameterValue, Codable, CaseIterable {
-            case app
-            case priceTier
-        }
-
         public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionExperimentTreatments
@@ -219,8 +210,6 @@ public enum GetAppForCiProductV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
             case betaAppLocalizations
             case betaAppReviewDetail
             case betaGroups
@@ -242,8 +231,6 @@ public enum GetAppForCiProductV1 {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
-            case pricePoints
-            case prices
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
@@ -432,10 +419,6 @@ public enum GetAppForCiProductV1 {
             case subscriptionGroupLocalizations
             case subscriptions
         }
-
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
-            case currency
-        }
     }
 
     /**
@@ -449,7 +432,6 @@ public enum GetAppForCiProductV1 {
         case appInfos
         case appStoreVersionExperimentsV2
         case appStoreVersions
-        case availableTerritories
         case betaAppLocalizations
         case betaAppReviewDetail
         case betaGroups
@@ -463,7 +445,6 @@ public enum GetAppForCiProductV1 {
         case inAppPurchasesV2
         case preOrder
         case preReleaseVersions
-        case prices
         case promotedPurchases
         case reviewSubmissions
         case subscriptionGracePeriod
@@ -488,8 +469,6 @@ public enum GetAppForCiProductV1 {
         case appStoreVersionExperimentsV2(Int)
         /// Maximum number of related appStoreVersions returned (when they are included) - maximum 50
         case appStoreVersions(Int)
-        /// Maximum number of related availableTerritories returned (when they are included) - maximum 50
-        case availableTerritories(Int)
         /// Maximum number of related betaAppLocalizations returned (when they are included) - maximum 50
         case betaAppLocalizations(Int)
         /// Maximum number of related betaGroups returned (when they are included) - maximum 50
@@ -504,8 +483,6 @@ public enum GetAppForCiProductV1 {
         case inAppPurchasesV2(Int)
         /// Maximum number of related preReleaseVersions returned (when they are included) - maximum 50
         case preReleaseVersions(Int)
-        /// Maximum number of related prices returned (when they are included) - maximum 50
-        case prices(Int)
         /// Maximum number of related promotedPurchases returned (when they are included) - maximum 50
         case promotedPurchases(Int)
         /// Maximum number of related reviewSubmissions returned (when they are included) - maximum 50

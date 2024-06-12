@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # POST /v1/appCustomProductPages
+     # Create a custom product page
+     Add a custom product page for your app.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appcustomproductpages>

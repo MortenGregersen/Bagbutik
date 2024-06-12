@@ -1,21 +1,32 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersionInlineCreate
+ The data structure that represents an app custom product page version inline create resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioninlinecreate>
+ */
 public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageVersions" }
+    public var attributes: Attributes?
     public var relationships: Relationships?
 
     public init(id: String? = nil,
+                attributes: Attributes? = nil,
                 relationships: Relationships? = nil)
     {
         self.id = id
+        self.attributes = attributes
         self.relationships = relationships
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
         id = try container.decodeIfPresent(String.self, forKey: "id")
+        attributes = try container.decodeIfPresent(Attributes.self, forKey: "attributes")
         relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
         if try container.decode(String.self, forKey: "type") != type {
             throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
@@ -26,7 +37,26 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
         var container = encoder.container(keyedBy: AnyCodingKey.self)
         try container.encodeIfPresent(id, forKey: "id")
         try container.encode(type, forKey: "type")
+        try container.encodeIfPresent(attributes, forKey: "attributes")
         try container.encodeIfPresent(relationships, forKey: "relationships")
+    }
+
+    public struct Attributes: Codable {
+        public var deepLink: String?
+
+        public init(deepLink: String? = nil) {
+            self.deepLink = deepLink
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            deepLink = try container.decodeIfPresent(String.self, forKey: "deepLink")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(deepLink, forKey: "deepLink")
+        }
     }
 
     public struct Relationships: Codable {

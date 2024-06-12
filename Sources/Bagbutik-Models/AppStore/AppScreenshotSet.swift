@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppScreenshotSet
- The data structure that represent an App Screenshot Sets resource.
+ The data structure that represent an app screenshot set resource.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset>

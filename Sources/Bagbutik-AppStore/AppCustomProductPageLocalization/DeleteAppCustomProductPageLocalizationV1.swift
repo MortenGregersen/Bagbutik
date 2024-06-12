@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Delete an App Custom Product Page Localization
+     # Delete an app custom product page localization
      Delete localized metadata that you configured for a custom product page.
 
      Full documentation:

@@ -62,7 +62,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
 
         /**
          # AppPreviewSetCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
+         Attributes you set that describe the new resource.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/attributes>
@@ -87,7 +87,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
 
         /**
          # AppPreviewSetCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
+         The relationships to other localized resources that you can set with this request.
 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships>

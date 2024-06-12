@@ -31,8 +31,8 @@ public enum UserRole: String, ParameterValue, Codable, CaseIterable {
     case developer = "DEVELOPER"
     /// Role that manages financial information, including reports and tax forms. A user that has this role can view all apps in Payments and Financial Reports, Sales and Trends, and App Analytics.
     case finance = "FINANCE"
+    /// Role that allows a user to generate an individual API key.
     case generateIndividualKeys = "GENERATE_INDIVIDUAL_KEYS"
-    case imageManager = "IMAGE_MANAGER"
     /// Role that manages marketing materials and promotional artwork. If an app is in consideration to be featured on the App Store, Apple contacts the user with this role.
     case marketing = "MARKETING"
     /// Role that analyzes sales, downloads, and other analytics for the app.

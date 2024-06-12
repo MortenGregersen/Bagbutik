@@ -42,7 +42,6 @@ public enum ListPricePointsForInAppPurchasesV2 {
         public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
-            case priceTier
             case proceeds
             case territory
         }
@@ -56,8 +55,6 @@ public enum ListPricePointsForInAppPurchasesV2 {
      Attributes, relationships, and IDs by which to filter.
      */
     public enum Filter: FilterParameter {
-        /// Filter by attribute 'priceTier'
-        case priceTier([String])
         /// Filter by id(s) of related 'territory'
         case territory([String])
     }

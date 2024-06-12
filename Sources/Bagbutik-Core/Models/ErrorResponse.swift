@@ -41,6 +41,7 @@ public struct ErrorResponse: Codable {
         public var detail: String?
         /// The unique ID of a specific instance of an error, request, and response. Use this ID when providing feedback to or debugging issues with Apple.
         public var id: String?
+        public var links: ErrorLinks?
         public var meta: Meta?
         /// One of two possible types of values: `source.Parameter`, provided when a query parameter produced the error, or `source.JsonPointer`, provided when a problem with the entity produced the error.
         public var source: Source?
@@ -52,6 +53,7 @@ public struct ErrorResponse: Codable {
         public init(code: String,
                     detail: String? = nil,
                     id: String? = nil,
+                    links: ErrorLinks? = nil,
                     meta: Meta? = nil,
                     source: Source? = nil,
                     status: String,
@@ -60,6 +62,7 @@ public struct ErrorResponse: Codable {
             self.code = code
             self.detail = detail
             self.id = id
+            self.links = links
             self.meta = meta
             self.source = source
             self.status = status
@@ -71,6 +74,7 @@ public struct ErrorResponse: Codable {
             code = try container.decode(String.self, forKey: "code")
             detail = try container.decodeIfPresent(String.self, forKey: "detail")
             id = try container.decodeIfPresent(String.self, forKey: "id")
+            links = try container.decodeIfPresent(ErrorLinks.self, forKey: "links")
             meta = try container.decodeIfPresent(Meta.self, forKey: "meta")
             source = try container.decodeIfPresent(Source.self, forKey: "source")
             status = try container.decode(String.self, forKey: "status")
@@ -82,6 +86,7 @@ public struct ErrorResponse: Codable {
             try container.encode(code, forKey: "code")
             try container.encodeIfPresent(detail, forKey: "detail")
             try container.encodeIfPresent(id, forKey: "id")
+            try container.encodeIfPresent(links, forKey: "links")
             try container.encodeIfPresent(meta, forKey: "meta")
             try container.encodeIfPresent(source, forKey: "source")
             try container.encode(status, forKey: "status")

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # ScreenshotDisplayType
- String that represents the display type of an app screenshot.
+ A string that represents the display type of an app screenshot.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>

@@ -3,7 +3,7 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # List All Custom Product Pages for an App
+     # List all custom product pages for an app
      Get a list of all custom product pages for a specific app.
 
      Full documentation:
@@ -44,6 +44,7 @@ public enum ListAppCustomProductPagesForAppV1 {
         public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
+            case deepLink
             case state
             case version
         }
@@ -71,8 +72,6 @@ public enum ListAppCustomProductPagesForAppV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
             case betaAppLocalizations
             case betaAppReviewDetail
             case betaGroups
@@ -94,8 +93,6 @@ public enum ListAppCustomProductPagesForAppV1 {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
-            case pricePoints
-            case prices
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions

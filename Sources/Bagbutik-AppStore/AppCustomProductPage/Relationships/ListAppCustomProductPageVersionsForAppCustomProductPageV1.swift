@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appCustomProductPages/{id}/appCustomProductPageVersions
+     # List custom product page versions
+     List the versions for a custom product page version.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id_appcustomproductpageversions>
@@ -51,6 +52,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
+            case deepLink
             case state
             case version
         }

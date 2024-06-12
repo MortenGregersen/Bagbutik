@@ -3,7 +3,7 @@ import Foundation
 
 /**
  # AppScreenshotSetCreateRequest
- The request body you use to create an App Screenshot Set.
+ The request body you use to create an app screenshot set.
 
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest>

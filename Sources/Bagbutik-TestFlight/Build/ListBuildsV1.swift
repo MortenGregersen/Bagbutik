@@ -119,8 +119,6 @@ public enum ListBuildsV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
             case betaAppLocalizations
             case betaAppReviewDetail
             case betaGroups
@@ -142,8 +140,6 @@ public enum ListBuildsV1 {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
-            case pricePoints
-            case prices
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions
@@ -176,6 +172,7 @@ public enum ListBuildsV1 {
             case firstName
             case inviteType
             case lastName
+            case state
         }
 
         public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
@@ -220,6 +217,7 @@ public enum ListBuildsV1 {
 
         public enum DiagnosticSignatures: String, ParameterValue, Codable, CaseIterable {
             case diagnosticType
+            case insight
             case logs
             case signature
             case weight

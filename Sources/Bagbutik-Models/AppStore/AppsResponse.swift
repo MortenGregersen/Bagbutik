@@ -294,7 +294,6 @@ public struct AppsResponse: Codable, PagedResponse {
         case appEvent(AppEvent)
         case appInfo(AppInfo)
         case appPreOrder(AppPreOrder)
-        case appPrice(AppPrice)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
         case betaAppLocalization(BetaAppLocalization)
@@ -313,7 +312,6 @@ public struct AppsResponse: Codable, PagedResponse {
         case reviewSubmission(ReviewSubmission)
         case subscriptionGracePeriod(SubscriptionGracePeriod)
         case subscriptionGroup(SubscriptionGroup)
-        case territory(Territory)
 
         public init(from decoder: Decoder) throws {
             if let appClip = try? AppClip(from: decoder) {
@@ -328,8 +326,6 @@ public struct AppsResponse: Codable, PagedResponse {
                 self = .appInfo(appInfo)
             } else if let appPreOrder = try? AppPreOrder(from: decoder) {
                 self = .appPreOrder(appPreOrder)
-            } else if let appPrice = try? AppPrice(from: decoder) {
-                self = .appPrice(appPrice)
             } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
                 self = .appStoreVersion(appStoreVersion)
             } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
@@ -366,8 +362,6 @@ public struct AppsResponse: Codable, PagedResponse {
                 self = .subscriptionGracePeriod(subscriptionGracePeriod)
             } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
                 self = .subscriptionGroup(subscriptionGroup)
-            } else if let territory = try? Territory(from: decoder) {
-                self = .territory(territory)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -387,8 +381,6 @@ public struct AppsResponse: Codable, PagedResponse {
             case let .appInfo(value):
                 try value.encode(to: encoder)
             case let .appPreOrder(value):
-                try value.encode(to: encoder)
-            case let .appPrice(value):
                 try value.encode(to: encoder)
             case let .appStoreVersion(value):
                 try value.encode(to: encoder)
@@ -425,8 +417,6 @@ public struct AppsResponse: Codable, PagedResponse {
             case let .subscriptionGracePeriod(value):
                 try value.encode(to: encoder)
             case let .subscriptionGroup(value):
-                try value.encode(to: encoder)
-            case let .territory(value):
                 try value.encode(to: encoder)
             }
         }

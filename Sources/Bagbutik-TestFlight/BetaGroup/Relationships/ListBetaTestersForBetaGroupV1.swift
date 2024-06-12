@@ -39,6 +39,7 @@ public enum ListBetaTestersForBetaGroupV1 {
             case firstName
             case inviteType
             case lastName
+            case state
         }
     }
 }

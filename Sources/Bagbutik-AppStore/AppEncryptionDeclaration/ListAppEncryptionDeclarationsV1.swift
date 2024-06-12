@@ -84,8 +84,6 @@ public enum ListAppEncryptionDeclarationsV1 {
             case appPriceSchedule
             case appStoreVersionExperimentsV2
             case appStoreVersions
-            case availableInNewTerritories
-            case availableTerritories
             case betaAppLocalizations
             case betaAppReviewDetail
             case betaGroups
@@ -107,8 +105,6 @@ public enum ListAppEncryptionDeclarationsV1 {
             case perfPowerMetrics
             case preOrder
             case preReleaseVersions
-            case pricePoints
-            case prices
             case primaryLocale
             case promotedPurchases
             case reviewSubmissions

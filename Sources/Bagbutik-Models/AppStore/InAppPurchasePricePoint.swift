@@ -41,19 +41,7 @@ public struct InAppPurchasePricePoint: Codable, Identifiable {
 
     public struct Attributes: Codable {
         public var customerPrice: String?
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var priceTier: String? = nil
         public var proceeds: String?
-
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(customerPrice: String? = nil,
-                    priceTier: String? = nil,
-                    proceeds: String? = nil)
-        {
-            self.customerPrice = customerPrice
-            self.priceTier = priceTier
-            self.proceeds = proceeds
-        }
 
         public init(customerPrice: String? = nil,
                     proceeds: String? = nil)
@@ -65,14 +53,12 @@ public struct InAppPurchasePricePoint: Codable, Identifiable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             customerPrice = try container.decodeIfPresent(String.self, forKey: "customerPrice")
-            priceTier = try container.decodeIfPresent(String.self, forKey: "priceTier")
             proceeds = try container.decodeIfPresent(String.self, forKey: "proceeds")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(customerPrice, forKey: "customerPrice")
-            try container.encodeIfPresent(priceTier, forKey: "priceTier")
             try container.encodeIfPresent(proceeds, forKey: "proceeds")
         }
     }

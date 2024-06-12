@@ -15,7 +15,6 @@ public extension UserRole {
         case .createApps: "Create Apps"
         case .cloudManagedDeveloperId: "Cloud Managed Developer ID"
         case .cloudManagedAppDistribution: "Cloud Managed App Distribution"
-        case .imageManager: "Image Manager"
         case .generateIndividualKeys: "Generate Individual Keys"
         }
     }
