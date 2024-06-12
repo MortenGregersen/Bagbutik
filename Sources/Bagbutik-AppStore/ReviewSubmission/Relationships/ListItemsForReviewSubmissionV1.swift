@@ -45,6 +45,7 @@ public enum ListItemsForReviewSubmissionV1 {
         public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
+            case deepLink
             case state
             case version
         }

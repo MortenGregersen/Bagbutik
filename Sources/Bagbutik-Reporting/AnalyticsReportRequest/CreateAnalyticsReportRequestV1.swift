@@ -6,7 +6,7 @@ public extension Request {
      # Request reports
      Request analytics reports for your apps.
 
-     When making a request with this endpoint, the `accessType` `ONGOING `is most common and provides current data. This report request generates reports daily for each granularity, daily, weekly, and monthly. Use `ONE_TIME_SNAPSHOT` to get historical data.
+     When making a request with this endpoint, the `accessType` `ONGOING `is most common and provides current data. This report request generates reports daily for each granularity: daily, weekly, and monthly. Use `ONE_TIME_SNAPSHOT` to get historical data.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/request_reports>

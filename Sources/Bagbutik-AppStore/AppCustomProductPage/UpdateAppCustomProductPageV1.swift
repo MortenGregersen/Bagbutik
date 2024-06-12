@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appCustomProductPages/{id}
+     # Modify an app custom product page
+     Update the name and visibility status of an app custom product page.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_appcustomproductpages_id>

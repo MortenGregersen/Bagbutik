@@ -59,8 +59,6 @@ public struct App: Codable, Identifiable {
      <https://developer.apple.com/documentation/appstoreconnectapi/app/attributes>
      */
     public struct Attributes: Codable {
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var availableInNewTerritories: Bool? = nil
         /// The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.
         public var bundleId: String?
         public var contentRightsDeclaration: ContentRightsDeclaration?
@@ -75,32 +73,6 @@ public struct App: Codable, Identifiable {
         public var subscriptionStatusUrlForSandbox: String?
         public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
         public var subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion?
-
-        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
-        public init(availableInNewTerritories: Bool? = nil,
-                    bundleId: String? = nil,
-                    contentRightsDeclaration: ContentRightsDeclaration? = nil,
-                    isOrEverWasMadeForKids: Bool? = nil,
-                    name: String? = nil,
-                    primaryLocale: String? = nil,
-                    sku: String? = nil,
-                    subscriptionStatusUrl: String? = nil,
-                    subscriptionStatusUrlForSandbox: String? = nil,
-                    subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
-                    subscriptionStatusUrlVersionForSandbox: SubscriptionStatusUrlVersion? = nil)
-        {
-            self.availableInNewTerritories = availableInNewTerritories
-            self.bundleId = bundleId
-            self.contentRightsDeclaration = contentRightsDeclaration
-            self.isOrEverWasMadeForKids = isOrEverWasMadeForKids
-            self.name = name
-            self.primaryLocale = primaryLocale
-            self.sku = sku
-            self.subscriptionStatusUrl = subscriptionStatusUrl
-            self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
-            self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
-            self.subscriptionStatusUrlVersionForSandbox = subscriptionStatusUrlVersionForSandbox
-        }
 
         public init(bundleId: String? = nil,
                     contentRightsDeclaration: ContentRightsDeclaration? = nil,
@@ -127,7 +99,6 @@ public struct App: Codable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            availableInNewTerritories = try container.decodeIfPresent(Bool.self, forKey: "availableInNewTerritories")
             bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
             contentRightsDeclaration = try container.decodeIfPresent(ContentRightsDeclaration.self, forKey: "contentRightsDeclaration")
             isOrEverWasMadeForKids = try container.decodeIfPresent(Bool.self, forKey: "isOrEverWasMadeForKids")
@@ -142,7 +113,6 @@ public struct App: Codable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
-            try container.encodeIfPresent(availableInNewTerritories, forKey: "availableInNewTerritories")
             try container.encodeIfPresent(bundleId, forKey: "bundleId")
             try container.encodeIfPresent(contentRightsDeclaration, forKey: "contentRightsDeclaration")
             try container.encodeIfPresent(isOrEverWasMadeForKids, forKey: "isOrEverWasMadeForKids")
@@ -179,9 +149,6 @@ public struct App: Codable, Identifiable {
         public var appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2?
         /// The data and links that describe the relationship between the Apps and the App Store Versions resources.
         public var appStoreVersions: AppStoreVersions?
-        /// The data and links that describe the relationship between the Apps and the Available Territories resources.
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var availableTerritories: AvailableTerritories? = nil
         /// The data and links that describe the relationship between the Apps and the Beta App Localizations resources.
         public var betaAppLocalizations: BetaAppLocalizations?
         /// The data and links that describe the relationship between the Apps and the Beta App Review Details resources.
@@ -207,9 +174,6 @@ public struct App: Codable, Identifiable {
         public var preOrder: PreOrder?
         /// The data and links that describe the relationship between the Apps and the Pre-Release Versions resources.
         public var preReleaseVersions: PreReleaseVersions?
-        /// The data and links that describe the relationship between the Apps and the Prices resources.
-        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-        public var prices: Prices? = nil
         public var promotedPurchases: PromotedPurchases?
         public var reviewSubmissions: ReviewSubmissions?
         public var subscriptionGracePeriod: SubscriptionGracePeriod?
@@ -223,7 +187,6 @@ public struct App: Codable, Identifiable {
                     appInfos: AppInfos? = nil,
                     appStoreVersionExperimentsV2: AppStoreVersionExperimentsV2? = nil,
                     appStoreVersions: AppStoreVersions? = nil,
-                    availableTerritories: AvailableTerritories? = nil,
                     betaAppLocalizations: BetaAppLocalizations? = nil,
                     betaAppReviewDetail: BetaAppReviewDetail? = nil,
                     betaGroups: BetaGroups? = nil,
@@ -237,7 +200,6 @@ public struct App: Codable, Identifiable {
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     preOrder: PreOrder? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
-                    prices: Prices? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
                     subscriptionGracePeriod: SubscriptionGracePeriod? = nil,
@@ -250,7 +212,6 @@ public struct App: Codable, Identifiable {
             self.appInfos = appInfos
             self.appStoreVersionExperimentsV2 = appStoreVersionExperimentsV2
             self.appStoreVersions = appStoreVersions
-            self.availableTerritories = availableTerritories
             self.betaAppLocalizations = betaAppLocalizations
             self.betaAppReviewDetail = betaAppReviewDetail
             self.betaGroups = betaGroups
@@ -264,7 +225,6 @@ public struct App: Codable, Identifiable {
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.preOrder = preOrder
             self.preReleaseVersions = preReleaseVersions
-            self.prices = prices
             self.promotedPurchases = promotedPurchases
             self.reviewSubmissions = reviewSubmissions
             self.subscriptionGracePeriod = subscriptionGracePeriod
@@ -329,7 +289,6 @@ public struct App: Codable, Identifiable {
             appInfos = try container.decodeIfPresent(AppInfos.self, forKey: "appInfos")
             appStoreVersionExperimentsV2 = try container.decodeIfPresent(AppStoreVersionExperimentsV2.self, forKey: "appStoreVersionExperimentsV2")
             appStoreVersions = try container.decodeIfPresent(AppStoreVersions.self, forKey: "appStoreVersions")
-            availableTerritories = try container.decodeIfPresent(AvailableTerritories.self, forKey: "availableTerritories")
             betaAppLocalizations = try container.decodeIfPresent(BetaAppLocalizations.self, forKey: "betaAppLocalizations")
             betaAppReviewDetail = try container.decodeIfPresent(BetaAppReviewDetail.self, forKey: "betaAppReviewDetail")
             betaGroups = try container.decodeIfPresent(BetaGroups.self, forKey: "betaGroups")
@@ -343,7 +302,6 @@ public struct App: Codable, Identifiable {
             inAppPurchasesV2 = try container.decodeIfPresent(InAppPurchasesV2.self, forKey: "inAppPurchasesV2")
             preOrder = try container.decodeIfPresent(PreOrder.self, forKey: "preOrder")
             preReleaseVersions = try container.decodeIfPresent(PreReleaseVersions.self, forKey: "preReleaseVersions")
-            prices = try container.decodeIfPresent(Prices.self, forKey: "prices")
             promotedPurchases = try container.decodeIfPresent(PromotedPurchases.self, forKey: "promotedPurchases")
             reviewSubmissions = try container.decodeIfPresent(ReviewSubmissions.self, forKey: "reviewSubmissions")
             subscriptionGracePeriod = try container.decodeIfPresent(SubscriptionGracePeriod.self, forKey: "subscriptionGracePeriod")
@@ -359,7 +317,6 @@ public struct App: Codable, Identifiable {
             try container.encodeIfPresent(appInfos, forKey: "appInfos")
             try container.encodeIfPresent(appStoreVersionExperimentsV2, forKey: "appStoreVersionExperimentsV2")
             try container.encodeIfPresent(appStoreVersions, forKey: "appStoreVersions")
-            try container.encodeIfPresent(availableTerritories, forKey: "availableTerritories")
             try container.encodeIfPresent(betaAppLocalizations, forKey: "betaAppLocalizations")
             try container.encodeIfPresent(betaAppReviewDetail, forKey: "betaAppReviewDetail")
             try container.encodeIfPresent(betaGroups, forKey: "betaGroups")
@@ -373,7 +330,6 @@ public struct App: Codable, Identifiable {
             try container.encodeIfPresent(inAppPurchasesV2, forKey: "inAppPurchasesV2")
             try container.encodeIfPresent(preOrder, forKey: "preOrder")
             try container.encodeIfPresent(preReleaseVersions, forKey: "preReleaseVersions")
-            try container.encodeIfPresent(prices, forKey: "prices")
             try container.encodeIfPresent(promotedPurchases, forKey: "promotedPurchases")
             try container.encodeIfPresent(reviewSubmissions, forKey: "reviewSubmissions")
             try container.encodeIfPresent(subscriptionGracePeriod, forKey: "subscriptionGracePeriod")
@@ -970,103 +926,6 @@ public struct App: Codable, Identifiable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions/links>
-             */
-            public struct Links: Codable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
-        }
-
-        /**
-         # App.Relationships.AvailableTerritories
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories>
-         */
-        public struct AvailableTerritories: Codable {
-            @NullCodable public var data: [Data]?
-            public var links: Links?
-            public var meta: PagingInformation?
-
-            public init(data: [Data]? = nil,
-                        links: Links? = nil,
-                        meta: PagingInformation? = nil)
-            {
-                self.data = data
-                self.links = links
-                self.meta = meta
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
-                try container.encodeIfPresent(meta, forKey: "meta")
-            }
-
-            /**
-             # App.Relationships.AvailableTerritories.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories/data>
-             */
-            public struct Data: Codable, Identifiable {
-                public let id: String
-                public var type: String { "territories" }
-
-                public init(id: String) {
-                    self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    id = try container.decode(String.self, forKey: "id")
-                    if try container.decode(String.self, forKey: "type") != type {
-                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encode(id, forKey: "id")
-                    try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # App.Relationships.AvailableTerritories.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/availableterritories/links>
              */
             public struct Links: Codable {
                 public var related: String?
@@ -2274,103 +2133,6 @@ public struct App: Codable, Identifiable {
 
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions/links>
-             */
-            public struct Links: Codable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
-        }
-
-        /**
-         # App.Relationships.Prices
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices>
-         */
-        public struct Prices: Codable {
-            @NullCodable public var data: [Data]?
-            public var links: Links?
-            public var meta: PagingInformation?
-
-            public init(data: [Data]? = nil,
-                        links: Links? = nil,
-                        meta: PagingInformation? = nil)
-            {
-                self.data = data
-                self.links = links
-                self.meta = meta
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
-                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
-                try container.encodeIfPresent(meta, forKey: "meta")
-            }
-
-            /**
-             # App.Relationships.Prices.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices/data>
-             */
-            public struct Data: Codable, Identifiable {
-                public let id: String
-                public var type: String { "appPrices" }
-
-                public init(id: String) {
-                    self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    id = try container.decode(String.self, forKey: "id")
-                    if try container.decode(String.self, forKey: "type") != type {
-                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encode(id, forKey: "id")
-                    try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # App.Relationships.Prices.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prices/links>
              */
             public struct Links: Codable {
                 public var related: String?

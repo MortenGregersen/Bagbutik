@@ -11,19 +11,19 @@ import Foundation
  */
 public struct JsonPointer: Codable {
     /// A JSON pointer that indicates the location in the request entity where the error originates.
-    public var pointer: String?
+    public let pointer: String
 
-    public init(pointer: String? = nil) {
+    public init(pointer: String) {
         self.pointer = pointer
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: AnyCodingKey.self)
-        pointer = try container.decodeIfPresent(String.self, forKey: "pointer")
+        pointer = try container.decode(String.self, forKey: "pointer")
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AnyCodingKey.self)
-        try container.encodeIfPresent(pointer, forKey: "pointer")
+        try container.encode(pointer, forKey: "pointer")
     }
 }

@@ -3,7 +3,8 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appCustomProductPageLocalizations/{id}
+     # Modify custom product page localization information
+     Update the promotional text for an app custom product page localization.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_appcustomproductpagelocalizations_id>
