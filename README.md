@@ -166,19 +166,6 @@ On 12/1/23 some errors (with status code 409) has been observed, with no `detail
 In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
 But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
 
-#### **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
-
-* Submitted: January 14th 2024.
-* Confirmed by Apple: January 31st 2024
-
-**Title:** App Store Connect API Spec and Docs has wrong schema ref for the "data" property on almost all of the schemas ending in “WithoutIncludesResponse”
-
-##### Description
-
-Almost all of the schemas ending in “WithoutIncludesResponse” has a wrong schema ref for the “data” property. This is both the case in the OpenAPI Spec and the Docs on developer.apple.com.
-
-As an example, the data property of “BetaTestersWithoutIncludesResponse” refer to the schema “Build”, but when I do a request to the “/v1/betaGroups/{id}/betaTesters” endpoint, all of the items in the “data” of the JSON is of type “BetaTester”. The docs says the same: https://developer.apple.com/documentation/appstoreconnectapi/BetaTestersWithoutIncludesResponse
-
 #### **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
 
 * Submitted: March 28th 2024.
@@ -188,6 +175,10 @@ In the OpenAPI spec for the App Store Connect API the “CertificateType” sche
 When creating certificates on [the developer portal](https://developer.apple.com/account/resources/certificates/add), it is also possible to select the G2 Sub-CA (which corresponds to “DEVELOPER_ID_APPLICATION_G2”.
 
 ### Closed feedback (removed patches)
+
+* **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
+  * Submitted: January 14th 2024.
+  * Resolved: July 11th 2024 (Spec version 3.5).
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
   * Submitted: March 21st 2022.
