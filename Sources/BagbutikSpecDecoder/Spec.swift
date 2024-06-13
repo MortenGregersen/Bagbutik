@@ -194,26 +194,6 @@ public struct Spec: Decodable {
             patchedSchemas.append(.enum(certificateTypeSchema))
         }
 
-        // Change the shcema ref of the `data` property on *WithoutIncludesResponse
-        // Apple's OpenAPI spec and docs almost all the respones have wrong schema ref. Reported to Apple 14/1/24 as FB13540097.
-        components.schemas.keys
-            .filter { $0.hasSuffix("WithoutIncludesResponse") }
-            .filter { $0 != "AppCategoriesWithoutIncludesResponse" && $0 != "AppCategoryWithoutIncludesResponse" }
-            .forEach { schemaName in
-                let schemaRefName = schemaName
-                    .replacingOccurrences(of: "WithoutIncludesResponse", with: "")
-                    .replacingOccurrences(of: "PreRelease", with: "Prerelease")
-                if case .object(var responseSchema) = components.schemas[schemaName] {
-                    if schemaRefName.hasSuffix("s") {
-                        responseSchema.properties["data"]?.type = .arrayOfSchemaRef(schemaRefName.singularized())
-                    } else {
-                        responseSchema.properties["data"]?.type = .schemaRef(schemaRefName)
-                    }
-                    components.schemas[schemaName] = .object(responseSchema)
-                    patchedSchemas.append(.object(responseSchema))
-                }
-            }
-
         // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
