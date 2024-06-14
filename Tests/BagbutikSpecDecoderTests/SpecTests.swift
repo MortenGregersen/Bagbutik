@@ -885,7 +885,69 @@ final class SpecTests: XCTestCase {
         }
         XCTAssertEqual(errorSchemaRef, "Errors")
     }
-    
+
+    func testApplyManualPatches_MissingCertificateType() throws {
+        let specString = """
+        {
+            "paths": {},
+            "components": {
+                "schemas": {
+                    "ErrorResponse" : {
+                        "type" : "object",
+                        "properties" : {
+                            "errors" : {
+                                "type" : "array",
+                                "items" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                        "id" : {
+                                            "type" : "string"
+                                        },
+                                        "status" : {
+                                            "type" : "string"
+                                        },
+                                        "code" : {
+                                            "type" : "string"
+                                        },
+                                        "title" : {
+                                            "type" : "string"
+                                        },
+                                        "detail" : {
+                                            "type" : "string"
+                                        },
+                                        "source" : {
+                                            "oneOf" : [ {
+                                                "$ref" : "#/components/schemas/ErrorSourcePointer"
+                                            }, {
+                                                "$ref" : "#/components/schemas/ErrorSourceParameter"
+                                            } ]
+                                        }
+                                    },
+                                    "required" : [ "code", "detail", "title", "status" ]
+                                }
+                            }
+                        }
+                    },
+                    "CertificateType" : {
+                        "type" : "string",
+                        "enum" : [ "DISTRIBUTION", "DEVELOPMENT", "DEVELOPER_ID_APPLICATION" ]
+                    }
+                }
+            }
+        }
+        """
+        let jsonDecoder = JSONDecoder()
+        var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
+        try spec.applyManualPatches()
+        
+        guard case .enum(let certificateTypeSchema) = spec.components.schemas["CertificateType"] else {
+            XCTFail(); return
+        }
+        let certificateTypeCaseValues = certificateTypeSchema.cases.map(\.value)
+        XCTAssertEqual(certificateTypeCaseValues.count, 4)
+        XCTAssertTrue(certificateTypeCaseValues.contains("DEVELOPER_ID_APPLICATION_G2"))
+    }
+
     func testApplyManualPatches_Error() throws {
         let specString = """
         {
