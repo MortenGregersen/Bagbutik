@@ -280,7 +280,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   properties: ["firstName": .init(type: .simple(.init(type: "string"))),
                                                "lastName": .init(type: .simple(.init(type: "string"))),
                                                "self": .init(type: .simple(.init(type: "string"))),
-                                               "id": .init(type: .constant("person"))],
+                                               "id": .init(type: .constant("person")),
+                                               "days": .init(type: .arrayOfEnumSchema(.init(name: "Days", type: "string", caseValues: ["MONDAY", "TUESDAY"])))],
                                   requiredProperties: ["firstName"])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
@@ -294,6 +295,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct Person: Codable, Identifiable {
+            public var days: [Days]?
             /// The firstname of the person
             public let firstName: String
             /// The unique id for the person
@@ -302,10 +304,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
             /// A reference to the person
             public var itself: String?
 
-            public init(firstName: String,
+            public init(days: [Days]? = nil,
+                        firstName: String,
                         lastName: String? = nil,
                         self itself: String? = nil)
             {
+                self.days = days
                 self.firstName = firstName
                 self.lastName = lastName
                 self.itself = itself
@@ -313,6 +317,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                days = try container.decodeIfPresent([Days].self, forKey: "days")
                 firstName = try container.decode(String.self, forKey: "firstName")
                 id = try container.decodeIfPresent(String.self, forKey: "id")
                 lastName = try container.decodeIfPresent(String.self, forKey: "lastName")
@@ -321,10 +326,16 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(days, forKey: "days")
                 try container.encode(firstName, forKey: "firstName")
                 try container.encodeIfPresent(id, forKey: "id")
                 try container.encodeIfPresent(lastName, forKey: "lastName")
                 try container.encodeIfPresent(itself, forKey: "self")
+            }
+
+            public enum Days: String, Codable, CaseIterable {
+                case monday = "MONDAY"
+                case tuesday = "TUESDAY"
             }
         }
 

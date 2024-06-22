@@ -12,6 +12,8 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
     case schema(ObjectSchema)
     /// An enum schema
     case enumSchema(EnumSchema)
+    /// An array of enum schema
+    case arrayOfEnumSchema(EnumSchema)
     /// An array of schema
     case arrayOfSchemaRef(String)
     /// An array of object schema
@@ -44,27 +46,29 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
     public var description: String {
         switch self {
         case .simple(let simplePropertyType):
-            return simplePropertyType.description
+            simplePropertyType.description
         case .constant:
-            return SimplePropertyType.string.description
+            SimplePropertyType.string.description
         case .schemaRef(let schemaName):
-            return schemaName
+            schemaName
         case .schema(let schema):
-            return schema.name
+            schema.name
         case .enumSchema(let schema):
-            return schema.name
+            schema.name
+        case .arrayOfEnumSchema(let schema):
+            "[\(schema.name)]"
         case .arrayOfSchemaRef(let schemaName):
-            return "[\(schemaName)]"
+            "[\(schemaName)]"
         case .arrayOfSubSchema(let schema):
-            return "[\(schema.name)]"
+            "[\(schema.name)]"
         case .arrayOfSimple(let simplePropertyType):
-            return "[\(simplePropertyType.description)]"
+            "[\(simplePropertyType.description)]"
         case .oneOf(let name, _):
-            return name
+            name
         case .arrayOfOneOf(let name, _):
-            return "[\(name)]"
+            "[\(name)]"
         case .dictionary(let propertyType):
-            return "[String: \(propertyType.description)]"
+            "[String: \(propertyType.description)]"
         }
     }
 
@@ -102,6 +106,8 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                     let propertyType = try container.decode(PropertyType.self, forKey: .items)
                     if propertyType.isSimple {
                         self = .arrayOfSimple(.init(type: propertyType.description))
+                    } else if case .enumSchema(let enumSchema) = propertyType {
+                        self = .arrayOfEnumSchema(enumSchema)
                     } else {
                         self = propertyType
                     }
@@ -110,7 +116,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                 if let dictionaryValueType = try container.decodeIfPresent(PropertyType.self, forKey: .additionalProperties) {
                     self = .dictionary(dictionaryValueType)
                 } else {
-                    self = .schema(try ObjectSchema(from: decoder))
+                    self = try .schema(ObjectSchema(from: decoder))
                 }
             } else {
                 if type == "number" { type = "Double" }

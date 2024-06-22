@@ -48,13 +48,13 @@ public struct TerritoryAvailability: Codable, Identifiable {
 
     public struct Attributes: Codable {
         public var available: Bool?
-        public var contentStatuses: Items?
+        public var contentStatuses: [ContentStatuses]?
         public var preOrderEnabled: Bool?
         public var preOrderPublishDate: String?
         public var releaseDate: String?
 
         public init(available: Bool? = nil,
-                    contentStatuses: Items? = nil,
+                    contentStatuses: [ContentStatuses]? = nil,
                     preOrderEnabled: Bool? = nil,
                     preOrderPublishDate: String? = nil,
                     releaseDate: String? = nil)
@@ -69,7 +69,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             available = try container.decodeIfPresent(Bool.self, forKey: "available")
-            contentStatuses = try container.decodeIfPresent(Items.self, forKey: "contentStatuses")
+            contentStatuses = try container.decodeIfPresent([ContentStatuses].self, forKey: "contentStatuses")
             preOrderEnabled = try container.decodeIfPresent(Bool.self, forKey: "preOrderEnabled")
             preOrderPublishDate = try container.decodeIfPresent(String.self, forKey: "preOrderPublishDate")
             releaseDate = try container.decodeIfPresent(String.self, forKey: "releaseDate")
@@ -84,7 +84,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
             try container.encodeIfPresent(releaseDate, forKey: "releaseDate")
         }
 
-        public enum Items: String, Codable, CaseIterable {
+        public enum ContentStatuses: String, Codable, CaseIterable {
             case available = "AVAILABLE"
             case availableForPreorder = "AVAILABLE_FOR_PREORDER"
             case availableForPreorderOnDate = "AVAILABLE_FOR_PREORDER_ON_DATE"
