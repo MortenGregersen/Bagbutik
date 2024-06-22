@@ -42,7 +42,7 @@ public struct CiScheduledStartCondition: Codable {
      */
     public struct Schedule: Codable {
         /// A list of days you configure for the start condition that starts a new build on a schedule.
-        public var days: Items?
+        public var days: [Days]?
         /// A string indicating the frequency of the start condition that starts a new build on a schedule.
         public var frequency: Frequency?
         /// An integer that represents the hour you configure for the start condition that starts a new build on a schedule.
@@ -52,7 +52,7 @@ public struct CiScheduledStartCondition: Codable {
         /// A string that represents the time zone you configure for the start condition that starts a new build on a schedule.
         public var timezone: String?
 
-        public init(days: Items? = nil,
+        public init(days: [Days]? = nil,
                     frequency: Frequency? = nil,
                     hour: Int? = nil,
                     minute: Int? = nil,
@@ -67,7 +67,7 @@ public struct CiScheduledStartCondition: Codable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
-            days = try container.decodeIfPresent(Items.self, forKey: "days")
+            days = try container.decodeIfPresent([Days].self, forKey: "days")
             frequency = try container.decodeIfPresent(Frequency.self, forKey: "frequency")
             hour = try container.decodeIfPresent(Int.self, forKey: "hour")
             minute = try container.decodeIfPresent(Int.self, forKey: "minute")
@@ -83,13 +83,7 @@ public struct CiScheduledStartCondition: Codable {
             try container.encodeIfPresent(timezone, forKey: "timezone")
         }
 
-        public enum Frequency: String, Codable, CaseIterable {
-            case daily = "DAILY"
-            case hourly = "HOURLY"
-            case weekly = "WEEKLY"
-        }
-
-        public enum Items: String, Codable, CaseIterable {
+        public enum Days: String, Codable, CaseIterable {
             case friday = "FRIDAY"
             case monday = "MONDAY"
             case saturday = "SATURDAY"
@@ -97,6 +91,12 @@ public struct CiScheduledStartCondition: Codable {
             case thursday = "THURSDAY"
             case tuesday = "TUESDAY"
             case wednesday = "WEDNESDAY"
+        }
+
+        public enum Frequency: String, Codable, CaseIterable {
+            case daily = "DAILY"
+            case hourly = "HOURLY"
+            case weekly = "WEEKLY"
         }
     }
 }
