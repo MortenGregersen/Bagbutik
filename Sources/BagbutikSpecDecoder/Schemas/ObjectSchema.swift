@@ -21,6 +21,8 @@ public struct ObjectSchema: Decodable, Equatable {
                 return .oneOf(name: name, schema: schema)
             case .enumSchema(let schema):
                 return .enumSchema(schema)
+            case .arrayOfEnumSchema(let schema):
+                return .enumSchema(schema)
             default:
                 return nil
             }

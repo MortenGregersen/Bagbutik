@@ -38,7 +38,7 @@ public struct EnumSchema: Decodable, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        var name = container.codingPath.last!.stringValue.capitalizingFirstLetter()
+        var name = container.codingPath.last(where: { $0.stringValue != "items"})!.stringValue.capitalizingFirstLetter()
         if name == "Type" {
             var parentType = container.codingPath.dropLast(1).last!.stringValue
             if parentType == "properties" {

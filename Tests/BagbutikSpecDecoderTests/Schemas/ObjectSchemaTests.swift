@@ -202,6 +202,33 @@ final class ObjectSchemaTests: XCTestCase {
         XCTAssertEqual(associatedOneOfSchema.options[0].typeName, "String")
         XCTAssertEqual(associatedOneOfSchema.options[1].typeName, "Properties")
     }
+    
+    func testDecodingPropertyOfStringEnumArray() throws {
+        // https://github.com/MortenGregersen/Bagbutik/issues/189
+        // Given
+        let json = #"""
+        {
+            "Schedule" : {
+                "type" : "object",
+                "properties" : {
+                    "days" : {
+                        "type" : "array",
+                        "items" : {
+                            "type" : "string",
+                            "enum" : [ "MONDAY", "TUESDAY" ]
+                        }
+                    }
+                }
+            }
+        }
+        """#
+        // When
+        let objectSchema = try decodeObjectSchema(from: json)
+        // Then
+        guard case .arrayOfEnumSchema(let enumSchema) = objectSchema.properties["days"]?.type else { XCTFail(); return }
+        XCTAssertEqual(enumSchema.name, "Days")
+        XCTAssertEqual(enumSchema.cases, [.init(id: "monday", value: "MONDAY"), .init(id: "tuesday", value: "TUESDAY")])
+    }
 
     func testDecodingUnknownPropertyType() throws {
         // Given

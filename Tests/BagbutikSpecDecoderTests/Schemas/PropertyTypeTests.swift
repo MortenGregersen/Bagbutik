@@ -298,10 +298,10 @@ final class PropertyTypeTests: XCTestCase {
         }
         XCTAssertEqual(metaPropertyType.description, "[String: String]")
         
-        guard let daysPropertyType = propertyTypes["days"], case let .enumSchema(daysSchema) = daysPropertyType else {
+        guard let daysPropertyType = propertyTypes["days"], case let .arrayOfEnumSchema(daysSchema) = daysPropertyType else {
             return XCTFail("Wrong property type")
         }
-        XCTAssertEqual(daysSchema.name, "Items")
+        XCTAssertEqual(daysSchema.name, "Days")
         XCTAssertEqual(daysSchema.cases.count, 7)
     }
 }
