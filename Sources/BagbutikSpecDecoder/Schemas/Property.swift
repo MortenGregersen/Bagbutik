@@ -4,6 +4,8 @@ public struct Property: Equatable {
     public var type: PropertyType
     /// Tells if the property is deprecated
     public let deprecated: Bool
+    /// Tells if the property can be cleared (in update requests)
+    public let clearable: Bool
 
     /**
      Initialize a new property
@@ -11,9 +13,11 @@ public struct Property: Equatable {
      - Parameters:
         - type: The type of the property
         - deprecated: Tells if the property is deprecated
+        - clearable: Tells if the property can be cleared (in update requests)
      */
-    public init(type: PropertyType, deprecated: Bool = false) {
+    public init(type: PropertyType, deprecated: Bool = false, clearable: Bool = false) {
         self.type = type
         self.deprecated = deprecated
+        self.clearable = clearable
     }
 }

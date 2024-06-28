@@ -232,6 +232,26 @@ public struct Spec: Decodable {
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
         patchedSchemas.append(.object(errorResponseSchema))
+        
+        // Marks the `kidsAgeBand` property on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
+        // Apple's OpenAPI spec has no information about how to clear a value in an update request.
+        // To tell Apple to clear a value, it has to be `null`, but properties with `null` values normally get omitted.
+        if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"],
+           var ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({
+               guard case .objectSchema(let subSchema) = $0, subSchema.name == "Data" else { return nil }
+               return subSchema
+           }).first,
+           var ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({
+               guard case .objectSchema(let subSchema) = $0, subSchema.name == "Attributes" else { return nil }
+               return subSchema
+           }).first,
+           let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] {
+            ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] = .init(type: kidsAgeBandProperty.type, deprecated: kidsAgeBandProperty.deprecated, clearable: true)
+            ageRatingDeclarationUpdateRequestDataSchema.properties["attributes"]?.type = .schema(ageRatingDeclarationUpdateRequestDataAttributesSchema)
+            ageRatingDeclarationUpdateRequestSchema.properties["data"]?.type = .schema(ageRatingDeclarationUpdateRequestDataSchema)
+            components.schemas["AgeRatingDeclarationUpdateRequest"] = .object(ageRatingDeclarationUpdateRequestSchema)
+            patchedSchemas.append(.object(ageRatingDeclarationUpdateRequestSchema))
+        }
     }
 
     /// A wrapper for schemas to ease decoding

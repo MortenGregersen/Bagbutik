@@ -834,6 +834,38 @@ final class SpecTests: XCTestCase {
                                 }
                             }
                         }
+                    },
+                    "AgeRatingDeclarationUpdateRequest" : {
+                        "type" : "object",
+                        "title" : "AgeRatingDeclarationUpdateRequest",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "ageRatingDeclarations" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    },
+                                    "attributes" : {
+                                        "type" : "object",
+                                        "properties" : {
+                                            "alcoholTobaccoOrDrugUseOrReferences" : {
+                                                "type" : "string",
+                                                "enum" : [ "NONE", "INFREQUENT_OR_MILD", "FREQUENT_OR_INTENSE" ]
+                                            },
+                                            "kidsAgeBand" : {
+                                                "$ref" : "#/components/schemas/KidsAgeBand"
+                                            }
+                                        }
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ]
                     }
                 }
             }
@@ -884,6 +916,20 @@ final class SpecTests: XCTestCase {
             XCTFail(); return
         }
         XCTAssertEqual(errorSchemaRef, "Errors")
+
+        guard case .object(let ageRatingDeclarationUpdateRequestSchema) = spec.components.schemas["AgeRatingDeclarationUpdateRequest"],
+              let ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({
+                  guard case .objectSchema(let subSchema) = $0, subSchema.name == "Data" else { return nil }
+                  return subSchema
+              }).first,
+              let ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({
+                  guard case .objectSchema(let subSchema) = $0, subSchema.name == "Attributes" else { return nil }
+                  return subSchema
+              }).first,
+              let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] else {
+            XCTFail(); return
+        }
+        XCTAssertTrue(kidsAgeBandProperty.clearable)
     }
 
     func testApplyManualPatches_MissingCertificateType() throws {
@@ -939,7 +985,7 @@ final class SpecTests: XCTestCase {
         let jsonDecoder = JSONDecoder()
         var spec = try jsonDecoder.decode(Spec.self, from: specString.data(using: .utf8)!)
         try spec.applyManualPatches()
-        
+
         guard case .enum(let certificateTypeSchema) = spec.components.schemas["CertificateType"] else {
             XCTFail(); return
         }
