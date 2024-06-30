@@ -89,7 +89,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
             /// Declaration for horror or fear themed content.
             public var horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes?
             /// Declaration for the Kids Age Band value.
-            public var kidsAgeBand: KidsAgeBand?
+            public var kidsAgeBand: Clearable<KidsAgeBand>?
             /// Declaration for mature or suggestive themes.
             public var matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes?
             /// Declaration for medical or treatment-focused content.
@@ -120,7 +120,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                         gamblingAndContests: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
                         horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes? = nil,
-                        kidsAgeBand: KidsAgeBand? = nil,
+                        kidsAgeBand: Clearable<KidsAgeBand>? = nil,
                         matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes? = nil,
                         medicalOrTreatmentInformation: AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation? = nil,
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
@@ -158,7 +158,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                         gambling: Bool? = nil,
                         gamblingSimulated: AgeRatingDeclaration.Attributes.GamblingSimulated? = nil,
                         horrorOrFearThemes: AgeRatingDeclaration.Attributes.HorrorOrFearThemes? = nil,
-                        kidsAgeBand: KidsAgeBand? = nil,
+                        kidsAgeBand: Clearable<KidsAgeBand>? = nil,
                         matureOrSuggestiveThemes: AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes? = nil,
                         medicalOrTreatmentInformation: AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation? = nil,
                         profanityOrCrudeHumor: AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor? = nil,
@@ -196,7 +196,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
                 gamblingAndContests = try container.decodeIfPresent(Bool.self, forKey: "gamblingAndContests")
                 gamblingSimulated = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.GamblingSimulated.self, forKey: "gamblingSimulated")
                 horrorOrFearThemes = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.HorrorOrFearThemes.self, forKey: "horrorOrFearThemes")
-                kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: "kidsAgeBand")
+                kidsAgeBand = try container.decodeIfPresent(Clearable<KidsAgeBand>.self, forKey: "kidsAgeBand")
                 matureOrSuggestiveThemes = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.MatureOrSuggestiveThemes.self, forKey: "matureOrSuggestiveThemes")
                 medicalOrTreatmentInformation = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.MedicalOrTreatmentInformation.self, forKey: "medicalOrTreatmentInformation")
                 profanityOrCrudeHumor = try container.decodeIfPresent(AgeRatingDeclaration.Attributes.ProfanityOrCrudeHumor.self, forKey: "profanityOrCrudeHumor")
