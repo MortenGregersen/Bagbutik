@@ -1,9 +1,9 @@
 @testable import Bagbutik_Core
 import XCTest
 
-final class ClearableCodableTests: XCTestCase {
+final class ClearableTests: XCTestCase {
     private struct TestData: Codable, Equatable {
-        @ClearableCodable var id: Clearable<String>?
+        var id: Clearable<String>?
         var name: String
         
         init(id: Clearable<String>?, name: String) {
@@ -13,13 +13,13 @@ final class ClearableCodableTests: XCTestCase {
         
         init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            _id = try container.decode(ClearableCodable<String>.self, forKey: .id)
+            id = try container.decodeIfPresent(Clearable<String>.self, forKey: .id)
             name = try container.decode(String.self, forKey: .name)
         }
         
         func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encodeIfPresent(_id, forKey: .id)
+            try container.encodeIfPresent(id, forKey: .id)
             try container.encode(name, forKey: .name)
         }
 

@@ -66,7 +66,7 @@ public class ObjectSchemaRenderer: Renderer {
                 var functionContent = "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
                     if decodableProperty.clearable {
-                        "_\(decodableProperty.name.safeName) = try container.decode(Clearable<\(decodableProperty.type)>.self, forKey: \"\(decodableProperty.name.idealName)\")"
+                        "\(decodableProperty.name.safeName) = try container.decodeIfPresent(Clearable<\(decodableProperty.type)>.self, forKey: \"\(decodableProperty.name.idealName)\")"
                     } else if decodableProperty.optional {
                         "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
                     } else {
@@ -86,9 +86,7 @@ public class ObjectSchemaRenderer: Renderer {
             structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
                 var functionContent = "var container = encoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
-                    if encodableProperty.clearable {
-                        "try container.encodeIfPresent(_\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
-                    } else if encodableProperty.optional, !encodableProperty.nullCodable {
+                    if encodableProperty.clearable || encodableProperty.optional, !encodableProperty.nullCodable {
                         "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
                     } else {
                         "try container.encode(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
@@ -145,16 +143,13 @@ public class ObjectSchemaRenderer: Renderer {
                     let type = property.value.type.description
                     if id == "data" && objectSchema.name.hasSuffix("LinkageRequest") {
                         // The `data` property is marked as required, it is required, but the value is really optional.
-                        // I can be nil, but it still needs to be in the encoded data.
+                        // It can be nil, but it still needs to be in the encoded data.
                         objectSchema.requiredProperties.removeAll(where: { $0 == property.key })
                     }
                     let isOptional = !objectSchema.requiredProperties.contains(property.key)
                     var wrapper = ""
                     if id == "data", type == "Data" || type == "[Data]" || type == "[Item]", isOptional {
                         wrapper += "@NullCodable "
-                    }
-                    if property.value.clearable {
-                        wrapper += "@ClearableCodable "
                     }
                     rendered = wrapper + PropertyRenderer(docsLoader: docsLoader)
                         .renderProperty(id: id,

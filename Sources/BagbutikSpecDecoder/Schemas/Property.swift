@@ -13,7 +13,7 @@ public struct Property: Equatable {
      - Parameters:
         - type: The type of the property
         - deprecated: Tells if the property is deprecated
-        - clearable: Tells if the property can be cleared (in update requests)
+        - clearable: Tells if the property can be cleared (in `UpdateRequest`s)
      */
     public init(type: PropertyType, deprecated: Bool = false, clearable: Bool = false) {
         self.type = type

@@ -165,7 +165,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct PersonCreateRequest: Codable, RequestBody {
-            @ClearableCodable public var age: Clearable<Int>?
+            public var age: Clearable<Int>?
             /// The person's name
             public var name: String?
 
@@ -178,13 +178,13 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                _age = try container.decode(Clearable<Int>.self, forKey: "age")
+                age = try container.decodeIfPresent(Clearable<Int>.self, forKey: "age")
                 name = try container.decodeIfPresent(String.self, forKey: "name")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encodeIfPresent(_age, forKey: "age")
+                try container.encodeIfPresent(age, forKey: "age")
                 try container.encodeIfPresent(name, forKey: "name")
             }
         }
