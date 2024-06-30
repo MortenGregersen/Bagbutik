@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bagbutik_Core  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a title="Bagbutik_Core  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Bagbutik</a> (97% documented)</p>
+        <p class="header-right"><a href="https://github.com/MortenGregersen/Bagbutik"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Bagbutik_Core Reference</a>
+        <img id="carat" src="img/carat.png" alt=""/>
+        Bagbutik_Core  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Service.html">Service</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/BagbutikService.html">BagbutikService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JWT.html">JWT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Service.html#/s:13Bagbutik_Core9FetchDataa">FetchData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ServiceError.html">ServiceError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Requests.html">Requests</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/HTTPMethod.html">HTTPMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/RequestBody.html">RequestBody</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Parameters.html">Parameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/EndpointParameter.html">EndpointParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AssociatedValueParameter.html">AssociatedValueParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ParameterValue.html">ParameterValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Requests.html#/s:13Bagbutik_Core14FieldParameterP">FieldParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Requests.html#/s:13Bagbutik_Core15FilterParameterP">FilterParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Requests.html#/s:13Bagbutik_Core16IncludeParameterP">IncludeParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ExistParameter.html">ExistParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SortParameter.html">SortParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/LimitParameter.html">LimitParameter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Responses.html">Responses</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/EmptyResponse.html">EmptyResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PagedResponse.html">PagedResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/BinaryResponse.html">BinaryResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PlainTextResponse.html">PlainTextResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Property%20Wrappers.html">Property Wrappers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/NullCodable.html">NullCodable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/Clearable.html">Clearable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Other%20Structs.html">Other Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/AnyCodingKey.html">AnyCodingKey</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <p align="center">
+    <br />
+    <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/main/Assets/Bagbutik-logo.png" max-width="90%" alt="Bagbutik" />
+</p>
+
+<p align="center">
+    <b>Generated Swift code for the <a href="https://developer.apple.com/documentation/appstoreconnectapi">App Store Connect API</a> based on the official <a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">OpenAPI spec</a>.</b>
+    <br />
+    <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dswift-versions" alt="Swift versions" />
+    </a>
+    <a href="https://swiftpackageindex.com/MortenGregersen/Bagbutik">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMortenGregersen%2FBagbutik%2Fbadge%3Ftype%3Dplatforms" alt="Platforms" />
+    </a>
+    <br />
+    <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/ci.yml">
+        <img src="https://github.com/MortenGregersen/Bagbutik/workflows/CI/badge.svg" alt="CI" />
+    </a>
+    <a href="https://bagbutik.dev">
+        <img src="https://raw.githubusercontent.com/MortenGregersen/Bagbutik/gh-pages/badge.svg" alt="Documentation" />
+    </a>
+    <a href="https://codecov.io/gh/MortenGregersen/Bagbutik">
+        <img src="https://codecov.io/gh/MortenGregersen/Bagbutik/branch/main/graph/badge.svg?token=oJZWL49t0G"/>
+    </a>
+    <br />
+    <a href="https://twitter.com/mortengregersen">
+        <img src="https://img.shields.io/badge/twitter-@mortengregersen-blue.svg?style=flat" alt="Twitter" />
+    </a>
+    <a href="https://mastodon.social/@mortengregersen">
+        <img src="https://img.shields.io/badge/mastodon-@mortengregersen-blueviolet.svg?style=flat" alt="Mastodon" />
+    </a>
+</p>
+<h2 id='what-is-bagbutik' class='heading'>What is Bagbutik?</h2>
+
+<p><strong>Bag·bu·tik</strong> (noun) <strong><a href="http://ipa-reader.xyz/?text=%CB%88b%CC%A5a%CC%9Dw-%CB%8Cb%CC%A5u-ti%CB%90k&voice=Amy">/ˈb̥a̝w-ˌb̥u-tiːk/</a></strong> - <em>(Danish) A room behind a store</em></p>
+
+<p>Bagbutik is two things, a command line tool for generating Swift code, and a library with the generated code for the App Store Connect API. The command line tool decodes the official <a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">OpenAPI spec</a> for Apple&rsquo;s <a href="https://developer.apple.com/documentation/appstoreconnectapi">App Store Connect API</a>.</p>
+
+<p>While generating the code, the command line tool also downloads the official documentation from <a href="https://developer.apple.com/documentation/appstoreconnectapi">Apple&rsquo;s Documentation site for the App Store Connect API</a> and applies it to the generated code, so you can get documentation right in Xcode.</p>
+
+<p>The command line tool is only needed, when Apple publishes a new version of the spec. A <a href="https://github.com/MortenGregersen/Bagbutik/actions/workflows/check-for-new-spec.yml">GitHub Action</a> automatically checks for new versions of the spec and creates a pull request with the changes.</p>
+<h2 id='how-to-use-bagbutik' class='heading'>How to use Bagbutik</h2>
+
+<p>Bagbutik uses JSON Web Tokens (JWT) for authorization. You obtain the required keys from your organization&rsquo;s App Store Connect account.</p>
+
+<blockquote>
+<p>See <a href="https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api">Creating API Keys for App Store Connect API</a> for how to create your keys.</p>
+</blockquote>
+
+<p>Here is a basic example for fetching all bundle IDs for iOS apps including related profiles sorted by seed ID and the bundle ID itself descending.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Bagbutik_Core</span>
+<span class="kd">import</span> <span class="kt">Bagbutik_Provisioning</span>
+
+<span class="k">let</span> <span class="nv">service</span> <span class="o">=</span> <span class="kt">BagbutikService</span><span class="p">(</span><span class="nv">jwt</span><span class="p">:</span> <span class="k">try</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span>
+    <span class="nv">keyId</span><span class="p">:</span> <span class="s">"P9M252746H"</span><span class="p">,</span>
+    <span class="nv">issuerId</span><span class="p">:</span> <span class="s">"82067982-6b3b-4a48-be4f-5b10b373c5f2"</span><span class="p">,</span>
+    <span class="nv">privateKey</span><span class="p">:</span> <span class="s">"""
+    -----BEGIN PRIVATE KEY-----
+    MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgevZzL1gdAFr88hb2
+    OF/2NxApJCzGCEDdfSp6VQO30hyhRANCAAQRWz+jn65BtOMvdyHKcvjBeBSDZH2r
+    1RTwjmYSi9R/zpBnuQ4EiMnCqfMPWiZqB4QdbAd0E7oH50VpuZ1P087G
+    -----END PRIVATE KEY-----
+    """</span>
+<span class="p">))</span>
+<span class="k">let</span> <span class="nv">response</span> <span class="o">=</span> <span class="k">try</span> <span class="k">await</span> <span class="n">service</span><span class="o">.</span><span class="nf">request</span><span class="p">(</span>
+    <span class="o">.</span><span class="nf">listBundleIdsV1</span><span class="p">(</span><span class="nv">filters</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="nf">platform</span><span class="p">([</span><span class="o">.</span><span class="n">iOS</span><span class="p">])],</span>
+                     <span class="nv">includes</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">profiles</span><span class="p">],</span>
+                     <span class="nv">sorts</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">seedIdDescending</span><span class="p">,</span> <span class="o">.</span><span class="n">idDescending</span><span class="p">])</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre>
+<h2 id='how-to-get-bagbutik-into-a-project' class='heading'>How to get Bagbutik into a project</h2>
+
+<p>Bagbutik supports <a href="https://www.swift.org/package-manager">Swift Package Manager</a> and the internal libraries used to generate the code is also managed by it.</p>
+
+<p>The library of generated code actually consists of multiple libraries, to let the consumer only depend on the endpoints needed.
+So to get Bagbutik, you need to decide which functionality you need.</p>
+
+<p>In your <code>Package.swift</code> add Bagbutik as a dependency:</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/MortenGregersen/Bagbutik"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"8.0.0"</span><span class="p">),</span>
+</code></pre>
+
+<p>Then in <code>targets</code> add the libraries needed by your target:</p>
+<pre class="highlight swift"><code><span class="nv">targets</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">target</span><span class="p">(</span>
+        <span class="nv">name</span><span class="p">:</span> <span class="s">"Awesome"</span><span class="p">,</span>
+        <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+            <span class="o">.</span><span class="nf">product</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Bagbutik-AppStore"</span><span class="p">,</span> <span class="nv">package</span><span class="p">:</span> <span class="s">"Bagbutik"</span><span class="p">),</span>
+            <span class="o">.</span><span class="nf">product</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Bagbutik-TestFlight"</span><span class="p">,</span> <span class="nv">package</span><span class="p">:</span> <span class="s">"Bagbutik"</span><span class="p">),</span>
+</code></pre>
+
+<p>If all libraries are needed, the umbrella library <code>Bagbutik</code> can be used:</p>
+<pre class="highlight swift"><code><span class="nv">targets</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">target</span><span class="p">(</span>
+        <span class="nv">name</span><span class="p">:</span> <span class="s">"Awesome"</span><span class="p">,</span>
+        <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+            <span class="o">.</span><span class="nf">product</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Bagbutik"</span><span class="p">,</span> <span class="nv">package</span><span class="p">:</span> <span class="s">"Bagbutik"</span><span class="p">),</span>
+</code></pre>
+
+<blockquote>
+<p>Remember to replace the hyphen with an underscore when importing the libraries.</p>
+
+<p>When importing <code>Bagbutik-TestFlight</code> write: </p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">Bagbutik_TestFlight</span>
+</code></pre>
+</blockquote>
+<h3 id='code-bagbutik-core-code' class='heading'><code>Bagbutik-Core</code></h3>
+
+<p>The core library is <code>Bagbutik-Core</code> which contains the <code><a href="Classes/BagbutikService.html">BagbutikService</a></code>, the <code><a href="Structs/JWT.html">JWT</a></code>, protocols and the general generated types like <code>ErrorResponse</code> and <code>PagingInformation</code>.</p>
+
+<p>All other libraries depend on <code>Bagbutik-Core</code>. This is the only library which is documented on <a href="https://bagbutik.dev">Bagbutik.dev</a>, as the other libraries only contain types which are already <a href="https://developer.apple.com/documentation/appstoreconnectapi">documented by Apple</a>.</p>
+<h3 id='code-bagbutik-models-code' class='heading'><code>Bagbutik-Models</code></h3>
+
+<p>Because the models from the API are used from many different endpoints, they are all located in <code>Bagbutik-Models</code>. All libraries with endpoints depend on <code>Bagbutik-Models</code>.</p>
+<h3 id='code-bagbutik-lt-api-area-gt-code' class='heading'><code>Bagbutik-&lt;API-Area&gt;</code></h3>
+
+<p>The endpoints of all the areas of the App Store Connect API are located in different libraries with a describing name.</p>
+
+<p>Right now there are 7 libraries with endpoints:</p>
+
+<ul>
+<li><code>Bagbutik-AppStore</code>: Manage all <a href="https://developer.apple.com/documentation/appstoreconnectapi/app_store">aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store</a>.</li>
+<li><code>Bagbutik-GameCenter</code>: Manage <a href="https://developer.apple.com/documentation/appstoreconnectapi/game_center">Game Center data and configurations for your apps</a>.</li>
+<li><code>Bagbutik-Marketplaces</code>: Manage <a href="https://developer.apple.com/documentation/appstoreconnectapi/game_center">keys, packages, and search for the marketplace distribution of your app</a>.</li>
+<li><code>Bagbutik-Provisioning</code>: Manage the <a href="https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids">bundle IDs</a>, <a href="https://developer.apple.com/documentation/appstoreconnectapi/certificates">certificates</a>, <a href="https://developer.apple.com/documentation/appstoreconnectapi/devices">devices</a> and <a href="https://developer.apple.com/documentation/appstoreconnectapi/profiles">provisioning profiles</a> for your app.</li>
+<li><code>Bagbutik-Reporting</code>: Download your <a href="https://developer.apple.com/documentation/appstoreconnectapi/sales_and_finance_reports">sales and financial reports</a> and <a href="https://developer.apple.com/documentation/appstoreconnectapi/power_and_performance_metrics_and_logs">get power and performance metrics, logs, and signatures</a>.</li>
+<li><code>Bagbutik-TestFlight</code>: Manage your <a href="https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers">beta testing program, including beta testers and groups, apps, App Clips, and builds</a>.</li>
+<li><code>Bagbutik-Users</code>: Manage <a href="https://developer.apple.com/documentation/appstoreconnectapi/users">users</a> and <a href="https://developer.apple.com/documentation/appstoreconnectapi/user_invitations">email invitations to join</a> your App Store Connect team.</li>
+<li><code>Bagbutik-XcodeCloud</code>: Automate <a href="https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds">reading Xcode Cloud data, managing workflows, and starting builds</a>.</li>
+</ul>
+<h2 id='manual-patches-applied-to-openapi-spec' class='heading'>Manual patches applied to OpenAPI Spec</h2>
+
+<p>The OpenAPI Spec provided by Apple do not always align with the data received from the API. Whenever such mismatches are identified, feedback is submitted to Apple and a patch is applied. Whenever an issue is resolved, the patch is removed again.</p>
+<h3 id='currently-open-feedback-and-applied-patches' class='heading'>Currently open feedback and applied patches</h3>
+<h4 id='strong-fb8977648-strong-the-quot-bundleidplatform-quot-schema-is-missing-quot-universal-quot-and-quot-services-quot' class='heading'><strong>FB8977648</strong>: The &ldquo;BundleIdPlatform&rdquo; schema is missing &ldquo;UNIVERSAL&rdquo; and &ldquo;SERVICES&rdquo;</h4>
+
+<ul>
+<li>Submitted: January 21st 2021.</li>
+<li>Updated: October 14th 2022 - the type &ldquo;SERVICES&rdquo; is also missing.</li>
+</ul>
+
+<p><strong>Title:</strong> App Store Connect API is missing the &ldquo;UNIVERSAL&rdquo; type for the BundleIdPlatform schema</p>
+<h5 id='description' class='heading'>Description</h5>
+
+<p>In the OpenAPI spec for the App Store Connect API the &ldquo;BundleIdPlatform&rdquo; schema is said to only be &ldquo;IOS&rdquo; or &ldquo;MAC_OS&rdquo;. This is not right as universal apps (iOS and macOS) has a &ldquo;UNIVERSAL&rdquo; platform.</p>
+<h4 id='strong-fb12292035-strong-errorresponse-errors-has-required-optional-quot-detail-quot-and-no-quot-associatederrors-quot-in-quot-meta-quot' class='heading'><strong>FB12292035</strong>: ErrorResponse.Errors has required optional &ldquo;detail&rdquo; and no &ldquo;associatedErrors&rdquo; in &ldquo;meta&rdquo;</h4>
+
+<ul>
+<li>Submitted: June 9th 2023.</li>
+</ul>
+
+<p>In Apple&rsquo;s OpenAPI spec the <code>detail</code> property on <code>ErrorResponse.Errors</code> is marked as <code>required</code>.
+On 12/1/23 some errors (with status code 409) has been observed, with no <code>detail</code>.</p>
+
+<p>In Apple&rsquo;s OpenAPI spec and documentation the <code>associatedErrors</code> is not mentioned in <code>meta</code> property (last checked 12/1/23).
+But it is observed when creating a <code>ReviewSubmissionItem</code> with an <code>AppStoreVersion</code> fails.</p>
+<h4 id='strong-fb13701181-strong-app-store-connect-api-spec-is-missing-quot-developer_id_application_g2-quot-type-for-the-certificate-type-schema' class='heading'><strong>FB13701181</strong>: App Store Connect API Spec is missing &ldquo;DEVELOPER_ID_APPLICATION_G2&rdquo; type for the Certificate Type schema</h4>
+
+<ul>
+<li>Submitted: March 28th 2024.</li>
+</ul>
+
+<p>In the OpenAPI spec for the App Store Connect API the “CertificateType” schema is said to not include &ldquo;DEVELOPER_ID_APPLICATION_G2”. This is not right as “Certificates” endpoints can have a “DEVELOPER_ID_APPLICATION_G2” type.</p>
+
+<p>When creating certificates on <a href="https://developer.apple.com/account/resources/certificates/add">the developer portal</a>, it is also possible to select the G2 Sub-CA (which corresponds to “DEVELOPER_ID_APPLICATION_G2”.</p>
+<h3 id='closed-feedback-removed-patches' class='heading'>Closed feedback (removed patches)</h3>
+
+<ul>
+<li><p><strong>FB13540097</strong>: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong &quot;data&rdquo; type</p>
+
+<ul>
+<li>Submitted: January 14th 2024.</li>
+<li>Resolved: July 11th 2024 (Spec version 3.5).</li>
+</ul></li>
+<li><p><strong>FB9963088</strong>: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec</p>
+
+<ul>
+<li>Submitted: March 21st 2022.</li>
+<li>Resolved: July 12th 2022 (Spec version 2.0).</li>
+</ul></li>
+<li><p><strong>FB10029609</strong>: Required &lsquo;links&rsquo; property missing on included BuildBundle</p>
+
+<ul>
+<li>Submitted: May 27th 2022.</li>
+<li>Resolved: At least since May 23rd 2023.</li>
+</ul></li>
+<li><p><strong>FB13071298</strong>: App Store Connect API Spec is missing &ldquo;VISION_OS&rdquo; type for the Platform schema</p>
+
+<ul>
+<li>Submitted: August 28th 2023.</li>
+<li>Resolved: January 25th 2024 (Spec version 3.2).</li>
+</ul></li>
+<li><p><strong>FB13539766</strong>: App Store Connect API Spec is missing &ldquo;APP_APPLE_VISION_PRO&rdquo; type for the Screenshot Display Type schema</p>
+
+<ul>
+<li>Submitted: January 14th 2024.</li>
+<li>Resolved: January 25th 2024 (Spec version 3.2).</li>
+</ul></li>
+</ul>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2022 under <a class="link" href="https://github.com/MortenGregersen/Bagbutik/blob/main/LICENSE" target="_blank" rel="external noopener">open source license</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
