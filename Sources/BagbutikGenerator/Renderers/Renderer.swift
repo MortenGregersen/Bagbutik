@@ -148,12 +148,14 @@ public class Renderer {
         let name: String
         let type: String
         let optional: Bool
+        let clearable: Bool
         
-        init(prefix: String? = nil, name: String, type: String, optional: Bool = false) {
+        init(prefix: String? = nil, name: String, type: String, optional: Bool = false, clearable: Bool = false) {
             self.prefix = prefix
             self.name = name
             self.type = type
             self.optional = optional
+            self.clearable = clearable
         }
     }
     
@@ -178,12 +180,18 @@ private extension Collection where Element == Renderer.FunctionParameter {
     var formatted: String {
         reduce(into: [String]()) { partialResult, parameter in
             let name: String
+            let type: String
             if let prefix = parameter.prefix {
                 name = "\(prefix) \(parameter.name)"
             } else {
                 name = parameter.name
             }
-            partialResult.append("\(name): \(parameter.type)\(parameter.optional ? "? = nil" : "")")
+            if parameter.clearable {
+                type = "Clearable<\(parameter.type)>"
+            } else {
+                type = parameter.type
+            }
+            partialResult.append("\(name): \(type)\(parameter.optional ? "? = nil" : "")")
         }.joined(separator: ",\n")
     }
 }

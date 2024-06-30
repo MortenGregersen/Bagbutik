@@ -151,7 +151,8 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "PersonCreateRequest",
                                   url: "some://url",
-                                  properties: ["name": .init(type: .simple(.init(type: "string")))])
+                                  properties: ["name": .init(type: .simple(.string)),
+                                               "age": .init(type: .simple(.integer), clearable: true)])
         // When
         let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
@@ -164,20 +165,26 @@ final class ObjectSchemaRendererTests: XCTestCase {
          <some://url>
          */
         public struct PersonCreateRequest: Codable, RequestBody {
+            public var age: Clearable<Int>?
             /// The person's name
             public var name: String?
 
-            public init(name: String? = nil) {
+            public init(age: Clearable<Int>? = nil,
+                        name: String? = nil)
+            {
+                self.age = age
                 self.name = name
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                age = try container.decodeIfPresent(Clearable<Int>.self, forKey: "age")
                 name = try container.decodeIfPresent(String.self, forKey: "name")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(age, forKey: "age")
                 try container.encodeIfPresent(name, forKey: "name")
             }
         }
