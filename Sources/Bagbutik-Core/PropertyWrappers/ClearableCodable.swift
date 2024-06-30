@@ -16,7 +16,7 @@ public struct ClearableCodable<Value>: Codable & Equatable where Value: Codable 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        wrappedValue = try container.decode(Clearable<Value>?.self)
+        wrappedValue = .value(try container.decode(Value.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,5 +43,12 @@ extension KeyedEncodingContainer {
         if value.wrappedValue != nil {
             try encode(value, forKey: key)
         }
+    }
+}
+
+internal extension KeyedDecodingContainer {
+    /// Decode a `@ClearableCodable` value with a `clear`  if the value isn't present.
+    func decode<Value: Decodable>(_ type: ClearableCodable<Value>.Type, forKey key: Key) throws -> ClearableCodable<Value> {
+        try decodeIfPresent(ClearableCodable<Value>.self, forKey: key) ?? ClearableCodable<Value>(wrappedValue: .clear)
     }
 }

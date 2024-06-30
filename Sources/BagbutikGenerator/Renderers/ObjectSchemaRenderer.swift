@@ -65,10 +65,12 @@ public class ObjectSchemaRenderer: Renderer {
             structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
                 var functionContent = "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
-                    if decodableProperty.optional {
-                        return "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
+                    if decodableProperty.clearable {
+                        "_\(decodableProperty.name.safeName) = try container.decode(Clearable<\(decodableProperty.type)>.self, forKey: \"\(decodableProperty.name.idealName)\")"
+                    } else if decodableProperty.optional {
+                        "\(decodableProperty.name.safeName) = try container.decodeIfPresent(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
                     } else {
-                        return "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
+                        "\(decodableProperty.name.safeName) = try container.decode(\(decodableProperty.type).self, forKey: \"\(decodableProperty.name.idealName)\")"
                     }
                 }.joined(separator: "\n")
                 if propertiesInfo.hasTypeConstant {
@@ -84,23 +86,25 @@ public class ObjectSchemaRenderer: Renderer {
             structContent.append(renderFunction(named: "encode", parameters: [.init(prefix: "to", name: "encoder", type: "Encoder")], throwing: true, content: {
                 var functionContent = "var container = encoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.encodableProperties.map { encodableProperty in
-                    if encodableProperty.optional, !encodableProperty.nullCodable {
-                        return "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
+                    if encodableProperty.clearable {
+                        "try container.encodeIfPresent(_\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
+                    } else if encodableProperty.optional, !encodableProperty.nullCodable {
+                        "try container.encodeIfPresent(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
                     } else {
-                        return "try container.encode(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
+                        "try container.encode(\(encodableProperty.name.safeName), forKey: \"\(encodableProperty.name.idealName)\")"
                     }
                 }.joined(separator: "\n")
                 return functionContent
             }))
             structContent.append(contentsOf: createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas))
-            structContent.append(contentsOf: try objectSchema.subSchemas.map { subSchema -> String in
+            try structContent.append(contentsOf: objectSchema.subSchemas.map { subSchema -> String in
                 switch subSchema {
                 case .objectSchema(let objectSchema):
-                    return try render(objectSchema: objectSchema, otherSchemas: otherSchemas)
+                    try render(objectSchema: objectSchema, otherSchemas: otherSchemas)
                 case .enumSchema(let enumSchema):
-                    return try EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema)
+                    try EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema)
                 case .oneOf(let name, let oneOfSchema):
-                    return try! OneOfSchemaRenderer(docsLoader: docsLoader).render(name: name, oneOfSchema: oneOfSchema)
+                    try! OneOfSchemaRenderer(docsLoader: docsLoader).render(name: name, oneOfSchema: oneOfSchema)
                 }
             })
             return structContent.joined(separator: "\n\n")
@@ -149,12 +153,16 @@ public class ObjectSchemaRenderer: Renderer {
                     if id == "data", type == "Data" || type == "[Data]" || type == "[Item]", isOptional {
                         wrapper += "@NullCodable "
                     }
+                    if property.value.clearable {
+                        wrapper += "@ClearableCodable "
+                    }
                     rendered = wrapper + PropertyRenderer(docsLoader: docsLoader)
                         .renderProperty(id: id,
                                         type: type,
                                         optional: isOptional,
                                         isSimpleType: property.value.type.isSimple,
-                                        deprecated: property.value.deprecated)
+                                        deprecated: property.value.deprecated,
+                                        clearable: property.value.clearable)
                 }
                 let propertyDocumentation = documentation?.properties[property.key]
                 return RenderProperty(rendered: rendered, documentation: propertyDocumentation, deprecated: property.value.deprecated)
@@ -173,7 +181,8 @@ public class ObjectSchemaRenderer: Renderer {
                     name: propertyName,
                     type: $0.value.type.description,
                     optional: !objectSchema.requiredProperties.contains($0.key) && $0.key != "type",
-                    nullCodable: propertyName.safeName == "data" && type == "Data" || type == "[Data]" || type == "[Item]")
+                    nullCodable: propertyName.safeName == "data" && type == "Data" || type == "[Data]" || type == "[Item]",
+                    clearable: $0.value.clearable)
             }
             decodableProperties = encodableProperties.filter { !hasTypeConstant || $0.name.idealName != "type" }
         }
@@ -193,7 +202,8 @@ public class ObjectSchemaRenderer: Renderer {
                 return FunctionParameter(prefix: prefix,
                                          name: name,
                                          type: $0.value.type.description.capitalizingFirstLetter(),
-                                         optional: !requiredProperties.contains($0.key))
+                                         optional: !requiredProperties.contains($0.key),
+                                         clearable: $0.value.clearable)
             }
         }
     }
@@ -253,11 +263,10 @@ public class ObjectSchemaRenderer: Renderer {
                 let functionContent: String
                 if isArrayReturnType {
                     let relationshipSingular = relationship.key.singularized()
-                    let guardIds: String
-                    if isPagedGetter {
-                        guardIds = "guard let \(relationshipSingular)Ids = \(pagedType).relationships?.\(relationship.key)?.data?.map(\\.id),"
+                    let guardIds = if isPagedGetter {
+                        "guard let \(relationshipSingular)Ids = \(pagedType).relationships?.\(relationship.key)?.data?.map(\\.id),"
                     } else {
-                        guardIds = "guard let \(relationshipSingular)Ids = data.relationships?.\(relationship.key)?.data?.map(\\.id),"
+                        "guard let \(relationshipSingular)Ids = data.relationships?.\(relationship.key)?.data?.map(\\.id),"
                     }
                     functionContent = """
                     \(guardIds)
@@ -270,11 +279,10 @@ public class ObjectSchemaRenderer: Renderer {
                     return \(relationship.key)
                     """
                 } else {
-                    let firstFilter: String
-                    if isPagedGetter {
-                        firstFilter = ".first { $0.id == \(pagedType).relationships?.\(relationship.key)?.data?.id }"
+                    let firstFilter = if isPagedGetter {
+                        ".first { $0.id == \(pagedType).relationships?.\(relationship.key)?.data?.id }"
                     } else {
-                        firstFilter = ".first { $0.id == data.relationships?.\(relationship.key)?.data?.id }"
+                        ".first { $0.id == data.relationships?.\(relationship.key)?.data?.id }"
                     }
                     functionContent = """
                     included?.compactMap { relationship -> \(includedSchemaName)? in
@@ -310,5 +318,6 @@ public class ObjectSchemaRenderer: Renderer {
         let type: String
         let optional: Bool
         let nullCodable: Bool
+        let clearable: Bool
     }
 }
