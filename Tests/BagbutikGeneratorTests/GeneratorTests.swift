@@ -141,8 +141,13 @@ final class GeneratorTests: XCTestCase {
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: specFileURL, outputDirURL: outputDirURL, documentationDirURL: documentationDirURL)) {
             // Then
             let nsError = $0 as NSError
-            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
-            XCTAssertEqual(nsError.code, 260)
+            #if os(Linux)
+                XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
+                XCTAssertEqual(nsError.code, 2)
+            #else
+                XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+                XCTAssertEqual(nsError.code, 260)
+            #endif
         }
     }
     
