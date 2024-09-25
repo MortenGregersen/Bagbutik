@@ -36,9 +36,15 @@ jobs:
 #        coverageLocations: coverage.lcov:lcov
 #        debug: true
   build-linux:
-    name: Build and Test (Linux)
+    name: Build and Test (Linux) - Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        swift: ["5", "6"]
     steps:
+    - uses: NeedleInAJayStack/setup-swift@4e17dcd69a660eea371d715802c219601e76f50a
+      with:
+        swift-version: ${{ matrix.swift }}
     - uses: actions/checkout@v4
     - name: Test
       run: swift test -v
