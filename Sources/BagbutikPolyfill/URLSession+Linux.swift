@@ -1,5 +1,5 @@
 import Foundation
-#if canImport(FoundationNetworking) && swift(<6.0)
+#if canImport(FoundationNetworking) && compiler(<6.0)
 // Linux support
 import FoundationNetworking
 
