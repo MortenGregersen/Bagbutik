@@ -36,9 +36,15 @@ jobs:
 #        coverageLocations: coverage.lcov:lcov
 #        debug: true
   build-linux:
-    name: Build and Test (Linux)
+    name: Build and Test (Linux) - Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        swift: ["5", "6"]
     steps:
     - uses: actions/checkout@v4
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: ${{ matrix.swift }}
     - name: Test
       run: swift test -v
