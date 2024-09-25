@@ -23,13 +23,8 @@ class DocsLoaderTests: XCTestCase {
         XCTAssertThrowsError(try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)) {
             // Then
             let nsError = $0 as NSError
-            #if os(Linux)
-                XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
-                XCTAssertEqual(nsError.code, 2)
-            #else
-                XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
-                XCTAssertEqual(nsError.code, 260)
-            #endif
+            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+            XCTAssertEqual(nsError.code, 260)
         }
     }
 
