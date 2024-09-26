@@ -32,65 +32,75 @@ final class GeneratorTests: XCTestCase {
     ]))
     lazy var docsLoader = DocsLoader(loadFile: { try Self.loadFile($0) })
     
-//    func testGenerateAllSimple() async throws {
-//        // Given
-//        let fileManager = MockFileManager()
-//        let printer = Printer()
-//        let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
-//        // When
-//        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
-//        // Then
-//        continueAfterFailure = false
-//        XCTAssertEqual(fileManager.itemsRemoved, [
-//            "/Users/steve/output/Bagbutik-AppStore",
-//            "/Users/steve/output/Bagbutik-Models/AppStore",
-//            "/Users/steve/output/Bagbutik-Provisioning",
-//            "/Users/steve/output/Bagbutik-Models/Provisioning",
-//            "/Users/steve/output/Bagbutik-Reporting",
-//            "/Users/steve/output/Bagbutik-Models/Reporting",
-//            "/Users/steve/output/Bagbutik-TestFlight",
-//            "/Users/steve/output/Bagbutik-Models/TestFlight",
-//            "/Users/steve/output/Bagbutik-Users",
-//            "/Users/steve/output/Bagbutik-Models/Users",
-//            "/Users/steve/output/Bagbutik-XcodeCloud",
-//            "/Users/steve/output/Bagbutik-Models/XcodeCloud",
-//            "/Users/steve/output/Bagbutik-Core/Models",
-//        ])
-//        XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
-//            "/Users/steve/output/Bagbutik-AppStore",
-//            "/Users/steve/output/Bagbutik-Core/Models",
-//            "/Users/steve/output/Bagbutik-Models/Reporting",
-//            "/Users/steve/output/Bagbutik-Models/Users",
-//            "/Users/steve/output/Bagbutik-Provisioning",
-//            "/Users/steve/output/Bagbutik-Reporting",
-//            "/Users/steve/output/Bagbutik-TestFlight",
-//            "/Users/steve/output/Bagbutik-Users",
-//            "/Users/steve/output/Bagbutik-Users/Users",
-//            "/Users/steve/output/Bagbutik-Users/Users/Relationships",
-//            "/Users/steve/output/Bagbutik-XcodeCloud"
-//        ])
-//        XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
-//            "Csv.swift",
-//            "ErrorResponse.swift",
-//            "Gzip.swift",
-//            "ListUsersV1.swift",
-//            "ListVisibleAppIdsForUserV2.swift",
-//            "ReplaceUsersResponse.swift",
-//            "UsersResponse.swift",
-//        ])
-//        XCTAssertEqual(printer.printedLogs[0], "🔍 Loading spec file:///Users/steve/spec.json...")
-//        XCTAssertEqual(printer.printedLogs[1], "🔍 Loading docs file:///Users/steve/documentation...")
-//        XCTAssertEqual(printer.printedLogs[2 ... 8].sorted(), [
-//            "⚡️ Generating endpoint ListUsersV1...",
-//            "⚡️ Generating endpoint ListVisibleAppIdsForUserV2...",
-//            "⚡️ Generating model Csv...",
-//            "⚡️ Generating model ErrorResponse...",
-//            "⚡️ Generating model Gzip...",
-//            "⚡️ Generating model ReplaceUsersResponse...",
-//            "⚡️ Generating model UsersResponse...",
-//        ])
-//        XCTAssertEqual(printer.printedLogs[9], "🎉 Finished generating 2 endpoints and 5 models! 🎉")
-//    }
+    func testGenerateAllSimple() async throws {
+        // Given
+        let fileManager = MockFileManager()
+        let printer = Printer()
+        let generator = Generator(loadSpec: { _ in self.testSpec }, fileManager: fileManager, docsLoader: docsLoader, print: printer.print)
+        // When
+        try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)
+        // Then
+        continueAfterFailure = false
+        XCTAssertEqual(fileManager.itemsRemoved, [
+            "/Users/steve/output/Bagbutik-AppStore",
+            "/Users/steve/output/Bagbutik-Models/AppStore",
+            "/Users/steve/output/Bagbutik-GameCenter",
+            "/Users/steve/output/Bagbutik-Models/GameCenter",
+            "/Users/steve/output/Bagbutik-Marketplaces",
+            "/Users/steve/output/Bagbutik-Models/Marketplaces",
+            "/Users/steve/output/Bagbutik-Provisioning",
+            "/Users/steve/output/Bagbutik-Models/Provisioning",
+            "/Users/steve/output/Bagbutik-Reporting",
+            "/Users/steve/output/Bagbutik-Models/Reporting",
+            "/Users/steve/output/Bagbutik-TestFlight",
+            "/Users/steve/output/Bagbutik-Models/TestFlight",
+            "/Users/steve/output/Bagbutik-Users",
+            "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-XcodeCloud",
+            "/Users/steve/output/Bagbutik-Models/XcodeCloud",
+            "/Users/steve/output/Bagbutik-Core/Models"
+        ])
+        XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
+            "/Users/steve/output/Bagbutik-AppStore",
+            "/Users/steve/output/Bagbutik-Core/Models",
+            "/Users/steve/output/Bagbutik-GameCenter",
+            "/Users/steve/output/Bagbutik-Marketplaces",
+            "/Users/steve/output/Bagbutik-Models/Reporting",
+            "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-Provisioning",
+            "/Users/steve/output/Bagbutik-Reporting",
+            "/Users/steve/output/Bagbutik-TestFlight",
+            "/Users/steve/output/Bagbutik-Users",
+            "/Users/steve/output/Bagbutik-Users/Users",
+            "/Users/steve/output/Bagbutik-Users/Users/Relationships",
+            "/Users/steve/output/Bagbutik-XcodeCloud"
+        ])
+        XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
+            "Csv.swift",
+            "ErrorResponse.swift",
+            "Gzip.swift",
+            "ListUsersV1.swift",
+            "ListVisibleAppIdsForUserV2.swift",
+            "ReplaceUsersResponse.swift",
+            "UsersResponse.swift",
+        ])
+        let firstLogLine = await printer.printedLogs[0]
+        let secondLogLine = await printer.printedLogs[1]
+        let nextLogLines = await printer.printedLogs[2 ... 8]
+        let lastLogLine = await printer.printedLogs[9]
+        XCTAssertEqual(firstLogLine, "🔍 Loading spec /Users/steve/spec.json...")
+        XCTAssertEqual(secondLogLine, "🔍 Loading docs /Users/steve/documentation...")
+        XCTAssertEqual(nextLogLines.sorted(), [
+            "⚡️ Generating endpoint ListUsersV1...",
+            "⚡️ Generating endpoint ListVisibleAppIdsForUserV2...",
+            "⚡️ Generating model Csv...",
+            "⚡️ Generating model ErrorResponse...",
+            "⚡️ Generating model Gzip...",
+            "⚡️ Generating model ReplaceUsersResponse...",
+            "⚡️ Generating model UsersResponse...",
+        ])
+        XCTAssertEqual(lastLogLine, "🎉 Finished generating 2 endpoints and 5 models! 🎉")
+    }
 
     func testInvalidSpecFileURL() async throws {
         // Given
