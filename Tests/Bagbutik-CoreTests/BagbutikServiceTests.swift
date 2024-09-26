@@ -183,13 +183,13 @@ class MockURLSession {
     }
 }
 
-extension AppResponse: @retroactive Equatable {
+#if compiler(<6.0)
+extension AppResponse: Equatable {
     public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
         lhs.data.id == rhs.data.id
     }
 }
 
-#if compiler(<6.0)
 extension App: Equatable {
     public static func == (lhs: App, rhs: App) -> Bool {
         lhs.id == rhs.id
@@ -244,6 +244,12 @@ extension ServiceError: Equatable {
     }
 }
 #else
+extension AppResponse: @retroactive Equatable {
+    public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
+        lhs.data.id == rhs.data.id
+    }
+}
+
 extension App: @retroactive Equatable {
     public static func == (lhs: App, rhs: App) -> Bool {
         lhs.id == rhs.id
