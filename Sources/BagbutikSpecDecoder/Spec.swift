@@ -232,6 +232,7 @@ public struct Spec: Decodable {
                 additionalProtocols: ["Sendable"]))) // The `Sendable` conformance is always needed
         }
 
+        errorResponseSchema.additionalProtocols.insert("Error")
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
         patchedSchemas.append(.object(errorResponseSchema))

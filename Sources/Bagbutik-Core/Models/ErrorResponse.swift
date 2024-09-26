@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse>
  */
-public struct ErrorResponse: Error, Codable {
+public struct ErrorResponse: Codable, Error {
     /// An array of one or more errors.
     public var errors: [Errors]?
 
