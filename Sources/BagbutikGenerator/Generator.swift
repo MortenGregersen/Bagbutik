@@ -93,12 +93,11 @@ public class Generator {
 
         try await withThrowingTaskGroup(of: [RenderResult].self) { taskGroup in
             for path in spec.paths.values {
-                taskGroup.addTask { [print, docsLoader] in
+                taskGroup.addTask { [docsLoader] in
                     var renderResults = [RenderResult]()
                     let operationRenderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
                     for operation in path.operations {
                         let name = operation.getVersionedName(path: path)
-                        await print("⚡️ Generating endpoint \(name)...")
                         let fileName = "\(name).swift"
                         guard let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
                             throw GeneratorError.noDocumentationForOperation(operation.id)
@@ -107,13 +106,14 @@ public class Generator {
                         let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
-                        renderResults.append(.init(dirURL: operationDirURL, fileName: fileName, contents: renderedOperation))
+                        renderResults.append(.init(dirURL: operationDirURL, name: name, fileName: fileName, contents: renderedOperation))
                     }
                     return renderResults
                 }
             }
             for try await renderResults in taskGroup {
                 for renderResult in renderResults {
+                    await print("⚡️ Generating endpoint \(renderResult.name)...")
                     try self.fileManager.createDirectory(at: renderResult.dirURL, withIntermediateDirectories: true, attributes: nil)
                     let fileURL = renderResult.dirURL.appendingPathComponent(renderResult.fileName)
                     guard self.fileManager.createFile(atPath: fileURL.path, contents: renderResult.contents.data(using: .utf8), attributes: nil) else {
@@ -126,12 +126,12 @@ public class Generator {
         try await withThrowingTaskGroup(of: RenderResult.self) { taskGroup in
             let schemas = spec.components.schemas
             for schema in schemas.values {
-                taskGroup.addTask { [print, docsLoader, schemas] in
+                taskGroup.addTask { [docsLoader, schemas] in
                     guard let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) else {
                         throw GeneratorError.noDocumentationForSchema(schema.name)
                     }
                     let packageName = try DocsLoader.resolvePackageName(for: documentation)
-                    await print("⚡️ Generating model \(schema.name)...")
+                    
                     let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
                     let fileName = model.name + ".swift"
                     let modelsDirURL: URL = if packageName == .core {
@@ -143,10 +143,11 @@ public class Generator {
                             .appendingPathComponent("Bagbutik-Models")
                             .appendingPathComponent(packageName.docsSectionName)
                     }
-                    return .init(dirURL: modelsDirURL, fileName: fileName, contents: model.contents)
+                    return .init(dirURL: modelsDirURL, name: model.name, fileName: fileName, contents: model.contents)
                 }
             }
             for try await renderResult in taskGroup {
+                await print("⚡️ Generating model \(renderResult.name)...")
                 try self.fileManager.createDirectory(at: renderResult.dirURL, withIntermediateDirectories: true, attributes: nil)
                 let fileURL = renderResult.dirURL.appendingPathComponent(renderResult.fileName)
                 guard self.fileManager.createFile(atPath: fileURL.path, contents: renderResult.contents.data(using: .utf8), attributes: nil) else {
@@ -162,6 +163,7 @@ public class Generator {
 
     private struct RenderResult {
         let dirURL: URL
+        let name: String
         let fileName: String
         let contents: String
     }
