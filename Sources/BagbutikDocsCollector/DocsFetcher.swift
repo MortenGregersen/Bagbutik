@@ -16,7 +16,7 @@ public enum DocsFetcherError: Error {
     case couldNotCreateFile
 
     /// The type of the file URL
-    public enum FileURLType {
+    public enum FileURLType: Sendable {
         /// The URL for the spec file
         case specFileURL
         /// The URL for the output directory

@@ -11,27 +11,27 @@ public enum DocsLoaderError: Error, Equatable {
     case couldNotResolvePackageName(id: String, paths: [[String]])
 }
 
-public class DocsLoader {
-    private let loadFile: (URL) throws -> Data
+public actor DocsLoader {
+    private let loadFile: @MainActor (URL) throws -> Data
     var operationDocumentationById: [String: OperationDocumentation]?
     var identifierBySchemaName: [String: String]?
     var schemaDocumentationById: [String: Documentation]?
 
-    public convenience init() {
+    public init() {
         self.init(operationDocumentationById: nil) // A parameter is needed for it to call the internal initializer
     }
 
-    init(loadFile: @escaping (URL) throws -> Data = { url in try Data(contentsOf: url) }, operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
+    init(loadFile: @escaping @MainActor (URL) throws -> Data = { url in try Data(contentsOf: url) }, operationDocumentationById: [String: OperationDocumentation]? = nil, identifierBySchemaName: [String: String]? = nil, schemaDocumentationById: [String: Documentation]? = nil) {
         self.loadFile = loadFile
         self.operationDocumentationById = operationDocumentationById
         self.identifierBySchemaName = identifierBySchemaName
         self.schemaDocumentationById = schemaDocumentationById
     }
 
-    public func loadDocs(documentationDirURL: URL) throws {
-        let operationDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
-        let identifierBySchemaNameData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
-        let schemaDocumentationByIdData = try loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
+    public func loadDocs(documentationDirURL: URL) async throws {
+        let operationDocumentationByIdData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.operationDocumentation.filename))
+        let identifierBySchemaNameData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
+        let schemaDocumentationByIdData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         let jsonDecoder = JSONDecoder()
         self.operationDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: operationDocumentationByIdData).mapValues { documentation in
             guard case .operation(let operationDocumentation) = documentation else { throw DocsLoaderError.wrongTypeOfDocumentation }

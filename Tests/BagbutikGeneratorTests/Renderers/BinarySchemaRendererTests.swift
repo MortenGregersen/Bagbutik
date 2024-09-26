@@ -4,7 +4,7 @@
 import XCTest
 
 final class BinarySchemaRendererTests: XCTestCase {
-    func testRenderPlain() throws {
+    func testRenderPlain() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
@@ -13,7 +13,7 @@ final class BinarySchemaRendererTests: XCTestCase {
         let renderer = BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = BinarySchema(name: "Gzip", url: "some://url")
         // When
-        let rendered = try renderer.render(binarySchema: schema)
+        let rendered = try await renderer.render(binarySchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         /// Some summary
@@ -37,13 +37,13 @@ final class BinarySchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRender_NoDocumentation() throws {
+    func testRender_NoDocumentation() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = BinarySchema(name: "Gzip", url: "some://url")
         // When
-        let rendered = try renderer.render(binarySchema: schema)
+        let rendered = try await renderer.render(binarySchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         public struct Gzip: BinaryResponse {

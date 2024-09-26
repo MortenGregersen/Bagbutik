@@ -6,7 +6,7 @@ import XCTest
 final class OperationRendererTests: XCTestCase {
     typealias Parameter = BagbutikSpecDecoder.Operation.Parameter
 
-    func testRenderSimple() throws {
+    func testRenderSimple() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
@@ -20,7 +20,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -47,7 +47,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderWithNoSimpleLimit() throws {
+    func testRenderWithNoSimpleLimit() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
@@ -62,7 +62,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "users-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -107,7 +107,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderCustomParameters() throws {
+    func testRenderCustomParameters() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [
@@ -117,13 +117,13 @@ final class OperationRendererTests: XCTestCase {
         let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
         let parameters: [Parameter] = [
             .limit(name: "limit", documentation: "maximum resources per page", maximum: 200),
-            .custom(name: "period", type: Parameter.ParameterValueType.simple(type: .string), documentation: "the duration of the reporting period"),
+            .custom(name: "period", type: Parameter.ParameterValueType.simple(type: .string()), documentation: "the duration of the reporting period"),
             .custom(name: "groupBy", type: Parameter.ParameterValueType.enum(type: "string", values: ["betaTesters"]), documentation: "the dimension by which to group the results")
         ]
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -168,7 +168,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderNoDocumentaion() throws {
+    func testRenderNoDocumentaion() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: [:])
         let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
@@ -178,7 +178,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -202,7 +202,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderDeprecated() throws {
+    func testRenderDeprecated() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: [:])
         let renderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
@@ -212,7 +212,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, deprecated: true, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -237,7 +237,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderParameters() throws {
+    func testRenderParameters() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
@@ -260,7 +260,7 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -390,7 +390,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderRequest() throws {
+    func testRenderRequest() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
@@ -401,7 +401,7 @@ final class OperationRendererTests: XCTestCase {
         let parameters: [Path.Parameter] = [.init(name: "id", description: "Id of the user to update")]
         let path = Path(path: "/users/{id}", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation], parameters: parameters)
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core
@@ -431,7 +431,7 @@ final class OperationRendererTests: XCTestCase {
         """#)
     }
 
-    func testUnknownTypeOfExists() throws {
+    func testUnknownTypeOfExists() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
@@ -442,47 +442,47 @@ final class OperationRendererTests: XCTestCase {
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
+        await XCTAssertAsyncThrowsError(try await OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfExists(name: "hair"))
         }
     }
 
-    func testUnknownTypeOfInclude() throws {
+    func testUnknownTypeOfInclude() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let parameters: [Parameter] = [
-            .include(type: .simple(type: .string))
+            .include(type: .simple(type: .string()))
         ]
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
+        await XCTAssertAsyncThrowsError(try await OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfInclude)
         }
     }
 
-    func testUnknownTypeOfSort() throws {
+    func testUnknownTypeOfSort() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
         )
         let parameters: [Parameter] = [
-            .sort(type: .simple(type: .string), documentation: "sorting")
+            .sort(type: .simple(type: .string()), documentation: "sorting")
         ]
         let operation = Operation(id: "apps-get_collection", name: "listUsers", method: .get, parameters: parameters, successResponseType: "UsersResponse", errorResponseType: "ErrorResponse")
         let path = Path(path: "/users", info: .init(mainType: "User", version: "V1", isRelationship: false), operations: [operation])
         // When
-        XCTAssertThrowsError(try OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
+        await XCTAssertAsyncThrowsError(try await OperationRenderer(docsLoader: docsLoader, shouldFormat: true).render(operation: operation, in: path)) {
             // Then
             XCTAssertEqual($0 as? OperationRendererError, OperationRendererError.unknownTypeOfSort)
         }
     }
 
-    func testDontRenderEmptyParameter() throws {
+    func testDontRenderEmptyParameter() async throws {
         // Given
         let docsLoader = DocsLoader(operationDocumentationById: ["apps-get_collection":
                 .init(id: "apps-get_collection", title: "Documentation title", abstract: "Documentation summary", discussion: "Documentation discussion", pathParameters: [:], queryParameters: [:], body: nil, responses: [])]
@@ -497,7 +497,7 @@ final class OperationRendererTests: XCTestCase {
         let pathParameters: [Path.Parameter] = [.init(name: "id", description: "Id of the user to update")]
         let path = Path(path: "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}", info: .init(mainType: "SubscriptionOfferCodeOneTimeUseCodes", version: "V1", isRelationship: false), operations: [operation], parameters: pathParameters)
         // When
-        let rendered = try renderer.render(operation: operation, in: path)
+        let rendered = try await renderer.render(operation: operation, in: path)
         // Then
         XCTAssertEqual(rendered, #"""
         import Bagbutik_Core

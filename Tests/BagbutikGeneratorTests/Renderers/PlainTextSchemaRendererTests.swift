@@ -4,7 +4,7 @@
 import XCTest
 
 final class PlainTextSchemaRendererTests: XCTestCase {
-    func testRenderPlain() throws {
+    func testRenderPlain() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
@@ -13,7 +13,7 @@ final class PlainTextSchemaRendererTests: XCTestCase {
         let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = PlainTextSchema(name: "Csv", url: "some://url")
         // When
-        let rendered = try renderer.render(plainTextSchema: schema)
+        let rendered = try await renderer.render(plainTextSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         /// Some summary
@@ -37,13 +37,13 @@ final class PlainTextSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRender_NoDocumentation() throws {
+    func testRender_NoDocumentation() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = PlainTextSchema(name: "Csv", url: "some://url")
         // When
-        let rendered = try renderer.render(plainTextSchema: schema)
+        let rendered = try await renderer.render(plainTextSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         public struct Csv: PlainTextResponse {

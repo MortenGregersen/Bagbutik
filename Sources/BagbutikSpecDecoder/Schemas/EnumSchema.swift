@@ -1,7 +1,7 @@
 import Foundation
 
 /// A representation of an enum
-public struct EnumSchema: Decodable, Equatable {
+public struct EnumSchema: Decodable, Equatable, Sendable {
     /// The name of the enum
     public let name: String
     /// The type of the value of the enum's cases

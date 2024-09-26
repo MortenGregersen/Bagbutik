@@ -4,7 +4,7 @@
 import XCTest
 
 final class ObjectSchemaRendererTests: XCTestCase {
-    func testRenderPlain() throws {
+    func testRenderPlain() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["/person": .object(
             .init(id: "/person", title: "Person", abstract: nil, discussion: nil, properties: [:], subDocumentationIds: []))]
@@ -14,7 +14,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         public struct Person: Codable {
@@ -38,7 +38,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderPlainDocumented() throws {
+    func testRenderPlainDocumented() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: "What is a person?", properties: ["name": .init(required: false, description: "The person's name")], subDocumentationIds: []))]
@@ -48,7 +48,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   url: "some://url",
                                   properties: ["name": .init(type: .simple(.init(type: "string")))])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -82,7 +82,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderPlainDocumentedDeprecated() throws {
+    func testRenderPlainDocumentedDeprecated() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
@@ -93,10 +93,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "Person",
                                   url: "some://url",
-                                  properties: ["name": .init(type: .simple(.string), deprecated: true),
-                                               "age": .init(type: .simple(.integer), deprecated: false)])
+                                  properties: ["name": .init(type: .simple(.string()), deprecated: true),
+                                               "age": .init(type: .simple(.integer()), deprecated: false)])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -141,7 +141,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderRequest() throws {
+    func testRenderRequest() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/personcreaterequest", title: "PersonCreateRequest", abstract: "The data for a request to create a person.", discussion: nil, properties: [
@@ -151,10 +151,10 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = ObjectSchema(name: "PersonCreateRequest",
                                   url: "some://url",
-                                  properties: ["name": .init(type: .simple(.string)),
-                                               "age": .init(type: .simple(.integer), clearable: true)])
+                                  properties: ["name": .init(type: .simple(.string())),
+                                               "age": .init(type: .simple(.integer()), clearable: true)])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -192,7 +192,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderLinkagesRequest() throws {
+    func testRenderLinkagesRequest() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/personcarLinkagerequest", title: "PersonCarLinkageRequest", abstract: "The request body you use to attach a car to a Person.", discussion: nil, properties: [
@@ -205,12 +205,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                   properties: ["data": .init(type: .schema(.init(
                                       name: "Data",
                                       url: "some://url",
-                                      properties: ["id": .init(type: .simple(.string)),
+                                      properties: ["id": .init(type: .simple(.string())),
                                                    "type": .init(type: .constant("cars"))],
                                       requiredProperties: ["id"]
                                   )))])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -271,7 +271,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderSpecialPropertyTypes() throws {
+    func testRenderSpecialPropertyTypes() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
@@ -291,7 +291,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "days": .init(type: .arrayOfEnumSchema(.init(name: "Days", type: "string", caseValues: ["MONDAY", "TUESDAY"])))],
                                   requiredProperties: ["firstName"])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -349,7 +349,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderWithAttributes() throws {
+    func testRenderWithAttributes() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/person", title: "Person", abstract: "A person with a name.", discussion: nil, properties: [
@@ -367,7 +367,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                       "attributes": .init(type: .schema(attributesSchema))
                                   ])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -423,7 +423,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderWithRelationships() throws {
+    func testRenderWithRelationships() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
@@ -444,7 +444,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                       "relationships": .init(type: .schema(relationshipsSchema))
                                   ])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -507,7 +507,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderSubSchemas() throws {
+    func testRenderSubSchemas() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
@@ -526,7 +526,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "preference": .init(type: .enumSchema(.init(name: "Preference", type: "string", caseValues: ["TABS", "SPACES"]))),
                                                "connection": .init(type: .oneOf(name: "Connection", schema: OneOfSchema(options: [.schemaRef("Computer"), .schemaRef("Phone")])))])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -625,7 +625,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testPagedResponse() throws {
+    func testPagedResponse() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
@@ -635,7 +635,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "links": .init(type: .schemaRef("PagedDocumentLinks"))],
                                   requiredProperties: ["data", "links"])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         public struct PersonsResponse: Codable, PagedResponse {
@@ -667,7 +667,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testGetterForIncludedNonPagedResponse() throws {
+    func testGetterForIncludedNonPagedResponse() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
@@ -699,7 +699,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                 name: "Data",
                                 url: "some://url",
                                 properties: [
-                                    "id": .init(type: .simple(.string)),
+                                    "id": .init(type: .simple(.string())),
                                     "type": .init(type: .constant("betaTesters"))
                                 ]
                             )))
@@ -714,7 +714,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                 name: "Data",
                                 url: "some://url",
                                 properties: [
-                                    "id": .init(type: .simple(.string)),
+                                    "id": .init(type: .simple(.string())),
                                     "type": .init(type: .constant("preReleaseVersions"))
                                 ]
                             )))
@@ -735,7 +735,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             properties: ["type": .init(type: .constant("betaTesters"))]
         )
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [
             "Build": .object(buildSchema),
             "BetaTester": .object(betaTesterSchema),
             "PrereleaseVersion": .object(prereleaseVersionSchema)
@@ -830,7 +830,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testGetterForIncludedPagedResponse() throws {
+    func testGetterForIncludedPagedResponse() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
@@ -862,7 +862,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                 name: "Data",
                                 url: "some://url",
                                 properties: [
-                                    "id": .init(type: .simple(.string)),
+                                    "id": .init(type: .simple(.string())),
                                     "type": .init(type: .constant("somethingOlds"))
                                 ]
                             )))
@@ -877,7 +877,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                 name: "Data",
                                 url: "some://url",
                                 properties: [
-                                    "id": .init(type: .simple(.string)),
+                                    "id": .init(type: .simple(.string())),
                                     "type": .init(type: .constant("betaTesters"))
                                 ]
                             )))
@@ -892,7 +892,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                 name: "Data",
                                 url: "some://url",
                                 properties: [
-                                    "id": .init(type: .simple(.string)),
+                                    "id": .init(type: .simple(.string())),
                                     "type": .init(type: .constant("preReleaseVersions"))
                                 ]
                             )))
@@ -918,7 +918,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             properties: ["type": .init(type: .constant("betaTesters"))]
         )
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [
             "Build": .object(buildSchema),
             "BetaTester": .object(betaTesterSchema),
             "PrereleaseVersion": .object(prereleaseVersionSchema),
@@ -1004,7 +1004,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderCustomCoding() throws {
+    func testRenderCustomCoding() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
@@ -1030,7 +1030,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                "relationships": .init(type: .schema(relationshipsSchema))],
                                   requiredProperties: ["name", "attributes"])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -1133,7 +1133,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderCustomCodingForNullCodableProperties() throws {
+    func testRenderCustomCodingForNullCodableProperties() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [
             "some://url": .object(
@@ -1146,15 +1146,15 @@ final class ObjectSchemaRendererTests: XCTestCase {
                                                url: "some://url/relationships",
                                                properties: ["bundleId": .init(type: .schema(.init(name: "BundleId", url: "some://url/relationship/bundleid", properties: [
                                                    "data": .init(type: .schema(.init(name: "Data", url: "some://url/relationship/bundleid/data", properties: [
-                                                       "id": .init(type: .simple(.string)), "type": .init(type: .constant("bundleIds"), deprecated: false)
+                                                       "id": .init(type: .simple(.string())), "type": .init(type: .constant("bundleIds"), deprecated: false)
                                                    ])))
                                                ])))])
         let schema = ObjectSchema(name: "Profile",
                                   url: "some://url",
-                                  properties: ["id": .init(type: .simple(.string)), "relationships": .init(type: .schema(relationshipsSchema))],
+                                  properties: ["id": .init(type: .simple(.string())), "relationships": .init(type: .schema(relationshipsSchema))],
                                   requiredProperties: ["id"])
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -1257,7 +1257,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderWithCustomTypeProperty() throws {
+    func testRenderWithCustomTypeProperty() async throws {
         // Given
         let json = """
         {
@@ -1282,7 +1282,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         // When
-        let rendered = try renderer.render(objectSchema: schema, otherSchemas: [:])
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
         public struct PhoneNumber: Codable {

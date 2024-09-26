@@ -1,7 +1,7 @@
 import Foundation
 
 /// A reprensetation of an enum case with an associated value
-public enum OneOfOption: Decodable, Equatable {
+public enum OneOfOption: Decodable, Equatable, Sendable {
     /// An object schema
     case objectSchema(ObjectSchema)
     /// A name of a schema
@@ -36,7 +36,7 @@ public enum OneOfOption: Decodable, Equatable {
             self = try .objectSchema(ObjectSchema(from: decoder))
         } else if let type = try container.decodeIfPresent(String.self, forKey: .type),
                   type == "string" {
-            self = .simple(.string)
+            self = .simple(.string())
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "OneOf option not known")
         }

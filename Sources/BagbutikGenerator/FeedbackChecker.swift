@@ -10,7 +10,7 @@ public enum FeedbackCheckerError: Error, Equatable {
     case noDocumentationForSchema(String)
 
     /// The type of the file URL
-    public enum FileURLType {
+    public enum FileURLType: Sendable {
         /// The URL for the spec file
         case specFileURL
         /// The URL for the documentation directory
@@ -64,19 +64,19 @@ public class FeedbackChecker {
         let patchedSpec = try loadPatchedSpec(specFileURL)
 
         print("🔍 Loading docs \(documentationDirURL.path)...")
-        try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
-        try docsLoader.applyManualDocumentation()
+        try await docsLoader.loadDocs(documentationDirURL: documentationDirURL)
+        try await docsLoader.applyManualDocumentation()
 
         var schemasNeedingPatching = [String]()
         var schemasNotNeedingPatching = [String]()
-        try patchedSpec.patchedSchemas.forEach { schema in
-            guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+        for schema in patchedSpec.patchedSchemas {
+            guard let documentation = try await self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
                 throw FeedbackCheckerError.noDocumentationForSchema(schema.name)
             }
             let packageName = try DocsLoader.resolvePackageName(for: documentation)
             let unpatchedSchema = originalSpec.components.schemas[schema.name]!
-            let unpatchedModel = try Generator.generateModel(for: unpatchedSchema, packageName: packageName, otherSchemas: originalSpec.components.schemas, docsLoader: self.docsLoader)
-            let patchedModel = try Generator.generateModel(for: schema, packageName: packageName, otherSchemas: patchedSpec.components.schemas, docsLoader: self.docsLoader)
+            let unpatchedModel = try await Generator.generateModel(for: unpatchedSchema, packageName: packageName, otherSchemas: originalSpec.components.schemas, docsLoader: self.docsLoader)
+            let patchedModel = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: patchedSpec.components.schemas, docsLoader: self.docsLoader)
             if unpatchedModel == patchedModel {
                 schemasNotNeedingPatching.append(schema.name)
             } else {

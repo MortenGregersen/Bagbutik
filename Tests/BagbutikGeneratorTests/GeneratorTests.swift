@@ -30,7 +30,7 @@ final class GeneratorTests: XCTestCase {
         "Csv": .plainText(.init(name: "Csv", url: "other://url")),
         "ErrorResponse": .object(.init(name: "ErrorResponse", url: "some://url"))
     ]))
-    lazy var docsLoader = DocsLoader(loadFile: loadFile)
+    lazy var docsLoader = DocsLoader(loadFile: { try Self.loadFile($0) })
     
 //    func testGenerateAllSimple() async throws {
 //        // Given
@@ -231,9 +231,7 @@ final class GeneratorTests: XCTestCase {
         var fileNameToFailCreating: String?
         
         func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws {
-            DispatchQueue.main.async {
-                self.directoriesCreated.append(url.path)
-            }
+            self.directoriesCreated.append(url.path)
         }
         
         func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool {
@@ -252,6 +250,7 @@ final class GeneratorTests: XCTestCase {
         }
     }
     
+    @MainActor
     private class Printer {
         private(set) var printedLogs = [String]()
         
@@ -360,7 +359,7 @@ final class GeneratorTests: XCTestCase {
         title: "ErrorResponse"
     )
 
-    let loadFile: (URL) throws -> Data = { url in
+    @MainActor static let loadFile: (URL) throws -> Data = { url in
         let jsonEncoder = JSONEncoder()
         if url.lastPathComponent == DocsFilename.operationDocumentation.filename {
             return try jsonEncoder.encode([

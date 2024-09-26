@@ -40,13 +40,13 @@ final class OneOfOptionTests: XCTestCase {
         XCTAssertEqual(oneOfOptions[0].typeName, "SomeModel")
         XCTAssertEqual(objectSchema.name, "SomeModel")
         XCTAssertEqual(objectSchema.properties.count, 2)
-        XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string).description)
-        XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string()).description)
+        XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string()).description)
         XCTAssertEqual(objectSchema.properties["vehicle"]?.deprecated, true)
         XCTAssertEqual(oneOfOptions[1].typeName, "AnotherModel")
         XCTAssertEqual(refName, "AnotherModel")
         XCTAssertEqual(oneOfOptions[2].typeName, "String")
-        XCTAssertEqual(simpleName, .string)
+        XCTAssertEqual(simpleName, .string())
     }
 
     func testDecodingUnknownOption() throws {

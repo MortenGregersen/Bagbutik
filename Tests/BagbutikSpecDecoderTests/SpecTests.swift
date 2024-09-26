@@ -885,8 +885,8 @@ final class SpecTests: XCTestCase {
         XCTAssertTrue(bundleIdPlatformCaseValues.contains("SERVICES"))
 
         guard case .object(let deviceSchema) = spec.components.schemas["Device"],
-              let deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({
-                  guard case .objectSchema(let subSchema) = $0,
+              let deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema,
                         subSchema.name == "Attributes" else {
                       return nil
                   }
@@ -918,12 +918,12 @@ final class SpecTests: XCTestCase {
         XCTAssertEqual(errorSchemaRef, "Errors")
 
         guard case .object(let ageRatingDeclarationUpdateRequestSchema) = spec.components.schemas["AgeRatingDeclarationUpdateRequest"],
-              let ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({
-                  guard case .objectSchema(let subSchema) = $0, subSchema.name == "Data" else { return nil }
+              let ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
                   return subSchema
               }).first,
-              let ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({
-                  guard case .objectSchema(let subSchema) = $0, subSchema.name == "Attributes" else { return nil }
+              let ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+                  guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
                   return subSchema
               }).first,
               let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] else {

@@ -5,22 +5,25 @@ import XCTest
 class DocsLoaderTests: XCTestCase {
     let validDocumentationDirURL = URL(fileURLWithPath: "/Users/steve/documentation")
 
-    func testLoadDocs() throws {
+    func testLoadDocs() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0) })
         // When
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // Then
-        XCTAssertEqual(docsLoader.operationDocumentationById, [Self.operationDocumentation.id: Self.operationDocumentation])
-        XCTAssertEqual(docsLoader.identifierBySchemaName, ["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
-        XCTAssertEqual(docsLoader.schemaDocumentationById, [Self.schemaDocumentation.id: Documentation.object(Self.schemaDocumentation)])
+        let operationDocumentationById = await docsLoader.operationDocumentationById
+        let identifierBySchemaName = await docsLoader.identifierBySchemaName
+        let schemaDocumentationById = await docsLoader.schemaDocumentationById
+        XCTAssertEqual(operationDocumentationById, [Self.operationDocumentation.id: Self.operationDocumentation])
+        XCTAssertEqual(identifierBySchemaName, ["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
+        XCTAssertEqual(schemaDocumentationById, [Self.schemaDocumentation.id: Documentation.object(Self.schemaDocumentation)])
     }
 
-    func testLoadDocs_ErrorLoading() throws {
+    func testLoadDocs_ErrorLoading() async throws {
         // Given
         let docsLoader = DocsLoader()
         // When
-        XCTAssertThrowsError(try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)) {
             // Then
             let nsError = $0 as NSError
             #if os(Linux) && compiler(<6.0)
@@ -33,7 +36,7 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
-    func testLoadDocsMalformedOperation() throws {
+    func testLoadDocsMalformedOperation() async throws {
         // Given
         let docsLoader = DocsLoader(loadFile: { url in
             let jsonEncoder = JSONEncoder()
@@ -44,13 +47,13 @@ class DocsLoaderTests: XCTestCase {
             }
         })
         // When
-        XCTAssertThrowsError(try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.wrongTypeOfDocumentation)
         }
     }
 
-    func testApplyManualDocumentation_ServicesAndUniversalNonExisting() throws {
+    func testApplyManualDocumentation_ServicesAndUniversalNonExisting() async throws {
         // Given
         let docsLoader = DocsLoader(identifierBySchemaName: [
             "BundleIdPlatform": "some-id"
@@ -61,9 +64,9 @@ class DocsLoaderTests: XCTestCase {
             ]))
         ])
         // When
-        try docsLoader.applyManualDocumentation()
+        try await docsLoader.applyManualDocumentation()
         // Then
-        if case .enum(let documentation) = docsLoader.schemaDocumentationById?["some-id"] {
+        if case .enum(let documentation) = await docsLoader.schemaDocumentationById?["some-id"] {
             XCTAssertEqual(documentation.cases.count, 4)
             XCTAssertEqual(Array(documentation.cases.keys).sorted(), ["IOS", "MACOS", "SERVICES", "UNIVERSAL"].sorted())
             XCTAssertEqual(documentation.cases["SERVICES"], "A string that represents a service.")
@@ -71,17 +74,17 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
-    func testApplyManualDocumentation_NotLoaded() throws {
+    func testApplyManualDocumentation_NotLoaded() async throws {
         // Given
         let docsLoader = DocsLoader()
         // When
-        XCTAssertThrowsError(try docsLoader.applyManualDocumentation()) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.applyManualDocumentation()) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.documentationNotLoaded)
         }
     }
 
-    func testApplyManualDocumentation_ServicesAndUniversalEmpty() throws {
+    func testApplyManualDocumentation_ServicesAndUniversalEmpty() async throws {
         // Given
         let docsLoader = DocsLoader(identifierBySchemaName: [
             "BundleIdPlatform": "some-id"
@@ -94,9 +97,9 @@ class DocsLoaderTests: XCTestCase {
             ]))
         ])
         // When
-        try docsLoader.applyManualDocumentation()
+        try await docsLoader.applyManualDocumentation()
         // Then
-        if case .enum(let documentation) = docsLoader.schemaDocumentationById?["some-id"] {
+        if case .enum(let documentation) = await docsLoader.schemaDocumentationById?["some-id"] {
             XCTAssertEqual(documentation.cases["SERVICES"], "A string that represents a service.")
             XCTAssertEqual(documentation.cases["UNIVERSAL"], "A string that represents iOS and macOS.")
         }
@@ -166,131 +169,131 @@ class DocsLoaderTests: XCTestCase {
         }
     }
 
-    func testResolveDocumentationForSchemaNamed() throws {
+    func testResolveDocumentationForSchemaNamed() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0) })
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForSchema(named: "User")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(named: "User")
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }
 
-    func testResolveDocumentationForSchemaNamed_NotLoaded() throws {
+    func testResolveDocumentationForSchemaNamed_NotLoaded() async throws {
         // Given
         let docsLoader = DocsLoader()
         // When
-        XCTAssertThrowsError(try docsLoader.resolveDocumentationForSchema(named: "Bob")) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.resolveDocumentationForSchema(named: "Bob")) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.documentationNotLoaded)
         }
     }
 
-    func testResolveDocumentationForSchemaNamed_Unknown() throws {
+    func testResolveDocumentationForSchemaNamed_Unknown() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForSchema(named: "Bob")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(named: "Bob")
         // Then
         XCTAssertNil(documentation)
     }
 
-    func testResolveDocumentationForSchemaWithDocsUrl() throws {
+    func testResolveDocumentationForSchemaWithDocsUrl() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/user")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/user")
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }
 
-    func testResolveDocumentationForSchemaWithDocsUrl_NotLoaded() throws {
+    func testResolveDocumentationForSchemaWithDocsUrl_NotLoaded() async throws {
         // Given
         let docsLoader = DocsLoader()
         // When
-        XCTAssertThrowsError(try docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/bob")) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/bob")) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.documentationNotLoaded)
         }
     }
 
-    func testResolveDocumentationForSchemaWithDocsUrl_Unknown() throws {
+    func testResolveDocumentationForSchemaWithDocsUrl_Unknown() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/bob")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/bob")
         // Then
         XCTAssertNil(documentation)
     }
 
-    func testResolveDocumentationForSchemaWithId() throws {
+    func testResolveDocumentationForSchemaWithId() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/user")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/user")
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }
 
-    func testResolveDocumentationForSchemaWithId_NotLoaded() throws {
+    func testResolveDocumentationForSchemaWithId_NotLoaded() async throws {
         // Given
         let docsLoader = DocsLoader()
         // When
-        XCTAssertThrowsError(try docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob")) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob")) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.documentationNotLoaded)
         }
     }
 
-    func testResolveDocumentationForSchemaWithId_Unknown() throws {
+    func testResolveDocumentationForSchemaWithId_Unknown() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob")
         // Then
         XCTAssertNil(documentation)
     }
 
-    func testResolveDocumentationForOperationWithId() throws {
+    func testResolveDocumentationForOperationWithId() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForOperation(withId: "users-get_instance")
+        let documentation = try await docsLoader.resolveDocumentationForOperation(withId: "users-get_instance")
         // Then
         XCTAssertEqual(documentation, Self.operationDocumentation)
     }
 
-    func testResolveDocumentationForOperationWithId_NotLoaded() throws {
+    func testResolveDocumentationForOperationWithId_NotLoaded() async throws {
         // Given
         let docsLoader = DocsLoader()
         // When
-        XCTAssertThrowsError(try docsLoader.resolveDocumentationForOperation(withId: "bobs-get_instance")) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.resolveDocumentationForOperation(withId: "bobs-get_instance")) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.documentationNotLoaded)
         }
     }
 
-    func testResolveDocumentationForOperationWithId_Unknown() throws {
+    func testResolveDocumentationForOperationWithId_Unknown() async throws {
         // Given
-        let docsLoader = DocsLoader(loadFile: loadFile)
-        try docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
+        let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
+        try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try docsLoader.resolveDocumentationForOperation(withId: "bobs-get_instance")
+        let documentation = try await docsLoader.resolveDocumentationForOperation(withId: "bobs-get_instance")
         // Then
         XCTAssertNil(documentation)
     }
 
-    func testCreateUrlForOperation() {
+    func testCreateUrlForOperation() async {
         // Given
         let docsLoader = DocsLoader()
         // When
-        let urlForOperation = docsLoader.createUrlForOperation(withId: "users-get_instance")
+        let urlForOperation = await docsLoader.createUrlForOperation(withId: "users-get_instance")
         // Then
         XCTAssertEqual(urlForOperation, "https://developer.apple.com/documentation/appstoreconnectapi/read_user_information")
     }
@@ -325,7 +328,7 @@ class DocsLoaderTests: XCTestCase {
         ]
     )
 
-    let loadFile: (URL) throws -> Data = { url in
+    @MainActor static let loadFile: (URL) throws -> Data = { [operationDocumentation, schemaDocumentation] url in
         let jsonEncoder = JSONEncoder()
         if url.lastPathComponent == DocsFilename.operationDocumentation.filename {
             return try jsonEncoder.encode([operationDocumentation.id: Documentation.operation(operationDocumentation)])

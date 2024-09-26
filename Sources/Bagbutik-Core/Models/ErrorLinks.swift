@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ErrorLinks: Codable {
+public struct ErrorLinks: Codable, Sendable {
     public var about: String?
     public var associated: Associated?
 
@@ -23,7 +23,7 @@ public struct ErrorLinks: Codable {
         try container.encodeIfPresent(associated, forKey: "associated")
     }
 
-    public enum Associated: Codable {
+    public enum Associated: Codable, Sendable {
         case properties(Properties)
         case string(String)
 
@@ -47,7 +47,7 @@ public struct ErrorLinks: Codable {
             }
         }
 
-        public struct Properties: Codable {
+        public struct Properties: Codable, Sendable {
             public var href: String?
             public var meta: Meta?
 
@@ -70,7 +70,7 @@ public struct ErrorLinks: Codable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Meta: Codable {
+            public struct Meta: Codable, Sendable {
                 public var source: String?
 
                 public init(source: String? = nil) {

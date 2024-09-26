@@ -1,7 +1,7 @@
 import Foundation
 
 /// A representation of an object
-public struct ObjectSchema: Decodable, Equatable {
+public struct ObjectSchema: Decodable, Equatable, Sendable {
     /// The name of the object
     public private(set) var name: String
     /// An url for the documentation for the object

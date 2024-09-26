@@ -4,20 +4,20 @@
 import XCTest
 
 final class OneOfSchemaRendererTests: XCTestCase {
-    func testRender() throws {
+    func testRender() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/test", title: "Test", abstract: "A test.", discussion: "", properties: ["href": .init(required: false, description: "An URL")], subDocumentationIds: []))]
         )
         let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let subSchema = ObjectSchema(name: "Test", url: "some://url", properties: [
-            "href": .init(type: .simple(.string)),
+            "href": .init(type: .simple(.string())),
             "meta": .init(type: .schema(.init(name: "Meta", url: "", properties: [
-                "source": .init(type: .simple(.string))
+                "source": .init(type: .simple(.string()))
             ])))])
-        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .objectSchema(subSchema), .simple(.string)])
+        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .objectSchema(subSchema), .simple(.string())])
         // When
-        let rendered = try renderer.render(name: "Included", oneOfSchema: schema)
+        let rendered = try await renderer.render(name: "Included", oneOfSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         public enum Included: Codable {

@@ -22,6 +22,10 @@ public struct JWT {
     private var payload: Payload
     private let privateKey: String
     
+    internal var dateFactory: (TimeInterval) -> Date {
+        didSet { payload.dateFactory = dateFactory }
+    }
+    
     /**
      Create a new JWT.
      
@@ -34,10 +38,7 @@ public struct JWT {
         - privateKey: The contents of your private key from App Store Connect. Starting with `-----BEGIN PRIVATE KEY-----`.
       */
     public init(keyId: String, issuerId: String, privateKey: String) throws {
-        header = Header(kid: keyId)
-        payload = Payload(iss: issuerId)
-        self.privateKey = privateKey
-        encodedSignature = try Self.createEncodedSignature(header: header, payload: payload, privateKey: privateKey)
+        try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey, dateFactory: Date.init(timeIntervalSinceNow:))
     }
     
     /**
@@ -56,7 +57,15 @@ public struct JWT {
         try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
     }
     
-    internal mutating func renewEncodedSignature() throws {
+    init(keyId: String, issuerId: String, privateKey: String, dateFactory: @escaping (TimeInterval) -> Date) throws {
+        header = Header(kid: keyId)
+        payload = Payload(iss: issuerId, dateFactory: dateFactory)
+        self.privateKey = privateKey
+        encodedSignature = try Self.createEncodedSignature(header: header, payload: payload, privateKey: privateKey)
+        self.dateFactory = dateFactory
+    }
+    
+    mutating func renewEncodedSignature() throws {
         payload.renewExp()
         encodedSignature = try Self.createEncodedSignature(header: header, payload: payload, privateKey: privateKey)
     }
@@ -79,22 +88,32 @@ public struct JWT {
     }
     
     private struct Payload: Encodable {
-        var iss: String
-        var exp: Int
+        let iss: String
+        private(set) var exp: Int
         let aud = "appstoreconnect-v1"
-        var isExpired: Bool { Date(timeIntervalSince1970: TimeInterval(exp)) < DateFactory.fromTimeIntervalSinceNow(0) }
+        var dateFactory: (TimeInterval) -> Date
+        var isExpired: Bool { Date(timeIntervalSince1970: TimeInterval(exp)) < Date(timeIntervalSinceNow: 0) }
         
-        init(iss: String) {
+        init(iss: String, dateFactory: @escaping (TimeInterval) -> Date) {
             self.iss = iss
-            exp = Self.createExp()
+            self.dateFactory = dateFactory
+            exp = 0
+            renewExp()
+        }
+        
+        func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(iss, forKey: .iss)
+            try container.encode(exp, forKey: .exp)
+            try container.encode(aud, forKey: .aud)
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case iss, exp, aud
         }
         
         mutating func renewExp() {
-            exp = Self.createExp()
-        }
-        
-        private static func createExp() -> Int {
-            Int(DateFactory.fromTimeIntervalSinceNow(20 * 60).timeIntervalSince1970)
+            exp = Int(dateFactory(20 * 60).timeIntervalSince1970)
         }
     }
 }

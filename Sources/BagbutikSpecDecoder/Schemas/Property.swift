@@ -1,5 +1,5 @@
 /// A property on a type
-public struct Property: Equatable {
+public struct Property: Equatable, Sendable {
     /// The type of the property
     public var type: PropertyType
     /// Tells if the property is deprecated

@@ -18,14 +18,14 @@ public class Renderer {
         return "`\(searchString)`"
     }
     
-    internal func renderStruct(named name: String, access: String = "public", protocols: [String]? = nil, content: () throws -> String) rethrows -> String {
+    internal func renderStruct(named name: String, access: String = "public", protocols: [String]? = nil, content: () async throws -> String) async rethrows -> String {
         var protocolsString: String?
         if let protocols = protocols, protocols.count > 0 {
             protocolsString = ": " + protocols.joined(separator: ", ")
         }
         return """
         \(access) struct \(name)\(protocolsString ?? "") {
-            \(try content())
+            \(try await content())
         }
         """
     }
@@ -72,27 +72,27 @@ public class Renderer {
         """
     }
     
-    internal func renderExtension(on extendedType: String, access: String = "public", content: () throws -> String) rethrows -> String {
+    internal func renderExtension(on extendedType: String, access: String = "public", content: () async throws -> String) async rethrows -> String {
         """
         \(access) extension \(extendedType) {
-            \(try content())
+            \(try await content())
         }
         """
     }
     
-    internal func renderDocumentationBlock(content: () throws -> String) rethrows -> String {
+    internal func renderDocumentationBlock(content: () async throws -> String) async rethrows -> String {
         """
         /**
-        \(try content())
+        \(try await content())
         */
         """
     }
     
-    internal func renderDocumentationBlock(title: String, content: () throws -> String) rethrows -> String {
-        try renderDocumentationBlock {
+    internal func renderDocumentationBlock(title: String, content: () async throws -> String) async rethrows -> String {
+        try await renderDocumentationBlock {
             """
             # \(title)
-            \(try content())
+            \(try await content())
             """
         }
     }

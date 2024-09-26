@@ -1,4 +1,4 @@
-public struct PropertyDocumentation: Codable, Equatable {
+public struct PropertyDocumentation: Codable, Equatable, Sendable {
     public let required: Bool
     public let description: String?
 

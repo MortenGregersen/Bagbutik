@@ -10,7 +10,7 @@ public class PlainTextSchemaRenderer: Renderer {
         - plainTextSchema: The plain text schema to render
      - Returns: The rendered plain text schema
      */
-    public func render(plainTextSchema: PlainTextSchema) throws -> String {
+    public func render(plainTextSchema: PlainTextSchema) async throws -> String {
         var rendered = """
         public struct \(plainTextSchema.name): PlainTextResponse {
             public let text: String
@@ -30,7 +30,7 @@ public class PlainTextSchemaRenderer: Renderer {
         }
         """
         if let url = plainTextSchema.url,
-           case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
+           case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }

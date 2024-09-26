@@ -1,5 +1,5 @@
 /// A case for an enum
-public struct EnumCase: Equatable {
+public struct EnumCase: Equatable, Sendable {
     /// The name of the case
     public let id: String
     /// The value of the case

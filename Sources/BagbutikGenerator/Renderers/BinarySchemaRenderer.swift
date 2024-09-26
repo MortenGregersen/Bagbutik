@@ -9,7 +9,7 @@ public class BinarySchemaRenderer: Renderer {
         - binarySchema: The binary schema to render
      - Returns: The rendered binary schema
      */
-    public func render(binarySchema: BinarySchema) throws -> String {
+    public func render(binarySchema: BinarySchema) async throws -> String {
         var rendered = """
         public struct \(binarySchema.name): BinaryResponse {
             public let data: Data
@@ -29,7 +29,7 @@ public class BinarySchemaRenderer: Renderer {
         }
         """
         if let url = binarySchema.url,
-           case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
+           case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
            let abstract = objectDocumentation.abstract {
             rendered = "/// \(abstract)\n" + rendered
         }

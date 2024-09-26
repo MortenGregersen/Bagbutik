@@ -10,13 +10,13 @@ import FoundationNetworking
 
 @main
 struct BagbutikCLI: AsyncParsableCommand {
-    static var configuration = CommandConfiguration(
+    static let configuration = CommandConfiguration(
         abstract: "A utility for downloading spec and generating models and endpoints.",
         subcommands: [Generate.self, CheckFeedback.self, DownloadNewestDocs.self, DownloadNewestSpec.self],
         defaultSubcommand: Generate.self)
 
     struct Generate: AsyncParsableCommand {
-        static var configuration = CommandConfiguration(abstract: "Generate models and endpoints from spec. If the path to a spec is omitted, the newest version is downloaded from Apple.")
+        static let configuration = CommandConfiguration(abstract: "Generate models and endpoints from spec. If the path to a spec is omitted, the newest version is downloaded from Apple.")
 
         @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
         var specPath: String?
@@ -42,7 +42,7 @@ struct BagbutikCLI: AsyncParsableCommand {
     }
     
     struct CheckFeedback: AsyncParsableCommand {
-        static var configuration = CommandConfiguration(abstract: "Check if the manual applied patched to the specs are still needed. If the path to a spec is omitted, the newest version is downloaded from Apple.")
+        static let configuration = CommandConfiguration(abstract: "Check if the manual applied patched to the specs are still needed. If the path to a spec is omitted, the newest version is downloaded from Apple.")
         
         @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
         var specPath: String?
@@ -64,7 +64,7 @@ struct BagbutikCLI: AsyncParsableCommand {
     }
 
     struct DownloadNewestDocs: AsyncParsableCommand {
-        static var configuration = CommandConfiguration(abstract: "Download the newest documentation.")
+        static let configuration = CommandConfiguration(abstract: "Download the newest documentation.")
 
         @Option(name: .shortAndLong, help: "Path to the App Store Connect OpenAPI Spec")
         var specPath: String?
@@ -86,7 +86,7 @@ struct BagbutikCLI: AsyncParsableCommand {
     }
 
     struct DownloadNewestSpec: AsyncParsableCommand {
-        static var configuration = CommandConfiguration(abstract: "Download the newest spec.")
+        static let configuration = CommandConfiguration(abstract: "Download the newest spec.")
 
         mutating func run() async throws {
             try await downloadNewestSpec()

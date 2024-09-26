@@ -18,11 +18,8 @@ final class BagbutikServiceTests: XCTestCase {
 
     func setUpService(expiredJWT: Bool = false) throws {
         mockURLSession = .init()
-        if expiredJWT {
-            DateFactory.fromTimeIntervalSinceNow = { _ in Date.distantPast }
-        }
-        jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey)
-        DateFactory.reset()
+        let dateFactory = expiredJWT ? { _ in Date.distantPast } : Date.init(timeIntervalSinceNow:)
+        jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey, dateFactory: dateFactory)
         let fetchData = mockURLSession.data(for:delegate:)
         service = .init(jwt: jwt, fetchData: fetchData)
     }
@@ -155,6 +152,7 @@ final class BagbutikServiceTests: XCTestCase {
     func testJWTRenewal() async throws {
         try setUpService(expiredJWT: true)
         XCTAssertTrue(service.jwt.isExpired)
+        service.jwt.dateFactory = Date.init(timeIntervalSinceNow:)
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(expectedResponse),
@@ -185,25 +183,25 @@ class MockURLSession {
     }
 }
 
-extension AppResponse: Equatable {
+extension AppResponse: @retroactive Equatable {
     public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
         lhs.data.id == rhs.data.id
     }
 }
 
-extension App: Equatable {
+extension App: @retroactive Equatable {
     public static func == (lhs: App, rhs: App) -> Bool {
         lhs.id == rhs.id
     }
 }
 
-extension EmptyResponse: Equatable {
+extension EmptyResponse: @retroactive Equatable {
     public static func == (lhs: EmptyResponse, rhs: EmptyResponse) -> Bool {
         true
     }
 }
 
-extension ErrorResponse.Errors: Equatable {
+extension ErrorResponse.Errors: @retroactive Equatable {
     public static func == (lhs: ErrorResponse.Errors, rhs: ErrorResponse.Errors) -> Bool {
         lhs.code == rhs.code
             && lhs.detail == rhs.detail
@@ -212,13 +210,13 @@ extension ErrorResponse.Errors: Equatable {
     }
 }
 
-extension ErrorResponse: Equatable {
+extension ErrorResponse: @retroactive Equatable {
     public static func == (lhs: ErrorResponse, rhs: ErrorResponse) -> Bool {
         lhs.errors == rhs.errors
     }
 }
 
-extension ServiceError: Equatable {
+extension ServiceError: @retroactive Equatable {
     public static func == (lhs: ServiceError, rhs: ServiceError) -> Bool {
         switch (lhs, rhs) {
         case (.badRequest(let lhsResponse), .badRequest(let rhsResponse)):

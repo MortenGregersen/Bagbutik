@@ -165,8 +165,8 @@ public struct Spec: Decodable {
         // Add the case `PROCESSING` to Device.Status
         // Apple's OpenAPI spec doesn't include Processing as status for Device.
         if case .object(var deviceSchema) = components.schemas["Device"],
-           var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({
-               guard case .objectSchema(let subSchema) = $0,
+           var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+               guard case .objectSchema(let subSchema) = subSchema,
                      subSchema.name == "Attributes" else {
                    return nil
                }
@@ -175,9 +175,9 @@ public struct Spec: Decodable {
            var statusProperty = deviceAttributesSchema.properties["status"],
            case .enumSchema(var statusEnum) = statusProperty.type {
             var values = statusEnum.cases
-            values.append(.init(id: "processing", value: "PROCESSING"))
+            values.append(EnumCase(id: "processing", value: "PROCESSING"))
             statusEnum.cases = values
-            statusProperty.type = .enumSchema(statusEnum)
+            statusProperty.type = PropertyType.enumSchema(statusEnum)
             deviceAttributesSchema.properties["status"] = statusProperty
             deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
             components.schemas["Device"] = .object(deviceSchema)
@@ -237,12 +237,12 @@ public struct Spec: Decodable {
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
         // To tell Apple to clear a value, it has to be `null`, but properties with `null` values normally get omitted.
         if case .object(var ageRatingDeclarationUpdateRequestSchema) = components.schemas["AgeRatingDeclarationUpdateRequest"],
-           var ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({
-               guard case .objectSchema(let subSchema) = $0, subSchema.name == "Data" else { return nil }
+           var ageRatingDeclarationUpdateRequestDataSchema: ObjectSchema = ageRatingDeclarationUpdateRequestSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+               guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Data" else { return nil }
                return subSchema
            }).first,
-           var ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({
-               guard case .objectSchema(let subSchema) = $0, subSchema.name == "Attributes" else { return nil }
+           var ageRatingDeclarationUpdateRequestDataAttributesSchema: ObjectSchema = ageRatingDeclarationUpdateRequestDataSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+               guard case .objectSchema(let subSchema) = subSchema, subSchema.name == "Attributes" else { return nil }
                return subSchema
            }).first,
            let kidsAgeBandProperty = ageRatingDeclarationUpdateRequestDataAttributesSchema.properties["kidsAgeBand"] {
