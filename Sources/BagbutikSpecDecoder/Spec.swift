@@ -301,14 +301,23 @@ public struct Spec: Decodable {
             property.type = .arrayOfEnumSchema(enumSchema)
         case .oneOf(let name, var oneOfSchema):
             oneOfSchema.additionalProtocols.insert("Sendable")
+            oneOfSchema.options = oneOfSchema.options.map(addSendableToOptionsSubSchemas)
             property.type = .oneOf(name: name, schema: oneOfSchema)
         case .arrayOfOneOf(let name, var oneOfSchema):
             oneOfSchema.additionalProtocols.insert("Sendable")
+            oneOfSchema.options = oneOfSchema.options.map(addSendableToOptionsSubSchemas)
             property.type = .arrayOfOneOf(name: name, schema: oneOfSchema)
         default:
             break
         }
         return property
+    }
+
+    private func addSendableToOptionsSubSchemas(oneOfOption: OneOfOption) -> OneOfOption {
+        guard case .objectSchema(var objectSchema) = oneOfOption else { return oneOfOption }
+        objectSchema.additionalProtocols.insert("Sendable")
+        objectSchema.properties = objectSchema.properties.mapValues(addSendableToPropertySubSchemas)
+        return .objectSchema(objectSchema)
     }
 }
 
