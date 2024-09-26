@@ -21,14 +21,14 @@ public class OneOfSchemaRenderer: Renderer {
         }
 
         var rendered = "public init(from decoder: Decoder) throws {\n"
-        options.enumerated().forEach {
-            let option = $0.element
+        for item in options.enumerated() {
+            let option = item.element
             var renderedOption = """
             if let \(option.id) = try? \(option.value)(from: decoder) {
                 self = .\(option.id)(\(option.id))
 
             """
-            if $0.offset != 0 {
+            if item.offset != 0 {
                 renderedOption = "} else " + renderedOption
             }
             rendered += renderedOption
@@ -47,9 +47,9 @@ public class OneOfSchemaRenderer: Renderer {
             switch self {
 
         """
-        options.forEach {
+        for option in options {
             rendered += """
-            case .\($0.id)(let value):
+            case .\(option.id)(let value):
                 try value.encode(to: encoder)
 
             """
@@ -62,14 +62,15 @@ public class OneOfSchemaRenderer: Renderer {
         let objectRenderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: false)
         var renderedSubSchemas = [String]()
         for subSchema in subSchemas {
-            renderedSubSchemas.append(try await objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
+            try await renderedSubSchemas.append(objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
         }
         if !renderedSubSchemas.isEmpty {
             rendered += "\n\n" + renderedSubSchemas.joined(separator: "\n\n")
         }
+        let protocols = ["Codable"] + oneOfSchema.additionalProtocols
 
         rendered = renderEnum(named: name,
-                              protocols: ["Codable"],
+                              protocols: protocols,
                               cases: options,
                               caseValueIsAssociated: true,
                               content: rendered)

@@ -40,6 +40,7 @@ public class ObjectSchemaRenderer: Renderer {
         if objectSchema.properties["links"]?.type == .schemaRef("PagedDocumentLinks") {
             protocols.append("PagedResponse")
         }
+        protocols.append(contentsOf: objectSchema.additionalProtocols)
         rendered += try await renderStruct(named: objectSchema.name, protocols: protocols) {
             let propertiesInfo = PropertiesInfo(for: objectSchema, documentation: documentation, docsLoader: docsLoader)
             var structContent = [String]()

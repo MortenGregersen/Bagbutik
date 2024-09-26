@@ -1323,4 +1323,28 @@ final class ObjectSchemaRendererTests: XCTestCase {
 
         """#)
     }
+    
+    func testRenderWithAdditionalProtocol() async throws {
+        // Given
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        let schema = ObjectSchema(name: "PhoneNumber", url: "some://url/relationships", additionalProtocols: ["Sendable"])
+        // When
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct PhoneNumber: Codable, Sendable {
+            public init() {}
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+            }
+        }
+        
+        """#)
+    }
 }

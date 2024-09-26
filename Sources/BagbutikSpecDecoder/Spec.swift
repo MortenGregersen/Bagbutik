@@ -27,7 +27,7 @@ public struct Spec: Decodable {
      Eg. ListAppInfosForApp doesn't list the different types of categories.
      */
     public mutating func addForgottenIncludeParameters() {
-        paths.forEach { (pathKey: String, path: Path) in
+        for (pathKey, path) in paths {
             var path = path
             path.operations.forEach { operation in
                 let operationIndex = path.operations.firstIndex(of: operation)!
@@ -65,9 +65,9 @@ public struct Spec: Decodable {
      Eg. CreateProfile.Attributes.ProfileType is equal to Profile.Attributes.ProfileType, the first one should be removed and the latter one should be used.
      */
     public mutating func flattenIdenticalSchemas() {
-        paths.forEach { (pathKey: String, path: Path) in
+        for (pathKey, path) in paths {
             var path = path
-            path.operations.forEach { operation in
+            for operation in path.operations {
                 let operationIndex = path.operations.firstIndex(of: operation)!
                 var operation = operation
                 operation.parameters?
@@ -109,7 +109,7 @@ public struct Spec: Decodable {
             }
             paths[pathKey] = path
         }
-        ["CreateRequest", "UpdateRequest"].forEach { suffix in
+        for suffix in ["CreateRequest", "UpdateRequest"] {
             components.schemas
                 .filter { $0.key.hasSuffix(suffix) }
                 .forEach { (targetSchemaName: String, targetSchema: Schema) in
@@ -183,7 +183,7 @@ public struct Spec: Decodable {
             components.schemas["Device"] = .object(deviceSchema)
             patchedSchemas.append(.object(deviceSchema))
         }
-        
+
         // Add the case `DEVELOPER_ID_APPLICATION_G2` to CertificateType
         // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 28/3/24 as FB13701181.
         if case .enum(var certificateTypeSchema) = components.schemas["CertificateType"] {
@@ -194,7 +194,7 @@ public struct Spec: Decodable {
             patchedSchemas.append(.enum(certificateTypeSchema))
         }
 
-        // Fix up the names of the sub schemas of ErrorResponse.Errors
+        // Fix up the names of the sub schemas of ErrorResponse.Errors and add Sendable to types needing it
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
@@ -207,7 +207,9 @@ public struct Spec: Decodable {
         }
         sourceOneOfSchema.options[pointerIndex] = .schemaRef("JsonPointer")
         sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
+        sourceOneOfSchema.additionalProtocols.insert("Sendable")
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
+        errorSchema.additionalProtocols.insert("Sendable")
         errorSchema.properties["source"] = sourceProperty
 
         // Mark `detail` as optional on ErrorResponse.Errors
@@ -226,13 +228,28 @@ public struct Spec: Decodable {
                 properties: [
                     "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
                     "additionalProperties": metaProperty
-                ])))
+                ],
+                additionalProtocols: ["Sendable"]))) // The `Sendable` conformance is always needed
         }
 
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
         patchedSchemas.append(.object(errorResponseSchema))
-        
+
+        if case .object(var errorSourcePointerSchema) = components.schemas["ErrorSourcePointer"] {
+            errorSourcePointerSchema.additionalProtocols.insert("Sendable")
+            components.schemas["ErrorSourcePointer"] = .object(errorSourcePointerSchema)
+        }
+        if case .object(var errorSourceParameterSchema) = components.schemas["ErrorSourceParameter"] {
+            errorSourceParameterSchema.additionalProtocols.insert("Sendable")
+            components.schemas["ErrorSourceParameter"] = .object(errorSourceParameterSchema)
+        }
+        if case .object(var errorLinksSchema) = components.schemas["ErrorLinks"] {
+            errorLinksSchema.additionalProtocols.insert("Sendable")
+            errorLinksSchema.properties = errorLinksSchema.properties.mapValues(addSendableToPropertySubSchemas)
+            components.schemas["ErrorLinks"] = .object(errorLinksSchema)
+        }
+
         // Marks the `kidsAgeBand` property on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
         // To tell Apple to clear a value, it has to be `null`, but properties with `null` values normally get omitted.
@@ -263,6 +280,35 @@ public struct Spec: Decodable {
     private enum CodingKeys: String, CodingKey {
         case paths
         case components
+    }
+
+    private func addSendableToPropertySubSchemas(property: Property) -> Property {
+        var property = property
+        switch property.type {
+        case .schema(var objectSchema):
+            objectSchema.additionalProtocols.insert("Sendable")
+            objectSchema.properties = objectSchema.properties.mapValues(addSendableToPropertySubSchemas)
+            property.type = .schema(objectSchema)
+        case .arrayOfSubSchema(var objectSchema):
+            objectSchema.additionalProtocols.insert("Sendable")
+            objectSchema.properties = objectSchema.properties.mapValues(addSendableToPropertySubSchemas)
+            property.type = .arrayOfSubSchema(objectSchema)
+        case .enumSchema(var enumSchema):
+            enumSchema.additionalProtocols.insert("Sendable")
+            property.type = .enumSchema(enumSchema)
+        case .arrayOfEnumSchema(var enumSchema):
+            enumSchema.additionalProtocols.insert("Sendable")
+            property.type = .arrayOfEnumSchema(enumSchema)
+        case .oneOf(let name, var oneOfSchema):
+            oneOfSchema.additionalProtocols.insert("Sendable")
+            property.type = .oneOf(name: name, schema: oneOfSchema)
+        case .arrayOfOneOf(let name, var oneOfSchema):
+            oneOfSchema.additionalProtocols.insert("Sendable")
+            property.type = .arrayOfOneOf(name: name, schema: oneOfSchema)
+        default:
+            break
+        }
+        return property
     }
 }
 
