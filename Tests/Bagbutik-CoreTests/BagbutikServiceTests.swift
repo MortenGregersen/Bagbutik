@@ -18,11 +18,8 @@ final class BagbutikServiceTests: XCTestCase {
 
     func setUpService(expiredJWT: Bool = false) throws {
         mockURLSession = .init()
-        if expiredJWT {
-            DateFactory.fromTimeIntervalSinceNow = { _ in Date.distantPast }
-        }
-        jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey)
-        DateFactory.reset()
+        let dateFactory = expiredJWT ? { _ in Date.distantPast } : Date.init(timeIntervalSinceNow:)
+        jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey, dateFactory: dateFactory)
         let fetchData = mockURLSession.data(for:delegate:)
         service = .init(jwt: jwt, fetchData: fetchData)
     }
@@ -31,8 +28,8 @@ final class BagbutikServiceTests: XCTestCase {
         try setUpService()
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(expectedResponse),
-                                                                      type: .http(statusCode: 200))
+        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(expectedResponse),
+                                                                          type: .http(statusCode: 200))
         let response = try await service.request(request)
         XCTAssertEqual(response, expectedResponse)
     }
@@ -94,12 +91,12 @@ final class BagbutikServiceTests: XCTestCase {
             .init(data: [.init(id: "app2", links: .init(self: ""))], links: .init(next: "https://next2", self: "")),
             .init(data: [.init(id: "app3", links: .init(self: ""))], links: .init(next: nil, self: "")),
         ]
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(responses[0]),
-                                                                      type: .http(statusCode: 200))
-        mockURLSession.responsesByUrl[URL(string: responses[0].links.next!)!] = (data: try jsonEncoder.encode(responses[1]),
-                                                                                 type: .http(statusCode: 200))
-        mockURLSession.responsesByUrl[URL(string: responses[1].links.next!)!] = (data: try jsonEncoder.encode(responses[2]),
-                                                                                 type: .http(statusCode: 200))
+        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(responses[0]),
+                                                                          type: .http(statusCode: 200))
+        mockURLSession.responsesByUrl[URL(string: responses[0].links.next!)!] = try (data: jsonEncoder.encode(responses[1]),
+                                                                                     type: .http(statusCode: 200))
+        mockURLSession.responsesByUrl[URL(string: responses[1].links.next!)!] = try (data: jsonEncoder.encode(responses[2]),
+                                                                                     type: .http(statusCode: 200))
 
         let response = try await service.requestAllPages(request)
         XCTAssertEqual(response.data, responses.map(\.data).flatMap { $0 })
@@ -155,10 +152,11 @@ final class BagbutikServiceTests: XCTestCase {
     func testJWTRenewal() async throws {
         try setUpService(expiredJWT: true)
         XCTAssertTrue(service.jwt.isExpired)
+        service.jwt.dateFactory = Date.init(timeIntervalSinceNow:)
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
-        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = (data: try jsonEncoder.encode(expectedResponse),
-                                                                      type: .http(statusCode: 200))
+        mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(expectedResponse),
+                                                                          type: .http(statusCode: 200))
         _ = try await service.request(request)
         XCTAssertFalse(service.jwt.isExpired)
     }
@@ -185,6 +183,7 @@ class MockURLSession {
     }
 }
 
+#if compiler(<6.0)
 extension AppResponse: Equatable {
     public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
         lhs.data.id == rhs.data.id
@@ -222,28 +221,89 @@ extension ServiceError: Equatable {
     public static func == (lhs: ServiceError, rhs: ServiceError) -> Bool {
         switch (lhs, rhs) {
         case (.badRequest(let lhsResponse), .badRequest(let rhsResponse)):
-            return lhsResponse == rhsResponse
+            lhsResponse == rhsResponse
         case (.unauthorized(let lhsResponse), .unauthorized(let rhsResponse)):
-            return lhsResponse == rhsResponse
+            lhsResponse == rhsResponse
         case (.forbidden(let lhsResponse), .forbidden(let rhsResponse)):
-            return lhsResponse == rhsResponse
+            lhsResponse == rhsResponse
         case (.notFound(let lhsResponse), .notFound(let rhsResponse)):
-            return lhsResponse == rhsResponse
+            lhsResponse == rhsResponse
         case (.conflict(let lhsResponse), .conflict(let rhsResponse)):
-            return lhsResponse == rhsResponse
+            lhsResponse == rhsResponse
         case (.unprocessableEntity(let lhsResponse), .unprocessableEntity(let rhsResponse)):
-            return lhsResponse == rhsResponse
+            lhsResponse == rhsResponse
         case (.wrongDateFormat(let lhsDateString), .wrongDateFormat(let rhsDateString)):
-            return lhsDateString == rhsDateString
+            lhsDateString == rhsDateString
         case (.unknownHTTPError(let lhsStatusCode, let lhsData), .unknownHTTPError(let rhsStatusCode, let rhsData)):
-            return lhsStatusCode == rhsStatusCode && lhsData == rhsData
+            lhsStatusCode == rhsStatusCode && lhsData == rhsData
         case (.unknown(let lhsData), .unknown(let rhsData)):
-            return lhsData == rhsData
+            lhsData == rhsData
         default:
             fatalError("A error type is missing here.")
         }
     }
 }
+#else
+extension AppResponse: @retroactive Equatable {
+    public static func == (lhs: AppResponse, rhs: AppResponse) -> Bool {
+        lhs.data.id == rhs.data.id
+    }
+}
+
+extension App: @retroactive Equatable {
+    public static func == (lhs: App, rhs: App) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension EmptyResponse: @retroactive Equatable {
+    public static func == (lhs: EmptyResponse, rhs: EmptyResponse) -> Bool {
+        true
+    }
+}
+
+extension ErrorResponse.Errors: @retroactive Equatable {
+    public static func == (lhs: ErrorResponse.Errors, rhs: ErrorResponse.Errors) -> Bool {
+        lhs.code == rhs.code
+            && lhs.detail == rhs.detail
+            && lhs.status == rhs.status
+            && lhs.title == rhs.title
+    }
+}
+
+extension ErrorResponse: @retroactive Equatable {
+    public static func == (lhs: ErrorResponse, rhs: ErrorResponse) -> Bool {
+        lhs.errors == rhs.errors
+    }
+}
+
+extension ServiceError: @retroactive Equatable {
+    public static func == (lhs: ServiceError, rhs: ServiceError) -> Bool {
+        switch (lhs, rhs) {
+        case (.badRequest(let lhsResponse), .badRequest(let rhsResponse)):
+            lhsResponse == rhsResponse
+        case (.unauthorized(let lhsResponse), .unauthorized(let rhsResponse)):
+            lhsResponse == rhsResponse
+        case (.forbidden(let lhsResponse), .forbidden(let rhsResponse)):
+            lhsResponse == rhsResponse
+        case (.notFound(let lhsResponse), .notFound(let rhsResponse)):
+            lhsResponse == rhsResponse
+        case (.conflict(let lhsResponse), .conflict(let rhsResponse)):
+            lhsResponse == rhsResponse
+        case (.unprocessableEntity(let lhsResponse), .unprocessableEntity(let rhsResponse)):
+            lhsResponse == rhsResponse
+        case (.wrongDateFormat(let lhsDateString), .wrongDateFormat(let rhsDateString)):
+            lhsDateString == rhsDateString
+        case (.unknownHTTPError(let lhsStatusCode, let lhsData), .unknownHTTPError(let rhsStatusCode, let rhsData)):
+            lhsStatusCode == rhsStatusCode && lhsData == rhsData
+        case (.unknown(let lhsData), .unknown(let rhsData)):
+            lhsData == rhsData
+        default:
+            fatalError("A error type is missing here.")
+        }
+    }
+}
+#endif
 
 struct CrazyDatesResponse: Decodable {
     let date: Date

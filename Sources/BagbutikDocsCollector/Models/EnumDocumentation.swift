@@ -1,4 +1,4 @@
-public struct EnumDocumentation: Equatable {
+public struct EnumDocumentation: Equatable, Sendable {
     public let id: String
     public let hierarchy: Documentation.Hierarchy
     public let title: String

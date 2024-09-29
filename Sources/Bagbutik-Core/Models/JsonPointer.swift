@@ -9,7 +9,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/jsonpointer>
  */
-public struct JsonPointer: Codable {
+public struct JsonPointer: Codable, Sendable {
     /// A JSON pointer that indicates the location in the request entity where the error originates.
     public let pointer: String
 

@@ -121,4 +121,5 @@ let package = Package(
         .testTarget(name: "BagbutikDocsCollectorTests", dependencies: ["BagbutikDocsCollector"]),
         .testTarget(name: "BagbutikSpecDecoderTests", dependencies: ["BagbutikSpecDecoder"]),
         .testTarget(name: "BagbutikStringExtensionsTests", dependencies: ["BagbutikStringExtensions"]),
-    ])
+    ],
+    swiftLanguageVersions: [.v5, .version("6")])

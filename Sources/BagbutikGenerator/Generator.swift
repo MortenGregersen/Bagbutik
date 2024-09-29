@@ -14,7 +14,7 @@ public enum GeneratorError: Error, Equatable {
     case couldNotCreateFile(String)
 
     /// The type of the file URL
-    public enum FileURLType {
+    public enum FileURLType: Sendable {
         /// The URL for the spec file
         case specFileURL
         /// The URL for the output directory
@@ -37,7 +37,7 @@ public class Generator {
     private let loadSpec: LoadSpec
     private let fileManager: TestableFileManager
     private let docsLoader: DocsLoader
-    private let print: (String) -> Void
+    private let print: @MainActor (String) -> Void
 
     /// Initialize a new generator
     public convenience init() {
@@ -52,7 +52,7 @@ public class Generator {
         self.init(loadSpec: loadSpec, fileManager: FileManager.default, docsLoader: DocsLoader(), print: { Swift.print($0) })
     }
 
-    init(loadSpec: @escaping LoadSpec, fileManager: TestableFileManager, docsLoader: DocsLoader, print: @escaping (String) -> Void) {
+    init(loadSpec: @escaping LoadSpec, fileManager: TestableFileManager, docsLoader: DocsLoader, print: @escaping @MainActor (String) -> Void) {
         self.loadSpec = loadSpec
         self.fileManager = fileManager
         self.docsLoader = docsLoader
@@ -71,12 +71,12 @@ public class Generator {
         guard specFileURL.isFileURL else { throw GeneratorError.notFileUrl(.specFileURL) }
         guard outputDirURL.isFileURL else { throw GeneratorError.notFileUrl(.outputDirURL) }
         guard documentationDirURL.isFileURL else { throw GeneratorError.notFileUrl(.documentationDirUrl) }
-        print("🔍 Loading spec \(specFileURL.path)...")
+        await print("🔍 Loading spec \(specFileURL.path)...")
         let spec = try loadSpec(specFileURL)
 
-        print("🔍 Loading docs \(documentationDirURL.path)...")
-        try docsLoader.loadDocs(documentationDirURL: documentationDirURL)
-        try docsLoader.applyManualDocumentation()
+        await print("🔍 Loading docs \(documentationDirURL.path)...")
+        try await docsLoader.loadDocs(documentationDirURL: documentationDirURL)
+        try await docsLoader.applyManualDocumentation()
 
         let modelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
         try PackageName.allCases.filter { $0 != .core }.forEach { packageName in
@@ -91,66 +91,81 @@ public class Generator {
             .appendingPathComponent("Models")
         try removeChildren(at: coreModelsDirURL)
 
-        try await withThrowingTaskGroup(of: Void.self) { taskGroup in
-            let operationRenderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
-            spec.paths.values.forEach { path in
-                taskGroup.addTask {
-                    try path.operations.forEach { operation in
+        try await withThrowingTaskGroup(of: [RenderResult].self) { taskGroup in
+            for path in spec.paths.values {
+                taskGroup.addTask { [docsLoader] in
+                    var renderResults = [RenderResult]()
+                    let operationRenderer = OperationRenderer(docsLoader: docsLoader, shouldFormat: true)
+                    for operation in path.operations {
                         let name = operation.getVersionedName(path: path)
-                        self.print("⚡️ Generating endpoint \(name)...")
                         let fileName = "\(name).swift"
-                        guard let documentation = try self.docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
+                        guard let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id) else {
                             throw GeneratorError.noDocumentationForOperation(operation.id)
                         }
-                        let renderedOperation = try operationRenderer.render(operation: operation, in: path)
-                        let packageName: PackageName
-                        packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
+                        let renderedOperation = try await operationRenderer.render(operation: operation, in: path)
+                        let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
                         let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
-                        try self.fileManager.createDirectory(at: operationDirURL, withIntermediateDirectories: true, attributes: nil)
-                        let fileURL = operationDirURL.appendingPathComponent(fileName)
-                        guard self.fileManager.createFile(atPath: fileURL.path, contents: renderedOperation.data(using: .utf8), attributes: nil) else {
-                            throw GeneratorError.couldNotCreateFile(fileURL.path)
-                        }
+                        renderResults.append(.init(dirURL: operationDirURL, name: name, fileName: fileName, contents: renderedOperation))
                     }
+                    return renderResults
                 }
             }
-            for try await _ in taskGroup {}
-        }
-
-        try await withThrowingTaskGroup(of: Void.self) { taskGroup in
-            spec.components.schemas.values.forEach { schema in
-                taskGroup.addTask {
-                    guard let documentation = try self.docsLoader.resolveDocumentationForSchema(named: schema.name) else {
-                        throw GeneratorError.noDocumentationForSchema(schema.name)
-                    }
-                    let packageName = try DocsLoader.resolvePackageName(for: documentation)
-                    self.print("⚡️ Generating model \(schema.name)...")
-                    let model = try Self.generateModel(for: schema, packageName: packageName, otherSchemas: spec.components.schemas, docsLoader: self.docsLoader)
-                    let fileName = model.name + ".swift"
-                    let modelsDirURL: URL
-                    if packageName == .core {
-                        modelsDirURL = outputDirURL
-                            .appendingPathComponent(packageName.name)
-                            .appendingPathComponent("Models")
-                    } else {
-                        modelsDirURL = outputDirURL
-                            .appendingPathComponent("Bagbutik-Models")
-                            .appendingPathComponent(packageName.docsSectionName)
-                    }
-                    try self.fileManager.createDirectory(at: modelsDirURL, withIntermediateDirectories: true, attributes: nil)
-                    let fileURL = modelsDirURL.appendingPathComponent(fileName)
-                    guard self.fileManager.createFile(atPath: fileURL.path, contents: model.contents.data(using: .utf8), attributes: nil) else {
+            for try await renderResults in taskGroup {
+                for renderResult in renderResults {
+                    await print("⚡️ Generating endpoint \(renderResult.name)...")
+                    try self.fileManager.createDirectory(at: renderResult.dirURL, withIntermediateDirectories: true, attributes: nil)
+                    let fileURL = renderResult.dirURL.appendingPathComponent(renderResult.fileName)
+                    guard self.fileManager.createFile(atPath: fileURL.path, contents: renderResult.contents.data(using: .utf8), attributes: nil) else {
                         throw GeneratorError.couldNotCreateFile(fileURL.path)
                     }
                 }
             }
-            for try await _ in taskGroup {}
+        }
+
+        try await withThrowingTaskGroup(of: RenderResult.self) { taskGroup in
+            let schemas = spec.components.schemas
+            for schema in schemas.values {
+                taskGroup.addTask { [docsLoader, schemas] in
+                    guard let documentation = try await docsLoader.resolveDocumentationForSchema(named: schema.name) else {
+                        throw GeneratorError.noDocumentationForSchema(schema.name)
+                    }
+                    let packageName = try DocsLoader.resolvePackageName(for: documentation)
+                    
+                    let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
+                    let fileName = model.name + ".swift"
+                    let modelsDirURL: URL = if packageName == .core {
+                        outputDirURL
+                            .appendingPathComponent(packageName.name)
+                            .appendingPathComponent("Models")
+                    } else {
+                        outputDirURL
+                            .appendingPathComponent("Bagbutik-Models")
+                            .appendingPathComponent(packageName.docsSectionName)
+                    }
+                    return .init(dirURL: modelsDirURL, name: model.name, fileName: fileName, contents: model.contents)
+                }
+            }
+            for try await renderResult in taskGroup {
+                await print("⚡️ Generating model \(renderResult.name)...")
+                try self.fileManager.createDirectory(at: renderResult.dirURL, withIntermediateDirectories: true, attributes: nil)
+                let fileURL = renderResult.dirURL.appendingPathComponent(renderResult.fileName)
+                guard self.fileManager.createFile(atPath: fileURL.path, contents: renderResult.contents.data(using: .utf8), attributes: nil) else {
+                    throw GeneratorError.couldNotCreateFile(fileURL.path)
+                }
+            }
         }
 
         let operationsCount = spec.paths.reduce(into: 0) { $0 += $1.value.operations.count }
         let modelsCount = spec.components.schemas.count
-        print("🎉 Finished generating \(operationsCount) endpoints and \(modelsCount) models! 🎉")
+        await print("🎉 Finished generating \(operationsCount) endpoints and \(modelsCount) models! 🎉")
+    }
+
+    private struct RenderResult {
+        let dirURL: URL
+        let name: String
+        let fileName: String
+        let contents: String
     }
 
     private func removeChildren(at url: URL) throws {
@@ -165,21 +180,20 @@ public class Generator {
         return operationsDirURL.appendingPathComponent("Relationships")
     }
 
-    internal static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
-        throws -> (name: String, contents: String, url: String?) {
-        let renderedSchema: String
-        switch schema {
+    static func generateModel(for schema: Schema, packageName: PackageName, otherSchemas: [String: Schema], docsLoader: DocsLoader)
+        async throws -> (name: String, contents: String, url: String?) {
+        let renderedSchema: String = switch schema {
         case .enum(let enumSchema):
-            renderedSchema = try EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+            try await EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(enumSchema: enumSchema)
         case .object(let objectSchema):
-            renderedSchema = try ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+            try await ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(objectSchema: objectSchema, otherSchemas: otherSchemas)
         case .binary(let binarySchema):
-            renderedSchema = try BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+            try await BinarySchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(binarySchema: binarySchema)
         case .plainText(let plainTextSchema):
-            renderedSchema = try PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+            try await PlainTextSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
                 .render(plainTextSchema: plainTextSchema)
         }
         var imports = ["import Foundation"]

@@ -2,7 +2,7 @@ import Foundation
 
 public extension Operation {
     /// A parameter that can be sent with an operation
-    enum Parameter: Decodable, Equatable {
+    enum Parameter: Decodable, Equatable, Sendable {
         /// A parameter that filter the data in the response
         case filter(name: String, type: ParameterValueType, required: Bool, documentation: String)
         /// A parameter that checks for existance of a property
@@ -31,7 +31,7 @@ public extension Operation {
                 let required = try container.decodeIfPresent(Bool.self, forKey: .required) ?? false
                 self = .filter(name: Self.getAttribute(forName: name), type: type, required: required, documentation: documentation)
             } else if name.starts(with: "exists") {
-                let type = ParameterValueType.simple(type: .boolean)
+                let type = ParameterValueType.simple(type: .boolean())
                 self = .exists(name: Self.getAttribute(forName: name), type: type, documentation: documentation)
             } else if name.starts(with: "fields") {
                 let type = try container.decode(ParameterValueType.self, forKey: .schema)
@@ -72,7 +72,7 @@ public extension Operation {
         }
         
         /// The type of value of a parameter
-        public enum ParameterValueType: Decodable, Equatable {
+        public enum ParameterValueType: Decodable, Equatable, Sendable {
             /// A simple value type
             case simple(type: SimplePropertyType)
             /// An enum value type

@@ -1,7 +1,7 @@
 import Foundation
 
 /// An endpoint path
-public struct Path: Decodable {
+public struct Path: Decodable, Sendable {
     /// The raw path
     public let path: String
     /// Type info about the path
@@ -56,7 +56,7 @@ public struct Path: Decodable {
     }
 
     /// Type info about a path
-    public struct Info: Equatable {
+    public struct Info: Equatable, Sendable {
         /// The main type of the path
         public let mainType: String
         /// The version of the path
@@ -66,7 +66,7 @@ public struct Path: Decodable {
     }
 
     /// A parameter for a path
-    public struct Parameter: Decodable, Equatable {
+    public struct Parameter: Decodable, Equatable, Sendable {
         /// The name of the paramter
         public let name: String
         /// A short description of what the parameter is

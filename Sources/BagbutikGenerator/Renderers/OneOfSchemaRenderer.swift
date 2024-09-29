@@ -11,7 +11,7 @@ public class OneOfSchemaRenderer: Renderer {
         - oneOfSchema: The one of schema to render
      - Returns: The rendered one of schema
      */
-    public func render(name: String, oneOfSchema: OneOfSchema) throws -> String {
+    public func render(name: String, oneOfSchema: OneOfSchema) async throws -> String {
         let options = oneOfSchema.options
             .map { EnumCase(id: $0.typeName.lowercasedFirstLetter(), value: $0.typeName) }
             .sorted { $0.id < $1.id }
@@ -21,14 +21,14 @@ public class OneOfSchemaRenderer: Renderer {
         }
 
         var rendered = "public init(from decoder: Decoder) throws {\n"
-        options.enumerated().forEach {
-            let option = $0.element
+        for item in options.enumerated() {
+            let option = item.element
             var renderedOption = """
             if let \(option.id) = try? \(option.value)(from: decoder) {
                 self = .\(option.id)(\(option.id))
 
             """
-            if $0.offset != 0 {
+            if item.offset != 0 {
                 renderedOption = "} else " + renderedOption
             }
             rendered += renderedOption
@@ -47,9 +47,9 @@ public class OneOfSchemaRenderer: Renderer {
             switch self {
 
         """
-        options.forEach {
+        for option in options {
             rendered += """
-            case .\($0.id)(let value):
+            case .\(option.id)(let value):
                 try value.encode(to: encoder)
 
             """
@@ -60,15 +60,17 @@ public class OneOfSchemaRenderer: Renderer {
         """
 
         let objectRenderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: false)
-        let renderedSubSchemas = try subSchemas.map { subSchema in
-            return try objectRenderer.render(objectSchema: subSchema, otherSchemas: [:])
-        }.joined(separator: "\n\n")
-        if !renderedSubSchemas.isEmpty {
-            rendered += "\n\n" + renderedSubSchemas
+        var renderedSubSchemas = [String]()
+        for subSchema in subSchemas {
+            try await renderedSubSchemas.append(objectRenderer.render(objectSchema: subSchema, otherSchemas: [:]))
         }
+        if !renderedSubSchemas.isEmpty {
+            rendered += "\n\n" + renderedSubSchemas.joined(separator: "\n\n")
+        }
+        let protocols = ["Codable"] + oneOfSchema.additionalProtocols
 
         rendered = renderEnum(named: name,
-                              protocols: ["Codable"],
+                              protocols: protocols,
                               cases: options,
                               caseValueIsAssociated: true,
                               content: rendered)

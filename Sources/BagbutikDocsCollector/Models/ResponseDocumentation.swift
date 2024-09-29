@@ -1,4 +1,4 @@
-public struct ResponseDocumentation: Codable, Equatable {
+public struct ResponseDocumentation: Codable, Equatable, Sendable {
     public let status: Int
     public let reason: String?
     public let description: String?

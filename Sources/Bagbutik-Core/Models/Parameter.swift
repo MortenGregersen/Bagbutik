@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/parameter>
  */
-public struct Parameter: Codable {
+public struct Parameter: Codable, Sendable {
     /// The query parameter that produced the error.
     public let parameter: String
 

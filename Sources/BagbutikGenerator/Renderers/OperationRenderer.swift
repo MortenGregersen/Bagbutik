@@ -31,23 +31,23 @@ public class OperationRenderer: Renderer {
         - path: The path which contains the operation
      - Returns: The rendered operation
      */
-    public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) throws -> String {
-        let documentation = try docsLoader.resolveDocumentationForOperation(withId: operation.id)
+    public func render(operation: BagbutikSpecDecoder.Operation, in path: Path) async throws -> String {
+        let documentation = try await docsLoader.resolveDocumentationForOperation(withId: operation.id)
         let interpolatablePath = Self.pathParameterRegex.stringByReplacingMatches(
             in: path.path,
             options: [],
             range: NSRange(location: 0, length: path.path.utf16.count),
             withTemplate: #"\\($1)"#)
-        let parametersInfo = try OperationParametersInfo(for: operation, in: path, docsLoader: docsLoader)
+        let parametersInfo = try await OperationParametersInfo(for: operation, in: path, docsLoader: docsLoader)
         let operationName = operation.getVersionedName(path: path)
-        var rendered = "import Bagbutik_Core\nimport Bagbutik_Models\n\n" + renderExtension(on: "Request") {
+        var rendered = await "import Bagbutik_Core\nimport Bagbutik_Models\n\n" + renderExtension(on: "Request") {
             let title = documentation?.title ?? "No overview available"
             var parameters = parametersInfo.pathParameters
             if let requestBody = parametersInfo.requestBody {
                 parameters.append(requestBody)
             }
             parameters.append(contentsOf: parametersInfo.parameters)
-            var extensionContent = self.renderDocumentationBlock(title: title) {
+            var extensionContent = await self.renderDocumentationBlock(title: title) {
                 var documentationContent = [String]()
                 if let abstract = documentation?.abstract {
                     documentationContent.append(abstract)
@@ -60,7 +60,7 @@ public class OperationRenderer: Renderer {
                 }
                 documentationContent.append("""
                 Full documentation:
-                <\(self.docsLoader.createUrlForOperation(withId: operation.id))>
+                <\(await self.docsLoader.createUrlForOperation(withId: operation.id))>
                 """)
                 var parametersPart = parameters.reduce(into: ["\n"]) { partialResult, parameter in
                     partialResult.append(self.renderDocumentationParameterLine(name: parameter.name, description: parameter.documentation))
@@ -118,11 +118,11 @@ public class OperationRenderer: Renderer {
         }
         if parametersInfo.requiresWrapperStruct {
             rendered += "\n\n"
-            rendered += try renderStruct(named: operationName) {
+            rendered += try await renderStruct(named: operationName) {
                 var structContent = [String]()
                 if !parametersInfo.fields.isEmpty {
                     structContent.append("""
-                    \(renderDocumentationBlock { "Fields to return for included related types." })
+                    \(await renderDocumentationBlock { "Fields to return for included related types." })
                     \(renderEnum(
                         named: "Field",
                         protocols: ["FieldParameter"],
@@ -134,7 +134,7 @@ public class OperationRenderer: Renderer {
                 }
                 if !parametersInfo.filters.isEmpty {
                     structContent.append("""
-                    \(renderDocumentationBlock {
+                    \(await renderDocumentationBlock {
                         var documentationContent = "Attributes, relationships, and IDs by which to filter."
                         if !parametersInfo.filtersRequired.isEmpty {
                             documentationContent += "\n\nRequired: \(parametersInfo.filtersRequired.joined(separator: ", "))"
@@ -154,7 +154,7 @@ public class OperationRenderer: Renderer {
                 }
                 if !parametersInfo.exists.isEmpty {
                     structContent.append("""
-                    \(renderDocumentationBlock { "Attributes, relationships, and IDs to check for existence." })
+                    \(await renderDocumentationBlock { "Attributes, relationships, and IDs to check for existence." })
                     \(renderEnum(
                         named: "Exist",
                         protocols: ["ExistParameter"],
@@ -164,7 +164,7 @@ public class OperationRenderer: Renderer {
                 }
                 if !parametersInfo.includes.isEmpty {
                     structContent.append("""
-                    \(renderDocumentationBlock { "Relationship data to include in the response." })
+                    \(await renderDocumentationBlock { "Relationship data to include in the response." })
                     \(renderEnum(
                         named: "Include",
                         rawType: "String",
@@ -174,7 +174,7 @@ public class OperationRenderer: Renderer {
                 }
                 if !parametersInfo.sorts.isEmpty {
                     structContent.append("""
-                    \(renderDocumentationBlock { "Attributes by which to sort." })
+                    \(await renderDocumentationBlock { "Attributes by which to sort." })
                     \(renderEnum(
                         named: "Sort",
                         rawType: "String",
@@ -182,20 +182,20 @@ public class OperationRenderer: Renderer {
                         cases: parametersInfo.sorts))
                     """)
                 }
-                try parametersInfo.customs.sorted(by: { $0.key < $1.key }).forEach { _, value in
-                    guard case .enum(let type, let values) = value.type else { return }
+                for (_, value) in parametersInfo.customs.sorted(by: { $0.key < $1.key }) {
+                    guard case .enum(let type, let values) = value.type else { break }
                     let enumName = value.name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                     let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
-                    let rendered = try EnumSchemaRenderer(docsLoader: docsLoader)
+                    let rendered = try await EnumSchemaRenderer(docsLoader: docsLoader)
                         .render(enumSchema: enumSchema)
                     structContent.append("""
-                    \(renderDocumentationBlock { value.documentation.capitalizingFirstLetter() })
+                    \(await renderDocumentationBlock { value.documentation.capitalizingFirstLetter() })
                     \(rendered)
                     """)
                 }
                 if parametersInfo.limits.count > 0, !(parametersInfo.limits.count == 1 && parametersInfo.limits.first!.id == "limit") {
                     structContent.append("""
-                    \(renderDocumentationBlock { "Number of included related resources to return." })
+                    \(await renderDocumentationBlock { "Number of included related resources to return." })
                     \(renderEnum(
                         named: "Limit",
                         protocols: ["LimitParameter"],
@@ -227,7 +227,7 @@ public class OperationRenderer: Renderer {
         var parameters = [OperationParameter]()
         let requiresWrapperStruct: Bool
 
-        init(for operation: BagbutikSpecDecoder.Operation, in path: Path, docsLoader: DocsLoader) throws {
+        init(for operation: BagbutikSpecDecoder.Operation, in path: Path, docsLoader: DocsLoader) async throws {
             for parameter in operation.parameters ?? [] {
                 switch parameter {
                 case .fields(let name, let type, let deprecated, let documentation):
@@ -240,7 +240,7 @@ public class OperationRenderer: Renderer {
                         if values.count > 0 {
                             let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                             let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
-                            let rendered = try EnumSchemaRenderer(docsLoader: docsLoader)
+                            let rendered = try await EnumSchemaRenderer(docsLoader: docsLoader)
                                 .render(enumSchema: enumSchema)
                             fieldSubSchemas[name] = rendered
                             fields.append(EnumCase(id: name, value: "[\(enumName)]", deprecated: deprecated, documentation: documentation))
@@ -253,7 +253,7 @@ public class OperationRenderer: Renderer {
                     case .enum(let type, let values):
                         let enumName = name.split(separator: ".").map { $0.capitalizingFirstLetter() }.joined()
                         let enumSchema = EnumSchema(name: enumName, type: type, caseValues: values, additionalProtocols: ["ParameterValue"])
-                        let rendered = try EnumSchemaRenderer(docsLoader: docsLoader)
+                        let rendered = try await EnumSchemaRenderer(docsLoader: docsLoader)
                             .render(enumSchema: enumSchema)
                         filterSubSchemas[name] = rendered
                         filters.append(EnumCase(id: name, value: "[\(enumName)]", documentation: documentation))

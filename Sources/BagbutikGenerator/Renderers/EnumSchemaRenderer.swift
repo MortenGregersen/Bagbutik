@@ -11,14 +11,14 @@ public class EnumSchemaRenderer: Renderer {
         - additionalProtocol: Any additional protocol the enum should conform to
      - Returns: The rendered enum schema
      */
-    public func render(enumSchema: EnumSchema) throws -> String {
+    public func render(enumSchema: EnumSchema) async throws -> String {
         var rendered = ""
         var documentation: EnumDocumentation?
         if let url = enumSchema.url,
-           case .enum(let enumDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
+           case .enum(let enumDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: url),
            let abstract = enumDocumentation.abstract {
             documentation = enumDocumentation
-            rendered += renderDocumentationBlock(title: enumDocumentation.title) {
+            rendered += await renderDocumentationBlock(title: enumDocumentation.title) {
                 var documentationContent = abstract
                 if let discussion = enumDocumentation.discussion {
                     documentationContent += "\n\n\(discussion)"

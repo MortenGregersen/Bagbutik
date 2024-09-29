@@ -30,7 +30,7 @@ public typealias FetchData = (_ request: URLRequest, _ delegate: URLSessionTaskD
  If the JWT has expired, it will be renewed before the request is performed.
  */
 public class BagbutikService {
-    internal private(set) var jwt: JWT
+    internal var jwt: JWT
     private let fetchData: FetchData
     
     /**
@@ -47,13 +47,12 @@ public class BagbutikService {
     
     private static let jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        let isoDateFormatter = ISO8601DateFormatter()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             let dateString = try container.decode(String.self)
-            if let date = isoDateFormatter.date(from: dateString) {
+            if let date = ISO8601DateFormatter().date(from: dateString) {
                 return date
             } else if let date = dateFormatter.date(from: dateString) {
                 return date

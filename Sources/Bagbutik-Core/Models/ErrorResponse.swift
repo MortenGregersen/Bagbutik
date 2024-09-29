@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse>
  */
-public struct ErrorResponse: Codable {
+public struct ErrorResponse: Codable, Error {
     /// An array of one or more errors.
     public var errors: [Errors]?
 
@@ -34,7 +34,7 @@ public struct ErrorResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse/errors>
      */
-    public struct Errors: Codable, Identifiable {
+    public struct Errors: Codable, Identifiable, Sendable {
         /// A machine-readable code indicating the type of error. The code is a hierarchical value with levels of specificity separated by the '`.`' character. This value is parseable for programmatic error handling in code.
         public let code: String
         /// A detailed explanation of the error. Do not use this field for programmatic error handling.
@@ -93,7 +93,7 @@ public struct ErrorResponse: Codable {
             try container.encode(title, forKey: "title")
         }
 
-        public struct Meta: Codable {
+        public struct Meta: Codable, Sendable {
             public var additionalProperties: [String: String]?
             public var associatedErrors: [String: [Errors]]?
 
@@ -117,7 +117,7 @@ public struct ErrorResponse: Codable {
             }
         }
 
-        public enum Source: Codable {
+        public enum Source: Codable, Sendable {
             case jsonPointer(JsonPointer)
             case parameter(Parameter)
 

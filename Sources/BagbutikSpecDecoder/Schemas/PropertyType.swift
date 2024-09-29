@@ -1,7 +1,7 @@
 import Foundation
 
 /// A type for a property
-public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible {
+public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible, Sendable {
     /// A simple type
     case simple(SimplePropertyType)
     /// A constant type
@@ -48,7 +48,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
         case .simple(let simplePropertyType):
             simplePropertyType.description
         case .constant:
-            SimplePropertyType.string.description
+            SimplePropertyType.string().description
         case .schemaRef(let schemaName):
             schemaName
         case .schema(let schema):
@@ -140,7 +140,7 @@ public indirect enum PropertyType: Decodable, Equatable, CustomStringConvertible
                   let oneOfName = container.codingPath.last?.stringValue.capitalizingFirstLetter() {
             self = .oneOf(name: oneOfName, schema: OneOfSchema(options: oneOfOptions))
         } else if container.codingPath.last?.stringValue == "additionalProperties" {
-            self = .simple(.string)
+            self = .simple(.string())
         } else {
             throw DecodingError.dataCorruptedError(forKey: CodingKeys.type, in: container, debugDescription: "Property type not known")
         }

@@ -12,13 +12,13 @@ public class ObjectSchemaRenderer: Renderer {
         - otherSchemas: The other schemas (needed for lookup, when creating getters for included types in responses)
      - Returns: The rendered object schema
      */
-    public func render(objectSchema: ObjectSchema, otherSchemas: [String: Schema]) throws -> String {
+    public func render(objectSchema: ObjectSchema, otherSchemas: [String: Schema]) async throws -> String {
         var rendered = ""
         var documentation: ObjectDocumentation?
-        if case .object(let objectDocumentation) = try docsLoader.resolveDocumentationForSchema(withDocsUrl: objectSchema.url),
+        if case .object(let objectDocumentation) = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: objectSchema.url),
            let abstract = objectDocumentation.abstract {
             documentation = objectDocumentation
-            rendered += renderDocumentationBlock(title: objectDocumentation.title) {
+            rendered += await renderDocumentationBlock(title: objectDocumentation.title) {
                 var documentationContent = [abstract]
                 if let discussion = objectDocumentation.discussion {
                     documentationContent.append(discussion)
@@ -40,7 +40,8 @@ public class ObjectSchemaRenderer: Renderer {
         if objectSchema.properties["links"]?.type == .schemaRef("PagedDocumentLinks") {
             protocols.append("PagedResponse")
         }
-        rendered += try renderStruct(named: objectSchema.name, protocols: protocols) {
+        protocols.append(contentsOf: objectSchema.additionalProtocols)
+        rendered += try await renderStruct(named: objectSchema.name, protocols: protocols) {
             let propertiesInfo = PropertiesInfo(for: objectSchema, documentation: documentation, docsLoader: docsLoader)
             var structContent = [String]()
             if case .arrayOfSchemaRef(let schemaRef) = objectSchema.properties["data"]?.type {
@@ -95,16 +96,17 @@ public class ObjectSchemaRenderer: Renderer {
                 return functionContent
             }))
             structContent.append(contentsOf: createIncludedGetters(for: objectSchema, otherSchemas: otherSchemas))
-            try structContent.append(contentsOf: objectSchema.subSchemas.map { subSchema -> String in
+
+            for subSchema in objectSchema.subSchemas {
                 switch subSchema {
                 case .objectSchema(let objectSchema):
-                    try render(objectSchema: objectSchema, otherSchemas: otherSchemas)
+                    try await structContent.append(render(objectSchema: objectSchema, otherSchemas: otherSchemas))
                 case .enumSchema(let enumSchema):
-                    try EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema)
+                    try await structContent.append(EnumSchemaRenderer(docsLoader: docsLoader).render(enumSchema: enumSchema))
                 case .oneOf(let name, let oneOfSchema):
-                    try! OneOfSchemaRenderer(docsLoader: docsLoader).render(name: name, oneOfSchema: oneOfSchema)
+                    try await structContent.append(OneOfSchemaRenderer(docsLoader: docsLoader).render(name: name, oneOfSchema: oneOfSchema))
                 }
-            })
+            }
             return structContent.joined(separator: "\n\n")
         }
         return try format(rendered)

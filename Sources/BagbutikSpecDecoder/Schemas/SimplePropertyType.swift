@@ -1,26 +1,26 @@
 import Foundation
 
 /// A property type with only a name of the type
-public struct SimplePropertyType: Decodable, Equatable, CustomStringConvertible {
+public struct SimplePropertyType: Decodable, Equatable, CustomStringConvertible, Sendable {
     /// A boolean property type
-    public static let boolean = Self(type: "boolean")
+    public static func boolean() -> Self { .init(type: "boolean") }
     /// An interger property type
-    public static let integer = Self(type: "integer")
+    public static func integer() -> Self { .init(type: "integer") }
     /// A string property type
-    public static let string = Self(type: "string")
+    public static func string() -> Self { .init(type: "string") }
 
     public var description: String {
         switch self.type {
-        case Self.boolean.type:
-            return "Bool"
-        case Self.integer.type:
-            return "Int"
-        case Self.string.type:
-            return "String"
+        case Self.boolean().type:
+            "Bool"
+        case Self.integer().type:
+            "Int"
+        case Self.string().type:
+            "String"
         default:
-            return self.type
+            self.type
         }
     }
 
-    internal let type: String
+    let type: String
 }

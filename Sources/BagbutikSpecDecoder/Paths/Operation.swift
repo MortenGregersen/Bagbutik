@@ -8,7 +8,7 @@ public enum OperationError: Error {
 }
 
 /// An operation that can be executed
-public struct Operation: Decodable, Equatable {
+public struct Operation: Decodable, Equatable, Sendable {
     /// The id of the operation
     public let id: String
     /// The name of the operation

@@ -1,7 +1,7 @@
 import Foundation
 
 /// A representation of an object
-public struct ObjectSchema: Decodable, Equatable {
+public struct ObjectSchema: Decodable, Equatable, Sendable {
     /// The name of the object
     public private(set) var name: String
     /// An url for the documentation for the object
@@ -10,6 +10,8 @@ public struct ObjectSchema: Decodable, Equatable {
     public var properties: [String: Property]
     /// A list of properties that is required (always available)
     public var requiredProperties: [String]
+    /// Additional protocols the class  should have when rendered
+    public var additionalProtocols: Set<String>
     /// A list of schemas derived from the properties and special sub schemas
     public var subSchemas: [SubSchema] {
         var subSchemas = [SubSchema]()
@@ -42,11 +44,12 @@ public struct ObjectSchema: Decodable, Equatable {
         case deprecated
     }
 
-    internal init(name: String, url: String, properties: [String: Property] = [:], requiredProperties: [String] = []) {
+    internal init(name: String, url: String, properties: [String: Property] = [:], requiredProperties: [String] = [], additionalProtocols: [String] = []) {
         self.name = name
         self.url = url
         self.properties = properties
         self.requiredProperties = requiredProperties
+        self.additionalProtocols = Set(additionalProtocols)
     }
 
     public init(from decoder: Decoder) throws {

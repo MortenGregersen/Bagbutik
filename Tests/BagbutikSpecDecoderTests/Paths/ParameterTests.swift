@@ -44,7 +44,7 @@ final class ParameterTests: XCTestCase {
         XCTAssertEqual(description1, "filter by attribute 'platforms'")
 
         XCTAssertEqual(name2, "app")
-        XCTAssertEqual(type2, .simple(type: .string))
+        XCTAssertEqual(type2, .simple(type: .string()))
         XCTAssertEqual(required2, false)
         XCTAssertEqual(description2, "filter by id(s) of related 'app'")
     }
@@ -69,7 +69,7 @@ final class ParameterTests: XCTestCase {
         // Then
         guard case let .exists(name, type, description) = paramater else { return XCTFail("Wrong parameter type") }
         XCTAssertEqual(name, "parent")
-        XCTAssertEqual(type, .simple(type: .boolean))
+        XCTAssertEqual(type, .simple(type: .boolean()))
         XCTAssertEqual(description, "filter by existence or non-existence of related 'parent'")
     }
 
@@ -179,7 +179,7 @@ final class ParameterTests: XCTestCase {
         let paramaterValueType = try jsonDecoder.decode(BagbutikSpecDecoder.Operation.Parameter.ParameterValueType.self, from: json.data(using: .utf8)!)
         // Then
         guard case let .simple(type) = paramaterValueType else { return XCTFail("Wrong parameter type") }
-        XCTAssertEqual(type, .integer)
+        XCTAssertEqual(type, .integer())
     }
     
     func testEnum() throws {

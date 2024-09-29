@@ -1,7 +1,7 @@
 import Foundation
 
 /// A representation of binary data
-public struct BinarySchema: Decodable, Equatable {
+public struct BinarySchema: Decodable, Equatable, Sendable {
     /// The name of the object
     public let name: String
     /// An url for the documentation for the object

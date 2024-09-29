@@ -4,7 +4,7 @@ import BagbutikSpecDecoder
 import XCTest
 
 final class EnumSchemaRendererTests: XCTestCase {
-    func testRenderPlain() throws {
+    func testRenderPlain() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["/platform": .enum(.init(id: "/platform", title: "Platform", abstract: "Strings that represent Apple operating systems.", discussion: "All platforms are nice...", cases: [
             "MAC_OS": "A string that represents macOS.",
@@ -14,7 +14,7 @@ final class EnumSchemaRendererTests: XCTestCase {
         let renderer = EnumSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let schema = EnumSchema(name: "Platform", type: "string", url: "/platform", caseValues: ["MAC_OS", "IOS", "TV_OS"])
         // When
-        let rendered = try renderer.render(enumSchema: schema)
+        let rendered = try await renderer.render(enumSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         /**
@@ -38,12 +38,12 @@ final class EnumSchemaRendererTests: XCTestCase {
         """#)
     }
 
-    func testRenderWithAdditionalProtocol() throws {
+    func testRenderWithAdditionalProtocol() async throws {
         // Given
         let renderer = EnumSchemaRenderer(docsLoader: DocsLoader(), shouldFormat: true)
         let schema = EnumSchema(name: "AppCategories", type: "string", caseValues: ["parent", "platforms", "subcategories"], additionalProtocols: ["ParameterValue"])
         // When
-        let rendered = try renderer.render(enumSchema: schema)
+        let rendered = try await renderer.render(enumSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         public enum AppCategories: String, ParameterValue, Codable, CaseIterable {

@@ -4,20 +4,20 @@
 import XCTest
 
 final class OneOfSchemaRendererTests: XCTestCase {
-    func testRender() throws {
+    func testRender() async throws {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
             .init(id: "/test", title: "Test", abstract: "A test.", discussion: "", properties: ["href": .init(required: false, description: "An URL")], subDocumentationIds: []))]
         )
         let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         let subSchema = ObjectSchema(name: "Test", url: "some://url", properties: [
-            "href": .init(type: .simple(.string)),
+            "href": .init(type: .simple(.string())),
             "meta": .init(type: .schema(.init(name: "Meta", url: "", properties: [
-                "source": .init(type: .simple(.string))
+                "source": .init(type: .simple(.string()))
             ])))])
-        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .objectSchema(subSchema), .simple(.string)])
+        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .objectSchema(subSchema), .simple(.string())])
         // When
-        let rendered = try renderer.render(name: "Included", oneOfSchema: schema)
+        let rendered = try await renderer.render(name: "Included", oneOfSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
         public enum Included: Codable {
@@ -100,6 +100,45 @@ final class OneOfSchemaRendererTests: XCTestCase {
             }
         }
 
+        """#)
+    }
+    
+    func testRenderWithAdditionalProtocol() async throws {
+        // Given
+        let docsLoader = DocsLoader(schemaDocumentationById: ["some://url": .object(
+            .init(id: "/test", title: "Test", abstract: "A test.", discussion: "", properties: ["href": .init(required: false, description: "An URL")], subDocumentationIds: []))]
+        )
+        let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .simple(.string())], additionalProtocols: ["Sendable"])
+        // When
+        let rendered = try await renderer.render(name: "Included", oneOfSchema: schema)
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public enum Included: Codable, Sendable {
+            case bundleId(BundleId)
+            case string(String)
+
+            public init(from decoder: Decoder) throws {
+                if let bundleId = try? BundleId(from: decoder) {
+                    self = .bundleId(bundleId)
+                } else if let string = try? String(from: decoder) {
+                    self = .string(string)
+                } else {
+                    throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
+                                                                                          debugDescription: "Unknown Included"))
+                }
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                switch self {
+                case let .bundleId(value):
+                    try value.encode(to: encoder)
+                case let .string(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        
         """#)
     }
 }

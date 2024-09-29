@@ -20,7 +20,7 @@ final class PropertyTypeTests: XCTestCase {
             return XCTFail("Wrong property type")
         }
         XCTAssertEqual(propertyType.description, simplePropertyType.description)
-        XCTAssertEqual(simplePropertyType, SimplePropertyType.string)
+        XCTAssertEqual(simplePropertyType, SimplePropertyType.string())
     }
 
     func testDecodingConstant() throws {

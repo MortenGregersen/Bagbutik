@@ -27,8 +27,8 @@ final class ObjectSchemaTests: XCTestCase {
         // Then
         XCTAssertEqual(objectSchema.name, "SomeModel")
         XCTAssertEqual(objectSchema.properties.count, 2)
-        XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string).description)
-        XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string).description)
+        XCTAssertEqual(objectSchema.properties["name"]?.type.description, PropertyType.simple(.string()).description)
+        XCTAssertEqual(objectSchema.properties["vehicle"]?.type.description, PropertyType.simple(.string()).description)
         XCTAssertEqual(objectSchema.properties["vehicle"]?.deprecated, true)
     }
 

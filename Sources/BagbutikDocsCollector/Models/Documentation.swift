@@ -1,7 +1,7 @@
 import BagbutikSpecDecoder
 import Foundation
 
-public enum Documentation: Codable, Equatable {
+public enum Documentation: Codable, Equatable, Sendable {
     case `enum`(EnumDocumentation)
     case object(ObjectDocumentation)
     case operation(OperationDocumentation)
@@ -133,7 +133,7 @@ public enum Documentation: Codable, Equatable {
                                discussion: discussion,
                                cases: values))
         } else if metadata.symbolKind == "dict" /* Object */ {
-            let properties: [Property] = contentSections.compactMap { contentSection in
+            let properties: [Property] = contentSections.compactMap { (contentSection: ContentSection) -> [Property]? in
                 guard case .properties(let properties) = contentSection else { return nil }
                 return properties
             }.first ?? []
@@ -170,7 +170,7 @@ public enum Documentation: Codable, Equatable {
                     .filter { $0.lengthOfBytes(using: .utf8) > 0 }
                     .joined(separator: "\n")
             }.first
-            let responses: [Response] = contentSections.compactMap { contentSection in
+            let responses: [Response] = contentSections.compactMap { (contentSection: ContentSection) -> [Response]? in
                 guard case .restResponses(let responses) = contentSection else { return nil }
                 return responses
             }.first ?? []
@@ -260,7 +260,7 @@ public enum Documentation: Codable, Equatable {
         let text: String
     }
 
-    public struct Hierarchy: Codable, Equatable {
+    public struct Hierarchy: Codable, Equatable, Sendable {
         let paths: [[String]]
 
         public init(paths: [[String]]) {
