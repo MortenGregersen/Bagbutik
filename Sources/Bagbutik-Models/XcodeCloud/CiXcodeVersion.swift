@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion>
  */
-public struct CiXcodeVersion: Codable, Identifiable {
+public struct CiXcodeVersion: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Xcode Versions resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The name of the Xcode version.
         public var name: String?
         /// A list of the Xcode version’s available test destinations.
@@ -96,7 +96,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes/testdestinations>
          */
-        public struct TestDestinations: Codable {
+        public struct TestDestinations: Codable, Sendable {
             /// A list of runtimes available for the Xcode version.
             public var availableRuntimes: [AvailableRuntimes]?
             /// A string that uniquely identifies the simulated device Xcode Cloud uses for a test action; for example, `com.apple.CoreSimulator.SimDeviceType.iPhone-12`.
@@ -140,7 +140,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes/testdestinations/availableruntimes>
              */
-            public struct AvailableRuntimes: Codable {
+            public struct AvailableRuntimes: Codable, Sendable {
                 /// A string that identifies the simulated environment Xcode Cloud uses for a test action.
                 public var runtimeIdentifier: String?
                 /// The name of the operating system of the simulated environment Xcode Cloud uses.
@@ -175,7 +175,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related macOS Versions resource.
         public var macOsVersions: MacOsVersions?
 
@@ -200,7 +200,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions>
          */
-        public struct MacOsVersions: Codable {
+        public struct MacOsVersions: Codable, Sendable {
             /// The ID and type of the related macOS Versions resource.
             @NullCodable public var data: [Data]?
             /// The navigational links that include the self-link.
@@ -238,7 +238,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                 public let id: String
                 /// The resource type.
@@ -270,7 +270,7 @@ public struct CiXcodeVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/screenshotdisplaytype>
  */
-public enum ScreenshotDisplayType: String, ParameterValue, Codable, CaseIterable {
+public enum ScreenshotDisplayType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case appAppleTV = "APP_APPLE_TV"
     case appAppleVisionPro = "APP_APPLE_VISION_PRO"
     case appDesktop = "APP_DESKTOP"

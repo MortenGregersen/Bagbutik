@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeOneTimeUseCodeResponse: Codable {
+public struct SubscriptionOfferCodeOneTimeUseCodeResponse: Codable, Sendable {
     public let data: SubscriptionOfferCodeOneTimeUseCode
     public var included: [SubscriptionOfferCode]?
     public let links: DocumentLinks

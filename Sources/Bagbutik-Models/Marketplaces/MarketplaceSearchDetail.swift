@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetail>
  */
-public struct MarketplaceSearchDetail: Codable, Identifiable {
+public struct MarketplaceSearchDetail: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "marketplaceSearchDetails" }
@@ -41,7 +41,7 @@ public struct MarketplaceSearchDetail: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var catalogUrl: String?
 
         public init(catalogUrl: String? = nil) {

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceresponse>
  */
-public struct AppClipAdvancedExperienceResponse: Codable {
+public struct AppClipAdvancedExperienceResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClipAdvancedExperience
     /// The requested relationship data.
@@ -65,7 +65,7 @@ public struct AppClipAdvancedExperienceResponse: Codable {
         return localizations
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appClip(AppClip)
         case appClipAdvancedExperienceImage(AppClipAdvancedExperienceImage)
         case appClipAdvancedExperienceLocalization(AppClipAdvancedExperienceLocalization)

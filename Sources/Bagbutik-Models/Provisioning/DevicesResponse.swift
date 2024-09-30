@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/devicesresponse>
  */
-public struct DevicesResponse: Codable, PagedResponse {
+public struct DevicesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Device
 
     /// The resource data.

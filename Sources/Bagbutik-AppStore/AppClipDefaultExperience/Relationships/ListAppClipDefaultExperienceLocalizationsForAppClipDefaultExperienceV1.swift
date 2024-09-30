@@ -41,14 +41,14 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
         /// The fields to include for returned resources of type appClipHeaderImages
         case appClipHeaderImages([AppClipHeaderImages])
 
-        public enum AppClipDefaultExperienceLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperienceLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperience
             case appClipHeaderImage
             case locale
             case subtitle
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -57,7 +57,7 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
             case releaseWithAppStoreVersion
         }
 
-        public enum AppClipHeaderImages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipHeaderImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperienceLocalization
             case assetDeliveryState
             case fileName

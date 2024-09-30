@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissuesresponse>
  */
-public struct CiIssuesResponse: Codable, PagedResponse {
+public struct CiIssuesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiIssue
 
     /// The resource data.

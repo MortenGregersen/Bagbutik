@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/uploadoperation>
  */
-public struct UploadOperation: Codable {
+public struct UploadOperation: Codable, Sendable {
     public var length: Int?
     public var method: String?
     public var offset: Int?

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionAppStoreReviewScreenshotResponse: Codable {
+public struct SubscriptionAppStoreReviewScreenshotResponse: Codable, Sendable {
     public let data: SubscriptionAppStoreReviewScreenshot
     public var included: [Subscription]?
     public let links: DocumentLinks

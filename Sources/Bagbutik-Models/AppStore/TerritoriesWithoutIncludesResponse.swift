@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct TerritoriesWithoutIncludesResponse: Codable, PagedResponse {
+public struct TerritoriesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Territory
 
     public let data: [Territory]

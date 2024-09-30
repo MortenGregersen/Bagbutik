@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/metriccategory>
  */
-public enum MetricCategory: String, Codable, CaseIterable {
+public enum MetricCategory: String, Sendable, Codable, CaseIterable {
     /// The duration of pauses that occur while scrolling an app.
     case animation = "ANIMATION"
     /// The amount of battery power the app uses over a 24 hour period when the device is disconnected from power.

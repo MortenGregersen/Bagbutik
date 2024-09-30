@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifactsresponse>
  */
-public struct CiArtifactsResponse: Codable, PagedResponse {
+public struct CiArtifactsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiArtifact
 
     /// The resource data.

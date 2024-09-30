@@ -31,7 +31,7 @@ public enum ListAvailableTerritoriesForSubscriptionAvailabilityV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
         }
     }

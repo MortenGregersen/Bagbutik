@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEncryptionDeclarationDocumentResponse: Codable {
+public struct AppEncryptionDeclarationDocumentResponse: Codable, Sendable {
     public let data: AppEncryptionDeclarationDocument
     public let links: DocumentLinks
 

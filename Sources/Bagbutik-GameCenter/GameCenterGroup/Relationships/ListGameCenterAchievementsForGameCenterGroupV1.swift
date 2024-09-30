@@ -45,7 +45,7 @@ public enum ListGameCenterAchievementsForGameCenterGroupV1 {
         /// The fields to include for returned resources of type gameCenterGroups
         case gameCenterGroups([GameCenterGroups])
 
-        public enum GameCenterAchievementLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case afterEarnedDescription
             case beforeEarnedDescription
             case gameCenterAchievement
@@ -54,13 +54,13 @@ public enum ListGameCenterAchievementsForGameCenterGroupV1 {
             case name
         }
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievement
             case gameCenterDetail
             case live
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -74,7 +74,7 @@ public enum ListGameCenterAchievementsForGameCenterGroupV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -90,7 +90,7 @@ public enum ListGameCenterAchievementsForGameCenterGroupV1 {
             case leaderboardSetReleases
         }
 
-        public enum GameCenterGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
             case gameCenterDetails
             case gameCenterLeaderboardSets

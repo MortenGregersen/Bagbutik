@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogcallstacknode>
  */
-public struct DiagnosticLogCallStackNode: Codable {
+public struct DiagnosticLogCallStackNode: Codable, Sendable {
     /// The memory address of the frame.
     public var address: String?
     /// The name of the binary responsible for the frame.

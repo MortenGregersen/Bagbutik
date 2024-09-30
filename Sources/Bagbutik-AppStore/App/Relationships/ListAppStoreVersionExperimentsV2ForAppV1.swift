@@ -42,7 +42,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -52,7 +52,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case promotedDate
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionExperimentTreatments
             case controlVersions
@@ -67,7 +67,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
@@ -93,7 +93,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -147,7 +147,7 @@ public enum ListAppStoreVersionExperimentsV2ForAppV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, Sendable, ParameterValue, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case completed = "COMPLETED"

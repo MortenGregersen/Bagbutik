@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimageresponse>
  */
-public struct AppClipAdvancedExperienceImageResponse: Codable {
+public struct AppClipAdvancedExperienceImageResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClipAdvancedExperienceImage
     /// Navigational links that include the self-link.

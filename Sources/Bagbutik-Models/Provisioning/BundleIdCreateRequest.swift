@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest>
  */
-public struct BundleIdCreateRequest: Codable, RequestBody {
+public struct BundleIdCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "bundleIds" }
         public let attributes: Attributes
 
@@ -62,7 +62,7 @@ public struct BundleIdCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let identifier: String
             public let name: String
             public let platform: BundleIdPlatform

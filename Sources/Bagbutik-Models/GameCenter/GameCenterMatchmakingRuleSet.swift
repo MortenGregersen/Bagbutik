@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset>
  */
-public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
+public struct GameCenterMatchmakingRuleSet: Codable, Sendable, Identifiable {
     /// The unique identifier for the rule set.
     public let id: String
     public var links: ResourceLinks?
@@ -57,7 +57,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The maximum number of players who can join the matches that Game Center finds using these rules.
         public var maxPlayers: Int?
         /// The minimum number of players who can join the matches that Game Center finds using these rules.
@@ -102,7 +102,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The queues belonging to the rule set.
         public var matchmakingQueues: MatchmakingQueues?
         /// The rules belonging to the rule set.
@@ -140,7 +140,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/matchmakingqueues>
          */
-        public struct MatchmakingQueues: Codable {
+        public struct MatchmakingQueues: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -175,7 +175,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/matchmakingqueues/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// A unique identifier for a queue.
                 public let id: String
                 /// The type of resource.
@@ -207,7 +207,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/matchmakingqueues/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// A link object representation of the relationship.
                 public var related: String?
                 /// A string URI representation of the relationship.
@@ -241,7 +241,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/rules>
          */
-        public struct Rules: Codable {
+        public struct Rules: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -276,7 +276,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/rules/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// A unique identifier for a rule.
                 public let id: String
                 /// The type of resource.
@@ -308,7 +308,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/rules/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// A link object representation of the  relationship.
                 public var related: String?
                 /// A string URI representation of the relationship.
@@ -342,7 +342,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/teams>
          */
-        public struct Teams: Codable {
+        public struct Teams: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -377,7 +377,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleset/relationships/teams/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// A unique identifier for a team.
                 public let id: String
                 /// The type of resource.
@@ -402,7 +402,7 @@ public struct GameCenterMatchmakingRuleSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

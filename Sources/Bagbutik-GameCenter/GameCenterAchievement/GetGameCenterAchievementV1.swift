@@ -38,7 +38,7 @@ public enum GetGameCenterAchievementV1 {
         /// The fields to include for returned resources of type gameCenterAchievements
         case gameCenterAchievements([GameCenterAchievements])
 
-        public enum GameCenterAchievementLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case afterEarnedDescription
             case beforeEarnedDescription
             case gameCenterAchievement
@@ -47,13 +47,13 @@ public enum GetGameCenterAchievementV1 {
             case name
         }
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievement
             case gameCenterDetail
             case live
         }
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup

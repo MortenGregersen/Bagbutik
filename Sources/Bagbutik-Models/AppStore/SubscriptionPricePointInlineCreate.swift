@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionPricePointInlineCreate: Codable, Identifiable {
+public struct SubscriptionPricePointInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "subscriptionPricePoints" }
 

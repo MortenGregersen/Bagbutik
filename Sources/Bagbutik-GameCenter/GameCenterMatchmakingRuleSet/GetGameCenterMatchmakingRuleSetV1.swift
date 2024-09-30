@@ -40,14 +40,14 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingTeams
         case gameCenterMatchmakingTeams([GameCenterMatchmakingTeams])
 
-        public enum GameCenterMatchmakingQueues: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingQueues: String, Sendable, ParameterValue, Codable, CaseIterable {
             case classicMatchmakingBundleIds
             case experimentRuleSet
             case referenceName
             case ruleSet
         }
 
-        public enum GameCenterMatchmakingRuleSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRuleSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case matchmakingQueues
             case maxPlayers
             case minPlayers
@@ -57,7 +57,7 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case teams
         }
 
-        public enum GameCenterMatchmakingRules: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRules: String, Sendable, ParameterValue, Codable, CaseIterable {
             case description
             case expression
             case referenceName
@@ -66,7 +66,7 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case weight
         }
 
-        public enum GameCenterMatchmakingTeams: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingTeams: String, Sendable, ParameterValue, Codable, CaseIterable {
             case maxPlayers
             case minPlayers
             case referenceName

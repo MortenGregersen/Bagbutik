@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimagecreaterequest>
  */
-public struct GameCenterLeaderboardImageCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardImageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardImageCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardImages" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -53,7 +53,7 @@ public struct GameCenterLeaderboardImageCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
 
@@ -77,7 +77,7 @@ public struct GameCenterLeaderboardImageCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let gameCenterLeaderboardLocalization: GameCenterLeaderboardLocalization
 
             public init(gameCenterLeaderboardLocalization: GameCenterLeaderboardLocalization) {
@@ -94,7 +94,7 @@ public struct GameCenterLeaderboardImageCreateRequest: Codable, RequestBody {
                 try container.encode(gameCenterLeaderboardLocalization, forKey: "gameCenterLeaderboardLocalization")
             }
 
-            public struct GameCenterLeaderboardLocalization: Codable {
+            public struct GameCenterLeaderboardLocalization: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -111,7 +111,7 @@ public struct GameCenterLeaderboardImageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboardLocalizations" }
 

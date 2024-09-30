@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetgroupleaderboardsetlinkageresponse>
  */
-public struct GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse: Codable {
+public struct GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks
 
@@ -31,7 +31,7 @@ public struct GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse: Codabl
         try container.encode(links, forKey: "links")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterLeaderboardSets" }
 

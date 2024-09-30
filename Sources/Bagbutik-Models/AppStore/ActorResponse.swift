@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ActorResponse: Codable {
+public struct ActorResponse: Codable, Sendable {
     public let data: Actor
     public let links: DocumentLinks
 

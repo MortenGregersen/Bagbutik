@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversionresponse>
  */
-public struct CiMacOsVersionResponse: Codable {
+public struct CiMacOsVersionResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiMacOsVersion
     /// The requested relationship data.

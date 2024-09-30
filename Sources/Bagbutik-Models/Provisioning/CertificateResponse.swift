@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificateresponse>
  */
-public struct CertificateResponse: Codable {
+public struct CertificateResponse: Codable, Sendable {
     /// The resource data.
     public let data: Certificate
     /// Navigational links that include the self-link.

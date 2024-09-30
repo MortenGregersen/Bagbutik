@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterstate>
  */
-public enum BetaTesterState: String, Codable, CaseIterable {
+public enum BetaTesterState: String, Sendable, Codable, CaseIterable {
     /// The beta tester has accepted an invite to test a build.
     case accepted = "ACCEPTED"
     /// The beta tester has installed a build.

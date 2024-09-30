@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest>
  */
-public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingQueueCreateRequest: Codable, Sendable, RequestBody {
     /// The data structure of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterMatchmakingQueues" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -68,7 +68,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var classicMatchmakingBundleIds: [String]?
             /// A name for the queue that’s unique within the scope of your development team.
             public let referenceName: String
@@ -100,7 +100,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The experimental rule set to test the associated rules with live match requests. If you provide an experimental rule set, Game Center processes the match requests in the queue using both the experimental and the required rule set, except that it doesn’t return the results of the experimental rule set to clients. Then compare the results of the experimental rule set with the production rule set using metrics, such as the [List all queues](https://developer.apple.com/documentation/appstoreconnectapi/list_all_queues) and [Read queue information](https://developer.apple.com/documentation/appstoreconnectapi/read_queue_information) endpoints.
             public var experimentRuleSet: ExperimentRuleSet?
             /// The rule set to associate with this queue.
@@ -132,7 +132,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/relationships/experimentruleset>
              */
-            public struct ExperimentRuleSet: Codable {
+            public struct ExperimentRuleSet: Codable, Sendable {
                 /// The data structure for the experimental rule set.
                 @NullCodable public var data: Data?
 
@@ -157,7 +157,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/relationships/experimentruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The unique identifier for the rule set.
                     public let id: String
                     /// The type of resource.
@@ -190,7 +190,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/relationships/ruleset>
              */
-            public struct RuleSet: Codable {
+            public struct RuleSet: Codable, Sendable {
                 /// The data structure for the rule set.
                 public let data: Data
 
@@ -215,7 +215,7 @@ public struct GameCenterMatchmakingQueueCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest/data/relationships/ruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The unique identifier for the rule set.
                     public let id: String
                     /// The type of resource.

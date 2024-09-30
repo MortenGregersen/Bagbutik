@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroupsResponse: Codable, PagedResponse {
+public struct SubscriptionGroupsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionGroup
 
     public let data: [SubscriptionGroup]
@@ -60,7 +60,7 @@ public struct SubscriptionGroupsResponse: Codable, PagedResponse {
         return subscriptions
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case subscription(Subscription)
         case subscriptionGroupLocalization(SubscriptionGroupLocalization)
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationsresponse>
  */
-public struct BetaBuildLocalizationsResponse: Codable, PagedResponse {
+public struct BetaBuildLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaBuildLocalization
 
     /// The resource data.

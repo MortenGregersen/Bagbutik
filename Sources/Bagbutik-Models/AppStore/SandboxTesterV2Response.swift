@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SandboxTesterV2Response: Codable {
+public struct SandboxTesterV2Response: Codable, Sendable {
     public let data: SandboxTesterV2
     public let links: DocumentLinks
 

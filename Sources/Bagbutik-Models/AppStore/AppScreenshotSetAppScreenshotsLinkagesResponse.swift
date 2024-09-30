@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesresponse>
  */
-public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, PagedResponse {
+public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -43,7 +43,7 @@ public struct AppScreenshotSetAppScreenshotsLinkagesResponse: Codable, PagedResp
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesresponse/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }
 

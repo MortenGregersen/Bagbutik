@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncreaterequest>
  */
-public struct GameCenterAppVersionCreateRequest: Codable, RequestBody {
+public struct GameCenterAppVersionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterAppVersionCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterAppVersions" }
         public let relationships: Relationships
 
@@ -47,7 +47,7 @@ public struct GameCenterAppVersionCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
             public init(appStoreVersion: AppStoreVersion) {
@@ -64,7 +64,7 @@ public struct GameCenterAppVersionCreateRequest: Codable, RequestBody {
                 try container.encode(appStoreVersion, forKey: "appStoreVersion")
             }
 
-            public struct AppStoreVersion: Codable {
+            public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -81,7 +81,7 @@ public struct GameCenterAppVersionCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 

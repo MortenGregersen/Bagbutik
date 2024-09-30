@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct HttpHeader: Codable {
+public struct HttpHeader: Codable, Sendable {
     public var name: String?
     public var value: String?
 

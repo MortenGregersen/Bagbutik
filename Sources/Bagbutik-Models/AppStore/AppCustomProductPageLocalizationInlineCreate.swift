@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationinlinecreate>
  */
-public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiable {
+public struct AppCustomProductPageLocalizationInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageLocalizations" }
     public let attributes: Attributes
@@ -41,7 +41,7 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiabl
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public let locale: String
         public var promotionalText: String?
 
@@ -65,7 +65,7 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiabl
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appCustomProductPageVersion: AppCustomProductPageVersion?
 
         public init(appCustomProductPageVersion: AppCustomProductPageVersion? = nil) {
@@ -82,7 +82,7 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiabl
             try container.encodeIfPresent(appCustomProductPageVersion, forKey: "appCustomProductPageVersion")
         }
 
-        public struct AppCustomProductPageVersion: Codable {
+        public struct AppCustomProductPageVersion: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -99,7 +99,7 @@ public struct AppCustomProductPageLocalizationInlineCreate: Codable, Identifiabl
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageVersions" }
 

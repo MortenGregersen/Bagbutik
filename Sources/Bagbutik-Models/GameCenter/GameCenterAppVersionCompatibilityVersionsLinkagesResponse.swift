@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncompatibilityversionslinkagesresponse>
  */
-public struct GameCenterAppVersionCompatibilityVersionsLinkagesResponse: Codable, PagedResponse {
+public struct GameCenterAppVersionCompatibilityVersionsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -36,7 +36,7 @@ public struct GameCenterAppVersionCompatibilityVersionsLinkagesResponse: Codable
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterAppVersions" }
 

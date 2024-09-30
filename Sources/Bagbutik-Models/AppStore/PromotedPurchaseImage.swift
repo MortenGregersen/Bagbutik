@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchaseImage: Codable, Identifiable {
+public struct PromotedPurchaseImage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "promotedPurchaseImages" }
@@ -39,7 +39,7 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var assetToken: String?
         public var assetType: String?
         public var fileName: String?
@@ -92,7 +92,7 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
             try container.encodeIfPresent(uploadOperations, forKey: "uploadOperations")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case approved = "APPROVED"
             case awaitingUpload = "AWAITING_UPLOAD"
             case failed = "FAILED"
@@ -103,7 +103,7 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var promotedPurchase: PromotedPurchase?
 
         public init(promotedPurchase: PromotedPurchase? = nil) {
@@ -120,7 +120,7 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
             try container.encodeIfPresent(promotedPurchase, forKey: "promotedPurchase")
         }
 
-        public struct PromotedPurchase: Codable {
+        public struct PromotedPurchase: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -143,7 +143,7 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 
@@ -166,7 +166,7 @@ public struct PromotedPurchaseImage: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

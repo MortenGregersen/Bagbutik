@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperiment: Codable, Identifiable {
+public struct AppStoreVersionExperiment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersionExperiments" }
@@ -39,7 +39,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var endDate: Date?
         public var name: String?
         public var reviewRequired: Bool?
@@ -82,7 +82,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
             try container.encodeIfPresent(trafficProportion, forKey: "trafficProportion")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case completed = "COMPLETED"
@@ -95,7 +95,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appStoreVersion: AppStoreVersion?
         public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments?
 
@@ -118,7 +118,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
             try container.encodeIfPresent(appStoreVersionExperimentTreatments, forKey: "appStoreVersionExperimentTreatments")
         }
 
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -141,7 +141,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -164,7 +164,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -189,7 +189,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperimentTreatments: Codable {
+        public struct AppStoreVersionExperimentTreatments: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -217,7 +217,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatments" }
 
@@ -240,7 +240,7 @@ public struct AppStoreVersionExperiment: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

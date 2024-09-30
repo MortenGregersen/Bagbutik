@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageresponse>
  */
-public struct RoutingAppCoverageResponse: Codable {
+public struct RoutingAppCoverageResponse: Codable, Sendable {
     public let data: RoutingAppCoverage
     public var included: [AppStoreVersion]?
     public let links: DocumentLinks

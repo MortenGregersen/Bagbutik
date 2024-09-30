@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoriesresponse>
  */
-public struct TerritoriesResponse: Codable, PagedResponse {
+public struct TerritoriesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Territory
 
     public let data: [Territory]

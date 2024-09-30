@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest>
  */
-public struct AppStoreReviewAttachmentCreateRequest: Codable, RequestBody {
+public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appStoreReviewAttachments" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -67,7 +67,7 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
 
@@ -98,7 +98,7 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appStoreReviewDetail: AppStoreReviewDetail
 
             public init(appStoreReviewDetail: AppStoreReviewDetail) {
@@ -122,7 +122,7 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/relationships/appstorereviewdetail>
              */
-            public struct AppStoreReviewDetail: Codable {
+            public struct AppStoreReviewDetail: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -146,7 +146,7 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/relationships/appstorereviewdetail/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreReviewDetails" }
 

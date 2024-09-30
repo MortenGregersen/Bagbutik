@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchasesV2Response: Codable, PagedResponse {
+public struct InAppPurchasesV2Response: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchaseV2
 
     public let data: [InAppPurchaseV2]
@@ -95,7 +95,7 @@ public struct InAppPurchasesV2Response: Codable, PagedResponse {
         }.first { $0.id == inAppPurchaseV2.relationships?.promotedPurchase?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case inAppPurchaseAppStoreReviewScreenshot(InAppPurchaseAppStoreReviewScreenshot)
         case inAppPurchaseAvailability(InAppPurchaseAvailability)
         case inAppPurchaseContent(InAppPurchaseContent)

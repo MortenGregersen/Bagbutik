@@ -34,7 +34,7 @@ public enum GetPrimarySubcategoryOneForAppInfoV1 {
         /// The fields to include for returned resources of type appCategories
         case appCategories([AppCategories])
 
-        public enum AppCategories: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCategories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case parent
             case platforms
             case subcategories

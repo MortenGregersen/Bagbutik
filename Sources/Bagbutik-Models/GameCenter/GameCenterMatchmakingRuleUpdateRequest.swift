@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleupdaterequest>
  */
-public struct GameCenterMatchmakingRuleUpdateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingRuleUpdateRequest: Codable, Sendable, RequestBody {
     /// The data structure of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct GameCenterMatchmakingRuleUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// A unique identifier for the rule.
         public let id: String
         public var type: String { "gameCenterMatchmakingRules" }
@@ -69,7 +69,7 @@ public struct GameCenterMatchmakingRuleUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A human-readable description of the rule.
             public var description: String?
             /// Code that returns a Boolean or numeric value that the matchmaking rules algorithm executes to compare or filter match requests.

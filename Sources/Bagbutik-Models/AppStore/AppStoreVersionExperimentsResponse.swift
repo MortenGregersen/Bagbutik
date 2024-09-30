@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentsResponse: Codable, PagedResponse {
+public struct AppStoreVersionExperimentsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppStoreVersionExperiment
 
     public let data: [AppStoreVersionExperiment]
@@ -55,7 +55,7 @@ public struct AppStoreVersionExperimentsResponse: Codable, PagedResponse {
         return appStoreVersionExperimentTreatments
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperimentTreatment(AppStoreVersionExperimentTreatment)
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencesresponse>
  */
-public struct AppClipAdvancedExperiencesResponse: Codable, PagedResponse {
+public struct AppClipAdvancedExperiencesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipAdvancedExperience
 
     /// The resource data.
@@ -73,7 +73,7 @@ public struct AppClipAdvancedExperiencesResponse: Codable, PagedResponse {
         return localizations
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appClip(AppClip)
         case appClipAdvancedExperienceImage(AppClipAdvancedExperienceImage)
         case appClipAdvancedExperienceLocalization(AppClipAdvancedExperienceLocalization)

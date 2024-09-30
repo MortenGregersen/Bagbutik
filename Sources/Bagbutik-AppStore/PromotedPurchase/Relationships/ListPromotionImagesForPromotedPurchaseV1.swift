@@ -36,7 +36,7 @@ public enum ListPromotionImagesForPromotedPurchaseV1 {
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])
 
-        public enum PromotedPurchaseImages: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchaseImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetToken
             case assetType
             case fileName
@@ -49,7 +49,7 @@ public enum ListPromotionImagesForPromotedPurchaseV1 {
             case uploaded
         }
 
-        public enum PromotedPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case enabled
             case inAppPurchaseV2

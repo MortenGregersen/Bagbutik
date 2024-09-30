@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreview>
  */
-public struct CustomerReview: Codable, Identifiable {
+public struct CustomerReview: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the `CustomerReviews` resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct CustomerReview: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/customerreview/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The review text that the customer wrote.
         public var body: String?
         /// The date and time the customer created the review.
@@ -115,7 +115,7 @@ public struct CustomerReview: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/customerreview/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The data and links that describe the relationship between the `CustomerReviews` and `CustomerReviewResponses` resources.
         public var response: Response?
 
@@ -140,7 +140,7 @@ public struct CustomerReview: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/customerreview/relationships/response>
          */
-        public struct Response: Codable {
+        public struct Response: Codable, Sendable {
             /// The type and ID of a related resource.
             @NullCodable public var data: Data?
             /// The links to the related data and the relationship’s self-link.
@@ -172,7 +172,7 @@ public struct CustomerReview: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/customerreview/relationships/response/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -204,7 +204,7 @@ public struct CustomerReview: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/customerreview/relationships/response/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to the related data.
                 public var related: String?
                 /// The relashionship’s self-link.

@@ -36,7 +36,7 @@ public enum GetUserInvitationV1 {
         /// The fields to include for returned resources of type userInvitations
         case userInvitations([UserInvitations])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -82,7 +82,7 @@ public enum GetUserInvitationV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum UserInvitations: String, ParameterValue, Codable, CaseIterable {
+        public enum UserInvitations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case allAppsVisible
             case email
             case expirationDate

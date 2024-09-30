@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetresponse>
  */
-public struct AppPreviewSetResponse: Codable {
+public struct AppPreviewSetResponse: Codable, Sendable {
     public let data: AppPreviewSet
     public var included: [Included]?
     public let links: DocumentLinks
@@ -69,7 +69,7 @@ public struct AppPreviewSetResponse: Codable {
         }.first { $0.id == data.relationships?.appStoreVersionLocalization?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appPreview(AppPreview)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)

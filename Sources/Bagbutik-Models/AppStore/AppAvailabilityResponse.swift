@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppAvailabilityResponse: Codable {
+public struct AppAvailabilityResponse: Codable, Sendable {
     public let data: AppAvailability
     public var included: [Included]?
     public let links: DocumentLinks
@@ -48,7 +48,7 @@ public struct AppAvailabilityResponse: Codable {
         return availableTerritories
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case territory(Territory)
 

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPricesV2Response: Codable, PagedResponse {
+public struct AppPricesV2Response: Codable, Sendable, PagedResponse {
     public typealias Data = AppPriceV2
 
     public let data: [AppPriceV2]
@@ -50,7 +50,7 @@ public struct AppPricesV2Response: Codable, PagedResponse {
         }.first { $0.id == appPriceV2.relationships?.territory?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appPricePointV3(AppPricePointV3)
         case territory(Territory)
 

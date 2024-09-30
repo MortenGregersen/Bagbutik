@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementsresponse>
  */
-public struct BetaLicenseAgreementsResponse: Codable, PagedResponse {
+public struct BetaLicenseAgreementsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaLicenseAgreement
 
     /// The resource data.

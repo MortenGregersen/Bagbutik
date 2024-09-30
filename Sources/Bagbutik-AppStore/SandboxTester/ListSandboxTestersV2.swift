@@ -29,7 +29,7 @@ public enum ListSandboxTestersV2 {
         /// The fields to include for returned resources of type sandboxTesters
         case sandboxTesters([SandboxTesters])
 
-        public enum SandboxTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum SandboxTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
             case acAccountName
             case applePayCompatible
             case firstName

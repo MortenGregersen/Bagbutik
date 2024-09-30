@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchaseLocalizationCreateRequest: Codable, RequestBody {
+public struct InAppPurchaseLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct InAppPurchaseLocalizationCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "inAppPurchaseLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct InAppPurchaseLocalizationCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var description: String?
             public let locale: String
             public let name: String
@@ -75,7 +75,7 @@ public struct InAppPurchaseLocalizationCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let inAppPurchaseV2: InAppPurchaseV2
 
             public init(inAppPurchaseV2: InAppPurchaseV2) {
@@ -92,7 +92,7 @@ public struct InAppPurchaseLocalizationCreateRequest: Codable, RequestBody {
                 try container.encode(inAppPurchaseV2, forKey: "inAppPurchaseV2")
             }
 
-            public struct InAppPurchaseV2: Codable {
+            public struct InAppPurchaseV2: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -109,7 +109,7 @@ public struct InAppPurchaseLocalizationCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "inAppPurchases" }
 

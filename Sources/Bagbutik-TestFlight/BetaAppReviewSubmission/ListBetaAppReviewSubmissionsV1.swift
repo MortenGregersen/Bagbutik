@@ -37,13 +37,13 @@ public enum ListBetaAppReviewSubmissionsV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum BetaAppReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case betaReviewState
             case build
             case submittedDate
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion

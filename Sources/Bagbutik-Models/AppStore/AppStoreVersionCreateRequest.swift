@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest>
  */
-public struct AppStoreVersionCreateRequest: Codable, RequestBody {
+public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersions" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -67,7 +67,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var copyright: String?
             public var earliestReleaseDate: Date?
             public let platform: Platform
@@ -118,7 +118,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
             public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
             public var build: Build?
@@ -153,7 +153,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app>
              */
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -177,7 +177,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -201,7 +201,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersionLocalizations: Codable {
+            public struct AppStoreVersionLocalizations: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -218,7 +218,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionLocalizations" }
 
@@ -249,7 +249,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build>
              */
-            public struct Build: Codable {
+            public struct Build: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -273,7 +273,7 @@ public struct AppStoreVersionCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "builds" }
 

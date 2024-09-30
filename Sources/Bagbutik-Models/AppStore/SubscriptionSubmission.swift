@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionSubmission: Codable, Identifiable {
+public struct SubscriptionSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionSubmissions" }
@@ -34,7 +34,7 @@ public struct SubscriptionSubmission: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var subscription: Subscription?
 
         public init(subscription: Subscription? = nil) {
@@ -51,7 +51,7 @@ public struct SubscriptionSubmission: Codable, Identifiable {
             try container.encodeIfPresent(subscription, forKey: "subscription")
         }
 
-        public struct Subscription: Codable {
+        public struct Subscription: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -74,7 +74,7 @@ public struct SubscriptionSubmission: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptions" }
 
@@ -97,7 +97,7 @@ public struct SubscriptionSubmission: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

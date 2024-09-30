@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder>
  */
-public struct AppPreOrder: Codable, Identifiable {
+public struct AppPreOrder: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appPreOrders" }
@@ -53,7 +53,7 @@ public struct AppPreOrder: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var appReleaseDate: String?
         public var preOrderAvailableDate: String?
 
@@ -84,7 +84,7 @@ public struct AppPreOrder: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
 
         public init(app: App? = nil) {
@@ -108,7 +108,7 @@ public struct AppPreOrder: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -138,7 +138,7 @@ public struct AppPreOrder: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -168,7 +168,7 @@ public struct AppPreOrder: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

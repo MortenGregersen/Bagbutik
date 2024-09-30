@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBody {
+public struct GameCenterAchievementLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterAchievementLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let afterEarnedDescription: String
             public let beforeEarnedDescription: String
             public let locale: String
@@ -80,7 +80,7 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let gameCenterAchievement: GameCenterAchievement
 
             public init(gameCenterAchievement: GameCenterAchievement) {
@@ -97,7 +97,7 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
                 try container.encode(gameCenterAchievement, forKey: "gameCenterAchievement")
             }
 
-            public struct GameCenterAchievement: Codable {
+            public struct GameCenterAchievement: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -114,7 +114,7 @@ public struct GameCenterAchievementLocalizationCreateRequest: Codable, RequestBo
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterAchievements" }
 

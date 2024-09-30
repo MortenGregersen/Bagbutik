@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewsresponse>
  */
-public struct CustomerReviewsResponse: Codable, PagedResponse {
+public struct CustomerReviewsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CustomerReview
 
     /// A list of customer review resource data.

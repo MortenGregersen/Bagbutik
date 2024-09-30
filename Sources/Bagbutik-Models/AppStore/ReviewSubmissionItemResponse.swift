@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ReviewSubmissionItemResponse: Codable {
+public struct ReviewSubmissionItemResponse: Codable, Sendable {
     public let data: ReviewSubmissionItem
     public var included: [Included]?
     public let links: DocumentLinks
@@ -64,7 +64,7 @@ public struct ReviewSubmissionItemResponse: Codable {
         }.first { $0.id == data.relationships?.appStoreVersionExperimentV2?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appEvent(AppEvent)
         case appStoreVersion(AppStoreVersion)

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citagstartcondition>
  */
-public struct CiTagStartCondition: Codable {
+public struct CiTagStartCondition: Codable, Sendable {
     /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
     public var autoCancel: Bool?
     /// Settings Xcode Cloud uses to determine whether a change to a tag should start a new build or not.

@@ -31,7 +31,7 @@ public enum GetScmGitReferenceV1 {
         /// The fields to include for returned resources of type scmGitReferences
         case scmGitReferences([ScmGitReferences])
 
-        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmGitReferences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case canonicalName
             case isDeleted
             case kind

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatusresponse>
  */
-public struct AppClipDomainStatusResponse: Codable {
+public struct AppClipDomainStatusResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClipDomainStatus
     /// Navigational links that include the self-link.

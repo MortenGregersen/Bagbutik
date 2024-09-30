@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest>
  */
-public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
+public struct BetaAppReviewDetailUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -71,7 +71,7 @@ public struct BetaAppReviewDetailUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// Email address of contact in case communication is needed with the beta app review.
             public var contactEmail: String?
             /// First name of contact in case communication is needed with the beta app review.

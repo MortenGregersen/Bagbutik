@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest>
  */
-public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, Sendable, RequestBody {
     /// The data structure for the request body.
     public let data: Data
     /// The resource objects that Game Center uses in the test.
@@ -40,7 +40,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterMatchmakingRuleSetTests" }
         public let relationships: Relationships
 
@@ -69,7 +69,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let matchmakingRequests: MatchmakingRequests
             public let matchmakingRuleSet: MatchmakingRuleSet
 
@@ -99,7 +99,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest/data/relationships/matchmakingrequests>
              */
-            public struct MatchmakingRequests: Codable {
+            public struct MatchmakingRequests: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -123,7 +123,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest/data/relationships/matchmakingrequests/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The identifier for a ``GameCenterMatchmakingTestRequestInlineCreate`` resource object that you add to the `included` field of the request body.
                     public let id: String
                     /// The type of resource object.
@@ -156,7 +156,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest/data/relationships/matchmakingruleset>
              */
-            public struct MatchmakingRuleSet: Codable {
+            public struct MatchmakingRuleSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -180,7 +180,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest/data/relationships/matchmakingruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The identifier for the rule set that appears in the response when you create it.
                     public let id: String
                     /// The type of resource object.
@@ -208,7 +208,7 @@ public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, RequestBod
         }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterMatchmakingTestPlayerPropertyInlineCreate(GameCenterMatchmakingTestPlayerPropertyInlineCreate)
         case gameCenterMatchmakingTestRequestInlineCreate(GameCenterMatchmakingTestRequestInlineCreate)
 

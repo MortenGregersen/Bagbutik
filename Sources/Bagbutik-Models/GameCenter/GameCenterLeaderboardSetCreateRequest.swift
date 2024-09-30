@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetcreaterequest>
  */
-public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardSetCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardSets" }
         public let attributes: Attributes
         public var relationships: Relationships?
@@ -53,7 +53,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let referenceName: String
             public let vendorIdentifier: String
 
@@ -77,7 +77,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var gameCenterDetail: GameCenterDetail?
             public var gameCenterGroup: GameCenterGroup?
             public var gameCenterLeaderboards: GameCenterLeaderboards?
@@ -105,7 +105,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(gameCenterLeaderboards, forKey: "gameCenterLeaderboards")
             }
 
-            public struct GameCenterDetail: Codable {
+            public struct GameCenterDetail: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -122,7 +122,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterDetails" }
 
@@ -146,7 +146,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct GameCenterGroup: Codable {
+            public struct GameCenterGroup: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -163,7 +163,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterGroups" }
 
@@ -187,7 +187,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct GameCenterLeaderboards: Codable {
+            public struct GameCenterLeaderboards: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -204,7 +204,7 @@ public struct GameCenterLeaderboardSetCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboards" }
 

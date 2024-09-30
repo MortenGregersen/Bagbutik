@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest>
  */
-public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
+public struct AppStoreVersionLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionLocalizations" }
         public var attributes: Attributes?
@@ -67,7 +67,7 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var description: String?
             public var keywords: String?
             public var marketingUrl: String?

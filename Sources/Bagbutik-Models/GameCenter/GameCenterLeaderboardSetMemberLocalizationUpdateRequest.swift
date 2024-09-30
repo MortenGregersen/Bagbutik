@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationupdaterequest>
  */
-public struct GameCenterLeaderboardSetMemberLocalizationUpdateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardSetMemberLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationUpdateRequest: Codable, 
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterLeaderboardSetMemberLocalizations" }
         public var attributes: Attributes?
@@ -53,7 +53,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationUpdateRequest: Codable, 
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var name: String?
 
             public init(name: String? = nil) {

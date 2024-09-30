@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationstate>
  */
-public enum AppEncryptionDeclarationState: String, Codable, CaseIterable {
+public enum AppEncryptionDeclarationState: String, Sendable, Codable, CaseIterable {
     case approved = "APPROVED"
     case created = "CREATED"
     case expired = "EXPIRED"

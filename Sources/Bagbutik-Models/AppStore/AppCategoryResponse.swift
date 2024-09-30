@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcategoryresponse>
  */
-public struct AppCategoryResponse: Codable {
+public struct AppCategoryResponse: Codable, Sendable {
     public let data: AppCategory
     public var included: [AppCategory]?
     public let links: DocumentLinks

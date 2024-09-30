@@ -44,7 +44,7 @@ public enum GetMetricsForMatchmakingRequestInGameCenterMatchmakingQueueV1 {
         /// Filter by 'result' attribute dimension
         case result([Result])
 
-        public enum Result: String, ParameterValue, Codable, CaseIterable {
+        public enum Result: String, Sendable, ParameterValue, Codable, CaseIterable {
             case canceled = "CANCELED"
             case expired = "EXPIRED"
             case matched = "MATCHED"
@@ -68,7 +68,7 @@ public enum GetMetricsForMatchmakingRequestInGameCenterMatchmakingQueueV1 {
     /**
      The granularity of the per-group dataset
      */
-    public enum Granularity: String, ParameterValue, Codable, CaseIterable {
+    public enum Granularity: String, Sendable, ParameterValue, Codable, CaseIterable {
         case P1D
         case PT15M
         case PT1H
@@ -77,7 +77,7 @@ public enum GetMetricsForMatchmakingRequestInGameCenterMatchmakingQueueV1 {
     /**
      The dimension by which to group the results
      */
-    public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
+    public enum GroupBy: String, Sendable, ParameterValue, Codable, CaseIterable {
         case gameCenterDetail
         case result
     }

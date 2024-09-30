@@ -28,7 +28,7 @@ public enum GetBundleIdForProfileV1 {
         /// The fields to include for returned resources of type bundleIds
         case bundleIds([BundleIds])
 
-        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case bundleIdCapabilities
             case identifier

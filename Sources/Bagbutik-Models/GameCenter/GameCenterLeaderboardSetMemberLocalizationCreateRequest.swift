@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationcreaterequest>
  */
-public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardSetMemberLocalizations" }
         public var attributes: Attributes?
         public let relationships: Relationships
@@ -53,7 +53,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var locale: String?
             public var name: String?
 
@@ -77,7 +77,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let gameCenterLeaderboard: GameCenterLeaderboard
             public let gameCenterLeaderboardSet: GameCenterLeaderboardSet
 
@@ -100,7 +100,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
                 try container.encode(gameCenterLeaderboardSet, forKey: "gameCenterLeaderboardSet")
             }
 
-            public struct GameCenterLeaderboard: Codable {
+            public struct GameCenterLeaderboard: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -117,7 +117,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboards" }
 
@@ -141,7 +141,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
                 }
             }
 
-            public struct GameCenterLeaderboardSet: Codable {
+            public struct GameCenterLeaderboardSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -158,7 +158,7 @@ public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, 
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboardSets" }
 

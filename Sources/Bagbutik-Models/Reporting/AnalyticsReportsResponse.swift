@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsresponse>
  */
-public struct AnalyticsReportsResponse: Codable, PagedResponse {
+public struct AnalyticsReportsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AnalyticsReport
 
     public let data: [AnalyticsReport]

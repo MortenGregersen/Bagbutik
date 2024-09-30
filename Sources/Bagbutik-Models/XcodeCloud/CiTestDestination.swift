@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestdestination>
  */
-public struct CiTestDestination: Codable {
+public struct CiTestDestination: Codable, Sendable {
     /// A string that uniquely identifies the simulated device Xcode Cloud uses for a test action, for example, `com.apple.CoreSimulator.SimDeviceType.iPhone-12`.
     public var deviceTypeIdentifier: String?
     /// The display name of the simulated device that Xcode Cloud uses for a test action, for example, iPhone 12.

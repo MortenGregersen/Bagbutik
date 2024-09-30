@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGracePeriod: Codable, Identifiable {
+public struct SubscriptionGracePeriod: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionGracePeriods" }
@@ -34,7 +34,7 @@ public struct SubscriptionGracePeriod: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var duration: SubscriptionGracePeriodDuration?
         public var optIn: Bool?
         public var renewalType: RenewalType?
@@ -67,7 +67,7 @@ public struct SubscriptionGracePeriod: Codable, Identifiable {
             try container.encodeIfPresent(sandboxOptIn, forKey: "sandboxOptIn")
         }
 
-        public enum RenewalType: String, Codable, CaseIterable {
+        public enum RenewalType: String, Sendable, Codable, CaseIterable {
             case allRenewals = "ALL_RENEWALS"
             case paidToPaidOnly = "PAID_TO_PAID_ONLY"
         }

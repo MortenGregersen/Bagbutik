@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversionsresponse>
  */
-public struct GameCenterEnabledVersionsResponse: Codable, PagedResponse {
+public struct GameCenterEnabledVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterEnabledVersion
 
     public let data: [GameCenterEnabledVersion]
@@ -62,7 +62,7 @@ public struct GameCenterEnabledVersionsResponse: Codable, PagedResponse {
         return compatibleVersions
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case gameCenterEnabledVersion(GameCenterEnabledVersion)
 

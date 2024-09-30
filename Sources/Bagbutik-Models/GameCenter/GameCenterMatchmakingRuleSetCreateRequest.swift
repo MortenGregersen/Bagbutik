@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetcreaterequest>
  */
-public struct GameCenterMatchmakingRuleSetCreateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingRuleSetCreateRequest: Codable, Sendable, RequestBody {
     /// The data structure of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct GameCenterMatchmakingRuleSetCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterMatchmakingRuleSets" }
         public let attributes: Attributes
 
@@ -65,7 +65,7 @@ public struct GameCenterMatchmakingRuleSetCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The maximum number of players who can join the matches that Game Center finds using these rules.
             public let maxPlayers: Int
             /// The minimum number of players who can join the matches that Game Center finds using these rules.

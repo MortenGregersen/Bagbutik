@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/endappavailabilitypreorder>
  */
-public struct EndAppAvailabilityPreOrder: Codable, Identifiable {
+public struct EndAppAvailabilityPreOrder: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "endAppAvailabilityPreOrders" }

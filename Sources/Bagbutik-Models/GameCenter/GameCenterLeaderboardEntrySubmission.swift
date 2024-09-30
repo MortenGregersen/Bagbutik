@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmission>
  */
-public struct GameCenterLeaderboardEntrySubmission: Codable, Identifiable {
+public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterLeaderboardEntrySubmissions" }
@@ -41,7 +41,7 @@ public struct GameCenterLeaderboardEntrySubmission: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var bundleId: String?
         public var challengeIds: [String]?
         public var context: String?

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest>
  */
-public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
+public struct BuildBetaNotificationCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "buildBetaNotifications" }
         /// The types and IDs of the related data to update.
@@ -64,7 +64,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let build: Build
 
             public init(build: Build) {
@@ -88,7 +88,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships/build>
              */
-            public struct Build: Codable {
+            public struct Build: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -112,7 +112,7 @@ public struct BuildBetaNotificationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest/data/relationships/build/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The types and IDs of the related data to update.

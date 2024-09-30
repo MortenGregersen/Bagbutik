@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamresponse>
  */
-public struct GameCenterMatchmakingTeamResponse: Codable {
+public struct GameCenterMatchmakingTeamResponse: Codable, Sendable {
     /// The team that you create or modify.
     public let data: GameCenterMatchmakingTeam
     /// The link representations of the object.

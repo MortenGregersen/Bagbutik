@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest>
  */
-public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody {
+public struct AppClipAdvancedExperienceImageCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "appClipAdvancedExperienceImages" }
         /// The attributes that describe the request that creates an Advanced App Clip Experience Images resource.
@@ -64,7 +64,7 @@ public struct AppClipAdvancedExperienceImageCreateRequest: Codable, RequestBody 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimagecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.
             public let fileName: String
             /// The size of the image asset that appears on the App Clip card for the advanced App Clip experience.

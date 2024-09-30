@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionIntroductoryOffersResponse: Codable, PagedResponse {
+public struct SubscriptionIntroductoryOffersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionIntroductoryOffer
 
     public let data: [SubscriptionIntroductoryOffer]
@@ -57,7 +57,7 @@ public struct SubscriptionIntroductoryOffersResponse: Codable, PagedResponse {
         }.first { $0.id == subscriptionIntroductoryOffer.relationships?.territory?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case subscription(Subscription)
         case subscriptionPricePoint(SubscriptionPricePoint)
         case territory(Territory)

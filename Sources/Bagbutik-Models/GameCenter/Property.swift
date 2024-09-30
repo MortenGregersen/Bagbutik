@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/property>
  */
-public struct Property: Codable {
+public struct Property: Codable, Sendable {
     /// The name of the property.
     public var key: String?
     /// The value for the property.

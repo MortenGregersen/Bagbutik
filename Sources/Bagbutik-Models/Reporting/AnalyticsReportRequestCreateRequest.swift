@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest>
  */
-public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
+public struct AnalyticsReportRequestCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -34,7 +34,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "analyticsReportRequests" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -69,7 +69,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The `accessType` `ONGOING` provides current data and is the most typical. It generates reports daily, weekly and monthly. Use `ONE_TIME_SNAPSHOT` to get historical data.
             public let accessType: AnalyticsReportRequest.Attributes.AccessType
 
@@ -88,7 +88,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
 
             public init(app: App) {
@@ -105,7 +105,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
                 try container.encode(app, forKey: "app")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -129,7 +129,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest/data/relationships/app/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the Apps resource. Obtain the app resource ID from the [List Apps](https://developer.apple.com/documentation/appstoreconnectapi/list_apps) response.
                     public let id: String
                     public var type: String { "apps" }

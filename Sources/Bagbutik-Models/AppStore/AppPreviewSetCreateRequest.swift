@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest>
  */
-public struct AppPreviewSetCreateRequest: Codable, RequestBody {
+public struct AppPreviewSetCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appPreviewSets" }
         public let attributes: Attributes
         public var relationships: Relationships?
@@ -67,7 +67,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let previewType: PreviewType
 
             public init(previewType: PreviewType) {
@@ -92,7 +92,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
             public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
             public var appStoreVersionLocalization: AppStoreVersionLocalization?
@@ -120,7 +120,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(appStoreVersionLocalization, forKey: "appStoreVersionLocalization")
             }
 
-            public struct AppCustomProductPageLocalization: Codable {
+            public struct AppCustomProductPageLocalization: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -137,7 +137,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageLocalizations" }
 
@@ -161,7 +161,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersionExperimentTreatmentLocalization: Codable {
+            public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -178,7 +178,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
 
@@ -209,7 +209,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships/appstoreversionlocalization>
              */
-            public struct AppStoreVersionLocalization: Codable {
+            public struct AppStoreVersionLocalization: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -233,7 +233,7 @@ public struct AppPreviewSetCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest/data/relationships/appstoreversionlocalization/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionLocalizations" }
 

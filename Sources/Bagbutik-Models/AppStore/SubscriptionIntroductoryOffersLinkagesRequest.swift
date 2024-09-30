@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionIntroductoryOffersLinkagesRequest: Codable, RequestBody {
+public struct SubscriptionIntroductoryOffersLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 
     public init(data: [Data]) {
@@ -18,7 +18,7 @@ public struct SubscriptionIntroductoryOffersLinkagesRequest: Codable, RequestBod
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "subscriptionIntroductoryOffers" }
 

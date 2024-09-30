@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PrereleaseVersionWithoutIncludesResponse: Codable {
+public struct PrereleaseVersionWithoutIncludesResponse: Codable, Sendable {
     public let data: PrereleaseVersion
     public let links: DocumentLinks
 

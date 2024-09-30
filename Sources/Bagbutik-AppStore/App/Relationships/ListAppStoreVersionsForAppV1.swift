@@ -59,7 +59,7 @@ public enum ListAppStoreVersionsForAppV1 {
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
@@ -80,12 +80,12 @@ public enum ListAppStoreVersionsForAppV1 {
             case violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AlternativeDistributionPackages: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case versions
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -94,7 +94,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case releaseWithAppStoreVersion
         }
 
-        public enum AppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewAttachments
             case appStoreVersion
             case contactEmail
@@ -107,7 +107,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case notes
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersion
             case appStoreVersionExperimentTreatments
@@ -123,7 +123,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion
@@ -136,7 +136,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case whatsNew
         }
 
-        public enum AppStoreVersionPhasedReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionPhasedReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
@@ -144,11 +144,11 @@ public enum ListAppStoreVersionsForAppV1 {
             case totalPauseDuration
         }
 
-        public enum AppStoreVersionSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
@@ -174,7 +174,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -220,7 +220,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -247,7 +247,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case version
         }
 
-        public enum RoutingAppCoverages: String, ParameterValue, Codable, CaseIterable {
+        public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
             case fileName

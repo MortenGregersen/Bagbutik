@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appsbetatesterusagesv1metricresponse>
  */
-public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
+public struct AppsBetaTesterUsagesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public var included: [BetaTester]?
     public let links: PagedDocumentLinks
@@ -41,7 +41,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
 
@@ -64,7 +64,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
             try container.encodeIfPresent(dimensions, forKey: "dimensions")
         }
 
-        public struct DataPoints: Codable {
+        public struct DataPoints: Codable, Sendable {
             public var end: Date?
             public var start: Date?
             public var values: Values?
@@ -92,7 +92,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
                 try container.encodeIfPresent(values, forKey: "values")
             }
 
-            public struct Values: Codable {
+            public struct Values: Codable, Sendable {
                 public var crashCount: Int?
                 public var feedbackCount: Int?
                 public var sessionCount: Int?
@@ -122,7 +122,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
             }
         }
 
-        public struct Dimensions: Codable {
+        public struct Dimensions: Codable, Sendable {
             public var betaTesters: BetaTesters?
 
             public init(betaTesters: BetaTesters? = nil) {
@@ -139,7 +139,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
                 try container.encodeIfPresent(betaTesters, forKey: "betaTesters")
             }
 
-            public struct BetaTesters: Codable {
+            public struct BetaTesters: Codable, Sendable {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
@@ -156,7 +156,7 @@ public struct AppsBetaTesterUsagesV1MetricResponse: Codable, PagedResponse {
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 
-                public struct Links: Codable {
+                public struct Links: Codable, Sendable {
                     public var groupBy: String?
                     public var related: String?
 

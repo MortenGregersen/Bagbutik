@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable, RequestBody {
+public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable,
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "sandboxTestersClearPurchaseHistoryRequest" }
         public let relationships: Relationships
 
@@ -40,7 +40,7 @@ public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable,
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let sandboxTesters: SandboxTesters
 
             public init(sandboxTesters: SandboxTesters) {
@@ -57,7 +57,7 @@ public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable,
                 try container.encode(sandboxTesters, forKey: "sandboxTesters")
             }
 
-            public struct SandboxTesters: Codable {
+            public struct SandboxTesters: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -74,7 +74,7 @@ public struct SandboxTestersClearPurchaseHistoryRequestV2CreateRequest: Codable,
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "sandboxTesters" }
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailsresponse>
  */
-public struct BuildBetaDetailsResponse: Codable, PagedResponse {
+public struct BuildBetaDetailsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildBetaDetail
 
     /// The resource data.

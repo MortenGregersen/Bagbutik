@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatester>
  */
-public struct BetaTester: Codable, Identifiable {
+public struct BetaTester: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct BetaTester: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betatester/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The beta tester's email address, used for sending beta testing invitations.
         public var email: String?
         /// The beta tester's first name.
@@ -109,7 +109,7 @@ public struct BetaTester: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var apps: Apps?
         public var betaGroups: BetaGroups?
         public var builds: Builds?
@@ -144,7 +144,7 @@ public struct BetaTester: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps>
          */
-        public struct Apps: Codable {
+        public struct Apps: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -179,7 +179,7 @@ public struct BetaTester: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -209,7 +209,7 @@ public struct BetaTester: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/apps/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -241,7 +241,7 @@ public struct BetaTester: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups>
          */
-        public struct BetaGroups: Codable {
+        public struct BetaGroups: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -276,7 +276,7 @@ public struct BetaTester: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "betaGroups" }
 
@@ -306,7 +306,7 @@ public struct BetaTester: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/betagroups/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -338,7 +338,7 @@ public struct BetaTester: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds>
          */
-        public struct Builds: Codable {
+        public struct Builds: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -373,7 +373,7 @@ public struct BetaTester: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
 
@@ -403,7 +403,7 @@ public struct BetaTester: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatester/relationships/builds/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

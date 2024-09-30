@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookresponse>
  */
-public struct MarketplaceWebhookResponse: Codable {
+public struct MarketplaceWebhookResponse: Codable, Sendable {
     public let data: MarketplaceWebhook
     public let links: DocumentLinks
 

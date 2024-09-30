@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest>
  */
-public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBody {
+public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -71,7 +71,7 @@ public struct BetaAppClipInvocationLocalizationUpdateRequest: Codable, RequestBo
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
             public var title: String?
 

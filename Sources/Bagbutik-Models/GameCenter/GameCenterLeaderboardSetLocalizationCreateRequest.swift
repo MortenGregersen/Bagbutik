@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetlocalizationcreaterequest>
  */
-public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, Reques
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardSetLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -53,7 +53,7 @@ public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, Reques
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let locale: String
             public let name: String
 
@@ -77,7 +77,7 @@ public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, Reques
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let gameCenterLeaderboardSet: GameCenterLeaderboardSet
 
             public init(gameCenterLeaderboardSet: GameCenterLeaderboardSet) {
@@ -94,7 +94,7 @@ public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, Reques
                 try container.encode(gameCenterLeaderboardSet, forKey: "gameCenterLeaderboardSet")
             }
 
-            public struct GameCenterLeaderboardSet: Codable {
+            public struct GameCenterLeaderboardSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -111,7 +111,7 @@ public struct GameCenterLeaderboardSetLocalizationCreateRequest: Codable, Reques
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboardSets" }
 

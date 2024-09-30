@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationsresponse>
  */
-public struct AppEncryptionDeclarationsResponse: Codable, PagedResponse {
+public struct AppEncryptionDeclarationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEncryptionDeclaration
 
     /// The resource data.
@@ -60,7 +60,7 @@ public struct AppEncryptionDeclarationsResponse: Codable, PagedResponse {
         }.first { $0.id == appEncryptionDeclaration.relationships?.appEncryptionDeclarationDocument?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case appEncryptionDeclarationDocument(AppEncryptionDeclarationDocument)
         case build(Build)

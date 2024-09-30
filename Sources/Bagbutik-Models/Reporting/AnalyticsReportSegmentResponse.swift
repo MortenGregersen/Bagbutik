@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentresponse>
  */
-public struct AnalyticsReportSegmentResponse: Codable {
+public struct AnalyticsReportSegmentResponse: Codable, Sendable {
     public let data: AnalyticsReportSegment
     public let links: DocumentLinks
 

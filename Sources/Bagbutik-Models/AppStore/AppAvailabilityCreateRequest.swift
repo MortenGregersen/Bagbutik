@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppAvailabilityCreateRequest: Codable, RequestBody {
+public struct AppAvailabilityCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appAvailabilities" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let availableInNewTerritories: Bool
 
             public init(availableInNewTerritories: Bool) {
@@ -64,7 +64,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
             public let availableTerritories: AvailableTerritories
 
@@ -87,7 +87,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
                 try container.encode(availableTerritories, forKey: "availableTerritories")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -104,7 +104,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -128,7 +128,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AvailableTerritories: Codable {
+            public struct AvailableTerritories: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -145,7 +145,7 @@ public struct AppAvailabilityCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }
 

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventCreateRequest: Codable, RequestBody {
+public struct AppEventCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppEventCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appEvents" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct AppEventCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var badge: AppEvent.Attributes.Badge?
             public var deepLink: String?
             public var primaryLocale: String?
@@ -99,7 +99,7 @@ public struct AppEventCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(territorySchedules, forKey: "territorySchedules")
             }
 
-            public struct TerritorySchedules: Codable {
+            public struct TerritorySchedules: Codable, Sendable {
                 public var eventEnd: Date?
                 public var eventStart: Date?
                 public var publishStart: Date?
@@ -134,7 +134,7 @@ public struct AppEventCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
 
             public init(app: App) {
@@ -151,7 +151,7 @@ public struct AppEventCreateRequest: Codable, RequestBody {
                 try container.encode(app, forKey: "app")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -168,7 +168,7 @@ public struct AppEventCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 

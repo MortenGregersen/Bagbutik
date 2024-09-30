@@ -41,7 +41,7 @@ public enum ListAppClipsForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -50,14 +50,14 @@ public enum ListAppClipsForAppV1 {
             case releaseWithAppStoreVersion
         }
 
-        public enum AppClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appClipAdvancedExperiences
             case appClipDefaultExperiences
             case bundleId
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability

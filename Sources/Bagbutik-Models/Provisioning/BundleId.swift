@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleid>
  */
-public struct BundleId: Codable, Identifiable {
+public struct BundleId: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct BundleId: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var identifier: String?
         public var name: String?
         public var platform: BundleIdPlatform?
@@ -99,7 +99,7 @@ public struct BundleId: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var bundleIdCapabilities: BundleIdCapabilities?
         public var profiles: Profiles?
@@ -134,7 +134,7 @@ public struct BundleId: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -164,7 +164,7 @@ public struct BundleId: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -194,7 +194,7 @@ public struct BundleId: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -226,7 +226,7 @@ public struct BundleId: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/bundleidcapabilities>
          */
-        public struct BundleIdCapabilities: Codable {
+        public struct BundleIdCapabilities: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -261,7 +261,7 @@ public struct BundleId: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/bundleidcapabilities/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "bundleIdCapabilities" }
 
@@ -291,7 +291,7 @@ public struct BundleId: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/bundleidcapabilities/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -323,7 +323,7 @@ public struct BundleId: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/profiles>
          */
-        public struct Profiles: Codable {
+        public struct Profiles: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -358,7 +358,7 @@ public struct BundleId: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/profiles/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "profiles" }
 
@@ -388,7 +388,7 @@ public struct BundleId: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleid/relationships/profiles/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

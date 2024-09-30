@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion>
  */
-public struct CiMacOsVersion: Codable, Identifiable {
+public struct CiMacOsVersion: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a macOS Versions resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct CiMacOsVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The name of the macOS version.
         public var name: String?
         /// The macOS version of the simulated environment.
@@ -91,7 +91,7 @@ public struct CiMacOsVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The macOS version’s related Xcode version.
         public var xcodeVersions: XcodeVersions?
 
@@ -116,7 +116,7 @@ public struct CiMacOsVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions>
          */
-        public struct XcodeVersions: Codable {
+        public struct XcodeVersions: Codable, Sendable {
             /// The ID and type of the related Xcode Versions resource.
             @NullCodable public var data: [Data]?
             /// The navigational links that include the self-link.
@@ -154,7 +154,7 @@ public struct CiMacOsVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                 public let id: String
                 /// The resource type.
@@ -186,7 +186,7 @@ public struct CiMacOsVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion/relationships/xcodeversions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

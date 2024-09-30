@@ -34,7 +34,7 @@ public enum GetAppClipAdvancedExperienceV1 {
         /// The fields to include for returned resources of type appClipAdvancedExperiences
         case appClipAdvancedExperiences([AppClipAdvancedExperiences])
 
-        public enum AppClipAdvancedExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAdvancedExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case businessCategory

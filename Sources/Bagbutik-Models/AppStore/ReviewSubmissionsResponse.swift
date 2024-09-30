@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ReviewSubmissionsResponse: Codable, PagedResponse {
+public struct ReviewSubmissionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ReviewSubmission
 
     public let data: [ReviewSubmission]
@@ -76,7 +76,7 @@ public struct ReviewSubmissionsResponse: Codable, PagedResponse {
         }.first { $0.id == reviewSubmission.relationships?.submittedByActor?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case actor(Actor)
         case app(App)
         case appStoreVersion(AppStoreVersion)

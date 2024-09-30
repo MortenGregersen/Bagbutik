@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreview>
  */
-public struct AppPreview: Codable, Identifiable {
+public struct AppPreview: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appPreviews" }
@@ -53,7 +53,7 @@ public struct AppPreview: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var assetDeliveryState: AppMediaAssetState?
         public var fileName: String?
         public var fileSize: Int?
@@ -119,7 +119,7 @@ public struct AppPreview: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appPreviewSet: AppPreviewSet?
 
         public init(appPreviewSet: AppPreviewSet? = nil) {
@@ -143,7 +143,7 @@ public struct AppPreview: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset>
          */
-        public struct AppPreviewSet: Codable {
+        public struct AppPreviewSet: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -173,7 +173,7 @@ public struct AppPreview: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 
@@ -203,7 +203,7 @@ public struct AppPreview: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreview/relationships/apppreviewset/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

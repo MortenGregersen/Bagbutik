@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesizesresponse>
  */
-public struct BuildBundleFileSizesResponse: Codable, PagedResponse {
+public struct BuildBundleFileSizesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildBundleFileSize
 
     /// The resource data.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepositoriesresponse>
  */
-public struct ScmRepositoriesResponse: Codable, PagedResponse {
+public struct ScmRepositoriesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmRepository
 
     /// The resource data.
@@ -61,7 +61,7 @@ public struct ScmRepositoriesResponse: Codable, PagedResponse {
         }.first { $0.id == scmRepository.relationships?.scmProvider?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case scmGitReference(ScmGitReference)
         case scmProvider(ScmProvider)
 

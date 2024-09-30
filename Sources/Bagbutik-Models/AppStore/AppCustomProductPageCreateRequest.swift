@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagecreaterequest>
  */
-public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
+public struct AppCustomProductPageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?
 
@@ -31,7 +31,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
         try container.encodeIfPresent(included, forKey: "included")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appCustomProductPages" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -66,7 +66,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let name: String
 
             public init(name: String) {
@@ -84,7 +84,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
             public var appCustomProductPageVersions: AppCustomProductPageVersions?
             public var appStoreVersionTemplate: AppStoreVersionTemplate?
@@ -117,7 +117,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(customProductPageTemplate, forKey: "customProductPageTemplate")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -134,7 +134,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -158,7 +158,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppCustomProductPageVersions: Codable {
+            public struct AppCustomProductPageVersions: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -175,7 +175,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
 
@@ -199,7 +199,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersionTemplate: Codable {
+            public struct AppStoreVersionTemplate: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -216,7 +216,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 
@@ -240,7 +240,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct CustomProductPageTemplate: Codable {
+            public struct CustomProductPageTemplate: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -257,7 +257,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPages" }
 
@@ -283,7 +283,7 @@ public struct AppCustomProductPageCreateRequest: Codable, RequestBody {
         }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appCustomProductPageLocalizationInlineCreate(AppCustomProductPageLocalizationInlineCreate)
         case appCustomProductPageVersionInlineCreate(AppCustomProductPageVersionInlineCreate)
 

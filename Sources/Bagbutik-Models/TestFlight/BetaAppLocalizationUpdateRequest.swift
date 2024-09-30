@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationupdaterequest>
  */
-public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
+public struct BetaAppLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -71,7 +71,7 @@ public struct BetaAppLocalizationUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A description of your app that highlights features and functionality.
             public var description: String?
             /// An email address to which beta testers can send feedback. Also appears as the reply-to address for TestFlight invitation emails.

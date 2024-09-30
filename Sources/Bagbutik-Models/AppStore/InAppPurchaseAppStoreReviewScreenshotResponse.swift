@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchaseAppStoreReviewScreenshotResponse: Codable {
+public struct InAppPurchaseAppStoreReviewScreenshotResponse: Codable, Sendable {
     public let data: InAppPurchaseAppStoreReviewScreenshot
     public var included: [InAppPurchaseV2]?
     public let links: DocumentLinks

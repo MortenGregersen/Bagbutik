@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationresponse>
  */
-public struct BetaAppClipInvocationLocalizationResponse: Codable {
+public struct BetaAppClipInvocationLocalizationResponse: Codable, Sendable {
     /// The resource data.
     public let data: BetaAppClipInvocationLocalization
     /// Navigational links that include the self-link.

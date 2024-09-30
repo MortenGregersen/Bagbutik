@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization>
  */
-public struct AppInfoLocalization: Codable, Identifiable {
+public struct AppInfoLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appInfoLocalizations" }
@@ -53,7 +53,7 @@ public struct AppInfoLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var locale: String?
         public var name: String?
         public var privacyChoicesUrl: String?
@@ -104,7 +104,7 @@ public struct AppInfoLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appInfo: AppInfo?
 
         public init(appInfo: AppInfo? = nil) {
@@ -128,7 +128,7 @@ public struct AppInfoLocalization: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo>
          */
-        public struct AppInfo: Codable {
+        public struct AppInfo: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -158,7 +158,7 @@ public struct AppInfoLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appInfos" }
 
@@ -188,7 +188,7 @@ public struct AppInfoLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization/relationships/appinfo/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

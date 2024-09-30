@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/device>
  */
-public struct Device: Codable, Identifiable {
+public struct Device: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct Device: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/device/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var addedDate: Date?
         public var deviceClass: DeviceClass?
         public var model: String?
@@ -100,7 +100,7 @@ public struct Device: Codable, Identifiable {
             try container.encodeIfPresent(udid, forKey: "udid")
         }
 
-        public enum DeviceClass: String, Codable, CaseIterable {
+        public enum DeviceClass: String, Sendable, Codable, CaseIterable {
             case appleTV = "APPLE_TV"
             case appleWatch = "APPLE_WATCH"
             case iPad = "IPAD"
@@ -109,7 +109,7 @@ public struct Device: Codable, Identifiable {
             case mac = "MAC"
         }
 
-        public enum Status: String, ParameterValue, Codable, CaseIterable {
+        public enum Status: String, Sendable, ParameterValue, Codable, CaseIterable {
             case disabled = "DISABLED"
             case enabled = "ENABLED"
             case processing = "PROCESSING"

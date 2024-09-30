@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail>
  */
-public struct BuildBetaDetail: Codable, Identifiable {
+public struct BuildBetaDetail: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct BuildBetaDetail: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
         public var autoNotifyEnabled: Bool?
         /// A state that indicates if the build is available for external testing.
@@ -97,7 +97,7 @@ public struct BuildBetaDetail: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var build: Build?
 
         public init(build: Build? = nil) {
@@ -121,7 +121,7 @@ public struct BuildBetaDetail: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build>
          */
-        public struct Build: Codable {
+        public struct Build: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -151,7 +151,7 @@ public struct BuildBetaDetail: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -183,7 +183,7 @@ public struct BuildBetaDetail: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

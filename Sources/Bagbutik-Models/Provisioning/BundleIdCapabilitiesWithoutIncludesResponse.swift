@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct BundleIdCapabilitiesWithoutIncludesResponse: Codable, PagedResponse {
+public struct BundleIdCapabilitiesWithoutIncludesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BundleIdCapability
 
     public let data: [BundleIdCapability]

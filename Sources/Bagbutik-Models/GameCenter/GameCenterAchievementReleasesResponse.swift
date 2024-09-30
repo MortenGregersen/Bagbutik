@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementreleasesresponse>
  */
-public struct GameCenterAchievementReleasesResponse: Codable, PagedResponse {
+public struct GameCenterAchievementReleasesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterAchievementRelease
 
     public let data: [GameCenterAchievementRelease]
@@ -57,7 +57,7 @@ public struct GameCenterAchievementReleasesResponse: Codable, PagedResponse {
         }.first { $0.id == gameCenterAchievementRelease.relationships?.gameCenterDetail?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterDetail(GameCenterDetail)
 

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
+public struct AppStoreVersionPromotionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionPromotions" }
         public let relationships: Relationships
 
@@ -40,7 +40,7 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
             public let appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment
 
@@ -63,7 +63,7 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
                 try container.encode(appStoreVersionExperimentTreatment, forKey: "appStoreVersionExperimentTreatment")
             }
 
-            public struct AppStoreVersion: Codable {
+            public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -80,7 +80,7 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 
@@ -104,7 +104,7 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersionExperimentTreatment: Codable {
+            public struct AppStoreVersionExperimentTreatment: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -121,7 +121,7 @@ public struct AppStoreVersionPromotionCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionExperimentTreatments" }
 

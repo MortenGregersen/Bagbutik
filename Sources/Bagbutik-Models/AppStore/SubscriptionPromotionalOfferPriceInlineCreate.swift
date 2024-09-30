@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Identifiable {
+public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "subscriptionPromotionalOfferPrices" }
     public var relationships: Relationships?
@@ -29,7 +29,7 @@ public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Identifiab
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var subscriptionPricePoint: SubscriptionPricePoint?
         public var territory: Territory?
 
@@ -52,7 +52,7 @@ public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Identifiab
             try container.encodeIfPresent(territory, forKey: "territory")
         }
 
-        public struct SubscriptionPricePoint: Codable {
+        public struct SubscriptionPricePoint: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -69,7 +69,7 @@ public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Identifiab
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPricePoints" }
 
@@ -93,7 +93,7 @@ public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Identifiab
             }
         }
 
-        public struct Territory: Codable {
+        public struct Territory: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -110,7 +110,7 @@ public struct SubscriptionPromotionalOfferPriceInlineCreate: Codable, Identifiab
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 

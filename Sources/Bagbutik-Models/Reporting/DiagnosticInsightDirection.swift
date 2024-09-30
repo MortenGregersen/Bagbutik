@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticinsightdirection>
  */
-public enum DiagnosticInsightDirection: String, Codable, CaseIterable {
+public enum DiagnosticInsightDirection: String, Sendable, Codable, CaseIterable {
     /// The impact of this signature has progressed in the current version compared to previous versions.
     case down = "DOWN"
     /// No significant change in impact of this signature in the current version compared to previous versions.

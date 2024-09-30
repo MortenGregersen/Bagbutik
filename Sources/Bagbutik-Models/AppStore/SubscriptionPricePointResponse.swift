@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionPricePointResponse: Codable {
+public struct SubscriptionPricePointResponse: Codable, Sendable {
     public let data: SubscriptionPricePoint
     public var included: [Territory]?
     public let links: DocumentLinks

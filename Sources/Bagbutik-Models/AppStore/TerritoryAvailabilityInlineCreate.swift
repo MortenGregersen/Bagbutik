@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityinlinecreate>
  */
-public struct TerritoryAvailabilityInlineCreate: Codable, Identifiable {
+public struct TerritoryAvailabilityInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "territoryAvailabilities" }
 

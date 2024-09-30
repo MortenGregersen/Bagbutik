@@ -30,7 +30,7 @@ public enum ListMarketplaceDomainsV1 {
         /// The fields to include for returned resources of type marketplaceDomains
         case marketplaceDomains([MarketplaceDomains])
 
-        public enum MarketplaceDomains: String, ParameterValue, Codable, CaseIterable {
+        public enum MarketplaceDomains: String, Sendable, ParameterValue, Codable, CaseIterable {
             case createdDate
             case domain
             case referenceName

@@ -31,7 +31,7 @@ public enum ListDeltasForAlternativeDistributionPackageVersionV1 {
         /// The fields to include for returned resources of type alternativeDistributionPackageDeltas
         case alternativeDistributionPackageDeltas([AlternativeDistributionPackageDeltas])
 
-        public enum AlternativeDistributionPackageDeltas: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackageDeltas: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
             case fileChecksum
             case url

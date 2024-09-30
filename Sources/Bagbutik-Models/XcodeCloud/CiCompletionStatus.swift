@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cicompletionstatus>
  */
-public enum CiCompletionStatus: String, Codable, CaseIterable {
+public enum CiCompletionStatus: String, Sendable, Codable, CaseIterable {
     /// Xcode Cloud canceled the build because you manually canceled an ongoing build or because you enabled the Auto-cancel Builds setting for a workflow. For more information about the Auto-cancel Builds setting, see [Xcode Cloud workflow reference](https://developer.apple.com/documentation/xcode/xcode-cloud-workflow-reference).
     case canceled = "CANCELED"
     /// Xcode Cloud encountered an internal error when it performed the build.

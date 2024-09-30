@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionresponse>
  */
-public struct CiXcodeVersionResponse: Codable {
+public struct CiXcodeVersionResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiXcodeVersion
     /// The requested relationship data.

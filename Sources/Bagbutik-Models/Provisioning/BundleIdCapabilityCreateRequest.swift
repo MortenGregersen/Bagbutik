@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest>
  */
-public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
+public struct BundleIdCapabilityCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "bundleIdCapabilities" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -68,7 +68,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let capabilityType: CapabilityType
             public var settings: [CapabilitySetting]?
 
@@ -99,7 +99,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let bundleId: BundleId
 
             public init(bundleId: BundleId) {
@@ -123,7 +123,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/relationships/bundleid>
              */
-            public struct BundleId: Codable {
+            public struct BundleId: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -147,7 +147,7 @@ public struct BundleIdCapabilityCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitycreaterequest/data/relationships/bundleid/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "bundleIds" }
 

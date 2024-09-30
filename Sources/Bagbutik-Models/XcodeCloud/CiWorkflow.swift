@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow>
  */
-public struct CiWorkflow: Codable, Identifiable {
+public struct CiWorkflow: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Workflows resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct CiWorkflow: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The actions that are part of the workflow.
         public var actions: [CiAction]?
         /// The workflow’s start condition that starts new builds for changes to a branch.
@@ -166,7 +166,7 @@ public struct CiWorkflow: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related macOS Versions resource.
         public var macOsVersion: MacOsVersion?
         /// The related Products resource.
@@ -210,7 +210,7 @@ public struct CiWorkflow: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion>
          */
-        public struct MacOsVersion: Codable {
+        public struct MacOsVersion: Codable, Sendable {
             /// The ID and type of the related macOS Versions resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -242,7 +242,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                 public let id: String
                 /// The resource type.
@@ -274,7 +274,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/macosversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -308,7 +308,7 @@ public struct CiWorkflow: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product>
          */
-        public struct Product: Codable {
+        public struct Product: Codable, Sendable {
             /// The ID and type of the related Products resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -340,7 +340,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
                 /// The resource type.
@@ -372,7 +372,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/product/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -406,7 +406,7 @@ public struct CiWorkflow: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository>
          */
-        public struct Repository: Codable {
+        public struct Repository: Codable, Sendable {
             /// The ID and type of the related Repositories resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -438,7 +438,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
                 /// The resource type.
@@ -470,7 +470,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/repository/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -504,7 +504,7 @@ public struct CiWorkflow: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion>
          */
-        public struct XcodeVersion: Codable {
+        public struct XcodeVersion: Codable, Sendable {
             /// The ID and type of the related Xcode Versions resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -536,7 +536,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                 public let id: String
                 /// The resource type.
@@ -568,7 +568,7 @@ public struct CiWorkflow: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow/relationships/xcodeversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

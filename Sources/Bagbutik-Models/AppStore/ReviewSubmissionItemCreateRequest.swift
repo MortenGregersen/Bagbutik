@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
+public struct ReviewSubmissionItemCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "reviewSubmissionItems" }
         public let relationships: Relationships
 
@@ -40,7 +40,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var appCustomProductPageVersion: AppCustomProductPageVersion?
             public var appEvent: AppEvent?
             public var appStoreVersion: AppStoreVersion?
@@ -83,7 +83,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                 try container.encode(reviewSubmission, forKey: "reviewSubmission")
             }
 
-            public struct AppCustomProductPageVersion: Codable {
+            public struct AppCustomProductPageVersion: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -100,7 +100,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
 
@@ -124,7 +124,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppEvent: Codable {
+            public struct AppEvent: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -141,7 +141,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appEvents" }
 
@@ -165,7 +165,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersion: Codable {
+            public struct AppStoreVersion: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -182,7 +182,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 
@@ -206,7 +206,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersionExperiment: Codable {
+            public struct AppStoreVersionExperiment: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -223,7 +223,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionExperiments" }
 
@@ -247,7 +247,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct AppStoreVersionExperimentV2: Codable {
+            public struct AppStoreVersionExperimentV2: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -264,7 +264,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionExperiments" }
 
@@ -288,7 +288,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct ReviewSubmission: Codable {
+            public struct ReviewSubmission: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -305,7 +305,7 @@ public struct ReviewSubmissionItemCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "reviewSubmissions" }
 

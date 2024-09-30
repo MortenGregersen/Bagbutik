@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomaincreaterequest>
  */
-public struct AlternativeDistributionDomainCreateRequest: Codable, RequestBody {
+public struct AlternativeDistributionDomainCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct AlternativeDistributionDomainCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "alternativeDistributionDomains" }
         public let attributes: Attributes
 
@@ -54,7 +54,7 @@ public struct AlternativeDistributionDomainCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomaincreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let domain: String
             public let referenceName: String
 

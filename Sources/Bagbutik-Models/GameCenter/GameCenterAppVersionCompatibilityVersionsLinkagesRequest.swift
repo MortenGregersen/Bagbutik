@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncompatibilityversionslinkagesrequest>
  */
-public struct GameCenterAppVersionCompatibilityVersionsLinkagesRequest: Codable, RequestBody {
+public struct GameCenterAppVersionCompatibilityVersionsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 
     public init(data: [Data]) {
@@ -25,7 +25,7 @@ public struct GameCenterAppVersionCompatibilityVersionsLinkagesRequest: Codable,
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterAppVersions" }
 

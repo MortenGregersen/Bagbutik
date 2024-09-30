@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate>
  */
-public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiable {
+public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization Inline Create resource.
     public var id: String?
     /// The resource type.
@@ -52,7 +52,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiab
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The specified locale. Refer to ``BetaAppLocalizationCreateRequest/Data/Attributes`` for possible values.
         public let locale: String
         /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
@@ -85,7 +85,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiab
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related Beta App Clip Invocations resource.
         public var betaAppClipInvocation: BetaAppClipInvocation?
 
@@ -110,7 +110,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiab
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation>
          */
-        public struct BetaAppClipInvocation: Codable {
+        public struct BetaAppClipInvocation: Codable, Sendable {
             /// The ID and type of the related Beta App Clip Invocations resource.
             @NullCodable public var data: Data?
 
@@ -135,7 +135,7 @@ public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Identifiab
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate/relationships/betaappclipinvocation/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.

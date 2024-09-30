@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>
  */
-public struct AppInfosResponse: Codable, PagedResponse {
+public struct AppInfosResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppInfo
 
     /// The resource data.
@@ -114,7 +114,7 @@ public struct AppInfosResponse: Codable, PagedResponse {
         }.first { $0.id == appInfo.relationships?.secondarySubcategoryTwo?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)
         case appCategory(AppCategory)

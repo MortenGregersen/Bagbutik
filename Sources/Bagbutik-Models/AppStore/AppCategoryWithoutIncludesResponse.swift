@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppCategoryWithoutIncludesResponse: Codable {
+public struct AppCategoryWithoutIncludesResponse: Codable, Sendable {
     public let data: AppCategory
     public let links: DocumentLinks
 

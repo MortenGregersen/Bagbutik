@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability>
  */
-public struct BundleIdCapability: Codable, Identifiable {
+public struct BundleIdCapability: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct BundleIdCapability: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var capabilityType: CapabilityType?
         public var settings: [CapabilitySetting]?
 

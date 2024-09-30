@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacedomain>
  */
-public struct MarketplaceDomain: Codable, Identifiable {
+public struct MarketplaceDomain: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "marketplaceDomains" }
@@ -41,7 +41,7 @@ public struct MarketplaceDomain: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var createdDate: Date?
         public var domain: String?
         public var referenceName: String?

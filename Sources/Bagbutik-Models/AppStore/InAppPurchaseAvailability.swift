@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchaseAvailability: Codable, Identifiable {
+public struct InAppPurchaseAvailability: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "inAppPurchaseAvailabilities" }
@@ -39,7 +39,7 @@ public struct InAppPurchaseAvailability: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var availableInNewTerritories: Bool?
 
         public init(availableInNewTerritories: Bool? = nil) {
@@ -57,7 +57,7 @@ public struct InAppPurchaseAvailability: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var availableTerritories: AvailableTerritories?
 
         public init(availableTerritories: AvailableTerritories? = nil) {
@@ -74,7 +74,7 @@ public struct InAppPurchaseAvailability: Codable, Identifiable {
             try container.encodeIfPresent(availableTerritories, forKey: "availableTerritories")
         }
 
-        public struct AvailableTerritories: Codable {
+        public struct AvailableTerritories: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -102,7 +102,7 @@ public struct InAppPurchaseAvailability: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 
@@ -125,7 +125,7 @@ public struct InAppPurchaseAvailability: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

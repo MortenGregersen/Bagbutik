@@ -42,7 +42,7 @@ public enum GetAppInfoV1 {
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
@@ -63,13 +63,13 @@ public enum GetAppInfoV1 {
             case violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AppCategories: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCategories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case parent
             case platforms
             case subcategories
         }
 
-        public enum AppInfoLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfoLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appInfo
             case locale
             case name
@@ -79,7 +79,7 @@ public enum GetAppInfoV1 {
             case subtitle
         }
 
-        public enum AppInfos: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfos: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
             case appInfoLocalizations

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
+public struct SubscriptionPromotionalOfferInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "subscriptionPromotionalOffers" }
     public let attributes: Attributes
@@ -34,7 +34,7 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public let duration: SubscriptionOfferDuration
         public let name: String
         public let numberOfPeriods: Int
@@ -73,7 +73,7 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var prices: Prices?
         public var subscription: Subscription?
 
@@ -96,7 +96,7 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
             try container.encodeIfPresent(subscription, forKey: "subscription")
         }
 
-        public struct Prices: Codable {
+        public struct Prices: Codable, Sendable {
             @NullCodable public var data: [Data]?
 
             public init(data: [Data]? = nil) {
@@ -113,7 +113,7 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPromotionalOfferPrices" }
 
@@ -137,7 +137,7 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
             }
         }
 
-        public struct Subscription: Codable {
+        public struct Subscription: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -154,7 +154,7 @@ public struct SubscriptionPromotionalOfferInlineCreate: Codable, Identifiable {
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptions" }
 

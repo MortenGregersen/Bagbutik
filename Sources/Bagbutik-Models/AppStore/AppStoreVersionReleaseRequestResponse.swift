@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestresponse>
  */
-public struct AppStoreVersionReleaseRequestResponse: Codable {
+public struct AppStoreVersionReleaseRequestResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppStoreVersionReleaseRequest
     /// Navigational links that include the self-link.

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct CiManualPullRequestStartCondition: Codable {
+public struct CiManualPullRequestStartCondition: Codable, Sendable {
     public var destination: CiBranchPatterns?
     public var source: CiBranchPatterns?
 

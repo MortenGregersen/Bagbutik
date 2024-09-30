@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEncryptionDeclarationDocument: Codable, Identifiable {
+public struct AppEncryptionDeclarationDocument: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appEncryptionDeclarationDocuments" }
@@ -34,7 +34,7 @@ public struct AppEncryptionDeclarationDocument: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var assetDeliveryState: AppMediaAssetState?
         public var assetToken: String?
         public var downloadUrl: String?

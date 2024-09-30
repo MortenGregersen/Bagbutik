@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailcreaterequest>
  */
-public struct GameCenterDetailCreateRequest: Codable, RequestBody {
+public struct GameCenterDetailCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterDetailCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterDetails" }
         public var attributes: Attributes?
         public let relationships: Relationships
@@ -53,7 +53,7 @@ public struct GameCenterDetailCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var challengeEnabled: Bool?
 
             public init(challengeEnabled: Bool? = nil) {
@@ -71,7 +71,7 @@ public struct GameCenterDetailCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
 
             public init(app: App) {
@@ -88,7 +88,7 @@ public struct GameCenterDetailCreateRequest: Codable, RequestBody {
                 try container.encode(app, forKey: "app")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -105,7 +105,7 @@ public struct GameCenterDetailCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 

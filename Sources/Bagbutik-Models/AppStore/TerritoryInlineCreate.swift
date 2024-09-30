@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct TerritoryInlineCreate: Codable, Identifiable {
+public struct TerritoryInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "territories" }
 

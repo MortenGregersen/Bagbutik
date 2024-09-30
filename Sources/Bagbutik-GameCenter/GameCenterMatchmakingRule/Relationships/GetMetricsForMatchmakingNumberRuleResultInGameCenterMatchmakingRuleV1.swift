@@ -60,7 +60,7 @@ public enum GetMetricsForMatchmakingNumberRuleResultInGameCenterMatchmakingRuleV
     /**
      The granularity of the per-group dataset
      */
-    public enum Granularity: String, ParameterValue, Codable, CaseIterable {
+    public enum Granularity: String, Sendable, ParameterValue, Codable, CaseIterable {
         case P1D
         case PT15M
         case PT1H
@@ -69,7 +69,7 @@ public enum GetMetricsForMatchmakingNumberRuleResultInGameCenterMatchmakingRuleV
     /**
      The dimension by which to group the results
      */
-    public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
+    public enum GroupBy: String, Sendable, ParameterValue, Codable, CaseIterable {
         case gameCenterMatchmakingQueue
     }
 }

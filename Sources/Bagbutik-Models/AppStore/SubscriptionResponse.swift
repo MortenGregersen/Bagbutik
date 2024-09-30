@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionResponse: Codable {
+public struct SubscriptionResponse: Codable, Sendable {
     public let data: Subscription
     public var included: [Included]?
     public let links: DocumentLinks
@@ -117,7 +117,7 @@ public struct SubscriptionResponse: Codable {
         return subscriptionLocalizations
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case promotedPurchase(PromotedPurchase)
         case subscriptionAppStoreReviewScreenshot(SubscriptionAppStoreReviewScreenshot)
         case subscriptionAvailability(SubscriptionAvailability)

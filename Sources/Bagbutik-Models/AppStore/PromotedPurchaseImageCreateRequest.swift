@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchaseImageCreateRequest: Codable, RequestBody {
+public struct PromotedPurchaseImageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "promotedPurchaseImages" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
 
@@ -70,7 +70,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let promotedPurchase: PromotedPurchase
 
             public init(promotedPurchase: PromotedPurchase) {
@@ -87,7 +87,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, RequestBody {
                 try container.encode(promotedPurchase, forKey: "promotedPurchase")
             }
 
-            public struct PromotedPurchase: Codable {
+            public struct PromotedPurchase: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -104,7 +104,7 @@ public struct PromotedPurchaseImageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "promotedPurchases" }
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversion>
  */
-public struct AppCustomProductPageVersion: Codable, Identifiable {
+public struct AppCustomProductPageVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appCustomProductPageVersions" }
@@ -46,7 +46,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var deepLink: String?
         public var state: State?
         public var version: String?
@@ -74,7 +74,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
             try container.encodeIfPresent(version, forKey: "version")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case inReview = "IN_REVIEW"
@@ -86,7 +86,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appCustomProductPage: AppCustomProductPage?
         public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
@@ -109,7 +109,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
             try container.encodeIfPresent(appCustomProductPageLocalizations, forKey: "appCustomProductPageLocalizations")
         }
 
-        public struct AppCustomProductPage: Codable {
+        public struct AppCustomProductPage: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -132,7 +132,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPages" }
 
@@ -155,7 +155,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -180,7 +180,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
             }
         }
 
-        public struct AppCustomProductPageLocalizations: Codable {
+        public struct AppCustomProductPageLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -208,7 +208,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageLocalizations" }
 
@@ -231,7 +231,7 @@ public struct AppCustomProductPageVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

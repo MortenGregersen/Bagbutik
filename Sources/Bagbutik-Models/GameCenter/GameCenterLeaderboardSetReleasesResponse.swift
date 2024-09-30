@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetreleasesresponse>
  */
-public struct GameCenterLeaderboardSetReleasesResponse: Codable, PagedResponse {
+public struct GameCenterLeaderboardSetReleasesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterLeaderboardSetRelease
 
     public let data: [GameCenterLeaderboardSetRelease]
@@ -57,7 +57,7 @@ public struct GameCenterLeaderboardSetReleasesResponse: Codable, PagedResponse {
         }.first { $0.id == gameCenterLeaderboardSetRelease.relationships?.gameCenterLeaderboardSet?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterDetail(GameCenterDetail)
         case gameCenterLeaderboardSet(GameCenterLeaderboardSet)
 

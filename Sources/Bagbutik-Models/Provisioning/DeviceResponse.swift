@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/deviceresponse>
  */
-public struct DeviceResponse: Codable {
+public struct DeviceResponse: Codable, Sendable {
     /// The resource data.
     public let data: Device
     /// Navigational links that include the self-link.

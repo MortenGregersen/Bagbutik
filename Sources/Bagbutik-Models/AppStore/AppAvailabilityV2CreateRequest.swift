@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2createrequest>
  */
-public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
+public struct AppAvailabilityV2CreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [TerritoryAvailabilityInlineCreate]?
 
@@ -31,7 +31,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
         try container.encodeIfPresent(included, forKey: "included")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appAvailabilities" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -59,7 +59,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let availableInNewTerritories: Bool
 
             public init(availableInNewTerritories: Bool) {
@@ -77,7 +77,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
             public let territoryAvailabilities: TerritoryAvailabilities
 
@@ -100,7 +100,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
                 try container.encode(territoryAvailabilities, forKey: "territoryAvailabilities")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -117,7 +117,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -141,7 +141,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct TerritoryAvailabilities: Codable {
+            public struct TerritoryAvailabilities: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -158,7 +158,7 @@ public struct AppAvailabilityV2CreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "territoryAvailabilities" }
 

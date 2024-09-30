@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
+public struct InAppPurchasePriceInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "inAppPurchasePrices" }
     public var attributes: Attributes?
@@ -34,7 +34,7 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var endDate: String?
         public var startDate: String?
 
@@ -58,7 +58,7 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var inAppPurchasePricePoint: InAppPurchasePricePoint?
         public var inAppPurchaseV2: InAppPurchaseV2?
 
@@ -81,7 +81,7 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
             try container.encodeIfPresent(inAppPurchaseV2, forKey: "inAppPurchaseV2")
         }
 
-        public struct InAppPurchasePricePoint: Codable {
+        public struct InAppPurchasePricePoint: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -98,7 +98,7 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchasePricePoints" }
 
@@ -122,7 +122,7 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
             }
         }
 
-        public struct InAppPurchaseV2: Codable {
+        public struct InAppPurchaseV2: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -139,7 +139,7 @@ public struct InAppPurchasePriceInlineCreate: Codable, Identifiable {
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
 

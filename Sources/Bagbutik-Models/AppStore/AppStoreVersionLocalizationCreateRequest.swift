@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest>
  */
-public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
+public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -67,7 +67,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var description: String?
             public var keywords: String?
             public let locale: String
@@ -123,7 +123,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
             public init(appStoreVersion: AppStoreVersion) {
@@ -147,7 +147,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/relationships/appstoreversion>
              */
-            public struct AppStoreVersion: Codable {
+            public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -171,7 +171,7 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/relationships/appstoreversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 

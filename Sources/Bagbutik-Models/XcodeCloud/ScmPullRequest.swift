@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest>
  */
-public struct ScmPullRequest: Codable, Identifiable, RequestBody {
+public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
     /// The opaque resource ID that uniquely identifies a Pull Request resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The name of the pull request’s destination branch.
         public var destinationBranchName: String?
         /// The name of the pull request’s destination repository. If the pull request is not for a fork, this is the same value as the source repository name.
@@ -145,7 +145,7 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related Repositories resource.
         public var repository: Repository?
 
@@ -170,7 +170,7 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository>
          */
-        public struct Repository: Codable {
+        public struct Repository: Codable, Sendable {
             /// The ID and type of the related Repositories resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -202,7 +202,7 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
                 /// The resource type.
@@ -234,7 +234,7 @@ public struct ScmPullRequest: Codable, Identifiable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

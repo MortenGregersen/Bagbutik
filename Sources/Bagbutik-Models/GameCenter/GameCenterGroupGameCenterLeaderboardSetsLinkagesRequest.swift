@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterleaderboardsetslinkagesrequest>
  */
-public struct GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest: Codable, RequestBody {
+public struct GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 
     public init(data: [Data]) {
@@ -25,7 +25,7 @@ public struct GameCenterGroupGameCenterLeaderboardSetsLinkagesRequest: Codable, 
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterLeaderboardSets" }
 

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventUpdateRequest: Codable, RequestBody {
+public struct AppEventUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appEvents" }
         public var attributes: Attributes?
@@ -46,7 +46,7 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var badge: AppEvent.Attributes.Badge?
             public var deepLink: String?
             public var primaryLocale: String?
@@ -99,7 +99,7 @@ public struct AppEventUpdateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(territorySchedules, forKey: "territorySchedules")
             }
 
-            public struct TerritorySchedules: Codable {
+            public struct TerritorySchedules: Codable, Sendable {
                 public var eventEnd: Date?
                 public var eventStart: Date?
                 public var publishStart: Date?

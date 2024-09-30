@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ReviewSubmissionItem: Codable, Identifiable {
+public struct ReviewSubmissionItem: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "reviewSubmissionItems" }
@@ -39,7 +39,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var state: State?
 
         public init(state: State? = nil) {
@@ -56,7 +56,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             try container.encodeIfPresent(state, forKey: "state")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case readyForReview = "READY_FOR_REVIEW"
@@ -65,7 +65,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appCustomProductPageVersion: AppCustomProductPageVersion?
         public var appEvent: AppEvent?
         public var appStoreVersion: AppStoreVersion?
@@ -103,7 +103,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             try container.encodeIfPresent(appStoreVersionExperimentV2, forKey: "appStoreVersionExperimentV2")
         }
 
-        public struct AppCustomProductPageVersion: Codable {
+        public struct AppCustomProductPageVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -126,7 +126,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageVersions" }
 
@@ -149,7 +149,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -174,7 +174,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             }
         }
 
-        public struct AppEvent: Codable {
+        public struct AppEvent: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -197,7 +197,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEvents" }
 
@@ -220,7 +220,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -245,7 +245,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -268,7 +268,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -291,7 +291,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -316,7 +316,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperiment: Codable {
+        public struct AppStoreVersionExperiment: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -339,7 +339,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
@@ -362,7 +362,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -387,7 +387,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperimentV2: Codable {
+        public struct AppStoreVersionExperimentV2: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -410,7 +410,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
@@ -433,7 +433,7 @@ public struct ReviewSubmissionItem: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

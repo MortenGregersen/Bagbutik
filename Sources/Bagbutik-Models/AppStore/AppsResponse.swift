@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appsresponse>
  */
-public struct AppsResponse: Codable, PagedResponse {
+public struct AppsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = App
 
     /// The resource data.
@@ -287,7 +287,7 @@ public struct AppsResponse: Codable, PagedResponse {
         return subscriptionGroups
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appClip(AppClip)
         case appCustomProductPage(AppCustomProductPage)
         case appEncryptionDeclaration(AppEncryptionDeclaration)

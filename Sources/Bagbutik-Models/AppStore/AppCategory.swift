@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcategory>
  */
-public struct AppCategory: Codable, Identifiable {
+public struct AppCategory: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appCategories" }
@@ -53,7 +53,7 @@ public struct AppCategory: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var platforms: [Platform]?
 
         public init(platforms: [Platform]? = nil) {
@@ -78,7 +78,7 @@ public struct AppCategory: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var parent: Parent?
         public var subcategories: Subcategories?
 
@@ -108,7 +108,7 @@ public struct AppCategory: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent>
          */
-        public struct Parent: Codable {
+        public struct Parent: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -138,7 +138,7 @@ public struct AppCategory: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCategories" }
 
@@ -168,7 +168,7 @@ public struct AppCategory: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/parent/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -200,7 +200,7 @@ public struct AppCategory: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories>
          */
-        public struct Subcategories: Codable {
+        public struct Subcategories: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -235,7 +235,7 @@ public struct AppCategory: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCategories" }
 
@@ -265,7 +265,7 @@ public struct AppCategory: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appcategory/relationships/subcategories/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

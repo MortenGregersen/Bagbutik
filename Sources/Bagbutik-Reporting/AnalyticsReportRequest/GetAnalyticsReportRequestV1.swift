@@ -36,14 +36,14 @@ public enum GetAnalyticsReportRequestV1 {
         /// The fields to include for returned resources of type analyticsReports
         case analyticsReports([AnalyticsReports])
 
-        public enum AnalyticsReportRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReportRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
             case accessType
             case app
             case reports
             case stoppedDueToInactivity
         }
 
-        public enum AnalyticsReports: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReports: String, Sendable, ParameterValue, Codable, CaseIterable {
             case category
             case instances
             case name

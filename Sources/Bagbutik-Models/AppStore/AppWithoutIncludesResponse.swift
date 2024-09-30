@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppWithoutIncludesResponse: Codable {
+public struct AppWithoutIncludesResponse: Codable, Sendable {
     public let data: App
     public let links: DocumentLinks
 

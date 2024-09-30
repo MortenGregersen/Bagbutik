@@ -42,7 +42,7 @@ public enum GetCiProductForAppV1 {
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -88,7 +88,7 @@ public enum GetCiProductForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BundleIds: String, ParameterValue, Codable, CaseIterable {
+        public enum BundleIds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case bundleIdCapabilities
             case identifier
@@ -98,7 +98,7 @@ public enum GetCiProductForAppV1 {
             case seedId
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -110,7 +110,7 @@ public enum GetCiProductForAppV1 {
             case workflows
         }
 
-        public enum ScmRepositories: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case defaultBranch
             case gitReferences
             case httpCloneUrl

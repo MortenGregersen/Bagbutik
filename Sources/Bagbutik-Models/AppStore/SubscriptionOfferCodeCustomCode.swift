@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
+public struct SubscriptionOfferCodeCustomCode: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionOfferCodeCustomCodes" }
@@ -39,7 +39,7 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var active: Bool?
         public var createdDate: Date?
         public var customCode: String?
@@ -78,7 +78,7 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var offerCode: OfferCode?
 
         public init(offerCode: OfferCode? = nil) {
@@ -95,7 +95,7 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
             try container.encodeIfPresent(offerCode, forKey: "offerCode")
         }
 
-        public struct OfferCode: Codable {
+        public struct OfferCode: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -118,7 +118,7 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodes" }
 
@@ -141,7 +141,7 @@ public struct SubscriptionOfferCodeCustomCode: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

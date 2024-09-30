@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciaction>
  */
-public struct CiAction: Codable {
+public struct CiAction: Codable, Sendable {
     /// The type of the action.
     public var actionType: CiActionType?
     /// A type that indicates whether a build’s artifact is eligible for release on the App Store.
@@ -69,7 +69,7 @@ public struct CiAction: Codable {
         try container.encodeIfPresent(testConfiguration, forKey: "testConfiguration")
     }
 
-    public enum Destination: String, Codable, CaseIterable {
+    public enum Destination: String, Sendable, Codable, CaseIterable {
         case anyIosDevice = "ANY_IOS_DEVICE"
         case anyIosSimulator = "ANY_IOS_SIMULATOR"
         case anyMac = "ANY_MAC"
@@ -82,7 +82,7 @@ public struct CiAction: Codable {
         case anyWatchosSimulator = "ANY_WATCHOS_SIMULATOR"
     }
 
-    public enum Platform: String, Codable, CaseIterable {
+    public enum Platform: String, Sendable, Codable, CaseIterable {
         case iOS = "IOS"
         case macOS = "MACOS"
         case tvOS = "TVOS"
@@ -97,7 +97,7 @@ public struct CiAction: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciaction/testconfiguration>
      */
-    public struct TestConfiguration: Codable {
+    public struct TestConfiguration: Codable, Sendable {
         /// A string that describes whether the test action uses the scheme’s default tests or a specific test plan.
         public var kind: Kind?
         /// A list of destination information for the test configuration.
@@ -128,7 +128,7 @@ public struct CiAction: Codable {
             try container.encodeIfPresent(testPlanName, forKey: "testPlanName")
         }
 
-        public enum Kind: String, Codable, CaseIterable {
+        public enum Kind: String, Sendable, Codable, CaseIterable {
             case specificTestPlans = "SPECIFIC_TEST_PLANS"
             case useSchemeSettings = "USE_SCHEME_SETTINGS"
         }
