@@ -93,7 +93,7 @@ public struct ErrorResponse: Codable, Sendable, Error {
             try container.encode(title, forKey: "title")
         }
 
-        public struct Meta: Codable, Sendable, Sendable {
+        public struct Meta: Codable, Sendable {
             public var additionalProperties: [String: String]?
             public var associatedErrors: [String: [Errors]]?
 
