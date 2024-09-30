@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/metricsinsight>
  */
-public struct MetricsInsight: Codable {
+public struct MetricsInsight: Codable, Sendable {
     /// A Boolean value that indicates whether the insight is high impact, meaning the metrics show that the latest app version has a regression of 100% or more, compared with the average values of the metric from the previous app versions.
     public var highImpact: Bool?
     /// The version number of the most current version of the app.
@@ -82,7 +82,7 @@ public struct MetricsInsight: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/metricsinsight/populations>
      */
-    public struct Populations: Codable {
+    public struct Populations: Codable, Sendable {
         /// The percentage increase between the values of `latestVersionValue` and `referenceAverageValue`.
         public var deltaPercentage: Double?
         /// The device type.

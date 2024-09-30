@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventLocalizationResponse: Codable {
+public struct AppEventLocalizationResponse: Codable, Sendable {
     public let data: AppEventLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -60,7 +60,7 @@ public struct AppEventLocalizationResponse: Codable {
         return appEventVideoClips
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appEvent(AppEvent)
         case appEventScreenshot(AppEventScreenshot)
         case appEventVideoClip(AppEventVideoClip)

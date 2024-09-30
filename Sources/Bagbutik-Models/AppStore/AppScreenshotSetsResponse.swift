@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetsresponse>
  */
-public struct AppScreenshotSetsResponse: Codable, PagedResponse {
+public struct AppScreenshotSetsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppScreenshotSet
 
     public let data: [AppScreenshotSet]
@@ -76,7 +76,7 @@ public struct AppScreenshotSetsResponse: Codable, PagedResponse {
         }.first { $0.id == appScreenshotSet.relationships?.appStoreVersionLocalization?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appScreenshot(AppScreenshot)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)

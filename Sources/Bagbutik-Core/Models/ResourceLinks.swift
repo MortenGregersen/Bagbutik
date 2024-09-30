@@ -7,7 +7,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/resourcelinks>
  */
-public struct ResourceLinks: Codable {
+public struct ResourceLinks: Codable, Sendable {
     /// The link to the resource.
     public var itself: String?
 

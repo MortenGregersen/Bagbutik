@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilityresponse>
  */
-public struct BundleIdCapabilityResponse: Codable {
+public struct BundleIdCapabilityResponse: Codable, Sendable {
     /// The resource data.
     public let data: BundleIdCapability
     /// Navigational links that include the self-link.

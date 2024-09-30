@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease>
  */
-public struct AppStoreVersionPhasedRelease: Codable, Identifiable {
+public struct AppStoreVersionPhasedRelease: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersionPhasedReleases" }
@@ -48,7 +48,7 @@ public struct AppStoreVersionPhasedRelease: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var currentDayNumber: Int?
         public var phasedReleaseState: PhasedReleaseState?
         public var startDate: Date?

@@ -31,7 +31,7 @@ public enum GetCustomerReviewResponseV1 {
         /// The fields to include for returned resources of type customerReviewResponses
         case customerReviewResponses([CustomerReviewResponses])
 
-        public enum CustomerReviewResponses: String, ParameterValue, Codable, CaseIterable {
+        public enum CustomerReviewResponses: String, Sendable, ParameterValue, Codable, CaseIterable {
             case lastModifiedDate
             case responseBody
             case review

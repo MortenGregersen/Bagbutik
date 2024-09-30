@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate>
  */
-public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Identifiable {
+public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Localization Inline Creates resource.
     public var id: String?
     /// The resource type.
@@ -46,7 +46,7 @@ public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Identi
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A string that identifies the language of the advanced App Clip experience.
         public var language: AppClipAdvancedExperienceLanguage?
         /// The subtitle that appears on the App Clip card for the advanced App Clip experience.

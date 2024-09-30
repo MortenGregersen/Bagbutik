@@ -37,7 +37,7 @@ public enum ListBetaAppLocalizationsV1 {
         /// The fields to include for returned resources of type betaAppLocalizations
         case betaAppLocalizations([BetaAppLocalizations])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -83,7 +83,7 @@ public enum ListBetaAppLocalizationsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaAppLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case description
             case feedbackEmail

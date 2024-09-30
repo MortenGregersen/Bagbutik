@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
+public struct SubscriptionAvailabilityCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "subscriptionAvailabilities" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let availableInNewTerritories: Bool
 
             public init(availableInNewTerritories: Bool) {
@@ -64,7 +64,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let availableTerritories: AvailableTerritories
             public let subscription: Subscription
 
@@ -87,7 +87,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
                 try container.encode(subscription, forKey: "subscription")
             }
 
-            public struct AvailableTerritories: Codable {
+            public struct AvailableTerritories: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -104,7 +104,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }
 
@@ -128,7 +128,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct Subscription: Codable {
+            public struct Subscription: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -145,7 +145,7 @@ public struct SubscriptionAvailabilityCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptions" }
 

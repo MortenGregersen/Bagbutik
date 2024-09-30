@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionresponse>
  */
-public struct AlternativeDistributionPackageVersionResponse: Codable {
+public struct AlternativeDistributionPackageVersionResponse: Codable, Sendable {
     public let data: AlternativeDistributionPackageVersion
     public var included: [Included]?
     public let links: DocumentLinks
@@ -72,7 +72,7 @@ public struct AlternativeDistributionPackageVersionResponse: Codable {
         return variants
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case alternativeDistributionPackage(AlternativeDistributionPackage)
         case alternativeDistributionPackageDelta(AlternativeDistributionPackageDelta)
         case alternativeDistributionPackageVariant(AlternativeDistributionPackageVariant)

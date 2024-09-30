@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkagerequest>
  */
-public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: Codable, RequestBody {
+public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: Codable, Sendable, RequestBody {
     /// The types and IDs of related resources.
     @NullCodable public var data: Data?
 
@@ -33,7 +33,7 @@ public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest: 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkagerequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.

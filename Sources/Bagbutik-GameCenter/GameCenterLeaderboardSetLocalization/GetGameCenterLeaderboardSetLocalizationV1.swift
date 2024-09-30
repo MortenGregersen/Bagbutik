@@ -33,7 +33,7 @@ public enum GetGameCenterLeaderboardSetLocalizationV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardSetLocalizations
         case gameCenterLeaderboardSetLocalizations([GameCenterLeaderboardSetLocalizations])
 
-        public enum GameCenterLeaderboardSetImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize
@@ -43,7 +43,7 @@ public enum GetGameCenterLeaderboardSetLocalizationV1 {
             case uploaded
         }
 
-        public enum GameCenterLeaderboardSetLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterLeaderboardSet
             case gameCenterLeaderboardSetImage
             case locale

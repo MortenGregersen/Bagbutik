@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementresponse>
  */
-public struct GameCenterAchievementResponse: Codable {
+public struct GameCenterAchievementResponse: Codable, Sendable {
     public let data: GameCenterAchievement
     public var included: [Included]?
     public let links: DocumentLinks
@@ -81,7 +81,7 @@ public struct GameCenterAchievementResponse: Codable {
         return releases
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementLocalization(GameCenterAchievementLocalization)
         case gameCenterAchievementRelease(GameCenterAchievementRelease)

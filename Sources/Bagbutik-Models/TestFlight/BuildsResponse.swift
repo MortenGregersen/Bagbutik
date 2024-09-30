@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildsresponse>
  */
-public struct BuildsResponse: Codable, PagedResponse {
+public struct BuildsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Build
 
     /// The resource data.
@@ -148,7 +148,7 @@ public struct BuildsResponse: Codable, PagedResponse {
         }.first { $0.id == build.relationships?.preReleaseVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case appEncryptionDeclaration(AppEncryptionDeclaration)
         case appStoreVersion(AppStoreVersion)

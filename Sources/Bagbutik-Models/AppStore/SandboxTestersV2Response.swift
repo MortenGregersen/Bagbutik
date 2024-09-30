@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SandboxTestersV2Response: Codable, PagedResponse {
+public struct SandboxTestersV2Response: Codable, Sendable, PagedResponse {
     public typealias Data = SandboxTesterV2
 
     public let data: [SandboxTesterV2]

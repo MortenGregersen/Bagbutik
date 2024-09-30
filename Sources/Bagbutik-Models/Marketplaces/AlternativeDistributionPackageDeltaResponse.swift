@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltaresponse>
  */
-public struct AlternativeDistributionPackageDeltaResponse: Codable {
+public struct AlternativeDistributionPackageDeltaResponse: Codable, Sendable {
     public let data: AlternativeDistributionPackageDelta
     public let links: DocumentLinks
 

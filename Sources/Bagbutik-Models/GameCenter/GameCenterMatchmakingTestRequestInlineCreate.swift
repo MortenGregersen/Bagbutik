@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate>
  */
-public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiable {
+public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, Identifiable {
     /// A unique identifier for the match request.
     public var id: String?
     /// The type of resource object.
@@ -52,7 +52,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The app version of the game that makes the request.
         public let appVersion: String
         /// The bundle ID of the game that makes the request.
@@ -125,7 +125,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
             try container.encode(secondsInQueue, forKey: "secondsInQueue")
         }
 
-        public enum Locale: String, Codable, CaseIterable {
+        public enum Locale: String, Sendable, Codable, CaseIterable {
             case AR_SA = "AR-SA"
             case CA_ES = "CA-ES"
             case CS_CZ = "CS-CZ"
@@ -175,7 +175,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var matchmakingPlayerProperties: MatchmakingPlayerProperties?
 
         public init(matchmakingPlayerProperties: MatchmakingPlayerProperties? = nil) {
@@ -199,7 +199,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships/matchmakingplayerproperties>
          */
-        public struct MatchmakingPlayerProperties: Codable {
+        public struct MatchmakingPlayerProperties: Codable, Sendable {
             @NullCodable public var data: [Data]?
 
             public init(data: [Data]? = nil) {
@@ -223,7 +223,7 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Identifiabl
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships/matchmakingplayerproperties/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The identifier for a ``GameCenterMatchmakingTestPlayerPropertyInlineCreate`` resource object that you add to the `included` field of the request.
                 public let id: String
                 /// The type of resource object.

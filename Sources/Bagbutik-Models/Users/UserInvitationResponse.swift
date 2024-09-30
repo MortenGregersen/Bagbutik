@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationresponse>
  */
-public struct UserInvitationResponse: Codable {
+public struct UserInvitationResponse: Codable, Sendable {
     /// The resource data.
     public let data: UserInvitation
     public var included: [App]?

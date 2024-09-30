@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfo>
  */
-public struct AppInfo: Codable, Identifiable {
+public struct AppInfo: Codable, Sendable, Identifiable {
     /// An opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct AppInfo: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The app’s age rating as it appears on the App Store for all platforms.
         public var appStoreAgeRating: AppStoreAgeRating?
         /// The state of an app version in the App Store.
@@ -119,7 +119,7 @@ public struct AppInfo: Codable, Identifiable {
             try container.encodeIfPresent(state, forKey: "state")
         }
 
-        public enum BrazilAgeRatingV2: String, Codable, CaseIterable {
+        public enum BrazilAgeRatingV2: String, Sendable, Codable, CaseIterable {
             case officialEighteen = "OFFICIAL_EIGHTEEN"
             case officialFourteen = "OFFICIAL_FOURTEEN"
             case officialL = "OFFICIAL_L"
@@ -134,7 +134,7 @@ public struct AppInfo: Codable, Identifiable {
             case selfRatedTwelve = "SELF_RATED_TWELVE"
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case developerRejected = "DEVELOPER_REJECTED"
             case inReview = "IN_REVIEW"
@@ -155,7 +155,7 @@ public struct AppInfo: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var ageRatingDeclaration: AgeRatingDeclaration?
         public var app: App?
         public var appInfoLocalizations: AppInfoLocalizations?
@@ -220,7 +220,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration>
          */
-        public struct AgeRatingDeclaration: Codable {
+        public struct AgeRatingDeclaration: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -250,7 +250,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
 
@@ -280,7 +280,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/ageratingdeclaration/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -312,7 +312,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -342,7 +342,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -374,7 +374,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -408,7 +408,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations>
          */
-        public struct AppInfoLocalizations: Codable {
+        public struct AppInfoLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -443,7 +443,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -475,7 +475,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/appinfolocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -509,7 +509,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory>
          */
-        public struct PrimaryCategory: Codable {
+        public struct PrimaryCategory: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -539,7 +539,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -571,7 +571,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarycategory/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -605,7 +605,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone>
          */
-        public struct PrimarySubcategoryOne: Codable {
+        public struct PrimarySubcategoryOne: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -635,7 +635,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -667,7 +667,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategoryone/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -701,7 +701,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo>
          */
-        public struct PrimarySubcategoryTwo: Codable {
+        public struct PrimarySubcategoryTwo: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -731,7 +731,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -763,7 +763,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/primarysubcategorytwo/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -797,7 +797,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory>
          */
-        public struct SecondaryCategory: Codable {
+        public struct SecondaryCategory: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -827,7 +827,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -859,7 +859,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarycategory/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -893,7 +893,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone>
          */
-        public struct SecondarySubcategoryOne: Codable {
+        public struct SecondarySubcategoryOne: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -923,7 +923,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -955,7 +955,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategoryone/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -989,7 +989,7 @@ public struct AppInfo: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo>
          */
-        public struct SecondarySubcategoryTwo: Codable {
+        public struct SecondarySubcategoryTwo: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1019,7 +1019,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1051,7 +1051,7 @@ public struct AppInfo: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appinfo/relationships/secondarysubcategorytwo/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

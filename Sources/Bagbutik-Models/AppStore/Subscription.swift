@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct Subscription: Codable, Identifiable {
+public struct Subscription: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptions" }
@@ -39,7 +39,7 @@ public struct Subscription: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var familySharable: Bool?
         public var groupLevel: Int?
         public var name: String?
@@ -87,7 +87,7 @@ public struct Subscription: Codable, Identifiable {
             try container.encodeIfPresent(subscriptionPeriod, forKey: "subscriptionPeriod")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case approved = "APPROVED"
             case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"
@@ -100,7 +100,7 @@ public struct Subscription: Codable, Identifiable {
             case waitingForReview = "WAITING_FOR_REVIEW"
         }
 
-        public enum SubscriptionPeriod: String, Codable, CaseIterable {
+        public enum SubscriptionPeriod: String, Sendable, Codable, CaseIterable {
             case oneMonth = "ONE_MONTH"
             case oneWeek = "ONE_WEEK"
             case oneYear = "ONE_YEAR"
@@ -110,7 +110,7 @@ public struct Subscription: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appStoreReviewScreenshot: AppStoreReviewScreenshot?
         public var group: Group?
         public var introductoryOffers: IntroductoryOffers?
@@ -168,7 +168,7 @@ public struct Subscription: Codable, Identifiable {
             try container.encodeIfPresent(subscriptionLocalizations, forKey: "subscriptionLocalizations")
         }
 
-        public struct AppStoreReviewScreenshot: Codable {
+        public struct AppStoreReviewScreenshot: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -191,7 +191,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionAppStoreReviewScreenshots" }
 
@@ -214,7 +214,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -239,7 +239,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct Group: Codable {
+        public struct Group: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -262,7 +262,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGroups" }
 
@@ -285,7 +285,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -310,7 +310,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct IntroductoryOffers: Codable {
+        public struct IntroductoryOffers: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -338,7 +338,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionIntroductoryOffers" }
 
@@ -361,7 +361,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -386,7 +386,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct OfferCodes: Codable {
+        public struct OfferCodes: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -414,7 +414,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionOfferCodes" }
 
@@ -437,7 +437,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -462,7 +462,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct Prices: Codable {
+        public struct Prices: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -490,7 +490,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPrices" }
 
@@ -513,7 +513,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -538,7 +538,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct PromotedPurchase: Codable {
+        public struct PromotedPurchase: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -561,7 +561,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 
@@ -584,7 +584,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -609,7 +609,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct PromotionalOffers: Codable {
+        public struct PromotionalOffers: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -637,7 +637,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionPromotionalOffers" }
 
@@ -660,7 +660,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -685,7 +685,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct SubscriptionAvailability: Codable {
+        public struct SubscriptionAvailability: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -708,7 +708,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionAvailabilities" }
 
@@ -731,7 +731,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -756,7 +756,7 @@ public struct Subscription: Codable, Identifiable {
             }
         }
 
-        public struct SubscriptionLocalizations: Codable {
+        public struct SubscriptionLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -784,7 +784,7 @@ public struct Subscription: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionLocalizations" }
 
@@ -807,7 +807,7 @@ public struct Subscription: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

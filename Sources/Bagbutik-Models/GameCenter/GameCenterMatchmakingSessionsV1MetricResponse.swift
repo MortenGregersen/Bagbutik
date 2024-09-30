@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingsessionsv1metricresponse>
  */
-public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, Sendable, PagedResponse {
     /// The data structure for the results of a successful matchmaking session.
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -44,7 +44,7 @@ public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, PagedRespo
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingsessionsv1metricresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         /// The granularity of the data using the ISO 8601 format for durations.
         public var granularity: Granularity?
@@ -68,7 +68,7 @@ public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, PagedRespo
             try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
-        public struct DataPoints: Codable {
+        public struct DataPoints: Codable, Sendable {
             public var end: Date?
             public var start: Date?
             public var values: Values?
@@ -103,7 +103,7 @@ public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, PagedRespo
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingsessionsv1metricresponse/data/datapoints/values>
              */
-            public struct Values: Codable {
+            public struct Values: Codable, Sendable {
                 /// The average number of players Game Center finds for the match.
                 public var averagePlayerCount: Double?
                 /// The number of players Game Center finds for the match.
@@ -142,7 +142,7 @@ public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, PagedRespo
             }
         }
 
-        public enum Granularity: String, Codable, CaseIterable {
+        public enum Granularity: String, Sendable, Codable, CaseIterable {
             case P1D
             case PT15M
             case PT1H

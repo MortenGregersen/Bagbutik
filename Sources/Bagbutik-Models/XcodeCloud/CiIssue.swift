@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>
  */
-public struct CiIssue: Codable, Identifiable {
+public struct CiIssue: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Issues resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct CiIssue: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciissue/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// ​A string representing the issue’s category; for example, the name of the build phase where the issue occurred.
         public var category: String?
         /// The file and line number where Xcode Cloud encountered an issue.
@@ -89,7 +89,7 @@ public struct CiIssue: Codable, Identifiable {
             try container.encodeIfPresent(message, forKey: "message")
         }
 
-        public enum IssueType: String, Codable, CaseIterable {
+        public enum IssueType: String, Sendable, Codable, CaseIterable {
             case analyzerWarning = "ANALYZER_WARNING"
             case error = "ERROR"
             case testFailure = "TEST_FAILURE"

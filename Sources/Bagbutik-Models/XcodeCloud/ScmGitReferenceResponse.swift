@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreferenceresponse>
  */
-public struct ScmGitReferenceResponse: Codable {
+public struct ScmGitReferenceResponse: Codable, Sendable {
     /// The resource data.
     public let data: ScmGitReference
     /// The requested relationship data.

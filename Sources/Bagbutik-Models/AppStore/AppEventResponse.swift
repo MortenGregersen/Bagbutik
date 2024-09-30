@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventResponse: Codable {
+public struct AppEventResponse: Codable, Sendable {
     public let data: AppEvent
     public var included: [AppEventLocalization]?
     public let links: DocumentLinks

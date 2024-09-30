@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/location>
  */
-public struct Location: Codable {
+public struct Location: Codable, Sendable {
     /// The latitude of the location.
     public var latitude: Double?
     /// The longitude of the location.

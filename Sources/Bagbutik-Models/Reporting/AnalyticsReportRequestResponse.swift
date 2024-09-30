@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestresponse>
  */
-public struct AnalyticsReportRequestResponse: Codable {
+public struct AnalyticsReportRequestResponse: Codable, Sendable {
     public let data: AnalyticsReportRequest
     public var included: [AnalyticsReport]?
     public let links: DocumentLinks

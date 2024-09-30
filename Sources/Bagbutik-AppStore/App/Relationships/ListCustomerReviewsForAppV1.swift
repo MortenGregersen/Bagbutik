@@ -47,14 +47,14 @@ public enum ListCustomerReviewsForAppV1 {
         /// The fields to include for returned resources of type customerReviews
         case customerReviews([CustomerReviews])
 
-        public enum CustomerReviewResponses: String, ParameterValue, Codable, CaseIterable {
+        public enum CustomerReviewResponses: String, Sendable, ParameterValue, Codable, CaseIterable {
             case lastModifiedDate
             case responseBody
             case review
             case state
         }
 
-        public enum CustomerReviews: String, ParameterValue, Codable, CaseIterable {
+        public enum CustomerReviews: String, Sendable, ParameterValue, Codable, CaseIterable {
             case body
             case createdDate
             case rating

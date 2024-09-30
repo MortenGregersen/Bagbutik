@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse>
  */
-public struct AlternativeDistributionKeyResponse: Codable {
+public struct AlternativeDistributionKeyResponse: Codable, Sendable {
     public let data: AlternativeDistributionKey
     public let links: DocumentLinks
 

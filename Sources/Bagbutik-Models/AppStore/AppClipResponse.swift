@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipresponse>
  */
-public struct AppClipResponse: Codable {
+public struct AppClipResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClip
     /// The requested relationship data.
@@ -58,7 +58,7 @@ public struct AppClipResponse: Codable {
         return appClipDefaultExperiences
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case appClipDefaultExperience(AppClipDefaultExperience)
 

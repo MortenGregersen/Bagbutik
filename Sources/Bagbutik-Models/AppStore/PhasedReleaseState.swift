@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/phasedreleasestate>
  */
-public enum PhasedReleaseState: String, Codable, CaseIterable {
+public enum PhasedReleaseState: String, Sendable, Codable, CaseIterable {
     /// The app version is released. During a phased release, the App Store releases the update over a 7-day period to a percentage of your users, randomly selected. The phased release applies to macOS and iOS devices with automatic updates enabled. Users can also manually download the app version.
     case active = "ACTIVE"
     /// The process released the update to all devices that have automatic updates enabled. The phased-release process is complete.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetgamecenterleaderboardslinkagesresponse>
  */
-public struct GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse: Codable, PagedResponse {
+public struct GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -36,7 +36,7 @@ public struct GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesResponse: Co
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterLeaderboards" }
 

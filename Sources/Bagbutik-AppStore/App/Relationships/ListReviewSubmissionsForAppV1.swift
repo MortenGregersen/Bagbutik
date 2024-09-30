@@ -45,7 +45,7 @@ public enum ListReviewSubmissionsForAppV1 {
         /// The fields to include for returned resources of type reviewSubmissions
         case reviewSubmissions([ReviewSubmissions])
 
-        public enum Actors: String, ParameterValue, Codable, CaseIterable {
+        public enum Actors: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actorType
             case apiKeyId
             case userEmail
@@ -53,7 +53,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case userLastName
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
@@ -79,7 +79,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -125,7 +125,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum ReviewSubmissionItems: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissionItems: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appEvent
             case appStoreVersion
@@ -137,7 +137,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case state
         }
 
-        public enum ReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionForReview
             case canceled
@@ -160,7 +160,7 @@ public enum ListReviewSubmissionsForAppV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, Sendable, ParameterValue, Codable, CaseIterable {
             case canceling = "CANCELING"
             case complete = "COMPLETE"
             case completing = "COMPLETING"

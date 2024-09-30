@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissueresponse>
  */
-public struct CiIssueResponse: Codable {
+public struct CiIssueResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiIssue
     /// The navigational links that include the self-link.

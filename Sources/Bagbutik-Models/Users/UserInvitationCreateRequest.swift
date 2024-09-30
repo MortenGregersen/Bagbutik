@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest>
  */
-public struct UserInvitationCreateRequest: Codable, RequestBody {
+public struct UserInvitationCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "userInvitations" }
         /// The resource's attributes.
@@ -71,7 +71,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A Boolean value that indicates whether a user has access to all apps available to the team.
             public var allAppsVisible: Bool?
             /// The email address of a pending user invitation. The email address must be valid to activate the account. It can be any email address, not necessarily one associated with an Apple ID.
@@ -128,7 +128,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var visibleApps: VisibleApps?
 
             public init(visibleApps: VisibleApps? = nil) {
@@ -152,7 +152,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data/relationships/visibleapps>
              */
-            public struct VisibleApps: Codable {
+            public struct VisibleApps: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -176,7 +176,7 @@ public struct UserInvitationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest/data/relationships/visibleapps/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.

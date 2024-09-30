@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct GameCenterPlayerAchievementSubmission: Codable, Identifiable {
+public struct GameCenterPlayerAchievementSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterPlayerAchievementSubmissions" }
@@ -34,7 +34,7 @@ public struct GameCenterPlayerAchievementSubmission: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var bundleId: String?
         public var challengeIds: [String]?
         public var percentageAchieved: Int?

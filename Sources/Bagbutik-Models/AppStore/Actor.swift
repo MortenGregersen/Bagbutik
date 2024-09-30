@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct Actor: Codable, Identifiable {
+public struct Actor: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "actors" }
@@ -34,7 +34,7 @@ public struct Actor: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var actorType: ActorType?
         public var apiKeyId: String?
         public var userEmail: String?
@@ -72,7 +72,7 @@ public struct Actor: Codable, Identifiable {
             try container.encodeIfPresent(userLastName, forKey: "userLastName")
         }
 
-        public enum ActorType: String, Codable, CaseIterable {
+        public enum ActorType: String, Sendable, Codable, CaseIterable {
             case apiKey = "API_KEY"
             case apple = "APPLE"
             case user = "USER"

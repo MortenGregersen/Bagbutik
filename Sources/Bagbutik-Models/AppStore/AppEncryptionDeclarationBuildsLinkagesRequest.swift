@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest>
  */
-public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, RequestBody {
+public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, Sendable, RequestBody {
     /// The object types and IDs of the related resources.
     public let data: [Data]
 
@@ -33,7 +33,7 @@ public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, RequestBod
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.

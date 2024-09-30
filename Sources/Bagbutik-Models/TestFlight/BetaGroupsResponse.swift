@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupsresponse>
  */
-public struct BetaGroupsResponse: Codable, PagedResponse {
+public struct BetaGroupsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaGroup
 
     /// The resource data.
@@ -77,7 +77,7 @@ public struct BetaGroupsResponse: Codable, PagedResponse {
         return builds
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case betaTester(BetaTester)
         case build(Build)

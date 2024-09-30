@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationsresponse>
  */
-public struct AppCustomProductPageLocalizationsResponse: Codable, PagedResponse {
+public struct AppCustomProductPageLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCustomProductPageLocalization
 
     public let data: [AppCustomProductPageLocalization]
@@ -74,7 +74,7 @@ public struct AppCustomProductPageLocalizationsResponse: Codable, PagedResponse 
         return appScreenshotSets
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appCustomProductPageVersion(AppCustomProductPageVersion)
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)

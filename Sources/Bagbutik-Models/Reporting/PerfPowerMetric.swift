@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric>
  */
-public struct PerfPowerMetric: Codable, Identifiable {
+public struct PerfPowerMetric: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "perfPowerMetrics" }
@@ -48,7 +48,7 @@ public struct PerfPowerMetric: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A string that represents the device type.
         public var deviceType: String?
         /// For more information about metric types, see [MetricCategory](https://developer.apple.com/documentation/appstoreconnectapi/metriccategory).
@@ -78,7 +78,7 @@ public struct PerfPowerMetric: Codable, Identifiable {
             try container.encodeIfPresent(platform, forKey: "platform")
         }
 
-        public enum MetricType: String, Codable, CaseIterable {
+        public enum MetricType: String, Sendable, Codable, CaseIterable {
             case animation = "ANIMATION"
             case battery = "BATTERY"
             case disk = "DISK"
@@ -88,7 +88,7 @@ public struct PerfPowerMetric: Codable, Identifiable {
             case termination = "TERMINATION"
         }
 
-        public enum Platform: String, Codable, CaseIterable {
+        public enum Platform: String, Sendable, Codable, CaseIterable {
             case iOS = "IOS"
         }
     }

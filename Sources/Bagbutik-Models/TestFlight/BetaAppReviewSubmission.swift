@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission>
  */
-public struct BetaAppReviewSubmission: Codable, Identifiable {
+public struct BetaAppReviewSubmission: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A state that indicates the current status of the beta app review submission.
         public var betaReviewState: BetaReviewState?
         public var submittedDate: Date?
@@ -90,7 +90,7 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var build: Build?
 
         public init(build: Build? = nil) {
@@ -114,7 +114,7 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build>
          */
-        public struct Build: Codable {
+        public struct Build: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -144,7 +144,7 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -176,7 +176,7 @@ public struct BetaAppReviewSubmission: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmission/relationships/build/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

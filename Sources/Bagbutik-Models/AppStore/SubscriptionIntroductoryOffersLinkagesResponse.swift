@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionIntroductoryOffersLinkagesResponse: Codable, PagedResponse {
+public struct SubscriptionIntroductoryOffersLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -29,7 +29,7 @@ public struct SubscriptionIntroductoryOffersLinkagesResponse: Codable, PagedResp
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "subscriptionIntroductoryOffers" }
 

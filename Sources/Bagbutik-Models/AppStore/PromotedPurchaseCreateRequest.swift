@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
+public struct PromotedPurchaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "promotedPurchases" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var enabled: Bool?
             public let visibleForAllUsers: Bool
 
@@ -70,7 +70,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
             public var inAppPurchaseV2: InAppPurchaseV2?
             public var subscription: Subscription?
@@ -98,7 +98,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(subscription, forKey: "subscription")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -115,7 +115,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -139,7 +139,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct InAppPurchaseV2: Codable {
+            public struct InAppPurchaseV2: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -156,7 +156,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "inAppPurchases" }
 
@@ -180,7 +180,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct Subscription: Codable {
+            public struct Subscription: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -197,7 +197,7 @@ public struct PromotedPurchaseCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptions" }
 

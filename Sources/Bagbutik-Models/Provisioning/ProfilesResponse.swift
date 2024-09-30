@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profilesresponse>
  */
-public struct ProfilesResponse: Codable, PagedResponse {
+public struct ProfilesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Profile
 
     /// The resource data.
@@ -77,7 +77,7 @@ public struct ProfilesResponse: Codable, PagedResponse {
         return devices
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case bundleId(BundleId)
         case certificate(Certificate)
         case device(Device)

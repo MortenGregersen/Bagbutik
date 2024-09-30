@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariant>
  */
-public struct AlternativeDistributionPackageVariant: Codable, Identifiable {
+public struct AlternativeDistributionPackageVariant: Codable, Sendable, Identifiable {
     /// An opaque resource ID that uniquely identifies the alternative distribution package variant.
     public let id: String
     public var links: ResourceLinks?
@@ -44,7 +44,7 @@ public struct AlternativeDistributionPackageVariant: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var alternativeDistributionKeyBlob: String?
         public var fileChecksum: String?
         public var url: String?

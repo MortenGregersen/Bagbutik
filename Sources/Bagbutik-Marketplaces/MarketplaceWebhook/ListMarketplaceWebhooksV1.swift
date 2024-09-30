@@ -29,7 +29,7 @@ public enum ListMarketplaceWebhooksV1 {
         /// The fields to include for returned resources of type marketplaceWebhooks
         case marketplaceWebhooks([MarketplaceWebhooks])
 
-        public enum MarketplaceWebhooks: String, ParameterValue, Codable, CaseIterable {
+        public enum MarketplaceWebhooks: String, Sendable, ParameterValue, Codable, CaseIterable {
             case endpointUrl
             case secret
         }

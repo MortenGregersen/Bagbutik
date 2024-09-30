@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationresponse>
  */
-public struct BetaBuildLocalizationResponse: Codable {
+public struct BetaBuildLocalizationResponse: Codable, Sendable {
     /// The resource data.
     public let data: BetaBuildLocalization
     public var included: [Build]?

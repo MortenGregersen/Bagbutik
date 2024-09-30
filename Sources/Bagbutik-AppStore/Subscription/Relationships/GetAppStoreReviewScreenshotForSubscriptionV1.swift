@@ -33,7 +33,7 @@ public enum GetAppStoreReviewScreenshotForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAppStoreReviewScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -46,7 +46,7 @@ public enum GetAppStoreReviewScreenshotForSubscriptionV1 {
             case uploaded
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case familySharable
             case group

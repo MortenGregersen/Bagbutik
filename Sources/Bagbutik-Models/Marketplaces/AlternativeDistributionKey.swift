@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkey>
  */
-public struct AlternativeDistributionKey: Codable, Identifiable {
+public struct AlternativeDistributionKey: Codable, Sendable, Identifiable {
     /// An opaque resource ID that uniquely identifies the alternative distribution key.
     public let id: String
     public var links: ResourceLinks?
@@ -53,7 +53,7 @@ public struct AlternativeDistributionKey: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkey/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// You create this key to establish a marketplace or web distribution app in App Store Connect. To learn more, see [Creating keys and establishing alternative marketplace connections](https://developer.apple.com/documentation/appstoreconnectapi/alternative_marketplaces_and_web_distribution/alternative_distribution_keys/creating_keys_and_establishing_alternative_marketplace_connections) or [Creating and configuring keys for web distribution](https://developer.apple.com/documentation/appstoreconnectapi/alternative_marketplaces_and_web_distribution/alternative_distribution_keys/creating_and_configuring_keys_for_web_distribution).
         public var publicKey: String?
 

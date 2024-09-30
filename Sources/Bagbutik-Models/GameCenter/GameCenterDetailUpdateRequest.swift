@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailupdaterequest>
  */
-public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
+public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterDetails" }
         public var attributes: Attributes?
@@ -58,7 +58,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var challengeEnabled: Bool?
 
             public init(challengeEnabled: Bool? = nil) {
@@ -76,7 +76,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var defaultGroupLeaderboard: DefaultGroupLeaderboard?
             public var defaultLeaderboard: DefaultLeaderboard?
             public var gameCenterGroup: GameCenterGroup?
@@ -104,7 +104,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
             }
 
-            public struct DefaultGroupLeaderboard: Codable {
+            public struct DefaultGroupLeaderboard: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -121,7 +121,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboards" }
 
@@ -145,7 +145,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct DefaultLeaderboard: Codable {
+            public struct DefaultLeaderboard: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -162,7 +162,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboards" }
 
@@ -186,7 +186,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct GameCenterGroup: Codable {
+            public struct GameCenterGroup: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -203,7 +203,7 @@ public struct GameCenterDetailUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterGroups" }
 

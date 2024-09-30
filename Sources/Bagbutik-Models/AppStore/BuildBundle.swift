@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>
  */
-public struct BuildBundle: Codable, Identifiable {
+public struct BuildBundle: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct BuildBundle: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The bundle ID of the build bundle.
         public var bundleId: String?
         /// The type of the build bundle.
@@ -173,7 +173,7 @@ public struct BuildBundle: Codable, Identifiable {
             try container.encodeIfPresent(usesLocationServices, forKey: "usesLocationServices")
         }
 
-        public enum BundleType: String, Codable, CaseIterable {
+        public enum BundleType: String, Sendable, Codable, CaseIterable {
             case app = "APP"
             case appClip = "APP_CLIP"
         }
@@ -186,7 +186,7 @@ public struct BuildBundle: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related App Clip Domain Cache Statuses resource.
         public var appClipDomainCacheStatus: AppClipDomainCacheStatus?
         /// The related App Clip Domain Debug Statuses resource.
@@ -230,7 +230,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus>
          */
-        public struct AppClipDomainCacheStatus: Codable {
+        public struct AppClipDomainCacheStatus: Codable, Sendable {
             /// The ID and type of the related App Clip Domain Cache Status resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -262,7 +262,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Domain Cache Statuses resource.
                 public let id: String
                 /// The resource type.
@@ -294,7 +294,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaincachestatus/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -328,7 +328,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus>
          */
-        public struct AppClipDomainDebugStatus: Codable {
+        public struct AppClipDomainDebugStatus: Codable, Sendable {
             /// The ID and type of the related App Clip Domain Debug Status resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -360,7 +360,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip Domain Debug Statuses resource.
                 public let id: String
                 /// The resource type.
@@ -392,7 +392,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/appclipdomaindebugstatus/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -426,7 +426,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations>
          */
-        public struct BetaAppClipInvocations: Codable {
+        public struct BetaAppClipInvocations: Codable, Sendable {
             /// The ID and type of the related Beta App Clip Invocations resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -464,7 +464,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                 public let id: String
                 /// The resource type.
@@ -496,7 +496,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/betaappclipinvocations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -530,7 +530,7 @@ public struct BuildBundle: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes>
          */
-        public struct BuildBundleFileSizes: Codable {
+        public struct BuildBundleFileSizes: Codable, Sendable {
             /// The ID and type of the related Build Bundle File Sizes resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -568,7 +568,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Bundle File Sizes resource.
                 public let id: String
                 /// The resource type.
@@ -600,7 +600,7 @@ public struct BuildBundle: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle/relationships/buildbundlefilesizes/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

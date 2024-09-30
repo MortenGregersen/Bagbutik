@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciexecutionprogress>
  */
-public enum CiExecutionProgress: String, Codable, CaseIterable {
+public enum CiExecutionProgress: String, Sendable, Codable, CaseIterable {
     /// Xcode Cloud completed the build.
     case complete = "COMPLETE"
     /// Xcode Cloud hasn’t started the build.

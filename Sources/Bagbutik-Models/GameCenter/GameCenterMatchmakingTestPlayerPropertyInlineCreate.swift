@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestplayerpropertyinlinecreate>
  */
-public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Identifiable {
+public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Sendable, Identifiable {
     /// The identifier for the resource object.
     public var id: String?
     /// The type of the resource object.
@@ -46,7 +46,7 @@ public struct GameCenterMatchmakingTestPlayerPropertyInlineCreate: Codable, Iden
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestplayerpropertyinlinecreate/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A unique identifier for the player.
         public let playerId: String
         /// The key-value pairs representing the game-specific property values.

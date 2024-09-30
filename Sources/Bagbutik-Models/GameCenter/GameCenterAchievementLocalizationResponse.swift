@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct GameCenterAchievementLocalizationResponse: Codable {
+public struct GameCenterAchievementLocalizationResponse: Codable, Sendable {
     public let data: GameCenterAchievementLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -43,7 +43,7 @@ public struct GameCenterAchievementLocalizationResponse: Codable {
         }.first { $0.id == data.relationships?.gameCenterAchievementImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterAchievementImage(GameCenterAchievementImage)
 

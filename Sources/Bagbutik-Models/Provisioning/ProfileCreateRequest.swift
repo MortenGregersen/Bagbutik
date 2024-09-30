@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest>
  */
-public struct ProfileCreateRequest: Codable, RequestBody {
+public struct ProfileCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "profiles" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -68,7 +68,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let name: String
             public let profileType: Profile.Attributes.ProfileType
 
@@ -99,7 +99,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let bundleId: BundleId
             public let certificates: Certificates
             public var devices: Devices?
@@ -134,7 +134,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/bundleid>
              */
-            public struct BundleId: Codable {
+            public struct BundleId: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -158,7 +158,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/bundleid/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "bundleIds" }
 
@@ -189,7 +189,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/certificates>
              */
-            public struct Certificates: Codable {
+            public struct Certificates: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -213,7 +213,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/certificates/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "certificates" }
 
@@ -244,7 +244,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/devices>
              */
-            public struct Devices: Codable {
+            public struct Devices: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -268,7 +268,7 @@ public struct ProfileCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest/data/relationships/devices/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "devices" }
 

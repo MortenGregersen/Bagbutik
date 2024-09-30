@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest>
  */
-public struct CiWorkflowUpdateRequest: Codable, RequestBody {
+public struct CiWorkflowUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -77,7 +77,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The workflow’s actions.
             public var actions: [CiAction]?
             /// The workflow’s start condition that starts new builds for changes to a branch.
@@ -179,7 +179,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related macOS Versions resource.
             public var macOsVersion: MacOsVersion?
             /// The related Xcode Versions resource.
@@ -211,7 +211,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/macosversion>
              */
-            public struct MacOsVersion: Codable {
+            public struct MacOsVersion: Codable, Sendable {
                 /// The ID and type of the related macOS Versions resource.
                 @NullCodable public var data: Data?
 
@@ -236,7 +236,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/macosversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                     public let id: String
                     /// The resource type.
@@ -269,7 +269,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/xcodeversion>
              */
-            public struct XcodeVersion: Codable {
+            public struct XcodeVersion: Codable, Sendable {
                 /// The ID and type of the related Xcode Versions resource.
                 @NullCodable public var data: Data?
 
@@ -294,7 +294,7 @@ public struct CiWorkflowUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest/data/relationships/xcodeversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                     public let id: String
                     /// The resource type.

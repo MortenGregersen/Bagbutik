@@ -38,13 +38,13 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum SubscriptionAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
             case subscription
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case familySharable
             case group
@@ -64,7 +64,7 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
             case subscriptionPeriod
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
         }
     }

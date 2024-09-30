@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailresponse>
  */
-public struct AppStoreReviewDetailResponse: Codable {
+public struct AppStoreReviewDetailResponse: Codable, Sendable {
     public let data: AppStoreReviewDetail
     public var included: [Included]?
     public let links: DocumentLinks
@@ -55,7 +55,7 @@ public struct AppStoreReviewDetailResponse: Codable {
         }.first { $0.id == data.relationships?.appStoreVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appStoreReviewAttachment(AppStoreReviewAttachment)
         case appStoreVersion(AppStoreVersion)
 

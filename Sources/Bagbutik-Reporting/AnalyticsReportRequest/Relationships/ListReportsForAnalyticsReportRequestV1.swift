@@ -34,7 +34,7 @@ public enum ListReportsForAnalyticsReportRequestV1 {
         /// The fields to include for returned resources of type analyticsReports
         case analyticsReports([AnalyticsReports])
 
-        public enum AnalyticsReports: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReports: String, Sendable, ParameterValue, Codable, CaseIterable {
             case category
             case instances
             case name
@@ -50,7 +50,7 @@ public enum ListReportsForAnalyticsReportRequestV1 {
         /// Filter by attribute 'name'
         case name([String])
 
-        public enum Category: String, ParameterValue, Codable, CaseIterable {
+        public enum Category: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreEngagement = "APP_STORE_ENGAGEMENT"
             case appUsage = "APP_USAGE"
             case commerce = "COMMERCE"

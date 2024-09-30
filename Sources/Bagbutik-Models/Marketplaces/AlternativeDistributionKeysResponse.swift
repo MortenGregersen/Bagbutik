@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeysresponse>
  */
-public struct AlternativeDistributionKeysResponse: Codable, PagedResponse {
+public struct AlternativeDistributionKeysResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionKey
 
     public let data: [AlternativeDistributionKey]

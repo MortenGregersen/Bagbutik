@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardcreaterequest>
  */
-public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboards" }
         public let attributes: Attributes
         public var relationships: Relationships?
@@ -53,7 +53,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let defaultFormatter: GameCenterLeaderboardFormatter
             public var recurrenceDuration: String?
             public var recurrenceRule: String?
@@ -117,7 +117,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var gameCenterDetail: GameCenterDetail?
             public var gameCenterGroup: GameCenterGroup?
             public var gameCenterLeaderboardSets: GameCenterLeaderboardSets?
@@ -145,7 +145,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(gameCenterLeaderboardSets, forKey: "gameCenterLeaderboardSets")
             }
 
-            public struct GameCenterDetail: Codable {
+            public struct GameCenterDetail: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -162,7 +162,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterDetails" }
 
@@ -186,7 +186,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct GameCenterGroup: Codable {
+            public struct GameCenterGroup: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -203,7 +203,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterGroups" }
 
@@ -227,7 +227,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct GameCenterLeaderboardSets: Codable {
+            public struct GameCenterLeaderboardSets: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -244,7 +244,7 @@ public struct GameCenterLeaderboardCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboardSets" }
 

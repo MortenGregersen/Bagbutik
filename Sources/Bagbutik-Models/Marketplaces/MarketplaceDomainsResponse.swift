@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacedomainsresponse>
  */
-public struct MarketplaceDomainsResponse: Codable, PagedResponse {
+public struct MarketplaceDomainsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = MarketplaceDomain
 
     public let data: [MarketplaceDomain]

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilitiesresponse>
  */
-public struct BundleIdCapabilitiesResponse: Codable, PagedResponse {
+public struct BundleIdCapabilitiesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BundleIdCapability
 
     /// The resource data.

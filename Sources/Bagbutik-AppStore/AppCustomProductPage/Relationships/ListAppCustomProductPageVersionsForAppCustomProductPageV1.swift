@@ -41,7 +41,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         /// The fields to include for returned resources of type appCustomProductPages
         case appCustomProductPages([AppCustomProductPages])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -49,7 +49,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case promotionalText
         }
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case deepLink
@@ -57,7 +57,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
             case version
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -75,7 +75,7 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, Sendable, ParameterValue, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case inReview = "IN_REVIEW"

@@ -39,7 +39,7 @@ public enum ListLocalizationsForAppEventV1 {
         /// The fields to include for returned resources of type appEvents
         case appEvents([AppEvents])
 
-        public enum AppEventLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEvent
             case appEventScreenshots
             case appEventVideoClips
@@ -49,7 +49,7 @@ public enum ListLocalizationsForAppEventV1 {
             case shortDescription
         }
 
-        public enum AppEventScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState
@@ -61,7 +61,7 @@ public enum ListLocalizationsForAppEventV1 {
             case uploaded
         }
 
-        public enum AppEventVideoClips: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventVideoClips: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState
@@ -74,7 +74,7 @@ public enum ListLocalizationsForAppEventV1 {
             case videoUrl
         }
 
-        public enum AppEvents: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case archivedTerritorySchedules
             case badge

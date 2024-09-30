@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkageresponse>
  */
-public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable {
+public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable, Sendable {
     /// The object types and IDs of the related resources.
     public let data: Data
     /// Navigational links that include the self-link.
@@ -40,7 +40,7 @@ public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkageresponse/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the response.
         public let id: String
         /// The resource type.

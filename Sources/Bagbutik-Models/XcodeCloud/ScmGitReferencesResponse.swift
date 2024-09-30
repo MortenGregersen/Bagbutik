@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreferencesresponse>
  */
-public struct ScmGitReferencesResponse: Codable, PagedResponse {
+public struct ScmGitReferencesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmGitReference
 
     /// The resource data.

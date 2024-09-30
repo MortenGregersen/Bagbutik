@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventsResponse: Codable, PagedResponse {
+public struct AppEventsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEvent
 
     public let data: [AppEvent]

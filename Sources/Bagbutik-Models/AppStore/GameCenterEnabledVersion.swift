@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion>
  */
-public struct GameCenterEnabledVersion: Codable, Identifiable {
+public struct GameCenterEnabledVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterEnabledVersions" }
@@ -53,7 +53,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var iconAsset: ImageAsset?
         public var platform: Platform?
         public var versionString: String?
@@ -89,7 +89,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var compatibleVersions: CompatibleVersions?
 
@@ -119,7 +119,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -149,7 +149,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -179,7 +179,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -211,7 +211,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions>
          */
-        public struct CompatibleVersions: Codable {
+        public struct CompatibleVersions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -246,7 +246,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterEnabledVersions" }
 
@@ -276,7 +276,7 @@ public struct GameCenterEnabledVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion/relationships/compatibleversions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

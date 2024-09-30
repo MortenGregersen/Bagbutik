@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository>
  */
-public struct ScmRepository: Codable, Identifiable {
+public struct ScmRepository: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Repositories resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct ScmRepository: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The Git repository’s URL for cloning it using HTTP.
         public var httpCloneUrl: String?
         /// The date and time when Xcode Cloud last accessed the repository.
@@ -109,7 +109,7 @@ public struct ScmRepository: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The Git repository’s default branch.
         public var defaultBranch: DefaultBranch?
         /// The related Providers resource.
@@ -141,7 +141,7 @@ public struct ScmRepository: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch>
          */
-        public struct DefaultBranch: Codable {
+        public struct DefaultBranch: Codable, Sendable {
             /// The ID and type of the related Git References resource that represents the default branch.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -173,7 +173,7 @@ public struct ScmRepository: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Git References resource that represents the default branch.
                 public let id: String
                 /// The resource type.
@@ -205,7 +205,7 @@ public struct ScmRepository: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/defaultbranch/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -239,7 +239,7 @@ public struct ScmRepository: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider>
          */
-        public struct ScmProvider: Codable {
+        public struct ScmProvider: Codable, Sendable {
             /// The ID and type of the related Providers resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -271,7 +271,7 @@ public struct ScmRepository: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Providers resource.
                 public let id: String
                 /// The resource type.
@@ -303,7 +303,7 @@ public struct ScmRepository: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmrepository/relationships/scmprovider/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

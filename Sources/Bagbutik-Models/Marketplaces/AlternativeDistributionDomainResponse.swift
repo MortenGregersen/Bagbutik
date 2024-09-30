@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomainresponse>
  */
-public struct AlternativeDistributionDomainResponse: Codable {
+public struct AlternativeDistributionDomainResponse: Codable, Sendable {
     public let data: AlternativeDistributionDomain
     public let links: DocumentLinks
 

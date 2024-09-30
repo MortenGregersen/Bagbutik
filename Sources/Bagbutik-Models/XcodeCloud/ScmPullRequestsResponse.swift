@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequestsresponse>
  */
-public struct ScmPullRequestsResponse: Codable, PagedResponse {
+public struct ScmPullRequestsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmPullRequest
 
     /// The resource data.

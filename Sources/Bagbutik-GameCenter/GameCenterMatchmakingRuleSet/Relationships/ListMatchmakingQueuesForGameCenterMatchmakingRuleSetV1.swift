@@ -36,14 +36,14 @@ public enum ListMatchmakingQueuesForGameCenterMatchmakingRuleSetV1 {
         /// The fields to include for returned resources of type gameCenterMatchmakingRuleSets
         case gameCenterMatchmakingRuleSets([GameCenterMatchmakingRuleSets])
 
-        public enum GameCenterMatchmakingQueues: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingQueues: String, Sendable, ParameterValue, Codable, CaseIterable {
             case classicMatchmakingBundleIds
             case experimentRuleSet
             case referenceName
             case ruleSet
         }
 
-        public enum GameCenterMatchmakingRuleSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterMatchmakingRuleSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case matchmakingQueues
             case maxPlayers
             case minPlayers

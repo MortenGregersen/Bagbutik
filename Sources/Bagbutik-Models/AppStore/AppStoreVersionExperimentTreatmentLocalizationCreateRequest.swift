@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codable, RequestBody {
+public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let locale: String
 
             public init(locale: String) {
@@ -64,7 +64,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment
 
             public init(appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment) {
@@ -81,7 +81,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
                 try container.encode(appStoreVersionExperimentTreatment, forKey: "appStoreVersionExperimentTreatment")
             }
 
-            public struct AppStoreVersionExperimentTreatment: Codable {
+            public struct AppStoreVersionExperimentTreatment: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -98,7 +98,7 @@ public struct AppStoreVersionExperimentTreatmentLocalizationCreateRequest: Codab
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionExperimentTreatments" }
 

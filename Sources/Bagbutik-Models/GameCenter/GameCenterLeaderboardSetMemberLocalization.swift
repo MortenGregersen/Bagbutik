@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalization>
  */
-public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable {
+public struct GameCenterLeaderboardSetMemberLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterLeaderboardSetMemberLocalizations" }
@@ -46,7 +46,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var locale: String?
         public var name: String?
 
@@ -70,7 +70,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var gameCenterLeaderboard: GameCenterLeaderboard?
         public var gameCenterLeaderboardSet: GameCenterLeaderboardSet?
 
@@ -93,7 +93,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
             try container.encodeIfPresent(gameCenterLeaderboardSet, forKey: "gameCenterLeaderboardSet")
         }
 
-        public struct GameCenterLeaderboard: Codable {
+        public struct GameCenterLeaderboard: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -116,7 +116,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboards" }
 
@@ -139,7 +139,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -164,7 +164,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
             }
         }
 
-        public struct GameCenterLeaderboardSet: Codable {
+        public struct GameCenterLeaderboardSet: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -187,7 +187,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboardSets" }
 
@@ -210,7 +210,7 @@ public struct GameCenterLeaderboardSetMemberLocalization: Codable, Identifiable 
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

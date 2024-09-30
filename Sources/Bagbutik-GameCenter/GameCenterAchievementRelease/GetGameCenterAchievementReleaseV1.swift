@@ -31,7 +31,7 @@ public enum GetGameCenterAchievementReleaseV1 {
         /// The fields to include for returned resources of type gameCenterAchievementReleases
         case gameCenterAchievementReleases([GameCenterAchievementReleases])
 
-        public enum GameCenterAchievementReleases: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievementReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievement
             case gameCenterDetail
             case live

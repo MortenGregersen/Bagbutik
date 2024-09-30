@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest>
  */
-public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
+public struct AppClipDefaultExperienceUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -77,7 +77,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The call-to-action verb that appears on the App Clip card.
             public var action: AppClipAction?
 
@@ -103,7 +103,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related App Store Versions resource.
             public var releaseWithAppStoreVersion: ReleaseWithAppStoreVersion?
 
@@ -128,7 +128,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships/releasewithappstoreversion>
              */
-            public struct ReleaseWithAppStoreVersion: Codable {
+            public struct ReleaseWithAppStoreVersion: Codable, Sendable {
                 /// The ID and type of the related App Store Versions resource.
                 @NullCodable public var data: Data?
 
@@ -153,7 +153,7 @@ public struct AppClipDefaultExperienceUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceupdaterequest/data/relationships/releasewithappstoreversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related App Store Versions resource.
                     public let id: String
                     /// The resource type.

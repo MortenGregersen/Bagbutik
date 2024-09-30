@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportinstance>
  */
-public struct AnalyticsReportInstance: Codable, Identifiable {
+public struct AnalyticsReportInstance: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "analyticsReportInstances" }
@@ -50,7 +50,7 @@ public struct AnalyticsReportInstance: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportinstance/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var granularity: Granularity?
         /// Uses the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard, in the format `YYYY-MM-DD.`
         public var processingDate: String?
@@ -74,7 +74,7 @@ public struct AnalyticsReportInstance: Codable, Identifiable {
             try container.encodeIfPresent(processingDate, forKey: "processingDate")
         }
 
-        public enum Granularity: String, Codable, CaseIterable {
+        public enum Granularity: String, Sendable, Codable, CaseIterable {
             case daily = "DAILY"
             case monthly = "MONTHLY"
             case weekly = "WEEKLY"

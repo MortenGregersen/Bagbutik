@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest>
  */
-public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
+public struct AppInfoLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appInfoLocalizations" }
         public var attributes: Attributes?
@@ -67,7 +67,7 @@ public struct AppInfoLocalizationUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var name: String?
             public var privacyChoicesUrl: String?
             public var privacyPolicyText: String?

@@ -30,7 +30,7 @@ public enum GetAppEventScreenshotV1 {
         /// The fields to include for returned resources of type appEventScreenshots
         case appEventScreenshots([AppEventScreenshots])
 
-        public enum AppEventScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEventScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEventAssetType
             case appEventLocalization
             case assetDeliveryState

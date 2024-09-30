@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamassignment>
  */
-public struct GameCenterMatchmakingTeamAssignment: Codable {
+public struct GameCenterMatchmakingTeamAssignment: Codable, Sendable {
     /// A unique identifier for the player.
     public var playerId: String?
     /// The name of the team that Game Center assigned the player to.

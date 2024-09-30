@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresultresponse>
  */
-public struct CiTestResultResponse: Codable {
+public struct CiTestResultResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiTestResult
     /// The navigational links that include the self-link.

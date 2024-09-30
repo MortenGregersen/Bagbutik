@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeCustomCodesResponse: Codable, PagedResponse {
+public struct SubscriptionOfferCodeCustomCodesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionOfferCodeCustomCode
 
     public let data: [SubscriptionOfferCodeCustomCode]

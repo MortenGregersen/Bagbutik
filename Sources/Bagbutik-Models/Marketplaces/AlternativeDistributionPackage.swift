@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage>
  */
-public struct AlternativeDistributionPackage: Codable, Identifiable {
+public struct AlternativeDistributionPackage: Codable, Sendable, Identifiable {
     /// An opaque resource ID that uniquely identifies the alternative distribution package.
     public let id: String
     public var links: ResourceLinks?
@@ -53,7 +53,7 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var versions: Versions?
 
         public init(versions: Versions? = nil) {
@@ -79,7 +79,7 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships/versions>
          */
-        public struct Versions: Codable {
+        public struct Versions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -116,7 +116,7 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships/versions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// An opaque resource ID that uniquely identifies the alternative distribution package version.
                 public let id: String
                 public var type: String { "alternativeDistributionPackageVersions" }
@@ -149,7 +149,7 @@ public struct AlternativeDistributionPackage: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage/relationships/versions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

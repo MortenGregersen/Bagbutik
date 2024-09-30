@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimage>
  */
-public struct GameCenterLeaderboardImage: Codable, Identifiable {
+public struct GameCenterLeaderboardImage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterLeaderboardImages" }
@@ -46,7 +46,7 @@ public struct GameCenterLeaderboardImage: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var assetDeliveryState: AppMediaAssetState?
         public var fileName: String?
         public var fileSize: Int?
@@ -85,7 +85,7 @@ public struct GameCenterLeaderboardImage: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var gameCenterLeaderboardLocalization: GameCenterLeaderboardLocalization?
 
         public init(gameCenterLeaderboardLocalization: GameCenterLeaderboardLocalization? = nil) {
@@ -102,7 +102,7 @@ public struct GameCenterLeaderboardImage: Codable, Identifiable {
             try container.encodeIfPresent(gameCenterLeaderboardLocalization, forKey: "gameCenterLeaderboardLocalization")
         }
 
-        public struct GameCenterLeaderboardLocalization: Codable {
+        public struct GameCenterLeaderboardLocalization: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -125,7 +125,7 @@ public struct GameCenterLeaderboardImage: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboardLocalizations" }
 
@@ -148,7 +148,7 @@ public struct GameCenterLeaderboardImage: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

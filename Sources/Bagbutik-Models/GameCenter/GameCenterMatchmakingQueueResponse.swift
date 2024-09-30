@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueresponse>
  */
-public struct GameCenterMatchmakingQueueResponse: Codable {
+public struct GameCenterMatchmakingQueueResponse: Codable, Sendable {
     /// The queue that you create, modify, or get.
     public let data: GameCenterMatchmakingQueue
     /// The rule sets included in the response.

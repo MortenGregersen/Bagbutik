@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementresponse>
  */
-public struct BetaLicenseAgreementResponse: Codable {
+public struct BetaLicenseAgreementResponse: Codable, Sendable {
     /// The resource data.
     public let data: BetaLicenseAgreement
     public var included: [App]?

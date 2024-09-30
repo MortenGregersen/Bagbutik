@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>
  */
-public struct ScmGitReference: Codable, Identifiable {
+public struct ScmGitReference: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Git References resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct ScmGitReference: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The canonical name of the Git reference.
         public var canonicalName: String?
         /// A Boolean value that indicates whether the Git reference was deleted.
@@ -103,7 +103,7 @@ public struct ScmGitReference: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related Repositories resource.
         public var repository: Repository?
 
@@ -128,7 +128,7 @@ public struct ScmGitReference: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository>
          */
-        public struct Repository: Codable {
+        public struct Repository: Codable, Sendable {
             /// The ID and type of the related Repositories resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -160,7 +160,7 @@ public struct ScmGitReference: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
                 /// The resource type.
@@ -192,7 +192,7 @@ public struct ScmGitReference: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

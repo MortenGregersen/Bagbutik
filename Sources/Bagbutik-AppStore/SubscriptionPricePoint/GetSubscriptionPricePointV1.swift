@@ -31,7 +31,7 @@ public enum GetSubscriptionPricePointV1 {
         /// The fields to include for returned resources of type subscriptionPricePoints
         case subscriptionPricePoints([SubscriptionPricePoints])
 
-        public enum SubscriptionPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case equalizations
             case proceeds

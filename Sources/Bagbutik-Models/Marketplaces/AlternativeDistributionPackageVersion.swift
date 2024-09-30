@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversion>
  */
-public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
+public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifiable {
     /// An opaque resource ID that uniquely identifies the alternative distribution package version.
     public let id: String
     public var links: ResourceLinks?
@@ -49,7 +49,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var fileChecksum: String?
         public var state: State?
         public var url: String?
@@ -87,13 +87,13 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
             try container.encodeIfPresent(version, forKey: "version")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case completed = "COMPLETED"
             case replaced = "REPLACED"
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var alternativeDistributionPackage: AlternativeDistributionPackage?
         public var deltas: Deltas?
         public var variants: Variants?
@@ -121,7 +121,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
             try container.encodeIfPresent(variants, forKey: "variants")
         }
 
-        public struct AlternativeDistributionPackage: Codable {
+        public struct AlternativeDistributionPackage: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -144,7 +144,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "alternativeDistributionPackages" }
 
@@ -167,7 +167,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -192,7 +192,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
             }
         }
 
-        public struct Deltas: Codable {
+        public struct Deltas: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -220,7 +220,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "alternativeDistributionPackageDeltas" }
 
@@ -243,7 +243,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -268,7 +268,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
             }
         }
 
-        public struct Variants: Codable {
+        public struct Variants: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -296,7 +296,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "alternativeDistributionPackageVariants" }
 
@@ -319,7 +319,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

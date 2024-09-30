@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest>
  */
-public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, RequestBody {
+public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -71,7 +71,7 @@ public struct AppClipDefaultExperienceLocalizationUpdateRequest: Codable, Reques
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The subtitle that appears on the App Clip card for the default App Clip experience.
             public var subtitle: String?
 

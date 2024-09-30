@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appmediastateerror>
  */
-public struct AppMediaStateError: Codable {
+public struct AppMediaStateError: Codable, Sendable {
     public var code: String?
     public var description: String?
 

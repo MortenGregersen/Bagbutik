@@ -41,14 +41,14 @@ public enum GetCiBuildActionV1 {
         /// The fields to include for returned resources of type ciTestResults
         case ciTestResults([CiTestResults])
 
-        public enum CiArtifacts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiArtifacts: String, Sendable, ParameterValue, Codable, CaseIterable {
             case downloadUrl
             case fileName
             case fileSize
             case fileType
         }
 
-        public enum CiBuildActions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildActions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actionType
             case artifacts
             case buildRun
@@ -63,7 +63,7 @@ public enum GetCiBuildActionV1 {
             case testResults
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -87,14 +87,14 @@ public enum GetCiBuildActionV1 {
             case workflow
         }
 
-        public enum CiIssues: String, ParameterValue, Codable, CaseIterable {
+        public enum CiIssues: String, Sendable, ParameterValue, Codable, CaseIterable {
             case category
             case fileSource
             case issueType
             case message
         }
 
-        public enum CiTestResults: String, ParameterValue, Codable, CaseIterable {
+        public enum CiTestResults: String, Sendable, ParameterValue, Codable, CaseIterable {
             case className
             case destinationTestResults
             case fileSource

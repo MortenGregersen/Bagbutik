@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>
  */
-public struct AppClipDomainStatus: Codable, Identifiable {
+public struct AppClipDomainStatus: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an App Clip Domain Statuses resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct AppClipDomainStatus: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// An array of domains you associated with your app or App Clip.
         public var domains: [Domains]?
         /// The date when App Store Connect last verified the status of an associated domain.
@@ -84,7 +84,7 @@ public struct AppClipDomainStatus: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus/attributes/domains>
          */
-        public struct Domains: Codable {
+        public struct Domains: Codable, Sendable {
             /// A domain you associated with your app or App Clip.
             public var domain: String?
             /// A string that describes an issue that occurred when App Store Connect tried to validate the status of an associated domain.
@@ -121,7 +121,7 @@ public struct AppClipDomainStatus: Codable, Identifiable {
                 try container.encodeIfPresent(lastUpdatedDate, forKey: "lastUpdatedDate")
             }
 
-            public enum ErrorCode: String, Codable, CaseIterable {
+            public enum ErrorCode: String, Sendable, Codable, CaseIterable {
                 case badHttpResponse = "BAD_HTTP_RESPONSE"
                 case badJsonContent = "BAD_JSON_CONTENT"
                 case badPkcs7Signature = "BAD_PKCS7_SIGNATURE"

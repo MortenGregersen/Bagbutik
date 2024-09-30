@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization>
  */
-public struct AppStoreVersionLocalization: Codable, Identifiable {
+public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersionLocalizations" }
@@ -53,7 +53,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var description: String?
         public var keywords: String?
         public var locale: String?
@@ -109,7 +109,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appPreviewSets: AppPreviewSets?
         public var appScreenshotSets: AppScreenshotSets?
         public var appStoreVersion: AppStoreVersion?
@@ -144,7 +144,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets>
          */
-        public struct AppPreviewSets: Codable {
+        public struct AppPreviewSets: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -179,7 +179,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 
@@ -209,7 +209,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/apppreviewsets/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -241,7 +241,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets>
          */
-        public struct AppScreenshotSets: Codable {
+        public struct AppScreenshotSets: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -276,7 +276,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshotSets" }
 
@@ -306,7 +306,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appscreenshotsets/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -338,7 +338,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion>
          */
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -368,7 +368,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -398,7 +398,7 @@ public struct AppStoreVersionLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization/relationships/appstoreversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

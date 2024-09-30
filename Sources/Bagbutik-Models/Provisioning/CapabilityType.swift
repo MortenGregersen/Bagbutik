@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilitytype>
  */
-public enum CapabilityType: String, Codable, CaseIterable {
+public enum CapabilityType: String, Sendable, Codable, CaseIterable {
     case accessWifiInformation = "ACCESS_WIFI_INFORMATION"
     case appGroups = "APP_GROUPS"
     case appleIdAuth = "APPLE_ID_AUTH"

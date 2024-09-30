@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/imageasset>
  */
-public struct ImageAsset: Codable {
+public struct ImageAsset: Codable, Sendable {
     public var height: Int?
     public var templateUrl: String?
     public var width: Int?

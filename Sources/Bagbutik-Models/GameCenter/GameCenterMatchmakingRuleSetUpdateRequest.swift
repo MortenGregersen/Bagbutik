@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest>
  */
-public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, Sendable, RequestBody {
     /// The data structure of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The unique identifier for the rule set.
         public let id: String
         /// The type of resource.
@@ -70,7 +70,7 @@ public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The maximum number of players who can join the matches that Game Center finds using these rules.
             public var maxPlayers: Int?
             /// The minimum number of players who can join the matches that Game Center finds using these rules.

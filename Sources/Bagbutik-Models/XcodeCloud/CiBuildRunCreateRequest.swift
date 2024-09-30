@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest>
  */
-public struct CiBuildRunCreateRequest: Codable, RequestBody {
+public struct CiBuildRunCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "ciBuildRuns" }
         /// The attributes that describe the request that creates a Build Runs resource.
@@ -71,7 +71,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A Boolean value that indicates whether Xcode Cloud should perform a clean build.
             public var clean: Bool?
 
@@ -97,7 +97,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related Build Runs resource.
             public var buildRun: BuildRun?
             /// The related Pull Requests resource.
@@ -141,7 +141,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/buildrun>
              */
-            public struct BuildRun: Codable {
+            public struct BuildRun: Codable, Sendable {
                 /// The ID and type of the related Build Runs resource.
                 @NullCodable public var data: Data?
 
@@ -166,7 +166,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/buildrun/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Build Runs resource.
                     public let id: String
                     /// The resource type.
@@ -199,7 +199,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/pullrequest>
              */
-            public struct PullRequest: Codable, RequestBody {
+            public struct PullRequest: Codable, Sendable, RequestBody {
                 /// The ID and type of the related Pull Requests resource.
                 @NullCodable public var data: Data?
 
@@ -224,7 +224,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/pullrequest/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Pull Requests resource.
                     public let id: String
                     /// The resource type.
@@ -257,7 +257,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/sourcebranchortag>
              */
-            public struct SourceBranchOrTag: Codable {
+            public struct SourceBranchOrTag: Codable, Sendable {
                 /// The ID and type of the related Git References resource that represents the source branch or tag.
                 @NullCodable public var data: Data?
 
@@ -282,7 +282,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/sourcebranchortag/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Git References resource that represents the source branch or tag.
                     public let id: String
                     /// The resource type.
@@ -315,7 +315,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/workflow>
              */
-            public struct Workflow: Codable {
+            public struct Workflow: Codable, Sendable {
                 /// The ID and type of the related Workflows resource.
                 @NullCodable public var data: Data?
 
@@ -340,7 +340,7 @@ public struct CiBuildRunCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest/data/relationships/workflow/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Workflows resource.
                     public let id: String
                     /// The resource type.

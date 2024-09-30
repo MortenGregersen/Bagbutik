@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEncryptionDeclarationDocumentUpdateRequest: Codable, RequestBody {
+public struct AppEncryptionDeclarationDocumentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppEncryptionDeclarationDocumentUpdateRequest: Codable, RequestBod
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appEncryptionDeclarationDocuments" }
         public var attributes: Attributes?
@@ -46,7 +46,7 @@ public struct AppEncryptionDeclarationDocumentUpdateRequest: Codable, RequestBod
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?
 

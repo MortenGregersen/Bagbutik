@@ -30,7 +30,7 @@ public enum GetAnalyticsReportSegmentV1 {
         /// The fields to include for returned resources of type analyticsReportSegments
         case analyticsReportSegments([AnalyticsReportSegments])
 
-        public enum AnalyticsReportSegments: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReportSegments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case checksum
             case sizeInBytes
             case url

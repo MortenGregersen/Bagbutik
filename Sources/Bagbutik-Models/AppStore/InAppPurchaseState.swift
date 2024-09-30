@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public enum InAppPurchaseState: String, ParameterValue, Codable, CaseIterable {
+public enum InAppPurchaseState: String, Sendable, ParameterValue, Codable, CaseIterable {
     case approved = "APPROVED"
     case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
     case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"

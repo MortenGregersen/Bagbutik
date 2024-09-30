@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
  */
-public struct PreReleaseVersionsResponse: Codable, PagedResponse {
+public struct PreReleaseVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = PrereleaseVersion
 
     /// The resource data.
@@ -65,7 +65,7 @@ public struct PreReleaseVersionsResponse: Codable, PagedResponse {
         return builds
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case build(Build)
 

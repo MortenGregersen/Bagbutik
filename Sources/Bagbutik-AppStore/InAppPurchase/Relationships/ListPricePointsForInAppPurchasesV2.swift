@@ -39,14 +39,14 @@ public enum ListPricePointsForInAppPurchasesV2 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum InAppPurchasePricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchasePricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
             case inAppPurchaseV2
             case proceeds
             case territory
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
         }
     }

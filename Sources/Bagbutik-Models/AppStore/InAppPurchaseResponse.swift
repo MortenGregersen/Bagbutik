@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseresponse>
  */
-public struct InAppPurchaseResponse: Codable {
+public struct InAppPurchaseResponse: Codable, Sendable {
     public let data: InAppPurchase
     public var included: [App]?
     public let links: DocumentLinks

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetreleasecreaterequest>
  */
-public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardSetReleases" }
         public let relationships: Relationships
 
@@ -47,7 +47,7 @@ public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let gameCenterDetail: GameCenterDetail
             public let gameCenterLeaderboardSet: GameCenterLeaderboardSet
 
@@ -70,7 +70,7 @@ public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody
                 try container.encode(gameCenterLeaderboardSet, forKey: "gameCenterLeaderboardSet")
             }
 
-            public struct GameCenterDetail: Codable {
+            public struct GameCenterDetail: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -87,7 +87,7 @@ public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterDetails" }
 
@@ -111,7 +111,7 @@ public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody
                 }
             }
 
-            public struct GameCenterLeaderboardSet: Codable {
+            public struct GameCenterLeaderboardSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -128,7 +128,7 @@ public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, RequestBody
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterLeaderboardSets" }
 

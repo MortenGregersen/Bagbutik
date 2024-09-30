@@ -44,7 +44,7 @@ public enum ListAppInfosForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AgeRatingDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AgeRatingDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingOverride
             case alcoholTobaccoOrDrugUseOrReferences
             case contests
@@ -65,13 +65,13 @@ public enum ListAppInfosForAppV1 {
             case violenceRealisticProlongedGraphicOrSadistic
         }
 
-        public enum AppCategories: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCategories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case parent
             case platforms
             case subcategories
         }
 
-        public enum AppInfoLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfoLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appInfo
             case locale
             case name
@@ -81,7 +81,7 @@ public enum ListAppInfosForAppV1 {
             case subtitle
         }
 
-        public enum AppInfos: String, ParameterValue, Codable, CaseIterable {
+        public enum AppInfos: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case app
             case appInfoLocalizations
@@ -99,7 +99,7 @@ public enum ListAppInfosForAppV1 {
             case state
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability

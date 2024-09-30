@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/endappavailabilitypreordercreaterequest>
  */
-public struct EndAppAvailabilityPreOrderCreateRequest: Codable, RequestBody {
+public struct EndAppAvailabilityPreOrderCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct EndAppAvailabilityPreOrderCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "endAppAvailabilityPreOrders" }
         public let relationships: Relationships
 
@@ -47,7 +47,7 @@ public struct EndAppAvailabilityPreOrderCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let territoryAvailabilities: TerritoryAvailabilities
 
             public init(territoryAvailabilities: TerritoryAvailabilities) {
@@ -64,7 +64,7 @@ public struct EndAppAvailabilityPreOrderCreateRequest: Codable, RequestBody {
                 try container.encode(territoryAvailabilities, forKey: "territoryAvailabilities")
             }
 
-            public struct TerritoryAvailabilities: Codable {
+            public struct TerritoryAvailabilities: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -81,7 +81,7 @@ public struct EndAppAvailabilityPreOrderCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "territoryAvailabilities" }
 

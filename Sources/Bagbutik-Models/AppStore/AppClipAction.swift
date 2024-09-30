@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipaction>
  */
-public enum AppClipAction: String, ParameterValue, Codable, CaseIterable {
+public enum AppClipAction: String, Sendable, ParameterValue, Codable, CaseIterable {
     case open = "OPEN"
     case play = "PLAY"
     case view = "VIEW"

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetsresponse>
  */
-public struct GameCenterMatchmakingRuleSetsResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingRuleSetsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingRuleSet
 
     /// The rule sets that an endpoint gets.
@@ -81,7 +81,7 @@ public struct GameCenterMatchmakingRuleSetsResponse: Codable, PagedResponse {
         return teams
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterMatchmakingQueue(GameCenterMatchmakingQueue)
         case gameCenterMatchmakingRule(GameCenterMatchmakingRule)
         case gameCenterMatchmakingTeam(GameCenterMatchmakingTeam)

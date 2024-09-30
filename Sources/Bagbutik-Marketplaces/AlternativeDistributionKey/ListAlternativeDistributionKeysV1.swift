@@ -32,7 +32,7 @@ public enum ListAlternativeDistributionKeysV1 {
         /// The fields to include for returned resources of type alternativeDistributionKeys
         case alternativeDistributionKeys([AlternativeDistributionKeys])
 
-        public enum AlternativeDistributionKeys: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionKeys: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case publicKey
         }

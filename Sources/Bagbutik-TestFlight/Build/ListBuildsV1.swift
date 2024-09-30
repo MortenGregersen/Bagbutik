@@ -60,7 +60,7 @@ public enum ListBuildsV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -80,7 +80,7 @@ public enum ListBuildsV1 {
             case usesEncryption
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
@@ -106,7 +106,7 @@ public enum ListBuildsV1 {
             case versionString
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -152,19 +152,19 @@ public enum ListBuildsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaAppReviewSubmissions: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaAppReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case betaReviewState
             case build
             case submittedDate
         }
 
-        public enum BetaBuildLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaBuildLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case build
             case locale
             case whatsNew
         }
 
-        public enum BetaTesters: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaTesters: String, Sendable, ParameterValue, Codable, CaseIterable {
             case apps
             case betaGroups
             case builds
@@ -175,20 +175,20 @@ public enum ListBuildsV1 {
             case state
         }
 
-        public enum BuildBetaDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildBetaDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case autoNotifyEnabled
             case build
             case externalBuildState
             case internalBuildState
         }
 
-        public enum BuildIcons: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
             case name
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -215,7 +215,7 @@ public enum ListBuildsV1 {
             case version
         }
 
-        public enum DiagnosticSignatures: String, ParameterValue, Codable, CaseIterable {
+        public enum DiagnosticSignatures: String, Sendable, ParameterValue, Codable, CaseIterable {
             case diagnosticType
             case insight
             case logs
@@ -223,13 +223,13 @@ public enum ListBuildsV1 {
             case weight
         }
 
-        public enum PerfPowerMetrics: String, ParameterValue, Codable, CaseIterable {
+        public enum PerfPowerMetrics: String, Sendable, ParameterValue, Codable, CaseIterable {
             case deviceType
             case metricType
             case platform
         }
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case builds
             case platform

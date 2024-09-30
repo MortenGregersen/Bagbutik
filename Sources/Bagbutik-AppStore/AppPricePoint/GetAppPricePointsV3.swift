@@ -31,7 +31,7 @@ public enum GetAppPricePointsV3 {
         /// The fields to include for returned resources of type appPricePoints
         case appPricePoints([AppPricePoints])
 
-        public enum AppPricePoints: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case customerPrice
             case equalizations

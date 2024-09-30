@@ -44,7 +44,7 @@ public enum ListSubscriptionGroupsForAppV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionGroupLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroupLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customAppName
             case locale
             case name
@@ -52,14 +52,14 @@ public enum ListSubscriptionGroupsForAppV1 {
             case subscriptionGroup
         }
 
-        public enum SubscriptionGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case familySharable
             case group
@@ -89,7 +89,7 @@ public enum ListSubscriptionGroupsForAppV1 {
         /// Filter by attribute 'subscriptions.state'
         case subscriptions_state([SubscriptionsState])
 
-        public enum SubscriptionsState: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionsState: String, Sendable, ParameterValue, Codable, CaseIterable {
             case approved = "APPROVED"
             case developerActionNeeded = "DEVELOPER_ACTION_NEEDED"
             case developerRemovedFromSale = "DEVELOPER_REMOVED_FROM_SALE"

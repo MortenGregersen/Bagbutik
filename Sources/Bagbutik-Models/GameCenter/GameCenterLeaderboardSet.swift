@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardset>
  */
-public struct GameCenterLeaderboardSet: Codable, Identifiable {
+public struct GameCenterLeaderboardSet: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterLeaderboardSets" }
@@ -46,7 +46,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var referenceName: String?
         public var vendorIdentifier: String?
 
@@ -70,7 +70,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var gameCenterLeaderboards: GameCenterLeaderboards?
@@ -113,7 +113,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
             try container.encodeIfPresent(releases, forKey: "releases")
         }
 
-        public struct GameCenterDetail: Codable {
+        public struct GameCenterDetail: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -136,7 +136,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterDetails" }
 
@@ -159,7 +159,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -184,7 +184,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
             }
         }
 
-        public struct GameCenterGroup: Codable {
+        public struct GameCenterGroup: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -207,7 +207,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterGroups" }
 
@@ -230,7 +230,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -255,7 +255,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
             }
         }
 
-        public struct GameCenterLeaderboards: Codable {
+        public struct GameCenterLeaderboards: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -283,7 +283,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboards" }
 
@@ -306,7 +306,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -331,7 +331,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
             }
         }
 
-        public struct GroupLeaderboardSet: Codable {
+        public struct GroupLeaderboardSet: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -354,7 +354,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboardSets" }
 
@@ -377,7 +377,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -402,7 +402,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
             }
         }
 
-        public struct Localizations: Codable {
+        public struct Localizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -430,7 +430,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboardSetLocalizations" }
 
@@ -453,7 +453,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -478,7 +478,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
             }
         }
 
-        public struct Releases: Codable {
+        public struct Releases: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -506,7 +506,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterLeaderboardSetReleases" }
 
@@ -529,7 +529,7 @@ public struct GameCenterLeaderboardSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

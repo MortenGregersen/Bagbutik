@@ -31,7 +31,7 @@ public enum ListBetaBuildLocalizationsForBuildV1 {
         /// The fields to include for returned resources of type betaBuildLocalizations
         case betaBuildLocalizations([BetaBuildLocalizations])
 
-        public enum BetaBuildLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaBuildLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case build
             case locale
             case whatsNew

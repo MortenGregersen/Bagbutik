@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimagecreaterequest>
  */
-public struct GameCenterAchievementImageCreateRequest: Codable, RequestBody {
+public struct GameCenterAchievementImageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterAchievementImageCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterAchievementImages" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -53,7 +53,7 @@ public struct GameCenterAchievementImageCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
 
@@ -77,7 +77,7 @@ public struct GameCenterAchievementImageCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let gameCenterAchievementLocalization: GameCenterAchievementLocalization
 
             public init(gameCenterAchievementLocalization: GameCenterAchievementLocalization) {
@@ -94,7 +94,7 @@ public struct GameCenterAchievementImageCreateRequest: Codable, RequestBody {
                 try container.encode(gameCenterAchievementLocalization, forKey: "gameCenterAchievementLocalization")
             }
 
-            public struct GameCenterAchievementLocalization: Codable {
+            public struct GameCenterAchievementLocalization: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -111,7 +111,7 @@ public struct GameCenterAchievementImageCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterAchievementLocalizations" }
 

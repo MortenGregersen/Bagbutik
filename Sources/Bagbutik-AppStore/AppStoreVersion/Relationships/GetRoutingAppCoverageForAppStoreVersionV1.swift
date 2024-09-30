@@ -28,7 +28,7 @@ public enum GetRoutingAppCoverageForAppStoreVersionV1 {
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
-        public enum RoutingAppCoverages: String, ParameterValue, Codable, CaseIterable {
+        public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
             case fileName

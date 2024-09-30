@@ -28,7 +28,7 @@ public enum GetAlternativeDistributionDomainV1 {
         /// The fields to include for returned resources of type alternativeDistributionDomains
         case alternativeDistributionDomains([AlternativeDistributionDomains])
 
-        public enum AlternativeDistributionDomains: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionDomains: String, Sendable, ParameterValue, Codable, CaseIterable {
             case createdDate
             case domain
             case referenceName

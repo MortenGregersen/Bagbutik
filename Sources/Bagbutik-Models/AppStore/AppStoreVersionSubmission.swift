@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission>
  */
-public struct AppStoreVersionSubmission: Codable, Identifiable {
+public struct AppStoreVersionSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersionSubmissions" }
@@ -48,7 +48,7 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appStoreVersion: AppStoreVersion?
 
         public init(appStoreVersion: AppStoreVersion? = nil) {
@@ -72,7 +72,7 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion>
          */
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -102,7 +102,7 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -132,7 +132,7 @@ public struct AppStoreVersionSubmission: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission/relationships/appstoreversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

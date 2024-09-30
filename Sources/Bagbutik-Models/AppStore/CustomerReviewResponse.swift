@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponse>
  */
-public struct CustomerReviewResponse: Codable {
+public struct CustomerReviewResponse: Codable, Sendable {
     /// The data structure that represents a `CustomerReviews` resource.
     public let data: CustomerReview
     /// The requested relationship data.

@@ -26,7 +26,7 @@ final class EnumSchemaRendererTests: XCTestCase {
          Full documentation:
          </platform>
          */
-        public enum Platform: String, Codable, CaseIterable {
+        public enum Platform: String, Sendable, Codable, CaseIterable {
             /// A string that represents iOS.
             case iOS = "IOS"
             /// A string that represents macOS.
@@ -46,7 +46,7 @@ final class EnumSchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(enumSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        public enum AppCategories: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCategories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case parent
             case platforms
             case subcategories

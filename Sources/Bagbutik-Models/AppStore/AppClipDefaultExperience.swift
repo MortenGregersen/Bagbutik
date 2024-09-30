@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience>
  */
-public struct AppClipDefaultExperience: Codable, Identifiable {
+public struct AppClipDefaultExperience: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Default App Clip Experiences resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The call-to-action verb that appears on the App Clip card.
         public var action: AppClipAction?
 
@@ -84,7 +84,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related App Clips resource.
         public var appClip: AppClip?
         /// The related App Clip App Store Review Details resource.
@@ -128,7 +128,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclip>
          */
-        public struct AppClip: Codable {
+        public struct AppClip: Codable, Sendable {
             /// The ID and type of the related App Clips resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -160,7 +160,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclip/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies an App Clips resource.
                 public let id: String
                 /// The resource type.
@@ -192,7 +192,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclip/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -226,7 +226,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipappstorereviewdetail>
          */
-        public struct AppClipAppStoreReviewDetail: Codable {
+        public struct AppClipAppStoreReviewDetail: Codable, Sendable {
             /// The ID and type of the related App Clip App Store Review Details resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -258,7 +258,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipappstorereviewdetail/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Clip App Store Review Details resource.
                 public let id: String
                 /// The resource type.
@@ -290,7 +290,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipappstorereviewdetail/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -324,7 +324,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipdefaultexperiencelocalizations>
          */
-        public struct AppClipDefaultExperienceLocalizations: Codable {
+        public struct AppClipDefaultExperienceLocalizations: Codable, Sendable {
             /// The ID and type of the related Default App Clip Experience Localizations resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -362,7 +362,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipdefaultexperiencelocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                 public let id: String
                 /// The resource type.
@@ -394,7 +394,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/appclipdefaultexperiencelocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -428,7 +428,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/releasewithappstoreversion>
          */
-        public struct ReleaseWithAppStoreVersion: Codable {
+        public struct ReleaseWithAppStoreVersion: Codable, Sendable {
             /// The ID and type of the related App Store Versions resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -460,7 +460,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/releasewithappstoreversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related App Store Versions resource.
                 public let id: String
                 /// The resource type.
@@ -492,7 +492,7 @@ public struct AppClipDefaultExperience: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience/relationships/releasewithappstoreversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

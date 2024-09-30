@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildactionresponse>
  */
-public struct CiBuildActionResponse: Codable {
+public struct CiBuildActionResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiBuildAction
     /// The requested relationship data.

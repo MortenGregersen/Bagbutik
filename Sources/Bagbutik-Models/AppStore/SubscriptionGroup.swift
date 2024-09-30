@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroup: Codable, Identifiable {
+public struct SubscriptionGroup: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionGroups" }
@@ -39,7 +39,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var referenceName: String?
 
         public init(referenceName: String? = nil) {
@@ -57,7 +57,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var subscriptionGroupLocalizations: SubscriptionGroupLocalizations?
         public var subscriptions: Subscriptions?
 
@@ -80,7 +80,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
             try container.encodeIfPresent(subscriptions, forKey: "subscriptions")
         }
 
-        public struct SubscriptionGroupLocalizations: Codable {
+        public struct SubscriptionGroupLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -108,7 +108,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGroupLocalizations" }
 
@@ -131,7 +131,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -156,7 +156,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
             }
         }
 
-        public struct Subscriptions: Codable {
+        public struct Subscriptions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -184,7 +184,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptions" }
 
@@ -207,7 +207,7 @@ public struct SubscriptionGroup: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

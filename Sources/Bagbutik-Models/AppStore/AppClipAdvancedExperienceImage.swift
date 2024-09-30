@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage>
  */
-public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
+public struct AppClipAdvancedExperienceImage: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Images resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct AppClipAdvancedExperienceImage: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimage/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The state of the App Clip card image asset you uploaded.
         public var assetDeliveryState: AppMediaAssetState?
         /// The filename of the image asset that appears on the App Clip card for the advanced App Clip experience.

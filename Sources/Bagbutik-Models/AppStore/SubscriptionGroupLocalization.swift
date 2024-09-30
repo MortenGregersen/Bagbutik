@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroupLocalization: Codable, Identifiable {
+public struct SubscriptionGroupLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionGroupLocalizations" }
@@ -39,7 +39,7 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var customAppName: String?
         public var locale: String?
         public var name: String?
@@ -72,7 +72,7 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
             try container.encodeIfPresent(state, forKey: "state")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case approved = "APPROVED"
             case prepareForSubmission = "PREPARE_FOR_SUBMISSION"
             case rejected = "REJECTED"
@@ -80,7 +80,7 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var subscriptionGroup: SubscriptionGroup?
 
         public init(subscriptionGroup: SubscriptionGroup? = nil) {
@@ -97,7 +97,7 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
             try container.encodeIfPresent(subscriptionGroup, forKey: "subscriptionGroup")
         }
 
-        public struct SubscriptionGroup: Codable {
+        public struct SubscriptionGroup: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -120,7 +120,7 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGroups" }
 
@@ -143,7 +143,7 @@ public struct SubscriptionGroupLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

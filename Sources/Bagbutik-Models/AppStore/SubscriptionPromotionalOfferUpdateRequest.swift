@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
+public struct SubscriptionPromotionalOfferUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [SubscriptionPromotionalOfferPriceInlineCreate]?
 
@@ -24,7 +24,7 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
         try container.encodeIfPresent(included, forKey: "included")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "subscriptionPromotionalOffers" }
         public var relationships: Relationships?
@@ -52,7 +52,7 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var prices: Prices?
 
             public init(prices: Prices? = nil) {
@@ -69,7 +69,7 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(prices, forKey: "prices")
             }
 
-            public struct Prices: Codable {
+            public struct Prices: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -86,7 +86,7 @@ public struct SubscriptionPromotionalOfferUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionPromotionalOfferPrices" }
 

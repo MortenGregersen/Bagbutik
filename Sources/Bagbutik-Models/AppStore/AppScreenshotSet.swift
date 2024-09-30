@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset>
  */
-public struct AppScreenshotSet: Codable, Identifiable {
+public struct AppScreenshotSet: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appScreenshotSets" }
@@ -53,7 +53,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var screenshotDisplayType: ScreenshotDisplayType?
 
         public init(screenshotDisplayType: ScreenshotDisplayType? = nil) {
@@ -78,7 +78,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
         public var appScreenshots: AppScreenshots?
         public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
@@ -111,7 +111,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
             try container.encodeIfPresent(appStoreVersionLocalization, forKey: "appStoreVersionLocalization")
         }
 
-        public struct AppCustomProductPageLocalization: Codable {
+        public struct AppCustomProductPageLocalization: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -134,7 +134,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageLocalizations" }
 
@@ -157,7 +157,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -189,7 +189,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots>
          */
-        public struct AppScreenshots: Codable {
+        public struct AppScreenshots: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -224,7 +224,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshots" }
 
@@ -254,7 +254,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appscreenshots/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -279,7 +279,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperimentTreatmentLocalization: Codable {
+        public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -302,7 +302,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
 
@@ -325,7 +325,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -357,7 +357,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization>
          */
-        public struct AppStoreVersionLocalization: Codable {
+        public struct AppStoreVersionLocalization: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -387,7 +387,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
 
@@ -417,7 +417,7 @@ public struct AppScreenshotSet: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset/relationships/appstoreversionlocalization/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

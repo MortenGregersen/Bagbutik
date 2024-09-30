@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse>
  */
-public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -43,7 +43,7 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         /// The granularity of the data using the ISO 8601 format for durations.
         public var granularity: Granularity?
@@ -74,7 +74,7 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse/data/datapoints>
          */
-        public struct DataPoints: Codable {
+        public struct DataPoints: Codable, Sendable {
             /// The time Game Center ends the data collection.
             public var end: Date?
             /// The time Game Center starts the data collection.
@@ -111,7 +111,7 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse/data/datapoints/values>
              */
-            public struct Values: Codable {
+            public struct Values: Codable, Sendable {
                 /// The average number of match requests in the queue.
                 public var averageNumberOfRequests: Double?
                 /// The number of match requests in the queue.
@@ -150,7 +150,7 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, PagedRes
             }
         }
 
-        public enum Granularity: String, Codable, CaseIterable {
+        public enum Granularity: String, Sendable, Codable, CaseIterable {
             case P1D
             case PT15M
             case PT1H

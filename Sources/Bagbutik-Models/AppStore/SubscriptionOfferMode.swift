@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionoffermode>
  */
-public enum SubscriptionOfferMode: String, Codable, CaseIterable {
+public enum SubscriptionOfferMode: String, Sendable, Codable, CaseIterable {
     /// A constant that indicates a subscription offer is a free trial.
     case freeTrial = "FREE_TRIAL"
     /// A constant that indicates a subscription offer is billed over multiple billing periods.

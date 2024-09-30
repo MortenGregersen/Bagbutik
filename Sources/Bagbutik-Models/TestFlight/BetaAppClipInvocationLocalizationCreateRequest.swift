@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest>
  */
-public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBody {
+public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "betaAppClipInvocationLocalizations" }
         /// The attributes that describes the request that creates a Beta App Clip Invocation Localizations resource.
@@ -71,7 +71,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The specified locale. Refer to ``BetaAppLocalizationCreateRequest/Data/Attributes`` for possible values.
             public let locale: String
             /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.
@@ -104,7 +104,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related Beta App Clip Invocations resource.
             public let betaAppClipInvocation: BetaAppClipInvocation
 
@@ -129,7 +129,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/relationships/betaappclipinvocation>
              */
-            public struct BetaAppClipInvocation: Codable {
+            public struct BetaAppClipInvocation: Codable, Sendable {
                 /// The ID and type of the related Beta App Clip Invocations resource.
                 public let data: Data
 
@@ -154,7 +154,7 @@ public struct BetaAppClipInvocationLocalizationCreateRequest: Codable, RequestBo
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationcreaterequest/data/relationships/betaappclipinvocation/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocations resource.
                     public let id: String
                     /// The resource type.

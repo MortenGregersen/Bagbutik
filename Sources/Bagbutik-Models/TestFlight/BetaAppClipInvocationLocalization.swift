@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalization>
  */
-public struct BetaAppClipInvocationLocalization: Codable, Identifiable {
+public struct BetaAppClipInvocationLocalization: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct BetaAppClipInvocationLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalization/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The specified locale. Refer to ``BetaAppLocalizationCreateRequest/Data/Attributes`` for possible values.
         public var locale: String?
         /// The title that appears on the App Clip card for an App Clip experience you configure for testers who launch the App Clip using the TestFlight app.

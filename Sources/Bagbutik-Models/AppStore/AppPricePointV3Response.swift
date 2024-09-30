@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPricePointV3Response: Codable {
+public struct AppPricePointV3Response: Codable, Sendable {
     public let data: AppPricePointV3
     public var included: [Included]?
     public let links: DocumentLinks
@@ -43,7 +43,7 @@ public struct AppPricePointV3Response: Codable {
         }.first { $0.id == data.relationships?.territory?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case territory(Territory)
 

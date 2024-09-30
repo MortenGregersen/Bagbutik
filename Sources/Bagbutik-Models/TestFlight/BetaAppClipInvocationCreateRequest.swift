@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest>
  */
-public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
+public struct BetaAppClipInvocationCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
     /// The relationship data to include in the response.
@@ -40,7 +40,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "betaAppClipInvocations" }
         /// The attributes that describes the request that creates a Beta App Clip Invocations resource.
@@ -78,7 +78,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
             public let url: String
 
@@ -104,7 +104,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related Beta App Clip Invocation Localizations resource.
             public let betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations
             /// The related Build Bundles resource.
@@ -136,7 +136,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations>
              */
-            public struct BetaAppClipInvocationLocalizations: Codable {
+            public struct BetaAppClipInvocationLocalizations: Codable, Sendable {
                 /// The ID and type of the related Beta App Clip Invocation Localizations resource.
                 public let data: [Data]
 
@@ -161,7 +161,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/betaappclipinvocationlocalizations/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                     public let id: String
                     /// The resource type.
@@ -194,7 +194,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle>
              */
-            public struct BuildBundle: Codable {
+            public struct BuildBundle: Codable, Sendable {
                 /// The ID and type of the related Build Bundles resource.
                 public let data: Data
 
@@ -219,7 +219,7 @@ public struct BetaAppClipInvocationCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest/data/relationships/buildbundle/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Build Bundles resource.
                     public let id: String
                     /// The resource type.

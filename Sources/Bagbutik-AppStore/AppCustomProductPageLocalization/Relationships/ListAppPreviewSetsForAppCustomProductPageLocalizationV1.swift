@@ -45,7 +45,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
         /// The fields to include for returned resources of type appStoreVersionLocalizations
         case appStoreVersionLocalizations([AppStoreVersionLocalizations])
 
-        public enum AppCustomProductPageLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageVersion
             case appPreviewSets
             case appScreenshotSets
@@ -53,7 +53,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case promotionalText
         }
 
-        public enum AppPreviewSets: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviewSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPageLocalization
             case appPreviews
             case appStoreVersionExperimentTreatmentLocalization
@@ -61,7 +61,7 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case previewType
         }
 
-        public enum AppPreviews: String, ParameterValue, Codable, CaseIterable {
+        public enum AppPreviews: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPreviewSet
             case assetDeliveryState
             case fileName
@@ -75,14 +75,14 @@ public enum ListAppPreviewSetsForAppCustomProductPageLocalizationV1 {
             case videoUrl
         }
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
         }
 
-        public enum AppStoreVersionLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersion

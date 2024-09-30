@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse>
  */
-public struct AppPreviewSetAppPreviewsLinkagesResponse: Codable, PagedResponse {
+public struct AppPreviewSetAppPreviewsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -43,7 +43,7 @@ public struct AppPreviewSetAppPreviewsLinkagesResponse: Codable, PagedResponse {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appPreviews" }
 

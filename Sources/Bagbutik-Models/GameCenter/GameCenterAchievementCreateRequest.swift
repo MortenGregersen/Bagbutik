@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementcreaterequest>
  */
-public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
+public struct GameCenterAchievementCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterAchievements" }
         public let attributes: Attributes
         public var relationships: Relationships?
@@ -53,7 +53,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let points: Int
             public let referenceName: String
             public let repeatable: Bool
@@ -92,7 +92,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var gameCenterDetail: GameCenterDetail?
             public var gameCenterGroup: GameCenterGroup?
 
@@ -115,7 +115,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(gameCenterGroup, forKey: "gameCenterGroup")
             }
 
-            public struct GameCenterDetail: Codable {
+            public struct GameCenterDetail: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -132,7 +132,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterDetails" }
 
@@ -156,7 +156,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct GameCenterGroup: Codable {
+            public struct GameCenterGroup: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -173,7 +173,7 @@ public struct GameCenterAchievementCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "gameCenterGroups" }
 

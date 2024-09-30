@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventVideoClipsResponse: Codable, PagedResponse {
+public struct AppEventVideoClipsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEventVideoClip
 
     public let data: [AppEventVideoClip]

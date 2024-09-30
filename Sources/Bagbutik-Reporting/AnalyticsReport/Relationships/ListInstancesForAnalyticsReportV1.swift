@@ -34,7 +34,7 @@ public enum ListInstancesForAnalyticsReportV1 {
         /// The fields to include for returned resources of type analyticsReportInstances
         case analyticsReportInstances([AnalyticsReportInstances])
 
-        public enum AnalyticsReportInstances: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReportInstances: String, Sendable, ParameterValue, Codable, CaseIterable {
             case granularity
             case processingDate
             case segments
@@ -50,7 +50,7 @@ public enum ListInstancesForAnalyticsReportV1 {
         /// Filter by attribute 'processingDate'
         case processingDate([String])
 
-        public enum Granularity: String, ParameterValue, Codable, CaseIterable {
+        public enum Granularity: String, Sendable, ParameterValue, Codable, CaseIterable {
             case daily = "DAILY"
             case monthly = "MONTHLY"
             case weekly = "WEEKLY"

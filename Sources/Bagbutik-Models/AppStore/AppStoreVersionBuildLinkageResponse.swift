@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkageresponse>
  */
-public struct AppStoreVersionBuildLinkageResponse: Codable {
+public struct AppStoreVersionBuildLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks
 
@@ -38,7 +38,7 @@ public struct AppStoreVersionBuildLinkageResponse: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkageresponse/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "builds" }
 

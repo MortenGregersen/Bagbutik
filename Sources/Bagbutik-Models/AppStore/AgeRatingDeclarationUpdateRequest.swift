@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest>
  */
-public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
+public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody {
     /// The data element of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -73,7 +73,7 @@ public struct AgeRatingDeclarationUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var ageRatingOverride: AgeRatingDeclaration.Attributes.AgeRatingOverride?
             /// Declaration for alcohol, tobacco, or drug use.
             public var alcoholTobaccoOrDrugUseOrReferences: AgeRatingDeclaration.Attributes.AlcoholTobaccoOrDrugUseOrReferences?

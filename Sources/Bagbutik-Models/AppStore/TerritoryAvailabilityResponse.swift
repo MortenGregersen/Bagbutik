@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityresponse>
  */
-public struct TerritoryAvailabilityResponse: Codable {
+public struct TerritoryAvailabilityResponse: Codable, Sendable {
     public let data: TerritoryAvailability
     public var included: [Territory]?
     public let links: DocumentLinks

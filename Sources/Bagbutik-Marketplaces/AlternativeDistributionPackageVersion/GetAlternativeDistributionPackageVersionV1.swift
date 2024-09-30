@@ -38,21 +38,21 @@ public enum GetAlternativeDistributionPackageVersionV1 {
         /// The fields to include for returned resources of type alternativeDistributionPackageVersions
         case alternativeDistributionPackageVersions([AlternativeDistributionPackageVersions])
 
-        public enum AlternativeDistributionPackageDeltas: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackageDeltas: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
             case fileChecksum
             case url
             case urlExpirationDate
         }
 
-        public enum AlternativeDistributionPackageVariants: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackageVariants: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
             case fileChecksum
             case url
             case urlExpirationDate
         }
 
-        public enum AlternativeDistributionPackageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionPackage
             case deltas
             case fileChecksum

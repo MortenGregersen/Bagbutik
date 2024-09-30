@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, RequestBody {
+public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, RequestBody
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "subscriptionOfferCodeCustomCodes" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, RequestBody
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let customCode: String
             public var expirationDate: String?
             public let numberOfCodes: Int
@@ -75,7 +75,7 @@ public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, RequestBody
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let offerCode: OfferCode
 
             public init(offerCode: OfferCode) {
@@ -92,7 +92,7 @@ public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, RequestBody
                 try container.encode(offerCode, forKey: "offerCode")
             }
 
-            public struct OfferCode: Codable {
+            public struct OfferCode: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -109,7 +109,7 @@ public struct SubscriptionOfferCodeCustomCodeCreateRequest: Codable, RequestBody
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionOfferCodes" }
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2>
  */
-public struct AppAvailabilityV2: Codable, Identifiable {
+public struct AppAvailabilityV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appAvailabilities" }
@@ -46,7 +46,7 @@ public struct AppAvailabilityV2: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var availableInNewTerritories: Bool?
 
         public init(availableInNewTerritories: Bool? = nil) {
@@ -64,7 +64,7 @@ public struct AppAvailabilityV2: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var territoryAvailabilities: TerritoryAvailabilities?
 
         public init(territoryAvailabilities: TerritoryAvailabilities? = nil) {
@@ -81,7 +81,7 @@ public struct AppAvailabilityV2: Codable, Identifiable {
             try container.encodeIfPresent(territoryAvailabilities, forKey: "territoryAvailabilities")
         }
 
-        public struct TerritoryAvailabilities: Codable {
+        public struct TerritoryAvailabilities: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -109,7 +109,7 @@ public struct AppAvailabilityV2: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territoryAvailabilities" }
 
@@ -132,7 +132,7 @@ public struct AppAvailabilityV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

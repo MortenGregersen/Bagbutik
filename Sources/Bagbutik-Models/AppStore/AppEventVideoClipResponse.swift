@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventVideoClipResponse: Codable {
+public struct AppEventVideoClipResponse: Codable, Sendable {
     public let data: AppEventVideoClip
     public var included: [AppEventLocalization]?
     public let links: DocumentLinks

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionOfferCodeOneTimeUseCodeValue: Codable, Identifiable {
+public struct SubscriptionOfferCodeOneTimeUseCodeValue: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionOfferCodeOneTimeUseCodeValues" }

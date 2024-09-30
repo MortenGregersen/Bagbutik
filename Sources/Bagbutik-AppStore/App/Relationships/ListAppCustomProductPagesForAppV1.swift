@@ -41,7 +41,7 @@ public enum ListAppCustomProductPagesForAppV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppCustomProductPageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appCustomProductPage
             case appCustomProductPageLocalizations
             case deepLink
@@ -49,7 +49,7 @@ public enum ListAppCustomProductPagesForAppV1 {
             case version
         }
 
-        public enum AppCustomProductPages: String, ParameterValue, Codable, CaseIterable {
+        public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
             case appStoreVersionTemplate
@@ -59,7 +59,7 @@ public enum ListAppCustomProductPagesForAppV1 {
             case visible
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability

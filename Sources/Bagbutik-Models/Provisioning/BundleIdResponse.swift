@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidresponse>
  */
-public struct BundleIdResponse: Codable {
+public struct BundleIdResponse: Codable, Sendable {
     /// The resource data.
     public let data: BundleId
     /// The requested relationship data.
@@ -70,7 +70,7 @@ public struct BundleIdResponse: Codable {
         return profiles
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case bundleIdCapability(BundleIdCapability)
         case profile(Profile)

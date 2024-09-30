@@ -40,7 +40,7 @@ public enum GetSubscriptionOfferCodeV1 {
         /// The fields to include for returned resources of type subscriptionOfferCodes
         case subscriptionOfferCodes([SubscriptionOfferCodes])
 
-        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeCustomCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
             case customCode
@@ -49,7 +49,7 @@ public enum GetSubscriptionOfferCodeV1 {
             case offerCode
         }
 
-        public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
             case expirationDate
@@ -58,12 +58,12 @@ public enum GetSubscriptionOfferCodeV1 {
             case values
         }
 
-        public enum SubscriptionOfferCodePrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodePrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case subscriptionPricePoint
             case territory
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case customCodes
             case customerEligibilities

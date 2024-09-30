@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest>
  */
-public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingQueueUpdateRequest: Codable, Sendable, RequestBody {
     /// The data structure of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The unique identifier for the queue.
         public let id: String
         /// The type of resource.
@@ -75,7 +75,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var classicMatchmakingBundleIds: [String]?
 
             public init(classicMatchmakingBundleIds: [String]? = nil) {
@@ -100,7 +100,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// A rule set for testing the queue.
             public var experimentRuleSet: ExperimentRuleSet?
             /// The rule set for this queue.
@@ -132,7 +132,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/relationships/experimentruleset>
              */
-            public struct ExperimentRuleSet: Codable {
+            public struct ExperimentRuleSet: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -156,7 +156,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/relationships/experimentruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The unique identifier for the rule set.
                     public let id: String
                     /// The type of resource.
@@ -189,7 +189,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/relationships/ruleset>
              */
-            public struct RuleSet: Codable {
+            public struct RuleSet: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -213,7 +213,7 @@ public struct GameCenterMatchmakingQueueUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest/data/relationships/ruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The unique identifier for the rule set.
                     public let id: String
                     /// The type of resource.

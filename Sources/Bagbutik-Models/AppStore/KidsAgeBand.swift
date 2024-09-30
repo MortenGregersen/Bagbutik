@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/kidsageband>
  */
-public enum KidsAgeBand: String, Codable, CaseIterable {
+public enum KidsAgeBand: String, Sendable, Codable, CaseIterable {
     /// A literal that represents the age band for ages 5 and under.
     case fiveAndUnder = "FIVE_AND_UNDER"
     /// A literal that represents the age band for ages 9 to 11.

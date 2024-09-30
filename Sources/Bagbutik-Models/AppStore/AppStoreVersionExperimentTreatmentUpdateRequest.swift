@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentTreatmentUpdateRequest: Codable, RequestBody {
+public struct AppStoreVersionExperimentTreatmentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppStoreVersionExperimentTreatmentUpdateRequest: Codable, RequestB
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionExperimentTreatments" }
         public var attributes: Attributes?
@@ -46,7 +46,7 @@ public struct AppStoreVersionExperimentTreatmentUpdateRequest: Codable, RequestB
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var appIconName: String?
             public var name: String?
 

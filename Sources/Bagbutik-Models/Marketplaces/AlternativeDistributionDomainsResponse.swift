@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomainsresponse>
  */
-public struct AlternativeDistributionDomainsResponse: Codable, PagedResponse {
+public struct AlternativeDistributionDomainsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionDomain
 
     public let data: [AlternativeDistributionDomain]

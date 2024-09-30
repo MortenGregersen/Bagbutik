@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageresponse>
  */
-public struct AlternativeDistributionPackageResponse: Codable {
+public struct AlternativeDistributionPackageResponse: Codable, Sendable {
     public let data: AlternativeDistributionPackage
     public var included: [AlternativeDistributionPackageVersion]?
     public let links: DocumentLinks

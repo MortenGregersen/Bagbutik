@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetsresponse>
  */
-public struct AppPreviewSetsResponse: Codable, PagedResponse {
+public struct AppPreviewSetsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppPreviewSet
 
     public let data: [AppPreviewSet]
@@ -76,7 +76,7 @@ public struct AppPreviewSetsResponse: Codable, PagedResponse {
         }.first { $0.id == appPreviewSet.relationships?.appStoreVersionLocalization?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appCustomProductPageLocalization(AppCustomProductPageLocalization)
         case appPreview(AppPreview)
         case appStoreVersionExperimentTreatmentLocalization(AppStoreVersionExperimentTreatmentLocalization)

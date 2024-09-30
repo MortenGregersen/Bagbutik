@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/citestresult>
  */
-public struct CiTestResult: Codable, Identifiable {
+public struct CiTestResult: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Test Results resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct CiTestResult: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/citestresult/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The name of the class that contained the tests Xcode Cloud performed.
         public var className: String?
         /// Information about the test results for a specific test destination.
@@ -108,7 +108,7 @@ public struct CiTestResult: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/citestresult/attributes/destinationtestresults>
          */
-        public struct DestinationTestResults: Codable {
+        public struct DestinationTestResults: Codable, Sendable {
             /// The name of the simulated device used for tests.
             public var deviceName: String?
             /// The time it took to perform a test on a specific simulated device.

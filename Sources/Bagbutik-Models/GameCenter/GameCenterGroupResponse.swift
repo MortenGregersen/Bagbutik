@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupresponse>
  */
-public struct GameCenterGroupResponse: Codable {
+public struct GameCenterGroupResponse: Codable, Sendable {
     public let data: GameCenterGroup
     public var included: [Included]?
     public let links: DocumentLinks
@@ -84,7 +84,7 @@ public struct GameCenterGroupResponse: Codable {
         return gameCenterLeaderboards
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterAchievement(GameCenterAchievement)
         case gameCenterDetail(GameCenterDetail)
         case gameCenterLeaderboard(GameCenterLeaderboard)

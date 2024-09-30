@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildusagesv1metricresponse>
  */
-public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
+public struct BetaBuildUsagesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -36,7 +36,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
 
@@ -59,7 +59,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
             try container.encodeIfPresent(dimensions, forKey: "dimensions")
         }
 
-        public struct DataPoints: Codable {
+        public struct DataPoints: Codable, Sendable {
             public var end: Date?
             public var start: Date?
             public var values: Values?
@@ -87,7 +87,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                 try container.encodeIfPresent(values, forKey: "values")
             }
 
-            public struct Values: Codable {
+            public struct Values: Codable, Sendable {
                 public var crashCount: Int?
                 public var feedbackCount: Int?
                 public var installCount: Int?
@@ -127,7 +127,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
             }
         }
 
-        public struct Dimensions: Codable {
+        public struct Dimensions: Codable, Sendable {
             public var bundleIds: BundleIds?
 
             public init(bundleIds: BundleIds? = nil) {
@@ -144,7 +144,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                 try container.encodeIfPresent(bundleIds, forKey: "bundleIds")
             }
 
-            public struct BundleIds: Codable {
+            public struct BundleIds: Codable, Sendable {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
@@ -161,7 +161,7 @@ public struct BetaBuildUsagesV1MetricResponse: Codable, PagedResponse {
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 
-                public struct Links: Codable {
+                public struct Links: Codable, Sendable {
                     public var groupBy: String?
 
                     public init(groupBy: String? = nil) {

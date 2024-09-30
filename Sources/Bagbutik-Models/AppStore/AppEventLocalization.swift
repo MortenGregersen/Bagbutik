@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventLocalization: Codable, Identifiable {
+public struct AppEventLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appEventLocalizations" }
@@ -39,7 +39,7 @@ public struct AppEventLocalization: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var locale: String?
         public var longDescription: String?
         public var name: String?
@@ -73,7 +73,7 @@ public struct AppEventLocalization: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appEvent: AppEvent?
         public var appEventScreenshots: AppEventScreenshots?
         public var appEventVideoClips: AppEventVideoClips?
@@ -101,7 +101,7 @@ public struct AppEventLocalization: Codable, Identifiable {
             try container.encodeIfPresent(appEventVideoClips, forKey: "appEventVideoClips")
         }
 
-        public struct AppEvent: Codable {
+        public struct AppEvent: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -124,7 +124,7 @@ public struct AppEventLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEvents" }
 
@@ -147,7 +147,7 @@ public struct AppEventLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -172,7 +172,7 @@ public struct AppEventLocalization: Codable, Identifiable {
             }
         }
 
-        public struct AppEventScreenshots: Codable {
+        public struct AppEventScreenshots: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -200,7 +200,7 @@ public struct AppEventLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEventScreenshots" }
 
@@ -223,7 +223,7 @@ public struct AppEventLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -248,7 +248,7 @@ public struct AppEventLocalization: Codable, Identifiable {
             }
         }
 
-        public struct AppEventVideoClips: Codable {
+        public struct AppEventVideoClips: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -276,7 +276,7 @@ public struct AppEventLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEventVideoClips" }
 
@@ -299,7 +299,7 @@ public struct AppEventLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkagerequest>
  */
-public struct AppStoreVersionBuildLinkageRequest: Codable, RequestBody {
+public struct AppStoreVersionBuildLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 
     public init(data: Data? = nil) {
@@ -32,7 +32,7 @@ public struct AppStoreVersionBuildLinkageRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkagerequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "builds" }
 

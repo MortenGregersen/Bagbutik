@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreport>
  */
-public struct AnalyticsReport: Codable, Identifiable {
+public struct AnalyticsReport: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "analyticsReports" }
@@ -43,7 +43,7 @@ public struct AnalyticsReport: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var category: Category?
         public var name: String?
 
@@ -66,7 +66,7 @@ public struct AnalyticsReport: Codable, Identifiable {
             try container.encodeIfPresent(name, forKey: "name")
         }
 
-        public enum Category: String, Codable, CaseIterable {
+        public enum Category: String, Sendable, Codable, CaseIterable {
             case appStoreEngagement = "APP_STORE_ENGAGEMENT"
             case appUsage = "APP_USAGE"
             case commerce = "COMMERCE"

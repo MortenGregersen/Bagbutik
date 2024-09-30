@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest>
  */
-public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterMatchmakingTeams" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -67,7 +67,7 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The maximum number of players on the team.
             public let maxPlayers: Int
             /// The minimum number of players on the team.
@@ -106,7 +106,7 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let ruleSet: RuleSet
 
             public init(ruleSet: RuleSet) {
@@ -130,7 +130,7 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/relationships/ruleset>
              */
-            public struct RuleSet: Codable {
+            public struct RuleSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -154,7 +154,7 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/relationships/ruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The unique identifier for the rule set.
                     public let id: String
                     /// The type of resource.

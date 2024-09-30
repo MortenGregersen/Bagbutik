@@ -36,7 +36,7 @@ public enum GetAlternativeDistributionPackageForAppStoreVersionV1 {
         /// The fields to include for returned resources of type alternativeDistributionPackages
         case alternativeDistributionPackages([AlternativeDistributionPackages])
 
-        public enum AlternativeDistributionPackageVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackageVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionPackage
             case deltas
             case fileChecksum
@@ -47,7 +47,7 @@ public enum GetAlternativeDistributionPackageForAppStoreVersionV1 {
             case version
         }
 
-        public enum AlternativeDistributionPackages: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case versions
         }

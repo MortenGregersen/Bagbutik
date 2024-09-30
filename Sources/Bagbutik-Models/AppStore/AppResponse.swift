@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appresponse>
  */
-public struct AppResponse: Codable {
+public struct AppResponse: Codable, Sendable {
     /// The resource data.
     public let data: App
     public var included: [Included]?
@@ -279,7 +279,7 @@ public struct AppResponse: Codable {
         return subscriptionGroups
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appClip(AppClip)
         case appCustomProductPage(AppCustomProductPage)
         case appEncryptionDeclaration(AppEncryptionDeclaration)

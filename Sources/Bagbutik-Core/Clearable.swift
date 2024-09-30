@@ -1,7 +1,7 @@
 import Foundation
 
 ///  Wrapper for a property that can be cleared. Used in `UpdateRequest`s.
-public enum Clearable<Value>: Codable, Equatable where Value: Codable & Equatable {
+public enum Clearable<Value>: Codable, Equatable, Sendable where Value: Codable & Equatable & Sendable {
     /// The value to set
     case value(Value)
     /// Clear current value

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchaseV2: Codable, Identifiable {
+public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "inAppPurchases" }
@@ -39,7 +39,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var contentHosting: Bool?
         public var familySharable: Bool?
         public var inAppPurchaseType: InAppPurchaseType?
@@ -88,7 +88,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appStoreReviewScreenshot: AppStoreReviewScreenshot?
         public var content: Content?
         public var iapPriceSchedule: IapPriceSchedule?
@@ -136,7 +136,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             try container.encodeIfPresent(promotedPurchase, forKey: "promotedPurchase")
         }
 
-        public struct AppStoreReviewScreenshot: Codable {
+        public struct AppStoreReviewScreenshot: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -159,7 +159,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseAppStoreReviewScreenshots" }
 
@@ -182,7 +182,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -207,7 +207,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             }
         }
 
-        public struct Content: Codable {
+        public struct Content: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -230,7 +230,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseContents" }
 
@@ -253,7 +253,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -278,7 +278,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             }
         }
 
-        public struct IapPriceSchedule: Codable {
+        public struct IapPriceSchedule: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -301,7 +301,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchasePriceSchedules" }
 
@@ -324,7 +324,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -349,7 +349,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             }
         }
 
-        public struct InAppPurchaseAvailability: Codable {
+        public struct InAppPurchaseAvailability: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -372,7 +372,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseAvailabilities" }
 
@@ -395,7 +395,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -420,7 +420,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             }
         }
 
-        public struct InAppPurchaseLocalizations: Codable {
+        public struct InAppPurchaseLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -448,7 +448,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchaseLocalizations" }
 
@@ -471,7 +471,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -496,7 +496,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             }
         }
 
-        public struct PricePoints: Codable {
+        public struct PricePoints: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -524,7 +524,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchasePricePoints" }
 
@@ -547,7 +547,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -572,7 +572,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
             }
         }
 
-        public struct PromotedPurchase: Codable {
+        public struct PromotedPurchase: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -595,7 +595,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 
@@ -618,7 +618,7 @@ public struct InAppPurchaseV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

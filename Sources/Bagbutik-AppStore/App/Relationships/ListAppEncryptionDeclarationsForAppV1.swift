@@ -43,7 +43,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
 
-        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
@@ -55,7 +55,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case uploaded
         }
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -75,7 +75,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case usesEncryption
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -121,7 +121,7 @@ public enum ListAppEncryptionDeclarationsForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion

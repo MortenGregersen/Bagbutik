@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesresponse>
  */
-public struct BetaTesterBuildsLinkagesResponse: Codable, PagedResponse {
+public struct BetaTesterBuildsLinkagesResponse: Codable, Sendable, PagedResponse {
     /// The object types and IDs of the related resources.
     public let data: [Data]
     /// Navigational links including the self-link and links to the related data.
@@ -46,7 +46,7 @@ public struct BetaTesterBuildsLinkagesResponse: Codable, PagedResponse {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesresponse/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.

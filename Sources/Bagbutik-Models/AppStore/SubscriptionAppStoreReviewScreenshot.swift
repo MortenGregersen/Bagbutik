@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
+public struct SubscriptionAppStoreReviewScreenshot: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "subscriptionAppStoreReviewScreenshots" }
@@ -39,7 +39,7 @@ public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var assetDeliveryState: AppMediaAssetState?
         public var assetToken: String?
         public var assetType: String?
@@ -93,7 +93,7 @@ public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var subscription: Subscription?
 
         public init(subscription: Subscription? = nil) {
@@ -110,7 +110,7 @@ public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
             try container.encodeIfPresent(subscription, forKey: "subscription")
         }
 
-        public struct Subscription: Codable {
+        public struct Subscription: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -133,7 +133,7 @@ public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptions" }
 
@@ -156,7 +156,7 @@ public struct SubscriptionAppStoreReviewScreenshot: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

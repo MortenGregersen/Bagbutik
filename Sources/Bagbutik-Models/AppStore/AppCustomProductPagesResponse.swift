@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagesresponse>
  */
-public struct AppCustomProductPagesResponse: Codable, PagedResponse {
+public struct AppCustomProductPagesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCustomProductPage
 
     public let data: [AppCustomProductPage]
@@ -62,7 +62,7 @@ public struct AppCustomProductPagesResponse: Codable, PagedResponse {
         return appCustomProductPageVersions
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case appCustomProductPageVersion(AppCustomProductPageVersion)
 

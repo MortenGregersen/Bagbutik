@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationresponse>
  */
-public struct BuildBetaNotificationResponse: Codable {
+public struct BuildBetaNotificationResponse: Codable, Sendable {
     /// The resource data.
     public let data: BuildBetaNotification
     /// Navigational links that include the self-link.

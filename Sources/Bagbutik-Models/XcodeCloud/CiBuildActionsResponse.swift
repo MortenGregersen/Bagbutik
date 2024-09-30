@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildactionsresponse>
  */
-public struct CiBuildActionsResponse: Codable, PagedResponse {
+public struct CiBuildActionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiBuildAction
 
     /// The resource data.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmproviderresponse>
  */
-public struct ScmProviderResponse: Codable {
+public struct ScmProviderResponse: Codable, Sendable {
     /// The resource data.
     public let data: ScmProvider
     /// The navigational links that include the self-link.

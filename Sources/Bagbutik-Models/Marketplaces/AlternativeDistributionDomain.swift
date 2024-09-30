@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain>
  */
-public struct AlternativeDistributionDomain: Codable, Identifiable {
+public struct AlternativeDistributionDomain: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionDomains" }
@@ -48,7 +48,7 @@ public struct AlternativeDistributionDomain: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var createdDate: Date?
         public var domain: String?
         public var referenceName: String?

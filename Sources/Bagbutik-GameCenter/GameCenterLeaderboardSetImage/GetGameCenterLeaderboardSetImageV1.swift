@@ -31,7 +31,7 @@ public enum GetGameCenterLeaderboardSetImageV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboardSetImages
         case gameCenterLeaderboardSetImages([GameCenterLeaderboardSetImages])
 
-        public enum GameCenterLeaderboardSetImages: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSetImages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case fileName
             case fileSize

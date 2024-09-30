@@ -28,7 +28,7 @@ public enum GetDeviceV1 {
         /// The fields to include for returned resources of type devices
         case devices([Devices])
 
-        public enum Devices: String, ParameterValue, Codable, CaseIterable {
+        public enum Devices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case addedDate
             case deviceClass
             case model

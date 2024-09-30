@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardlocalizationresponse>
  */
-public struct GameCenterLeaderboardLocalizationResponse: Codable {
+public struct GameCenterLeaderboardLocalizationResponse: Codable, Sendable {
     public let data: GameCenterLeaderboardLocalization
     public var included: [Included]?
     public let links: DocumentLinks
@@ -50,7 +50,7 @@ public struct GameCenterLeaderboardLocalizationResponse: Codable {
         }.first { $0.id == data.relationships?.gameCenterLeaderboardImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardImage(GameCenterLeaderboardImage)
 

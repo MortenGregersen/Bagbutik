@@ -50,7 +50,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
         /// The fields to include for returned resources of type scmPullRequests
         case scmPullRequests([ScmPullRequests])
 
-        public enum Builds: String, ParameterValue, Codable, CaseIterable {
+        public enum Builds: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appEncryptionDeclaration
             case appStoreVersion
@@ -77,7 +77,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case version
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actions
             case buildRun
             case builds
@@ -101,7 +101,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case workflow
         }
 
-        public enum CiProducts: String, ParameterValue, Codable, CaseIterable {
+        public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
             case additionalRepositories
             case app
             case buildRuns
@@ -113,7 +113,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case workflows
         }
 
-        public enum CiWorkflows: String, ParameterValue, Codable, CaseIterable {
+        public enum CiWorkflows: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actions
             case branchStartCondition
             case buildRuns
@@ -136,7 +136,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case xcodeVersion
         }
 
-        public enum ScmGitReferences: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmGitReferences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case canonicalName
             case isDeleted
             case kind
@@ -144,7 +144,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
             case repository
         }
 
-        public enum ScmPullRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum ScmPullRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
             case destinationBranchName
             case destinationRepositoryName
             case destinationRepositoryOwner

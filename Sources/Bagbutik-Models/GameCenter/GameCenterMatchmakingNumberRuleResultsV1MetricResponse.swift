@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse>
  */
-public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?
@@ -43,7 +43,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
         /// The granularity of the data using the ISO 8601 format for durations.
@@ -79,7 +79,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/datapoints>
          */
-        public struct DataPoints: Codable {
+        public struct DataPoints: Codable, Sendable {
             /// The time Game Center ends the data collection.
             public var end: Date?
             /// The time Game Center starts the data collection.
@@ -116,7 +116,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/datapoints/values>
              */
-            public struct Values: Codable {
+            public struct Values: Codable, Sendable {
                 /// The average result of numeric rules.
                 public var averageResult: Double?
                 /// The number of rule results in the response.
@@ -162,7 +162,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/dimensions>
          */
-        public struct Dimensions: Codable {
+        public struct Dimensions: Codable, Sendable {
             public var gameCenterMatchmakingQueue: GameCenterMatchmakingQueue?
 
             public init(gameCenterMatchmakingQueue: GameCenterMatchmakingQueue? = nil) {
@@ -186,7 +186,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/dimensions/gamecentermatchmakingqueue>
              */
-            public struct GameCenterMatchmakingQueue: Codable {
+            public struct GameCenterMatchmakingQueue: Codable, Sendable {
                 public var links: Links?
 
                 public init(links: Links? = nil) {
@@ -210,7 +210,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingnumberruleresultsv1metricresponse/data/dimensions/gamecentermatchmakingqueue/links>
                  */
-                public struct Links: Codable {
+                public struct Links: Codable, Sendable {
                     /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
                     /// A string URI representation of the related data.
@@ -238,7 +238,7 @@ public struct GameCenterMatchmakingNumberRuleResultsV1MetricResponse: Codable, P
             }
         }
 
-        public enum Granularity: String, Codable, CaseIterable {
+        public enum Granularity: String, Sendable, Codable, CaseIterable {
             case P1D
             case PT15M
             case PT1H

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationresponse>
  */
-public struct BetaTesterInvitationResponse: Codable {
+public struct BetaTesterInvitationResponse: Codable, Sendable {
     /// The resource data.
     public let data: BetaTesterInvitation
     /// Navigational links that include the self-link.
