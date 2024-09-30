@@ -226,8 +226,7 @@ public struct Spec: Decodable {
                 properties: [
                     "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
                     "additionalProperties": metaProperty
-                ],
-                additionalProtocols: ["Sendable"]))) // The `Sendable` conformance is always needed
+                ])))
         }
 
         errorResponseSchema.additionalProtocols.insert("Error")
