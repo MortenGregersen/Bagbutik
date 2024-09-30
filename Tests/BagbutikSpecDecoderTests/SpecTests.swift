@@ -795,69 +795,6 @@ final class SpecTests: XCTestCase {
                         },
                         "required" : [ "id", "type" ]
                     },
-                    "ErrorSourcePointer" : {
-                        "type" : "object"
-                    },
-                    "ErrorSourceParameter" : {
-                        "type" : "object"
-                    },
-                    "ErrorLinks" : {
-                        "type" : "object",
-                        "properties" : {
-                            "singleObjectSchema" : {
-                                "type" : "object",
-                                "properties" : {}
-                            },
-                            "arrayOfObjectSchema" : {
-                                "type" : "array",
-                                "items" : {
-                                    "type" : "object",
-                                    "properties" : {
-                                        "id" : {
-                                            "type" : "string"
-                                        }
-                                    }
-                                }
-                            },
-                            "singleEnumSchema" : {
-                                "type" : "string",
-                                "enum" : ["ONE", "TWO", "THREE"]
-                            },
-                            "arrayOfEnumSchema" : {
-                                "type" : "array",
-                                "items" : {
-                                    "type" : "string",
-                                    "enum" : ["ONE", "TWO", "THREE"]
-                                }
-                            },
-                            "singleOneOfSchema" : {
-                                "oneOf" : [ {
-                                    "type" : "object",
-                                    "properties" : {
-                                        "id" : {
-                                            "type" : "string"
-                                        }
-                                    }
-                                } ]
-                            },
-                            "arrayOfOneOfSchema" : {
-                                "type" : "array",
-                                "items" : {
-                                    "oneOf" : [ {
-                                        "type" : "object",
-                                        "properties" : {
-                                            "id" : {
-                                                "type" : "string"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "$ref" : "#/components/schemas/ErrorSourcePointer"
-                                    } ]
-                                }
-                            }
-                        }
-                    },
                     "ErrorResponse" : {
                         "type" : "object",
                         "properties" : {
@@ -963,32 +900,6 @@ final class SpecTests: XCTestCase {
         XCTAssertEqual(deviceStatusCaseValues.count, 3)
         XCTAssertTrue(deviceStatusCaseValues.contains("PROCESSING"))
         
-        guard case .object(let errorSourcePointerSchema) = spec.components.schemas["ErrorSourcePointer"],
-              case .object(let errorSourceParameterSchema) = spec.components.schemas["ErrorSourceParameter"],
-              case .object(let errorLinksSchema) = spec.components.schemas["ErrorLinks"],
-              case .schema(let errorLinksSingleObjectSchema) = errorLinksSchema.properties["singleObjectSchema"]?.type,
-              case .arrayOfSubSchema(let errorLinksArrayOfObjectSchema) = errorLinksSchema.properties["arrayOfObjectSchema"]?.type,
-              case .enumSchema(let errorLinksSingleEnumSchema) = errorLinksSchema.properties["singleEnumSchema"]?.type,
-              case .arrayOfEnumSchema(let errorLinksArrayOfEnumSchema) = errorLinksSchema.properties["arrayOfEnumSchema"]?.type,
-              case .oneOf(_, let errorLinksSingleOneOfSchema) = errorLinksSchema.properties["singleOneOfSchema"]?.type,
-              case .objectSchema(let errorLinksSingleOneOfSchemaOption) = errorLinksSingleOneOfSchema.options.first,
-              case .arrayOfOneOf(_, let errorLinksArrayOfOneOfSchema) = errorLinksSchema.properties["arrayOfOneOfSchema"]?.type,
-              case .objectSchema(let errorLinksArrayOfOneOfSchemaOption) = errorLinksArrayOfOneOfSchema.options.first
-        else {
-            XCTFail(); return
-        }
-        XCTAssertTrue(errorSourcePointerSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorSourceParameterSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksSingleObjectSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksArrayOfObjectSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksSingleEnumSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksArrayOfEnumSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksSingleOneOfSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksSingleOneOfSchemaOption.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksArrayOfOneOfSchema.additionalProtocols.contains("Sendable"))
-        XCTAssertTrue(errorLinksArrayOfOneOfSchemaOption.additionalProtocols.contains("Sendable"))
-
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
               case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type

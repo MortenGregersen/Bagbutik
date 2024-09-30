@@ -17,7 +17,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             public var name: String?
 
             public init(name: String? = nil) {
@@ -60,7 +60,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             /// The person's name
             public var name: String?
 
@@ -106,7 +106,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             /// The person's age
             public var age: Int?
             /// The person's name
@@ -164,7 +164,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct PersonCreateRequest: Codable, RequestBody {
+        public struct PersonCreateRequest: Codable, Sendable, RequestBody {
             public var age: Clearable<Int>?
             /// The person's name
             public var name: String?
@@ -220,7 +220,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct PersonCarLinkageRequest: Codable, RequestBody {
+        public struct PersonCarLinkageRequest: Codable, Sendable, RequestBody {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -244,7 +244,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              Full documentation:
              <some://url>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "cars" }
 
@@ -301,7 +301,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable, Identifiable {
+        public struct Person: Codable, Sendable, Identifiable {
             public var days: [Days]?
             /// The firstname of the person
             public let firstName: String
@@ -340,7 +340,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(itself, forKey: "self")
             }
 
-            public enum Days: String, Codable, CaseIterable {
+            public enum Days: String, Sendable, Codable, CaseIterable {
                 case monday = "MONDAY"
                 case tuesday = "TUESDAY"
             }
@@ -377,7 +377,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             public var name: String?
             /// The resource's attributes.
             public var attributes: Attributes?
@@ -401,7 +401,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(attributes, forKey: "attributes")
             }
 
-            public struct Attributes: Codable {
+            public struct Attributes: Codable, Sendable {
                 public var age: Int?
 
                 public init(age: Int? = nil) {
@@ -454,7 +454,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             public var name: String?
             /// The resource's relationships.
             public var relationships: Relationships?
@@ -485,7 +485,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              Full documentation:
              <some://url/relationships>
              */
-            public struct Relationships: Codable {
+            public struct Relationships: Codable, Sendable {
                 public var children: [Child]?
 
                 public init(children: [Child]? = nil) {
@@ -536,7 +536,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             /// The person's connection
             public var connection: Connection?
             /// The person's name
@@ -573,7 +573,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encodeIfPresent(preference, forKey: "preference")
             }
 
-            public enum Connection: Codable {
+            public enum Connection: Codable, Sendable {
                 case computer(Computer)
                 case phone(Phone)
 
@@ -598,7 +598,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
 
-            public struct Pet: Codable {
+            public struct Pet: Codable, Sendable {
                 public var name: String?
 
                 public init(name: String? = nil) {
@@ -616,7 +616,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }
             }
 
-            public enum Preference: String, Codable, CaseIterable {
+            public enum Preference: String, Sendable, Codable, CaseIterable {
                 case spaces = "SPACES"
                 case tabs = "TABS"
             }
@@ -638,7 +638,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
-        public struct PersonsResponse: Codable, PagedResponse {
+        public struct PersonsResponse: Codable, Sendable, PagedResponse {
             public typealias Data = Person
 
             public let data: [Person]
@@ -742,7 +742,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         ])
         // Then
         XCTAssertEqual(rendered, #"""
-        public struct BuildResponse: Codable {
+        public struct BuildResponse: Codable, Sendable {
             public var data: Build?
             public var included: [Included]?
 
@@ -784,7 +784,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }.first { $0.id == data.relationships?.preReleaseVersion?.data?.id }
             }
 
-            public enum Included: Codable {
+            public enum Included: Codable, Sendable {
                 case app(App)
                 case betaTester(BetaTester)
                 case prereleaseVersion(PrereleaseVersion)
@@ -813,7 +813,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     }
                 }
 
-                public struct App: Codable {
+                public struct App: Codable, Sendable {
                     public init() {}
 
                     public init(from decoder: Decoder) throws {
@@ -926,7 +926,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         ])
         // Then
         XCTAssertEqual(rendered, #"""
-        public struct BuildsResponse: Codable {
+        public struct BuildsResponse: Codable, Sendable {
             public typealias Data = Build
 
             public var data: [Build]?
@@ -970,7 +970,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 }.first { $0.id == build.relationships?.preReleaseVersion?.data?.id }
             }
 
-            public enum Included: Codable {
+            public enum Included: Codable, Sendable {
                 case betaTester(BetaTester)
                 case prereleaseVersion(PrereleaseVersion)
                 case somethingOld(SomethingOld)
@@ -1040,7 +1040,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Person: Codable {
+        public struct Person: Codable, Sendable {
             public var age: Int?
             public let name: String
             public var type: String { "person" }
@@ -1085,7 +1085,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              Full documentation:
              <some://url/attributes>
              */
-            public struct Attributes: Codable {
+            public struct Attributes: Codable, Sendable {
                 /// The person's age
                 public var age: Int?
 
@@ -1111,7 +1111,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              Full documentation:
              <some://url/relationships>
              */
-            public struct Relationships: Codable {
+            public struct Relationships: Codable, Sendable {
                 public var children: [Child]?
 
                 public init(children: [Child]? = nil) {
@@ -1164,7 +1164,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
          Full documentation:
          <some://url>
          */
-        public struct Profile: Codable, Identifiable {
+        public struct Profile: Codable, Sendable, Identifiable {
             public let id: String
             public var relationships: Relationships?
 
@@ -1194,7 +1194,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
              Full documentation:
              <some://url/relationships>
              */
-            public struct Relationships: Codable {
+            public struct Relationships: Codable, Sendable {
                 public var bundleId: BundleId?
 
                 public init(bundleId: BundleId? = nil) {
@@ -1211,7 +1211,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                     try container.encodeIfPresent(bundleId, forKey: "bundleId")
                 }
 
-                public struct BundleId: Codable {
+                public struct BundleId: Codable, Sendable {
                     @NullCodable public var data: Data?
 
                     public init(data: Data? = nil) {
@@ -1228,7 +1228,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                         try container.encode(data, forKey: "data")
                     }
 
-                    public struct Data: Codable, Identifiable {
+                    public struct Data: Codable, Sendable, Identifiable {
                         public var id: String?
                         public var type: String { "bundleIds" }
 
@@ -1285,7 +1285,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
-        public struct PhoneNumber: Codable {
+        public struct PhoneNumber: Codable, Sendable {
             public var intent: String?
             public var number: String?
             public var type: PhoneNumberType?
@@ -1313,7 +1313,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
                 try container.encode(type, forKey: "type")
             }
 
-            public enum PhoneNumberType: String, Codable, CaseIterable {
+            public enum PhoneNumberType: String, Sendable, Codable, CaseIterable {
                 case fax = "FAX"
                 case landline = "LANDLINE"
                 case mobile = "MOBILE"
@@ -1328,12 +1328,12 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
-        let schema = ObjectSchema(name: "PhoneNumber", url: "some://url/relationships", additionalProtocols: ["Sendable"])
+        let schema = ObjectSchema(name: "PhoneNumber", url: "some://url/relationships", additionalProtocols: ["Fooable"])
         // When
         let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
         // Then
         XCTAssertEqual(rendered, #"""
-        public struct PhoneNumber: Codable, Sendable {
+        public struct PhoneNumber: Codable, Sendable, Fooable {
             public init() {}
 
             public init(from decoder: Decoder) throws {

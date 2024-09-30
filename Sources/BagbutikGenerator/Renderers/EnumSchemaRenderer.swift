@@ -28,7 +28,7 @@ public class EnumSchemaRenderer: Renderer {
             } + "\n"
         }
         let protocols = enumSchema.additionalProtocols
-            .union(["Codable", "CaseIterable"])
+            .union(["Codable", "CaseIterable", "Sendable"])
             .sorted()
             .reversed()
             .joined(separator: ", ")
