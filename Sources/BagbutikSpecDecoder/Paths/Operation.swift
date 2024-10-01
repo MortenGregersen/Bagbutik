@@ -26,20 +26,20 @@ public struct Operation: Decodable, Equatable, Sendable {
     /// The name of the type returned on a failing request
     public let errorResponseType: String
     
-    private static let getInstanceRegex = try! NSRegularExpression(pattern: "(.*)-get_instance", options: [])
-    private static let getCollectionRegex = try! NSRegularExpression(pattern: "(.*)-get_collection", options: [])
-    private static let getMetricsRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_metrics", options: [])
-    private static let getToOneRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_one_relationship", options: [])
-    private static let getToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_many_relationship", options: [])
-    private static let getToOneRelatedRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_one_related", options: [])
-    private static let getToManyRelatedRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-get_to_many_related", options: [])
-    private static let createInstanceRegex = try! NSRegularExpression(pattern: "(.*)-create_instance", options: [])
-    private static let createToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-create_to_many_relationship", options: [])
-    private static let replaceToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-replace_to_many_relationship", options: [])
-    private static let updateInstanceRegex = try! NSRegularExpression(pattern: "(.*)-update_instance", options: [])
-    private static let updateToOneRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-update_to_one_relationship", options: [])
-    private static let deleteInstanceRegex = try! NSRegularExpression(pattern: "(.*)-delete_instance", options: [])
-    private static let deleteToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)-(.*)-delete_to_many_relationship", options: [])
+    private static let getInstanceRegex = try! NSRegularExpression(pattern: "(.*)_getInstance", options: [])
+    private static let getCollectionRegex = try! NSRegularExpression(pattern: "(.*)_getCollection", options: [])
+    private static let getMetricsRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_getMetrics", options: [])
+    private static let getToOneRelationshipRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_getToOneRelationship", options: [])
+    private static let getToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_getToManyRelationship", options: [])
+    private static let getToOneRelatedRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_getToOneRelated", options: [])
+    private static let getToManyRelatedRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_getToManyRelated", options: [])
+    private static let createInstanceRegex = try! NSRegularExpression(pattern: "(.*)_createInstance", options: [])
+    private static let createToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_createToManyRelationship", options: [])
+    private static let replaceToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_replaceToManyRelationship", options: [])
+    private static let updateInstanceRegex = try! NSRegularExpression(pattern: "(.*)_updateInstance", options: [])
+    private static let updateToOneRelationshipRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_updateToOneRelationship", options: [])
+    private static let deleteInstanceRegex = try! NSRegularExpression(pattern: "(.*)_deleteInstance", options: [])
+    private static let deleteToManyRelationshipRegex = try! NSRegularExpression(pattern: "(.*)_(.*)_deleteToManyRelationship", options: [])
     
     private enum CodingKeys: String, CodingKey {
         case operationId, deprecated, parameters, requestBody, responses
