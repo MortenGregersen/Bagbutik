@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userrole>
  */
-public enum UserRole: String, ParameterValue, Codable, CaseIterable {
+public enum UserRole: String, Sendable, ParameterValue, Codable, CaseIterable {
     /// Permission to download reports associated with a role. The Access To Reports permission is an additional permission for users with the App Manager, Developer, Marketing, or Sales role. If you add this permission, the user has access to all of your apps.
     case accessToReports = "ACCESS_TO_REPORTS"
     /// Role responsible for entering into legal agreements with Apple. The person who completes program enrollment has the Account Holder role in their Apple Developer account and their App Store Connect account.

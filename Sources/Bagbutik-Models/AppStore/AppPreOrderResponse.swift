@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderresponse>
  */
-public struct AppPreOrderResponse: Codable {
+public struct AppPreOrderResponse: Codable, Sendable {
     public let data: AppPreOrder
     public var included: [App]?
     public let links: DocumentLinks

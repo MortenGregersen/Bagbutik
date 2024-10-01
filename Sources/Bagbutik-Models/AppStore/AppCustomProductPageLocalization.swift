@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalization>
  */
-public struct AppCustomProductPageLocalization: Codable, Identifiable {
+public struct AppCustomProductPageLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appCustomProductPageLocalizations" }
@@ -46,7 +46,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var locale: String?
         public var promotionalText: String?
 
@@ -70,7 +70,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appCustomProductPageVersion: AppCustomProductPageVersion?
         public var appPreviewSets: AppPreviewSets?
         public var appScreenshotSets: AppScreenshotSets?
@@ -98,7 +98,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
             try container.encodeIfPresent(appScreenshotSets, forKey: "appScreenshotSets")
         }
 
-        public struct AppCustomProductPageVersion: Codable {
+        public struct AppCustomProductPageVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -121,7 +121,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageVersions" }
 
@@ -144,7 +144,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -169,7 +169,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
             }
         }
 
-        public struct AppPreviewSets: Codable {
+        public struct AppPreviewSets: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -197,7 +197,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 
@@ -220,7 +220,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -245,7 +245,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
             }
         }
 
-        public struct AppScreenshotSets: Codable {
+        public struct AppScreenshotSets: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -273,7 +273,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshotSets" }
 
@@ -296,7 +296,7 @@ public struct AppCustomProductPageLocalization: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

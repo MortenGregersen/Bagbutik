@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionPhasedReleaseWithoutIncludesResponse: Codable {
+public struct AppStoreVersionPhasedReleaseWithoutIncludesResponse: Codable, Sendable {
     public let data: AppStoreVersionPhasedRelease
     public let links: DocumentLinks
 

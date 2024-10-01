@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegment>
  */
-public struct AnalyticsReportSegment: Codable, Identifiable {
+public struct AnalyticsReportSegment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "analyticsReportSegments" }
@@ -50,7 +50,7 @@ public struct AnalyticsReportSegment: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegment/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// This is a `md5` checksum.
         public var checksum: String?
         public var sizeInBytes: Int?

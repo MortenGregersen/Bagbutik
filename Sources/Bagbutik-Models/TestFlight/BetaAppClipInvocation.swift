@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
  */
-public struct BetaAppClipInvocation: Codable, Identifiable {
+public struct BetaAppClipInvocation: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Beta App Clip Invocations resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
         public var url: String?
 
@@ -84,7 +84,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related Beta App Clip Invocation Localizations resource.
         public var betaAppClipInvocationLocalizations: BetaAppClipInvocationLocalizations?
 
@@ -109,7 +109,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations>
          */
-        public struct BetaAppClipInvocationLocalizations: Codable {
+        public struct BetaAppClipInvocationLocalizations: Codable, Sendable {
             /// The ID and type of the related Beta App Clip Invocation Localizations resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -147,7 +147,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Beta App Clip Invocation Localizations resource.
                 public let id: String
                 /// The resource type.
@@ -179,7 +179,7 @@ public struct BetaAppClipInvocation: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation/relationships/betaappclipinvocationlocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailability>
  */
-public struct TerritoryAvailability: Codable, Identifiable {
+public struct TerritoryAvailability: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "territoryAvailabilities" }
@@ -46,7 +46,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var available: Bool?
         public var contentStatuses: [ContentStatuses]?
         public var preOrderEnabled: Bool?
@@ -84,7 +84,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
             try container.encodeIfPresent(releaseDate, forKey: "releaseDate")
         }
 
-        public enum ContentStatuses: String, Codable, CaseIterable {
+        public enum ContentStatuses: String, Sendable, Codable, CaseIterable {
             case available = "AVAILABLE"
             case availableForPreorder = "AVAILABLE_FOR_PREORDER"
             case availableForPreorderOnDate = "AVAILABLE_FOR_PREORDER_ON_DATE"
@@ -121,7 +121,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var territory: Territory?
 
         public init(territory: Territory? = nil) {
@@ -138,7 +138,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
             try container.encodeIfPresent(territory, forKey: "territory")
         }
 
-        public struct Territory: Codable {
+        public struct Territory: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -161,7 +161,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 
@@ -184,7 +184,7 @@ public struct TerritoryAvailability: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

@@ -194,7 +194,7 @@ public struct Spec: Decodable {
             patchedSchemas.append(.enum(certificateTypeSchema))
         }
 
-        // Fix up the names of the sub schemas of ErrorResponse.Errors and add Sendable to types needing it
+        // Fix up the names of the sub schemas of ErrorResponse.Errors
         guard case .object(var errorResponseSchema) = components.schemas["ErrorResponse"],
               let errorsProperty = errorResponseSchema.properties["errors"],
               case .arrayOfSubSchema(var errorSchema) = errorsProperty.type,
@@ -207,9 +207,7 @@ public struct Spec: Decodable {
         }
         sourceOneOfSchema.options[pointerIndex] = .schemaRef("JsonPointer")
         sourceOneOfSchema.options[parameterIndex] = .schemaRef("Parameter")
-        sourceOneOfSchema.additionalProtocols.insert("Sendable")
         sourceProperty.type = .oneOf(name: sourcePropertyName, schema: sourceOneOfSchema)
-        errorSchema.additionalProtocols.insert("Sendable")
         errorSchema.properties["source"] = sourceProperty
 
         // Mark `detail` as optional on ErrorResponse.Errors
@@ -228,28 +226,13 @@ public struct Spec: Decodable {
                 properties: [
                     "associatedErrors": .init(type: .dictionary(.arrayOfSchemaRef("Errors"))),
                     "additionalProperties": metaProperty
-                ],
-                additionalProtocols: ["Sendable"]))) // The `Sendable` conformance is always needed
+                ])))
         }
 
         errorResponseSchema.additionalProtocols.insert("Error")
         errorResponseSchema.properties["errors"]?.type = .arrayOfSubSchema(errorSchema)
         components.schemas["ErrorResponse"] = .object(errorResponseSchema)
         patchedSchemas.append(.object(errorResponseSchema))
-
-        if case .object(var errorSourcePointerSchema) = components.schemas["ErrorSourcePointer"] {
-            errorSourcePointerSchema.additionalProtocols.insert("Sendable")
-            components.schemas["ErrorSourcePointer"] = .object(errorSourcePointerSchema)
-        }
-        if case .object(var errorSourceParameterSchema) = components.schemas["ErrorSourceParameter"] {
-            errorSourceParameterSchema.additionalProtocols.insert("Sendable")
-            components.schemas["ErrorSourceParameter"] = .object(errorSourceParameterSchema)
-        }
-        if case .object(var errorLinksSchema) = components.schemas["ErrorLinks"] {
-            errorLinksSchema.additionalProtocols.insert("Sendable")
-            errorLinksSchema.properties = errorLinksSchema.properties.mapValues(addSendableToPropertySubSchemas)
-            components.schemas["ErrorLinks"] = .object(errorLinksSchema)
-        }
 
         // Marks the `kidsAgeBand` property on `AgeRatingDeclarationUpdateRequest.Data.Attributes` as clearable.
         // Apple's OpenAPI spec has no information about how to clear a value in an update request.
@@ -281,44 +264,6 @@ public struct Spec: Decodable {
     private enum CodingKeys: String, CodingKey {
         case paths
         case components
-    }
-
-    private func addSendableToPropertySubSchemas(property: Property) -> Property {
-        var property = property
-        switch property.type {
-        case .schema(var objectSchema):
-            objectSchema.additionalProtocols.insert("Sendable")
-            objectSchema.properties = objectSchema.properties.mapValues(addSendableToPropertySubSchemas)
-            property.type = .schema(objectSchema)
-        case .arrayOfSubSchema(var objectSchema):
-            objectSchema.additionalProtocols.insert("Sendable")
-            objectSchema.properties = objectSchema.properties.mapValues(addSendableToPropertySubSchemas)
-            property.type = .arrayOfSubSchema(objectSchema)
-        case .enumSchema(var enumSchema):
-            enumSchema.additionalProtocols.insert("Sendable")
-            property.type = .enumSchema(enumSchema)
-        case .arrayOfEnumSchema(var enumSchema):
-            enumSchema.additionalProtocols.insert("Sendable")
-            property.type = .arrayOfEnumSchema(enumSchema)
-        case .oneOf(let name, var oneOfSchema):
-            oneOfSchema.additionalProtocols.insert("Sendable")
-            oneOfSchema.options = oneOfSchema.options.map(addSendableToOptionsSubSchemas)
-            property.type = .oneOf(name: name, schema: oneOfSchema)
-        case .arrayOfOneOf(let name, var oneOfSchema):
-            oneOfSchema.additionalProtocols.insert("Sendable")
-            oneOfSchema.options = oneOfSchema.options.map(addSendableToOptionsSubSchemas)
-            property.type = .arrayOfOneOf(name: name, schema: oneOfSchema)
-        default:
-            break
-        }
-        return property
-    }
-
-    private func addSendableToOptionsSubSchemas(oneOfOption: OneOfOption) -> OneOfOption {
-        guard case .objectSchema(var objectSchema) = oneOfOption else { return oneOfOption }
-        objectSchema.additionalProtocols.insert("Sendable")
-        objectSchema.properties = objectSchema.properties.mapValues(addSendableToPropertySubSchemas)
-        return .objectSchema(objectSchema)
     }
 }
 

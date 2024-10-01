@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionsresponse>
  */
-public struct AlternativeDistributionPackageVersionsResponse: Codable, PagedResponse {
+public struct AlternativeDistributionPackageVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionPackageVersion
 
     public let data: [AlternativeDistributionPackageVersion]
@@ -79,7 +79,7 @@ public struct AlternativeDistributionPackageVersionsResponse: Codable, PagedResp
         return variants
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case alternativeDistributionPackage(AlternativeDistributionPackage)
         case alternativeDistributionPackageDelta(AlternativeDistributionPackageDelta)
         case alternativeDistributionPackageVariant(AlternativeDistributionPackageVariant)

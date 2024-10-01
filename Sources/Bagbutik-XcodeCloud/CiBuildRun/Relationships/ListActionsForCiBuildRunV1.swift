@@ -38,7 +38,7 @@ public enum ListActionsForCiBuildRunV1 {
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
 
-        public enum CiBuildActions: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildActions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actionType
             case artifacts
             case buildRun
@@ -53,7 +53,7 @@ public enum ListActionsForCiBuildRunV1 {
             case testResults
         }
 
-        public enum CiBuildRuns: String, ParameterValue, Codable, CaseIterable {
+        public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actions
             case buildRun
             case builds

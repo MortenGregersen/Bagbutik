@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimageresponse>
  */
-public struct GameCenterAchievementImageResponse: Codable {
+public struct GameCenterAchievementImageResponse: Codable, Sendable {
     public let data: GameCenterAchievementImage
     public var included: [GameCenterAchievementLocalization]?
     public let links: DocumentLinks

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEvent: Codable, Identifiable {
+public struct AppEvent: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appEvents" }
@@ -39,7 +39,7 @@ public struct AppEvent: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var archivedTerritorySchedules: [ArchivedTerritorySchedules]?
         public var badge: Badge?
         public var deepLink: String?
@@ -102,7 +102,7 @@ public struct AppEvent: Codable, Identifiable {
             try container.encodeIfPresent(territorySchedules, forKey: "territorySchedules")
         }
 
-        public struct ArchivedTerritorySchedules: Codable {
+        public struct ArchivedTerritorySchedules: Codable, Sendable {
             public var eventEnd: Date?
             public var eventStart: Date?
             public var publishStart: Date?
@@ -136,7 +136,7 @@ public struct AppEvent: Codable, Identifiable {
             }
         }
 
-        public enum Badge: String, Codable, CaseIterable {
+        public enum Badge: String, Sendable, Codable, CaseIterable {
             case challenge = "CHALLENGE"
             case competition = "COMPETITION"
             case liveEvent = "LIVE_EVENT"
@@ -146,7 +146,7 @@ public struct AppEvent: Codable, Identifiable {
             case specialEvent = "SPECIAL_EVENT"
         }
 
-        public enum EventState: String, Codable, CaseIterable {
+        public enum EventState: String, Sendable, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case archived = "ARCHIVED"
@@ -159,12 +159,12 @@ public struct AppEvent: Codable, Identifiable {
             case waitingForReview = "WAITING_FOR_REVIEW"
         }
 
-        public enum Priority: String, Codable, CaseIterable {
+        public enum Priority: String, Sendable, Codable, CaseIterable {
             case high = "HIGH"
             case normal = "NORMAL"
         }
 
-        public enum PurchaseRequirement: String, Codable, CaseIterable {
+        public enum PurchaseRequirement: String, Sendable, Codable, CaseIterable {
             case inAppPurchase = "IN_APP_PURCHASE"
             case inAppPurchaseAndSubscription = "IN_APP_PURCHASE_AND_SUBSCRIPTION"
             case inAppPurchaseOrSubscription = "IN_APP_PURCHASE_OR_SUBSCRIPTION"
@@ -172,14 +172,14 @@ public struct AppEvent: Codable, Identifiable {
             case subscription = "SUBSCRIPTION"
         }
 
-        public enum Purpose: String, Codable, CaseIterable {
+        public enum Purpose: String, Sendable, Codable, CaseIterable {
             case appropriateForAllUsers = "APPROPRIATE_FOR_ALL_USERS"
             case attractNewUsers = "ATTRACT_NEW_USERS"
             case bringBackLapsedUsers = "BRING_BACK_LAPSED_USERS"
             case keepActiveUsersInformed = "KEEP_ACTIVE_USERS_INFORMED"
         }
 
-        public struct TerritorySchedules: Codable {
+        public struct TerritorySchedules: Codable, Sendable {
             public var eventEnd: Date?
             public var eventStart: Date?
             public var publishStart: Date?
@@ -214,7 +214,7 @@ public struct AppEvent: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var localizations: Localizations?
 
         public init(localizations: Localizations? = nil) {
@@ -231,7 +231,7 @@ public struct AppEvent: Codable, Identifiable {
             try container.encodeIfPresent(localizations, forKey: "localizations")
         }
 
-        public struct Localizations: Codable {
+        public struct Localizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -259,7 +259,7 @@ public struct AppEvent: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEventLocalizations" }
 
@@ -282,7 +282,7 @@ public struct AppEvent: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

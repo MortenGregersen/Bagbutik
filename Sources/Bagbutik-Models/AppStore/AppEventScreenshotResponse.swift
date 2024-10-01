@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventScreenshotResponse: Codable {
+public struct AppEventScreenshotResponse: Codable, Sendable {
     public let data: AppEventScreenshot
     public var included: [AppEventLocalization]?
     public let links: DocumentLinks

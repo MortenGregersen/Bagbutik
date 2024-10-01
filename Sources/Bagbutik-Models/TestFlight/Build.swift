@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/build>
  */
-public struct Build: Codable, Identifiable {
+public struct Build: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct Build: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/build/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var buildAudienceType: BuildAudienceType?
         public var computedMinMacOsVersion: String?
         /// The date and time the build  will auto-expire and no longer be available for testing.
@@ -134,7 +134,7 @@ public struct Build: Codable, Identifiable {
             try container.encodeIfPresent(version, forKey: "version")
         }
 
-        public enum ProcessingState: String, ParameterValue, Codable, CaseIterable {
+        public enum ProcessingState: String, Sendable, ParameterValue, Codable, CaseIterable {
             case failed = "FAILED"
             case invalid = "INVALID"
             case processing = "PROCESSING"
@@ -149,7 +149,7 @@ public struct Build: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var appEncryptionDeclaration: AppEncryptionDeclaration?
         public var appStoreVersion: AppStoreVersion?
@@ -225,7 +225,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -255,7 +255,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -287,7 +287,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -319,7 +319,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appencryptiondeclaration>
          */
-        public struct AppEncryptionDeclaration: Codable {
+        public struct AppEncryptionDeclaration: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -349,7 +349,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appencryptiondeclaration/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -381,7 +381,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appencryptiondeclaration/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -413,7 +413,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion>
          */
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -443,7 +443,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -473,7 +473,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/appstoreversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -505,7 +505,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betaappreviewsubmission>
          */
-        public struct BetaAppReviewSubmission: Codable {
+        public struct BetaAppReviewSubmission: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -535,7 +535,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betaappreviewsubmission/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -567,7 +567,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betaappreviewsubmission/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -599,7 +599,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations>
          */
-        public struct BetaBuildLocalizations: Codable {
+        public struct BetaBuildLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -634,7 +634,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -666,7 +666,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betabuildlocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -698,7 +698,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/betagroups>
          */
-        public struct BetaGroups: Codable {
+        public struct BetaGroups: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             /// Paging information.
@@ -727,7 +727,7 @@ public struct Build: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "betaGroups" }
 
@@ -750,7 +750,7 @@ public struct Build: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -782,7 +782,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbetadetail>
          */
-        public struct BuildBetaDetail: Codable {
+        public struct BuildBetaDetail: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -812,7 +812,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbetadetail/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -844,7 +844,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbetadetail/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -876,7 +876,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles>
          */
-        public struct BuildBundles: Codable {
+        public struct BuildBundles: Codable, Sendable {
             /// The ID and type of the related Build Bundles resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -914,7 +914,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Bundles resource.
                 public let id: String
                 /// The resource type.
@@ -946,7 +946,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/buildbundles/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -980,7 +980,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons>
          */
-        public struct Icons: Codable {
+        public struct Icons: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1015,7 +1015,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "buildIcons" }
 
@@ -1045,7 +1045,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/icons/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1077,7 +1077,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/individualtesters>
          */
-        public struct IndividualTesters: Codable {
+        public struct IndividualTesters: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1112,7 +1112,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/individualtesters/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1144,7 +1144,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/individualtesters/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1176,7 +1176,7 @@ public struct Build: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/prereleaseversion>
          */
-        public struct PreReleaseVersion: Codable {
+        public struct PreReleaseVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1206,7 +1206,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/prereleaseversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1238,7 +1238,7 @@ public struct Build: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/build/relationships/prereleaseversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

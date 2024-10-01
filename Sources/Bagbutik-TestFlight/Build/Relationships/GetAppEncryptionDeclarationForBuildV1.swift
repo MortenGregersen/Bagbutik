@@ -28,7 +28,7 @@ public enum GetAppEncryptionDeclarationForBuildV1 {
         /// The fields to include for returned resources of type appEncryptionDeclarations
         case appEncryptionDeclarations([AppEncryptionDeclarations])
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument

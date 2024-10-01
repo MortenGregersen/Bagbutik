@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesresponse>
  */
-public struct GameCenterMatchmakingQueuesResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingQueuesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingQueue
 
     /// The queues that the endpoint fetches.

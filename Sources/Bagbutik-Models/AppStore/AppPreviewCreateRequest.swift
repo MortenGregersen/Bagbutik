@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest>
  */
-public struct AppPreviewCreateRequest: Codable, RequestBody {
+public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appPreviews" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -67,7 +67,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
             public var mimeType: String?
@@ -108,7 +108,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appPreviewSet: AppPreviewSet
 
             public init(appPreviewSet: AppPreviewSet) {
@@ -132,7 +132,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships/apppreviewset>
              */
-            public struct AppPreviewSet: Codable {
+            public struct AppPreviewSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -156,7 +156,7 @@ public struct AppPreviewCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships/apppreviewset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appPreviewSets" }
 

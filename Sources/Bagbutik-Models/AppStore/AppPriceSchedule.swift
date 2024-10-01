@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPriceSchedule: Codable, Identifiable {
+public struct AppPriceSchedule: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appPriceSchedules" }
@@ -34,7 +34,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var automaticPrices: AutomaticPrices?
         public var baseTerritory: BaseTerritory?
@@ -67,7 +67,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
             try container.encodeIfPresent(manualPrices, forKey: "manualPrices")
         }
 
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -90,7 +90,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -113,7 +113,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -138,7 +138,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
             }
         }
 
-        public struct AutomaticPrices: Codable {
+        public struct AutomaticPrices: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -166,7 +166,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPrices" }
 
@@ -189,7 +189,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -214,7 +214,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
             }
         }
 
-        public struct BaseTerritory: Codable {
+        public struct BaseTerritory: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -237,7 +237,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 
@@ -260,7 +260,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -285,7 +285,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
             }
         }
 
-        public struct ManualPrices: Codable {
+        public struct ManualPrices: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -313,7 +313,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPrices" }
 
@@ -336,7 +336,7 @@ public struct AppPriceSchedule: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

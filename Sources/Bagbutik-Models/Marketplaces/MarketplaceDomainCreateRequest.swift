@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacedomaincreaterequest>
  */
-public struct MarketplaceDomainCreateRequest: Codable, RequestBody {
+public struct MarketplaceDomainCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct MarketplaceDomainCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "marketplaceDomains" }
         public let attributes: Attributes
 
@@ -47,7 +47,7 @@ public struct MarketplaceDomainCreateRequest: Codable, RequestBody {
             try container.encode(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let domain: String
             public let referenceName: String
 

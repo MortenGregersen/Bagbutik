@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailresponse>
  */
-public struct AppClipAppStoreReviewDetailResponse: Codable {
+public struct AppClipAppStoreReviewDetailResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClipAppStoreReviewDetail
     /// The requested relationship data.

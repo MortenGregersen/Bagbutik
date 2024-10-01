@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction>
  */
-public struct CiBuildAction: Codable, Identifiable {
+public struct CiBuildAction: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Actions resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct CiBuildAction: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The type of the build action.
         public var actionType: CiActionType?
         /// The status of the action.
@@ -127,7 +127,7 @@ public struct CiBuildAction: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The data and links that describe the relationship between the Build Actions and the Build Runs resources.
         public var buildRun: BuildRun?
 
@@ -152,7 +152,7 @@ public struct CiBuildAction: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun>
          */
-        public struct BuildRun: Codable {
+        public struct BuildRun: Codable, Sendable {
             /// The ID and type of the related Build Runs resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -184,7 +184,7 @@ public struct CiBuildAction: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Build Runs resource.
                 public let id: String
                 /// The resource type.
@@ -216,7 +216,7 @@ public struct CiBuildAction: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction/relationships/buildrun/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

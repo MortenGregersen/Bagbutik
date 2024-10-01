@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrunresponse>
  */
-public struct CiBuildRunResponse: Codable {
+public struct CiBuildRunResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiBuildRun
     /// The requested relationship data.
@@ -86,7 +86,7 @@ public struct CiBuildRunResponse: Codable {
         }.first { $0.id == data.relationships?.workflow?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case build(Build)
         case ciProduct(CiProduct)
         case ciWorkflow(CiWorkflow)

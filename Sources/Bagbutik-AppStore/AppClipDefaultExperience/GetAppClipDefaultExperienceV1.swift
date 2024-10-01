@@ -40,19 +40,19 @@ public enum GetAppClipDefaultExperienceV1 {
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
 
-        public enum AppClipAppStoreReviewDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipAppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperience
             case invocationUrls
         }
 
-        public enum AppClipDefaultExperienceLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperienceLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appClipDefaultExperience
             case appClipHeaderImage
             case locale
             case subtitle
         }
 
-        public enum AppClipDefaultExperiences: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
             case appClip
             case appClipAppStoreReviewDetail
@@ -61,7 +61,7 @@ public enum GetAppClipDefaultExperienceV1 {
             case releaseWithAppStoreVersion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case alternativeDistributionPackage
             case app

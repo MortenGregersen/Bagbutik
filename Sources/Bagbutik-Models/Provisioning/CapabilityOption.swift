@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/capabilityoption>
  */
-public struct CapabilityOption: Codable {
+public struct CapabilityOption: Codable, Sendable {
     public var description: String?
     public var enabled: Bool?
     public var enabledByDefault: Bool?
@@ -51,7 +51,7 @@ public struct CapabilityOption: Codable {
         try container.encodeIfPresent(supportsWildcard, forKey: "supportsWildcard")
     }
 
-    public enum Key: String, Codable, CaseIterable {
+    public enum Key: String, Sendable, Codable, CaseIterable {
         case completeProtection = "COMPLETE_PROTECTION"
         case primaryAppConsent = "PRIMARY_APP_CONSENT"
         case protectedUnlessOpen = "PROTECTED_UNLESS_OPEN"

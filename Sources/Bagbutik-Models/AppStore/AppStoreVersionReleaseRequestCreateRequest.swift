@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest>
  */
-public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
+public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, RequestBody {
     /// The data element of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionReleaseRequests" }
         public let relationships: Relationships
 
@@ -62,7 +62,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
             public init(appStoreVersion: AppStoreVersion) {
@@ -86,7 +86,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion>
              */
-            public struct AppStoreVersion: Codable {
+            public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -110,7 +110,7 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }
 

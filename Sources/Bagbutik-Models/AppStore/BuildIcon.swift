@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildicon>
  */
-public struct BuildIcon: Codable, Identifiable {
+public struct BuildIcon: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "buildIcons" }
@@ -48,7 +48,7 @@ public struct BuildIcon: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildicon/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var iconAsset: ImageAsset?
         public var iconType: IconAssetType?
         public var name: String?

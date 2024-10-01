@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissionresponse>
  */
-public struct AppStoreVersionSubmissionResponse: Codable {
+public struct AppStoreVersionSubmissionResponse: Codable, Sendable {
     public let data: AppStoreVersionSubmission
     public var included: [AppStoreVersion]?
     public let links: DocumentLinks

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventLocalizationsResponse: Codable, PagedResponse {
+public struct AppEventLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEventLocalization
 
     public let data: [AppEventLocalization]
@@ -67,7 +67,7 @@ public struct AppEventLocalizationsResponse: Codable, PagedResponse {
         return appEventVideoClips
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appEvent(AppEvent)
         case appEventScreenshot(AppEventScreenshot)
         case appEventVideoClip(AppEventVideoClip)

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversionresponse>
  */
-public struct GameCenterAppVersionResponse: Codable {
+public struct GameCenterAppVersionResponse: Codable, Sendable {
     public let data: GameCenterAppVersion
     public var included: [Included]?
     public let links: DocumentLinks
@@ -55,7 +55,7 @@ public struct GameCenterAppVersionResponse: Codable {
         return compatibilityVersions
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appStoreVersion(AppStoreVersion)
         case gameCenterAppVersion(GameCenterAppVersion)
 

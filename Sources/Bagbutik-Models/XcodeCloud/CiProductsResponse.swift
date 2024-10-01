@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproductsresponse>
  */
-public struct CiProductsResponse: Codable, PagedResponse {
+public struct CiProductsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiProduct
 
     /// The resource data.
@@ -73,7 +73,7 @@ public struct CiProductsResponse: Codable, PagedResponse {
         return primaryRepositories
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case bundleId(BundleId)
         case scmRepository(ScmRepository)

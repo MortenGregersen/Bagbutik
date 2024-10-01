@@ -20,7 +20,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
         let rendered = try await renderer.render(name: "Included", oneOfSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        public enum Included: Codable {
+        public enum Included: Codable, Sendable {
             case bundleId(BundleId)
             case string(String)
             case test(Test)
@@ -56,7 +56,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
              Full documentation:
              <some://url>
              */
-            public struct Test: Codable {
+            public struct Test: Codable, Sendable {
                 /// An URL
                 public var href: String?
                 public var meta: Meta?
@@ -80,7 +80,7 @@ final class OneOfSchemaRendererTests: XCTestCase {
                     try container.encodeIfPresent(meta, forKey: "meta")
                 }
 
-                public struct Meta: Codable {
+                public struct Meta: Codable, Sendable {
                     public var source: String?
 
                     public init(source: String? = nil) {
@@ -109,12 +109,12 @@ final class OneOfSchemaRendererTests: XCTestCase {
             .init(id: "/test", title: "Test", abstract: "A test.", discussion: "", properties: ["href": .init(required: false, description: "An URL")], subDocumentationIds: []))]
         )
         let renderer = OneOfSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
-        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .simple(.string())], additionalProtocols: ["Sendable"])
+        let schema = OneOfSchema(options: [.schemaRef("BundleId"), .simple(.string())], additionalProtocols: ["Fooable"])
         // When
         let rendered = try await renderer.render(name: "Included", oneOfSchema: schema)
         // Then
         XCTAssertEqual(rendered, #"""
-        public enum Included: Codable, Sendable {
+        public enum Included: Codable, Sendable, Fooable {
             case bundleId(BundleId)
             case string(String)
 

@@ -28,7 +28,7 @@ public enum GetAppClipDomainDebugStatusForBuildBundleV1 {
         /// The fields to include for returned resources of type appClipDomainStatuses
         case appClipDomainStatuses([AppClipDomainStatuses])
 
-        public enum AppClipDomainStatuses: String, ParameterValue, Codable, CaseIterable {
+        public enum AppClipDomainStatuses: String, Sendable, ParameterValue, Codable, CaseIterable {
             case domains
             case lastUpdatedDate
         }

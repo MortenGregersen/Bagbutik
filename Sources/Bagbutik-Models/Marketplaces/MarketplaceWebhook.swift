@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook>
  */
-public struct MarketplaceWebhook: Codable, Identifiable {
+public struct MarketplaceWebhook: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "marketplaceWebhooks" }
@@ -48,7 +48,7 @@ public struct MarketplaceWebhook: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var endpointUrl: String?
 
         public init(endpointUrl: String? = nil) {

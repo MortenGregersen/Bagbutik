@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/profileresponse>
  */
-public struct ProfileResponse: Codable {
+public struct ProfileResponse: Codable, Sendable {
     /// The resource data.
     public let data: Profile
     public var included: [Included]?
@@ -69,7 +69,7 @@ public struct ProfileResponse: Codable {
         return devices
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case bundleId(BundleId)
         case certificate(Certificate)
         case device(Device)

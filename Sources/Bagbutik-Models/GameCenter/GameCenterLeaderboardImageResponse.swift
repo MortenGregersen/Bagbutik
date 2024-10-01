@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimageresponse>
  */
-public struct GameCenterLeaderboardImageResponse: Codable {
+public struct GameCenterLeaderboardImageResponse: Codable, Sendable {
     public let data: GameCenterLeaderboardImage
     public var included: [GameCenterLeaderboardLocalization]?
     public let links: DocumentLinks

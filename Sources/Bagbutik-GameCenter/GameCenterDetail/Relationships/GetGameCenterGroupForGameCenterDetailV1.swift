@@ -42,7 +42,7 @@ public enum GetGameCenterGroupForGameCenterDetailV1 {
         /// The fields to include for returned resources of type gameCenterLeaderboards
         case gameCenterLeaderboards([GameCenterLeaderboards])
 
-        public enum GameCenterAchievements: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterAchievements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case archived
             case gameCenterDetail
             case gameCenterGroup
@@ -56,7 +56,7 @@ public enum GetGameCenterGroupForGameCenterDetailV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterDetails: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
             case achievementReleases
             case app
             case arcadeEnabled
@@ -72,7 +72,7 @@ public enum GetGameCenterGroupForGameCenterDetailV1 {
             case leaderboardSetReleases
         }
 
-        public enum GameCenterGroups: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterAchievements
             case gameCenterDetails
             case gameCenterLeaderboardSets
@@ -80,7 +80,7 @@ public enum GetGameCenterGroupForGameCenterDetailV1 {
             case referenceName
         }
 
-        public enum GameCenterLeaderboardSets: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboardSets: String, Sendable, ParameterValue, Codable, CaseIterable {
             case gameCenterDetail
             case gameCenterGroup
             case gameCenterLeaderboards
@@ -91,7 +91,7 @@ public enum GetGameCenterGroupForGameCenterDetailV1 {
             case vendorIdentifier
         }
 
-        public enum GameCenterLeaderboards: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterLeaderboards: String, Sendable, ParameterValue, Codable, CaseIterable {
             case archived
             case defaultFormatter
             case gameCenterDetail

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cipullrequeststartcondition>
  */
-public struct CiPullRequestStartCondition: Codable {
+public struct CiPullRequestStartCondition: Codable, Sendable {
     /// A Boolean value that indicates whether Xcode Cloud automatically cancels or skips builds.
     public var autoCancel: Bool?
     /// The destination branch name and custom patterns you configure for a workflow that starts a new build for changes to a pull request.

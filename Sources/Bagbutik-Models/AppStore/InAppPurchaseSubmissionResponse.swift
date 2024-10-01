@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct InAppPurchaseSubmissionResponse: Codable {
+public struct InAppPurchaseSubmissionResponse: Codable, Sendable {
     public let data: InAppPurchaseSubmission
     public var included: [InAppPurchaseV2]?
     public let links: DocumentLinks

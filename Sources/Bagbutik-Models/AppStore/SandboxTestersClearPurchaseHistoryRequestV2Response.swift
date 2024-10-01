@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SandboxTestersClearPurchaseHistoryRequestV2Response: Codable {
+public struct SandboxTestersClearPurchaseHistoryRequestV2Response: Codable, Sendable {
     public let data: SandboxTestersClearPurchaseHistoryRequestV2
     public let links: DocumentLinks
 

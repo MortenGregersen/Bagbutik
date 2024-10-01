@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignaturesresponse>
  */
-public struct DiagnosticSignaturesResponse: Codable, PagedResponse {
+public struct DiagnosticSignaturesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = DiagnosticSignature
 
     /// An array of diagnostic signatures.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail>
  */
-public struct AppStoreReviewDetail: Codable, Identifiable {
+public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreReviewDetails" }
@@ -53,7 +53,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var contactEmail: String?
         public var contactFirstName: String?
         public var contactLastName: String?
@@ -114,7 +114,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appStoreReviewAttachments: AppStoreReviewAttachments?
         public var appStoreVersion: AppStoreVersion?
 
@@ -144,7 +144,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments>
          */
-        public struct AppStoreReviewAttachments: Codable {
+        public struct AppStoreReviewAttachments: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -179,7 +179,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewAttachments" }
 
@@ -209,7 +209,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -241,7 +241,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion>
          */
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -271,7 +271,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -301,7 +301,7 @@ public struct AppStoreReviewDetail: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

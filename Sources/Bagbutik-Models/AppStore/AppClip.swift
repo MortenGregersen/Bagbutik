@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclip>
  */
-public struct AppClip: Codable, Identifiable {
+public struct AppClip: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an App Clips resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct AppClip: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclip/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The related Bundle IDs resource.
         public var bundleId: String?
 
@@ -84,7 +84,7 @@ public struct AppClip: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related Apps resource.
         public var app: App?
         /// The related Default App Clip Experiences resource.
@@ -116,7 +116,7 @@ public struct AppClip: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             /// The resource data.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -148,7 +148,7 @@ public struct AppClip: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Apps resource.
                 public let id: String
                 /// The resource type.
@@ -180,7 +180,7 @@ public struct AppClip: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -214,7 +214,7 @@ public struct AppClip: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/appclipdefaultexperiences>
          */
-        public struct AppClipDefaultExperiences: Codable {
+        public struct AppClipDefaultExperiences: Codable, Sendable {
             /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -252,7 +252,7 @@ public struct AppClip: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/appclipdefaultexperiences/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.
@@ -284,7 +284,7 @@ public struct AppClip: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclip/relationships/appclipdefaultexperiences/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

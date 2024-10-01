@@ -39,14 +39,14 @@ public enum ListAnalyticsReportRequestsForAppV1 {
         /// The fields to include for returned resources of type analyticsReports
         case analyticsReports([AnalyticsReports])
 
-        public enum AnalyticsReportRequests: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReportRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
             case accessType
             case app
             case reports
             case stoppedDueToInactivity
         }
 
-        public enum AnalyticsReports: String, ParameterValue, Codable, CaseIterable {
+        public enum AnalyticsReports: String, Sendable, ParameterValue, Codable, CaseIterable {
             case category
             case instances
             case name
@@ -60,7 +60,7 @@ public enum ListAnalyticsReportRequestsForAppV1 {
         /// Filter by attribute 'accessType'
         case accessType([AccessType])
 
-        public enum AccessType: String, ParameterValue, Codable, CaseIterable {
+        public enum AccessType: String, Sendable, ParameterValue, Codable, CaseIterable {
             case oneTimeSnapshot = "ONE_TIME_SNAPSHOT"
             case ongoing = "ONGOING"
         }

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilityupdaterequest>
  */
-public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
+public struct BundleIdCapabilityUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilityupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "bundleIdCapabilities" }
         public var attributes: Attributes?
@@ -68,7 +68,7 @@ public struct BundleIdCapabilityUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapabilityupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var capabilityType: CapabilityType?
             public var settings: [CapabilitySetting]?
 

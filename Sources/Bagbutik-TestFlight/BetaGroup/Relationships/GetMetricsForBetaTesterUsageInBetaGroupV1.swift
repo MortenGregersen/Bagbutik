@@ -43,14 +43,14 @@ public enum GetMetricsForBetaTesterUsageInBetaGroupV1 {
     /**
      The dimension by which to group the results
      */
-    public enum GroupBy: String, ParameterValue, Codable, CaseIterable {
+    public enum GroupBy: String, Sendable, ParameterValue, Codable, CaseIterable {
         case betaTesters
     }
 
     /**
      The duration of the reporting period
      */
-    public enum Period: String, ParameterValue, Codable, CaseIterable {
+    public enum Period: String, Sendable, ParameterValue, Codable, CaseIterable {
         case P30D
         case P365D
         case P7D

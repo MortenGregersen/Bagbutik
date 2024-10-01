@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatesresponse>
  */
-public struct CertificatesResponse: Codable, PagedResponse {
+public struct CertificatesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Certificate
 
     /// The resource data.

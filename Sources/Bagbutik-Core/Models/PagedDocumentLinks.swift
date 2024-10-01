@@ -9,7 +9,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/pageddocumentlinks>
  */
-public struct PagedDocumentLinks: Codable {
+public struct PagedDocumentLinks: Codable, Sendable {
     /// The link to the first page of documents.
     public var first: String?
     /// The link to the next page of documents.

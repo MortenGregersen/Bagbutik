@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroupResponse: Codable {
+public struct SubscriptionGroupResponse: Codable, Sendable {
     public let data: SubscriptionGroup
     public var included: [Included]?
     public let links: DocumentLinks
@@ -53,7 +53,7 @@ public struct SubscriptionGroupResponse: Codable {
         return subscriptions
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case subscription(Subscription)
         case subscriptionGroupLocalization(SubscriptionGroupLocalization)
 

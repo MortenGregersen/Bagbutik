@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinforesponse>
  */
-public struct AppInfoResponse: Codable {
+public struct AppInfoResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppInfo
     public var included: [Included]?
@@ -106,7 +106,7 @@ public struct AppInfoResponse: Codable {
         }.first { $0.id == data.relationships?.secondarySubcategoryTwo?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case app(App)
         case appCategory(AppCategory)

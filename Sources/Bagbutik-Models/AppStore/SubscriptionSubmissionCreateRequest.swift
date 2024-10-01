@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
+public struct SubscriptionSubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "subscriptionSubmissions" }
         public let relationships: Relationships
 
@@ -40,7 +40,7 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let subscription: Subscription
 
             public init(subscription: Subscription) {
@@ -57,7 +57,7 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
                 try container.encode(subscription, forKey: "subscription")
             }
 
-            public struct Subscription: Codable {
+            public struct Subscription: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -74,7 +74,7 @@ public struct SubscriptionSubmissionCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptions" }
 

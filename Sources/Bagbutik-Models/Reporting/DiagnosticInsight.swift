@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticinsight>
  */
-public struct DiagnosticInsight: Codable {
+public struct DiagnosticInsight: Codable, Sendable {
     public var direction: DiagnosticInsightDirection?
     public var insightType: DiagnosticInsightType?
     public var referenceVersions: [ReferenceVersions]?
@@ -36,7 +36,7 @@ public struct DiagnosticInsight: Codable {
         try container.encodeIfPresent(referenceVersions, forKey: "referenceVersions")
     }
 
-    public struct ReferenceVersions: Codable {
+    public struct ReferenceVersions: Codable, Sendable {
         public var value: Double?
         public var version: String?
 

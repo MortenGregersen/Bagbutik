@@ -28,7 +28,7 @@ public enum GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1 {
         /// The fields to include for returned resources of type appEncryptionDeclarationDocuments
         case appEncryptionDeclarationDocuments([AppEncryptionDeclarationDocuments])
 
-        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken

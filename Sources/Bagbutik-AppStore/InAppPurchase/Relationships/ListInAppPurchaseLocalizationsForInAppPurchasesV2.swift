@@ -36,7 +36,7 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchaseLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case description
             case inAppPurchaseV2
             case locale
@@ -44,7 +44,7 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
             case state
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case content

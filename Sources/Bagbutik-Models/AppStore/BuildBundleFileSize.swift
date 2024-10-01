@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>
  */
-public struct BuildBundleFileSize: Codable, Identifiable {
+public struct BuildBundleFileSize: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct BuildBundleFileSize: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A string that identifies the Apple device model.
         public var deviceModel: String?
         /// An integer value that represents the download size of the build bundle in bytes.

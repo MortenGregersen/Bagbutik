@@ -37,7 +37,7 @@ public enum ListBetaLicenseAgreementsV1 {
         /// The fields to include for returned resources of type betaLicenseAgreements
         case betaLicenseAgreements([BetaLicenseAgreements])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -83,7 +83,7 @@ public enum ListBetaLicenseAgreementsV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum BetaLicenseAgreements: String, ParameterValue, Codable, CaseIterable {
+        public enum BetaLicenseAgreements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case agreementText
             case app
         }

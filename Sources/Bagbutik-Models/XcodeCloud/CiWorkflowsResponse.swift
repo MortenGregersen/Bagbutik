@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowsresponse>
  */
-public struct CiWorkflowsResponse: Codable, PagedResponse {
+public struct CiWorkflowsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiWorkflow
 
     /// The resource data.
@@ -75,7 +75,7 @@ public struct CiWorkflowsResponse: Codable, PagedResponse {
         }.first { $0.id == ciWorkflow.relationships?.xcodeVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case ciMacOsVersion(CiMacOsVersion)
         case ciProduct(CiProduct)
         case ciXcodeVersion(CiXcodeVersion)

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/brazilagerating>
  */
-public enum BrazilAgeRating: String, Codable, CaseIterable {
+public enum BrazilAgeRating: String, Sendable, Codable, CaseIterable {
     /// A literal that represents the rating 18.
     case eighteen = "EIGHTEEN"
     /// A literal that represents the rating 14.

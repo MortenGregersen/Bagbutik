@@ -33,7 +33,7 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
 
-        public enum InAppPurchaseAppStoreReviewScreenshots: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchaseAppStoreReviewScreenshots: String, Sendable, ParameterValue, Codable, CaseIterable {
             case assetDeliveryState
             case assetToken
             case assetType
@@ -46,7 +46,7 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case uploaded
         }
 
-        public enum InAppPurchases: String, ParameterValue, Codable, CaseIterable {
+        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreReviewScreenshot
             case content

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimageupdaterequest>
  */
-public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, RequestBody {
+public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, RequestBody 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimageupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the request.
         public let id: String
         /// The resource type.
@@ -71,7 +71,7 @@ public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, RequestBody 
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimageupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
             public var sourceFileChecksum: String?
             /// A Boolean value that indicates whether you uploaded the image asset for an advanced App Clip experience.

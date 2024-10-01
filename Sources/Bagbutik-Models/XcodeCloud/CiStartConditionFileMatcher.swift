@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/cistartconditionfilematcher>
  */
-public struct CiStartConditionFileMatcher: Codable {
+public struct CiStartConditionFileMatcher: Codable, Sendable {
     /// The directory you configure for a custom start condition’s Files and Folders setting.
     public var directory: String?
     /// The file extension you configure for a custom start condition’s Files and Folders setting.

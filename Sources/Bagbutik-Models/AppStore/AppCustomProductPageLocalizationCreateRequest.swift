@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationcreaterequest>
  */
-public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBody {
+public struct AppCustomProductPageLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appCustomProductPageLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -53,7 +53,7 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let locale: String
             public var promotionalText: String?
 
@@ -77,7 +77,7 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appCustomProductPageVersion: AppCustomProductPageVersion
 
             public init(appCustomProductPageVersion: AppCustomProductPageVersion) {
@@ -94,7 +94,7 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
                 try container.encode(appCustomProductPageVersion, forKey: "appCustomProductPageVersion")
             }
 
-            public struct AppCustomProductPageVersion: Codable {
+            public struct AppCustomProductPageVersion: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -111,7 +111,7 @@ public struct AppCustomProductPageLocalizationCreateRequest: Codable, RequestBod
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appCustomProductPageVersions" }
 

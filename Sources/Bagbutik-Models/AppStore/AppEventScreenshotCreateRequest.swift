@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
+public struct AppEventScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appEventScreenshots" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let appEventAssetType: AppEventAssetType
             public let fileName: String
             public let fileSize: Int
@@ -75,7 +75,7 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appEventLocalization: AppEventLocalization
 
             public init(appEventLocalization: AppEventLocalization) {
@@ -92,7 +92,7 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
                 try container.encode(appEventLocalization, forKey: "appEventLocalization")
             }
 
-            public struct AppEventLocalization: Codable {
+            public struct AppEventLocalization: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -109,7 +109,7 @@ public struct AppEventScreenshotCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appEventLocalizations" }
 

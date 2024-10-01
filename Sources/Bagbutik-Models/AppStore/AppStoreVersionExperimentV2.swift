@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentV2: Codable, Identifiable {
+public struct AppStoreVersionExperimentV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersionExperiments" }
@@ -39,7 +39,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var endDate: Date?
         public var name: String?
         public var platform: Platform?
@@ -87,7 +87,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             try container.encodeIfPresent(trafficProportion, forKey: "trafficProportion")
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case completed = "COMPLETED"
@@ -100,7 +100,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var appStoreVersionExperimentTreatments: AppStoreVersionExperimentTreatments?
         public var controlVersions: ControlVersions?
@@ -133,7 +133,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             try container.encodeIfPresent(latestControlVersion, forKey: "latestControlVersion")
         }
 
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -156,7 +156,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -179,7 +179,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -204,7 +204,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperimentTreatments: Codable {
+        public struct AppStoreVersionExperimentTreatments: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -232,7 +232,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatments" }
 
@@ -255,7 +255,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -280,7 +280,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             }
         }
 
-        public struct ControlVersions: Codable {
+        public struct ControlVersions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -308,7 +308,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -331,7 +331,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -356,7 +356,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
             }
         }
 
-        public struct LatestControlVersion: Codable {
+        public struct LatestControlVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -379,7 +379,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -402,7 +402,7 @@ public struct AppStoreVersionExperimentV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

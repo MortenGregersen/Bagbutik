@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue>
  */
-public struct GameCenterMatchmakingQueue: Codable, Identifiable {
+public struct GameCenterMatchmakingQueue: Codable, Sendable, Identifiable {
     /// The unique identifier for the rule.
     public let id: String
     /// The link representations of the object.
@@ -58,7 +58,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var classicMatchmakingBundleIds: [String]?
         /// A name for the queue that’s unique within the scope of your development team.
         public var referenceName: String?
@@ -90,7 +90,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var experimentRuleSet: ExperimentRuleSet?
         public var ruleSet: RuleSet?
 
@@ -120,7 +120,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships/experimentruleset>
          */
-        public struct ExperimentRuleSet: Codable {
+        public struct ExperimentRuleSet: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -150,7 +150,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships/experimentruleset/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The unique identifier for the rule set.
                 public let id: String
                 /// The type of resource.
@@ -182,7 +182,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships/experimentruleset/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// A link object representation of the relationship.
                 public var related: String?
                 /// A string URI representation of the relationship.
@@ -216,7 +216,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships/ruleset>
          */
-        public struct RuleSet: Codable {
+        public struct RuleSet: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -246,7 +246,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships/ruleset/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The unique identifier for the rule set.
                 public let id: String
                 /// The type of resource.
@@ -278,7 +278,7 @@ public struct GameCenterMatchmakingQueue: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue/relationships/ruleset/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// A link object representation of the rule set relationship.
                 public var related: String?
                 /// A string URI representation of the rule set relationship.

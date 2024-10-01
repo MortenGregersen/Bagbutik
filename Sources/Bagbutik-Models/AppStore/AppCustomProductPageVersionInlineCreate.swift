@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioninlinecreate>
  */
-public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
+public struct AppCustomProductPageVersionInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageVersions" }
     public var attributes: Attributes?
@@ -41,7 +41,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var deepLink: String?
 
         public init(deepLink: String? = nil) {
@@ -59,7 +59,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appCustomProductPage: AppCustomProductPage?
         public var appCustomProductPageLocalizations: AppCustomProductPageLocalizations?
 
@@ -82,7 +82,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
             try container.encodeIfPresent(appCustomProductPageLocalizations, forKey: "appCustomProductPageLocalizations")
         }
 
-        public struct AppCustomProductPage: Codable {
+        public struct AppCustomProductPage: Codable, Sendable {
             @NullCodable public var data: Data?
 
             public init(data: Data? = nil) {
@@ -99,7 +99,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPages" }
 
@@ -123,7 +123,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
             }
         }
 
-        public struct AppCustomProductPageLocalizations: Codable {
+        public struct AppCustomProductPageLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
 
             public init(data: [Data]? = nil) {
@@ -140,7 +140,7 @@ public struct AppCustomProductPageVersionInlineCreate: Codable, Identifiable {
                 try container.encode(data, forKey: "data")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPageLocalizations" }
 

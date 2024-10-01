@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamsresponse>
  */
-public struct GameCenterMatchmakingTeamsResponse: Codable, PagedResponse {
+public struct GameCenterMatchmakingTeamsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingTeam
 
     /// The teams that the endpoint fetches.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
  */
-public struct CiArtifact: Codable, Identifiable {
+public struct CiArtifact: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies an Artifacts resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct CiArtifact: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The URL you use to download the Xcode Cloud build artifact.
         public var downloadUrl: String?
         /// The artifact’s filename as a string.
@@ -89,7 +89,7 @@ public struct CiArtifact: Codable, Identifiable {
             try container.encodeIfPresent(fileType, forKey: "fileType")
         }
 
-        public enum FileType: String, Codable, CaseIterable {
+        public enum FileType: String, Sendable, Codable, CaseIterable {
             case archive = "ARCHIVE"
             case archiveExport = "ARCHIVE_EXPORT"
             case logBundle = "LOG_BUNDLE"

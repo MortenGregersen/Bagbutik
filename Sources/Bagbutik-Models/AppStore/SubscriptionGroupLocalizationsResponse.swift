@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroupLocalizationsResponse: Codable, PagedResponse {
+public struct SubscriptionGroupLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionGroupLocalization
 
     public let data: [SubscriptionGroupLocalization]

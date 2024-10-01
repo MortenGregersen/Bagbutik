@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequestresponse>
  */
-public struct ScmPullRequestResponse: Codable {
+public struct ScmPullRequestResponse: Codable, Sendable {
     /// The resource data.
     public let data: ScmPullRequest
     /// The requested relationship data.

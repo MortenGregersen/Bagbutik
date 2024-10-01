@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct PromotedPurchaseImagesResponse: Codable, PagedResponse {
+public struct PromotedPurchaseImagesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = PromotedPurchaseImage
 
     public let data: [PromotedPurchaseImage]

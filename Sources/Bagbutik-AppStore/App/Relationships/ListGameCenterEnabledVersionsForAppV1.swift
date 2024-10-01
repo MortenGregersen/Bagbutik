@@ -42,7 +42,7 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
         /// The fields to include for returned resources of type gameCenterEnabledVersions
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -88,7 +88,7 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum GameCenterEnabledVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum GameCenterEnabledVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case compatibleVersions
             case iconAsset

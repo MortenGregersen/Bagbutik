@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildiconsresponse>
  */
-public struct BuildIconsResponse: Codable, PagedResponse {
+public struct BuildIconsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildIcon
 
     public let data: [BuildIcon]

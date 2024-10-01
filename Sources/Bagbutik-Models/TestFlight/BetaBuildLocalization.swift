@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization>
  */
-public struct BetaBuildLocalization: Codable, Identifiable {
+public struct BetaBuildLocalization: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -60,7 +60,7 @@ public struct BetaBuildLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The specified locale. Refer to [Table 1](https://developer.apple.com/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers/beta_build_localizations/betabuildlocalization/attributes#3042206) for possible values.
         public var locale: String?
         /// A field that describes changes and additions to a build and indicates features you would like your users to test.
@@ -93,7 +93,7 @@ public struct BetaBuildLocalization: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var build: Build?
 
         public init(build: Build? = nil) {
@@ -117,7 +117,7 @@ public struct BetaBuildLocalization: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build>
          */
-        public struct Build: Codable {
+        public struct Build: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -147,7 +147,7 @@ public struct BetaBuildLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -179,7 +179,7 @@ public struct BetaBuildLocalization: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization/relationships/build/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

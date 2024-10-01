@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationsresponse>
  */
-public struct BetaAppClipInvocationsResponse: Codable, PagedResponse {
+public struct BetaAppClipInvocationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaAppClipInvocation
 
     /// The resource data.

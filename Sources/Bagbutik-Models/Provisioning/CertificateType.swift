@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/certificatetype>
  */
-public enum CertificateType: String, ParameterValue, Codable, CaseIterable {
+public enum CertificateType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case developerIdApplication = "DEVELOPER_ID_APPLICATION"
     case developerIdApplicationG2 = "DEVELOPER_ID_APPLICATION_G2"
     case developerIdKext = "DEVELOPER_ID_KEXT"

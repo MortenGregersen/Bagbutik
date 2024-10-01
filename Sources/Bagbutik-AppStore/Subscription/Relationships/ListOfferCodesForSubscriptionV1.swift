@@ -45,7 +45,7 @@ public enum ListOfferCodesForSubscriptionV1 {
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
 
-        public enum SubscriptionOfferCodeCustomCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeCustomCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
             case customCode
@@ -54,7 +54,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case offerCode
         }
 
-        public enum SubscriptionOfferCodeOneTimeUseCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodeOneTimeUseCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case createdDate
             case expirationDate
@@ -63,12 +63,12 @@ public enum ListOfferCodesForSubscriptionV1 {
             case values
         }
 
-        public enum SubscriptionOfferCodePrices: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodePrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case subscriptionPricePoint
             case territory
         }
 
-        public enum SubscriptionOfferCodes: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionOfferCodes: String, Sendable, ParameterValue, Codable, CaseIterable {
             case active
             case customCodes
             case customerEligibilities
@@ -83,7 +83,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case totalNumberOfCodes
         }
 
-        public enum Subscriptions: String, ParameterValue, Codable, CaseIterable {
+        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreReviewScreenshot
             case familySharable
             case group

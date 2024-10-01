@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
+public struct AppPriceScheduleCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?
 
@@ -24,7 +24,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
         try container.encodeIfPresent(included, forKey: "included")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appPriceSchedules" }
         public let relationships: Relationships
 
@@ -46,7 +46,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let app: App
             public let baseTerritory: BaseTerritory
             public let manualPrices: ManualPrices
@@ -74,7 +74,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
                 try container.encode(manualPrices, forKey: "manualPrices")
             }
 
-            public struct App: Codable {
+            public struct App: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -91,7 +91,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
 
@@ -115,7 +115,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct BaseTerritory: Codable {
+            public struct BaseTerritory: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -132,7 +132,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }
 
@@ -156,7 +156,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct ManualPrices: Codable {
+            public struct ManualPrices: Codable, Sendable {
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -173,7 +173,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appPrices" }
 
@@ -199,7 +199,7 @@ public struct AppPriceScheduleCreateRequest: Codable, RequestBody {
         }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appPriceV2InlineCreate(AppPriceV2InlineCreate)
         case territoryInlineCreate(TerritoryInlineCreate)
 

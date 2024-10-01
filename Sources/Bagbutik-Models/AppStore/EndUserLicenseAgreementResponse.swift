@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>
  */
-public struct EndUserLicenseAgreementResponse: Codable {
+public struct EndUserLicenseAgreementResponse: Codable, Sendable {
     public let data: EndUserLicenseAgreement
     public var included: [Included]?
     public let links: DocumentLinks
@@ -55,7 +55,7 @@ public struct EndUserLicenseAgreementResponse: Codable {
         return territories
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case territory(Territory)
 

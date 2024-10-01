@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBody {
+public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appEncryptionDeclarationDocuments" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
 
@@ -70,7 +70,7 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appEncryptionDeclaration: AppEncryptionDeclaration
 
             public init(appEncryptionDeclaration: AppEncryptionDeclaration) {
@@ -87,7 +87,7 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
                 try container.encode(appEncryptionDeclaration, forKey: "appEncryptionDeclaration")
             }
 
-            public struct AppEncryptionDeclaration: Codable {
+            public struct AppEncryptionDeclaration: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -104,7 +104,7 @@ public struct AppEncryptionDeclarationDocumentCreateRequest: Codable, RequestBod
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appEncryptionDeclarations" }
 

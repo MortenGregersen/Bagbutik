@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimageresponse>
  */
-public struct AppClipHeaderImageResponse: Codable {
+public struct AppClipHeaderImageResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClipHeaderImage
     /// The requested relationship data.

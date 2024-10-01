@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest>
  */
-public struct CiWorkflowCreateRequest: Codable, RequestBody {
+public struct CiWorkflowCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "ciWorkflows" }
         /// The attributes that describe the request that creates a Workflows resource.
@@ -71,7 +71,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The workflow’s actions.
             public let actions: [CiAction]
             /// A start condition that starts new builds for changes to a branch.
@@ -173,7 +173,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related macOS Versions resource.
             public let macOsVersion: MacOsVersion
             /// The related Products resource.
@@ -217,7 +217,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/macosversion>
              */
-            public struct MacOsVersion: Codable {
+            public struct MacOsVersion: Codable, Sendable {
                 /// The ID and type of the related macOS Versions resource.
                 public let data: Data
 
@@ -242,7 +242,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/macosversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                     public let id: String
                     /// The resource type.
@@ -275,7 +275,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/product>
              */
-            public struct Product: Codable {
+            public struct Product: Codable, Sendable {
                 /// The ID and type of the related Products resource.
                 public let data: Data
 
@@ -300,7 +300,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/product/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Products resource.
                     public let id: String
                     /// The resource type.
@@ -333,7 +333,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/repository>
              */
-            public struct Repository: Codable {
+            public struct Repository: Codable, Sendable {
                 /// The ID and type of the related Repositories resource.
                 public let data: Data
 
@@ -358,7 +358,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/repository/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Repositories resource.
                     public let id: String
                     /// The resource type.
@@ -391,7 +391,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/xcodeversion>
              */
-            public struct XcodeVersion: Codable {
+            public struct XcodeVersion: Codable, Sendable {
                 /// The ID and type of the related Xcode Versions resource.
                 public let data: Data
 
@@ -416,7 +416,7 @@ public struct CiWorkflowCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest/data/relationships/xcodeversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Xcode Versions resource.
                     public let id: String
                     /// The resource type.

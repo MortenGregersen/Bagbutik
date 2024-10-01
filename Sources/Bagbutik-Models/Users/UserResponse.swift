@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userresponse>
  */
-public struct UserResponse: Codable {
+public struct UserResponse: Codable, Sendable {
     /// The resource data.
     public let data: User
     public var included: [App]?

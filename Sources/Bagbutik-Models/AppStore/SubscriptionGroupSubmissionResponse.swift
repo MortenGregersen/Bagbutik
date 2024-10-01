@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGroupSubmissionResponse: Codable {
+public struct SubscriptionGroupSubmissionResponse: Codable, Sendable {
     public let data: SubscriptionGroupSubmission
     public let links: DocumentLinks
 

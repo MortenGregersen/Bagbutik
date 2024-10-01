@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationsresponse>
  */
-public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
+public struct AppStoreVersionLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppStoreVersionLocalization
 
     public let data: [AppStoreVersionLocalization]
@@ -74,7 +74,7 @@ public struct AppStoreVersionLocalizationsResponse: Codable, PagedResponse {
         }.first { $0.id == appStoreVersionLocalization.relationships?.appStoreVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appPreviewSet(AppPreviewSet)
         case appScreenshotSet(AppScreenshotSet)
         case appStoreVersion(AppStoreVersion)

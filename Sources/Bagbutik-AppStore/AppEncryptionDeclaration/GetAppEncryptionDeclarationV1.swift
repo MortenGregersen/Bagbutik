@@ -38,7 +38,7 @@ public enum GetAppEncryptionDeclarationV1 {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
 
-        public enum AppEncryptionDeclarationDocuments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
@@ -50,7 +50,7 @@ public enum GetAppEncryptionDeclarationV1 {
             case uploaded
         }
 
-        public enum AppEncryptionDeclarations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appDescription
             case appEncryptionDeclarationDocument
@@ -70,7 +70,7 @@ public enum GetAppEncryptionDeclarationV1 {
             case usesEncryption
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability

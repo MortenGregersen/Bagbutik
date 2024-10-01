@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration>
  */
-public struct AppEncryptionDeclaration: Codable, Identifiable {
+public struct AppEncryptionDeclaration: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var appDescription: String?
         /// The approval state of your export compliance documentation.
         public var appEncryptionDeclarationState: AppEncryptionDeclarationState?
@@ -187,7 +187,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var appEncryptionDeclarationDocument: AppEncryptionDeclarationDocument?
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
@@ -231,7 +231,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -261,7 +261,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -293,7 +293,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclaration/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -318,7 +318,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
             }
         }
 
-        public struct AppEncryptionDeclarationDocument: Codable {
+        public struct AppEncryptionDeclarationDocument: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -341,7 +341,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEncryptionDeclarationDocuments" }
 
@@ -364,7 +364,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -389,7 +389,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
             }
         }
 
-        public struct Builds: Codable {
+        public struct Builds: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -417,7 +417,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
 
@@ -440,7 +440,7 @@ public struct AppEncryptionDeclaration: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

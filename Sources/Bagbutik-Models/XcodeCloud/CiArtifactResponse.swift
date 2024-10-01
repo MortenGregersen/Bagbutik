@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciartifactresponse>
  */
-public struct CiArtifactResponse: Codable {
+public struct CiArtifactResponse: Codable, Sendable {
     /// The resource data.
     public let data: CiArtifact
     /// The navigational links that include the self-link.

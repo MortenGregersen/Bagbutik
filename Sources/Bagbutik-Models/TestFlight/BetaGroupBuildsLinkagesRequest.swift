@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesrequest>
  */
-public struct BetaGroupBuildsLinkagesRequest: Codable, RequestBody {
+public struct BetaGroupBuildsLinkagesRequest: Codable, Sendable, RequestBody {
     /// The types and IDs of related resources.
     public let data: [Data]
 
@@ -33,7 +33,7 @@ public struct BetaGroupBuildsLinkagesRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbuildslinkagesrequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.

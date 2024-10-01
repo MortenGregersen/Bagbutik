@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversion>
  */
-public struct GameCenterAppVersion: Codable, Identifiable {
+public struct GameCenterAppVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterAppVersions" }
@@ -46,7 +46,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var enabled: Bool?
 
         public init(enabled: Bool? = nil) {
@@ -64,7 +64,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appStoreVersion: AppStoreVersion?
         public var compatibilityVersions: CompatibilityVersions?
 
@@ -87,7 +87,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
             try container.encodeIfPresent(compatibilityVersions, forKey: "compatibilityVersions")
         }
 
-        public struct AppStoreVersion: Codable {
+        public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -110,7 +110,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -133,7 +133,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -158,7 +158,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
             }
         }
 
-        public struct CompatibilityVersions: Codable {
+        public struct CompatibilityVersions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -186,7 +186,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterAppVersions" }
 
@@ -209,7 +209,7 @@ public struct GameCenterAppVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

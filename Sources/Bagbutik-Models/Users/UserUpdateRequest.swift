@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest>
  */
-public struct UserUpdateRequest: Codable, RequestBody {
+public struct UserUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -77,7 +77,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// Assigned user roles that determine the user's access to sections of App Store Connect and tasks they can perform.
             public var allAppsVisible: Bool?
             /// A Boolean value that indicates the user's specified role allows access to the provisioning functionality on the Apple Developer website.
@@ -116,7 +116,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var visibleApps: VisibleApps?
 
             public init(visibleApps: VisibleApps? = nil) {
@@ -140,7 +140,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships/visibleapps>
              */
-            public struct VisibleApps: Codable {
+            public struct VisibleApps: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -164,7 +164,7 @@ public struct UserUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/userupdaterequest/data/relationships/visibleapps/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.

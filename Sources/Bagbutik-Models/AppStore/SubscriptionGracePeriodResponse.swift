@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionGracePeriodResponse: Codable {
+public struct SubscriptionGracePeriodResponse: Codable, Sendable {
     public let data: SubscriptionGracePeriod
     public let links: DocumentLinks
 

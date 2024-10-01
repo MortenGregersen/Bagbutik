@@ -31,7 +31,7 @@ public enum ListVariantsForAlternativeDistributionPackageVersionV1 {
         /// The fields to include for returned resources of type alternativeDistributionPackageVariants
         case alternativeDistributionPackageVariants([AlternativeDistributionPackageVariants])
 
-        public enum AlternativeDistributionPackageVariants: String, ParameterValue, Codable, CaseIterable {
+        public enum AlternativeDistributionPackageVariants: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKeyBlob
             case fileChecksum
             case url

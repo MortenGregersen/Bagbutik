@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentV2Response: Codable {
+public struct AppStoreVersionExperimentV2Response: Codable, Sendable {
     public let data: AppStoreVersionExperimentV2
     public var included: [Included]?
     public let links: DocumentLinks
@@ -67,7 +67,7 @@ public struct AppStoreVersionExperimentV2Response: Codable {
         }.first { $0.id == data.relationships?.latestControlVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperimentTreatment(AppStoreVersionExperimentTreatment)

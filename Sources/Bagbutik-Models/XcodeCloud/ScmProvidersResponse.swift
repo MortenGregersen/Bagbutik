@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovidersresponse>
  */
-public struct ScmProvidersResponse: Codable, PagedResponse {
+public struct ScmProvidersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmProvider
 
     /// The resource data.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettest>
  */
-public struct GameCenterMatchmakingRuleSetTest: Codable, Identifiable {
+public struct GameCenterMatchmakingRuleSetTest: Codable, Sendable, Identifiable {
     /// A unique identifier for the rule set.
     public let id: String
     /// The link representations of the object.
@@ -52,7 +52,7 @@ public struct GameCenterMatchmakingRuleSetTest: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettest/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var matchmakingResults: [MatchmakingResults]?
 
         public init(matchmakingResults: [MatchmakingResults]? = nil) {
@@ -76,7 +76,7 @@ public struct GameCenterMatchmakingRuleSetTest: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettest/attributes/matchmakingresults>
          */
-        public struct MatchmakingResults: Codable {
+        public struct MatchmakingResults: Codable, Sendable {
             /// A unique identifier for the request.
             public var requestName: String?
             /// The assignments of players to teams.

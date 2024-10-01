@@ -9,7 +9,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/documentlinks>
  */
-public struct DocumentLinks: Codable {
+public struct DocumentLinks: Codable, Sendable {
     /// The link that produced the current document.
     public let itself: String
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationresponse>
  */
-public struct AppInfoLocalizationResponse: Codable {
+public struct AppInfoLocalizationResponse: Codable, Sendable {
     public let data: AppInfoLocalization
     public var included: [AppInfo]?
     public let links: DocumentLinks

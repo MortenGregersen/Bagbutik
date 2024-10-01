@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteam>
  */
-public struct GameCenterMatchmakingTeam: Codable, Identifiable {
+public struct GameCenterMatchmakingTeam: Codable, Sendable, Identifiable {
     /// The unique identifier for the team.
     public let id: String
     /// The link representations of the object.
@@ -52,7 +52,7 @@ public struct GameCenterMatchmakingTeam: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteam/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The maximum number of players on the team.
         public var maxPlayers: Int?
         /// The minimum number of players on the team.

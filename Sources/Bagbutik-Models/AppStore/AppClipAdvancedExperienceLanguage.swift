@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelanguage>
  */
-public enum AppClipAdvancedExperienceLanguage: String, Codable, CaseIterable {
+public enum AppClipAdvancedExperienceLanguage: String, Sendable, Codable, CaseIterable {
     case ar = "AR"
     case ca = "CA"
     case cs = "CS"

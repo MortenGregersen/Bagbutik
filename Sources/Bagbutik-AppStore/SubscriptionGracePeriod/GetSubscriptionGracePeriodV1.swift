@@ -28,7 +28,7 @@ public enum GetSubscriptionGracePeriodV1 {
         /// The fields to include for returned resources of type subscriptionGracePeriods
         case subscriptionGracePeriods([SubscriptionGracePeriods])
 
-        public enum SubscriptionGracePeriods: String, ParameterValue, Codable, CaseIterable {
+        public enum SubscriptionGracePeriods: String, Sendable, ParameterValue, Codable, CaseIterable {
             case duration
             case optIn
             case renewalType

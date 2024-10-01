@@ -31,7 +31,7 @@ public enum ListPreReleaseVersionsForAppV1 {
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
 
-        public enum PreReleaseVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum PreReleaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case builds
             case platform

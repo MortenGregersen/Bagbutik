@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleresponse>
  */
-public struct GameCenterMatchmakingRuleResponse: Codable {
+public struct GameCenterMatchmakingRuleResponse: Codable, Sendable {
     /// The rule that you create or modify.
     public let data: GameCenterMatchmakingRule
     public let links: DocumentLinks

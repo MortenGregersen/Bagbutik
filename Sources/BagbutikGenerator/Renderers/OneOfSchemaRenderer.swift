@@ -67,7 +67,7 @@ public class OneOfSchemaRenderer: Renderer {
         if !renderedSubSchemas.isEmpty {
             rendered += "\n\n" + renderedSubSchemas.joined(separator: "\n\n")
         }
-        let protocols = ["Codable"] + oneOfSchema.additionalProtocols
+        let protocols = ["Codable", "Sendable"] + oneOfSchema.additionalProtocols
 
         rendered = renderEnum(named: name,
                               protocols: protocols,

@@ -39,13 +39,13 @@ public enum GetAppAvailabilityForAppV1 {
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
-        public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum AppAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case availableInNewTerritories
             case availableTerritories
         }
 
-        public enum Apps: String, ParameterValue, Codable, CaseIterable {
+        public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
@@ -91,7 +91,7 @@ public enum GetAppAvailabilityForAppV1 {
             case subscriptionStatusUrlVersionForSandbox
         }
 
-        public enum Territories: String, ParameterValue, Codable, CaseIterable {
+        public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case currency
         }
     }

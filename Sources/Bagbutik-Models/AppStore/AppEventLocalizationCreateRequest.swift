@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
+public struct AppEventLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appEventLocalizations" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let locale: String
             public var longDescription: String?
             public var name: String?
@@ -80,7 +80,7 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appEvent: AppEvent
 
             public init(appEvent: AppEvent) {
@@ -97,7 +97,7 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
                 try container.encode(appEvent, forKey: "appEvent")
             }
 
-            public struct AppEvent: Codable {
+            public struct AppEvent: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -114,7 +114,7 @@ public struct AppEventLocalizationCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appEvents" }
 

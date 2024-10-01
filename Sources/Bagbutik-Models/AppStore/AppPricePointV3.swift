@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv3>
  */
-public struct AppPricePointV3: Codable, Identifiable {
+public struct AppPricePointV3: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appPricePoints" }
@@ -46,7 +46,7 @@ public struct AppPricePointV3: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var customerPrice: String?
         public var proceeds: String?
 
@@ -70,7 +70,7 @@ public struct AppPricePointV3: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var territory: Territory?
 
@@ -93,7 +93,7 @@ public struct AppPricePointV3: Codable, Identifiable {
             try container.encodeIfPresent(territory, forKey: "territory")
         }
 
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -116,7 +116,7 @@ public struct AppPricePointV3: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -139,7 +139,7 @@ public struct AppPricePointV3: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -164,7 +164,7 @@ public struct AppPricePointV3: Codable, Identifiable {
             }
         }
 
-        public struct Territory: Codable {
+        public struct Territory: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -187,7 +187,7 @@ public struct AppPricePointV3: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 
@@ -210,7 +210,7 @@ public struct AppPricePointV3: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

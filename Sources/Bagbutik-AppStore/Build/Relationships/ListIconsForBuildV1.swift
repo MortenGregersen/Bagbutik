@@ -31,7 +31,7 @@ public enum ListIconsForBuildV1 {
         /// The fields to include for returned resources of type buildIcons
         case buildIcons([BuildIcons])
 
-        public enum BuildIcons: String, ParameterValue, Codable, CaseIterable {
+        public enum BuildIcons: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iconAsset
             case iconType
             case name

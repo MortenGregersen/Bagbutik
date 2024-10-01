@@ -36,13 +36,13 @@ public enum GetAppAvailabilitiesV2 {
         /// The fields to include for returned resources of type territoryAvailabilities
         case territoryAvailabilities([TerritoryAvailabilities])
 
-        public enum AppAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum AppAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case availableInNewTerritories
             case territoryAvailabilities
         }
 
-        public enum TerritoryAvailabilities: String, ParameterValue, Codable, CaseIterable {
+        public enum TerritoryAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case available
             case contentStatuses
             case preOrderEnabled

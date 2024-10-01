@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmissionresponse>
  */
-public struct GameCenterPlayerAchievementSubmissionResponse: Codable {
+public struct GameCenterPlayerAchievementSubmissionResponse: Codable, Sendable {
     public let data: GameCenterPlayerAchievementSubmission
     public let links: DocumentLinks
 

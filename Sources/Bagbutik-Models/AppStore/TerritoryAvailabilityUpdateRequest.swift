@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityupdaterequest>
  */
-public struct TerritoryAvailabilityUpdateRequest: Codable, RequestBody {
+public struct TerritoryAvailabilityUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct TerritoryAvailabilityUpdateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "territoryAvailabilities" }
         public var attributes: Attributes?
@@ -53,7 +53,7 @@ public struct TerritoryAvailabilityUpdateRequest: Codable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var available: Bool?
             public var preOrderEnabled: Bool?
             public var releaseDate: String?

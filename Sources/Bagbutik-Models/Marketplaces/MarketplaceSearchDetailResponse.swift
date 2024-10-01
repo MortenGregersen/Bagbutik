@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetailresponse>
  */
-public struct MarketplaceSearchDetailResponse: Codable {
+public struct MarketplaceSearchDetailResponse: Codable, Sendable {
     public let data: MarketplaceSearchDetail
     public let links: DocumentLinks
 

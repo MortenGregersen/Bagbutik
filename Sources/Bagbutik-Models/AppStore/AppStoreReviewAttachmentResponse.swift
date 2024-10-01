@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentresponse>
  */
-public struct AppStoreReviewAttachmentResponse: Codable {
+public struct AppStoreReviewAttachmentResponse: Codable, Sendable {
     public let data: AppStoreReviewAttachment
     public var included: [AppStoreReviewDetail]?
     public let links: DocumentLinks

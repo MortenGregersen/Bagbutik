@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature>
  */
-public struct DiagnosticSignature: Codable, Identifiable {
+public struct DiagnosticSignature: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a diagnostic signature.
     public let id: String
     /// Navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct DiagnosticSignature: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The diagnostic type.
         public var diagnosticType: DiagnosticType?
         public var insight: DiagnosticInsight?
@@ -88,7 +88,7 @@ public struct DiagnosticSignature: Codable, Identifiable {
             try container.encodeIfPresent(weight, forKey: "weight")
         }
 
-        public enum DiagnosticType: String, Codable, CaseIterable {
+        public enum DiagnosticType: String, Sendable, Codable, CaseIterable {
             case diskWrites = "DISK_WRITES"
             case hangs = "HANGS"
             case launches = "LAUNCHES"

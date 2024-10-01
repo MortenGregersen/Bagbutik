@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovider>
  */
-public struct ScmProvider: Codable, Identifiable {
+public struct ScmProvider: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Providers resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -52,7 +52,7 @@ public struct ScmProvider: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/scmprovider/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The source code management provider’s type.
         public var scmProviderType: ScmProviderType?
         /// The URL of the source code management provider.

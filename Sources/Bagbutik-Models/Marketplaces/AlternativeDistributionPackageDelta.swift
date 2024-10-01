@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedelta>
  */
-public struct AlternativeDistributionPackageDelta: Codable, Identifiable {
+public struct AlternativeDistributionPackageDelta: Codable, Sendable, Identifiable {
     /// An opaque resource ID that uniquely identifies the alternative distribution package delta.
     public let id: String
     public var links: ResourceLinks?
@@ -44,7 +44,7 @@ public struct AlternativeDistributionPackageDelta: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var alternativeDistributionKeyBlob: String?
         public var fileChecksum: String?
         public var url: String?

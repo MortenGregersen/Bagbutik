@@ -34,7 +34,7 @@ public enum ListPerfPowerMetricsForAppV1 {
         /// Filter by attribute 'platform'
         case platform([Platform])
 
-        public enum MetricType: String, ParameterValue, Codable, CaseIterable {
+        public enum MetricType: String, Sendable, ParameterValue, Codable, CaseIterable {
             case animation = "ANIMATION"
             case battery = "BATTERY"
             case disk = "DISK"
@@ -44,7 +44,7 @@ public enum ListPerfPowerMetricsForAppV1 {
             case termination = "TERMINATION"
         }
 
-        public enum Platform: String, ParameterValue, Codable, CaseIterable {
+        public enum Platform: String, Sendable, ParameterValue, Codable, CaseIterable {
             case iOS = "IOS"
         }
     }

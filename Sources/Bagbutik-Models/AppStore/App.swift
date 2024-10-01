@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/app>
  */
-public struct App: Codable, Identifiable {
+public struct App: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
     /// Navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct App: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/app/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The bundle ID for your app. This ID must match the one you use in Xcode. The bundle ID cannot be changed after you upload your first build.
         public var bundleId: String?
         public var contentRightsDeclaration: ContentRightsDeclaration?
@@ -125,7 +125,7 @@ public struct App: Codable, Identifiable {
             try container.encodeIfPresent(subscriptionStatusUrlVersionForSandbox, forKey: "subscriptionStatusUrlVersionForSandbox")
         }
 
-        public enum ContentRightsDeclaration: String, Codable, CaseIterable {
+        public enum ContentRightsDeclaration: String, Sendable, Codable, CaseIterable {
             case doesNotUseThirdPartyContent = "DOES_NOT_USE_THIRD_PARTY_CONTENT"
             case usesThirdPartyContent = "USES_THIRD_PARTY_CONTENT"
         }
@@ -138,7 +138,7 @@ public struct App: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The data and links that describe the relationship between the Apps and the App Clips resources.
         public var appClips: AppClips?
         public var appCustomProductPages: AppCustomProductPages?
@@ -343,7 +343,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips>
          */
-        public struct AppClips: Codable {
+        public struct AppClips: Codable, Sendable {
             /// The ID and type of the related App Clips resource.
             @NullCodable public var data: [Data]?
             /// Navigational links that include the self-link.
@@ -381,7 +381,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies an App Clips resource.
                 public let id: String
                 /// The resource type.
@@ -413,7 +413,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appclips/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -440,7 +440,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct AppCustomProductPages: Codable {
+        public struct AppCustomProductPages: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -468,7 +468,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appCustomProductPages" }
 
@@ -491,7 +491,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -523,7 +523,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appencryptiondeclarations>
          */
-        public struct AppEncryptionDeclarations: Codable {
+        public struct AppEncryptionDeclarations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -558,7 +558,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appencryptiondeclarations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEncryptionDeclarations" }
 
@@ -581,7 +581,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -606,7 +606,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct AppEvents: Codable {
+        public struct AppEvents: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -634,7 +634,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appEvents" }
 
@@ -657,7 +657,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -689,7 +689,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos>
          */
-        public struct AppInfos: Codable {
+        public struct AppInfos: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -724,7 +724,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appInfos" }
 
@@ -754,7 +754,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appinfos/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -779,7 +779,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperimentsV2: Codable {
+        public struct AppStoreVersionExperimentsV2: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -807,7 +807,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
@@ -830,7 +830,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -862,7 +862,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions>
          */
-        public struct AppStoreVersions: Codable {
+        public struct AppStoreVersions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -897,7 +897,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -927,7 +927,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/appstoreversions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -959,7 +959,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations>
          */
-        public struct BetaAppLocalizations: Codable {
+        public struct BetaAppLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -994,7 +994,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1026,7 +1026,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaapplocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1058,7 +1058,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail>
          */
-        public struct BetaAppReviewDetail: Codable {
+        public struct BetaAppReviewDetail: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1088,7 +1088,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1120,7 +1120,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betaappreviewdetail/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1152,7 +1152,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups>
          */
-        public struct BetaGroups: Codable {
+        public struct BetaGroups: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1187,7 +1187,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1219,7 +1219,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betagroups/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1251,7 +1251,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement>
          */
-        public struct BetaLicenseAgreement: Codable {
+        public struct BetaLicenseAgreement: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1281,7 +1281,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1313,7 +1313,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/betalicenseagreement/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1345,7 +1345,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds>
          */
-        public struct Builds: Codable {
+        public struct Builds: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1380,7 +1380,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -1412,7 +1412,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/builds/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1444,7 +1444,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct>
          */
-        public struct CiProduct: Codable {
+        public struct CiProduct: Codable, Sendable {
             /// The ID and type of the related Products resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -1476,7 +1476,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
                 /// The resource type.
@@ -1508,7 +1508,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/ciproduct/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -1542,7 +1542,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement>
          */
-        public struct EndUserLicenseAgreement: Codable {
+        public struct EndUserLicenseAgreement: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1572,7 +1572,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "endUserLicenseAgreements" }
 
@@ -1602,7 +1602,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/enduserlicenseagreement/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1627,7 +1627,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct GameCenterDetail: Codable {
+        public struct GameCenterDetail: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1650,7 +1650,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterDetails" }
 
@@ -1673,7 +1673,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1705,7 +1705,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions>
          */
-        public struct GameCenterEnabledVersions: Codable {
+        public struct GameCenterEnabledVersions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1740,7 +1740,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterEnabledVersions" }
 
@@ -1770,7 +1770,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/gamecenterenabledversions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1802,7 +1802,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases>
          */
-        public struct InAppPurchases: Codable {
+        public struct InAppPurchases: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1837,7 +1837,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
 
@@ -1867,7 +1867,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/inapppurchases/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1892,7 +1892,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct InAppPurchasesV2: Codable {
+        public struct InAppPurchasesV2: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -1920,7 +1920,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "inAppPurchases" }
 
@@ -1943,7 +1943,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1975,7 +1975,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder>
          */
-        public struct PreOrder: Codable {
+        public struct PreOrder: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -2005,7 +2005,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPreOrders" }
 
@@ -2035,7 +2035,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/preorder/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -2067,7 +2067,7 @@ public struct App: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions>
          */
-        public struct PreReleaseVersions: Codable {
+        public struct PreReleaseVersions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -2102,7 +2102,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
                 /// The resource type.
@@ -2134,7 +2134,7 @@ public struct App: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/app/relationships/prereleaseversions/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -2159,7 +2159,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct PromotedPurchases: Codable {
+        public struct PromotedPurchases: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -2187,7 +2187,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "promotedPurchases" }
 
@@ -2210,7 +2210,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -2235,7 +2235,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct ReviewSubmissions: Codable {
+        public struct ReviewSubmissions: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -2263,7 +2263,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "reviewSubmissions" }
 
@@ -2286,7 +2286,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -2311,7 +2311,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct SubscriptionGracePeriod: Codable {
+        public struct SubscriptionGracePeriod: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -2334,7 +2334,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGracePeriods" }
 
@@ -2357,7 +2357,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -2382,7 +2382,7 @@ public struct App: Codable, Identifiable {
             }
         }
 
-        public struct SubscriptionGroups: Codable {
+        public struct SubscriptionGroups: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -2410,7 +2410,7 @@ public struct App: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "subscriptionGroups" }
 
@@ -2433,7 +2433,7 @@ public struct App: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

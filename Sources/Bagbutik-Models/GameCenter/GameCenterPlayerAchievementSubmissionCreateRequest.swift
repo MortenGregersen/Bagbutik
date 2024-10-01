@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmissioncreaterequest>
  */
-public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, RequestBody {
+public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -25,7 +25,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Reque
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterPlayerAchievementSubmissions" }
         public let attributes: Attributes
 
@@ -47,7 +47,7 @@ public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Reque
             try container.encode(attributes, forKey: "attributes")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let bundleId: String
             public var challengeIds: [String]?
             public let percentageAchieved: Int

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest>
  */
-public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
+public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersions" }
         public var attributes: Attributes?
@@ -72,7 +72,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var copyright: String?
             public var downloadable: Bool?
             public var earliestReleaseDate: Date?
@@ -124,7 +124,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related Default App Clip Experiences resource.
             public var appClipDefaultExperience: AppClipDefaultExperience?
             public var build: Build?
@@ -155,7 +155,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience>
              */
-            public struct AppClipDefaultExperience: Codable {
+            public struct AppClipDefaultExperience: Codable, Sendable {
                 /// The ID and type of the related Default App Clip Experiences resource.
                 @NullCodable public var data: Data?
 
@@ -180,7 +180,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
                     /// The resource type.
@@ -213,7 +213,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build>
              */
-            public struct Build: Codable {
+            public struct Build: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -237,7 +237,7 @@ public struct AppStoreVersionUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "builds" }
 

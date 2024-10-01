@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct RoutingAppCoverageWithoutIncludesResponse: Codable {
+public struct RoutingAppCoverageWithoutIncludesResponse: Codable, Sendable {
     public let data: RoutingAppCoverage
     public let links: DocumentLinks
 

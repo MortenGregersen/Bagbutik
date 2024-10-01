@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesresponse>
  */
-public struct InAppPurchasesResponse: Codable, PagedResponse {
+public struct InAppPurchasesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchase
 
     public let data: [InAppPurchase]

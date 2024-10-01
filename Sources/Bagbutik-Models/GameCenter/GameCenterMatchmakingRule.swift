@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule>
  */
-public struct GameCenterMatchmakingRule: Codable, Identifiable {
+public struct GameCenterMatchmakingRule: Codable, Sendable, Identifiable {
     /// The unique identifier for the rule.
     public let id: String
     public var links: ResourceLinks?
@@ -50,7 +50,7 @@ public struct GameCenterMatchmakingRule: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// A human-readable description of the rule.
         public var description: String?
         /// Code that returns a Boolean or numeric value that the matchmaking rules algorithm executes to compare or filter match requests.
@@ -93,7 +93,7 @@ public struct GameCenterMatchmakingRule: Codable, Identifiable {
             try container.encodeIfPresent(weight, forKey: "weight")
         }
 
-        public enum AttributesType: String, Codable, CaseIterable {
+        public enum AttributesType: String, Sendable, Codable, CaseIterable {
             case compatible = "COMPATIBLE"
             case distance = "DISTANCE"
             case match = "MATCH"

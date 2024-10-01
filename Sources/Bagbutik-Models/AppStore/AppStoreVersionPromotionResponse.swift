@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionPromotionResponse: Codable {
+public struct AppStoreVersionPromotionResponse: Codable, Sendable {
     public let data: AppStoreVersionPromotion
     public let links: DocumentLinks
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionresponse>
  */
-public struct PrereleaseVersionResponse: Codable {
+public struct PrereleaseVersionResponse: Codable, Sendable {
     /// The resource data.
     public let data: PrereleaseVersion
     public var included: [Included]?
@@ -57,7 +57,7 @@ public struct PrereleaseVersionResponse: Codable {
         return builds
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case build(Build)
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppricev2inlinecreate>
  */
-public struct AppPriceV2InlineCreate: Codable, Identifiable {
+public struct AppPriceV2InlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "appPrices" }
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsresponse>
  */
-public struct AppPreviewsResponse: Codable, PagedResponse {
+public struct AppPreviewsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppPreview
 
     public let data: [AppPreview]

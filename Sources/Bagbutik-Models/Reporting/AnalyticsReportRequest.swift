@@ -10,7 +10,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequest>
  */
-public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
+public struct AnalyticsReportRequest: Codable, Sendable, Identifiable, RequestBody {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "analyticsReportRequests" }
@@ -55,7 +55,7 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequest/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var accessType: AccessType?
         public var stoppedDueToInactivity: Bool?
 
@@ -78,13 +78,13 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
             try container.encodeIfPresent(stoppedDueToInactivity, forKey: "stoppedDueToInactivity")
         }
 
-        public enum AccessType: String, Codable, CaseIterable {
+        public enum AccessType: String, Sendable, Codable, CaseIterable {
             case oneTimeSnapshot = "ONE_TIME_SNAPSHOT"
             case ongoing = "ONGOING"
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var reports: Reports?
 
         public init(reports: Reports? = nil) {
@@ -101,7 +101,7 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
             try container.encodeIfPresent(reports, forKey: "reports")
         }
 
-        public struct Reports: Codable {
+        public struct Reports: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -136,7 +136,7 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequest/relationships/reports/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "analyticsReports" }
 
@@ -166,7 +166,7 @@ public struct AnalyticsReportRequest: Codable, Identifiable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequest/relationships/reports/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

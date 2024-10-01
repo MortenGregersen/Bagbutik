@@ -39,14 +39,14 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
 
-        public enum AppStoreVersionExperimentTreatmentLocalizations: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatmentLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appPreviewSets
             case appScreenshotSets
             case appStoreVersionExperimentTreatment
             case locale
         }
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -56,7 +56,7 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperimentV
             case promotedDate
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersion
             case appStoreVersionExperimentTreatments

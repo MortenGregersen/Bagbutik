@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPriceV2: Codable, Identifiable {
+public struct AppPriceV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appPrices" }
@@ -39,7 +39,7 @@ public struct AppPriceV2: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var endDate: String?
         public var manual: Bool?
         public var startDate: String?
@@ -68,7 +68,7 @@ public struct AppPriceV2: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appPricePoint: AppPricePoint?
         public var territory: Territory?
 
@@ -91,7 +91,7 @@ public struct AppPriceV2: Codable, Identifiable {
             try container.encodeIfPresent(territory, forKey: "territory")
         }
 
-        public struct AppPricePoint: Codable {
+        public struct AppPricePoint: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -114,7 +114,7 @@ public struct AppPriceV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPricePoints" }
 
@@ -137,7 +137,7 @@ public struct AppPriceV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -162,7 +162,7 @@ public struct AppPriceV2: Codable, Identifiable {
             }
         }
 
-        public struct Territory: Codable {
+        public struct Territory: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -185,7 +185,7 @@ public struct AppPriceV2: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
 
@@ -208,7 +208,7 @@ public struct AppPriceV2: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

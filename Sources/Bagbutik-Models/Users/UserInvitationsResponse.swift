@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationsresponse>
  */
-public struct UserInvitationsResponse: Codable, PagedResponse {
+public struct UserInvitationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = UserInvitation
 
     /// The resource data.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct>
  */
-public struct CiProduct: Codable, Identifiable {
+public struct CiProduct: Codable, Sendable, Identifiable {
     /// The opaque resource ID that uniquely identifies a Products resource.
     public let id: String
     /// The navigational links that include the self-link.
@@ -58,7 +58,7 @@ public struct CiProduct: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         /// The date when you created the Xcode Cloud product.
         public var createdDate: Date?
         /// The name of the Xcode Cloud product.
@@ -89,7 +89,7 @@ public struct CiProduct: Codable, Identifiable {
             try container.encodeIfPresent(productType, forKey: "productType")
         }
 
-        public enum ProductType: String, ParameterValue, Codable, CaseIterable {
+        public enum ProductType: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app = "APP"
             case framework = "FRAMEWORK"
         }
@@ -102,7 +102,7 @@ public struct CiProduct: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         /// The related Apps resource.
         public var app: App?
         /// The related bundle ID.
@@ -140,7 +140,7 @@ public struct CiProduct: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             /// The ID and type of the related Apps resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -172,7 +172,7 @@ public struct CiProduct: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Apps resource.
                 public let id: String
                 /// The resource type.
@@ -204,7 +204,7 @@ public struct CiProduct: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -238,7 +238,7 @@ public struct CiProduct: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid>
          */
-        public struct BundleId: Codable {
+        public struct BundleId: Codable, Sendable {
             /// The ID and type of the related Bundle IDs resource.
             @NullCodable public var data: Data?
             /// The navigational links that include the self-link.
@@ -270,7 +270,7 @@ public struct CiProduct: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Bundle IDs resource.
                 public let id: String
                 /// The resource type.
@@ -302,7 +302,7 @@ public struct CiProduct: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/bundleid/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -336,7 +336,7 @@ public struct CiProduct: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories>
          */
-        public struct PrimaryRepositories: Codable {
+        public struct PrimaryRepositories: Codable, Sendable {
             /// The ID and type of the related Repositories resource that represents the primary repository.
             @NullCodable public var data: [Data]?
             /// The navigational links that include the self-link.
@@ -374,7 +374,7 @@ public struct CiProduct: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Repositories resource that represents the primary repository.
                 public let id: String
                 /// The resource type.
@@ -406,7 +406,7 @@ public struct CiProduct: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct/relationships/primaryrepositories/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.

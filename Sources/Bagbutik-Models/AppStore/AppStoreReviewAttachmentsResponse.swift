@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentsresponse>
  */
-public struct AppStoreReviewAttachmentsResponse: Codable, PagedResponse {
+public struct AppStoreReviewAttachmentsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppStoreReviewAttachment
 
     public let data: [AppStoreReviewAttachment]

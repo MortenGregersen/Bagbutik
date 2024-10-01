@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appcategoriesresponse>
  */
-public struct AppCategoriesResponse: Codable, PagedResponse {
+public struct AppCategoriesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCategory
 
     public let data: [AppCategory]

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SandboxTesterV2: Codable, Identifiable {
+public struct SandboxTesterV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "sandboxTesters" }
@@ -34,7 +34,7 @@ public struct SandboxTesterV2: Codable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var acAccountName: String?
         public var applePayCompatible: Bool?
         public var firstName: String?
@@ -82,7 +82,7 @@ public struct SandboxTesterV2: Codable, Identifiable {
             try container.encodeIfPresent(territory, forKey: "territory")
         }
 
-        public enum SubscriptionRenewalRate: String, Codable, CaseIterable {
+        public enum SubscriptionRenewalRate: String, Sendable, Codable, CaseIterable {
             case monthlyRenewalEveryFifteenMinutes = "MONTHLY_RENEWAL_EVERY_FIFTEEN_MINUTES"
             case monthlyRenewalEveryFiveMinutes = "MONTHLY_RENEWAL_EVERY_FIVE_MINUTES"
             case monthlyRenewalEveryOneHour = "MONTHLY_RENEWAL_EVERY_ONE_HOUR"

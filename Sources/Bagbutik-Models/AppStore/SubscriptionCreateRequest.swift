@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionCreateRequest: Codable, RequestBody {
+public struct SubscriptionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -18,7 +18,7 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "subscriptions" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -46,7 +46,7 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var familySharable: Bool?
             public var groupLevel: Int?
             public let name: String
@@ -90,7 +90,7 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let group: Group
 
             public init(group: Group) {
@@ -107,7 +107,7 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
                 try container.encode(group, forKey: "group")
             }
 
-            public struct Group: Codable {
+            public struct Group: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -124,7 +124,7 @@ public struct SubscriptionCreateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionGroups" }
 

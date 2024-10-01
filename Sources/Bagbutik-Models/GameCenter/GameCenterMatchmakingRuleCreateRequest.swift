@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest>
  */
-public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
+public struct GameCenterMatchmakingRuleCreateRequest: Codable, Sendable, RequestBody {
     /// The data structure of the request body.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterMatchmakingRules" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -70,7 +70,7 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A human-readable description of the rule.
             public let description: String
             /// Code that returns a Boolean or numeric value that the matchmaking rules algorithm executes to compare or filter match requests.
@@ -121,7 +121,7 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let ruleSet: RuleSet
 
             public init(ruleSet: RuleSet) {
@@ -145,7 +145,7 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest/data/relationships/ruleset>
              */
-            public struct RuleSet: Codable {
+            public struct RuleSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -169,7 +169,7 @@ public struct GameCenterMatchmakingRuleCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulecreaterequest/data/relationships/ruleset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The unique identifier for the rule set.
                     public let id: String
                     /// The type of resource.

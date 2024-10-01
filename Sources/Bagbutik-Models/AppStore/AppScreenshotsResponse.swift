@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsresponse>
  */
-public struct AppScreenshotsResponse: Codable, PagedResponse {
+public struct AppScreenshotsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppScreenshot
 
     public let data: [AppScreenshot]

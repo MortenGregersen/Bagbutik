@@ -2,7 +2,7 @@ import Foundation
 
 /// A property wrapper to use on properties that should be encoded with a `null` value (instead of being omitted).
 @propertyWrapper
-public struct NullCodable<Value>: Codable where Value: Codable {
+public struct NullCodable<Value>: Codable, Sendable where Value: Codable & Sendable {
     /// The wrapped value.
     public var wrappedValue: Value?
 

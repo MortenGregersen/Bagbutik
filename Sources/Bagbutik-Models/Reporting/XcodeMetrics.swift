@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics>
  */
-public struct XcodeMetrics: Codable {
+public struct XcodeMetrics: Codable, Sendable {
     /// Analysis of data collected about the power and performance of your app that includes regressions and trends.
     public var insights: Insights?
     /// An array of metrics data containing power and performance measurements for your app, organized by platform.
@@ -46,7 +46,7 @@ public struct XcodeMetrics: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/insights>
      */
-    public struct Insights: Codable {
+    public struct Insights: Codable, Sendable {
         /// An array of metrics that have significantly increased between app versions.
         public var regressions: [MetricsInsight]?
         /// An array of metrics that have moderately increased between app versions.
@@ -79,7 +79,7 @@ public struct XcodeMetrics: Codable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata>
      */
-    public struct ProductData: Codable {
+    public struct ProductData: Codable, Sendable {
         /// An array of metrics by category.
         public var metricCategories: [MetricCategories]?
         /// The Apple platform on which the system gathered the metrics about your app.
@@ -111,7 +111,7 @@ public struct XcodeMetrics: Codable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories>
          */
-        public struct MetricCategories: Codable {
+        public struct MetricCategories: Codable, Sendable {
             /// The category of the metric that this product data is about.
             public var identifier: MetricCategory?
             /// An array of data and measurements for the metric category specified by the `identifier`.
@@ -143,7 +143,7 @@ public struct XcodeMetrics: Codable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics>
              */
-            public struct Metrics: Codable {
+            public struct Metrics: Codable, Sendable {
                 /// An array of datasets containing metric values by app version filtered by percentile and device type.
                 public var datasets: [Datasets]?
                 /// An array of terms used to classify a metric value, and the range of values for each classification.
@@ -187,7 +187,7 @@ public struct XcodeMetrics: Codable {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics/datasets>
                  */
-                public struct Datasets: Codable {
+                public struct Datasets: Codable, Sendable {
                     /// The device and percentile criteria by which the dataset is filtered.
                     public var filterCriteria: FilterCriteria?
                     /// An array containing metric values for each app version.
@@ -219,7 +219,7 @@ public struct XcodeMetrics: Codable {
                      Full documentation:
                      <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics/datasets/filtercriteria>
                      */
-                    public struct FilterCriteria: Codable {
+                    public struct FilterCriteria: Codable, Sendable {
                         /// The device type that the measurement is collected on.
                         public var device: String?
                         /// The human-readable string containing the device name.
@@ -258,7 +258,7 @@ public struct XcodeMetrics: Codable {
                      Full documentation:
                      <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics/datasets/points>
                      */
-                    public struct Points: Codable {
+                    public struct Points: Codable, Sendable {
                         /// The margin of error estimated based on the sample size and metric type, for metrics with an insufficient data volume. Note: For the system to provide a metric, the number of samples must meet a minimum threshold size. The `errorMargin` is present if a metric meets the minimum, but is inaccurate within a margin. If the metric surpasses a high enough threshold, the `errorMargin` isn’t present.
                         public var errorMargin: Double?
                         /// The metric value’s classification in terms of a goal key, such as `"good",` `"fair"`, or `"poor"`.
@@ -308,7 +308,7 @@ public struct XcodeMetrics: Codable {
                          Full documentation:
                          <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics/datasets/points/percentagebreakdown>
                          */
-                        public struct PercentageBreakdown: Codable {
+                        public struct PercentageBreakdown: Codable, Sendable {
                             /// A string that describes the metric subtype, which provides more information about the measurement.
                             public var subSystemLabel: String?
                             /// The percentage of the metric value the metric subtype contributes. Values are between `0` and `100`.
@@ -343,7 +343,7 @@ public struct XcodeMetrics: Codable {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics/goalkeys>
                  */
-                public struct GoalKeys: Codable {
+                public struct GoalKeys: Codable, Sendable {
                     /// The name of the classification, such as `“good”`, `“fair”`, and `“poor”`.
                     public var goalKey: String?
                     /// The lower bound value to qualify for the goal key.
@@ -382,7 +382,7 @@ public struct XcodeMetrics: Codable {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics/productdata/metriccategories/metrics/unit>
                  */
-                public struct Unit: Codable {
+                public struct Unit: Codable, Sendable {
                     /// The display name for the unit of measurement.
                     public var displayName: String?
                     /// The unit of measurement.

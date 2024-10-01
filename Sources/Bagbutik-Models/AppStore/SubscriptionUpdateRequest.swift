@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct SubscriptionUpdateRequest: Codable, RequestBody {
+public struct SubscriptionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?
 
@@ -24,7 +24,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         try container.encodeIfPresent(included, forKey: "included")
     }
 
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "subscriptions" }
         public var attributes: Attributes?
@@ -57,7 +57,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public var familySharable: Bool?
             public var groupLevel: Int?
             public var name: String?
@@ -96,7 +96,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
             }
         }
 
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var introductoryOffers: IntroductoryOffers?
             public var prices: Prices?
             public var promotionalOffers: PromotionalOffers?
@@ -124,7 +124,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                 try container.encodeIfPresent(promotionalOffers, forKey: "promotionalOffers")
             }
 
-            public struct IntroductoryOffers: Codable {
+            public struct IntroductoryOffers: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -141,7 +141,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionIntroductoryOffers" }
 
@@ -165,7 +165,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct Prices: Codable {
+            public struct Prices: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -182,7 +182,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionPrices" }
 
@@ -206,7 +206,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                 }
             }
 
-            public struct PromotionalOffers: Codable {
+            public struct PromotionalOffers: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -223,7 +223,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "subscriptionPromotionalOffers" }
 
@@ -249,7 +249,7 @@ public struct SubscriptionUpdateRequest: Codable, RequestBody {
         }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case subscriptionIntroductoryOfferInlineCreate(SubscriptionIntroductoryOfferInlineCreate)
         case subscriptionPriceInlineCreate(SubscriptionPriceInlineCreate)
         case subscriptionPromotionalOfferInlineCreate(SubscriptionPromotionalOfferInlineCreate)

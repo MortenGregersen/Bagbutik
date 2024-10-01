@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagevariantsresponse>
  */
-public struct AlternativeDistributionPackageVariantsResponse: Codable, PagedResponse {
+public struct AlternativeDistributionPackageVariantsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionPackageVariant
 
     public let data: [AlternativeDistributionPackageVariant]

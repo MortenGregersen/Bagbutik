@@ -42,7 +42,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
         /// The fields to include for returned resources of type appStoreVersions
         case appStoreVersions([AppStoreVersions])
 
-        public enum AppStoreVersionExperimentTreatments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperimentTreatments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appIcon
             case appIconName
             case appStoreVersionExperiment
@@ -52,7 +52,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case promotedDate
         }
 
-        public enum AppStoreVersionExperiments: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case appStoreVersionExperimentTreatments
             case endDate
@@ -64,7 +64,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case trafficProportion
         }
 
-        public enum AppStoreVersions: String, ParameterValue, Codable, CaseIterable {
+        public enum AppStoreVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case ageRatingDeclaration
             case alternativeDistributionPackage
             case app
@@ -98,7 +98,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
         /// Filter by attribute 'state'
         case state([State])
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, Sendable, ParameterValue, Codable, CaseIterable {
             case accepted = "ACCEPTED"
             case approved = "APPROVED"
             case completed = "COMPLETED"

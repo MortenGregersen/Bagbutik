@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest>
  */
-public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
+public struct AppClipDefaultExperienceCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "appClipDefaultExperiences" }
         /// The attributes that describe the request that creates a Default App Clip Experiences resource.
@@ -71,7 +71,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The call-to-action verb that appears on the App Clip card.
             public var action: AppClipAction?
 
@@ -97,7 +97,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             /// The related App Clips resource.
             public let appClip: AppClip
             /// The related Default App Clip Experience Templates resource.
@@ -135,7 +135,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclip>
              */
-            public struct AppClip: Codable {
+            public struct AppClip: Codable, Sendable {
                 /// The ID and type of the related App Clips resource.
                 public let data: Data
 
@@ -160,7 +160,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclip/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies an App Clips resource.
                     public let id: String
                     /// The resource type.
@@ -193,7 +193,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclipdefaultexperiencetemplate>
              */
-            public struct AppClipDefaultExperienceTemplate: Codable {
+            public struct AppClipDefaultExperienceTemplate: Codable, Sendable {
                 /// The ID and type of the related App Clip Default Experience Templates resource.
                 @NullCodable public var data: Data?
 
@@ -218,7 +218,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/appclipdefaultexperiencetemplate/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related Default App Clip Experience Templates resource.
                     public let id: String
                     /// The resource type.
@@ -251,7 +251,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/releasewithappstoreversion>
              */
-            public struct ReleaseWithAppStoreVersion: Codable {
+            public struct ReleaseWithAppStoreVersion: Codable, Sendable {
                 /// The ID and type of the related App Store Versions resource.
                 @NullCodable public var data: Data?
 
@@ -276,7 +276,7 @@ public struct AppClipDefaultExperienceCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest/data/relationships/releasewithappstoreversion/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the related App Store Versions resource.
                     public let id: String
                     /// The resource type.

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>
  */
-public struct InAppPurchase: Codable, Identifiable {
+public struct InAppPurchase: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "inAppPurchases" }
@@ -53,7 +53,7 @@ public struct InAppPurchase: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var inAppPurchaseType: InAppPurchaseType?
         public var productId: String?
         public var referenceName: String?
@@ -86,7 +86,7 @@ public struct InAppPurchase: Codable, Identifiable {
             try container.encodeIfPresent(state, forKey: "state")
         }
 
-        public enum InAppPurchaseType: String, Codable, CaseIterable {
+        public enum InAppPurchaseType: String, Sendable, Codable, CaseIterable {
             case automaticallyRenewableSubscription = "AUTOMATICALLY_RENEWABLE_SUBSCRIPTION"
             case consumable = "CONSUMABLE"
             case freeSubscription = "FREE_SUBSCRIPTION"
@@ -94,7 +94,7 @@ public struct InAppPurchase: Codable, Identifiable {
             case nonRenewingSubscription = "NON_RENEWING_SUBSCRIPTION"
         }
 
-        public enum State: String, Codable, CaseIterable {
+        public enum State: String, Sendable, Codable, CaseIterable {
             case approved = "APPROVED"
             case created = "CREATED"
             case deleted = "DELETED"
@@ -124,7 +124,7 @@ public struct InAppPurchase: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var apps: Apps?
 
         public init(apps: Apps? = nil) {
@@ -148,7 +148,7 @@ public struct InAppPurchase: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps>
          */
-        public struct Apps: Codable {
+        public struct Apps: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -183,7 +183,7 @@ public struct InAppPurchase: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -213,7 +213,7 @@ public struct InAppPurchase: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

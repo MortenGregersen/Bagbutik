@@ -30,7 +30,7 @@ public class ObjectSchemaRenderer: Renderer {
                 return documentationContent.joined(separator: "\n\n")
             } + "\n"
         }
-        var protocols = ["Codable"]
+        var protocols = ["Codable", "Sendable"]
         if objectSchema.properties.keys.contains("id") {
             protocols.append("Identifiable")
         }

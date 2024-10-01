@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/ciissuecounts>
  */
-public struct CiIssueCounts: Codable {
+public struct CiIssueCounts: Codable, Sendable {
     /// The number of analyzer warnings.
     public var analyzerWarnings: Int?
     /// The number of errors.

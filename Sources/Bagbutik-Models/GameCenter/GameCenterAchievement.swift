@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievement>
  */
-public struct GameCenterAchievement: Codable, Identifiable {
+public struct GameCenterAchievement: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterAchievements" }
@@ -46,7 +46,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var archived: Bool?
         public var points: Int?
         public var referenceName: String?
@@ -90,7 +90,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var groupAchievement: GroupAchievement?
@@ -128,7 +128,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
             try container.encodeIfPresent(releases, forKey: "releases")
         }
 
-        public struct GameCenterDetail: Codable {
+        public struct GameCenterDetail: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -151,7 +151,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterDetails" }
 
@@ -174,7 +174,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -199,7 +199,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
             }
         }
 
-        public struct GameCenterGroup: Codable {
+        public struct GameCenterGroup: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -222,7 +222,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterGroups" }
 
@@ -245,7 +245,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -270,7 +270,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
             }
         }
 
-        public struct GroupAchievement: Codable {
+        public struct GroupAchievement: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -293,7 +293,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterAchievements" }
 
@@ -316,7 +316,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -341,7 +341,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
             }
         }
 
-        public struct Localizations: Codable {
+        public struct Localizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -369,7 +369,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterAchievementLocalizations" }
 
@@ -392,7 +392,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -417,7 +417,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
             }
         }
 
-        public struct Releases: Codable {
+        public struct Releases: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -445,7 +445,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "gameCenterAchievementReleases" }
 
@@ -468,7 +468,7 @@ public struct GameCenterAchievement: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceresponse>
  */
-public struct AppClipDefaultExperienceResponse: Codable {
+public struct AppClipDefaultExperienceResponse: Codable, Sendable {
     /// The resource data.
     public let data: AppClipDefaultExperience
     /// The requested relationship data.
@@ -72,7 +72,7 @@ public struct AppClipDefaultExperienceResponse: Codable {
         }.first { $0.id == data.relationships?.releaseWithAppStoreVersion?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case appClip(AppClip)
         case appClipAppStoreReviewDetail(AppClipAppStoreReviewDetail)
         case appClipDefaultExperienceLocalization(AppClipDefaultExperienceLocalization)

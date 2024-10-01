@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardlocalizationsresponse>
  */
-public struct GameCenterLeaderboardLocalizationsResponse: Codable, PagedResponse {
+public struct GameCenterLeaderboardLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterLeaderboardLocalization
 
     public let data: [GameCenterLeaderboardLocalization]
@@ -57,7 +57,7 @@ public struct GameCenterLeaderboardLocalizationsResponse: Codable, PagedResponse
         }.first { $0.id == gameCenterLeaderboardLocalization.relationships?.gameCenterLeaderboardImage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case gameCenterLeaderboard(GameCenterLeaderboard)
         case gameCenterLeaderboardImage(GameCenterLeaderboardImage)
 

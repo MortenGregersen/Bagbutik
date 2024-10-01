@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest>
  */
-public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, RequestBody {
+public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Reques
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardEntrySubmissions" }
         public let attributes: Attributes
 
@@ -61,7 +61,7 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Reques
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let bundleId: String
             public var challengeIds: [String]?
             public var context: String?

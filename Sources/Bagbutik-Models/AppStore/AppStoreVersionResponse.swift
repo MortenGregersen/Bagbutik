@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>
  */
-public struct AppStoreVersionResponse: Codable {
+public struct AppStoreVersionResponse: Codable, Sendable {
     public let data: AppStoreVersion
     public var included: [Included]?
     public let links: DocumentLinks
@@ -128,7 +128,7 @@ public struct AppStoreVersionResponse: Codable {
         }.first { $0.id == data.relationships?.routingAppCoverage?.data?.id }
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case ageRatingDeclaration(AgeRatingDeclaration)
         case alternativeDistributionPackage(AlternativeDistributionPackage)
         case app(App)

@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest>
  */
-public struct BetaTesterCreateRequest: Codable, RequestBody {
+public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         /// The resource type.
         public var type: String { "betaTesters" }
         /// The resource's attributes.
@@ -71,7 +71,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// The beta tester's email address, used for sending beta testing invitations.
             public let email: String
             /// The beta tester's first name.
@@ -110,7 +110,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var betaGroups: BetaGroups?
             public var builds: Builds?
 
@@ -140,7 +140,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/betagroups>
              */
-            public struct BetaGroups: Codable {
+            public struct BetaGroups: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -164,7 +164,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/betagroups/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.
@@ -197,7 +197,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/builds>
              */
-            public struct Builds: Codable {
+            public struct Builds: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
                 public init(data: [Data]? = nil) {
@@ -221,7 +221,7 @@ public struct BetaTesterCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/builds/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.

@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct ReviewSubmission: Codable, Identifiable {
+public struct ReviewSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "reviewSubmissions" }
@@ -39,7 +39,7 @@ public struct ReviewSubmission: Codable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var platform: Platform?
         public var state: State?
         public var submittedDate: Date?
@@ -67,7 +67,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             try container.encodeIfPresent(submittedDate, forKey: "submittedDate")
         }
 
-        public enum State: String, ParameterValue, Codable, CaseIterable {
+        public enum State: String, Sendable, ParameterValue, Codable, CaseIterable {
             case canceling = "CANCELING"
             case complete = "COMPLETE"
             case completing = "COMPLETING"
@@ -78,7 +78,7 @@ public struct ReviewSubmission: Codable, Identifiable {
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var app: App?
         public var appStoreVersionForReview: AppStoreVersionForReview?
         public var items: Items?
@@ -116,7 +116,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             try container.encodeIfPresent(submittedByActor, forKey: "submittedByActor")
         }
 
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -139,7 +139,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -162,7 +162,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -187,7 +187,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionForReview: Codable {
+        public struct AppStoreVersionForReview: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -210,7 +210,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
 
@@ -233,7 +233,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -258,7 +258,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct Items: Codable {
+        public struct Items: Codable, Sendable {
             @NullCodable public var data: [Item]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -286,7 +286,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Item: Codable, Identifiable {
+            public struct Item: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "reviewSubmissionItems" }
 
@@ -309,7 +309,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -334,7 +334,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct LastUpdatedByActor: Codable {
+        public struct LastUpdatedByActor: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -357,7 +357,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "actors" }
 
@@ -380,7 +380,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -405,7 +405,7 @@ public struct ReviewSubmission: Codable, Identifiable {
             }
         }
 
-        public struct SubmittedByActor: Codable {
+        public struct SubmittedByActor: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -428,7 +428,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "actors" }
 
@@ -451,7 +451,7 @@ public struct ReviewSubmission: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

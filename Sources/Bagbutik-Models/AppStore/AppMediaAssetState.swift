@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appmediaassetstate>
  */
-public struct AppMediaAssetState: Codable {
+public struct AppMediaAssetState: Codable, Sendable {
     public var errors: [AppMediaStateError]?
     public var state: State?
     public var warnings: [AppMediaStateError]?
@@ -36,7 +36,7 @@ public struct AppMediaAssetState: Codable {
         try container.encodeIfPresent(warnings, forKey: "warnings")
     }
 
-    public enum State: String, Codable, CaseIterable {
+    public enum State: String, Sendable, Codable, CaseIterable {
         case awaitingUpload = "AWAITING_UPLOAD"
         case complete = "COMPLETE"
         case failed = "FAILED"

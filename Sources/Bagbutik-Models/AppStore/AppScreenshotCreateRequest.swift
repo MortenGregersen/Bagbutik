@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest>
  */
-public struct AppScreenshotCreateRequest: Codable, RequestBody {
+public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
     public init(data: Data) {
@@ -32,7 +32,7 @@ public struct AppScreenshotCreateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data>
      */
-    public struct Data: Codable {
+    public struct Data: Codable, Sendable {
         public var type: String { "appScreenshots" }
         public let attributes: Attributes
         public let relationships: Relationships
@@ -67,7 +67,7 @@ public struct AppScreenshotCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
 
@@ -98,7 +98,7 @@ public struct AppScreenshotCreateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public let appScreenshotSet: AppScreenshotSet
 
             public init(appScreenshotSet: AppScreenshotSet) {
@@ -122,7 +122,7 @@ public struct AppScreenshotCreateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships/appscreenshotset>
              */
-            public struct AppScreenshotSet: Codable {
+            public struct AppScreenshotSet: Codable, Sendable {
                 public let data: Data
 
                 public init(data: Data) {
@@ -146,7 +146,7 @@ public struct AppScreenshotCreateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships/appscreenshotset/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appScreenshotSets" }
 

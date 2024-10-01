@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/scmprovidertype>
  */
-public struct ScmProviderType: Codable {
+public struct ScmProviderType: Codable, Sendable {
     /// The source code management provider’s display name; for example, `Bitbucket Server`.
     public var displayName: String?
     /// A Boolean value that indicates whether it’s a self-hosted source code management provider.
@@ -39,7 +39,7 @@ public struct ScmProviderType: Codable {
         try container.encodeIfPresent(kind, forKey: "kind")
     }
 
-    public enum Kind: String, Codable, CaseIterable {
+    public enum Kind: String, Sendable, Codable, CaseIterable {
         case bitbucketCloud = "BITBUCKET_CLOUD"
         case bitbucketServer = "BITBUCKET_SERVER"
         case githubCloud = "GITHUB_CLOUD"

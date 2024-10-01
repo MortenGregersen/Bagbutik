@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppPriceScheduleResponse: Codable {
+public struct AppPriceScheduleResponse: Codable, Sendable {
     public let data: AppPriceSchedule
     public var included: [Included]?
     public let links: DocumentLinks
@@ -67,7 +67,7 @@ public struct AppPriceScheduleResponse: Codable {
         return manualPrices
     }
 
-    public enum Included: Codable {
+    public enum Included: Codable, Sendable {
         case app(App)
         case appPriceV2(AppPriceV2)
         case territory(Territory)

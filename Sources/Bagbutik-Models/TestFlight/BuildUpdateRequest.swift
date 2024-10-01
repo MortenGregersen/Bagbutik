@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest>
  */
-public struct BuildUpdateRequest: Codable, RequestBody {
+public struct BuildUpdateRequest: Codable, Sendable, RequestBody {
     /// The resource data.
     public let data: Data
 
@@ -33,7 +33,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data>
      */
-    public struct Data: Codable, Identifiable {
+    public struct Data: Codable, Sendable, Identifiable {
         /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
         /// The resource type.
@@ -77,7 +77,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/attributes>
          */
-        public struct Attributes: Codable {
+        public struct Attributes: Codable, Sendable {
             /// A Boolean value that indicates if the build has expired. An expired build is unavailable for testing.
             public var expired: Bool?
             /// A Boolean value that indicates whether the build uses non-exempt encryption.
@@ -110,7 +110,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships>
          */
-        public struct Relationships: Codable {
+        public struct Relationships: Codable, Sendable {
             public var appEncryptionDeclaration: AppEncryptionDeclaration?
 
             public init(appEncryptionDeclaration: AppEncryptionDeclaration? = nil) {
@@ -134,7 +134,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships/appencryptiondeclaration>
              */
-            public struct AppEncryptionDeclaration: Codable {
+            public struct AppEncryptionDeclaration: Codable, Sendable {
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -158,7 +158,7 @@ public struct BuildUpdateRequest: Codable, RequestBody {
                  Full documentation:
                  <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest/data/relationships/appencryptiondeclaration/data>
                  */
-                public struct Data: Codable, Identifiable {
+                public struct Data: Codable, Sendable, Identifiable {
                     /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
                     /// The resource type.

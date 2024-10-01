@@ -42,7 +42,7 @@ public enum GetMetricsForBetaTesterUsageInBetaTesterV1 {
     /**
      The duration of the reporting period
      */
-    public enum Period: String, ParameterValue, Codable, CaseIterable {
+    public enum Period: String, Sendable, ParameterValue, Codable, CaseIterable {
         case P30D
         case P365D
         case P7D

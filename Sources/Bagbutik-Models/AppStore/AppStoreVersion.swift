@@ -8,7 +8,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion>
  */
-public struct AppStoreVersion: Codable, Identifiable {
+public struct AppStoreVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersions" }
@@ -53,7 +53,7 @@ public struct AppStoreVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
      */
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var appStoreState: AppStoreVersionState? = nil
         public var appVersionState: AppVersionState?
@@ -139,13 +139,13 @@ public struct AppStoreVersion: Codable, Identifiable {
             try container.encodeIfPresent(versionString, forKey: "versionString")
         }
 
-        public enum ReleaseType: String, Codable, CaseIterable {
+        public enum ReleaseType: String, Sendable, Codable, CaseIterable {
             case afterApproval = "AFTER_APPROVAL"
             case manual = "MANUAL"
             case scheduled = "SCHEDULED"
         }
 
-        public enum ReviewType: String, Codable, CaseIterable {
+        public enum ReviewType: String, Sendable, Codable, CaseIterable {
             case appStore = "APP_STORE"
             case notarization = "NOTARIZATION"
         }
@@ -158,7 +158,7 @@ public struct AppStoreVersion: Codable, Identifiable {
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships>
      */
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public var alternativeDistributionPackage: AlternativeDistributionPackage?
@@ -266,7 +266,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration>
          */
-        public struct AgeRatingDeclaration: Codable {
+        public struct AgeRatingDeclaration: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -296,7 +296,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
 
@@ -326,7 +326,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -351,7 +351,7 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        public struct AlternativeDistributionPackage: Codable {
+        public struct AlternativeDistributionPackage: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -374,7 +374,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "alternativeDistributionPackages" }
 
@@ -397,7 +397,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -429,7 +429,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app>
          */
-        public struct App: Codable {
+        public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -459,7 +459,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
 
@@ -489,7 +489,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -521,7 +521,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience>
          */
-        public struct AppClipDefaultExperience: Codable {
+        public struct AppClipDefaultExperience: Codable, Sendable {
             /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: Data?
             /// Navigational links that include the self-link.
@@ -553,7 +553,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
                 /// The resource type.
@@ -585,7 +585,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 /// The link to related data.
                 public var related: String?
                 /// The link to the resource.
@@ -619,7 +619,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail>
          */
-        public struct AppStoreReviewDetail: Codable {
+        public struct AppStoreReviewDetail: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -649,7 +649,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
 
@@ -679,7 +679,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -704,7 +704,7 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperiments: Codable {
+        public struct AppStoreVersionExperiments: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -732,7 +732,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
@@ -755,7 +755,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -780,7 +780,7 @@ public struct AppStoreVersion: Codable, Identifiable {
             }
         }
 
-        public struct AppStoreVersionExperimentsV2: Codable {
+        public struct AppStoreVersionExperimentsV2: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -808,7 +808,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperiments" }
 
@@ -831,7 +831,7 @@ public struct AppStoreVersion: Codable, Identifiable {
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -863,7 +863,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations>
          */
-        public struct AppStoreVersionLocalizations: Codable {
+        public struct AppStoreVersionLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -898,7 +898,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
 
@@ -928,7 +928,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -960,7 +960,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease>
          */
-        public struct AppStoreVersionPhasedRelease: Codable {
+        public struct AppStoreVersionPhasedRelease: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -990,7 +990,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionPhasedReleases" }
 
@@ -1020,7 +1020,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1052,7 +1052,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission>
          */
-        public struct AppStoreVersionSubmission: Codable {
+        public struct AppStoreVersionSubmission: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1082,7 +1082,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionSubmissions" }
 
@@ -1112,7 +1112,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1144,7 +1144,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build>
          */
-        public struct Build: Codable {
+        public struct Build: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1174,7 +1174,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
 
@@ -1204,7 +1204,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -1236,7 +1236,7 @@ public struct AppStoreVersion: Codable, Identifiable {
          Full documentation:
          <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage>
          */
-        public struct RoutingAppCoverage: Codable {
+        public struct RoutingAppCoverage: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -1266,7 +1266,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/data>
              */
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "routingAppCoverages" }
 
@@ -1296,7 +1296,7 @@ public struct AppStoreVersion: Codable, Identifiable {
              Full documentation:
              <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/links>
              */
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

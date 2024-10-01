@@ -1,7 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifiable {
+public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "appStoreVersionExperimentTreatmentLocalizations" }
@@ -39,7 +39,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    public struct Attributes: Codable {
+    public struct Attributes: Codable, Sendable {
         public var locale: String?
 
         public init(locale: String? = nil) {
@@ -57,7 +57,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
         }
     }
 
-    public struct Relationships: Codable {
+    public struct Relationships: Codable, Sendable {
         public var appPreviewSets: AppPreviewSets?
         public var appScreenshotSets: AppScreenshotSets?
         public var appStoreVersionExperimentTreatment: AppStoreVersionExperimentTreatment?
@@ -85,7 +85,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
             try container.encodeIfPresent(appStoreVersionExperimentTreatment, forKey: "appStoreVersionExperimentTreatment")
         }
 
-        public struct AppPreviewSets: Codable {
+        public struct AppPreviewSets: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -113,7 +113,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appPreviewSets" }
 
@@ -136,7 +136,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -161,7 +161,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
             }
         }
 
-        public struct AppScreenshotSets: Codable {
+        public struct AppScreenshotSets: Codable, Sendable {
             @NullCodable public var data: [Data]?
             public var links: Links?
             public var meta: PagingInformation?
@@ -189,7 +189,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appScreenshotSets" }
 
@@ -212,7 +212,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 
@@ -237,7 +237,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
             }
         }
 
-        public struct AppStoreVersionExperimentTreatment: Codable {
+        public struct AppStoreVersionExperimentTreatment: Codable, Sendable {
             @NullCodable public var data: Data?
             public var links: Links?
 
@@ -260,7 +260,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            public struct Data: Codable, Identifiable {
+            public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionExperimentTreatments" }
 
@@ -283,7 +283,7 @@ public struct AppStoreVersionExperimentTreatmentLocalization: Codable, Identifia
                 }
             }
 
-            public struct Links: Codable {
+            public struct Links: Codable, Sendable {
                 public var related: String?
                 public var itself: String?
 

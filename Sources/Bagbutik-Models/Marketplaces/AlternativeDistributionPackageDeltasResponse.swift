@@ -13,7 +13,7 @@ import Foundation
  Full documentation:
  <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltasresponse>
  */
-public struct AlternativeDistributionPackageDeltasResponse: Codable, PagedResponse {
+public struct AlternativeDistributionPackageDeltasResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionPackageDelta
 
     public let data: [AlternativeDistributionPackageDelta]
