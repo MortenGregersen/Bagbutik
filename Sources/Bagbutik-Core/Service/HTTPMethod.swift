@@ -6,7 +6,7 @@ import Foundation
  Documentation borrowed from:
  <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
  */
-public enum HTTPMethod: String {
+public enum HTTPMethod: String, Sendable {
     /// The GET method requests a representation of the specified resource.
     case get = "GET"
     /// The PUT method replaces all current representations of the target resource with the request payload.

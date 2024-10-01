@@ -13,15 +13,15 @@ final class JWTTests: XCTestCase {
     """
 
     func testInitialEncodedSignature() throws {
-        let jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey, dateFactory: { _ in Date.distantFuture })
+        let jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey, dateFactory: .init(now: Date.distantFuture))
         XCTAssertFalse(jwt.isExpired)
         XCTAssertTrue(jwt.encodedSignature.hasPrefix("eyJ"))
     }
 
     func testInitialEncodedSignature_Renew() throws {
-        var jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey, dateFactory: { _ in Date.distantPast })
+        var jwt = try JWT(keyId: Self.keyId, issuerId: Self.issuerId, privateKey: Self.privateKey, dateFactory: .init(now: Date.distantPast))
         XCTAssertTrue(jwt.isExpired)
-        jwt.dateFactory = Date.init(timeIntervalSinceNow:)
+        jwt.dateFactory = .init()
         try jwt.renewEncodedSignature()
         XCTAssertFalse(jwt.isExpired)
     }

@@ -29,7 +29,7 @@ public typealias FetchData = (_ request: URLRequest, _ delegate: URLSessionTaskD
  
  If the JWT has expired, it will be renewed before the request is performed.
  */
-public class BagbutikService {
+public actor BagbutikService {
     internal var jwt: JWT
     private let fetchData: FetchData
     
@@ -164,5 +164,9 @@ public class BagbutikService {
             throw ServiceError.unknownHTTPError(statusCode: httpResponse.statusCode, data: data)
         }
         throw ServiceError.unknown(data: data)
+    }
+    
+    internal func replaceJWT(_ jwt: JWT) {
+        self.jwt = jwt
     }
 }

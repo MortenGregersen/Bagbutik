@@ -13,7 +13,7 @@ import Foundation
  Full documentation for how JWT is used with the API:
  <https://developer.apple.com/documentation/appstoreconnectapi/generating_tokens_for_api_requests>
  */
-public struct JWT {
+public struct JWT: Sendable {
     /// A value telling if the JWT has expired.
     public var isExpired: Bool { payload.isExpired }
     /// The signature to use in the authorization header when performing requests.
@@ -22,7 +22,7 @@ public struct JWT {
     private var payload: Payload
     private let privateKey: String
     
-    internal var dateFactory: (TimeInterval) -> Date {
+    internal var dateFactory: DateFactory {
         didSet { payload.dateFactory = dateFactory }
     }
     
@@ -38,7 +38,7 @@ public struct JWT {
         - privateKey: The contents of your private key from App Store Connect. Starting with `-----BEGIN PRIVATE KEY-----`.
       */
     public init(keyId: String, issuerId: String, privateKey: String) throws {
-        try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey, dateFactory: Date.init(timeIntervalSinceNow:))
+        try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey, dateFactory: DateFactory())
     }
     
     /**
@@ -57,7 +57,7 @@ public struct JWT {
         try self.init(keyId: keyId, issuerId: issuerId, privateKey: privateKey)
     }
     
-    init(keyId: String, issuerId: String, privateKey: String, dateFactory: @escaping (TimeInterval) -> Date) throws {
+    init(keyId: String, issuerId: String, privateKey: String, dateFactory: DateFactory) throws {
         header = Header(kid: keyId)
         payload = Payload(iss: issuerId, dateFactory: dateFactory)
         self.privateKey = privateKey
@@ -87,14 +87,14 @@ public struct JWT {
         let typ = "kid"
     }
     
-    private struct Payload: Encodable {
+    private struct Payload: Encodable, Sendable {
         let iss: String
         private(set) var exp: Int
         let aud = "appstoreconnect-v1"
-        var dateFactory: (TimeInterval) -> Date
+        var dateFactory: DateFactory
         var isExpired: Bool { Date(timeIntervalSince1970: TimeInterval(exp)) < Date(timeIntervalSinceNow: 0) }
         
-        init(iss: String, dateFactory: @escaping (TimeInterval) -> Date) {
+        init(iss: String, dateFactory: DateFactory) {
             self.iss = iss
             self.dateFactory = dateFactory
             exp = 0
@@ -113,7 +113,19 @@ public struct JWT {
         }
         
         mutating func renewExp() {
-            exp = Int(dateFactory(20 * 60).timeIntervalSince1970)
+            exp = Int(dateFactory.createDate(fromTimeIntervalSinceNow: 20 * 60).timeIntervalSince1970)
         }
+    }
+}
+
+internal struct DateFactory: Sendable {
+    let now: Date?
+    
+    init(now: Date? = nil) {
+        self.now = now
+    }
+    
+    func createDate(fromTimeIntervalSinceNow timeIntervalSinceNow: TimeInterval) -> Date {
+        (now ?? .now).addingTimeInterval(timeIntervalSinceNow)
     }
 }

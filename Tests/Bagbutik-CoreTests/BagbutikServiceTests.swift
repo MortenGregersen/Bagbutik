@@ -18,9 +18,9 @@ final class BagbutikServiceTests: XCTestCase {
 
     func setUpService(expiredJWT: Bool = false) throws {
         mockURLSession = .init()
-        let dateFactory = expiredJWT ? { _ in Date.distantPast } : Date.init(timeIntervalSinceNow:)
+        let dateFactory = DateFactory(now: expiredJWT ? Date.distantPast : Date.now)
         jwt = try JWT(keyId: JWTTests.keyId, issuerId: JWTTests.issuerId, privateKey: JWTTests.privateKey, dateFactory: dateFactory)
-        let fetchData = mockURLSession.data(for:delegate:)
+        nonisolated(unsafe) let fetchData = mockURLSession.data(for:delegate:)
         service = .init(jwt: jwt, fetchData: fetchData)
     }
 
@@ -149,16 +149,20 @@ final class BagbutikServiceTests: XCTestCase {
         }
     }
 
+    @MainActor
     func testJWTRenewal() async throws {
         try setUpService(expiredJWT: true)
-        XCTAssertTrue(service.jwt.isExpired)
-        service.jwt.dateFactory = Date.init(timeIntervalSinceNow:)
+        let isExpiredBefore = await service.jwt.isExpired
+        XCTAssertTrue(isExpiredBefore)
+        jwt.dateFactory = .init()
+        await service.replaceJWT(jwt)
         let request: Request<AppResponse, ErrorResponse> = .getAppV1(id: "app-id")
         let expectedResponse = AppResponse(data: .init(id: "app-id", links: .init(self: "")), links: .init(self: ""))
         mockURLSession.responsesByUrl[request.asUrlRequest().url!] = try (data: jsonEncoder.encode(expectedResponse),
                                                                           type: .http(statusCode: 200))
         _ = try await service.request(request)
-        XCTAssertFalse(service.jwt.isExpired)
+        let isExpiredAfter = await service.jwt.isExpired
+        XCTAssertFalse(isExpiredAfter)
     }
 }
 

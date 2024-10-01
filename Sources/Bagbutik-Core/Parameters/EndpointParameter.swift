@@ -1,5 +1,5 @@
 /// Parameter for an endpoint
-public protocol EndpointParameter {
+public protocol EndpointParameter: Sendable {
     /// The name of the case to use as value for the parameter.
     var caseName: String { get }
 }
