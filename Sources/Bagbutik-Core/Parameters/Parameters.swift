@@ -1,7 +1,7 @@
 import Foundation
 
 /// The parameters for a `Request`.
-public struct Parameters {
+public struct Parameters: Sendable {
     /// Fields to return for included related types.
     public let fields: [FieldParameter]?
     /// Attributes, relationships, and IDs by which to filter

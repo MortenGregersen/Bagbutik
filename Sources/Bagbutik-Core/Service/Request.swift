@@ -7,7 +7,7 @@ import FoundationNetworking
 private let baseUrl = URL(string: "https://api.appstoreconnect.apple.com")!
 
 /// A description of a request. This will internally be mapped to a real URL request.
-public struct Request<ResponseType, ErrorResponseType> {
+public struct Request<ResponseType, ErrorResponseType>: Sendable {
     /// The path of the endpoint.
     public let path: String
     /// The HTTP method to use for the request.
