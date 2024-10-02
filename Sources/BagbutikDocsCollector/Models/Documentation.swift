@@ -223,7 +223,7 @@ public enum Documentation: Codable, Equatable, Sendable {
             try container.encode(Metadata(title: documentation.title, symbolKind: "tdef"), forKey: .metadata)
             contentSections.append(ContentSection.possibleValues(documentation.cases.mapValues { Content(text: $0) }))
         case .object(let documentation):
-            try container.encode(Metadata(title: documentation.title, symbolKind: "dict"), forKey: .metadata)
+            try container.encode(Metadata(title: documentation.title, symbolKind: "dictionary"), forKey: .metadata)
             let properties = documentation.properties.reduce(into: [Property]()) { partialResult, keyValue in
                 let propertyName = keyValue.key
                 let propertyDocumentation = keyValue.value

@@ -84,7 +84,7 @@ final class DocsFetcherTests: XCTestCase {
             },
             "metadata": {
                 "title": "UsersResponse",
-                "symbolKind": "dict"
+                "symbolKind": "dictionary"
             },
             "references": {
                 "doc://com.apple.documentation/documentation/appstoreconnectapi/user": {
