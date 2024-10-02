@@ -165,6 +165,7 @@ public enum Documentation: Codable, Equatable, Sendable {
                 return values.compactMapValues { formatContent($0) }
             }.first ?? [:]
             self = .typealias(.init(id: id,
+                                    hierarchy: hierarchy,
                                     title: metadata.title,
                                     abstract: abstract,
                                     discussion: discussion,
@@ -341,7 +342,7 @@ public enum Documentation: Codable, Equatable, Sendable {
                 let values = try container
                     .decode([Value].self, forKey: .values)
                     .reduce(into: [String: Content]()) { partialResult, value in
-                        partialResult[value.name] = value.content.first
+                        partialResult[value.name] = value.content.first ?? .init(text: "")
                     }
                 self = .possibleValues(values)
             } else if kind == "properties" {
