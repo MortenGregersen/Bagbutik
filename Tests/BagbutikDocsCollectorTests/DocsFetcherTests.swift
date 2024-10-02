@@ -13,14 +13,14 @@ final class DocsFetcherTests: XCTestCase {
     let jsonEncoder = JSONEncoder()
     let testSpec = try! Spec(paths: [
         "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
-            .init(id: "users-get_collection",
+            .init(id: "users_getCollection",
                   name: "listUsers",
                   method: .get,
                   successResponseType: "UsersResponse",
                   errorResponseType: "ErrorResponse"),
         ]),
         "/v1/users/{id}/relationships/visibleApps": Path(path: "/v2/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", version: "V2", isRelationship: true), operations: [
-            .init(id: "users-visibleApps-get_to_many_relationship",
+            .init(id: "users_visibleApps_getToManyRelationship",
                   name: "listVisibleAppIdsForUser",
                   method: .get,
                   successResponseType: "UserVisibleAppsLinkagesResponse",
@@ -28,8 +28,8 @@ final class DocsFetcherTests: XCTestCase {
         ]),
     ],
     components: .init(schemas: [
-        "UsersResponse": .object(.init(name: "UsersResponse", url: "https://developer.apple.com/documentation/appstoreconnectapi/usersresponse", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
-        "Platform": .enum(.init(name: "Platform", type: "String", url: "https://developer.apple.com/documentation/appstoreconnectapi/platform", caseValues: ["MAC_OS", "IOS"]))
+        "UsersResponse": .object(.init(name: "UsersResponse", url: "https://developer.apple.com/documentation/AppStoreConnectAPI/usersresponse", properties: ["users": .init(type: .arrayOfSchemaRef("User"))])),
+        "Platform": .enum(.init(name: "Platform", type: "String", url: "https://developer.apple.com/documentation/AppStoreConnectAPI/platform", caseValues: ["MAC_OS", "IOS"]))
     ]))
     
     func testFetchAllDocsSimple() async throws {
@@ -45,24 +45,24 @@ final class DocsFetcherTests: XCTestCase {
                                       fetchData: urlSession.data(from:delegate:),
                                       fileManager: fileManager,
                                       print: printer.print)
-        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/list_users.json")!] =
+        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v1-users.json")!] =
             try jsonEncoder.encode(Documentation.operation(.init(
-                id: "doc://com.apple.documentation/documentation/appstoreconnectapi/list_users",
+                id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/list_users",
                 title: "List Users",
                 abstract: "Get a list of the users on your team.",
                 queryParameters: ["fields[apps]": "Fields to return for included related types."],
                 responses: [.init(status: 200, reason: "OK"),
                             .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")])))
-        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/get_all_visible_app_resource_ids_for_a_user.json")!] =
+        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v2-users-_id_-relationships-visibleApps.json")!] =
             try jsonEncoder.encode(Documentation.operation(.init(
-                id: "doc://com.apple.documentation/documentation/appstoreconnectapi/get_all_visible_app_resource_ids_for_a_user",
+                id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/get_all_visible_app_resource_ids_for_a_user",
                 title: "Get All Visible App Resource IDs for a User",
                 abstract: "Get a list of app resource IDs to which a user on your team has access.",
                 pathParameters: ["id": "An opaque resource ID that uniquely identifies the resource."],
                 queryParameters: ["limit": "Number of resources to return."],
                 responses: [.init(status: 200, reason: "OK"),
                             .init(status: 400, reason: "Bad Request", description: "An error occurred with your request.")])))
-        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/usersresponse.json")!] = """
+        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/usersresponse.json")!] = """
         {
             "abstract": [
                 {
@@ -74,23 +74,23 @@ final class DocsFetcherTests: XCTestCase {
                 "paths": [
                     [
                         "doc://com.apple.documentation/documentation/technologies",
-                        "doc://com.apple.documentation/documentation/appstoreconnectapi",
-                        "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+                        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+                        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
                     ]
                 ]
             },
             "identifier": {
-                "url": "doc://com.apple.documentation/documentation/appstoreconnectapi/usersresponse",
+                "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/usersresponse",
             },
             "metadata": {
                 "title": "UsersResponse",
-                "symbolKind": "dict"
+                "symbolKind": "dictionary"
             },
             "references": {
-                "doc://com.apple.documentation/documentation/appstoreconnectapi/user": {
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user": {
                     "title": "User",
                     "type": "topic",
-                    "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
+                    "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user",
                     "kind": "symbol",
                     "role": "dictionarySymbol",
                     "url": "/documentation/appstoreconnectapi/user",
@@ -127,7 +127,7 @@ final class DocsFetcherTests: XCTestCase {
                                 {
                                     "kind": "typeIdentifier",
                                     "preciseIdentifier": "data:app_store_connect_api:User",
-                                    "identifier": "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
+                                    "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user",
                                     "text": "User"
                                 },
                                 {
@@ -153,28 +153,29 @@ final class DocsFetcherTests: XCTestCase {
             ]
         }
         """.data(using: .utf8)
-        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/platform.json")!] =
+        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/platform.json")!] =
             try jsonEncoder.encode(Documentation.enum(.init(
-                id: "doc://com.apple.documentation/documentation/appstoreconnectapi/platform",
+                id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/platform",
+                hierarchy: .init(paths: []),
                 title: "Platform",
                 abstract: "A response that contains a list of Users resources.",
                 cases: ["MACOS": "macOS", "IOS": "iOS"])))
-        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/user.json")!] =
+        urlSession.dataByUrl[URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/user.json")!] =
             try jsonEncoder.encode(Documentation.object(.init(
-                id: "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
+                id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user",
                 title: "User",
                 abstract: "A User.",
                 properties: ["name": .init(required: true, description: "The name of the user.")])))
         // When
-        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)
+        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)
         // Then
         XCTAssertEqual(printer.printedLogs, [
             "🔍 Loading spec /Users/steve/spec.json...",
-            "Fetching documentation for operation \'users-get_collection\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/list_users.json)",
-            "Fetching documentation for operation \'users-visibleApps-get_to_many_relationship\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/get_all_visible_app_resource_ids_for_a_user.json)",
-            "Fetching documentation for schema \'Platform\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/platform.json)",
-            "Fetching documentation for schema \'UsersResponse\' (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/usersresponse.json)",
-            "Fetching documentation for sub schema (https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/user.json)",
+            "Fetching documentation for operation \'users_getCollection\' (https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v1-users.json)",
+            "Fetching documentation for operation \'users_visibleApps_getToManyRelationship\' (https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/get-v2-users-_id_-relationships-visibleApps.json)",
+            "Fetching documentation for schema \'Platform\' (https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/platform.json)",
+            "Fetching documentation for schema \'UsersResponse\' (https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/usersresponse.json)",
+            "Fetching documentation for sub schema (https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/user.json)",
             "Saving operation documentation to: /Users/steve/output/OperationDocumentation.json",
             "Saving schema documentation to: /Users/steve/output/SchemaDocumentation.json",
             "Saving schema mapping to: /Users/steve/output/SchemaIndex.json"
@@ -187,7 +188,7 @@ final class DocsFetcherTests: XCTestCase {
         // When
         let specFileURL = URL(string: "https://developer.apple.com")!
         let outputDirURL = validOutputDirURL
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)) {
             // Then
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.notFileUrl(.specFileURL))
         }
@@ -199,7 +200,7 @@ final class DocsFetcherTests: XCTestCase {
         // When
         let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
         let outputDirURL = validOutputDirURL
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)) {
             // Then
             let nsError = $0 as NSError
             #if os(Linux) && compiler(<6.0)
@@ -224,7 +225,7 @@ final class DocsFetcherTests: XCTestCase {
         #endif
         let docsFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fetchData: urlSession.data(from:delegate:), fileManager: fileManager, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
             // Then
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.couldNotCreateFile)
         }
@@ -238,45 +239,10 @@ final class DocsFetcherTests: XCTestCase {
             ]))
             })
         // When
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
             // Then
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.noDocumentationUrl("Platform"))
         }
-    }
-    
-    func testFetchAllDocsUrlMissingForOperation() async throws {
-        // Given
-        let fileManager = MockFileManager()
-        let urlSession = MockURLSession()
-        #if compiler(<6.0)
-        let printer = await Printer()
-        #else
-        let printer = Printer()
-        #endif
-        let docsFetcher = DocsFetcher(
-            loadSpec: { _ in try Spec(paths: [
-                "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
-                    .init(id: "invalid",
-                          name: "listUsers",
-                          method: .get,
-                          successResponseType: "UsersResponse",
-                          errorResponseType: "ErrorResponse"),
-                ]),
-            ], components: .init(schemas: [:]))
-            },
-            fetchData: urlSession.data(from:delegate:),
-            fileManager: fileManager,
-            print: printer.print)
-        // When
-        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)
-        // Then
-        XCTAssertEqual(printer.printedLogs, [
-            "🔍 Loading spec /Users/steve/spec.json...",
-            "⚠️ Documentation URL missing for operation: 'invalid'",
-            "Saving operation documentation to: /Users/steve/output/OperationDocumentation.json",
-            "Saving schema documentation to: /Users/steve/output/SchemaDocumentation.json",
-            "Saving schema mapping to: /Users/steve/output/SchemaIndex.json"
-        ])
     }
     
     class MockURLSession {

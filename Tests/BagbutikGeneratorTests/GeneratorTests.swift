@@ -9,14 +9,14 @@ final class GeneratorTests: XCTestCase {
     let validDocumentationDirURL = URL(fileURLWithPath: "/Users/steve/documentation")
     let testSpec = try! Spec(paths: [
         "/v1/users": Path(path: "/v1/users", info: .init(mainType: "Users", version: "V1", isRelationship: false), operations: [
-            .init(id: "users-get_collection",
+            .init(id: "users_getCollection",
                   name: "listUsers",
                   method: .get,
                   successResponseType: "UsersResponse",
                   errorResponseType: "ErrorResponse"),
         ]),
         "/v2/users/{id}/relationships/visibleApps": Path(path: "/v2/users/{id}/relationships/visibleApps", info: .init(mainType: "Users", version: "V2", isRelationship: true), operations: [
-            .init(id: "users-visibleApps-get_to_many_relationship",
+            .init(id: "users_visibleApps_getToManyRelationship",
                   name: "listVisibleAppIdsForUser",
                   method: .get,
                   successResponseType: "UserVisibleAppsLinkagesResponse",
@@ -69,7 +69,7 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Core/Models",
             "/Users/steve/output/Bagbutik-GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
-            "/Users/steve/output/Bagbutik-Models/Reporting",
+            "/Users/steve/output/Bagbutik-Models/AppStore",
             "/Users/steve/output/Bagbutik-Models/Users",
             "/Users/steve/output/Bagbutik-Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
@@ -292,12 +292,12 @@ final class GeneratorTests: XCTestCase {
     }
     
     static let operationListUsersDocumentation = OperationDocumentation(
-        id: "users-get_collection",
+        id: "users_getCollection",
         hierarchy: .init(paths: [
             [
                 "doc://com.apple.documentation/documentation/technologies",
-                "doc://com.apple.documentation/documentation/appstoreconnectapi",
-                "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
             ]
         ]),
         title: "List Users",
@@ -308,12 +308,12 @@ final class GeneratorTests: XCTestCase {
     )
     
     static let operationListVisibleAppIdsForUserDocumentation = OperationDocumentation(
-        id: "users-visibleApps-get_to_many_relationship",
+        id: "users_visibleApps_getToManyRelationship",
         hierarchy: .init(paths: [
             [
                 "doc://com.apple.documentation/documentation/technologies",
-                "doc://com.apple.documentation/documentation/appstoreconnectapi",
-                "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+                "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
             ]
         ]),
         title: "Get All Visible App Resource IDs for a User",
@@ -324,7 +324,7 @@ final class GeneratorTests: XCTestCase {
     )
 
     static let userSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user",
         title: "User",
         abstract: "The data structure that represents a Users resource.",
         properties: [
@@ -337,54 +337,54 @@ final class GeneratorTests: XCTestCase {
     )
     
     static let usersResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/usersresponse",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/usersresponse",
         hierarchy: .init(paths: [[
-            "doc://com.apple.documentation/documentation/appstoreconnectapi",
-            "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
         ]]),
         title: "UsersResponse"
     )
     
     static let userVisibleAppsLinkagesResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/uservisibleappslinkagesresponse",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/uservisibleappslinkagesresponse",
         hierarchy: .init(paths: [[
-            "doc://com.apple.documentation/documentation/appstoreconnectapi",
-            "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
         ]]),
         title: "UserVisibleAppsLinkagesResponse"
     )
     
     static let replaceUsersResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/replaceusersresponse",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/replaceusersresponse",
         hierarchy: .init(paths: [[
-            "doc://com.apple.documentation/documentation/appstoreconnectapi",
-            "doc://com.apple.documentation/documentation/appstoreconnectapi/users"
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/users"
         ]]),
         title: "ReplaceUsersResponse"
     )
     
     static let csvSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/csv",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/csv",
         hierarchy: .init(paths: [[
-            "doc://com.apple.documentation/documentation/appstoreconnectapi",
-            "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-reporting"
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
         ]]),
         title: "Csv"
     )
     
     static let gzipSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/gzip",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/gzip",
         hierarchy: .init(paths: [[
-            "doc://com.apple.documentation/documentation/appstoreconnectapi",
-            "doc://com.apple.documentation/documentation/appstoreconnectapi/bagbutik-reporting"
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store"
         ]]),
         title: "Gzip"
     )
     
     static let errorResponseSchemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/errorresponse",
         hierarchy: .init(paths: [[
-            "doc://com.apple.documentation/documentation/appstoreconnectapi"
+            "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
         ]]),
         title: "ErrorResponse"
     )

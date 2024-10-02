@@ -147,7 +147,7 @@ public struct Spec: Decodable {
     public mutating func applyManualPatches() throws {
         // Remove all paths with no operations
         paths = paths.filter { $0.value.operations.count > 0 }
-
+        
         // Add the cases `UNIVERSAL` and `SERVICES` to BundleIdPlatform
         // Apple's OpenAPI spec doesn't include Universal App IDs. Reported to Apple 21/1/21 as FB8977648.
         // Apple's OpenAPI spec doesn't include Service IDs (like "Sign in with Apple"). Reported to Apple 14/10/22 as a later comment on FB8977648.

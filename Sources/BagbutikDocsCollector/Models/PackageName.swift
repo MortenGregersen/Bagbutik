@@ -38,65 +38,39 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         }
     }
 
-    var path: String {
-        switch self {
-        case .appStore:
-            Self.pathPrefix.appending("app_store")
-        case .core:
-            "doc://com.apple.documentation/documentation/appstoreconnectapi"
-        case .gameCenter:
-            Self.pathPrefix.appending("bagbutik-game_center")
-        case .marketplaces:
-            Self.pathPrefix.appending("bagbutik-marketplaces")
-        case .provisioning:
-            Self.pathPrefix.appending("bagbutik-provisioning")
-        case .reporting:
-            Self.pathPrefix.appending("bagbutik-reporting")
-        case .testFlight:
-            Self.pathPrefix.appending("prerelease_versions_and_beta_testers")
-        case .users:
-            Self.pathPrefix.appending("bagbutik-usersAndRoles")
-        case .xcodeCloud:
-            Self.pathPrefix.appending("xcode_cloud_workflows_and_builds")
-        }
-    }
-
     static func resolvePackageName(from path: String) -> PackageName? {
         switch path {
-        case appStore.path:
+        case pathPrefix.appending("app-store"):
             .appStore
-        case pathPrefix.appending("large_data_sets"),
-             pathPrefix.appending("interpreting_and_handling_errors"):
+        case pathPrefix.appending("large-data-sets"),
+             pathPrefix.appending("interpreting-and-handling-errors"):
             .core
-        case pathPrefix.appending("game_center"):
+        case pathPrefix.appending("game-center"):
             .gameCenter
-        case pathPrefix.appending("app_distribution_for_alternative_marketplaces"),
-             pathPrefix.appending("alternative_marketplaces_and_web_distribution"):
+        case pathPrefix.appending("app-distribution-for-alternative-marketplaces"),
+             pathPrefix.appending("alternative-marketplaces-and-web-distribution"):
             .marketplaces
-        case pathPrefix.appending("bundle_ids"),
-             pathPrefix.appending("bundle_id_capabilities"),
+        case pathPrefix.appending("bundle-ids"),
+             pathPrefix.appending("bundle-id-capabilities"),
              pathPrefix.appending("certificates"),
              pathPrefix.appending("devices"),
-             pathPrefix.appending("profiles"),
-             provisioning.path:
+             pathPrefix.appending("profiles"):
             .provisioning
-        case pathPrefix.appending("sales_and_finance"),
-             pathPrefix.appending("power_and_performance_metrics_and_logs"),
-             pathPrefix.appending("analytics"),
-             reporting.path:
+        case pathPrefix.appending("sales-and-finance"),
+             pathPrefix.appending("power-and-performance-metrics-and-logs"),
+             pathPrefix.appending("analytics"):
             .reporting
-        case testFlight.path:
+        case pathPrefix.appending("prerelease-versions-and-beta-testers"):
             .testFlight
         case pathPrefix.appending("users"),
-             pathPrefix.appending("user_invitations"),
-             users.path:
+             pathPrefix.appending("user-invitations"):
             .users
-        case xcodeCloud.path:
+        case pathPrefix.appending("xcode-cloud-workflows-and-builds"):
             .xcodeCloud
         default:
             nil
         }
     }
 
-    private static let pathPrefix = "doc://com.apple.documentation/documentation/appstoreconnectapi/"
+    internal static let pathPrefix = "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/"
 }

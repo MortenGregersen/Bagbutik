@@ -15,7 +15,7 @@ class DocsLoaderTests: XCTestCase {
         let identifierBySchemaName = await docsLoader.identifierBySchemaName
         let schemaDocumentationById = await docsLoader.schemaDocumentationById
         XCTAssertEqual(operationDocumentationById, [Self.operationDocumentation.id: Self.operationDocumentation])
-        XCTAssertEqual(identifierBySchemaName, ["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
+        XCTAssertEqual(identifierBySchemaName, ["User": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user"])
         XCTAssertEqual(schemaDocumentationById, [Self.schemaDocumentation.id: Documentation.object(Self.schemaDocumentation)])
     }
 
@@ -41,7 +41,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(loadFile: { url in
             let jsonEncoder = JSONEncoder()
             if url.lastPathComponent == DocsFilename.schemaMapping.filename {
-                return try jsonEncoder.encode(["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
+                return try jsonEncoder.encode(["User": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user"])
             } else {
                 return try jsonEncoder.encode([Self.schemaDocumentation.id: Documentation.object(Self.schemaDocumentation)])
             }
@@ -58,7 +58,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(identifierBySchemaName: [
             "BundleIdPlatform": "some-id"
         ], schemaDocumentationById: [
-            "some-id": .enum(.init(id: "some-id", title: "BundleIdPlatform", cases: [
+            "some-id": .enum(.init(id: "some-id", hierarchy: .init(paths: []), title: "BundleIdPlatform", cases: [
                 "IOS": "A string that represents iOS.",
                 "MACOS": "A string that represents macOS."
             ]))
@@ -89,7 +89,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(identifierBySchemaName: [
             "BundleIdPlatform": "some-id"
         ], schemaDocumentationById: [
-            "some-id": .enum(.init(id: "some-id", title: "BundleIdPlatform", cases: [
+            "some-id": .enum(.init(id: "some-id", hierarchy: .init(paths: []), title: "BundleIdPlatform", cases: [
                 "IOS": "A string that represents iOS.",
                 "MACOS": "A string that represents macOS.",
                 "SERVICES": "",
@@ -108,19 +108,19 @@ class DocsLoaderTests: XCTestCase {
     func testResolvePackageName() throws {
         // Given
         let documentation = Documentation.object(.init(
-            id: "doc://com.apple.documentation/documentation/appstoreconnectapi/build",
+            id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build",
             hierarchy: .init(paths: [
                 [
                     "doc://com.apple.documentation/documentation/technologies",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi/prerelease_versions_and_beta_testers",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store/builds"
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/prerelease-versions-and-beta-testers",
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store/builds"
                 ],
                 [
                     "doc://com.apple.documentation/documentation/technologies",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi/app_store/builds"
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store/builds"
                 ]
             ]),
             title: "Build"
@@ -134,11 +134,11 @@ class DocsLoaderTests: XCTestCase {
     func testResolvePackageNameCoreFallback() throws {
         // Given
         let documentation = Documentation.object(.init(
-            id: "doc://com.apple.documentation/documentation/appstoreconnectapi/errorresponse",
+            id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/errorresponse",
             hierarchy: .init(paths: [
                 [
                     "doc://com.apple.documentation/documentation/technologies",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi"
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
                 ]
             ]),
             title: "ErrorResponse"
@@ -152,12 +152,12 @@ class DocsLoaderTests: XCTestCase {
     func testResolvePackageNameUnknown() throws {
         // Given
         let documentation = Documentation.object(.init(
-            id: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob",
+            id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/bob",
             hierarchy: .init(paths: [
                 [
                     "doc://com.apple.documentation/documentation/technologies",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi",
-                    "doc://com.apple.documentation/documentation/appstoreconnectapi/some_unknown_section"
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+                    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/some_unknown_section"
                 ]
             ]),
             title: "Bob"
@@ -204,7 +204,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
         try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "https://developer.apple.com/documentation/appstoreconnectapi/user")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user")
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }
@@ -234,7 +234,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
         try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/user")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user")
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }
@@ -243,7 +243,7 @@ class DocsLoaderTests: XCTestCase {
         // Given
         let docsLoader = DocsLoader()
         // When
-        await XCTAssertAsyncThrowsError(try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob")) {
+        await XCTAssertAsyncThrowsError(try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/bob")) {
             // Then
             XCTAssertEqual($0 as? DocsLoaderError, DocsLoaderError.documentationNotLoaded)
         }
@@ -254,7 +254,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
         try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.documentation/documentation/appstoreconnectapi/bob")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/bob")
         // Then
         XCTAssertNil(documentation)
     }
@@ -289,15 +289,6 @@ class DocsLoaderTests: XCTestCase {
         XCTAssertNil(documentation)
     }
 
-    func testCreateUrlForOperation() async {
-        // Given
-        let docsLoader = DocsLoader()
-        // When
-        let urlForOperation = await docsLoader.createUrlForOperation(withId: "users-get_instance")
-        // Then
-        XCTAssertEqual(urlForOperation, "https://developer.apple.com/documentation/appstoreconnectapi/read_user_information")
-    }
-
     static let operationDocumentation = OperationDocumentation(
         id: "users-get_instance",
         title: "Read User Information",
@@ -316,7 +307,7 @@ class DocsLoaderTests: XCTestCase {
     )
 
     static let schemaDocumentation = ObjectDocumentation(
-        id: "doc://com.apple.documentation/documentation/appstoreconnectapi/user",
+        id: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user",
         title: "User",
         abstract: "The data structure that represents a Users resource.",
         properties: [
@@ -333,7 +324,7 @@ class DocsLoaderTests: XCTestCase {
         if url.lastPathComponent == DocsFilename.operationDocumentation.filename {
             return try jsonEncoder.encode([operationDocumentation.id: Documentation.operation(operationDocumentation)])
         } else if url.lastPathComponent == DocsFilename.schemaMapping.filename {
-            return try jsonEncoder.encode(["User": "doc://com.apple.documentation/documentation/appstoreconnectapi/user"])
+            return try jsonEncoder.encode(["User": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user"])
         } else { // if url.lastPathComponent == DocsFilename.schemaDocumentation.filename {
             return try jsonEncoder.encode([schemaDocumentation.id: Documentation.object(schemaDocumentation)])
         }

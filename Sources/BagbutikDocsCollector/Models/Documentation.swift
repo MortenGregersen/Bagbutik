@@ -3,12 +3,15 @@ import Foundation
 
 public enum Documentation: Codable, Equatable, Sendable {
     case `enum`(EnumDocumentation)
+    case `typealias`(TypealiasDocumentation)
     case object(ObjectDocumentation)
     case operation(OperationDocumentation)
 
     public var id: String {
         switch self {
         case .enum(let documentation):
+            documentation.id
+        case .typealias(let documentation):
             documentation.id
         case .object(let documentation):
             documentation.id
@@ -21,6 +24,8 @@ public enum Documentation: Codable, Equatable, Sendable {
         switch self {
         case .enum(let documentation):
             documentation.hierarchy
+        case .typealias(let documentation):
+            documentation.hierarchy
         case .object(let documentation):
             documentation.hierarchy
         case .operation(let documentation):
@@ -31,6 +36,8 @@ public enum Documentation: Codable, Equatable, Sendable {
     var title: String {
         switch self {
         case .enum(let documentation):
+            documentation.title
+        case .typealias(let documentation):
             documentation.title
         case .object(let documentation):
             documentation.title
@@ -43,6 +50,8 @@ public enum Documentation: Codable, Equatable, Sendable {
         switch self {
         case .enum(let documentation):
             documentation.abstract
+        case .typealias(let documentation):
+            documentation.abstract
         case .object(let documentation):
             documentation.abstract
         case .operation(let documentation):
@@ -54,6 +63,8 @@ public enum Documentation: Codable, Equatable, Sendable {
         switch self {
         case .enum(let documentation):
             documentation.discussion
+        case .typealias(let documentation):
+            documentation.discussion
         case .object(let documentation):
             documentation.discussion
         case .operation(let documentation):
@@ -63,11 +74,9 @@ public enum Documentation: Codable, Equatable, Sendable {
 
     var subDocumentationIds: [String] {
         switch self {
-        case .enum:
-            []
         case .object(let documentation):
             documentation.subDocumentationIds
-        case .operation:
+        case .enum, .typealias, .operation:
             []
         }
     }
@@ -132,7 +141,18 @@ public enum Documentation: Codable, Equatable, Sendable {
                                abstract: abstract,
                                discussion: discussion,
                                cases: values))
-        } else if metadata.symbolKind == "dict" /* Object */ {
+        } else if metadata.symbolKind == "typealias" /* Enum like */ {
+            let values: [String: String] = contentSections.compactMap { contentSection -> [String: String]? in
+                guard case .possibleValues(let values) = contentSection else { return nil }
+                return values.compactMapValues { formatContent($0) }
+            }.first ?? [:]
+            self = .typealias(.init(id: id,
+                                    hierarchy: hierarchy,
+                                    title: metadata.title,
+                                    abstract: abstract,
+                                    discussion: discussion,
+                                    values: values))
+        } else if metadata.symbolKind == "dictionary" /* Object */ {
             let properties: [Property] = contentSections.compactMap { (contentSection: ContentSection) -> [Property]? in
                 guard case .properties(let properties) = contentSection else { return nil }
                 return properties
@@ -150,7 +170,7 @@ public enum Documentation: Codable, Equatable, Sendable {
                                  discussion: discussion,
                                  properties: propertyDocumentations,
                                  subDocumentationIds: subDocumentationIds))
-        } else if metadata.symbolKind == "operation" || metadata.symbolKind == "httpGet" || metadata.symbolKind == "httpPatch" || metadata.symbolKind == "httpPost" || metadata.symbolKind == "httpDelete" /* Operation */ {
+        } else if metadata.symbolKind == "operation" || metadata.symbolKind == "httpRequest" /* Operation */ {
             let pathParameters: [String: String] = (contentSections.compactMap { contentSection -> [Parameter]? in
                 guard case .pathParameters(let parameters) = contentSection else { return nil }
                 return parameters
@@ -203,8 +223,11 @@ public enum Documentation: Codable, Equatable, Sendable {
         case .enum(let documentation):
             try container.encode(Metadata(title: documentation.title, symbolKind: "tdef"), forKey: .metadata)
             contentSections.append(ContentSection.possibleValues(documentation.cases.mapValues { Content(text: $0) }))
+        case .typealias(let documentation):
+            try container.encode(Metadata(title: documentation.title, symbolKind: "typealias"), forKey: .metadata)
+            contentSections.append(ContentSection.possibleValues(documentation.values.mapValues { Content(text: $0) }))
         case .object(let documentation):
-            try container.encode(Metadata(title: documentation.title, symbolKind: "dict"), forKey: .metadata)
+            try container.encode(Metadata(title: documentation.title, symbolKind: "dictionary"), forKey: .metadata)
             let properties = documentation.properties.reduce(into: [Property]()) { partialResult, keyValue in
                 let propertyName = keyValue.key
                 let propertyDocumentation = keyValue.value
@@ -275,10 +298,10 @@ public enum Documentation: Codable, Equatable, Sendable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            title = try container.decode(String.self, forKey: .title)
+            title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
             let roleString = try container.decodeIfPresent(String.self, forKey: .role)
             role = Role(rawValue: roleString ?? "")
-            let url = try container.decode(String.self, forKey: .url)
+            let url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
             if role == .symbol || role == .article || role == nil {
                 self.url = "https://developer.apple.com" + url
             } else {
@@ -319,7 +342,7 @@ public enum Documentation: Codable, Equatable, Sendable {
                 let values = try container
                     .decode([Value].self, forKey: .values)
                     .reduce(into: [String: Content]()) { partialResult, value in
-                        partialResult[value.name] = value.content.first
+                        partialResult[value.name] = value.content.first ?? .init(text: "")
                     }
                 self = .possibleValues(values)
             } else if kind == "properties" {
@@ -349,10 +372,10 @@ public enum Documentation: Codable, Equatable, Sendable {
             } else if kind == "restResponses" {
                 let responses = try container.decode([Response].self, forKey: .items)
                 self = .restResponses(responses)
-            } else if kind == "declarations" || kind == "restEndpoint" {
+            } else if kind == "declarations" || kind == "restEndpoint" || kind == "mentions" {
                 self = .unused
             } else {
-                throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Unkown kind '\(kind)'")
+                throw DecodingError.dataCorruptedError(forKey: .kind, in: container, debugDescription: "Unknown kind '\(kind)'")
             }
         }
 

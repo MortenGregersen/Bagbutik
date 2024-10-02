@@ -11,7 +11,7 @@ final class PathTests: XCTestCase {
             "/v1/users" : {
                 "get": {
                     "tags": ["Users"],
-                    "operationId": "users-get_collection",
+                    "operationId": "users_getCollection",
                     "parameters": [{
                         "name": "include",
                         "in": "query",
@@ -80,7 +80,7 @@ final class PathTests: XCTestCase {
             "/v1/users/{id}/relationships/visibleApps": {
                 "post": {
                     "tags": ["Users"],
-                    "operationId": "users-visibleApps-create_to_many_relationship",
+                    "operationId": "users_visibleApps_createToManyRelationship",
                     "requestBody": {
                         "description": "List of related linkages",
                         "content": {
@@ -140,7 +140,7 @@ final class PathTests: XCTestCase {
             "/v2/users" : {
                 "get": {
                     "tags": ["Users"],
-                    "operationId": "users-get_collection",
+                    "operationId": "users_getCollection",
                     "parameters": [{
                         "name": "include",
                         "in": "query",
@@ -209,7 +209,7 @@ final class PathTests: XCTestCase {
             "/users" : {
                 "get": {
                     "tags": ["Users"],
-                    "operationId": "users-get_collection",
+                    "operationId": "users_getCollection",
                     "parameters": [],
                     "responses": {
                         "400": {

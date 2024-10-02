@@ -9,7 +9,7 @@ final class SpecTests: XCTestCase {
                 "/v1/appInfos/{id}": {
                     "get": {
                         "tags": ["AppInfos"],
-                        "operationId": "appInfos-get_instance",
+                        "operationId": "appInfos_getInstance",
                         "parameters": [{
                             "name": "fields[appInfos]",
                             "in": "query",
@@ -66,7 +66,7 @@ final class SpecTests: XCTestCase {
                 "/v1/apps/{id}/appInfos" : {
                     "get" : {
                         "tags" : [ "Apps" ],
-                        "operationId" : "apps-appInfos-get_to_many_related",
+                        "operationId" : "apps_appInfos_getToManyRelated",
                         "parameters" : [ {
                             "name" : "include",
                             "in" : "query",
@@ -554,7 +554,7 @@ final class SpecTests: XCTestCase {
                 "/v1/profiles" : {
                     "get" : {
                         "tags" : [ "Profiles" ],
-                        "operationId" : "profiles-get_collection",
+                        "operationId" : "profiles_getCollection",
                         "parameters" : [ {
                             "name" : "filter[profileType]",
                             "in" : "query",
