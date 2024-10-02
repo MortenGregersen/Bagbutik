@@ -71,7 +71,7 @@ public actor DocsLoader {
         guard let packageName = packageNames.first else {
             let paths = documentation.hierarchy.paths.flatMap { $0 }
             guard let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
-                  longestPath == "doc://com.apple.documentation/documentation/appstoreconnectapi" else {
+                  longestPath == "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI" else {
                 throw DocsLoaderError.couldNotResolvePackageName(id: documentation.id, paths: documentation.hierarchy.paths)
             }
             if documentation.id.hasSuffix("ageratingdeclarationwithoutincludesresponse")
@@ -116,6 +116,6 @@ public actor DocsLoader {
     }
 
     private func createDocumentationId(fromUrl url: String) -> String {
-        url.replacingOccurrences(of: "https://developer.apple.com", with: "doc://com.apple.documentation")
+        url.replacingOccurrences(of: "https://developer.apple.com", with: "doc://com.apple.appstoreconnectapi")
     }
 }

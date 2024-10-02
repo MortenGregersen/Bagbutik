@@ -9,30 +9,30 @@ class PackageNameTests: XCTestCase {
     }
 
     func testResolvePackageNameCore() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("large_data_sets")), .core)
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("interpreting_and_handling_errors")), .core)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("large-data-sets")), .core)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("interpreting-and-handling-errors")), .core)
     }
     
     func testResolvePackageNameGameCenter() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("game_center")), .gameCenter)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("game-center")), .gameCenter)
     }
     
     func testResolvePackageNameMarketplaces() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("app_distribution_for_alternative_marketplaces")), .marketplaces)
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("alternative_marketplaces_and_web_distribution")), .marketplaces)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("app-distribution-for-alternative-marketplaces")), .marketplaces)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("alternative-marketplaces-and-web-distribution")), .marketplaces)
     }
 
     func testResolvePackageNameProvisioning() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("bundle_ids")), .provisioning)
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("bundle_id_capabilities")), .provisioning)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("bundle-ids")), .provisioning)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("bundle-id-capabilities")), .provisioning)
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("certificates")), .provisioning)
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("devices")), .provisioning)
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("profiles")), .provisioning)
     }
 
     func testResolvePackageNameReporting() {
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("sales_and_finance")), .reporting)
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("power_and_performance_metrics_and_logs")), .reporting)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("sales-and-finance")), .reporting)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("power-and-performance-metrics-and-logs")), .reporting)
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("analytics")), .reporting)
     }
 
@@ -42,7 +42,7 @@ class PackageNameTests: XCTestCase {
 
     func testResolvePackageNameUsers() {
         XCTAssertEqual(PackageName.resolvePackageName(from: createPath("users")), .users)
-        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("user_invitations")), .users)
+        XCTAssertEqual(PackageName.resolvePackageName(from: createPath("user-invitations")), .users)
     }
 
     func testResolvePackageNameXcodeCloud() {

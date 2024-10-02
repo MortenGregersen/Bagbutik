@@ -34,7 +34,7 @@ final class OperationRendererTests: XCTestCase {
              Documentation discussion
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-users>
 
              - Parameter limit: Maximum resources per page - maximum 200
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
@@ -73,7 +73,7 @@ final class OperationRendererTests: XCTestCase {
              # No overview available
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_users>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-users>
 
              - Parameter includes: Relationship data to include in the response
              - Parameter limit: Maximum number of related pets returned (when they are included) - maximum 10
@@ -137,7 +137,7 @@ final class OperationRendererTests: XCTestCase {
              Documentation discussion
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-users>
 
              - Parameter groupBy: The dimension by which to group the results
              - Parameter period: The duration of the reporting period
@@ -189,7 +189,7 @@ final class OperationRendererTests: XCTestCase {
              # No overview available
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-users>
 
              - Parameter limit: Maximum resources per page - maximum 200
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
@@ -223,7 +223,7 @@ final class OperationRendererTests: XCTestCase {
              # No overview available
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-users>
 
              - Parameter limit: Maximum resources per page - maximum 200
              - Returns: A ``Request`` to send to an instance of ``BagbutikService``
@@ -274,7 +274,7 @@ final class OperationRendererTests: XCTestCase {
              Documentation discussion
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-users>
 
              - Parameter fields: Fields to return for included related types
              - Parameter filters: Attributes, relationships, and IDs by which to filter
@@ -415,7 +415,7 @@ final class OperationRendererTests: XCTestCase {
              Documentation discussion
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/patch-users-_id_>
 
              - Parameter id: Id of the user to update
              - Parameter requestBody: User representation
@@ -511,7 +511,7 @@ final class OperationRendererTests: XCTestCase {
              Documentation discussion
 
              Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/list_apps>
+             <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionOfferCodeOneTimeUseCodes-_id_>
 
              - Parameter id: Id of the user to update
              - Parameter fields: Fields to return for included related types

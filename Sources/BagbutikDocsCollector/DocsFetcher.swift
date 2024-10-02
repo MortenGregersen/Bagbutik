@@ -90,7 +90,7 @@ public class DocsFetcher {
         let spec = try loadSpec(specFileURL)
 
         var operationDocumentationById = [String: Documentation]()
-        let operationIdsAndDocUrls: [(operationId: String, docUrl: URL?)] = spec.paths.values
+        let operationIdsAndDocUrls: [(operationId: String, docUrl: URL)] = spec.paths.values
             .flatMap { path in
                 path.operations.map {
                     (operationId: $0.id, docUrl: createJsonDocumentationUrl(fromOperation: $0, in: path))
@@ -98,16 +98,12 @@ public class DocsFetcher {
             }
             .sorted(by: { $0.operationId < $1.operationId })
         for (operationId, docUrl) in operationIdsAndDocUrls {
-            if let docUrl {
-                if dryRun {
-                    print("Would fetch documentation for operation '\(operationId)' (\(docUrl))")
-                } else {
-                    print("Fetching documentation for operation '\(operationId)' (\(docUrl))")
-                    let documentation = try await fetchDocumentation(for: docUrl)
-                    operationDocumentationById[operationId] = documentation
-                }
+            if dryRun {
+                print("Would fetch documentation for operation '\(operationId)' (\(docUrl))")
             } else {
-                print("⚠️ Documentation URL missing for operation: '\(operationId)'")
+                print("Fetching documentation for operation '\(operationId)' (\(docUrl))")
+                let documentation = try await fetchDocumentation(for: docUrl)
+                operationDocumentationById[operationId] = documentation
             }
         }
 
@@ -207,6 +203,6 @@ public class DocsFetcher {
 
     private func createJsonDocumentationUrl(fromOperation operation: BagbutikSpecDecoder.Operation, in path: Path) -> URL {
         let urlPath = operation.getDocumentationId(path: path).appending(".json")
-        return URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/" + urlPath)!
+        return URL(string: "https://developer.apple.com/tutorials/data/documentation/AppStoreConnectAPI/" + urlPath)!
     }
 }

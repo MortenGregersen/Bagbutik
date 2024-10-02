@@ -9,7 +9,7 @@ final class OperationTests: XCTestCase {
         let json = #"""
         {
             "get": {
-                "operationId" : "territories-get_collection",
+                "operationId" : "territories_getCollection",
                 "parameters" : [ {
                     "name" : "fields[territories]",
                     "description" : "the fields to include for returned resources of type territories",
@@ -63,7 +63,7 @@ final class OperationTests: XCTestCase {
                 }
             },
             "patch": {
-                "operationId" : "ageRatingDeclarations-update_instance",
+                "operationId" : "ageRatingDeclarations_updateInstance",
                 "requestBody" : {
                     "description" : "AgeRatingDeclaration representation",
                     "content" : {
@@ -140,7 +140,7 @@ final class OperationTests: XCTestCase {
         let json = #"""
         {
             "get": {
-                "operationId": "financeReports-get_collection",
+                "operationId": "financeReports_getCollection",
                 "parameters": [],
                 "responses": {
                     "400": {
@@ -194,7 +194,7 @@ final class OperationTests: XCTestCase {
         let json = #"""
         {
             "delete": {
-                "operationId": "profiles-delete_instance",
+                "operationId": "profiles_deleteInstance",
                 "responses": {
                     "400": {
                         "description": "Parameter error(s)",
@@ -261,7 +261,7 @@ final class OperationTests: XCTestCase {
         {
             "get" : {
                 "tags" : [ "Apps", "Metrics" ],
-                "operationId" : "apps-betaTesterUsages-get_metrics",
+                "operationId" : "apps_betaTesterUsages_getMetrics",
                 "parameters" : [ {
                     "name" : "limit",
                     "in" : "query",
@@ -383,7 +383,7 @@ final class OperationTests: XCTestCase {
         {
             "get" : {
                 "tags" : [ "SandboxTesters" ],
-                "operationId" : "sandboxTestersV2-get_collection",
+                "operationId" : "sandboxTestersV2_getCollection",
                 "parameters" : [ {
                     "name" : "fields[sandboxTesters]",
                     "in" : "query",
