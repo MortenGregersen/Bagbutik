@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppUpdateRequest
- The request body you use to update an App Update.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest>
- */
 public struct AppUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "apps" }
@@ -60,17 +46,11 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var bundleId: String?
             public var contentRightsDeclaration: App.Attributes.ContentRightsDeclaration?
             public var primaryLocale: String?
+            public var streamlinedPurchasingEnabled: Bool?
             public var subscriptionStatusUrl: String?
             public var subscriptionStatusUrlForSandbox: String?
             public var subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion?
@@ -79,6 +59,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
             public init(bundleId: String? = nil,
                         contentRightsDeclaration: App.Attributes.ContentRightsDeclaration? = nil,
                         primaryLocale: String? = nil,
+                        streamlinedPurchasingEnabled: Bool? = nil,
                         subscriptionStatusUrl: String? = nil,
                         subscriptionStatusUrlForSandbox: String? = nil,
                         subscriptionStatusUrlVersion: SubscriptionStatusUrlVersion? = nil,
@@ -87,6 +68,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                 self.bundleId = bundleId
                 self.contentRightsDeclaration = contentRightsDeclaration
                 self.primaryLocale = primaryLocale
+                self.streamlinedPurchasingEnabled = streamlinedPurchasingEnabled
                 self.subscriptionStatusUrl = subscriptionStatusUrl
                 self.subscriptionStatusUrlForSandbox = subscriptionStatusUrlForSandbox
                 self.subscriptionStatusUrlVersion = subscriptionStatusUrlVersion
@@ -98,6 +80,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                 bundleId = try container.decodeIfPresent(String.self, forKey: "bundleId")
                 contentRightsDeclaration = try container.decodeIfPresent(App.Attributes.ContentRightsDeclaration.self, forKey: "contentRightsDeclaration")
                 primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
+                streamlinedPurchasingEnabled = try container.decodeIfPresent(Bool.self, forKey: "streamlinedPurchasingEnabled")
                 subscriptionStatusUrl = try container.decodeIfPresent(String.self, forKey: "subscriptionStatusUrl")
                 subscriptionStatusUrlForSandbox = try container.decodeIfPresent(String.self, forKey: "subscriptionStatusUrlForSandbox")
                 subscriptionStatusUrlVersion = try container.decodeIfPresent(SubscriptionStatusUrlVersion.self, forKey: "subscriptionStatusUrlVersion")
@@ -109,6 +92,7 @@ public struct AppUpdateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(bundleId, forKey: "bundleId")
                 try container.encodeIfPresent(contentRightsDeclaration, forKey: "contentRightsDeclaration")
                 try container.encodeIfPresent(primaryLocale, forKey: "primaryLocale")
+                try container.encodeIfPresent(streamlinedPurchasingEnabled, forKey: "streamlinedPurchasingEnabled")
                 try container.encodeIfPresent(subscriptionStatusUrl, forKey: "subscriptionStatusUrl")
                 try container.encodeIfPresent(subscriptionStatusUrlForSandbox, forKey: "subscriptionStatusUrlForSandbox")
                 try container.encodeIfPresent(subscriptionStatusUrlVersion, forKey: "subscriptionStatusUrlVersion")

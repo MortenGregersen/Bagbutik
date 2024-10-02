@@ -7,7 +7,7 @@ public extension Request {
      Get the custom end user license agreement (EULA) for a specific app and the territories where the agreement applies.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_end_user_license_agreement_information_of_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-endUserLicenseAgreement>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

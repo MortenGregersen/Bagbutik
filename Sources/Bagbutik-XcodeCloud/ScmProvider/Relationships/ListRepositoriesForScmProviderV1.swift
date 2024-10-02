@@ -7,7 +7,7 @@ public extension Request {
      List all Git repositories for a specific source code management provider you connected to Xcode Cloud.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_repositories_for_a_source_code_management_provider>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmProviders-_id_-repositories>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -81,6 +81,8 @@ public enum ListRepositoriesForScmProviderV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case defaultBranch
+        case gitReferences
+        case pullRequests
         case scmProvider
     }
 }

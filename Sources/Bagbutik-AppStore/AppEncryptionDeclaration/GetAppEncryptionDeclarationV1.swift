@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific app encryption declaration.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_encryption_declaration_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEncryptionDeclarations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -36,6 +36,7 @@ public enum GetAppEncryptionDeclarationV1 {
         /// The fields to include for returned resources of type appEncryptionDeclarations
         case appEncryptionDeclarations([AppEncryptionDeclarations])
         /// The fields to include for returned resources of type apps
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case apps([Apps])
 
         public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -74,6 +75,7 @@ public enum GetAppEncryptionDeclarationV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -108,6 +110,7 @@ public enum GetAppEncryptionDeclarationV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

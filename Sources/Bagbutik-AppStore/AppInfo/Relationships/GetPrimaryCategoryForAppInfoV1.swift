@@ -7,7 +7,7 @@ public extension Request {
      Get an app’s primary App Store category.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_primary_category_information_of_an_app_info>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-primaryCategory>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

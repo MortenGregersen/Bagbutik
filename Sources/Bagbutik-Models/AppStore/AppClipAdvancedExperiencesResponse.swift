@@ -1,23 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipAdvancedExperiencesResponse
- A response that contains a list of Advanced App Clip Experiences resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencesresponse>
- */
 public struct AppClipAdvancedExperiencesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipAdvancedExperience
 
-    /// The resource data.
     public let data: [AppClipAdvancedExperience]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClipAdvancedExperience],

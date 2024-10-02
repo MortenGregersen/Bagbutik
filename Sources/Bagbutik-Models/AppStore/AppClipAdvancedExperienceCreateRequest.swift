@@ -1,17 +1,8 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipAdvancedExperienceCreateRequest
- The request body you use to create an advanced App Clip experience.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest>
- */
 public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
-    /// The relationship data to include in the response.
     public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data,
@@ -33,19 +24,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
         try container.encodeIfPresent(included, forKey: "included")
     }
 
-    /**
-     # AppClipAdvancedExperienceCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
-        /// The resource type.
         public var type: String { "appClipAdvancedExperiences" }
-        /// The attributes that describe the request that creates an Advanced App Clip Experiences resource.
         public let attributes: Attributes
-        /// The navigational links to related data and included resource types and IDs.
         public let relationships: Relationships
 
         public init(attributes: Attributes,
@@ -71,25 +52,12 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppClipAdvancedExperienceCreateRequest.Data.Attributes
-         The attributes you set that describe the new Advanced App Clip Experiences resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The call-to-action verb that appears on the App Clip card.
             public var action: AppClipAction?
-            /// The business category of an advanced App Clip experience; for example, `PARKING`
             public var businessCategory: AppClipAdvancedExperience.Attributes.BusinessCategory?
-            /// The default language for the advanced App Clip experience.
             public let defaultLanguage: AppClipAdvancedExperienceLanguage
-            /// A Boolean value that indicates whether the advanced App Clip experience was submitted by a platform provider that serves multiple businesses.
             public let isPoweredBy: Bool
-            /// The invocation URL of the advanced App Clip experience you’re creating.
             public let link: String
-            /// The physical location you associate with the advanced App Clip experience. If you associate an advanced App Clip experience with a place, users can launch your App Clip from from location-based suggestions from Siri Suggestions and the Maps app.
             public var place: Place?
 
             public init(action: AppClipAction? = nil,
@@ -127,33 +95,15 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                 try container.encodeIfPresent(place, forKey: "place")
             }
 
-            /**
-             # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place
-             The place information of an advanced App Clip experience you create with this request.
-
-             Apple Maps uses any location data that you provide solely for matching an App Clip experience to an existing location. If it can’t find a match, Apple Maps doesn’t use the provided location data.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place>
-             */
             public struct Place: Codable, Sendable {
-                /// A list of categories for a place in Apple Maps you associate with the Advanced App Clip experience.
                 public var categories: [String]?
-                /// Coordinates of a place in Apple Maps you associate with an advanced App Clip experience.
                 public var displayPoint: DisplayPoint?
-                /// The optional website URL for a place.
                 public var homePage: String?
-                /// The main address of a place in Apple Maps. This value is required if you don’t provide coordinates for a place.
                 public var mainAddress: MainAddress?
-                /// A string that describes the intent behind an App Clip invocation from location-based suggestions from Siri Suggestions and the Maps app.
                 public var mapAction: MapAction?
-                /// An array of names as strings for a place in Apple Maps.
                 public var names: [String]?
-                /// The phone number that’s associated with a place in Apple Maps as a string.
                 public var phoneNumber: PhoneNumber?
-                /// An opaque ID that uniquely identifies a place. If you previously created a place in Apple Maps for the place you associate with your advanced App Clip experience, use its ID instead of creating a new ID.
                 public var placeId: String?
-                /// A navigational link to related data and included resource types and IDs.
                 public var relationship: Relationship?
 
                 public init(categories: [String]? = nil,
@@ -203,17 +153,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     try container.encodeIfPresent(relationship, forKey: "relationship")
                 }
 
-                /**
-                 # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.DisplayPoint
-                 A point-based representation of a place in Apple Maps.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place/displaypoint>
-                 */
                 public struct DisplayPoint: Codable, Sendable {
-                    /// The GPS coordinates of a place in Apple Maps you associate with the Advanced App Clip experience.
                     public var coordinates: Coordinates?
-                    /// A string that describes the means by which you captured the data for a display point.
                     public var source: Source?
 
                     public init(coordinates: Coordinates? = nil,
@@ -235,17 +176,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                         try container.encodeIfPresent(source, forKey: "source")
                     }
 
-                    /**
-                     # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.DisplayPoint.Coordinates
-                     The coordinates for a point of interest or business in Apple Maps.
-
-                     Full documentation:
-                     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place/displaypoint/coordinates>
-                     */
                     public struct Coordinates: Codable, Sendable {
-                        /// A number that represents the latitude of GPS coordinates of a place in Apple Maps.
                         public var latitude: Double?
-                        /// A number that represents the longitude of GPS coordinates of a place in Apple Maps.
                         public var longitude: Double?
 
                         public init(latitude: Double? = nil,
@@ -274,17 +206,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     }
                 }
 
-                /**
-                 # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.MainAddress
-                 The main address for a point of interest or business in Apple Maps.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place/mainaddress>
-                 */
                 public struct MainAddress: Codable, Sendable {
-                    /// The address of a place in Apple Maps as a string.
                     public var fullAddress: String?
-                    /// The structured address of a place in Apple Maps.
                     public var structuredAddress: StructuredAddress?
 
                     public init(fullAddress: String? = nil,
@@ -306,27 +229,13 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                         try container.encodeIfPresent(structuredAddress, forKey: "structuredAddress")
                     }
 
-                    /**
-                     # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.MainAddress.StructuredAddress
-                     The structured address information for a point of interest or business in Apple Maps.
-
-                     Full documentation:
-                     <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place/mainaddress/structuredaddress>
-                     */
                     public struct StructuredAddress: Codable, Sendable {
-                        /// The country code of a place in Apple Maps you associate with the Advanced App Clip experience.
                         public var countryCode: String?
-                        /// The identifier of a floor in a building.
                         public var floor: String?
-                        /// The official locality component of a postal address; for example, a city or town.
                         public var locality: String?
-                        /// The sub-locality component of a postal address; for example, a borough, county, or municipality.
                         public var neighborhood: String?
-                        /// The mail sorting code associated with a postal address.
                         public var postalCode: String?
-                        /// The province component of a postal address; for example, a state or territory.
                         public var stateProvince: String?
-                        /// The officially recognized address used by a postal delivery address. It includes — when applicable — a street name, street suffix, building, house, or suite identifiers.
                         public var streetAddress: [String]?
 
                         public init(countryCode: String? = nil,
@@ -386,19 +295,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     case viewPricing = "VIEW_PRICING"
                 }
 
-                /**
-                 # AppClipAdvancedExperienceCreateRequest.Data.Attributes.Place.PhoneNumber
-                 The phone number of a point of interest or business in Apple Maps.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/attributes/place/phonenumber>
-                 */
                 public struct PhoneNumber: Codable, Sendable {
-                    /// A string that describes the operational purpose of the phone number; for example `Customer Service` or `Help Desk`
                     public var intent: String?
-                    /// The phone number as a string.
                     public var number: String?
-                    /// The resource type.
                     public var type: PhoneNumberType?
 
                     public init(intent: String? = nil,
@@ -440,19 +339,9 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
             }
         }
 
-        /**
-         # AppClipAdvancedExperienceCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
-            /// The related App Clips resource.
             public let appClip: AppClip
-            /// The related Advanced App Clip Experience Images resource.
             public let headerImage: HeaderImage
-            /// The related Advanced App Clip Experience Localizations resource.
             public let localizations: Localizations
 
             public init(appClip: AppClip,
@@ -478,15 +367,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                 try container.encode(localizations, forKey: "localizations")
             }
 
-            /**
-             # AppClipAdvancedExperienceCreateRequest.Data.Relationships.AppClip
-             The relationship to the App Clips resource you set with the request that creates an Advanced App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/appclip>
-             */
             public struct AppClip: Codable, Sendable {
-                /// The ID and type of the related App Clips resource.
                 public let data: Data
 
                 public init(data: Data) {
@@ -503,17 +384,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppClipAdvancedExperienceCreateRequest.Data.Relationships.AppClip.Data
-                 The type and ID of the App Clips resource that you’re relating with the Advanced App Clip Experiences resource you’re creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/appclip/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the related App Clips resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appClips" }
 
                     public init(id: String) {
@@ -536,15 +408,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                 }
             }
 
-            /**
-             # AppClipAdvancedExperienceCreateRequest.Data.Relationships.HeaderImage
-             The relationship to the App Clip Header Images resource you set with the request that creates an Advanced App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/headerimage>
-             */
             public struct HeaderImage: Codable, Sendable {
-                /// The ID and type of the related App Clip Header Images resource.
                 public let data: Data
 
                 public init(data: Data) {
@@ -561,17 +425,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppClipAdvancedExperienceCreateRequest.Data.Relationships.HeaderImage.Data
-                 The type and ID of the App Clip Header Images resource that you’re relating with the Advanced App Clip Experiences resource you’re creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/headerimage/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the related App Clip Header Images resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appClipAdvancedExperienceImages" }
 
                     public init(id: String) {
@@ -594,15 +449,7 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                 }
             }
 
-            /**
-             # AppClipAdvancedExperienceCreateRequest.Data.Relationships.Localizations
-             The relationship to the Advanced App Clip Experience Localizations resource you set with the request that creates an Advanced App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/localizations>
-             */
             public struct Localizations: Codable, Sendable {
-                /// The ID and type of the related Advanced App Clip Experience Localizations resource.
                 public let data: [Data]
 
                 public init(data: [Data]) {
@@ -619,17 +466,8 @@ public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, Request
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppClipAdvancedExperienceCreateRequest.Data.Relationships.Localizations.Data
-                 The type and ID of the Advanced App Clips Experience Localizations resource that you’re relating with the Advanced App Clip Experiences resource you’re creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest/data/relationships/localizations/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the related Advanced App Clip Experience Localizations resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appClipAdvancedExperienceLocalizations" }
 
                     public init(id: String) {

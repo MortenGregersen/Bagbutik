@@ -7,7 +7,7 @@ public extension Request {
      Get a specific build beta details resource.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_build_beta_detail_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-buildBetaDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

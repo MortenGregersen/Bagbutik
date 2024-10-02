@@ -7,7 +7,7 @@ public extension Request {
      Get details about a specific app price point.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_price_point_information-eg1>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v3-appPricePoints-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -45,6 +45,7 @@ public enum GetAppPricePointsV3 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
+        case equalizations
         case territory
     }
 }

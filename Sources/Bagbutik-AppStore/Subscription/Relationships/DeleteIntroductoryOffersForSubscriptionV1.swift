@@ -7,7 +7,7 @@ public extension Request {
      Delete a specific introductory offer for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_introductory_offer_from_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-subscriptions-_id_-relationships-introductoryOffers>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

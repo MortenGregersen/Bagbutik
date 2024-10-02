@@ -7,7 +7,7 @@ public extension Request {
      Get information about the territory availablity for an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_availablity_of_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchaseAvailabilities-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

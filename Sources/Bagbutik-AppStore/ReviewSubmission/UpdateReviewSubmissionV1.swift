@@ -7,7 +7,7 @@ public extension Request {
      Edit the details or contents of a review submission.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_reviewsubmissions_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-reviewSubmissions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: ReviewSubmission representation

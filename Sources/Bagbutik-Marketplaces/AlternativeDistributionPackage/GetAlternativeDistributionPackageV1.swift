@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific alternative distribution package.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_alternative_distribution_package_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativeDistributionPackages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

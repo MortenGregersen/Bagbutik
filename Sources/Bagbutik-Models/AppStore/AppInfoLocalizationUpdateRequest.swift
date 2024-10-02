@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppInfoLocalizationUpdateRequest
- The request body you use to update an App Info Localization.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest>
- */
 public struct AppInfoLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppInfoLocalizationUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppInfoLocalizationUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appInfoLocalizations" }
@@ -60,13 +46,6 @@ public struct AppInfoLocalizationUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppInfoLocalizationUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var name: String?
             public var privacyChoicesUrl: String?

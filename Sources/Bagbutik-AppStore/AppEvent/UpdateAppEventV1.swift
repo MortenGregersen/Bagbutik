@@ -6,7 +6,7 @@ public extension Request {
      # PATCH /v1/appEvents/{id}
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_appevents_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appEvents-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppEvent representation

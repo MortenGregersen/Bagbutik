@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingTeamUpdateRequest
- The request body you use to modify a team.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamupdaterequest>
- */
 public struct GameCenterMatchmakingTeamUpdateRequest: Codable, Sendable, RequestBody {
-    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {
@@ -26,17 +18,8 @@ public struct GameCenterMatchmakingTeamUpdateRequest: Codable, Sendable, Request
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # GameCenterMatchmakingTeamUpdateRequest.Data
-     The data structure of the request body you use to modify a team.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
-        /// The unique identifier for the team.
         public let id: String
-        /// The type of resource object.
         public var type: String { "gameCenterMatchmakingTeams" }
         public var attributes: Attributes?
 
@@ -63,17 +46,8 @@ public struct GameCenterMatchmakingTeamUpdateRequest: Codable, Sendable, Request
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # GameCenterMatchmakingTeamUpdateRequest.Data.Attributes
-         The attributes of a team that you modify.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The maximum number of players on the team.
             public var maxPlayers: Int?
-            /// The minimum number of players on the team.
             public var minPlayers: Int?
 
             public init(maxPlayers: Int? = nil,

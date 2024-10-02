@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewDetailCreateRequest
- The request body you use to create an App Store Review Detail.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest>
- */
 public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody 
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreReviewDetailCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreReviewDetails" }
         public var attributes: Attributes?
@@ -60,13 +46,6 @@ public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody 
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreReviewDetailCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var contactEmail: String?
             public var contactFirstName: String?
@@ -121,13 +100,6 @@ public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody 
             }
         }
 
-        /**
-         # AppStoreReviewDetailCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
@@ -145,13 +117,6 @@ public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody 
                 try container.encode(appStoreVersion, forKey: "appStoreVersion")
             }
 
-            /**
-             # AppStoreReviewDetailCreateRequest.Data.Relationships.AppStoreVersion
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest/data/relationships/appstoreversion>
-             */
             public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
@@ -169,13 +134,6 @@ public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody 
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreReviewDetailCreateRequest.Data.Relationships.AppStoreVersion.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest/data/relationships/appstoreversion/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }

@@ -7,7 +7,7 @@ public extension Request {
      Commit an app screenshot after uploading it.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_screenshot>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appScreenshots-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppScreenshot representation

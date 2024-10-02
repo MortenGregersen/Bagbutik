@@ -7,7 +7,7 @@ public extension Request {
      Create a release for an achievement and a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_game_center_achievement_release>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterAchievementReleases>
 
      - Parameter requestBody: GameCenterAchievementRelease representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

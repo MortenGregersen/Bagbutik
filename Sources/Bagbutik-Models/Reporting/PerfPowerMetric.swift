@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # PerfPowerMetric
- Unused.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric>
- */
 public struct PerfPowerMetric: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -41,17 +34,8 @@ public struct PerfPowerMetric: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # PerfPowerMetric.Attributes
-     Attributes that describe a Power and Performance Metrics resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// A string that represents the device type.
         public var deviceType: String?
-        /// For more information about metric types, see [MetricCategory](https://developer.apple.com/documentation/appstoreconnectapi/metriccategory).
         public var metricType: MetricType?
         public var platform: Platform?
 

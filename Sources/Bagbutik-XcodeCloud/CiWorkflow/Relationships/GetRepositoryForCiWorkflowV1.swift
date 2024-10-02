@@ -9,7 +9,7 @@ public extension Request {
      The example request below retrieves information about an Xcode Cloud workflow’s repository. Use the data provided in the response to read additional information; for example, pull request information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_repository_information_for_an_xcode_cloud_workflow>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciWorkflows-_id_-repository>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -69,6 +69,8 @@ public enum GetRepositoryForCiWorkflowV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case defaultBranch
+        case gitReferences
+        case pullRequests
         case scmProvider
     }
 }

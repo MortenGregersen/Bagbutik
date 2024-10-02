@@ -7,7 +7,7 @@ public extension Request {
      Delete the routing app coverage file that is associated with a version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_routing_app_coverage>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-routingAppCoverages-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

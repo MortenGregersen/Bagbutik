@@ -7,7 +7,7 @@ public extension Request {
      Provide localized metadata for an App Clip experience you make available to testers.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_localized_metadata_for_a_beta_app_clip_invocation>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaAppClipInvocationLocalizations>
 
      - Parameter requestBody: BetaAppClipInvocationLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

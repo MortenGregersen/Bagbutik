@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAchievementResponse
- A response that contains a single Game Center achievement resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementresponse>
- */
 public struct GameCenterAchievementResponse: Codable, Sendable {
     public let data: GameCenterAchievement
     public var included: [Included]?

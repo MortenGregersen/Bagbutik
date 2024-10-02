@@ -7,7 +7,7 @@ public extension Request {
      Get the information about a review screenshot for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_review_screenshot_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionAppStoreReviewScreenshots-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

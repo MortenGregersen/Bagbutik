@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionCreateRequest
- The request body you use to create an App Store Version.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest>
- */
 public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersions" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreVersionCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var copyright: String?
             public var earliestReleaseDate: Date?
@@ -111,13 +90,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # AppStoreVersionCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let app: App
             public var appStoreVersionLocalizations: AppStoreVersionLocalizations?
@@ -146,13 +118,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(build, forKey: "build")
             }
 
-            /**
-             # AppStoreVersionCreateRequest.Data.Relationships.App
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app>
-             */
             public struct App: Codable, Sendable {
                 public let data: Data
 
@@ -170,13 +135,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionCreateRequest.Data.Relationships.App.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/app/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "apps" }
@@ -242,13 +200,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
                 }
             }
 
-            /**
-             # AppStoreVersionCreateRequest.Data.Relationships.Build
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build>
-             */
             public struct Build: Codable, Sendable {
                 @NullCodable public var data: Data?
 
@@ -266,13 +217,6 @@ public struct AppStoreVersionCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionCreateRequest.Data.Relationships.Build.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversioncreaterequest/data/relationships/build/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "builds" }

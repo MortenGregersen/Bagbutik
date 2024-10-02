@@ -7,7 +7,7 @@ public extension Request {
      Delete a scheduled price change for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_subscription_prices>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-subscriptionPrices-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

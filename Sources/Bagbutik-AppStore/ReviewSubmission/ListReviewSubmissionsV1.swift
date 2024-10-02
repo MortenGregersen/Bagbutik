@@ -7,7 +7,7 @@ public extension Request {
      List recent and current review submissions for a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-reviewSubmissions>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

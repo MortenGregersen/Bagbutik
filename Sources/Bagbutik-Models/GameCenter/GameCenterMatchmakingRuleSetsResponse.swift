@@ -1,19 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingRuleSetsResponse
- The response body for endpoints that get multiple rule sets.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetsresponse>
- */
 public struct GameCenterMatchmakingRuleSetsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingRuleSet
 
-    /// The rule sets that an endpoint gets.
     public let data: [GameCenterMatchmakingRuleSet]
-    /// The related objects included in the response.
     public var included: [Included]?
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?

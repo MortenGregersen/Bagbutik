@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -37,20 +37,22 @@ public enum GetSubscriptionV1 {
         case subscriptionAppStoreReviewScreenshots([SubscriptionAppStoreReviewScreenshots])
         /// The fields to include for returned resources of type subscriptionAvailabilities
         case subscriptionAvailabilities([SubscriptionAvailabilities])
+        /// The fields to include for returned resources of type subscriptionImages
+        case subscriptionImages([SubscriptionImages])
         /// The fields to include for returned resources of type subscriptionIntroductoryOffers
         case subscriptionIntroductoryOffers([SubscriptionIntroductoryOffers])
         /// The fields to include for returned resources of type subscriptionLocalizations
         case subscriptionLocalizations([SubscriptionLocalizations])
         /// The fields to include for returned resources of type subscriptionOfferCodes
         case subscriptionOfferCodes([SubscriptionOfferCodes])
-        /// The fields to include for returned resources of type subscriptionPricePoints
-        case subscriptionPricePoints([SubscriptionPricePoints])
         /// The fields to include for returned resources of type subscriptionPrices
         case subscriptionPrices([SubscriptionPrices])
         /// The fields to include for returned resources of type subscriptionPromotionalOffers
         case subscriptionPromotionalOffers([SubscriptionPromotionalOffers])
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
+        /// The fields to include for returned resources of type winBackOffers
+        case winBackOffers([WinBackOffers])
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
@@ -79,6 +81,18 @@ public enum GetSubscriptionV1 {
             case availableInNewTerritories
             case availableTerritories
             case subscription
+        }
+
+        public enum SubscriptionImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case state
+            case subscription
+            case uploadOperations
+            case uploaded
         }
 
         public enum SubscriptionIntroductoryOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -115,15 +129,6 @@ public enum GetSubscriptionV1 {
             case totalNumberOfCodes
         }
 
-        public enum SubscriptionPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case customerPrice
-            case equalizations
-            case proceeds
-            case proceedsYear2
-            case subscription
-            case territory
-        }
-
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case preserveCurrentPrice
             case preserved
@@ -148,6 +153,7 @@ public enum GetSubscriptionV1 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -161,6 +167,24 @@ public enum GetSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
+        }
+
+        public enum WinBackOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case customerEligibilityPaidSubscriptionDurationInMonths
+            case customerEligibilityTimeSinceLastSubscribedInMonths
+            case customerEligibilityWaitBetweenOffersInMonths
+            case duration
+            case endDate
+            case offerId
+            case offerMode
+            case periodCount
+            case prices
+            case priority
+            case promotionIntent
+            case referenceName
+            case startDate
+            case subscription
         }
     }
 
@@ -170,19 +194,24 @@ public enum GetSubscriptionV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreReviewScreenshot
         case group
+        case images
         case introductoryOffers
         case offerCodes
+        case pricePoints
         case prices
         case promotedPurchase
         case promotionalOffers
         case subscriptionAvailability
         case subscriptionLocalizations
+        case winBackOffers
     }
 
     /**
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related images returned (when they are included) - maximum 50
+        case images(Int)
         /// Maximum number of related introductoryOffers returned (when they are included) - maximum 50
         case introductoryOffers(Int)
         /// Maximum number of related offerCodes returned (when they are included) - maximum 50
@@ -193,5 +222,7 @@ public enum GetSubscriptionV1 {
         case promotionalOffers(Int)
         /// Maximum number of related subscriptionLocalizations returned (when they are included) - maximum 50
         case subscriptionLocalizations(Int)
+        /// Maximum number of related winBackOffers returned (when they are included) - maximum 50
+        case winBackOffers(Int)
     }
 }

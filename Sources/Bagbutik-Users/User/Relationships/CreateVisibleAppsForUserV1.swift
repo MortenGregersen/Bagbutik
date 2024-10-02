@@ -7,7 +7,7 @@ public extension Request {
      Give a user on your team access to one or more apps.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_visible_apps_to_a_user>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-users-_id_-relationships-visibleApps>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

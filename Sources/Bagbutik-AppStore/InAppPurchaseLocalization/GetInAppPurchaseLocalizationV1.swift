@@ -7,7 +7,7 @@ public extension Request {
      Get the display name and description for a specific locale for an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_localization_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchaseLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

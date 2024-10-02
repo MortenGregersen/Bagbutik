@@ -6,7 +6,7 @@ public extension Request {
      # List All Game Center Enabled Versions for an App
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_game_center_enabled_versions_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-gameCenterEnabledVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -46,6 +46,7 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -80,6 +81,7 @@ public enum ListGameCenterEnabledVersionsForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

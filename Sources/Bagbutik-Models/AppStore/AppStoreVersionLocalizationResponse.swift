@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionLocalizationResponse
- A response that contains a single App Store Version Localizations resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationresponse>
- */
 public struct AppStoreVersionLocalizationResponse: Codable, Sendable {
     public let data: AppStoreVersionLocalization
     public var included: [Included]?

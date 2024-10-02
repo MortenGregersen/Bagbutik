@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionPhasedReleaseCreateRequest
- The request body you use to create an App Store Version Phased Release.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest>
- */
 public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, Requ
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionPhasedReleaseCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionPhasedReleases" }
         public var attributes: Attributes?
@@ -60,13 +46,6 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, Requ
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreVersionPhasedReleaseCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var phasedReleaseState: PhasedReleaseState?
 
@@ -85,13 +64,6 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, Requ
             }
         }
 
-        /**
-         # AppStoreVersionPhasedReleaseCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
@@ -109,13 +81,6 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, Requ
                 try container.encode(appStoreVersion, forKey: "appStoreVersion")
             }
 
-            /**
-             # AppStoreVersionPhasedReleaseCreateRequest.Data.Relationships.AppStoreVersion
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest/data/relationships/appstoreversion>
-             */
             public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
@@ -133,13 +98,6 @@ public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, Requ
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionPhasedReleaseCreateRequest.Data.Relationships.AppStoreVersion.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest/data/relationships/appstoreversion/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }

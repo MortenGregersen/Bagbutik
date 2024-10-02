@@ -7,7 +7,7 @@ public extension Request {
      Create a promotional offer for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_promotional_offer>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionPromotionalOffers>
 
      - Parameter requestBody: SubscriptionPromotionalOffer representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

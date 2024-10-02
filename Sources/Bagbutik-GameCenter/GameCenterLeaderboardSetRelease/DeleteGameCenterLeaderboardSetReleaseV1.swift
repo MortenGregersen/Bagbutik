@@ -7,7 +7,7 @@ public extension Request {
      Delete a new leaderboard set release.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_leaderboard_set_release>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterLeaderboardSetReleases-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

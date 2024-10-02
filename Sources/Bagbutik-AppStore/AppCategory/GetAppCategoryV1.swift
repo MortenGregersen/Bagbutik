@@ -7,7 +7,7 @@ public extension Request {
      Get a specific app category.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_category_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCategories-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

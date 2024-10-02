@@ -7,7 +7,7 @@ public extension Request {
      Remove a specific item from a review submission.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_reviewsubmissionitems_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-reviewSubmissionItems-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

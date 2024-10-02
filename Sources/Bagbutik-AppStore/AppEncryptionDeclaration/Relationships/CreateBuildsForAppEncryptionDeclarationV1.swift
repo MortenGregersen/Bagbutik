@@ -7,7 +7,7 @@ public extension Request {
      Assign one or more builds to an app encryption declaration.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/assign_builds_to_an_app_encryption_declaration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEncryptionDeclarations-_id_-relationships-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

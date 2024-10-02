@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppPreOrderResponse
- A response that contains a single App Pre-Orders resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderresponse>
- */
 public struct AppPreOrderResponse: Codable, Sendable {
     public let data: AppPreOrder
     public var included: [App]?

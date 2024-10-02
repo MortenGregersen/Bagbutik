@@ -7,7 +7,7 @@ public extension Request {
      Get information for a specific app store version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -53,8 +53,8 @@ public enum GetAppStoreVersionV1 {
         case appStoreVersions([AppStoreVersions])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
-        /// The fields to include for returned resources of type customerReviews
-        case customerReviews([CustomerReviews])
+        /// The fields to include for returned resources of type gameCenterAppVersions
+        case gameCenterAppVersions([GameCenterAppVersions])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
@@ -67,6 +67,8 @@ public enum GetAppStoreVersionV1 {
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
+            case koreaAgeRatingOverride
+            case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
@@ -166,6 +168,7 @@ public enum GetAppStoreVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType
@@ -200,14 +203,10 @@ public enum GetAppStoreVersionV1 {
             case version
         }
 
-        public enum CustomerReviews: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case body
-            case createdDate
-            case rating
-            case response
-            case reviewerNickname
-            case territory
-            case title
+        public enum GameCenterAppVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreVersion
+            case compatibilityVersions
+            case enabled
         }
 
         public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -236,6 +235,8 @@ public enum GetAppStoreVersionV1 {
         case appStoreVersionPhasedRelease
         case appStoreVersionSubmission
         case build
+        case customerReviews
+        case gameCenterAppVersion
         case routingAppCoverage
     }
 

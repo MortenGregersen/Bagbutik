@@ -7,7 +7,7 @@ public extension Request {
      Update and delete an existing advanced App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_and_delete_an_advanced_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipAdvancedExperiences-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppClipAdvancedExperience representation

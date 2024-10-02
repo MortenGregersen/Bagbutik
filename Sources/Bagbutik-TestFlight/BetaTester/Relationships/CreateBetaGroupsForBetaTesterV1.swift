@@ -7,7 +7,7 @@ public extension Request {
      Add one or more beta testers to a specific beta group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_a_beta_tester_to_beta_groups>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaTesters-_id_-relationships-betaGroups>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

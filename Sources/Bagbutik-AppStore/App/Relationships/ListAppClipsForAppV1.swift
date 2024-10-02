@@ -7,7 +7,7 @@ public extension Request {
      List your app’s associated App Clips.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/search_an_app_s_app_clips>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appClips>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -61,6 +61,7 @@ public enum ListAppClipsForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -95,6 +96,7 @@ public enum ListAppClipsForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
@@ -117,6 +119,7 @@ public enum ListAppClipsForAppV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
+        case appClipAdvancedExperiences
         case appClipDefaultExperiences
     }
 

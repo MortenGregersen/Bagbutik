@@ -7,7 +7,7 @@ public extension Request {
      List all builds Xcode Cloud performed for a specific workflow.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_cloud_builds_for_a_workflow>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciWorkflows-_id_-buildRuns>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -172,6 +172,7 @@ public enum ListBuildRunsForCiWorkflowV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case actions
         case builds
         case destinationBranch
         case product

@@ -7,7 +7,7 @@ public extension Request {
      Find and list bundle IDs that are registered to your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_bundle_ids>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-bundleIds>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
@@ -48,6 +48,7 @@ public enum ListBundleIdsV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -82,6 +83,7 @@ public enum ListBundleIdsV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

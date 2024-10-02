@@ -7,7 +7,7 @@ public extension Request {
      Get a list of prerelease versions associated with a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_prerelease_versions_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-preReleaseVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

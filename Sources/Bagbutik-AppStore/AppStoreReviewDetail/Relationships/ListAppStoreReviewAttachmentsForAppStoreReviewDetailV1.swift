@@ -7,7 +7,7 @@ public extension Request {
      List all the App Store review attachments you include with a version when you submit it for App Review.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_review_attachments_for_an_app_store_review_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreReviewDetails-_id_-appStoreReviewAttachments>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

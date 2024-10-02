@@ -7,7 +7,7 @@ public extension Request {
      Get information about the rules in a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_rules_in_a_rule_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRuleSets-_id_-rules>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

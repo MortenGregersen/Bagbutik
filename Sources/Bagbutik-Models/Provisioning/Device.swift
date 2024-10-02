@@ -1,21 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # Device
- The data structure that represents a Devices resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/device>
- */
 public struct Device: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "devices" }
-    /// The resource's attributes.
     public var attributes: Attributes?
 
     public init(id: String,
@@ -45,13 +34,6 @@ public struct Device: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # Device.Attributes
-     Attributes that describe a Devices resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/device/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var addedDate: Date?
         public var deviceClass: DeviceClass?

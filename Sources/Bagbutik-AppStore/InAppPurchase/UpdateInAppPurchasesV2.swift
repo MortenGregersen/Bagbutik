@@ -7,7 +7,7 @@ public extension Request {
      Update the reference name of a specific in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v2-inAppPurchases-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: InAppPurchase representation

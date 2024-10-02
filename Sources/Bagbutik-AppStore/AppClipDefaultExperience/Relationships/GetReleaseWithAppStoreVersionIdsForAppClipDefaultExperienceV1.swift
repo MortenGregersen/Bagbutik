@@ -7,7 +7,7 @@ public extension Request {
      Get IDs for App Store Versions related to a default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_the_app_store_versions_resource_id_for_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperiences-_id_-relationships-releaseWithAppStoreVersion>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

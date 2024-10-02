@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppPreviewsResponse
- A response that contains a list of App Preview resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsresponse>
- */
 public struct AppPreviewsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppPreview
 

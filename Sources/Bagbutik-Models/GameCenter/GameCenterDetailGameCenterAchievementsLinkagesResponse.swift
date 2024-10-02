@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterDetailGameCenterAchievementsLinkagesResponse
- A response that confirms a relationship between a Game Center detail and an achievement.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailgamecenterachievementslinkagesresponse>
- */
 public struct GameCenterDetailGameCenterAchievementsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

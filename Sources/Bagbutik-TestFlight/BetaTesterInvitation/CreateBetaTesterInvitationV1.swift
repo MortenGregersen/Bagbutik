@@ -7,7 +7,7 @@ public extension Request {
      Send or resend an invitation to a beta tester to test a specified app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/send_an_invitation_to_a_beta_tester>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaTesterInvitations>
 
      - Parameter requestBody: BetaTesterInvitation representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

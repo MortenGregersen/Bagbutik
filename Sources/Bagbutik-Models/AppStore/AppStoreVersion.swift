@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersion
- The data structure that represent an App Store Versions resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion>
- */
 public struct AppStoreVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -46,13 +39,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # AppStoreVersion.Attributes
-     Attributes that describe an App Store Versions resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var appStoreState: AppStoreVersionState? = nil
@@ -151,19 +137,11 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # AppStoreVersion.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships>
-     */
     public struct Relationships: Codable, Sendable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var ageRatingDeclaration: AgeRatingDeclaration? = nil
         public var alternativeDistributionPackage: AlternativeDistributionPackage?
         public var app: App?
-        /// The related Default App Clip Experiences resource.
         public var appClipDefaultExperience: AppClipDefaultExperience?
         public var appStoreReviewDetail: AppStoreReviewDetail?
         public var appStoreVersionExperiments: AppStoreVersionExperiments?
@@ -172,6 +150,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
         public var appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease?
         public var appStoreVersionSubmission: AppStoreVersionSubmission?
         public var build: Build?
+        public var customerReviews: CustomerReviews?
+        public var gameCenterAppVersion: GameCenterAppVersion?
         public var routingAppCoverage: RoutingAppCoverage?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -186,6 +166,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil,
                     appStoreVersionSubmission: AppStoreVersionSubmission? = nil,
                     build: Build? = nil,
+                    customerReviews: CustomerReviews? = nil,
+                    gameCenterAppVersion: GameCenterAppVersion? = nil,
                     routingAppCoverage: RoutingAppCoverage? = nil)
         {
             self.ageRatingDeclaration = ageRatingDeclaration
@@ -199,6 +181,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
             self.appStoreVersionSubmission = appStoreVersionSubmission
             self.build = build
+            self.customerReviews = customerReviews
+            self.gameCenterAppVersion = gameCenterAppVersion
             self.routingAppCoverage = routingAppCoverage
         }
 
@@ -212,6 +196,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     appStoreVersionPhasedRelease: AppStoreVersionPhasedRelease? = nil,
                     appStoreVersionSubmission: AppStoreVersionSubmission? = nil,
                     build: Build? = nil,
+                    customerReviews: CustomerReviews? = nil,
+                    gameCenterAppVersion: GameCenterAppVersion? = nil,
                     routingAppCoverage: RoutingAppCoverage? = nil)
         {
             self.alternativeDistributionPackage = alternativeDistributionPackage
@@ -224,6 +210,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             self.appStoreVersionPhasedRelease = appStoreVersionPhasedRelease
             self.appStoreVersionSubmission = appStoreVersionSubmission
             self.build = build
+            self.customerReviews = customerReviews
+            self.gameCenterAppVersion = gameCenterAppVersion
             self.routingAppCoverage = routingAppCoverage
         }
 
@@ -240,6 +228,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             appStoreVersionPhasedRelease = try container.decodeIfPresent(AppStoreVersionPhasedRelease.self, forKey: "appStoreVersionPhasedRelease")
             appStoreVersionSubmission = try container.decodeIfPresent(AppStoreVersionSubmission.self, forKey: "appStoreVersionSubmission")
             build = try container.decodeIfPresent(Build.self, forKey: "build")
+            customerReviews = try container.decodeIfPresent(CustomerReviews.self, forKey: "customerReviews")
+            gameCenterAppVersion = try container.decodeIfPresent(GameCenterAppVersion.self, forKey: "gameCenterAppVersion")
             routingAppCoverage = try container.decodeIfPresent(RoutingAppCoverage.self, forKey: "routingAppCoverage")
         }
 
@@ -256,22 +246,17 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appStoreVersionPhasedRelease, forKey: "appStoreVersionPhasedRelease")
             try container.encodeIfPresent(appStoreVersionSubmission, forKey: "appStoreVersionSubmission")
             try container.encodeIfPresent(build, forKey: "build")
+            try container.encodeIfPresent(customerReviews, forKey: "customerReviews")
+            try container.encodeIfPresent(gameCenterAppVersion, forKey: "gameCenterAppVersion")
             try container.encodeIfPresent(routingAppCoverage, forKey: "routingAppCoverage")
         }
 
-        /**
-         # AppStoreVersion.Relationships.AgeRatingDeclaration
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration>
-         */
         public struct AgeRatingDeclaration: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -280,7 +265,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -289,13 +274,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.AgeRatingDeclaration.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "ageRatingDeclarations" }
@@ -318,45 +296,14 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.AgeRatingDeclaration.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/ageratingdeclaration/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct AlternativeDistributionPackage: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -365,7 +312,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -396,69 +343,25 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.App
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app>
-         */
         public struct App: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.App.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -481,54 +384,14 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.App.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/app/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppClipDefaultExperience
-         The data and links that describe the relationship between the App Store Versions and the Default App Clip Experiences resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience>
-         */
         public struct AppClipDefaultExperience: Codable, Sendable {
-            /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: Data?
-            /// Navigational links that include the self-link.
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -537,7 +400,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -546,17 +409,8 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppClipDefaultExperience.Data
-             The type and ID of a related Default App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appClipDefaultExperiences" }
 
                 public init(id: String) {
@@ -577,54 +431,14 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.AppClipDefaultExperience.Links
-             The links to the related Default App Clip Experiences resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appclipdefaultexperience/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreReviewDetail
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail>
-         */
         public struct AppStoreReviewDetail: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -633,7 +447,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -642,13 +456,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreReviewDetail.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
@@ -671,46 +478,15 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.AppStoreReviewDetail.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstorereviewdetail/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct AppStoreVersionExperiments: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -721,7 +497,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -752,41 +528,17 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }
 
         public struct AppStoreVersionExperimentsV2: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -797,7 +549,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -830,46 +582,15 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreVersionLocalizations
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations>
-         */
         public struct AppStoreVersionLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -880,7 +601,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -891,13 +612,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionLocalizations" }
@@ -920,52 +634,14 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionLocalizations.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionlocalizations/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease>
-         */
         public struct AppStoreVersionPhasedRelease: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -974,7 +650,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -983,13 +659,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionPhasedReleases" }
@@ -1012,52 +681,14 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionPhasedRelease.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionphasedrelease/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.AppStoreVersionSubmission
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission>
-         */
         public struct AppStoreVersionSubmission: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -1066,7 +697,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -1075,13 +706,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionSubmission.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersionSubmissions" }
@@ -1104,52 +728,14 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreVersion.Relationships.AppStoreVersionSubmission.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/appstoreversionsubmission/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreVersion.Relationships.Build
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build>
-         */
         public struct Build: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -1158,7 +744,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -1167,13 +753,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.Build.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "builds" }
@@ -1196,52 +775,32 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
+        }
 
-            /**
-             # AppStoreVersion.Relationships.Build.Links
-             The links to the related data and the relationship's self-link.
+        public struct CustomerReviews: Codable, Sendable {
+            public var links: RelationshipLinks?
 
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/build/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
 
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
 
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
 
-        /**
-         # AppStoreVersion.Relationships.RoutingAppCoverage
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage>
-         */
-        public struct RoutingAppCoverage: Codable, Sendable {
+        public struct GameCenterAppVersion: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -1250,7 +809,7 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -1259,13 +818,53 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreVersion.Relationships.RoutingAppCoverage.Data
-             The type and ID of a related resource.
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "gameCenterAppVersions" }
 
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/data>
-             */
+                public init(id: String) {
+                    self.id = id
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
+                }
+            }
+        }
+
+        public struct RoutingAppCoverage: Codable, Sendable {
+            @NullCodable public var data: Data?
+            public var links: RelationshipLinks?
+
+            public init(data: Data? = nil,
+                        links: RelationshipLinks? = nil)
+            {
+                self.data = data
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent(Data.self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "routingAppCoverages" }
@@ -1286,37 +885,6 @@ public struct AppStoreVersion: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # AppStoreVersion.Relationships.RoutingAppCoverage.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversion/relationships/routingappcoverage/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

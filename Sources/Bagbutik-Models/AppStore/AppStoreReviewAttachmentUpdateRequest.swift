@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewAttachmentUpdateRequest
- The request body you use to update an App Store Review Attachment.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest>
- */
 public struct AppStoreReviewAttachmentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreReviewAttachmentUpdateRequest: Codable, Sendable, RequestB
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreReviewAttachmentUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreReviewAttachments" }
@@ -60,13 +46,6 @@ public struct AppStoreReviewAttachmentUpdateRequest: Codable, Sendable, RequestB
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppStoreReviewAttachmentUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?

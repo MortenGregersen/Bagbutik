@@ -7,7 +7,7 @@ public extension Request {
      Get a list of app resource IDs to which a user on your team has access.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_visible_app_resource_ids_for_a_user>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-users-_id_-relationships-visibleApps>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

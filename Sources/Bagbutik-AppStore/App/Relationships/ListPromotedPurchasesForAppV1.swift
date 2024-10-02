@@ -7,7 +7,7 @@ public extension Request {
      Get a list of promoted in-app purchases, including promoted auto-renewable subscriptions, for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_promoted_purchases_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-promotedPurchases>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -47,6 +47,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
@@ -86,6 +87,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -99,6 +101,7 @@ public enum ListPromotedPurchasesForAppV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
         }
     }
 

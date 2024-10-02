@@ -7,7 +7,7 @@ public extension Request {
      Update a specific introductory offer for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_introductory_offer>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionIntroductoryOffers-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionIntroductoryOffer representation

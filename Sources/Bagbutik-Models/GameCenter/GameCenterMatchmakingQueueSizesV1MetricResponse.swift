@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingQueueSizesV1MetricResponse
- The response body for fetching the queue sizes.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse>
- */
 public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -36,16 +29,8 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, Sendable
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    /**
-     # GameCenterMatchmakingQueueSizesV1MetricResponse.Data
-     The data structure in a response body for queue sizes.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse/data>
-     */
     public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
-        /// The granularity of the data using the ISO 8601 format for durations.
         public var granularity: Granularity?
 
         public init(dataPoints: DataPoints? = nil,
@@ -67,17 +52,8 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, Sendable
             try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
-        /**
-         # GameCenterMatchmakingQueueSizesV1MetricResponse.Data.DataPoints
-         The key properties of the data in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse/data/datapoints>
-         */
         public struct DataPoints: Codable, Sendable {
-            /// The time Game Center ends the data collection.
             public var end: Date?
-            /// The time Game Center starts the data collection.
             public var start: Date?
             public var values: Values?
 
@@ -104,21 +80,10 @@ public struct GameCenterMatchmakingQueueSizesV1MetricResponse: Codable, Sendable
                 try container.encodeIfPresent(values, forKey: "values")
             }
 
-            /**
-             # GameCenterMatchmakingQueueSizesV1MetricResponse.Data.DataPoints.Values
-             The values of the data points.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuesizesv1metricresponse/data/datapoints/values>
-             */
             public struct Values: Codable, Sendable {
-                /// The average number of match requests in the queue.
                 public var averageNumberOfRequests: Double?
-                /// The number of match requests in the queue.
                 public var count: Int?
-                /// The number of requests in the 50th percentile.
                 public var p50NumberOfRequests: Double?
-                /// The number of requests in the 95th percentile.
                 public var p95NumberOfRequests: Double?
 
                 public init(averageNumberOfRequests: Double? = nil,

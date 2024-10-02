@@ -7,7 +7,7 @@ public extension Request {
      Edit a leaderboard set member localization.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_leaderboard_set_member_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboardSetMemberLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterLeaderboardSetMemberLocalization representation

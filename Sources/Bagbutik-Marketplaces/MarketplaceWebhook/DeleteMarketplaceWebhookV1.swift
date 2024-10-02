@@ -7,7 +7,7 @@ public extension Request {
      Delete a specific marketplace notifcation endpoint URL.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_marketplace_webhook_configuration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-marketplaceWebhooks-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

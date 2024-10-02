@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageLocalizationCreateRequest
- The request body you use to create an app custom product page localization.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationcreaterequest>
- */
 public struct AppCustomProductPageLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

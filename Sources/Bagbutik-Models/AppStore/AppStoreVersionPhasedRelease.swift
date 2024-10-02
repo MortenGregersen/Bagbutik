@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionPhasedRelease
- The data structure that represent an App Store Version Phased Releases resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease>
- */
 public struct AppStoreVersionPhasedRelease: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -41,13 +34,6 @@ public struct AppStoreVersionPhasedRelease: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # AppStoreVersionPhasedRelease.Attributes
-     Attributes that describe an App Store Version Phased Releases resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedrelease/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var currentDayNumber: Int?
         public var phasedReleaseState: PhasedReleaseState?

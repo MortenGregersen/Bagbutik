@@ -7,7 +7,7 @@ public extension Request {
      Deactivate a batch of custom offer codes for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/deactivate_custom_offer_codes>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionOfferCodeCustomCodes-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionOfferCodeCustomCode representation

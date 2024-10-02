@@ -1,18 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AlternativeDistributionPackageVersionsResponse
- A response that contains a list of alternative distribution package version resources.
-
- This object is the response that contains a list of alternative distribution package versions. For more information, see [Read version information for an alternative distribution package](https://developer.apple.com/documentation/appstoreconnectapi/read_version_information_for_an_alternative_distribution_package). The schema of the response body is below.
- ```
- {
- ```
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionsresponse>
- */
 public struct AlternativeDistributionPackageVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionPackageVersion
 

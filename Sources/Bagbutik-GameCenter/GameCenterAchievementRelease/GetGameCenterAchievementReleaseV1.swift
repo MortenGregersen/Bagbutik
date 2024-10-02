@@ -7,7 +7,7 @@ public extension Request {
      Read the state of a specific achievement release.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_game_center_achievement_release_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievementReleases-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

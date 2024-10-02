@@ -9,7 +9,7 @@ public extension Request {
      The example below requests a single disk write diagnostic log for a specific signature.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/download_logs_for_a_diagnostic_signature>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-diagnosticSignatures-_id_-logs>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

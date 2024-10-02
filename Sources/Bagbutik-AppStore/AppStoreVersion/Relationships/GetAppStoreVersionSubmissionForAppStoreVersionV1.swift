@@ -6,7 +6,7 @@ public extension Request {
      # Read the App Store Version Submission Information of an App Store Version
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_submission_information_of_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreVersionSubmission>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -56,6 +56,7 @@ public enum GetAppStoreVersionSubmissionForAppStoreVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

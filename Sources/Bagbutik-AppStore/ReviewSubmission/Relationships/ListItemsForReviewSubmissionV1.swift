@@ -7,7 +7,7 @@ public extension Request {
      List all the items in a specific review submission.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_reviewsubmissions_id_items>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-reviewSubmissions-_id_-items>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -100,6 +100,7 @@ public enum ListItemsForReviewSubmissionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

@@ -7,7 +7,7 @@ public extension Request {
      Get a specific App Clip invocation you configure for testing.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_app_clip_invocation_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaAppClipInvocations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

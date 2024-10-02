@@ -7,7 +7,7 @@ public extension Request {
      List all Git repositories Xcode Cloud can access.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_git_repositories>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmRepositories>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
@@ -32,35 +32,8 @@ public enum ListScmRepositoriesV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type scmGitReferences
-        case scmGitReferences([ScmGitReferences])
-        /// The fields to include for returned resources of type scmPullRequests
-        case scmPullRequests([ScmPullRequests])
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
-
-        public enum ScmGitReferences: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case canonicalName
-            case isDeleted
-            case kind
-            case name
-            case repository
-        }
-
-        public enum ScmPullRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case destinationBranchName
-            case destinationRepositoryName
-            case destinationRepositoryOwner
-            case isClosed
-            case isCrossRepository
-            case number
-            case repository
-            case sourceBranchName
-            case sourceRepositoryName
-            case sourceRepositoryOwner
-            case title
-            case webUrl
-        }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
             case defaultBranch
@@ -88,6 +61,8 @@ public enum ListScmRepositoriesV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case defaultBranch
+        case gitReferences
+        case pullRequests
         case scmProvider
     }
 }

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # MarketplaceSearchDetailUpdateRequest
- The request body you use to update an alternative marketplace search detail.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetailupdaterequest>
- */
 public struct MarketplaceSearchDetailUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

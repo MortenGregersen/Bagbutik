@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewAttachment
- The data structure that represent an App Store Review Attachments resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment>
- */
 public struct AppStoreReviewAttachment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -46,13 +39,6 @@ public struct AppStoreReviewAttachment: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # AppStoreReviewAttachment.Attributes
-     Attributes that describe an App Store Review Attachments resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var assetDeliveryState: AppMediaAssetState?
         public var fileName: String?
@@ -92,13 +78,6 @@ public struct AppStoreReviewAttachment: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # AppStoreReviewAttachment.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships>
-     */
     public struct Relationships: Codable, Sendable {
         public var appStoreReviewDetail: AppStoreReviewDetail?
 
@@ -116,43 +95,23 @@ public struct AppStoreReviewAttachment: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appStoreReviewDetail, forKey: "appStoreReviewDetail")
         }
 
-        /**
-         # AppStoreReviewAttachment.Relationships.AppStoreReviewDetail
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships/appstorereviewdetail>
-         */
         public struct AppStoreReviewDetail: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreReviewAttachment.Relationships.AppStoreReviewDetail.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships/appstorereviewdetail/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewDetails" }
@@ -173,37 +132,6 @@ public struct AppStoreReviewAttachment: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # AppStoreReviewAttachment.Relationships.AppStoreReviewDetail.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment/relationships/appstorereviewdetail/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

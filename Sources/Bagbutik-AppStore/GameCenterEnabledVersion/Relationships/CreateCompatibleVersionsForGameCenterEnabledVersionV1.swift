@@ -6,7 +6,7 @@ public extension Request {
      # Add Compatible Versions to a Game Center Enabled Version
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_compatible_versions_to_a_game_center_enabled_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterEnabledVersions-_id_-relationships-compatibleVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewDetailResponse
- A response that contains a single App Store Review Details resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailresponse>
- */
 public struct AppStoreReviewDetailResponse: Codable, Sendable {
     public let data: AppStoreReviewDetail
     public var included: [Included]?

@@ -6,7 +6,7 @@ public extension Request {
      # POST /v1/appEvents
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appevents>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEvents>
 
      - Parameter requestBody: AppEvent representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

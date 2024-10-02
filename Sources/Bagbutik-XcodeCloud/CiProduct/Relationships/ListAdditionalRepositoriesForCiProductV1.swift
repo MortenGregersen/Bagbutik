@@ -7,7 +7,7 @@ public extension Request {
      List all additional Git repositories you associated with an Xcode Cloud product.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_additional_repositories_for_an_xcode_cloud_product>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_-additionalRepositories>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -81,6 +81,8 @@ public enum ListAdditionalRepositoriesForCiProductV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case defaultBranch
+        case gitReferences
+        case pullRequests
         case scmProvider
     }
 }

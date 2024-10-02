@@ -7,7 +7,7 @@ public extension Request {
      Get a list of Sandbox Testers for your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_sandbox_testers>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-sandboxTesters>
 
      - Parameter fields: Fields to return for included related types
      - Parameter limit: Maximum resources per page - maximum 200

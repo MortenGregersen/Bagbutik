@@ -7,7 +7,7 @@ public extension Request {
      Get a list of customer reviews for a specific version of your app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-customerReviews>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -9,7 +9,7 @@ public extension Request {
      The example request below lists Xcode versions available in Xcode Cloud for a specific macOS version. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_available_xcode_versions_for_a_macos_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciMacOsVersions-_id_-xcodeVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all App Store versions of an app across all platforms.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_store_versions_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appStoreVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -56,6 +56,8 @@ public enum ListAppStoreVersionsForAppV1 {
         case apps([Apps])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
+        /// The fields to include for returned resources of type gameCenterAppVersions
+        case gameCenterAppVersions([GameCenterAppVersions])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
@@ -68,6 +70,8 @@ public enum ListAppStoreVersionsForAppV1 {
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
+            case koreaAgeRatingOverride
+            case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
@@ -167,6 +171,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType
@@ -178,6 +183,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -212,6 +218,7 @@ public enum ListAppStoreVersionsForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
@@ -245,6 +252,12 @@ public enum ListAppStoreVersionsForAppV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
+        }
+
+        public enum GameCenterAppVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreVersion
+            case compatibilityVersions
+            case enabled
         }
 
         public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -289,6 +302,8 @@ public enum ListAppStoreVersionsForAppV1 {
         case appStoreVersionPhasedRelease
         case appStoreVersionSubmission
         case build
+        case customerReviews
+        case gameCenterAppVersion
         case routingAppCoverage
     }
 

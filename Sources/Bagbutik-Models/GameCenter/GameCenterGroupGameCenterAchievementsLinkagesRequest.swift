@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterGroupGameCenterAchievementsLinkagesRequest
- The request body you use to create a relationship between a group and an achievement.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterachievementslinkagesrequest>
- */
 public struct GameCenterGroupGameCenterAchievementsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

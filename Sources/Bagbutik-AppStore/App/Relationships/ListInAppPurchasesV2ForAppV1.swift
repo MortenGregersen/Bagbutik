@@ -7,7 +7,7 @@ public extension Request {
      Get a list of the in-app purchases for a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-inAppPurchasesV2>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -43,6 +43,8 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case inAppPurchaseAvailabilities([InAppPurchaseAvailabilities])
         /// The fields to include for returned resources of type inAppPurchaseContents
         case inAppPurchaseContents([InAppPurchaseContents])
+        /// The fields to include for returned resources of type inAppPurchaseImages
+        case inAppPurchaseImages([InAppPurchaseImages])
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
         case inAppPurchaseLocalizations([InAppPurchaseLocalizations])
         /// The fields to include for returned resources of type inAppPurchasePriceSchedules
@@ -79,6 +81,18 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case url
         }
 
+        public enum InAppPurchaseImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case inAppPurchase
+            case sourceFileChecksum
+            case state
+            case uploadOperations
+            case uploaded
+        }
+
         public enum InAppPurchaseLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case description
             case inAppPurchaseV2
@@ -101,10 +115,12 @@ public enum ListInAppPurchasesV2ForAppV1 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
             case name
+            case pricePoints
             case productId
             case promotedPurchase
             case reviewNote
@@ -143,6 +159,7 @@ public enum ListInAppPurchasesV2ForAppV1 {
         case appStoreReviewScreenshot
         case content
         case iapPriceSchedule
+        case images
         case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
         case pricePoints
@@ -163,6 +180,8 @@ public enum ListInAppPurchasesV2ForAppV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related images returned (when they are included) - maximum 50
+        case images(Int)
         /// Maximum number of related inAppPurchaseLocalizations returned (when they are included) - maximum 50
         case inAppPurchaseLocalizations(Int)
         /// Maximum resources per page - maximum 200

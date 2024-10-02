@@ -7,7 +7,7 @@ public extension Request {
      Delete an image that’s associated with a leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_leaderboard_set_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterLeaderboardSetImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

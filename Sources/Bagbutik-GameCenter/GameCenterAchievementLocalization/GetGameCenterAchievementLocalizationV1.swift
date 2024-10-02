@@ -7,7 +7,7 @@ public extension Request {
      Read localized information for a specific locale for a specific achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_achievement_localization_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievementLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

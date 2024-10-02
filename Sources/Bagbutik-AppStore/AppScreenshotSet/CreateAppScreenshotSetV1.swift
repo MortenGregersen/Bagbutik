@@ -7,7 +7,7 @@ public extension Request {
      Add a new screenshot set to an App Store version localization for a specific screenshot type and display size.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_screenshot_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appScreenshotSets>
 
      - Parameter requestBody: AppScreenshotSet representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

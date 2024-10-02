@@ -7,7 +7,7 @@ public extension Request {
      Get information about a review screenshot for a specific in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_review_screenshot_information_for_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-inAppPurchases-_id_-appStoreReviewScreenshot>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -53,6 +53,7 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of one-time use offer codes for an auto-renewable subscription in CSV format.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_one-time_use_offer_code_values>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionOfferCodeOneTimeUseCodes-_id_-values>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

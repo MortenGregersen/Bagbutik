@@ -7,7 +7,7 @@ public extension Request {
      List all localizations for an app custom product page.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpageversions_id_appcustomproductpagelocalizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPageVersions-_id_-appCustomProductPageLocalizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

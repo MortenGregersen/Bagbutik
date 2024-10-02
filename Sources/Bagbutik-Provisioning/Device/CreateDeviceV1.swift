@@ -7,7 +7,7 @@ public extension Request {
      Register a new device for app development.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/register_a_new_device>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-devices>
 
      - Parameter requestBody: Device representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

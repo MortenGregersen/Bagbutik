@@ -6,7 +6,7 @@ public extension Request {
      # Remove Compatible Versions from a Game Center Enabled Version
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/remove_compatible_versions_from_a_game_center_enabled_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterEnabledVersions-_id_-relationships-compatibleVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

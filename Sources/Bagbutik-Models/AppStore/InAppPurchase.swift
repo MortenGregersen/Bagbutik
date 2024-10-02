@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # InAppPurchase
- The data structure that represents the In-App Purchases resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>
- */
 public struct InAppPurchase: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -46,13 +39,6 @@ public struct InAppPurchase: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # InAppPurchase.Attributes
-     Attributes that describe an In-App Purchases resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var inAppPurchaseType: InAppPurchaseType?
         public var productId: String?
@@ -117,13 +103,6 @@ public struct InAppPurchase: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # InAppPurchase.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships>
-     */
     public struct Relationships: Codable, Sendable {
         public var apps: Apps?
 
@@ -141,48 +120,29 @@ public struct InAppPurchase: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(apps, forKey: "apps")
         }
 
-        /**
-         # InAppPurchase.Relationships.Apps
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps>
-         */
         public struct Apps: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
-                self.links = links
                 self.meta = meta
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            /**
-             # InAppPurchase.Relationships.Apps.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "apps" }
@@ -203,37 +163,6 @@ public struct InAppPurchase: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # InAppPurchase.Relationships.Apps.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase/relationships/apps/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

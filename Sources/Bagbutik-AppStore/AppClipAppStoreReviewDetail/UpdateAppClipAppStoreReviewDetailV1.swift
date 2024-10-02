@@ -7,7 +7,7 @@ public extension Request {
      Update App Clip metadata you provide to App Store Review.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_app_store_review_details_for_an_app_clip>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipAppStoreReviewDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppClipAppStoreReviewDetail representation

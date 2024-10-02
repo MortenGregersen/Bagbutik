@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterDetailGameCenterLeaderboardSetsLinkagesResponse
- A response that confirms a relationship between a Game Center detail and leaderboard set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailgamecenterleaderboardsetslinkagesresponse>
- */
 public struct GameCenterDetailGameCenterLeaderboardSetsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

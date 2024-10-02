@@ -7,7 +7,7 @@ public extension Request {
      Enable a capability for a bundle ID.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/enable_a_capability>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-bundleIdCapabilities>
 
      - Parameter requestBody: BundleIdCapability representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

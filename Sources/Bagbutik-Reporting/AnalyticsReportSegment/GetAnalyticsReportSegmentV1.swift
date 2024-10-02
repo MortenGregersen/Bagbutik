@@ -9,7 +9,7 @@ public extension Request {
      To learn more about interpreting the data using the glossary of report fields and definitions, see [Analytics Reports](https://developer.apple.com/documentation/analytics-reports).
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_details_for_a_report_segment>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReportSegments-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

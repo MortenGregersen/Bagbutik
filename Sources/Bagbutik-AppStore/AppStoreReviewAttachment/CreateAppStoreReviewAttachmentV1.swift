@@ -7,7 +7,7 @@ public extension Request {
      Attach a document for App Review to an App Store version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_review_attachment>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreReviewAttachments>
 
      - Parameter requestBody: AppStoreReviewAttachment representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

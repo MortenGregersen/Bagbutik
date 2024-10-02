@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageUpdateRequest
- The request body you use to update an app custom product page.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageupdaterequest>
- */
 public struct AppCustomProductPageUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

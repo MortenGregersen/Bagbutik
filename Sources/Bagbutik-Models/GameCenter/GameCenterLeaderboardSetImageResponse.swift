@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardSetImageResponse
- A response that contains a single leaderboard set image resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetimageresponse>
- */
 public struct GameCenterLeaderboardSetImageResponse: Codable, Sendable {
     public let data: GameCenterLeaderboardSetImage
     public var included: [GameCenterLeaderboardSetLocalization]?

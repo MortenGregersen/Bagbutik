@@ -7,7 +7,7 @@ public extension Request {
      Modify the group leadboard to which a leaderboard belongs.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/edit_the_relationship_between_a_leaderboard_and_a_group_leaderboard>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboards-_id_-relationships-groupLeaderboard>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: Related linkage

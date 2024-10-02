@@ -7,7 +7,7 @@ public extension Request {
      End the pre-order for your app and release to store immediately.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/end_an_app_pre-order>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-endAppAvailabilityPreOrders>
 
      - Parameter requestBody: EndAppAvailabilityPreOrder representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Modify the details of a leaderboard.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/edit_a_leaderboard>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboards-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterLeaderboard representation

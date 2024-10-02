@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingRuleErrorsV1MetricResponse
- The response body for fetching the rule errors.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse>
- */
 public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -36,17 +29,9 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    /**
-     # GameCenterMatchmakingRuleErrorsV1MetricResponse.Data
-     The data structure in a response body for the rule errors.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data>
-     */
     public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
-        /// The granularity of the data using the ISO 8601 format for durations.
         public var granularity: Granularity?
 
         public init(dataPoints: DataPoints? = nil,
@@ -72,17 +57,8 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable
             try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
-        /**
-         # GameCenterMatchmakingRuleErrorsV1MetricResponse.Data.DataPoints
-         The key properties of the data in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/datapoints>
-         */
         public struct DataPoints: Codable, Sendable {
-            /// The time Game Center ends the data collection.
             public var end: Date?
-            /// The time Game Center starts the data collection.
             public var start: Date?
             public var values: Values?
 
@@ -109,15 +85,7 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable
                 try container.encodeIfPresent(values, forKey: "values")
             }
 
-            /**
-             # GameCenterMatchmakingRuleErrorsV1MetricResponse.Data.DataPoints.Values
-             The values of the data points.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/datapoints/values>
-             */
             public struct Values: Codable, Sendable {
-                /// The number of rule errors in the response.
                 public var count: Int?
 
                 public init(count: Int? = nil) {
@@ -136,13 +104,6 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable
             }
         }
 
-        /**
-         # GameCenterMatchmakingRuleErrorsV1MetricResponse.Data.Dimensions
-         The details of the data in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/dimensions>
-         */
         public struct Dimensions: Codable, Sendable {
             public var gameCenterMatchmakingQueue: GameCenterMatchmakingQueue?
 
@@ -160,41 +121,31 @@ public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable
                 try container.encodeIfPresent(gameCenterMatchmakingQueue, forKey: "gameCenterMatchmakingQueue")
             }
 
-            /**
-             # GameCenterMatchmakingRuleErrorsV1MetricResponse.Data.Dimensions.GameCenterMatchmakingQueue
-             The links to the details of the rule errors.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/dimensions/gamecentermatchmakingqueue>
-             */
             public struct GameCenterMatchmakingQueue: Codable, Sendable {
+                public var data: String?
                 public var links: Links?
 
-                public init(links: Links? = nil) {
+                public init(data: String? = nil,
+                            links: Links? = nil)
+                {
+                    self.data = data
                     self.links = links
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(String.self, forKey: "data")
                     links = try container.decodeIfPresent(Links.self, forKey: "links")
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(data, forKey: "data")
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 
-                /**
-                 # GameCenterMatchmakingRuleErrorsV1MetricResponse.Data.Dimensions.GameCenterMatchmakingQueue.Links
-                 The link representation of the results.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse/data/dimensions/gamecentermatchmakingqueue/links>
-                 */
                 public struct Links: Codable, Sendable {
-                    /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
-                    /// A string URI representation of the related data.
                     public var related: String?
 
                     public init(groupBy: String? = nil,

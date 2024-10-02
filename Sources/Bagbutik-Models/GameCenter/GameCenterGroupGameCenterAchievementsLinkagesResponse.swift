@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterGroupGameCenterAchievementsLinkagesResponse
- A response that confirms a relationship between a group and an achievement.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterachievementslinkagesresponse>
- */
 public struct GameCenterGroupGameCenterAchievementsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

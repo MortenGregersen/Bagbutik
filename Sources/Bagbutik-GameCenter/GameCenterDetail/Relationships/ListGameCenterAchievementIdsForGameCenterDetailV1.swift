@@ -7,7 +7,7 @@ public extension Request {
      List the achievements for a Game center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_achievements>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-relationships-gameCenterAchievements>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

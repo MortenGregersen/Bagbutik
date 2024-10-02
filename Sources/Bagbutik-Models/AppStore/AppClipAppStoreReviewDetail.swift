@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipAppStoreReviewDetail
- The data structure that represents an App Clip App Store Review Details resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail>
- */
 public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an App Clip App Store Review Details resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipAppStoreReviewDetails" }
-    /// The attributes that describe the App Clip App Store Review Details resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,15 +39,7 @@ public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # AppClipAppStoreReviewDetail.Attributes
-     The attributes that describe the App Clip App Store Review Details resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// An array of invocation URLs for your App Clip.
         public var invocationUrls: [String]?
 
         public init(invocationUrls: [String]? = nil) {
@@ -77,15 +57,7 @@ public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # AppClipAppStoreReviewDetail.Relationships
-     The relationships of the App Clip App Store Details resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships>
-     */
     public struct Relationships: Codable, Sendable {
-        /// The related Default App Clip Experiences resource.
         public var appClipDefaultExperience: AppClipDefaultExperience?
 
         public init(appClipDefaultExperience: AppClipDefaultExperience? = nil) {
@@ -102,49 +74,25 @@ public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appClipDefaultExperience, forKey: "appClipDefaultExperience")
         }
 
-        /**
-         # AppClipAppStoreReviewDetail.Relationships.AppClipDefaultExperience
-         The data and links that describe the relationship between the App Clip App Store Review Details and the Default App Clip Experiences resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience>
-         */
         public struct AppClipDefaultExperience: Codable, Sendable {
-            /// The ID and type of the related Default App Clip Experiences resource.
             @NullCodable public var data: Data?
-            /// Navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppClipAppStoreReviewDetail.Relationships.AppClipDefaultExperience.Data
-             The links to the related Default App Clip Experiences resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appClipDefaultExperiences" }
 
                 public init(id: String) {
@@ -163,39 +111,6 @@ public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # AppClipAppStoreReviewDetail.Relationships.AppClipDefaultExperience.Links
-             The type and ID of a related Default App Clip Experiences resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail/relationships/appclipdefaultexperience/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

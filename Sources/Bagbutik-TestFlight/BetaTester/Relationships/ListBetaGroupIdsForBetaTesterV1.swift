@@ -7,7 +7,7 @@ public extension Request {
      Get a list of group resource IDs associated with a beta tester.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_beta_group_ids_of_a_beta_tester_s_groups>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-relationships-betaGroups>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

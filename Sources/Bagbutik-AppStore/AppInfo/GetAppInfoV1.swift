@@ -4,12 +4,12 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read App Info Information
-     Read App Store information including your App Store state, age ratings, Brazil age rating, and kids' age band.
+     Read App Store information including your App Store state, age ratings, Brazil age rating, and kids’ age band.
 
-     For request and response examples for reading an age rating declaration, see [GET /v1/appInfos/{id}/ageRatingDeclaration](https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appinfos_id_ageratingdeclaration).
+     For request and response examples for reading an age rating declaration, see [GET /v1/appInfos/{id}/ageRatingDeclaration](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appinfos-_id_-ageratingdeclaration).
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -51,6 +51,8 @@ public enum GetAppInfoV1 {
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
+            case koreaAgeRatingOverride
+            case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
@@ -85,9 +87,11 @@ public enum GetAppInfoV1 {
             case appInfoLocalizations
             case appStoreAgeRating
             case appStoreState
+            case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
             case kidsAgeBand
+            case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
             case primarySubcategoryTwo

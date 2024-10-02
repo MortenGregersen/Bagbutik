@@ -7,7 +7,7 @@ public extension Request {
      Get information for a specific App Store version experiment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_experiment_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-appStoreVersionExperiments-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

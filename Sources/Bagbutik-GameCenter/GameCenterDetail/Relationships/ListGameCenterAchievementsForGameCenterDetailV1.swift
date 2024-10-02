@@ -7,7 +7,7 @@ public extension Request {
      List all achievement information for a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_achievements>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-gameCenterAchievements>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

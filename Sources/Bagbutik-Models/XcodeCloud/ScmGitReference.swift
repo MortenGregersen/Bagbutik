@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # ScmGitReference
- The data structure that represents a Git References resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>
- */
 public struct ScmGitReference: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Git References resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "scmGitReferences" }
-    /// The attributes that describe the Git References resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,21 +39,10 @@ public struct ScmGitReference: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # ScmGitReference.Attributes
-     The attributes that describe a Git Reference resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// The canonical name of the Git reference.
         public var canonicalName: String?
-        /// A Boolean value that indicates whether the Git reference was deleted.
         public var isDeleted: Bool?
-        /// A value that indicates whether the Git reference is a tag or a branch.
         public var kind: CiGitRefKind?
-        /// The name of the Git reference.
         public var name: String?
 
         public init(canonicalName: String? = nil,
@@ -96,15 +73,7 @@ public struct ScmGitReference: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # ScmGitReference.Relationships
-     The relationships of the Git References resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships>
-     */
     public struct Relationships: Codable, Sendable {
-        /// The related Repositories resource.
         public var repository: Repository?
 
         public init(repository: Repository? = nil) {
@@ -121,49 +90,25 @@ public struct ScmGitReference: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(repository, forKey: "repository")
         }
 
-        /**
-         # ScmGitReference.Relationships.Repository
-         The data and links that describe the relationship between the Git References and the Repositories resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository>
-         */
         public struct Repository: Codable, Sendable {
-            /// The ID and type of the related Repositories resource.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # ScmGitReference.Relationships.Repository.Data
-             The type and ID of a related Repositories resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmRepositories" }
 
                 public init(id: String) {
@@ -182,39 +127,6 @@ public struct ScmGitReference: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # ScmGitReference.Relationships.Repository.Links
-             The links to the related Repositories resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference/relationships/repository/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

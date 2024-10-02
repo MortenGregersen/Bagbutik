@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingAppRequestsV1MetricResponse
- The response body for fetching a match request.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse>
- */
 public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -36,17 +29,9 @@ public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, Sendabl
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    /**
-     # GameCenterMatchmakingAppRequestsV1MetricResponse.Data
-     The data structure in a response body for a match request.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse/data>
-     */
     public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
-        /// The granularity of the data using the ISO 8601 format for durations.
         public var granularity: Granularity?
 
         public init(dataPoints: DataPoints? = nil,
@@ -72,17 +57,8 @@ public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, Sendabl
             try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
-        /**
-         # GameCenterMatchmakingAppRequestsV1MetricResponse.Data.DataPoints
-         The data properties in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse/data/datapoints>
-         */
         public struct DataPoints: Codable, Sendable {
-            /// The time Game Center ends the data collection.
             public var end: Date?
-            /// The time Game Center starts the data collection.
             public var start: Date?
             public var values: Values?
 
@@ -109,21 +85,10 @@ public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, Sendabl
                 try container.encodeIfPresent(values, forKey: "values")
             }
 
-            /**
-             # GameCenterMatchmakingAppRequestsV1MetricResponse.Data.DataPoints.Values
-             The values of the data points.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse/data/datapoints/values>
-             */
             public struct Values: Codable, Sendable {
-                /// The average seconds that match requests are in the queue.
                 public var averageSecondsInQueue: Double?
-                /// The number of match requests in the response.
                 public var count: Int?
-                /// The number of seconds the 50th percentile of the match requests are in the queue.
                 public var p50SecondsInQueue: Double?
-                /// The number of seconds that the 95th percentile of the match requests are in the queue.
                 public var p95SecondsInQueue: Double?
 
                 public init(averageSecondsInQueue: Double? = nil,
@@ -155,13 +120,6 @@ public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, Sendabl
             }
         }
 
-        /**
-         # GameCenterMatchmakingAppRequestsV1MetricResponse.Data.Dimensions
-         The details of the data in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse/data/dimensions>
-         */
         public struct Dimensions: Codable, Sendable {
             public var result: Result?
 
@@ -179,39 +137,36 @@ public struct GameCenterMatchmakingAppRequestsV1MetricResponse: Codable, Sendabl
                 try container.encodeIfPresent(result, forKey: "result")
             }
 
-            /**
-             # GameCenterMatchmakingAppRequestsV1MetricResponse.Data.Dimensions.Result
-             The links to the details of the data.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse/data/dimensions/result>
-             */
             public struct Result: Codable, Sendable {
+                @NullCodable public var data: Data?
                 public var links: Links?
 
-                public init(links: Links? = nil) {
+                public init(data: Data? = nil,
+                            links: Links? = nil)
+                {
+                    self.data = data
                     self.links = links
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
                     links = try container.decodeIfPresent(Links.self, forKey: "links")
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 
-                /**
-                 # GameCenterMatchmakingAppRequestsV1MetricResponse.Data.Dimensions.Result.Links
-                 The link representation of the results.
+                public enum Data: String, Sendable, Codable, CaseIterable {
+                    case canceled = "CANCELED"
+                    case expired = "EXPIRED"
+                    case matched = "MATCHED"
+                }
 
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingapprequestsv1metricresponse/data/dimensions/result/links>
-                 */
                 public struct Links: Codable, Sendable {
-                    /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
 
                     public init(groupBy: String? = nil) {

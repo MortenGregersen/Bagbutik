@@ -6,10 +6,10 @@ public extension Request {
      # Download Finance Reports
      Download finance reports filtered by your specified criteria.
 
-     For more information see [Download financial reports](https://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports).
+     For more information see [Download financial reports](https://developer.apple.comhttps://developer.apple.com/help/app-store-connect/getting-paid/download-financial-reports).
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/download_finance_reports>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-financeReports>
 
      - Parameter filters: Attributes, relationships, and IDs by which to filter
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
@@ -23,7 +23,7 @@ public enum GetFinanceReportsV1 {
     /**
      Attributes, relationships, and IDs by which to filter.
 
-     Required: `regionCode`, `reportDate`, `reportType`, `vendorNumber`
+     Required: `vendorNumber`, `reportType`, `regionCode`, `reportDate`
      */
     public enum Filter: FilterParameter {
         /// Filter by attribute 'regionCode'

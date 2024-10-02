@@ -7,7 +7,7 @@ public extension Request {
      Read information about the release for specific achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_localizations_for_an_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievements-_id_-localizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppMediaAssetState
- The state of an app or media upload, including any errors and warnings.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appmediaassetstate>
- */
 public struct AppMediaAssetState: Codable, Sendable {
     public var errors: [AppMediaStateError]?
     public var state: State?

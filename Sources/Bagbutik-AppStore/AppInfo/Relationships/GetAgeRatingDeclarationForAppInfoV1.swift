@@ -9,7 +9,7 @@ public extension Request {
      Responses for this endpoint include the `gamblingAndContests` attribute for legacy clients. For new clients, use `contents` or `gambling` properties instead. For example, in an app that has a `FREQUENT_OR_INTENSE` declaration for contests, the age rating for the `AppInfos` is 12+. If you declare a value of true for `gamblingAndContests` instead, the age rating for the `AppInfos` is 17+.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_age_rating_declaration_for_an_app_info>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-ageRatingDeclaration>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -39,6 +39,8 @@ public enum GetAgeRatingDeclarationForAppInfoV1 {
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
+            case koreaAgeRatingOverride
+            case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor

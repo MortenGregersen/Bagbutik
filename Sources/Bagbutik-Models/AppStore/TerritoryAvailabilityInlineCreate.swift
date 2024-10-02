@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # TerritoryAvailabilityInlineCreate
- The request body you use to create a territory availability.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityinlinecreate>
- */
 public struct TerritoryAvailabilityInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "territoryAvailabilities" }

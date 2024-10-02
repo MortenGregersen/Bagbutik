@@ -7,7 +7,7 @@ public extension Request {
      Create an in-app purchase, including a consumable, non-consumable, or non-renewing subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v2-inAppPurchases>
 
      - Parameter requestBody: InAppPurchase representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

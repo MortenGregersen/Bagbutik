@@ -7,7 +7,7 @@ public extension Request {
      Update the order of promoted purchases.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_order_of_a_promoted_purchase_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-apps-_id_-relationships-promotedPurchases>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

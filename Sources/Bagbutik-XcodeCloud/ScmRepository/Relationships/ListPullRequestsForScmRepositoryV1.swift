@@ -7,7 +7,7 @@ public extension Request {
      List all pull requests for a specific repository that Xcode Cloud can access.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_pull_requests_for_a_repository>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmRepositories-_id_-pullRequests>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

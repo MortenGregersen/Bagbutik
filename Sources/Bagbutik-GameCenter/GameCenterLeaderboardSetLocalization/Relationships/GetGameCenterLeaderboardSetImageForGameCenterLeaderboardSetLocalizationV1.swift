@@ -7,7 +7,7 @@ public extension Request {
      Get information about a leaderboard set image associated with a leaderboard set localization.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_image_associated_with_a_leaderboard_set_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSetLocalizations-_id_-gameCenterLeaderboardSetImage>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

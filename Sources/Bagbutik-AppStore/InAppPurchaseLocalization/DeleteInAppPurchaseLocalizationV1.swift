@@ -7,7 +7,7 @@ public extension Request {
      Delete the metadata for a single in-app purchase localization.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_in-app_purchase_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-inAppPurchaseLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

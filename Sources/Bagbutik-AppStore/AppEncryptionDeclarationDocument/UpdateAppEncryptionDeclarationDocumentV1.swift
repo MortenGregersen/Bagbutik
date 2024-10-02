@@ -7,7 +7,7 @@ public extension Request {
      Commit an App Encryption Declaration Document after uploading it.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_encryption_declaration_document>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appEncryptionDeclarationDocuments-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppEncryptionDeclarationDocument representation

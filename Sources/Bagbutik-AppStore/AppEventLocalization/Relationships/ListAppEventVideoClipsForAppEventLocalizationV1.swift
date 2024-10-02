@@ -6,7 +6,7 @@ public extension Request {
      # GET /v1/appEventLocalizations/{id}/appEventVideoClips
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventlocalizations_id_appeventvideoclips>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventLocalizations-_id_-appEventVideoClips>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of reports generated from a specific analytics report request.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_reports_for_a_specific_request>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReportRequests-_id_-reports>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

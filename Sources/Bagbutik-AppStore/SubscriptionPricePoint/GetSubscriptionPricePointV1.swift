@@ -7,7 +7,7 @@ public extension Request {
      Get details about a specific subscription price point.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_price_point_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionPricePoints-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -45,6 +45,7 @@ public enum GetSubscriptionPricePointV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case equalizations
         case territory
     }
 }

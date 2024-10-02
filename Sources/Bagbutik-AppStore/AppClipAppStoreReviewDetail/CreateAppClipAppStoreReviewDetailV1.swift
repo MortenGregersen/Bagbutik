@@ -7,7 +7,7 @@ public extension Request {
      Provide App Clip metadata required by App Store Review.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_app_store_review_details_for_an_app_clip>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appClipAppStoreReviewDetails>
 
      - Parameter requestBody: AppClipAppStoreReviewDetail representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

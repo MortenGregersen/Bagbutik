@@ -7,7 +7,7 @@ public extension Request {
      Update the territories where an app will be available.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_territory_availability_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appAvailabilities>
 
      - Parameter requestBody: AppAvailability representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

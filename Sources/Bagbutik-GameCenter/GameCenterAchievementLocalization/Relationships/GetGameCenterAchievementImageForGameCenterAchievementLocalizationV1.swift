@@ -7,7 +7,7 @@ public extension Request {
      Read the achievement image associated with specific localized information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_image_for_a_specific_achievement_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievementLocalizations-_id_-gameCenterAchievementImage>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

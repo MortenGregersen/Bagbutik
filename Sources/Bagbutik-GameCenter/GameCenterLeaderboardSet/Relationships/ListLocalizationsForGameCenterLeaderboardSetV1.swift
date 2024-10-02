@@ -7,7 +7,7 @@ public extension Request {
      Get a list of localized metadata for a leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_localizations_for_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSets-_id_-localizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

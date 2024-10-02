@@ -7,7 +7,7 @@ public extension Request {
      Modify localized app-level information for a particular language.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_info_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appInfoLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppInfoLocalization representation

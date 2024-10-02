@@ -7,7 +7,7 @@ public extension Request {
      Change the Boolean value representing the billing grace period opt-in status.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_grace_period_opt-in_status>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionGracePeriods-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionGracePeriod representation

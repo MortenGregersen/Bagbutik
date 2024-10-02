@@ -7,7 +7,7 @@ public extension Request {
      Get errors that occur for a specific matchmaking rule.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_matchmaking_rule_errors>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRules-_id_-metrics-matchmakingRuleErrors>
 
      - Parameter id: The id of the requested resource
      - Parameter filters: Attributes, relationships, and IDs by which to filter

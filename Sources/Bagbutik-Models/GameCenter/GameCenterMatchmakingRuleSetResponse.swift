@@ -1,17 +1,8 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingRuleSetResponse
- The response body for endpoints that create, modify, or get a single rule.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetresponse>
- */
 public struct GameCenterMatchmakingRuleSetResponse: Codable, Sendable {
-    /// The rule set that you create, modify, or get.
     public let data: GameCenterMatchmakingRuleSet
-    /// The related objects included in the response.
     public var included: [Included]?
     public let links: DocumentLinks
 

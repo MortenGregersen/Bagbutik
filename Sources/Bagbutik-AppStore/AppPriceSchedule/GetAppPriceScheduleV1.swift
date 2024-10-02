@@ -7,7 +7,7 @@ public extension Request {
      List the price schedule details for a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_an_app_s_price_schedule_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPriceSchedules-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Update the name and visibility status of an app custom product page.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_appcustomproductpages_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appCustomProductPages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppCustomProductPage representation

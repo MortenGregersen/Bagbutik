@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # InAppPurchasesResponse
- A response that contains a list of In-App Purchases resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchasesresponse>
- */
 public struct InAppPurchasesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = InAppPurchase
 

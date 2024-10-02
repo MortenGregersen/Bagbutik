@@ -7,7 +7,7 @@ public extension Request {
      Create a queue and add it to a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_queue>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterMatchmakingQueues>
 
      - Parameter requestBody: GameCenterMatchmakingQueue representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

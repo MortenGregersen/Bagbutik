@@ -7,7 +7,7 @@ public extension Request {
      List all the App Store territories to which a specific custom app license agreement applies.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_territories_for_an_end_user_license_agreement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-endUserLicenseAgreements-_id_-territories>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Get the image that appears on the App Clip card, specific to a locale, for a default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_clip_card_image_information_for_a_localized_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperienceLocalizations-_id_-appClipHeaderImage>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

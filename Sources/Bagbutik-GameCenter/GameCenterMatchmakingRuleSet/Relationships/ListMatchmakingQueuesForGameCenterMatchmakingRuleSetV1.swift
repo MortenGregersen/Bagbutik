@@ -7,7 +7,7 @@ public extension Request {
      Get information about queues that belong to a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_queues_in_a_rule_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRuleSets-_id_-matchmakingQueues>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

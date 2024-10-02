@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest
- The request body you use to create a relationship between a leaderboard set and a leaderboard.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetgamecenterleaderboardslinkagesrequest>
- */
 public struct GameCenterLeaderboardSetGameCenterLeaderboardsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

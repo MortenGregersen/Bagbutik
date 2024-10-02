@@ -7,7 +7,7 @@ public extension Request {
      Update a default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipDefaultExperiences-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppClipDefaultExperience representation

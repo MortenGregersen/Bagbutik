@@ -7,7 +7,7 @@ public extension Request {
      Find and list certificates and download their data.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_and_download_certificates>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-certificates>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

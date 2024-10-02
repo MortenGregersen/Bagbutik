@@ -1,22 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # UsersResponse
- A response that contains a list of Users resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/usersresponse>
- */
 public struct UsersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = User
 
-    /// The resource data.
     public let data: [User]
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [User],

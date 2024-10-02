@@ -7,7 +7,7 @@ public extension Request {
      List associated group achievements for a specific achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_group_achievements_for_an_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAchievements-_id_-relationships-groupAchievement>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

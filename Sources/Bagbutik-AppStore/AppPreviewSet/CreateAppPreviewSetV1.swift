@@ -7,7 +7,7 @@ public extension Request {
      Add a new app preview set to an App Store version localization for a specific app preview type and display size.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_preview_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appPreviewSets>
 
      - Parameter requestBody: AppPreviewSet representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

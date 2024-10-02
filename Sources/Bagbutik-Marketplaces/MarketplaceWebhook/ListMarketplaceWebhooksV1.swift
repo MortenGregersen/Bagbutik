@@ -7,7 +7,7 @@ public extension Request {
      Get the endpoint URL for alternative distribution package notifications.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_marketplace_webhook_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplaceWebhooks>
 
      - Parameter fields: Fields to return for included related types
      - Parameter limit: Maximum resources per page - maximum 200

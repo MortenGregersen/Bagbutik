@@ -7,7 +7,7 @@ public extension Request {
      Read list of all the granularity options for a specific type of analytics report.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_a_list_of_instances_of_a_report>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReports-_id_-instances>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

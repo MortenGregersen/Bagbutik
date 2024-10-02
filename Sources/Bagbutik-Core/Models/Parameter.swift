@@ -1,14 +1,6 @@
 import Foundation
 
-/**
- # Parameter
- An object that contains the query parameter that produced the error.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/parameter>
- */
 public struct Parameter: Codable, Sendable {
-    /// The query parameter that produced the error.
     public let parameter: String
 
     public init(parameter: String) {

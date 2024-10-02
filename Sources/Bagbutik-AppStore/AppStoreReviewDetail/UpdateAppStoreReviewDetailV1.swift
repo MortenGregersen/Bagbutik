@@ -7,7 +7,7 @@ public extension Request {
      Update the app store review details, including the contact information, demo account, and notes.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_store_review_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreReviewDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppStoreReviewDetail representation

@@ -7,7 +7,7 @@ public extension Request {
      Get information about all rule sets and their associated objects.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_rule_sets>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRuleSets>
 
      - Parameter fields: Fields to return for included related types
      - Parameter includes: Relationship data to include in the response

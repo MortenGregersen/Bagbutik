@@ -6,7 +6,7 @@ public extension Request {
      # GET /v1/appEvents/{id}/localizations
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appevents_id_localizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEvents-_id_-localizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

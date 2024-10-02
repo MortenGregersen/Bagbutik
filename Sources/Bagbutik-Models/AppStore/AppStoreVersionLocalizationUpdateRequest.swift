@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionLocalizationUpdateRequest
- The request body you use to update an App Store Version Localization
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest>
- */
 public struct AppStoreVersionLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, Sendable, Reque
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionLocalizationUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionLocalizations" }
@@ -60,13 +46,6 @@ public struct AppStoreVersionLocalizationUpdateRequest: Codable, Sendable, Reque
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppStoreVersionLocalizationUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var description: String?
             public var keywords: String?

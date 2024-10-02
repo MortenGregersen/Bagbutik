@@ -7,7 +7,7 @@ public extension Request {
      Read the phased release status and configuration for a version with phased release enabled.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_version_phased_release_information_of_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreVersionPhasedRelease>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

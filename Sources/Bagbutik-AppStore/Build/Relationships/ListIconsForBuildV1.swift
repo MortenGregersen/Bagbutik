@@ -7,7 +7,7 @@ public extension Request {
      List all the icons for various platforms delivered with a build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_icons_for_a_build>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-icons>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Get information about the image that appears on the App Clip card of an advanced App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_image_information_for_an_advanced_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipAdvancedExperienceImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

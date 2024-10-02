@@ -7,7 +7,7 @@ public extension Request {
      Deactivate a subscription offer that has offer codes for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/deactivate_a_subscription_offer_with_offer_codes>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionOfferCodes-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionOfferCode representation

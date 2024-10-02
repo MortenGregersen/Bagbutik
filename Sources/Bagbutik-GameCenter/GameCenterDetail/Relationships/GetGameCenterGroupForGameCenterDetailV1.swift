@@ -7,7 +7,7 @@ public extension Request {
      Get a list of groups in a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_groups_in_a_game_center_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-gameCenterGroup>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

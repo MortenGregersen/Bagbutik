@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all auto-renewable subscriptions in a subscription group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscriptions_for_a_subscription_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionGroups-_id_-subscriptions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -45,6 +45,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case subscriptionAvailabilities([SubscriptionAvailabilities])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
+        /// The fields to include for returned resources of type subscriptionImages
+        case subscriptionImages([SubscriptionImages])
         /// The fields to include for returned resources of type subscriptionIntroductoryOffers
         case subscriptionIntroductoryOffers([SubscriptionIntroductoryOffers])
         /// The fields to include for returned resources of type subscriptionLocalizations
@@ -57,6 +59,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case subscriptionPromotionalOffers([SubscriptionPromotionalOffers])
         /// The fields to include for returned resources of type subscriptions
         case subscriptions([Subscriptions])
+        /// The fields to include for returned resources of type winBackOffers
+        case winBackOffers([WinBackOffers])
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
@@ -92,6 +96,18 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
+        }
+
+        public enum SubscriptionImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case sourceFileChecksum
+            case state
+            case subscription
+            case uploadOperations
+            case uploaded
         }
 
         public enum SubscriptionIntroductoryOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -152,6 +168,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -165,6 +182,24 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
+        }
+
+        public enum WinBackOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case customerEligibilityPaidSubscriptionDurationInMonths
+            case customerEligibilityTimeSinceLastSubscribedInMonths
+            case customerEligibilityWaitBetweenOffersInMonths
+            case duration
+            case endDate
+            case offerId
+            case offerMode
+            case periodCount
+            case prices
+            case priority
+            case promotionIntent
+            case referenceName
+            case startDate
+            case subscription
         }
     }
 
@@ -199,13 +234,16 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case appStoreReviewScreenshot
         case group
+        case images
         case introductoryOffers
         case offerCodes
+        case pricePoints
         case prices
         case promotedPurchase
         case promotionalOffers
         case subscriptionAvailability
         case subscriptionLocalizations
+        case winBackOffers
     }
 
     /**
@@ -220,6 +258,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related images returned (when they are included) - maximum 50
+        case images(Int)
         /// Maximum number of related introductoryOffers returned (when they are included) - maximum 50
         case introductoryOffers(Int)
         /// Maximum resources per page - maximum 200
@@ -232,5 +272,7 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case promotionalOffers(Int)
         /// Maximum number of related subscriptionLocalizations returned (when they are included) - maximum 50
         case subscriptionLocalizations(Int)
+        /// Maximum number of related winBackOffers returned (when they are included) - maximum 50
+        case winBackOffers(Int)
     }
 }

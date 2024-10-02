@@ -7,7 +7,7 @@ public extension Request {
      List all app preview sets for a specific localization.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_preview_sets_for_an_app_store_version_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionLocalizations-_id_-appPreviewSets>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

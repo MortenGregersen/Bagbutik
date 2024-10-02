@@ -7,7 +7,7 @@ public extension Request {
      Add a new leaderboard to your app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_leaderboard>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboards>
 
      - Parameter requestBody: GameCenterLeaderboard representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

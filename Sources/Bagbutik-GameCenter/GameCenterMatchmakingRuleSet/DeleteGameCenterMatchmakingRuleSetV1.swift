@@ -7,7 +7,7 @@ public extension Request {
      Delete a rule set along with its matchmaking rules and teams.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_rule_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterMatchmakingRuleSets-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

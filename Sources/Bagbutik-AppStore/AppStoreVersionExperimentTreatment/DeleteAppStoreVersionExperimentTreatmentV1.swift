@@ -7,7 +7,7 @@ public extension Request {
      Delete metadata that you configured for an App Store Version experiment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appstoreversionexperimenttreatments_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionExperimentTreatments-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

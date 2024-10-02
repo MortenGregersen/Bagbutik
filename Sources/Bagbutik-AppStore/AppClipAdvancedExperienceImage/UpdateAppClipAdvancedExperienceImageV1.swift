@@ -7,7 +7,7 @@ public extension Request {
      Update image information or commit the image asset of an advanced App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_image_for_an_advanced_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipAdvancedExperienceImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppClipAdvancedExperienceImage representation

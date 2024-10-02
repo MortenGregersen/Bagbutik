@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardReleaseResponse
- A response that contains a single leaderboard release resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardreleaseresponse>
- */
 public struct GameCenterLeaderboardReleaseResponse: Codable, Sendable {
     public let data: GameCenterLeaderboardRelease
     public var included: [Included]?

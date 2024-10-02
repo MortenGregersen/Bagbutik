@@ -1,19 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingRule
- The data structure that represents a matchmaking rule.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule>
- */
 public struct GameCenterMatchmakingRule: Codable, Sendable, Identifiable {
-    /// The unique identifier for the rule.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterMatchmakingRules" }
-    /// The attributes of the rule.
     public var attributes: Attributes?
 
     public init(id: String,
@@ -43,23 +34,11 @@ public struct GameCenterMatchmakingRule: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # GameCenterMatchmakingRule.Attributes
-     The attributes of a matchmaking rule.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// A human-readable description of the rule.
         public var description: String?
-        /// Code that returns a Boolean or numeric value that the matchmaking rules algorithm executes to compare or filter match requests.
         public var expression: String?
-        /// A name for the rule that’s unique within the scope of its rule set.
         public var referenceName: String?
-        /// The type or category of the rule that determines the return value and properties available in the expression.
         public var type: AttributesType?
-        /// A numeric value for the rule when `type` is either `DISTANCE` or `MATCH`.
         public var weight: Double?
 
         public init(description: String? = nil,

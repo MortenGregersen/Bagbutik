@@ -9,7 +9,7 @@ public extension Request {
      The example request below lists actions Xcode Cloud performed during a specific build. Use the information provided in the response to display detailed action information on a dashboard or to read additional data; for example, test results.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_actions_for_an_xcode_cloud_build>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildRuns-_id_-actions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -82,6 +82,9 @@ public enum ListActionsForCiBuildRunV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case artifacts
         case buildRun
+        case issues
+        case testResults
     }
 }

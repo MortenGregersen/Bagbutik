@@ -7,7 +7,7 @@ public extension Request {
      List all equivalent app prices points to a base price point.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_app_price_point_equalizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v3-appPricePoints-_id_-equalizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -53,6 +53,7 @@ public enum ListEqualizationsForAppPricePointsV3 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -87,6 +88,7 @@ public enum ListEqualizationsForAppPricePointsV3 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
@@ -113,6 +115,7 @@ public enum ListEqualizationsForAppPricePointsV3 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
+        case equalizations
         case territory
     }
 }

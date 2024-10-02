@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewDetail
- The data structure that represent an App Store Review Details  resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail>
- */
 public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -46,13 +39,6 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # AppStoreReviewDetail.Attributes
-     Attributes that describe an App Store Review Details resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var contactEmail: String?
         public var contactFirstName: String?
@@ -107,13 +93,6 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # AppStoreReviewDetail.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships>
-     */
     public struct Relationships: Codable, Sendable {
         public var appStoreReviewAttachments: AppStoreReviewAttachments?
         public var appStoreVersion: AppStoreVersion?
@@ -137,20 +116,13 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appStoreVersion, forKey: "appStoreVersion")
         }
 
-        /**
-         # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments>
-         */
         public struct AppStoreReviewAttachments: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -161,7 +133,7 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -172,13 +144,6 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            /**
-             # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreReviewAttachments" }
@@ -201,76 +166,25 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # AppStoreReviewDetail.Relationships.AppStoreReviewAttachments.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstorereviewattachments/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # AppStoreReviewDetail.Relationships.AppStoreVersion
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion>
-         */
         public struct AppStoreVersion: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppStoreReviewDetail.Relationships.AppStoreVersion.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "appStoreVersions" }
@@ -291,37 +205,6 @@ public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # AppStoreReviewDetail.Relationships.AppStoreVersion.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail/relationships/appstoreversion/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

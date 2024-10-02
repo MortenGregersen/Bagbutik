@@ -7,7 +7,7 @@ public extension Request {
      Update the endpoint URL and secret for alternative distribution package notifications.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_marketplace_webhook_configuration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-marketplaceWebhooks-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: MarketplaceWebhook representation

@@ -7,7 +7,7 @@ public extension Request {
      Create a Game Center detail for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/enable_game_center_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterDetails>
 
      - Parameter requestBody: GameCenterDetail representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

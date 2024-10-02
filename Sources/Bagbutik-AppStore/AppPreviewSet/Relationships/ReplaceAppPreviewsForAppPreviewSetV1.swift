@@ -7,7 +7,7 @@ public extension Request {
      Change the order of the app previews in a preview set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/replace_all_app_previews_for_an_app_preview_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appPreviewSets-_id_-relationships-appPreviews>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

@@ -7,7 +7,7 @@ public extension Request {
      Change an App Clip invocation you make available to testers in the TestFlight app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_clip_invocation_you_provide_to_testers>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaAppClipInvocations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BetaAppClipInvocation representation

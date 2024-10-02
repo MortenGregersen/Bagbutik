@@ -6,7 +6,7 @@ public extension Request {
      # GET /v1/appEventLocalizations/{id}/appEventScreenshots
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventlocalizations_id_appeventscreenshots>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventLocalizations-_id_-appEventScreenshots>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

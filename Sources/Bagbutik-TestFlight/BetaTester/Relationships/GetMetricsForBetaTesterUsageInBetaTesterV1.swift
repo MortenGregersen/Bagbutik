@@ -7,7 +7,7 @@ public extension Request {
      Get usage metrics for a specific beta tester.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_tester_usage_metrics>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-metrics-betaTesterUsages>
 
      - Parameter id: The id of the requested resource
      - Parameter filters: Attributes, relationships, and IDs by which to filter

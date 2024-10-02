@@ -7,7 +7,7 @@ public extension Request {
      Get a list of builds associated with a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_of_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

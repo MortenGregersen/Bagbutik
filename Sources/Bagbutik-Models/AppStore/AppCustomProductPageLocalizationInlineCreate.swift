@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageLocalizationInlineCreate
- The data structure that represents an app custom product page localization inline creates resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationinlinecreate>
- */
 public struct AppCustomProductPageLocalizationInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageLocalizations" }

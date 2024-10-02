@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BundleIdUpdateRequest
- The request body you use to update a Bundle ID.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest>
- */
 public struct BundleIdUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -26,13 +18,6 @@ public struct BundleIdUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # BundleIdUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "bundleIds" }
@@ -61,13 +46,6 @@ public struct BundleIdUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # BundleIdUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var name: String?
 

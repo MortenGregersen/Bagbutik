@@ -7,7 +7,7 @@ public extension Request {
      Get the specific localized subscription group display name and optional custom app name for a subscription group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_localization_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionGroupLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

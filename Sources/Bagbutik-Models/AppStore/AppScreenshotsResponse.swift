@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppScreenshotsResponse
- A response that contains a list of App Screenshots resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsresponse>
- */
 public struct AppScreenshotsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppScreenshot
 

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewAttachmentResponse
- A response that contains a single App Store Review Attachments resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentresponse>
- */
 public struct AppStoreReviewAttachmentResponse: Codable, Sendable {
     public let data: AppStoreReviewAttachment
     public var included: [AppStoreReviewDetail]?

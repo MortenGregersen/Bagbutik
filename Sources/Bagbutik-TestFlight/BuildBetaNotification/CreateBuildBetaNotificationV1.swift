@@ -7,7 +7,7 @@ public extension Request {
      Send a notification to all assigned beta testers that a build is available for testing.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/send_notification_of_an_available_build>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-buildBetaNotifications>
 
      - Parameter requestBody: BuildBetaNotification representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

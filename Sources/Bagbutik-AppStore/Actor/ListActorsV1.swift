@@ -9,7 +9,7 @@ public extension Request {
      This endpoint supports multiple id’s in the filter paramenter.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_actors>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-actors>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

@@ -7,7 +7,7 @@ public extension Request {
      Update the relationship between a default App Clip experience and an App Store Version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_related_app_store_version_for_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipDefaultExperiences-_id_-relationships-releaseWithAppStoreVersion>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: Related linkage

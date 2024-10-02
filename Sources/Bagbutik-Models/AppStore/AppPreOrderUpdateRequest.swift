@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppPreOrderUpdateRequest
- The request body you use to update an App Pre-Order.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest>
- */
 public struct AppPreOrderUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppPreOrderUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppPreOrderUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appPreOrders" }
@@ -60,13 +46,6 @@ public struct AppPreOrderUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppPreOrderUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var appReleaseDate: String?
 

@@ -7,7 +7,7 @@ public extension Request {
      Get the time that match requests are in a specific queue.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_queue_size>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues-_id_-metrics-matchmakingQueueSizes>
 
      - Parameter id: The id of the requested resource
      - Parameter sorts: Attributes by which to sort

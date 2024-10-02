@@ -3,11 +3,11 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Create an App Pre-Order
-     Create an app pre-order and set the expected app release date.
+     # Create an App Pre-Order V1
+     Turn on pre-order and set the expected app release date.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_pre-order>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appPreOrders>
 
      - Parameter requestBody: AppPreOrder representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

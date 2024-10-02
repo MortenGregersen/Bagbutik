@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # RoutingAppCoverageUpdateRequest
- The request body you use to update a Routing App Coverage.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest>
- */
 public struct RoutingAppCoverageUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct RoutingAppCoverageUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # RoutingAppCoverageUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "routingAppCoverages" }
@@ -60,13 +46,6 @@ public struct RoutingAppCoverageUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # RoutingAppCoverageUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?

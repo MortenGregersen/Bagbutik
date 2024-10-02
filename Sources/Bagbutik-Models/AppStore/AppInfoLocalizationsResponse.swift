@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppInfoLocalizationsResponse
- A response that contains a list of AppInfoLocalizations resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationsresponse>
- */
 public struct AppInfoLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppInfoLocalization
 

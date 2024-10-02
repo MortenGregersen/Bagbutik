@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterDetailUpdateRequest
- The request body you use to update a Game Center detail.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailupdaterequest>
- */
 public struct GameCenterDetailUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

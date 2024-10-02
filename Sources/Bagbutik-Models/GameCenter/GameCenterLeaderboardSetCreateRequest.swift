@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardSetCreateRequest
- The request body you use to create a leaderboard set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetcreaterequest>
- */
 public struct GameCenterLeaderboardSetCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

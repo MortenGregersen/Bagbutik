@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BuildBetaDetail
- The data structure that represents a Build Beta Details resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail>
- */
 public struct BuildBetaDetail: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "buildBetaDetails" }
-    /// The resource's attributes.
     public var attributes: Attributes?
-    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,19 +39,9 @@ public struct BuildBetaDetail: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # BuildBetaDetail.Attributes
-     Attributes that describe a Build Beta Details resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// A Boolean value that enables you to send test invitations to users automatically when the build is available to external groups.
         public var autoNotifyEnabled: Bool?
-        /// A state that indicates if the build is available for external testing.
         public var externalBuildState: ExternalBetaState?
-        /// A state that indicates if the build is available for internal testing.
         public var internalBuildState: InternalBetaState?
 
         public init(autoNotifyEnabled: Bool? = nil,
@@ -90,13 +68,6 @@ public struct BuildBetaDetail: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # BuildBetaDetail.Relationships
-     The relationships you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships>
-     */
     public struct Relationships: Codable, Sendable {
         public var build: Build?
 
@@ -114,19 +85,12 @@ public struct BuildBetaDetail: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(build, forKey: "build")
         }
 
-        /**
-         # BuildBetaDetail.Relationships.Build
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build>
-         */
         public struct Build: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -135,7 +99,7 @@ public struct BuildBetaDetail: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -144,17 +108,8 @@ public struct BuildBetaDetail: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # BuildBetaDetail.Relationships.Build.Data
-             The type and ID of a related resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -173,37 +128,6 @@ public struct BuildBetaDetail: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # BuildBetaDetail.Relationships.Build.Links
-             The links to the related data and the relationship's self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetail/relationships/build/links>
-             */
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

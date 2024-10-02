@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific advanced App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_advanced_app_clip_experience_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipAdvancedExperiences-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

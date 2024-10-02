@@ -7,7 +7,7 @@ public extension Request {
      List all workflows for a specific Xcode Cloud product.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_workflows_for_an_xcode_cloud_product>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_-workflows>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -107,6 +107,7 @@ public enum ListWorkflowsForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case buildRuns
         case macOsVersion
         case product
         case repository

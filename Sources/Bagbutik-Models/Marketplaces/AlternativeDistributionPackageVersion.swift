@@ -1,17 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AlternativeDistributionPackageVersion
- The data structure that represents an alternative distribution package version resource.
-
- For more information about the responses that includes alternative distribution package version objects, see ``AlternativeDistributionPackageVersionResponse`` or ``AlternativeDistributionPackageVersionsResponse``.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversion>
- */
 public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifiable {
-    /// An opaque resource ID that uniquely identifies the alternative distribution package version.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackageVersions" }
@@ -123,25 +113,19 @@ public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifi
 
         public struct AlternativeDistributionPackage: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
             public struct Data: Codable, Sendable, Identifiable {
@@ -166,39 +150,15 @@ public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifi
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct Deltas: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -209,7 +169,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifi
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -242,39 +202,15 @@ public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifi
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct Variants: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -285,7 +221,7 @@ public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifi
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -316,30 +252,6 @@ public struct AlternativeDistributionPackageVersion: Codable, Sendable, Identifi
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

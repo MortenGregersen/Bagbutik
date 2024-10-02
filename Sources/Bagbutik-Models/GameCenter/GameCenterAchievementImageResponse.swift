@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAchievementImageResponse
- A response that contains a single achievement image resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimageresponse>
- */
 public struct GameCenterAchievementImageResponse: Codable, Sendable {
     public let data: GameCenterAchievementImage
     public var included: [GameCenterAchievementLocalization]?

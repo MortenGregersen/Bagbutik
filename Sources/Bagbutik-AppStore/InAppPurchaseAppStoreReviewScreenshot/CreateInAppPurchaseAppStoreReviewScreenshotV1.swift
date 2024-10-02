@@ -7,7 +7,7 @@ public extension Request {
      Reserve a review screenshot for an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_in-app_purchase_review_screenshot>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-inAppPurchaseAppStoreReviewScreenshots>
 
      - Parameter requestBody: InAppPurchaseAppStoreReviewScreenshot representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

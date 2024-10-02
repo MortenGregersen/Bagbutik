@@ -1,19 +1,9 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipDefaultExperienceResponse
- A response that contains a single Default App Clip Experiences resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperienceresponse>
- */
 public struct AppClipDefaultExperienceResponse: Codable, Sendable {
-    /// The resource data.
     public let data: AppClipDefaultExperience
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipDefaultExperience,

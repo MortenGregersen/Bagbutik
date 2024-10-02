@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # TerritoryAvailabilitiesResponse
- A response that contains a list of territory availability resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilitiesresponse>
- */
 public struct TerritoryAvailabilitiesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = TerritoryAvailability
 

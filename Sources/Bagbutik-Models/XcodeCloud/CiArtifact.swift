@@ -1,21 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CiArtifact
- The data structure that represents the output of an Xcode Cloud build action resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
- */
 public struct CiArtifact: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Artifacts resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciArtifacts" }
-    /// The attributes that describe the Artifacts resource.
     public var attributes: Attributes?
 
     public init(id: String,
@@ -45,21 +34,10 @@ public struct CiArtifact: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # CiArtifact.Attributes
-     The attributes that describe the output of an artifact resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// The URL you use to download the Xcode Cloud build artifact.
         public var downloadUrl: String?
-        /// The artifact’s filename as a string.
         public var fileName: String?
-        /// An integer value that represents the artifact’s file size.
         public var fileSize: Int?
-        /// A string that describes the type of the artifact.
         public var fileType: FileType?
 
         public init(downloadUrl: String? = nil,

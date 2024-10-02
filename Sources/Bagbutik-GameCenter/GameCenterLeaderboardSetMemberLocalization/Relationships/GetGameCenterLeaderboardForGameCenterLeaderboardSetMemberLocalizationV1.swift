@@ -7,7 +7,7 @@ public extension Request {
      Get information about a leaderboard for a specific leaderboard set member localization.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_leaderboard_information_for_a_leaderboard_set_member_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSetMemberLocalizations-_id_-gameCenterLeaderboard>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

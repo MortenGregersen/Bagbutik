@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CiXcodeVersion
- The data structure that represents an Xcode Versions resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion>
- */
 public struct CiXcodeVersion: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an Xcode Versions resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciXcodeVersions" }
-    /// The attributes that describe the Xcode Versions resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,19 +39,9 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # CiXcodeVersion.Attributes
-     The attributes that describe an Xcode Versions resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// The name of the Xcode version.
         public var name: String?
-        /// A list of the Xcode version’s available test destinations.
         public var testDestinations: [TestDestinations]?
-        /// The Xcode version.
         public var version: String?
 
         public init(name: String? = nil,
@@ -89,21 +67,10 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(version, forKey: "version")
         }
 
-        /**
-         # CiXcodeVersion.Attributes.TestDestinations
-         The test destinations available for an Xcode version.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes/testdestinations>
-         */
         public struct TestDestinations: Codable, Sendable {
-            /// A list of runtimes available for the Xcode version.
             public var availableRuntimes: [AvailableRuntimes]?
-            /// A string that uniquely identifies the simulated device Xcode Cloud uses for a test action; for example, `com.apple.CoreSimulator.SimDeviceType.iPhone-12`.
             public var deviceTypeIdentifier: String?
-            /// The display name of the simulated device Xcode Cloud uses for a test action; for example, `iPhone 12`.
             public var deviceTypeName: String?
-            /// A string that indicates whether a test destination is a simulated device or a Mac.
             public var kind: CiTestDestinationKind?
 
             public init(availableRuntimes: [AvailableRuntimes]? = nil,
@@ -133,17 +100,8 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(kind, forKey: "kind")
             }
 
-            /**
-             # CiXcodeVersion.Attributes.TestDestinations.AvailableRuntimes
-             The data structure that represents the available runtimes for test destinations of an Xcode Versions resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/attributes/testdestinations/availableruntimes>
-             */
             public struct AvailableRuntimes: Codable, Sendable {
-                /// A string that identifies the simulated environment Xcode Cloud uses for a test action.
                 public var runtimeIdentifier: String?
-                /// The name of the operating system of the simulated environment Xcode Cloud uses.
                 public var runtimeName: String?
 
                 public init(runtimeIdentifier: String? = nil,
@@ -168,15 +126,7 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # CiXcodeVersion.Relationships
-     The relationships of the Xcode Versions resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships>
-     */
     public struct Relationships: Codable, Sendable {
-        /// The related macOS Versions resource.
         public var macOsVersions: MacOsVersions?
 
         public init(macOsVersions: MacOsVersions? = nil) {
@@ -193,23 +143,13 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(macOsVersions, forKey: "macOsVersions")
         }
 
-        /**
-         # CiXcodeVersion.Relationships.MacOsVersions
-         The data, links, and paging information that describe the relationship between the Xcode Versions and the macOS Versions resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions>
-         */
         public struct MacOsVersions: Codable, Sendable {
-            /// The ID and type of the related macOS Versions resource.
             @NullCodable public var data: [Data]?
-            /// The navigational links that include the self-link.
-            public var links: Links?
-            /// The paging information.
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -220,7 +160,7 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -231,17 +171,8 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            /**
-             # CiXcodeVersion.Relationships.MacOsVersions.Data
-             The type and ID of a related macOS Versions resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related macOS Versions resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "ciMacOsVersions" }
 
                 public init(id: String) {
@@ -260,39 +191,6 @@ public struct CiXcodeVersion: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # CiXcodeVersion.Relationships.MacOsVersions.Links
-             The links to the related macOS Versions resources and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion/relationships/macosversions/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

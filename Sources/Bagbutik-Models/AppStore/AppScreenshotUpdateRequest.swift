@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppScreenshotUpdateRequest
- The request body you use to update an App Screenshot.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest>
- */
 public struct AppScreenshotUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppScreenshotUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppScreenshotUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }
@@ -60,13 +46,6 @@ public struct AppScreenshotUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppScreenshotUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var sourceFileChecksum: String?
             public var uploaded: Bool?

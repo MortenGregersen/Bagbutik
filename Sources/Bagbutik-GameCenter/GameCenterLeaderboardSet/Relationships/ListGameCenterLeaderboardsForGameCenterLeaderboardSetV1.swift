@@ -7,7 +7,7 @@ public extension Request {
      Read the leadboards that belong to a learderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_leaderboard_information_for_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSets-_id_-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

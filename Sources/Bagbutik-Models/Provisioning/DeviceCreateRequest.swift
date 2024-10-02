@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # DeviceCreateRequest
- The request body you use to create a Device.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest>
- */
 public struct DeviceCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -26,13 +18,6 @@ public struct DeviceCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # DeviceCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "devices" }
         public let attributes: Attributes
@@ -55,13 +40,6 @@ public struct DeviceCreateRequest: Codable, Sendable, RequestBody {
             try container.encode(attributes, forKey: "attributes")
         }
 
-        /**
-         # DeviceCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let name: String
             public let platform: BundleIdPlatform

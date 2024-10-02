@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # MarketplaceWebhook
- The data structure that represents a marketplace webhook resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook>
- */
 public struct MarketplaceWebhook: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -41,13 +34,6 @@ public struct MarketplaceWebhook: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # MarketplaceWebhook.Attributes
-     The attribute that describes the url where you will recieve notifications.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhook/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var endpointUrl: String?
 

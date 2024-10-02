@@ -7,7 +7,7 @@ public extension Request {
      List all territories where the App Store operates.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_territories>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-territories>
 
      - Parameter fields: Fields to return for included related types
      - Parameter limit: Maximum resources per page - maximum 200

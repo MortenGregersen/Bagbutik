@@ -7,7 +7,7 @@ public extension Request {
      Delete an App Clip invocation you make available to testers in TestFlight.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_clip_invocation_for_testers_in_testflight>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaAppClipInvocations-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

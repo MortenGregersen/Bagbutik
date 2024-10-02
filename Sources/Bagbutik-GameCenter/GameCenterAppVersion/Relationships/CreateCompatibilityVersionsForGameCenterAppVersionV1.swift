@@ -7,7 +7,7 @@ public extension Request {
      Create a relationship between two Game Center app versions.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_compatiblity_relationship>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterAppVersions-_id_-relationships-compatibilityVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

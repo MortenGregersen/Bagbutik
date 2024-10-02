@@ -7,7 +7,7 @@ public extension Request {
      Add a new entry for a player’s score for a Game Center achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_game_center_player_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterPlayerAchievementSubmissions>
 
      - Parameter requestBody: GameCenterPlayerAchievementSubmission representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

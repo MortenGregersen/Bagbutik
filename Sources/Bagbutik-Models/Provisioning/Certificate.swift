@@ -1,21 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # Certificate
- The data structure that represents a Certificates resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/certificate>
- */
 public struct Certificate: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "certificates" }
-    /// The resource's attributes.
     public var attributes: Attributes?
 
     public init(id: String,
@@ -45,13 +34,6 @@ public struct Certificate: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # Certificate.Attributes
-     Attributes that describe a Certificates resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/certificate/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var certificateContent: String?
         public var certificateType: CertificateType?

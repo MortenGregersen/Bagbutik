@@ -1,21 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingTestRequestInlineCreate
- A data structure that represents a sample match request for testing a rule set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate>
- */
 public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, Identifiable {
-    /// A unique identifier for the match request.
     public var id: String?
-    /// The type of resource object.
     public var type: String { "gameCenterMatchmakingTestRequests" }
-    /// The object attributes.
     public let attributes: Attributes
-    /// The object relationships.
     public var relationships: Relationships?
 
     public init(id: String? = nil,
@@ -45,33 +34,16 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # GameCenterMatchmakingTestRequestInlineCreate.Attributes
-     The attributes for a sample match request.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// The app version of the game that makes the request.
         public let appVersion: String
-        /// The bundle ID of the game that makes the request.
         public let bundleId: String
-        /// The language and region that the player who initiates this match request uses. The default value is `EN-US`.
         public var locale: Locale?
-        /// The physical location where this request originates. The default value is `0, 0`.
         public var location: Location?
-        /// The maximum number of players that can join the match. This is the same value as the `GKMatchRequest.`[maxPlayers](https://developer.apple.com/documentation/gamekit/gkmatchrequest/1521083-maxplayers) property that you set when submitting a request from a native app. The default value is `16`.
         public var maxPlayers: Int?
-        /// The minimum number of players that can join the match. This is the same value as the `GKMatchRequest.`[minPlayers](https://developer.apple.com/documentation/gamekit/gkmatchrequest/1520550-minplayers) property that you set when submitting a request from a native app. The default value is `2`.
         public var minPlayers: Int?
-        /// The platform of the game that makes the request.
         public let platform: Platform
-        /// The total number of players invited to join the match including the player who initiates the match request.
         public var playerCount: Int?
-        /// A unique identifier for the request.
         public let requestName: String
-        /// The age of the request in seconds.
         public let secondsInQueue: Int
 
         public init(appVersion: String,
@@ -168,13 +140,6 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
         }
     }
 
-    /**
-     # GameCenterMatchmakingTestRequestInlineCreate.Relationships
-     The relationships of a match request to other objects.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships>
-     */
     public struct Relationships: Codable, Sendable {
         public var matchmakingPlayerProperties: MatchmakingPlayerProperties?
 
@@ -192,13 +157,6 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
             try container.encodeIfPresent(matchmakingPlayerProperties, forKey: "matchmakingPlayerProperties")
         }
 
-        /**
-         # GameCenterMatchmakingTestRequestInlineCreate.Relationships.MatchmakingPlayerProperties
-         A resource object for the game-specific properties for a match request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships/matchmakingplayerproperties>
-         */
         public struct MatchmakingPlayerProperties: Codable, Sendable {
             @NullCodable public var data: [Data]?
 
@@ -216,17 +174,8 @@ public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, I
                 try container.encode(data, forKey: "data")
             }
 
-            /**
-             # GameCenterMatchmakingTestRequestInlineCreate.Relationships.MatchmakingPlayerProperties.Data
-             The resource object for the game-specific properties of a match request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate/relationships/matchmakingplayerproperties/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The identifier for a ``GameCenterMatchmakingTestPlayerPropertyInlineCreate`` resource object that you add to the `included` field of the request.
                 public let id: String
-                /// The type of resource object.
                 public var type: String { "gameCenterMatchmakingTestPlayerProperties" }
 
                 public init(id: String) {

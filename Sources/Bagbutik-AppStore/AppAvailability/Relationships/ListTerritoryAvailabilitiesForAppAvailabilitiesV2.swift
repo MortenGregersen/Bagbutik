@@ -7,7 +7,7 @@ public extension Request {
      Read the territory availablity for a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_availablity_territories>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-appAvailabilities-_id_-territoryAvailabilities>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -9,7 +9,7 @@ public extension Request {
      The example request below retrieves information about a specific source code management provider you connected to Xcode Cloud. Use the data provided in the response to read additional information; for example, repository information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_a_source_code_management_provider>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-scmProviders-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -29,25 +29,11 @@ public enum GetScmProviderV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type scmProviders
         case scmProviders([ScmProviders])
-        /// The fields to include for returned resources of type scmRepositories
-        case scmRepositories([ScmRepositories])
 
         public enum ScmProviders: String, Sendable, ParameterValue, Codable, CaseIterable {
             case repositories
             case scmProviderType
             case url
-        }
-
-        public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case defaultBranch
-            case gitReferences
-            case httpCloneUrl
-            case lastAccessedDate
-            case ownerName
-            case pullRequests
-            case repositoryName
-            case scmProvider
-            case sshCloneUrl
         }
     }
 }

@@ -7,7 +7,7 @@ public extension Request {
      Delete a specific achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAchievements-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

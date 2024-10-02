@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # TerritoryAvailabilityUpdateRequest
- The request body you use to update a single territory availability resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityupdaterequest>
- */
 public struct TerritoryAvailabilityUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

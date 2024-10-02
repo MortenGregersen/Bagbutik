@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreReviewAttachmentCreateRequest
- The request body you use to create an App Store Review Attachment.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest>
- */
 public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestB
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreReviewAttachmentCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreReviewAttachments" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestB
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreReviewAttachmentCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
@@ -91,13 +70,6 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestB
             }
         }
 
-        /**
-         # AppStoreReviewAttachmentCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appStoreReviewDetail: AppStoreReviewDetail
 
@@ -115,13 +87,6 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestB
                 try container.encode(appStoreReviewDetail, forKey: "appStoreReviewDetail")
             }
 
-            /**
-             # AppStoreReviewAttachmentCreateRequest.Data.Relationships.AppStoreReviewDetail
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/relationships/appstorereviewdetail>
-             */
             public struct AppStoreReviewDetail: Codable, Sendable {
                 public let data: Data
 
@@ -139,13 +104,6 @@ public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestB
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreReviewAttachmentCreateRequest.Data.Relationships.AppStoreReviewDetail.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest/data/relationships/appstorereviewdetail/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreReviewDetails" }

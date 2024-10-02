@@ -7,7 +7,7 @@ public extension Request {
      Add an alternative distribution domain to your account.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_an_alternative_distribution_domain>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativeDistributionDomains>
 
      - Parameter requestBody: AlternativeDistributionDomain representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

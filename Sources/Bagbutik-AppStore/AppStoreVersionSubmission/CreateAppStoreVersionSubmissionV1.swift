@@ -10,7 +10,7 @@ public extension Request {
      If the version’s `releaseType` attribute is `AFTER_APPROVAL`, after App Review approves the version App Store Connect  automatically releases it to the App Store.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_version_submission>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionSubmissions>
 
      - Parameter requestBody: AppStoreVersionSubmission representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

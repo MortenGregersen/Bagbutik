@@ -1,22 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppEncryptionDeclarationsResponse
- A response that contains a list of App Encryption Declaration resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationsresponse>
- */
 public struct AppEncryptionDeclarationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppEncryptionDeclaration
 
-    /// The resource data.
     public let data: [AppEncryptionDeclaration]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppEncryptionDeclaration],
@@ -44,13 +34,6 @@ public struct AppEncryptionDeclarationsResponse: Codable, Sendable, PagedRespons
         try container.encodeIfPresent(included, forKey: "included")
         try container.encode(links, forKey: "links")
         try container.encodeIfPresent(meta, forKey: "meta")
-    }
-
-    public func getApp(for appEncryptionDeclaration: AppEncryptionDeclaration) -> App? {
-        included?.compactMap { relationship -> App? in
-            guard case let .app(app) = relationship else { return nil }
-            return app
-        }.first { $0.id == appEncryptionDeclaration.relationships?.app?.data?.id }
     }
 
     public func getAppEncryptionDeclarationDocument(for appEncryptionDeclaration: AppEncryptionDeclaration) -> AppEncryptionDeclarationDocument? {

@@ -7,7 +7,7 @@ public extension Request {
      Read localized app-level information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_info_localization_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfoLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

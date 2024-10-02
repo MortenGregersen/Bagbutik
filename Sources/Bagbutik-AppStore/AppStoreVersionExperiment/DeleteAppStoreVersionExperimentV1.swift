@@ -7,7 +7,7 @@ public extension Request {
      Delete a specific App Store version experiment before it starts.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appstoreversionexperiments_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionExperiments-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

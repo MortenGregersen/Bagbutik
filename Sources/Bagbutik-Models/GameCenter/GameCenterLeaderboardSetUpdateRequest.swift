@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardSetUpdateRequest
- The request body you use to update a leaderboard set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetupdaterequest>
- */
 public struct GameCenterLeaderboardSetUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -7,7 +7,7 @@ public extension Request {
      Delete a release of an achievement or Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_game_center_achievement_release>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAchievementReleases-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

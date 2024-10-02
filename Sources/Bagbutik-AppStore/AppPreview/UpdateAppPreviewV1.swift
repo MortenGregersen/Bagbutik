@@ -7,7 +7,7 @@ public extension Request {
      Commit the app preview after uploading it, and update the poster frame timecode.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_preview>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appPreviews-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppPreview representation

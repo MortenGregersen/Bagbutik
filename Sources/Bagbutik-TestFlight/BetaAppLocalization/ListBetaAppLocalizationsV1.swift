@@ -7,7 +7,7 @@ public extension Request {
      Find and list beta app localizations for all apps and locales.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_app_localizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaAppLocalizations>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
@@ -41,6 +41,7 @@ public enum ListBetaAppLocalizationsV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -75,6 +76,7 @@ public enum ListBetaAppLocalizationsV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

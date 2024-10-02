@@ -7,7 +7,7 @@ public extension Request {
      Delete an image that you uploaded for review of an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_review_screenshot_for_an_auto-renewable_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-subscriptionAppStoreReviewScreenshots-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

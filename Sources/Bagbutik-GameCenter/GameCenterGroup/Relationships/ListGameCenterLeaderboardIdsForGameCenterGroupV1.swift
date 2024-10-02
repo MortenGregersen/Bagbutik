@@ -7,7 +7,7 @@ public extension Request {
      List all the leaderboard associated with a specific group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_leaderboards_in_a_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_-relationships-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

@@ -7,7 +7,7 @@ public extension Request {
      Add a game-specific team to a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_team>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterMatchmakingTeams>
 
      - Parameter requestBody: GameCenterMatchmakingTeam representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

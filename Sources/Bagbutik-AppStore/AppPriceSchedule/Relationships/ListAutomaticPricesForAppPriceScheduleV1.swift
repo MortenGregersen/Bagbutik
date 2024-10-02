@@ -7,7 +7,7 @@ public extension Request {
      List the automatically calculated prices for an app generated from a base territory.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_automatically_generated_prices_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPriceSchedules-_id_-automaticPrices>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

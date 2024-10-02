@@ -7,7 +7,7 @@ public extension Request {
      Edit the associated leaderboard sets for a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_associated_leaderboard_sets_for_a_game_center_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterDetails-_id_-relationships-gameCenterLeaderboardSets>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

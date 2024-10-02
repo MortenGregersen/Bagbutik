@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # UploadOperation
- Upload instructions for assets such as app previews and app screenshots.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/uploadoperation>
- */
 public struct UploadOperation: Codable, Sendable {
     public var length: Int?
     public var method: String?

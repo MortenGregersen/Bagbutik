@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionPhasedReleaseResponse
- A response that contains a single App Store Version Phased Releases resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseresponse>
- */
 public struct AppStoreVersionPhasedReleaseResponse: Codable, Sendable {
     public let data: AppStoreVersionPhasedRelease
     public let links: DocumentLinks

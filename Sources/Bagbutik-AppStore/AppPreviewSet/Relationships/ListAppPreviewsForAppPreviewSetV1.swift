@@ -7,7 +7,7 @@ public extension Request {
      List all ordered app previews in a preview set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_previews_for_an_app_preview_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPreviewSets-_id_-appPreviews>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

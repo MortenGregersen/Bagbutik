@@ -92,6 +92,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
         public var appStoreReviewScreenshot: AppStoreReviewScreenshot?
         public var content: Content?
         public var iapPriceSchedule: IapPriceSchedule?
+        public var images: Images?
         public var inAppPurchaseAvailability: InAppPurchaseAvailability?
         public var inAppPurchaseLocalizations: InAppPurchaseLocalizations?
         public var pricePoints: PricePoints?
@@ -100,6 +101,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
         public init(appStoreReviewScreenshot: AppStoreReviewScreenshot? = nil,
                     content: Content? = nil,
                     iapPriceSchedule: IapPriceSchedule? = nil,
+                    images: Images? = nil,
                     inAppPurchaseAvailability: InAppPurchaseAvailability? = nil,
                     inAppPurchaseLocalizations: InAppPurchaseLocalizations? = nil,
                     pricePoints: PricePoints? = nil,
@@ -108,6 +110,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             self.appStoreReviewScreenshot = appStoreReviewScreenshot
             self.content = content
             self.iapPriceSchedule = iapPriceSchedule
+            self.images = images
             self.inAppPurchaseAvailability = inAppPurchaseAvailability
             self.inAppPurchaseLocalizations = inAppPurchaseLocalizations
             self.pricePoints = pricePoints
@@ -119,6 +122,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             appStoreReviewScreenshot = try container.decodeIfPresent(AppStoreReviewScreenshot.self, forKey: "appStoreReviewScreenshot")
             content = try container.decodeIfPresent(Content.self, forKey: "content")
             iapPriceSchedule = try container.decodeIfPresent(IapPriceSchedule.self, forKey: "iapPriceSchedule")
+            images = try container.decodeIfPresent(Images.self, forKey: "images")
             inAppPurchaseAvailability = try container.decodeIfPresent(InAppPurchaseAvailability.self, forKey: "inAppPurchaseAvailability")
             inAppPurchaseLocalizations = try container.decodeIfPresent(InAppPurchaseLocalizations.self, forKey: "inAppPurchaseLocalizations")
             pricePoints = try container.decodeIfPresent(PricePoints.self, forKey: "pricePoints")
@@ -130,6 +134,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appStoreReviewScreenshot, forKey: "appStoreReviewScreenshot")
             try container.encodeIfPresent(content, forKey: "content")
             try container.encodeIfPresent(iapPriceSchedule, forKey: "iapPriceSchedule")
+            try container.encodeIfPresent(images, forKey: "images")
             try container.encodeIfPresent(inAppPurchaseAvailability, forKey: "inAppPurchaseAvailability")
             try container.encodeIfPresent(inAppPurchaseLocalizations, forKey: "inAppPurchaseLocalizations")
             try container.encodeIfPresent(pricePoints, forKey: "pricePoints")
@@ -138,10 +143,10 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
 
         public struct AppStoreReviewScreenshot: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -150,7 +155,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -181,38 +186,14 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct Content: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -221,7 +202,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -252,38 +233,14 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct IapPriceSchedule: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -292,7 +249,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -323,38 +280,66 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
+        }
 
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
+        public struct Images: Codable, Sendable {
+            @NullCodable public var data: [Data]?
+            public var links: RelationshipLinks?
+            public var meta: PagingInformation?
 
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
+            public init(data: [Data]? = nil,
+                        links: RelationshipLinks? = nil,
+                        meta: PagingInformation? = nil)
+            {
+                self.data = data
+                self.links = links
+                self.meta = meta
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                data = try container.decodeIfPresent([Data].self, forKey: "data")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+                meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(data, forKey: "data")
+                try container.encodeIfPresent(links, forKey: "links")
+                try container.encodeIfPresent(meta, forKey: "meta")
+            }
+
+            public struct Data: Codable, Sendable, Identifiable {
+                public let id: String
+                public var type: String { "inAppPurchaseImages" }
+
+                public init(id: String) {
+                    self.id = id
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
+                    id = try container.decode(String.self, forKey: "id")
+                    if try container.decode(String.self, forKey: "type") != type {
+                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                    }
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
+                    try container.encode(id, forKey: "id")
+                    try container.encode(type, forKey: "type")
                 }
             }
         }
 
         public struct InAppPurchaseAvailability: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -363,7 +348,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -394,39 +379,15 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct InAppPurchaseLocalizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -437,7 +398,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -470,39 +431,15 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct PricePoints: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -513,7 +450,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -546,38 +483,14 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
         public struct PromotedPurchase: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
+            public var links: RelationshipLinks?
 
             public init(data: Data? = nil,
-                        links: Links? = nil)
+                        links: RelationshipLinks? = nil)
             {
                 self.data = data
                 self.links = links
@@ -586,7 +499,7 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
@@ -615,30 +528,6 @@ public struct InAppPurchaseV2: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

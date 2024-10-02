@@ -7,7 +7,7 @@ public extension Request {
      Create a new provisioning profile.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_profile>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-profiles>
 
      - Parameter requestBody: Profile representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

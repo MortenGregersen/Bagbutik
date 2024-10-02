@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppScreenshotSetCreateRequest
- The request body you use to create an app screenshot set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest>
- */
 public struct AppScreenshotSetCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppScreenshotSetCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppScreenshotSetCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appScreenshotSets" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppScreenshotSetCreateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppScreenshotSetCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let screenshotDisplayType: ScreenshotDisplayType
 
@@ -85,13 +64,6 @@ public struct AppScreenshotSetCreateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # AppScreenshotSetCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public var appCustomProductPageLocalization: AppCustomProductPageLocalization?
             public var appStoreVersionExperimentTreatmentLocalization: AppStoreVersionExperimentTreatmentLocalization?
@@ -202,13 +174,6 @@ public struct AppScreenshotSetCreateRequest: Codable, Sendable, RequestBody {
                 }
             }
 
-            /**
-             # AppScreenshotSetCreateRequest.Data.Relationships.AppStoreVersionLocalization
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships/appstoreversionlocalization>
-             */
             public struct AppStoreVersionLocalization: Codable, Sendable {
                 @NullCodable public var data: Data?
 
@@ -226,13 +191,6 @@ public struct AppScreenshotSetCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppScreenshotSetCreateRequest.Data.Relationships.AppStoreVersionLocalization.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetcreaterequest/data/relationships/appstoreversionlocalization/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersionLocalizations" }

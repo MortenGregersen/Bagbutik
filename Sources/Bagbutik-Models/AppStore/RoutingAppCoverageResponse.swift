@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # RoutingAppCoverageResponse
- A response that contains a single Routing App Coverages resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageresponse>
- */
 public struct RoutingAppCoverageResponse: Codable, Sendable {
     public let data: RoutingAppCoverage
     public var included: [AppStoreVersion]?

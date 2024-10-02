@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse
- The response body for fetching the results of applying Boolean rules.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse>
- */
 public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -36,17 +29,9 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    /**
-     # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data
-     The data structure in a response body for Boolean match request results.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data>
-     */
     public struct Data: Codable, Sendable {
         public var dataPoints: DataPoints?
         public var dimensions: Dimensions?
-        /// The granularity of the data using the ISO 8601 format for durations.
         public var granularity: Granularity?
 
         public init(dataPoints: DataPoints? = nil,
@@ -72,17 +57,8 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
             try container.encodeIfPresent(granularity, forKey: "granularity")
         }
 
-        /**
-         # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.DataPoints
-         The key properties of the data in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/datapoints>
-         */
         public struct DataPoints: Codable, Sendable {
-            /// The time Game Center ends the data collection.
             public var end: Date?
-            /// The time Game Center starts the data collection.
             public var start: Date?
             public var values: Values?
 
@@ -109,15 +85,7 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                 try container.encodeIfPresent(values, forKey: "values")
             }
 
-            /**
-             # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.DataPoints.Values
-             The values of the data points.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/datapoints/values>
-             */
             public struct Values: Codable, Sendable {
-                /// The number of match requests in the response.
                 public var count: Int?
 
                 public init(count: Int? = nil) {
@@ -136,13 +104,6 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
             }
         }
 
-        /**
-         # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions
-         The details of the data in the response.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/dimensions>
-         */
         public struct Dimensions: Codable, Sendable {
             public var gameCenterMatchmakingQueue: GameCenterMatchmakingQueue?
             public var result: Result?
@@ -166,41 +127,31 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                 try container.encodeIfPresent(result, forKey: "result")
             }
 
-            /**
-             # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions.GameCenterMatchmakingQueue
-             The details of the data about the queue.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/dimensions/gamecentermatchmakingqueue>
-             */
             public struct GameCenterMatchmakingQueue: Codable, Sendable {
+                public var data: String?
                 public var links: Links?
 
-                public init(links: Links? = nil) {
+                public init(data: String? = nil,
+                            links: Links? = nil)
+                {
+                    self.data = data
                     self.links = links
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(String.self, forKey: "data")
                     links = try container.decodeIfPresent(Links.self, forKey: "links")
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(data, forKey: "data")
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 
-                /**
-                 # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions.GameCenterMatchmakingQueue.Links
-                 The link representations of the queue results.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/dimensions/gamecentermatchmakingqueue/links>
-                 */
                 public struct Links: Codable, Sendable {
-                    /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
-                    /// A string URI representation of the related data.
                     public var related: String?
 
                     public init(groupBy: String? = nil,
@@ -224,39 +175,30 @@ public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, 
                 }
             }
 
-            /**
-             # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions.Result
-             The links to the details of the data.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/dimensions/result>
-             */
             public struct Result: Codable, Sendable {
+                public var data: String?
                 public var links: Links?
 
-                public init(links: Links? = nil) {
+                public init(data: String? = nil,
+                            links: Links? = nil)
+                {
+                    self.data = data
                     self.links = links
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(String.self, forKey: "data")
                     links = try container.decodeIfPresent(Links.self, forKey: "links")
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(data, forKey: "data")
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 
-                /**
-                 # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse.Data.Dimensions.Result.Links
-                 The link representation of the results.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse/data/dimensions/result/links>
-                 */
                 public struct Links: Codable, Sendable {
-                    /// A string URI representation of the data that Game Center organizes by group.
                     public var groupBy: String?
 
                     public init(groupBy: String? = nil) {

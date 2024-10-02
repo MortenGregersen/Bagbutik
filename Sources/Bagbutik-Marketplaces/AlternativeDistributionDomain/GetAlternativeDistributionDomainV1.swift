@@ -7,7 +7,7 @@ public extension Request {
      Read information for a specific alternative distribution domain.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_alternative_distribution_domain_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativeDistributionDomains-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

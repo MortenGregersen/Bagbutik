@@ -7,7 +7,7 @@ public extension Request {
      Create a subscription offer that provides offer codes for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_subscription_offer>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionOfferCodes>
 
      - Parameter requestBody: SubscriptionOfferCode representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

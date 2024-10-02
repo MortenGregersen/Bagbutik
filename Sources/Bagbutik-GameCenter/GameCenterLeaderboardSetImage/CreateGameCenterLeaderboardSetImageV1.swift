@@ -7,7 +7,7 @@ public extension Request {
      Add a new leaderboard set image.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_leaderboard_set_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardSetImages>
 
      - Parameter requestBody: GameCenterLeaderboardSetImage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

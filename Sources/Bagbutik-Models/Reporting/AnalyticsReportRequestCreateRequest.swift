@@ -1,15 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AnalyticsReportRequestCreateRequest
- The request body you use to create an analytics report request.
-
- Use this object with [Request reports](https://developer.apple.com/documentation/appstoreconnectapi/request_reports).
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest>
- */
 public struct AnalyticsReportRequestCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -27,13 +18,6 @@ public struct AnalyticsReportRequestCreateRequest: Codable, Sendable, RequestBod
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AnalyticsReportRequestCreateRequest.Data
-     The data structure that represents an analytics report request create request resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "analyticsReportRequests" }
         public let attributes: Attributes
@@ -62,15 +46,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, Sendable, RequestBod
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AnalyticsReportRequestCreateRequest.Data.Attributes
-         Attributes that describe an analytics report create request resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The `accessType` `ONGOING` provides current data and is the most typical. It generates reports daily, weekly and monthly. Use `ONE_TIME_SNAPSHOT` to get historical data.
             public let accessType: AnalyticsReportRequest.Attributes.AccessType
 
             public init(accessType: AnalyticsReportRequest.Attributes.AccessType) {
@@ -122,15 +98,7 @@ public struct AnalyticsReportRequestCreateRequest: Codable, Sendable, RequestBod
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AnalyticsReportRequestCreateRequest.Data.Relationships.App.Data
-                 The data structure that represents the app Apple ID for analytics report create request resource.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestcreaterequest/data/relationships/app/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the Apps resource. Obtain the app resource ID from the [List Apps](https://developer.apple.com/documentation/appstoreconnectapi/list_apps) response.
                     public let id: String
                     public var type: String { "apps" }
 

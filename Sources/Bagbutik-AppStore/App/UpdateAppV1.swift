@@ -7,7 +7,7 @@ public extension Request {
      Update app information, including bundle ID, primary locale, price schedule, and global availability.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-apps-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: App representation

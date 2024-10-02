@@ -75,42 +75,42 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Sendable, Identifiab
 
     public struct Relationships: Codable, Sendable {
         public var offerCode: OfferCode?
+        public var values: Values?
 
-        public init(offerCode: OfferCode? = nil) {
+        public init(offerCode: OfferCode? = nil,
+                    values: Values? = nil)
+        {
             self.offerCode = offerCode
+            self.values = values
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             offerCode = try container.decodeIfPresent(OfferCode.self, forKey: "offerCode")
+            values = try container.decodeIfPresent(Values.self, forKey: "values")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(offerCode, forKey: "offerCode")
+            try container.encodeIfPresent(values, forKey: "values")
         }
 
         public struct OfferCode: Codable, Sendable {
             @NullCodable public var data: Data?
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
             public struct Data: Codable, Sendable, Identifiable {
@@ -135,29 +135,23 @@ public struct SubscriptionOfferCodeOneTimeUseCode: Codable, Sendable, Identifiab
                     try container.encode(type, forKey: "type")
                 }
             }
+        }
 
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
+        public struct Values: Codable, Sendable {
+            public var links: RelationshipLinks?
 
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
 
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
 
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
             }
         }
     }

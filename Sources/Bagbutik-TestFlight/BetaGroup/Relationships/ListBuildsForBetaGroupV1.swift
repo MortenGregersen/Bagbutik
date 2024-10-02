@@ -7,7 +7,7 @@ public extension Request {
      Get a list of builds associated with a specific beta group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_for_a_betagroup>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaGroups-_id_-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

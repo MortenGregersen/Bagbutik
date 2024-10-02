@@ -7,7 +7,7 @@ public extension Request {
      Commit a leaderboard image after uploading it.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_leaderboard_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboardImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterLeaderboardImage representation

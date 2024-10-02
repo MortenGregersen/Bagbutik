@@ -7,7 +7,7 @@ public extension Request {
      Update the app store version for a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreVersions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppStoreVersion representation

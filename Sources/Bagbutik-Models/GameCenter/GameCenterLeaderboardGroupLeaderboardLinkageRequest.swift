@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardGroupLeaderboardLinkageRequest
- The request body you use to attach an individual leaderbaord to a group leaderboard.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardgroupleaderboardlinkagerequest>
- */
 public struct GameCenterLeaderboardGroupLeaderboardLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 

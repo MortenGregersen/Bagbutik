@@ -7,7 +7,7 @@ public extension Request {
      Read information about a specific leaderboard.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_leaderboard_information-q4a>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboards-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

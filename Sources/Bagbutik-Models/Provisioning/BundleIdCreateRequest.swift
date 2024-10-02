@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BundleIdCreateRequest
- The request body you use to create a Bundle ID.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest>
- */
 public struct BundleIdCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -26,13 +18,6 @@ public struct BundleIdCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # BundleIdCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "bundleIds" }
         public let attributes: Attributes
@@ -55,13 +40,6 @@ public struct BundleIdCreateRequest: Codable, Sendable, RequestBody {
             try container.encode(attributes, forKey: "attributes")
         }
 
-        /**
-         # BundleIdCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let identifier: String
             public let name: String

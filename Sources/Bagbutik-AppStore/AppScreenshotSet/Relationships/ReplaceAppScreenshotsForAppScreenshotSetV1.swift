@@ -7,7 +7,7 @@ public extension Request {
      Change the order of the screenshots in a screenshot set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/replace_all_app_screenshots_for_an_app_screenshot_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appScreenshotSets-_id_-relationships-appScreenshots>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

@@ -7,7 +7,7 @@ public extension Request {
      Read the Game Center enablement state and related app version information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_information_for_a_specific_app_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAppVersions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -55,6 +55,7 @@ public enum GetGameCenterAppVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

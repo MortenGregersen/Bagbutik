@@ -13,7 +13,7 @@ public extension Request {
      App Store Connect confirms the deletion by responding with the `HTTP/1.1 204 No Content` HTTP status code.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_product>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-ciProducts-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

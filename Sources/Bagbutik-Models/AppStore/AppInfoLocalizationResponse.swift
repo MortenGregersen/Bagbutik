@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppInfoLocalizationResponse
- A response that contains a single App Info Localizations resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationresponse>
- */
 public struct AppInfoLocalizationResponse: Codable, Sendable {
     public let data: AppInfoLocalization
     public var included: [AppInfo]?

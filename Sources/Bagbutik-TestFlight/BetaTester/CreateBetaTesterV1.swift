@@ -7,7 +7,7 @@ public extension Request {
      Create a beta tester assigned to a group, a build, or an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_beta_tester>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaTesters>
 
      - Parameter requestBody: BetaTester representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

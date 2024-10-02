@@ -7,7 +7,7 @@ public extension Request {
      Configure a new default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appClipDefaultExperiences>
 
      - Parameter requestBody: AppClipDefaultExperience representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

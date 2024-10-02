@@ -7,7 +7,7 @@ public extension Request {
      Get information about a user on your team, such as name, roles, and app visibility.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_user_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-users-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -40,6 +40,7 @@ public enum GetUserV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -74,6 +75,7 @@ public enum GetUserV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

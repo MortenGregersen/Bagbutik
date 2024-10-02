@@ -7,7 +7,7 @@ public extension Request {
      Get a specific beta build localization resource.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_build_localization_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaBuildLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

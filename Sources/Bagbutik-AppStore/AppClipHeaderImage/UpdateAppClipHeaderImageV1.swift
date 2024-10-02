@@ -7,7 +7,7 @@ public extension Request {
      Change the image that appears on the App Clip card of a default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_clip_card_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipHeaderImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppClipHeaderImage representation

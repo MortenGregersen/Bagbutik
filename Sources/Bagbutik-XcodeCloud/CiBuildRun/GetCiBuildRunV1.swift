@@ -9,7 +9,7 @@ public extension Request {
      The example request below retrieves detailed information for a specific build. Use the data provided in the response to display detailed build information on a dashboard or to access related information for each action Xcode Cloud performed.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_build_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildRuns-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -35,8 +35,6 @@ public enum GetCiBuildRunV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type builds
         case builds([Builds])
-        /// The fields to include for returned resources of type ciBuildActions
-        case ciBuildActions([CiBuildActions])
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
 
@@ -65,21 +63,6 @@ public enum GetCiBuildRunV1 {
             case uploadedDate
             case usesNonExemptEncryption
             case version
-        }
-
-        public enum CiBuildActions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case actionType
-            case artifacts
-            case buildRun
-            case completionStatus
-            case executionProgress
-            case finishedDate
-            case isRequiredToPass
-            case issueCounts
-            case issues
-            case name
-            case startedDate
-            case testResults
         }
 
         public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -111,6 +94,7 @@ public enum GetCiBuildRunV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case actions
         case builds
         case destinationBranch
         case product

@@ -7,7 +7,7 @@ public extension Request {
      Get the results of a specific matchmaking rule that returns Boolean values.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_boolean_rule_results>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingRules-_id_-metrics-matchmakingBooleanRuleResults>
 
      - Parameter id: The id of the requested resource
      - Parameter filters: Attributes, relationships, and IDs by which to filter

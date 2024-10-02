@@ -7,7 +7,7 @@ public extension Request {
      Update the search detail URL for the alternative marketplace.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_marketplace_search_detail_url>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-marketplaceSearchDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: MarketplaceSearchDetail representation

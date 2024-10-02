@@ -7,7 +7,7 @@ public extension Request {
      Add a new group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterGroups>
 
      - Parameter requestBody: GameCenterGroup representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

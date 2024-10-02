@@ -7,7 +7,7 @@ public extension Request {
      Register a new bundle ID for app development.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/register_a_new_bundle_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-bundleIds>
 
      - Parameter requestBody: BundleId representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

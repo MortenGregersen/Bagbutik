@@ -7,7 +7,7 @@ public extension Request {
      Update the prices for a specific promotional offer for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_promotional_offer>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionPromotionalOffers-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionPromotionalOffer representation

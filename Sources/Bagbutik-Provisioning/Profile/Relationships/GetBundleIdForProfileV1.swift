@@ -7,7 +7,7 @@ public extension Request {
      Get the bundle ID information for a specific provisioning profile.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_bundle_id_in_a_profile>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-profiles-_id_-bundleId>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

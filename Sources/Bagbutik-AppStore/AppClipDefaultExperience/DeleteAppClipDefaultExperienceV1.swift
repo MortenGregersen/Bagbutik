@@ -7,7 +7,7 @@ public extension Request {
      Delete a specific default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appClipDefaultExperiences-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

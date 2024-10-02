@@ -3,10 +3,10 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEvents/{id}
+     # Read in-app event information
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appevents_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEvents-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      List information about leaderboards and leaderboard sets in a group leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_leaderboard_sets_in_a_group_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSets-_id_-groupLeaderboardSet>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

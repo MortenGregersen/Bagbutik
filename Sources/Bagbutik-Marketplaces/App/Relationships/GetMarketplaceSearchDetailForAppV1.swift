@@ -7,7 +7,7 @@ public extension Request {
      Get search detail URL for the alternative marketplace.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_marketplace_search_detail_url>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-marketplaceSearchDetail>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

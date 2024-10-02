@@ -7,7 +7,7 @@ public extension Request {
      Edit the reference name for a group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterGroups-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterGroup representation

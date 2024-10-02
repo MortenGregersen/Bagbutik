@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterDetailsResponse
- A response that contains a list of Game Center detail resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailsresponse>
- */
 public struct GameCenterDetailsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterDetail
 

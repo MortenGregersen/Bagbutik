@@ -7,7 +7,7 @@ public extension Request {
      Delete the image asset that appears on the App Clip card for a default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_default_app_clip_experience_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appClipHeaderImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

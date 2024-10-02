@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageLocalizationUpdateRequest
- The request body you use to update an app custom product page localization.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationupdaterequest>
- */
 public struct AppCustomProductPageLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

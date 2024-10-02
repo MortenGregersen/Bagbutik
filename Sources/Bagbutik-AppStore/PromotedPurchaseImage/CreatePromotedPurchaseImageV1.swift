@@ -7,11 +7,12 @@ public extension Request {
      Reserve an image asset to appear in the App Store, representing a promoted in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_promoted_purchase_image_for_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-promotedPurchaseImages>
 
      - Parameter requestBody: PromotedPurchaseImage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func createPromotedPurchaseImageV1(requestBody: PromotedPurchaseImageCreateRequest) -> Request<PromotedPurchaseImageResponse, ErrorResponse> {
         .init(path: "/v1/promotedPurchaseImages", method: .post, requestBody: requestBody)
     }

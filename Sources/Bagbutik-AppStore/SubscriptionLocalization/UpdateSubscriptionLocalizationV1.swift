@@ -7,7 +7,7 @@ public extension Request {
      Update a specific localized subscription display name and description for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_subscription_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionLocalization representation

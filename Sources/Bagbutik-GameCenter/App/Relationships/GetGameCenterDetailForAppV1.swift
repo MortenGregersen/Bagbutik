@@ -7,7 +7,7 @@ public extension Request {
      Get Game Center detail information for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_state_of_game_center_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-gameCenterDetail>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -56,6 +56,7 @@ public enum GetGameCenterDetailForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -90,6 +91,7 @@ public enum GetGameCenterDetailForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

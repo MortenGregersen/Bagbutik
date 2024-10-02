@@ -7,7 +7,7 @@ public extension Request {
      Update the release date for your app pre-order.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_pre-order>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appPreOrders-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppPreOrder representation

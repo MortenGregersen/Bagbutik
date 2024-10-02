@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # EndUserLicenseAgreementResponse
- A response that contains a single End User License Agreements resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementresponse>
- */
 public struct EndUserLicenseAgreementResponse: Codable, Sendable {
     public let data: EndUserLicenseAgreement
     public var included: [Included]?
