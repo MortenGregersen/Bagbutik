@@ -48,6 +48,7 @@ public class OperationRenderer: Renderer {
             }
             parameters.append(contentsOf: parametersInfo.parameters)
             var extensionContent = await self.renderDocumentationBlock(title: title) {
+                let url = "https://developer.apple.com/documentation/appstoreconnectapi/" + operation.getDocumentationId(path: path)
                 var documentationContent = [String]()
                 if let abstract = documentation?.abstract {
                     documentationContent.append(abstract)
@@ -60,7 +61,7 @@ public class OperationRenderer: Renderer {
                 }
                 documentationContent.append("""
                 Full documentation:
-                <\(await self.docsLoader.createUrlForOperation(withId: operation.id))>
+                <\(url)>
                 """)
                 var parametersPart = parameters.reduce(into: ["\n"]) { partialResult, parameter in
                     partialResult.append(self.renderDocumentationParameterLine(name: parameter.name, description: parameter.documentation))

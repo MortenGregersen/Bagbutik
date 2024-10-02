@@ -84,27 +84,32 @@ public class DocsFetcher {
         self.print = print
     }
 
-    public func fetchAllDocs(specFileURL: URL, outputDirURL: URL) async throws {
+    public func fetchAllDocs(specFileURL: URL, outputDirURL: URL, dryRun: Bool) async throws {
         guard specFileURL.isFileURL else { throw DocsFetcherError.notFileUrl(.specFileURL) }
         print("🔍 Loading spec \(specFileURL.path)...")
         let spec = try loadSpec(specFileURL)
 
         var operationDocumentationById = [String: Documentation]()
-        let operationIds = spec.paths.values.map(\.operations).flatMap { $0 }.map(\.id).sorted()
-        for operationId in operationIds {
-            if let operationUrl = createJsonDocumentationUrl(fromOperationId: operationId) {
-                print("Fetching documentation for operation '\(operationId)' (\(operationUrl))")
-                let documentation = try await fetchDocumentation(for: operationUrl)
-                operationDocumentationById[operationId] = documentation
+        let operationIdsAndDocUrls: [(operationId: String, docUrl: URL?)] = spec.paths.values
+            .flatMap { path in
+                path.operations.map {
+                    (operationId: $0.id, docUrl: createJsonDocumentationUrl(fromOperation: $0, in: path))
+                }
+            }
+            .sorted(by: { $0.operationId < $1.operationId })
+        for (operationId, docUrl) in operationIdsAndDocUrls {
+            if let docUrl {
+                if dryRun {
+                    print("Would fetch documentation for operation '\(operationId)' (\(docUrl))")
+                } else {
+                    print("Fetching documentation for operation '\(operationId)' (\(docUrl))")
+                    let documentation = try await fetchDocumentation(for: docUrl)
+                    operationDocumentationById[operationId] = documentation
+                }
             } else {
                 print("⚠️ Documentation URL missing for operation: '\(operationId)'")
             }
         }
-        // Comment in to get a list of obsolete URLs
-//        let operationIdsWithUrlButNotInSpec = OperationMapping.allMappings.keys.filter { !operationIds.contains($0) }
-//        operationIdsWithUrlButNotInSpec.forEach { operationId in
-//            print("⚠️ Documentation URL exists for removed operation: '\(operationId)'")
-//        }
 
         var identifierBySchemaName = [String: String]()
         var schemaDocumentationById = [String: Documentation]()
@@ -195,13 +200,13 @@ public class DocsFetcher {
     private func createJsonDocumentationUrl(fromDocId id: String) -> URL {
         URL(string: id
             .replacingOccurrences(
-                of: "doc://com.apple.documentation/documentation",
+                of: "doc://com.apple.appstoreconnectapi/documentation",
                 with: "https://developer.apple.com/tutorials/data/documentation")
             .appending(".json"))!
     }
 
-    private func createJsonDocumentationUrl(fromOperationId operationId: String) -> URL? {
-        guard let urlPath = OperationMapping.allMappings[operationId]?.appending(".json") else { return nil }
+    private func createJsonDocumentationUrl(fromOperation operation: BagbutikSpecDecoder.Operation, in path: Path) -> URL {
+        let urlPath = operation.getDocumentationId(path: path).appending(".json")
         return URL(string: "https://developer.apple.com/tutorials/data/documentation/appstoreconnectapi/" + urlPath)!
     }
 }

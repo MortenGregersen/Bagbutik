@@ -115,10 +115,6 @@ public actor DocsLoader {
         return documentation
     }
 
-    public func createUrlForOperation(withId operationId: String) -> String {
-        "https://developer.apple.com/documentation/appstoreconnectapi/" + OperationMapping.allMappings[operationId]!
-    }
-
     private func createDocumentationId(fromUrl url: String) -> String {
         url.replacingOccurrences(of: "https://developer.apple.com", with: "doc://com.apple.documentation")
     }

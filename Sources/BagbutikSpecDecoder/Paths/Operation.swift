@@ -79,17 +79,15 @@ public struct Operation: Decodable, Equatable, Sendable {
         let deprecated = try container.decodeIfPresent(Bool.self, forKey: .deprecated) ?? false
         let method = HTTPMethod(rawValue: container.codingPath.last!.stringValue)!
         let parameters = try container.decodeIfPresent([Parameter].self, forKey: .parameters)
-        let requestBody: RequestBody?
-        if let requestBodyContainter = try? container.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .requestBody),
-           let contentContainter = try? requestBodyContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .content),
-           let applicationJsonContainter = try? contentContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .applicationJson),
-           let schemaContainer = try? applicationJsonContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .schema),
-           let requestBodyName = try? schemaContainer.decode(String.self, forKey: .ref).components(separatedBy: "/").last,
-           let requestBodyDescription = try? requestBodyContainter.decode(String.self, forKey: .description)
-        {
-            requestBody = .init(name: requestBodyName, documentation: requestBodyDescription)
+        let requestBody: RequestBody? = if let requestBodyContainter = try? container.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .requestBody),
+                                           let contentContainter = try? requestBodyContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .content),
+                                           let applicationJsonContainter = try? contentContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .applicationJson),
+                                           let schemaContainer = try? applicationJsonContainter.nestedContainer(keyedBy: RequestBodyCodingKeys.self, forKey: .schema),
+                                           let requestBodyName = try? schemaContainer.decode(String.self, forKey: .ref).components(separatedBy: "/").last,
+                                           let requestBodyDescription = try? requestBodyContainter.decode(String.self, forKey: .description) {
+            .init(name: requestBodyName, documentation: requestBodyDescription)
         } else {
-            requestBody = nil
+            nil
         }
         let responsesContainer = try container.nestedContainer(keyedBy: DynamicCodingKeys.self, forKey: .responses)
         let successCode = responsesContainer.allKeys.first { $0.stringValue.hasPrefix("2") }!.stringValue
@@ -108,6 +106,14 @@ public struct Operation: Decodable, Equatable, Sendable {
         }
         return name
     }
+    
+    public func getDocumentationId(path: Path) -> String {
+        let normalizedPath = path.path
+            .replacingOccurrences(of: "{", with: "_")
+            .replacingOccurrences(of: "}", with: "_")
+            .replacingOccurrences(of: "/", with: "-")
+        return "\(method.rawValue.lowercased())\(normalizedPath)"
+    }
 
     static func getName(forId operationId: String) throws -> String {
         let range = NSRange(location: 0, length: operationId.utf16.count)
@@ -116,7 +122,7 @@ public struct Operation: Decodable, Equatable, Sendable {
             return "get\(name.capitalizingFirstLetter().singularized())"
         } else if let result = getCollectionRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            if ["salesReports-get_collection", "financeReports-get_collection"].contains(operationId) {
+            if ["salesReports_getCollection", "financeReports_getCollection"].contains(operationId) {
                 return "get\(name.capitalizingFirstLetter())"
             }
             return "list\(name.capitalizingFirstLetter())"
@@ -142,7 +148,7 @@ public struct Operation: Decodable, Equatable, Sendable {
             return "list\(relationship.capitalizingFirstLetter())For\(name.capitalizingFirstLetter().singularized())"
         } else if let result = createInstanceRegex.firstMatch(in: operationId, options: [], range: range) {
             let name = String(operationId[Range(result.range(at: 1), in: operationId)!])
-            if operationId == "ciBuildRuns-create_instance" { return "start\(name.capitalizingFirstLetter().singularized())" }
+            if operationId == "ciBuildRuns_createInstance" { return "start\(name.capitalizingFirstLetter().singularized())" }
             return "create\(name.capitalizingFirstLetter().singularized())"
         } else if let result = createToManyRelationshipRegex.firstMatch(in: operationId, options: [], range: range) {
             let relationship = String(operationId[Range(result.range(at: 2), in: operationId)!])

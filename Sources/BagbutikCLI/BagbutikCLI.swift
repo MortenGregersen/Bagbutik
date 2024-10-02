@@ -71,6 +71,8 @@ struct BagbutikCLI: AsyncParsableCommand {
 
         @Option(name: .shortAndLong, help: "The output folder for the generated files. Should contain the current Endpoints and Models.")
         var outputPath = "./Documentation"
+        
+        @Flag var dryRun: Bool = false
 
         func run() async throws {
             let specFileURL: URL
@@ -81,7 +83,7 @@ struct BagbutikCLI: AsyncParsableCommand {
                 specFileURL = try await downloadNewestSpec()
             }
             let outputDirURL = URL(fileURLWithPath: outputPath)
-            try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)
+            try await DocsFetcher().fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: dryRun)
         }
     }
 

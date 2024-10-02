@@ -166,7 +166,7 @@ final class DocsFetcherTests: XCTestCase {
                 abstract: "A User.",
                 properties: ["name": .init(required: true, description: "The name of the user.")])))
         // When
-        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)
+        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)
         // Then
         XCTAssertEqual(printer.printedLogs, [
             "🔍 Loading spec /Users/steve/spec.json...",
@@ -187,7 +187,7 @@ final class DocsFetcherTests: XCTestCase {
         // When
         let specFileURL = URL(string: "https://developer.apple.com")!
         let outputDirURL = validOutputDirURL
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)) {
             // Then
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.notFileUrl(.specFileURL))
         }
@@ -199,7 +199,7 @@ final class DocsFetcherTests: XCTestCase {
         // When
         let specFileURL = URL(fileURLWithPath: "/Users/timcook/app-store-connect-openapi-spec.json")
         let outputDirURL = validOutputDirURL
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: specFileURL, outputDirURL: outputDirURL, dryRun: false)) {
             // Then
             let nsError = $0 as NSError
             #if os(Linux) && compiler(<6.0)
@@ -224,7 +224,7 @@ final class DocsFetcherTests: XCTestCase {
         #endif
         let docsFetcher = DocsFetcher(loadSpec: { _ in try Spec(paths: [:], components: .init(schemas: [:])) }, fetchData: urlSession.data(from:delegate:), fileManager: fileManager, print: printer.print)
         // When
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
             // Then
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.couldNotCreateFile)
         }
@@ -238,7 +238,7 @@ final class DocsFetcherTests: XCTestCase {
             ]))
             })
         // When
-        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)) {
+        await XCTAssertAsyncThrowsError(try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)) {
             // Then
             XCTAssertEqual($0 as? DocsFetcherError, DocsFetcherError.noDocumentationUrl("Platform"))
         }
@@ -268,7 +268,7 @@ final class DocsFetcherTests: XCTestCase {
             fileManager: fileManager,
             print: printer.print)
         // When
-        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL)
+        try await docsFetcher.fetchAllDocs(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, dryRun: false)
         // Then
         XCTAssertEqual(printer.printedLogs, [
             "🔍 Loading spec /Users/steve/spec.json...",
