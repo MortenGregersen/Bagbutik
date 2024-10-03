@@ -50,4 +50,16 @@ final class PropertyRendererTests: XCTestCase {
         public var name: String? = nil
         """)
     }
+    
+    func testRenderDeprecatedRequired() throws {
+        // Given
+        let renderer = PropertyRenderer(docsLoader: DocsLoader(), shouldFormat: true)
+        // When
+        let rendered = renderer.renderProperty(id: "name", type: "string", optional: false, isSimpleType: true, deprecated: true)
+        // Then
+        XCTAssertEqual(rendered, """
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public let name: String
+        """)
+    }
 }

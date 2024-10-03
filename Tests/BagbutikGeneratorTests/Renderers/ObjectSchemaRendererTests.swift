@@ -1390,7 +1390,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct Something: Codable, Sendable {
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var app: App
+            public let app: App
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(app: App) {
@@ -1514,7 +1514,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         XCTAssertEqual(rendered, #"""
         public struct Something: Codable, Sendable {
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var app: App
+            public let app: App
             public let user: User
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
