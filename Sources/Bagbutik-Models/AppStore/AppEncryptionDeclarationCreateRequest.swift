@@ -82,14 +82,12 @@ public struct AppEncryptionDeclarationCreateRequest: Codable, Sendable, RequestB
 
         public struct Relationships: Codable, Sendable {
             @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
-            public var app: App = nil
+            public let app: App
 
             @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
             public init(app: App) {
                 self.app = app
             }
-
-            public init() {}
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
