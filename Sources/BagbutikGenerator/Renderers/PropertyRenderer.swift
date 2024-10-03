@@ -5,7 +5,7 @@ internal class PropertyRenderer: Renderer {
             rendered += #"@available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")"#
             rendered += "\n"
         }
-        let propertyType = deprecated || optional ? "var" : "let"
+        let propertyType = optional ? "var" : "let"
         rendered += "public \(propertyType) \(escapeReservedKeywords(in: id)): "
         if clearable {
             rendered += "Clearable<\(type.capitalizingFirstLetter())>"
@@ -15,7 +15,7 @@ internal class PropertyRenderer: Renderer {
         if optional {
             rendered += "?"
         }
-        if deprecated {
+        if deprecated && optional {
             rendered += " = nil"
         }
         return rendered

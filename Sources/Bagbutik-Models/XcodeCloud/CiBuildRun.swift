@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CiBuildRun
- The data structure that represents a Build Runs resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun>
- */
 public struct CiBuildRun: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies a Build Runs resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ciBuildRuns" }
-    /// The attributes that describe the Build Runs resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,37 +39,18 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # CiBuildRun.Attributes
-     The attributes that describe a Build Runs resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// A string that indicates the reason for a canceled build.
         public var cancelReason: CancelReason?
-        /// A string that indicates the status of a completed build.
         public var completionStatus: CiCompletionStatus?
-        /// The date and time when Xcode Cloud created the build.
         public var createdDate: Date?
-        /// Detailed information about the commit of a pull request build’s target branch. This value is only available to builds from pull requests.
         public var destinationCommit: DestinationCommit?
-        /// A string that indicates the progress of the build action.
         public var executionProgress: CiExecutionProgress?
-        /// The date and time when Xcode Cloud completed the build.
         public var finishedDate: Date?
-        /// A Boolean value that indicates whether the build was started by a change to a pull request.
         public var isPullRequestBuild: Bool?
-        /// An integer value that represents the number of issues Xcode Cloud encountered when it performed the build.
         public var issueCounts: CiIssueCounts?
-        /// The Xcode Cloud build number.
         public var number: Int?
-        /// Detailed information about the commit of a pull request build’s source branch. This value is only available to builds from pull requests.
         public var sourceCommit: SourceCommit?
-        /// A string that indicates what started the build.
         public var startReason: StartReason?
-        /// The date and time when Xcode Cloud started the build.
         public var startedDate: Date?
 
         public init(cancelReason: CancelReason? = nil,
@@ -148,23 +117,11 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
             case manuallyByUser = "MANUALLY_BY_USER"
         }
 
-        /**
-         # CiBuildRun.Attributes.DestinationCommit
-         The latest commit of a pull request’s target branch or the source commit for builds that aren’t pull request builds.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/attributes/destinationcommit>
-         */
         public struct DestinationCommit: Codable, Sendable {
-            /// The author of the commit.
             public var author: CiGitUser?
-            /// The commit hash.
             public var commitSha: String?
-            /// The commit’s Git committer.
             public var committer: CiGitUser?
-            /// The commit message.
             public var message: String?
-            /// The commit URL.
             public var webUrl: String?
 
             public init(author: CiGitUser? = nil,
@@ -199,23 +156,11 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
             }
         }
 
-        /**
-         # CiBuildRun.Attributes.SourceCommit
-         The latest commit of a Git branch or tag, or of a pull request’s source branch.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/attributes/sourcecommit>
-         */
         public struct SourceCommit: Codable, Sendable {
-            /// The author of the commit.
             public var author: CiGitUser?
-            /// The commit hash.
             public var commitSha: String?
-            /// The commit’s Git committer.
             public var committer: CiGitUser?
-            /// The commit message.
             public var message: String?
-            /// The commit URL.
             public var webUrl: String?
 
             public init(author: CiGitUser? = nil,
@@ -260,34 +205,24 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # CiBuildRun.Relationships
-     The relationships of the Build Runs resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships>
-     */
     public struct Relationships: Codable, Sendable {
-        /// The data and links that describe the relationship between the Build Runs and the Builds resources.
+        public var actions: Actions?
         public var builds: Builds?
-        /// The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the destination branch.
         public var destinationBranch: DestinationBranch?
-        /// The data and links that describe the relationship between the Build Runs and the Products resources.
         public var product: Product?
-        /// The data and links that describe the relationship between the Build Runs and the Pull Requests resources.
         public var pullRequest: PullRequest?
-        /// The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the source branch or tag.
         public var sourceBranchOrTag: SourceBranchOrTag?
-        /// The data and links that describe the relationship between the Build Runs and the Workflows resources.
         public var workflow: Workflow?
 
-        public init(builds: Builds? = nil,
+        public init(actions: Actions? = nil,
+                    builds: Builds? = nil,
                     destinationBranch: DestinationBranch? = nil,
                     product: Product? = nil,
                     pullRequest: PullRequest? = nil,
                     sourceBranchOrTag: SourceBranchOrTag? = nil,
                     workflow: Workflow? = nil)
         {
+            self.actions = actions
             self.builds = builds
             self.destinationBranch = destinationBranch
             self.product = product
@@ -298,6 +233,7 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            actions = try container.decodeIfPresent(Actions.self, forKey: "actions")
             builds = try container.decodeIfPresent(Builds.self, forKey: "builds")
             destinationBranch = try container.decodeIfPresent(DestinationBranch.self, forKey: "destinationBranch")
             product = try container.decodeIfPresent(Product.self, forKey: "product")
@@ -308,6 +244,7 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(actions, forKey: "actions")
             try container.encodeIfPresent(builds, forKey: "builds")
             try container.encodeIfPresent(destinationBranch, forKey: "destinationBranch")
             try container.encodeIfPresent(product, forKey: "product")
@@ -316,23 +253,31 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(workflow, forKey: "workflow")
         }
 
-        /**
-         # CiBuildRun.Relationships.Builds
-         The data, links, and paging information that describe the relationship between the Build Runs and the Builds resources.
+        public struct Actions: Codable, Sendable {
+            public var links: RelationshipLinks?
 
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds>
-         */
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
+        }
+
         public struct Builds: Codable, Sendable {
-            /// The ID and type of the related Builds resource.
             @NullCodable public var data: [Data]?
-            /// The navigational links that include the self-link.
-            public var links: Links?
-            /// The paging information.
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -343,7 +288,7 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -354,17 +299,8 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                 try container.encodeIfPresent(meta, forKey: "meta")
             }
 
-            /**
-             # CiBuildRun.Relationships.Builds.Data
-             The type and ID of a related Builds resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Builds resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "builds" }
 
                 public init(id: String) {
@@ -385,84 +321,27 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # CiBuildRun.Relationships.Builds.Links
-             The links to the related Builds resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/builds/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # CiBuildRun.Relationships.DestinationBranch
-         The data and links that describe the relationship between the Build Runs resource and the Git References resource that represents the destination branch.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch>
-         */
         public struct DestinationBranch: Codable, Sendable {
-            /// The ID of the related Git References resource that represents the destination branch.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # CiBuildRun.Relationships.DestinationBranch.Data
-             The type and ID of a related Git References resource that represents the build run’s destination branch.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Git References resource that represents the destination branch.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmGitReferences" }
 
                 public init(id: String) {
@@ -483,84 +362,27 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # CiBuildRun.Relationships.DestinationBranch.Links
-             The links to the related Git References resource that represents the destination branch and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/destinationbranch/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # CiBuildRun.Relationships.Product
-         The data and links that describe the relationship between the Build Runs and the Products resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product>
-         */
         public struct Product: Codable, Sendable {
-            /// The ID and type of the related Products resource.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # CiBuildRun.Relationships.Product.Data
-             The type and ID of a related Products resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Products resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "ciProducts" }
 
                 public init(id: String) {
@@ -581,84 +403,27 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # CiBuildRun.Relationships.Product.Links
-             The links to the related Products resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/product/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # CiBuildRun.Relationships.PullRequest
-         The data and links that describe the relationship between the Build Runs and the Pull Requests resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest>
-         */
         public struct PullRequest: Codable, Sendable, RequestBody {
-            /// The ID and type of the related Pull Requests resource.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # CiBuildRun.Relationships.PullRequest.Data
-             The type and ID of a related Pull Requests resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Pull Requests resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmPullRequests" }
 
                 public init(id: String) {
@@ -679,84 +444,27 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # CiBuildRun.Relationships.PullRequest.Links
-             The links to the related Pull Requests resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/pullrequest/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # CiBuildRun.Relationships.SourceBranchOrTag
-         The data and links that describe the relationship between the Build Runs and the Git References resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag>
-         */
         public struct SourceBranchOrTag: Codable, Sendable {
-            /// The ID and type of the related Git References resource that represents the source branch or tag.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # CiBuildRun.Relationships.SourceBranchOrTag.Data
-             The type and ID of a related Git References resource that represents the source branch or tag.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Git References resource that represents the source branch or tag.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmGitReferences" }
 
                 public init(id: String) {
@@ -777,84 +485,27 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                     try container.encode(type, forKey: "type")
                 }
             }
-
-            /**
-             # CiBuildRun.Relationships.SourceBranchOrTag.Links
-             The links to the related Git References resource that represents the source branch or tag and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/sourcebranchortag/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
-                }
-            }
         }
 
-        /**
-         # CiBuildRun.Relationships.Workflow
-         The data and links that describe the relationship between the Build Runs and the Workflows resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow>
-         */
         public struct Workflow: Codable, Sendable {
-            /// The ID and type of the related Workflows resource.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # CiBuildRun.Relationships.Workflow.Data
-             The type and ID of a related Workflows resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Workflows resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "ciWorkflows" }
 
                 public init(id: String) {
@@ -873,39 +524,6 @@ public struct CiBuildRun: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # CiBuildRun.Relationships.Workflow.Links
-             The links to the related Workflows resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrun/relationships/workflow/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

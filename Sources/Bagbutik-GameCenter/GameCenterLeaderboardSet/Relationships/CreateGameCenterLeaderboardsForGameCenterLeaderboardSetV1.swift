@@ -7,7 +7,7 @@ public extension Request {
      Add a leaderboard to a leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_relationship_between_a_leaderboard_and_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardSets-_id_-relationships-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

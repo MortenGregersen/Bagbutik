@@ -7,7 +7,7 @@ public extension Request {
      Get details about a specific promoted in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_promoted_purchase_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-promotedPurchases-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -32,6 +32,7 @@ public enum GetPromotedPurchaseV1 {
      */
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type promotedPurchaseImages
+        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case promotedPurchaseImages([PromotedPurchaseImages])
         /// The fields to include for returned resources of type promotedPurchases
         case promotedPurchases([PromotedPurchases])

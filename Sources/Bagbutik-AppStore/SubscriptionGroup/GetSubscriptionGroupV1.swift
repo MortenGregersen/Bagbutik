@@ -7,7 +7,7 @@ public extension Request {
      Get the details of a specific subscription group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_group_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionGroups-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -58,6 +58,7 @@ public enum GetSubscriptionGroupV1 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -71,6 +72,7 @@ public enum GetSubscriptionGroupV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
         }
     }
 

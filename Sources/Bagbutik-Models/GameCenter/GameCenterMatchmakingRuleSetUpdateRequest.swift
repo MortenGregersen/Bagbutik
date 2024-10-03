@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingRuleSetUpdateRequest
- The request body you use to modify a rule set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest>
- */
 public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, Sendable, RequestBody {
-    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {
@@ -26,17 +18,8 @@ public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, Sendable, Requ
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # GameCenterMatchmakingRuleSetUpdateRequest.Data
-     The data structure of the request body you use to modify a rule set.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
-        /// The unique identifier for the rule set.
         public let id: String
-        /// The type of resource.
         public var type: String { "gameCenterMatchmakingRuleSets" }
         public var attributes: Attributes?
 
@@ -63,17 +46,8 @@ public struct GameCenterMatchmakingRuleSetUpdateRequest: Codable, Sendable, Requ
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # GameCenterMatchmakingRuleSetUpdateRequest.Data.Attributes
-         The attributes of a rule set that you modify.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesetupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The maximum number of players who can join the matches that Game Center finds using these rules.
             public var maxPlayers: Int?
-            /// The minimum number of players who can join the matches that Game Center finds using these rules.
             public var minPlayers: Int?
 
             public init(maxPlayers: Int? = nil,

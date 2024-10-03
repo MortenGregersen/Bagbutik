@@ -1,23 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # ScmRepositoriesResponse
- A response that contains a list of Repositories resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/scmrepositoriesresponse>
- */
 public struct ScmRepositoriesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = ScmRepository
 
-    /// The resource data.
     public let data: [ScmRepository]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [ScmRepository],

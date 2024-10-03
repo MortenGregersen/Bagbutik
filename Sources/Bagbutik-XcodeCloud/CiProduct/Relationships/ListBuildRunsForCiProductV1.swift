@@ -7,7 +7,7 @@ public extension Request {
      List all builds Xcode Cloud performed for a specific product.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_cloud_builds_for_an_xcode_cloud_product>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_-buildRuns>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -172,6 +172,7 @@ public enum ListBuildRunsForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case actions
         case builds
         case destinationBranch
         case product

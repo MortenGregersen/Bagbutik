@@ -7,7 +7,7 @@ public extension Request {
      Get a list of beta groups associated with a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_beta_groups_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-betaGroups>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Create a scheduled price change for an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_a_scheduled_price_change_to_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-inAppPurchasePriceSchedules>
 
      - Parameter requestBody: InAppPurchasePriceSchedule representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

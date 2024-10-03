@@ -6,7 +6,7 @@ public extension Request {
      # Get All Compatible Version IDs for a Game Center Enabled Version
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_compatible_version_ids_for_a_game_center_enabled_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterEnabledVersions-_id_-relationships-compatibleVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

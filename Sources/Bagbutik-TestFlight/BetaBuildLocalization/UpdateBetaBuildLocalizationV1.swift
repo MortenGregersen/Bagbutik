@@ -7,7 +7,7 @@ public extension Request {
      Update the localized What’s New text for a specific beta build and locale.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_beta_build_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaBuildLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BetaBuildLocalization representation

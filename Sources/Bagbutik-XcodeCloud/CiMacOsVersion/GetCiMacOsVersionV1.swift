@@ -9,7 +9,7 @@ public extension Request {
      The example request below accesses information about a macOS version available to Xcode Cloud workflows. Use the data provided in the response to read additional information; for example, Xcode versions.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_macos_version_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciMacOsVersions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

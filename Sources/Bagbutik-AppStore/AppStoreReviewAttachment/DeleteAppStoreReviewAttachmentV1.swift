@@ -7,7 +7,7 @@ public extension Request {
      Remove an attachment before you send your app to App Review.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_store_review_attachment>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreReviewAttachments-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Read the group leadboard to which a leaderboard belongs.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_group_information_for_a_leaderboard>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboards-_id_-groupLeaderboard>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

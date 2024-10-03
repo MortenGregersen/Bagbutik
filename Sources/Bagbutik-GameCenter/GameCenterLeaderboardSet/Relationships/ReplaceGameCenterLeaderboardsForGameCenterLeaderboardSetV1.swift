@@ -3,11 +3,11 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Edit the relationship between a leaderboard and a leaderboard set
-     Modify the leaderboards in leaderboard set.
+     # Modify the leaderboards in leaderboard set
+     Edit the positions of leaderboards in an existing leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/edit_the_relationship_between_a_leaderboard_and_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboardSets-_id_-relationships-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

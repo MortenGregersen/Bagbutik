@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all certificates and their data for a specific provisioning profile.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_certificates_in_a_profile>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-profiles-_id_-certificates>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

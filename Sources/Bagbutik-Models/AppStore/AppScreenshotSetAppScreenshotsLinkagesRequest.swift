@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppScreenshotSetAppScreenshotsLinkagesRequest
- A request body you use to reorder the screenshots in a screenshot set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesrequest>
- */
 public struct AppScreenshotSetAppScreenshotsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 
@@ -25,13 +18,6 @@ public struct AppScreenshotSetAppScreenshotsLinkagesRequest: Codable, Sendable, 
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppScreenshotSetAppScreenshotsLinkagesRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotsetappscreenshotslinkagesrequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appScreenshots" }

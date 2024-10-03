@@ -7,7 +7,7 @@ public extension Request {
      Add a new leaderboard localization.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_leaderboard_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardLocalizations>
 
      - Parameter requestBody: GameCenterLeaderboardLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

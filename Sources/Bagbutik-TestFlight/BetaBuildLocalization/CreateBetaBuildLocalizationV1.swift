@@ -7,7 +7,7 @@ public extension Request {
      Create localized What’s New text for a build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_beta_build_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaBuildLocalizations>
 
      - Parameter requestBody: BetaBuildLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

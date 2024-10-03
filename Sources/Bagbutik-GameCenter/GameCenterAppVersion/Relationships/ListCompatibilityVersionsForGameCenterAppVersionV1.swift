@@ -7,7 +7,7 @@ public extension Request {
      Get compatibility version information for a specific app version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_compatibility_version_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAppVersions-_id_-compatibilityVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -58,6 +58,7 @@ public enum ListCompatibilityVersionsForGameCenterAppVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

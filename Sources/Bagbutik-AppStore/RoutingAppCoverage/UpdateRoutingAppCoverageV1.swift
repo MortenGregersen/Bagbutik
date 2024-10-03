@@ -7,7 +7,7 @@ public extension Request {
      Commit a routing app coverage file after uploading it.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_routing_app_coverage>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-routingAppCoverages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: RoutingAppCoverage representation

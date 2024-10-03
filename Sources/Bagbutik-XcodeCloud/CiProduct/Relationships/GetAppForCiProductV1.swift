@@ -7,7 +7,7 @@ public extension Request {
      Get the app in App Store Connect that’s related to an Xcode Cloud product.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_information_for_an_xcode_cloud_product>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_-app>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -138,9 +138,11 @@ public enum GetAppForCiProductV1 {
             case appInfoLocalizations
             case appStoreAgeRating
             case appStoreState
+            case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
             case kidsAgeBand
+            case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
             case primarySubcategoryTwo
@@ -190,6 +192,7 @@ public enum GetAppForCiProductV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType
@@ -201,6 +204,7 @@ public enum GetAppForCiProductV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -235,6 +239,7 @@ public enum GetAppForCiProductV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
@@ -364,6 +369,7 @@ public enum GetAppForCiProductV1 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
@@ -425,24 +431,34 @@ public enum GetAppForCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case alternativeDistributionKey
+        case analyticsReportRequests
+        case appAvailability
+        case appAvailabilityV2
         case appClips
         case appCustomProductPages
         case appEncryptionDeclarations
         case appEvents
         case appInfos
+        case appPricePoints
+        case appPriceSchedule
         case appStoreVersionExperimentsV2
         case appStoreVersions
         case betaAppLocalizations
         case betaAppReviewDetail
         case betaGroups
         case betaLicenseAgreement
+        case betaTesters
         case builds
         case ciProduct
+        case customerReviews
         case endUserLicenseAgreement
         case gameCenterDetail
         case gameCenterEnabledVersions
         case inAppPurchases
         case inAppPurchasesV2
+        case marketplaceSearchDetail
+        case perfPowerMetrics
         case preOrder
         case preReleaseVersions
         case promotedPurchases

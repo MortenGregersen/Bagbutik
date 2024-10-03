@@ -7,7 +7,7 @@ public extension Request {
      Get the available date and release date of an app that’s available for pre-order.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_pre-order_information_of_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-preOrder>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

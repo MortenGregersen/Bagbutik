@@ -1,21 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BundleIdCapability
- The data structure that represents a Bundle ID Capabilities resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability>
- */
 public struct BundleIdCapability: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "bundleIdCapabilities" }
-    /// The resource's attributes.
     public var attributes: Attributes?
 
     public init(id: String,
@@ -45,13 +34,6 @@ public struct BundleIdCapability: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # BundleIdCapability.Attributes
-     Attributes that describe a Bundle ID Capabilities resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/bundleidcapability/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var capabilityType: CapabilityType?
         public var settings: [CapabilitySetting]?

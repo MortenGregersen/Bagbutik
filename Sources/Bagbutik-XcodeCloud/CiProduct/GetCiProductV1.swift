@@ -9,7 +9,7 @@ public extension Request {
      The example request below retrieves information about a specific Xcode Cloud product. Use the data provided in the response to read additional information; for example, workflow information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_product_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciProducts-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -35,12 +35,8 @@ public enum GetCiProductV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type apps
         case apps([Apps])
-        /// The fields to include for returned resources of type ciBuildRuns
-        case ciBuildRuns([CiBuildRuns])
         /// The fields to include for returned resources of type ciProducts
         case ciProducts([CiProducts])
-        /// The fields to include for returned resources of type ciWorkflows
-        case ciWorkflows([CiWorkflows])
         /// The fields to include for returned resources of type scmRepositories
         case scmRepositories([ScmRepositories])
 
@@ -48,6 +44,7 @@ public enum GetCiProductV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -82,36 +79,13 @@ public enum GetCiProductV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
             case subscriptionStatusUrlForSandbox
             case subscriptionStatusUrlVersion
             case subscriptionStatusUrlVersionForSandbox
-        }
-
-        public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case actions
-            case buildRun
-            case builds
-            case cancelReason
-            case clean
-            case completionStatus
-            case createdDate
-            case destinationBranch
-            case destinationCommit
-            case executionProgress
-            case finishedDate
-            case isPullRequestBuild
-            case issueCounts
-            case number
-            case product
-            case pullRequest
-            case sourceBranchOrTag
-            case sourceCommit
-            case startReason
-            case startedDate
-            case workflow
         }
 
         public enum CiProducts: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -124,29 +98,6 @@ public enum GetCiProductV1 {
             case primaryRepositories
             case productType
             case workflows
-        }
-
-        public enum CiWorkflows: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case actions
-            case branchStartCondition
-            case buildRuns
-            case clean
-            case containerFilePath
-            case description
-            case isEnabled
-            case isLockedForEditing
-            case lastModifiedDate
-            case macOsVersion
-            case manualBranchStartCondition
-            case manualPullRequestStartCondition
-            case manualTagStartCondition
-            case name
-            case product
-            case pullRequestStartCondition
-            case repository
-            case scheduledStartCondition
-            case tagStartCondition
-            case xcodeVersion
         }
 
         public enum ScmRepositories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -166,9 +117,12 @@ public enum GetCiProductV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case additionalRepositories
         case app
+        case buildRuns
         case bundleId
         case primaryRepositories
+        case workflows
     }
 
     /**

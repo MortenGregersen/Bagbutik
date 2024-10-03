@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipHeaderImage
- The data structure that represents the image that appears on the App Clip card of a default App Clip experience.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>
- */
 public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies an App Clip Header Images resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "appClipHeaderImages" }
-    /// The attributes that describe the App Clip Header Images resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,25 +39,12 @@ public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # AppClipHeaderImage.Attributes
-     The attributes that describe the image that appears on the App Clip card of a default App Clip experience.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// The state of the App Clip card image asset you uploaded.
         public var assetDeliveryState: AppMediaAssetState?
-        /// The filename of the image asset that appears on the App Clip card for the default App Clip experience.
         public var fileName: String?
-        /// The size of the image asset that appears on the App Clip card for the default App Clip experience.
         public var fileSize: Int?
-        /// The image asset that appears on the App Clip card of a default App Clip experience.
         public var imageAsset: ImageAsset?
-        /// A string that represents the MD5 checksum of the image asset you use for the App Clip card.
         public var sourceFileChecksum: String?
-        /// Upload operations for the image asset that appears on the App Clip card for a default App Clip experience.
         public var uploadOperations: [UploadOperation]?
 
         public init(assetDeliveryState: AppMediaAssetState? = nil,
@@ -108,15 +83,7 @@ public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
         }
     }
 
-    /**
-     # AppClipHeaderImage.Relationships
-     The relationships of the App Clip Header Images resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships>
-     */
     public struct Relationships: Codable, Sendable {
-        /// The related Default App Clip Experience Localizations resource.
         public var appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization?
 
         public init(appClipDefaultExperienceLocalization: AppClipDefaultExperienceLocalization? = nil) {
@@ -133,49 +100,25 @@ public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(appClipDefaultExperienceLocalization, forKey: "appClipDefaultExperienceLocalization")
         }
 
-        /**
-         # AppClipHeaderImage.Relationships.AppClipDefaultExperienceLocalization
-         The data and links that describe the relationship between the App Clip Header Images and the Default App Clip Experiences resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization>
-         */
         public struct AppClipDefaultExperienceLocalization: Codable, Sendable {
-            /// The ID and type of the related Default App Clip Experience Localizations resource.
             @NullCodable public var data: Data?
-            /// Navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # AppClipHeaderImage.Relationships.AppClipDefaultExperienceLocalization.Data
-             The type and ID of a related Default App Clip Experience Localizations resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "appClipDefaultExperienceLocalizations" }
 
                 public init(id: String) {
@@ -194,39 +137,6 @@ public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # AppClipHeaderImage.Relationships.AppClipDefaultExperienceLocalization.Links
-             The links to the related Default App Clip Experience Localizations resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage/relationships/appclipdefaultexperiencelocalization/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

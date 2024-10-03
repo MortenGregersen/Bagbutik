@@ -9,7 +9,7 @@ public extension Request {
      Use this endpoint to retrieve the derived app-level information for an app. If the app has both a “Ready for Sale” version and a version you’re preparing for release, it will have two app infos. One represents information about the app currently in the App Store, and the other represents the information that takes effect when you release the next version. Use the `appStoreState` attribute to differentiate them.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_infos_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appInfos>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -53,6 +53,8 @@ public enum ListAppInfosForAppV1 {
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
+            case koreaAgeRatingOverride
+            case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
@@ -87,9 +89,11 @@ public enum ListAppInfosForAppV1 {
             case appInfoLocalizations
             case appStoreAgeRating
             case appStoreState
+            case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
             case kidsAgeBand
+            case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
             case primarySubcategoryTwo
@@ -103,6 +107,7 @@ public enum ListAppInfosForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -137,6 +142,7 @@ public enum ListAppInfosForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

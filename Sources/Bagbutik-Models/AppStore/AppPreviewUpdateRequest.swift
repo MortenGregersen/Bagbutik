@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppPreviewUpdateRequest
- The request body you use to update an App Preview.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest>
- */
 public struct AppPreviewUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppPreviewUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppPreviewUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appPreviews" }
@@ -60,13 +46,6 @@ public struct AppPreviewUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppPreviewUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var previewFrameTimeCode: String?
             public var sourceFileChecksum: String?

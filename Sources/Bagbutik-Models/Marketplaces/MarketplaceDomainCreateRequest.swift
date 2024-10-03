@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # MarketplaceDomainCreateRequest
- The request body you use to create an alternative marketplace domain.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/marketplacedomaincreaterequest>
- */
 public struct MarketplaceDomainCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

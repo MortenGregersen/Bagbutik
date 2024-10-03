@@ -7,7 +7,7 @@ public extension Request {
      Update the configuration of a specific capability.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_capability_configuration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-bundleIdCapabilities-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BundleIdCapability representation

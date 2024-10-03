@@ -7,7 +7,7 @@ public extension Request {
      Get a list of build resource IDs in a specific beta group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_build_ids_in_a_beta_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaGroups-_id_-relationships-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

@@ -7,7 +7,7 @@ public extension Request {
      Get the custom end user license agreement associated with an app, and the territories it applies to.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_end_user_license_agreement_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-endUserLicenseAgreements-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

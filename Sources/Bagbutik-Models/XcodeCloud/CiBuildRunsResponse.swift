@@ -1,23 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CiBuildRunsResponse
- A response that contains a list of Build Runs resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrunsresponse>
- */
 public struct CiBuildRunsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiBuildRun
 
-    /// The resource data.
     public let data: [CiBuildRun]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiBuildRun],

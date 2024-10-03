@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # InAppPurchaseResponse
- A response that contains a single In-App Purchases resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseresponse>
- */
 public struct InAppPurchaseResponse: Codable, Sendable {
     public let data: InAppPurchase
     public var included: [App]?

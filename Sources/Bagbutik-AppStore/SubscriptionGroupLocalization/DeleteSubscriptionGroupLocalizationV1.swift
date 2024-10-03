@@ -7,7 +7,7 @@ public extension Request {
      Delete localized metadata that you configured for a subscription group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_subscription_group_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-subscriptionGroupLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Modify the metadata for a leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/edit_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterLeaderboardSets-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterLeaderboardSet representation

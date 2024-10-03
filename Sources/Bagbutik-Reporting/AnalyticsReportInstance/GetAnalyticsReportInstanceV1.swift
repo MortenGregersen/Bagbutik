@@ -7,7 +7,7 @@ public extension Request {
      Get details for a specific instance of an analytics report.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_report_instance_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReportInstances-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -27,19 +27,11 @@ public enum GetAnalyticsReportInstanceV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type analyticsReportInstances
         case analyticsReportInstances([AnalyticsReportInstances])
-        /// The fields to include for returned resources of type analyticsReportSegments
-        case analyticsReportSegments([AnalyticsReportSegments])
 
         public enum AnalyticsReportInstances: String, Sendable, ParameterValue, Codable, CaseIterable {
             case granularity
             case processingDate
             case segments
-        }
-
-        public enum AnalyticsReportSegments: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case checksum
-            case sizeInBytes
-            case url
         }
     }
 }

@@ -7,7 +7,7 @@ public extension Request {
      Change the state of Game Center enablement for an app version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAppVersions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterAppVersion representation

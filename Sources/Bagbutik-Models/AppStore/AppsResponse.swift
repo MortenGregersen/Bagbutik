@@ -1,22 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppsResponse
- A response that contains a list of Apps resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appsresponse>
- */
 public struct AppsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = App
 
-    /// The resource data.
     public let data: [App]
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [App],

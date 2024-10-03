@@ -9,7 +9,7 @@ public extension Request {
      The example request below retrieves information about a specific issue Xcode Cloud encountered when it performed a build. Use the information provided to display issues on a dashboard, create reports, and so on.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_xcode_cloud_issue_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciIssues-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

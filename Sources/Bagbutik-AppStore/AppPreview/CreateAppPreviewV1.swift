@@ -7,7 +7,7 @@ public extension Request {
      Add a new app preview to a preview set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_preview>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appPreviews>
 
      - Parameter requestBody: AppPreview representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

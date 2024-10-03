@@ -7,7 +7,7 @@ public extension Request {
      Cancel a planned phased release that has not been started.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_store_version_phased_release>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionPhasedReleases-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Modify the Game Center leaderboards in a specific group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/edit_the_leaderboard_associated_with_a_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterGroups-_id_-relationships-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

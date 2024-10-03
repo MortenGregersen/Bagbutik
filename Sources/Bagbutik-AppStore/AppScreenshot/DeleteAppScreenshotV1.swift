@@ -7,7 +7,7 @@ public extension Request {
      Delete an app screenshot that is associated with a screenshot set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_screenshot>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appScreenshots-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

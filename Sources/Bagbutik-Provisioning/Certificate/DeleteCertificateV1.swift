@@ -7,7 +7,7 @@ public extension Request {
      Revoke a lost, stolen, compromised, or expiring signing certificate.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/revoke_a_certificate>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-certificates-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

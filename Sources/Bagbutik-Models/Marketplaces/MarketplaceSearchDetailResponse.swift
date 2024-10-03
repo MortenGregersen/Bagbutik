@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # MarketplaceSearchDetailResponse
- A response that contains a single alternative marketplace search detail resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetailresponse>
- */
 public struct MarketplaceSearchDetailResponse: Codable, Sendable {
     public let data: MarketplaceSearchDetail
     public let links: DocumentLinks

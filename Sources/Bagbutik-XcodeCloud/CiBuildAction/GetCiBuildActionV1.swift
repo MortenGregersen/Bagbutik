@@ -6,10 +6,10 @@ public extension Request {
      # Read Build Action Information
      Get information about a specific action Xcode Cloud performed as part of a build.
 
-     The example request below retrieves detailed information about an action Xcode Cloud performed. It also requests detailed information about the action’s build by including the [Build Runs](https://developer.apple.com/documentation/appstoreconnectapi/xcode_cloud_workflows_and_builds/build_runs) resource in the query. Use the information provided in the response to display information on a dashboard or to access additional information; for example, information about other actions Xcode Cloud performed during the build.
+     The example request below retrieves detailed information about an action Xcode Cloud performed. It also requests detailed information about the action’s build by including the [Build Runs](https://developer.apple.com/documentation/appstoreconnectapi/build-runs) resource in the query. Use the information provided in the response to display information on a dashboard or to access additional information; for example, information about other actions Xcode Cloud performed during the build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_build_action_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildActions-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -30,23 +30,10 @@ public enum GetCiBuildActionV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type ciArtifacts
-        case ciArtifacts([CiArtifacts])
         /// The fields to include for returned resources of type ciBuildActions
         case ciBuildActions([CiBuildActions])
         /// The fields to include for returned resources of type ciBuildRuns
         case ciBuildRuns([CiBuildRuns])
-        /// The fields to include for returned resources of type ciIssues
-        case ciIssues([CiIssues])
-        /// The fields to include for returned resources of type ciTestResults
-        case ciTestResults([CiTestResults])
-
-        public enum CiArtifacts: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case downloadUrl
-            case fileName
-            case fileSize
-            case fileType
-        }
 
         public enum CiBuildActions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actionType
@@ -86,28 +73,15 @@ public enum GetCiBuildActionV1 {
             case startedDate
             case workflow
         }
-
-        public enum CiIssues: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case category
-            case fileSource
-            case issueType
-            case message
-        }
-
-        public enum CiTestResults: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case className
-            case destinationTestResults
-            case fileSource
-            case message
-            case name
-            case status
-        }
     }
 
     /**
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case artifacts
         case buildRun
+        case issues
+        case testResults
     }
 }

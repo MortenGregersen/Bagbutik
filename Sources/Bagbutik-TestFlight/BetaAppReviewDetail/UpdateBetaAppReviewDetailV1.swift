@@ -4,10 +4,10 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify a Beta App Review Detail
-     Update the details for a specific app's beta app review.
+     Update the details for a specific app’s beta app review.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_beta_app_review_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaAppReviewDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BetaAppReviewDetail representation

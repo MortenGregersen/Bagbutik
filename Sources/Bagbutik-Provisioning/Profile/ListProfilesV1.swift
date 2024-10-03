@@ -7,7 +7,7 @@ public extension Request {
      Find and list provisioning profiles and download their data.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_and_download_profiles>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-profiles>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

@@ -7,7 +7,7 @@ public extension Request {
      Update the territory availablity of a specific in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_territory_availablity_of_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-inAppPurchaseAvailabilities>
 
      - Parameter requestBody: InAppPurchaseAvailability representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

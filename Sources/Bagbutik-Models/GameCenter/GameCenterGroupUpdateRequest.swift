@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterGroupUpdateRequest
- The request body you use to update a group.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupupdaterequest>
- */
 public struct GameCenterGroupUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

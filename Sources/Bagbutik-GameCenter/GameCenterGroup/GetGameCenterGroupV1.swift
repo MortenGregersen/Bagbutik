@@ -7,7 +7,7 @@ public extension Request {
      Read information for a specific group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_group_information_for_a_specific_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

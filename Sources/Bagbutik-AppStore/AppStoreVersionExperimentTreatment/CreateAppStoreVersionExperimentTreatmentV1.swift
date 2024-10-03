@@ -6,7 +6,7 @@ public extension Request {
      # POST /v1/appStoreVersionExperimentTreatments
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appstoreversionexperimenttreatments>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionExperimentTreatments>
 
      - Parameter requestBody: AppStoreVersionExperimentTreatment representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

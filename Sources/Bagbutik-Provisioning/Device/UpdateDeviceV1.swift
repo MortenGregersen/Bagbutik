@@ -7,7 +7,7 @@ public extension Request {
      Update the name or status of a specific device.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_registered_device>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-devices-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: Device representation

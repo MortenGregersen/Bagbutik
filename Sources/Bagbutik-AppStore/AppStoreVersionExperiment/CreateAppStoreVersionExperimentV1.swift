@@ -7,7 +7,7 @@ public extension Request {
      Add a new experiment to an App Store version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appstoreversionexperiments>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreVersionExperiments>
 
      - Parameter requestBody: AppStoreVersionExperiment representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

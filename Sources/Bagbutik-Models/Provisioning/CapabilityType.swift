@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CapabilityType
- String that represents an app's capability type.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/capabilitytype>
- */
 public enum CapabilityType: String, Sendable, Codable, CaseIterable {
     case accessWifiInformation = "ACCESS_WIFI_INFORMATION"
     case appGroups = "APP_GROUPS"

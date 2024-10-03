@@ -7,7 +7,7 @@ public extension Request {
      Add a new achievement image.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_achievement_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterAchievementImages>
 
      - Parameter requestBody: GameCenterAchievementImage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

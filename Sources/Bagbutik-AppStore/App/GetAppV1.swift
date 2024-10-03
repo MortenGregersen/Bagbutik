@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -31,13 +31,6 @@ public enum GetAppV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type alternativeDistributionKeys
-        case alternativeDistributionKeys([AlternativeDistributionKeys])
-        /// The fields to include for returned resources of type analyticsReportRequests
-        case analyticsReportRequests([AnalyticsReportRequests])
-        /// The fields to include for returned resources of type appAvailabilities
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        case appAvailabilities([AppAvailabilities])
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
         /// The fields to include for returned resources of type appCustomProductPages
@@ -51,10 +44,6 @@ public enum GetAppV1 {
         /// The fields to include for returned resources of type appPreOrders
         @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
         case appPreOrders([AppPreOrders])
-        /// The fields to include for returned resources of type appPricePoints
-        case appPricePoints([AppPricePoints])
-        /// The fields to include for returned resources of type appPriceSchedules
-        case appPriceSchedules([AppPriceSchedules])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersions
@@ -73,8 +62,6 @@ public enum GetAppV1 {
         case builds([Builds])
         /// The fields to include for returned resources of type ciProducts
         case ciProducts([CiProducts])
-        /// The fields to include for returned resources of type customerReviews
-        case customerReviews([CustomerReviews])
         /// The fields to include for returned resources of type endUserLicenseAgreements
         case endUserLicenseAgreements([EndUserLicenseAgreements])
         /// The fields to include for returned resources of type gameCenterDetails
@@ -84,10 +71,6 @@ public enum GetAppV1 {
         case gameCenterEnabledVersions([GameCenterEnabledVersions])
         /// The fields to include for returned resources of type inAppPurchases
         case inAppPurchases([InAppPurchases])
-        /// The fields to include for returned resources of type marketplaceSearchDetails
-        case marketplaceSearchDetails([MarketplaceSearchDetails])
-        /// The fields to include for returned resources of type perfPowerMetrics
-        case perfPowerMetrics([PerfPowerMetrics])
         /// The fields to include for returned resources of type preReleaseVersions
         case preReleaseVersions([PreReleaseVersions])
         /// The fields to include for returned resources of type promotedPurchases
@@ -98,24 +81,6 @@ public enum GetAppV1 {
         case subscriptionGracePeriods([SubscriptionGracePeriods])
         /// The fields to include for returned resources of type subscriptionGroups
         case subscriptionGroups([SubscriptionGroups])
-
-        public enum AlternativeDistributionKeys: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case publicKey
-        }
-
-        public enum AnalyticsReportRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case accessType
-            case app
-            case reports
-            case stoppedDueToInactivity
-        }
-
-        public enum AppAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case availableInNewTerritories
-            case availableTerritories
-        }
 
         public enum AppClips: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
@@ -175,9 +140,11 @@ public enum GetAppV1 {
             case appInfoLocalizations
             case appStoreAgeRating
             case appStoreState
+            case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
             case kidsAgeBand
+            case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
             case primarySubcategoryTwo
@@ -191,21 +158,6 @@ public enum GetAppV1 {
             case app
             case appReleaseDate
             case preOrderAvailableDate
-        }
-
-        public enum AppPricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case customerPrice
-            case equalizations
-            case proceeds
-            case territory
-        }
-
-        public enum AppPriceSchedules: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case automaticPrices
-            case baseTerritory
-            case manualPrices
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -242,6 +194,7 @@ public enum GetAppV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType
@@ -253,6 +206,7 @@ public enum GetAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -287,6 +241,7 @@ public enum GetAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
@@ -378,16 +333,6 @@ public enum GetAppV1 {
             case workflows
         }
 
-        public enum CustomerReviews: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case body
-            case createdDate
-            case rating
-            case response
-            case reviewerNickname
-            case territory
-            case title
-        }
-
         public enum EndUserLicenseAgreements: String, Sendable, ParameterValue, Codable, CaseIterable {
             case agreementText
             case app
@@ -426,6 +371,7 @@ public enum GetAppV1 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
@@ -436,17 +382,6 @@ public enum GetAppV1 {
             case referenceName
             case reviewNote
             case state
-        }
-
-        public enum MarketplaceSearchDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case catalogUrl
-        }
-
-        public enum PerfPowerMetrics: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case deviceType
-            case metricType
-            case platform
         }
 
         public enum PreReleaseVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -498,24 +433,34 @@ public enum GetAppV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case alternativeDistributionKey
+        case analyticsReportRequests
+        case appAvailability
+        case appAvailabilityV2
         case appClips
         case appCustomProductPages
         case appEncryptionDeclarations
         case appEvents
         case appInfos
+        case appPricePoints
+        case appPriceSchedule
         case appStoreVersionExperimentsV2
         case appStoreVersions
         case betaAppLocalizations
         case betaAppReviewDetail
         case betaGroups
         case betaLicenseAgreement
+        case betaTesters
         case builds
         case ciProduct
+        case customerReviews
         case endUserLicenseAgreement
         case gameCenterDetail
         case gameCenterEnabledVersions
         case inAppPurchases
         case inAppPurchasesV2
+        case marketplaceSearchDetail
+        case perfPowerMetrics
         case preOrder
         case preReleaseVersions
         case promotedPurchases

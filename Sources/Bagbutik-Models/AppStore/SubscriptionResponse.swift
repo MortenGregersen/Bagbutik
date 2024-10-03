@@ -43,6 +43,18 @@ public struct SubscriptionResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.group?.data?.id }
     }
 
+    public func getImages() -> [SubscriptionImage] {
+        guard let imageIds = data.relationships?.images?.data?.map(\.id),
+              let images = included?.compactMap({ relationship -> SubscriptionImage? in
+                  guard case let .subscriptionImage(image) = relationship else { return nil }
+                  return imageIds.contains(image.id) ? image : nil
+              })
+        else {
+            return []
+        }
+        return images
+    }
+
     public func getIntroductoryOffers() -> [SubscriptionIntroductoryOffer] {
         guard let introductoryOfferIds = data.relationships?.introductoryOffers?.data?.map(\.id),
               let introductoryOffers = included?.compactMap({ relationship -> SubscriptionIntroductoryOffer? in
@@ -117,16 +129,30 @@ public struct SubscriptionResponse: Codable, Sendable {
         return subscriptionLocalizations
     }
 
+    public func getWinBackOffers() -> [WinBackOffer] {
+        guard let winBackOfferIds = data.relationships?.winBackOffers?.data?.map(\.id),
+              let winBackOffers = included?.compactMap({ relationship -> WinBackOffer? in
+                  guard case let .winBackOffer(winBackOffer) = relationship else { return nil }
+                  return winBackOfferIds.contains(winBackOffer.id) ? winBackOffer : nil
+              })
+        else {
+            return []
+        }
+        return winBackOffers
+    }
+
     public enum Included: Codable, Sendable {
         case promotedPurchase(PromotedPurchase)
         case subscriptionAppStoreReviewScreenshot(SubscriptionAppStoreReviewScreenshot)
         case subscriptionAvailability(SubscriptionAvailability)
         case subscriptionGroup(SubscriptionGroup)
+        case subscriptionImage(SubscriptionImage)
         case subscriptionIntroductoryOffer(SubscriptionIntroductoryOffer)
         case subscriptionLocalization(SubscriptionLocalization)
         case subscriptionOfferCode(SubscriptionOfferCode)
         case subscriptionPrice(SubscriptionPrice)
         case subscriptionPromotionalOffer(SubscriptionPromotionalOffer)
+        case winBackOffer(WinBackOffer)
 
         public init(from decoder: Decoder) throws {
             if let promotedPurchase = try? PromotedPurchase(from: decoder) {
@@ -137,6 +163,8 @@ public struct SubscriptionResponse: Codable, Sendable {
                 self = .subscriptionAvailability(subscriptionAvailability)
             } else if let subscriptionGroup = try? SubscriptionGroup(from: decoder) {
                 self = .subscriptionGroup(subscriptionGroup)
+            } else if let subscriptionImage = try? SubscriptionImage(from: decoder) {
+                self = .subscriptionImage(subscriptionImage)
             } else if let subscriptionIntroductoryOffer = try? SubscriptionIntroductoryOffer(from: decoder) {
                 self = .subscriptionIntroductoryOffer(subscriptionIntroductoryOffer)
             } else if let subscriptionLocalization = try? SubscriptionLocalization(from: decoder) {
@@ -147,6 +175,8 @@ public struct SubscriptionResponse: Codable, Sendable {
                 self = .subscriptionPrice(subscriptionPrice)
             } else if let subscriptionPromotionalOffer = try? SubscriptionPromotionalOffer(from: decoder) {
                 self = .subscriptionPromotionalOffer(subscriptionPromotionalOffer)
+            } else if let winBackOffer = try? WinBackOffer(from: decoder) {
+                self = .winBackOffer(winBackOffer)
             } else {
                 throw DecodingError.typeMismatch(Included.self, DecodingError.Context(codingPath: decoder.codingPath,
                                                                                       debugDescription: "Unknown Included"))
@@ -163,6 +193,8 @@ public struct SubscriptionResponse: Codable, Sendable {
                 try value.encode(to: encoder)
             case let .subscriptionGroup(value):
                 try value.encode(to: encoder)
+            case let .subscriptionImage(value):
+                try value.encode(to: encoder)
             case let .subscriptionIntroductoryOffer(value):
                 try value.encode(to: encoder)
             case let .subscriptionLocalization(value):
@@ -172,6 +204,8 @@ public struct SubscriptionResponse: Codable, Sendable {
             case let .subscriptionPrice(value):
                 try value.encode(to: encoder)
             case let .subscriptionPromotionalOffer(value):
+                try value.encode(to: encoder)
+            case let .winBackOffer(value):
                 try value.encode(to: encoder)
             }
         }

@@ -7,7 +7,7 @@ public extension Request {
      Update the visibility of a promoted in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_promoted_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-promotedPurchases-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: PromotedPurchase representation

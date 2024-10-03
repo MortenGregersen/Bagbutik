@@ -7,7 +7,7 @@ public extension Request {
      Read the associate document for a specific App Encryption Declaration.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_declaration_document_for_an_app_encryption_declaration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEncryptionDeclarations-_id_-appEncryptionDeclarationDocument>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

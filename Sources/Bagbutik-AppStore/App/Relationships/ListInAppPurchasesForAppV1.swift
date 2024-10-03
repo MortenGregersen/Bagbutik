@@ -7,7 +7,7 @@ public extension Request {
      List the in-app purchases that are available for your app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_in-app_purchases_for_an_app_v1>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-inAppPurchases>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -47,6 +47,7 @@ public enum ListInAppPurchasesForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -81,6 +82,7 @@ public enum ListInAppPurchasesForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

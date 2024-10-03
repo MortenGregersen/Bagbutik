@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAppVersionCompatibilityVersionsLinkagesRequest
- The request body you use to create a relationship between an app version and a compatibility version.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncompatibilityversionslinkagesrequest>
- */
 public struct GameCenterAppVersionCompatibilityVersionsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

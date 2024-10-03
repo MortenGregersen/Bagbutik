@@ -7,7 +7,7 @@ public extension Request {
      Get a specific App Clip.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_clip_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClips-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -31,28 +31,10 @@ public enum GetAppClipV1 {
      Fields to return for included related types.
      */
     public enum Field: FieldParameter {
-        /// The fields to include for returned resources of type appClipAdvancedExperiences
-        case appClipAdvancedExperiences([AppClipAdvancedExperiences])
         /// The fields to include for returned resources of type appClipDefaultExperiences
         case appClipDefaultExperiences([AppClipDefaultExperiences])
         /// The fields to include for returned resources of type appClips
         case appClips([AppClips])
-
-        public enum AppClipAdvancedExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case action
-            case appClip
-            case businessCategory
-            case defaultLanguage
-            case headerImage
-            case isPoweredBy
-            case link
-            case localizations
-            case place
-            case placeStatus
-            case removed
-            case status
-            case version
-        }
 
         public enum AppClipDefaultExperiences: String, Sendable, ParameterValue, Codable, CaseIterable {
             case action
@@ -76,6 +58,7 @@ public enum GetAppClipV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case app
+        case appClipAdvancedExperiences
         case appClipDefaultExperiences
     }
 

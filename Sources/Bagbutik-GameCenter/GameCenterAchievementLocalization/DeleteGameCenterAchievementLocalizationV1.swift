@@ -7,7 +7,7 @@ public extension Request {
      Delete localization metadata that’s associated with an achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_achievement_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAchievementLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

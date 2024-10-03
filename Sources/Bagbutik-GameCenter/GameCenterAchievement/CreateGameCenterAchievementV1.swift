@@ -7,7 +7,7 @@ public extension Request {
      Add an achievement to a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterAchievements>
 
      - Parameter requestBody: GameCenterAchievement representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

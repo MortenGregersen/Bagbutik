@@ -7,7 +7,7 @@ public extension Request {
      Get App Review details you provided, including contact information, demo account, and notes.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_review_detail_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreReviewDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

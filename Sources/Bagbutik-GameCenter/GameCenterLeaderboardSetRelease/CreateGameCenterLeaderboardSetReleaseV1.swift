@@ -7,7 +7,7 @@ public extension Request {
      Add a new leaderboard set release.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_leaderboard_set_release>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardSetReleases>
 
      - Parameter requestBody: GameCenterLeaderboardSetRelease representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

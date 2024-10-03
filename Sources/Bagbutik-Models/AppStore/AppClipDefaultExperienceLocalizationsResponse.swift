@@ -1,23 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipDefaultExperienceLocalizationsResponse
- A response that contains a list of Default App Clip Experience Localizations resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalizationsresponse>
- */
 public struct AppClipDefaultExperienceLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipDefaultExperienceLocalization
 
-    /// The resource data.
     public let data: [AppClipDefaultExperienceLocalization]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClipDefaultExperienceLocalization],

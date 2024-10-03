@@ -9,7 +9,7 @@ public extension Request {
      Deletions of responses don’t take effect instantly in the App Store. Allow some time for the deletion to take effect.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_response_to_a_customer_review>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-customerReviewResponses-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

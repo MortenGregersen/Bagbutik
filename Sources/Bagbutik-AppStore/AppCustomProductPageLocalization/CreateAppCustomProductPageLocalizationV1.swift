@@ -7,7 +7,7 @@ public extension Request {
      Add a localization for your app custom product page.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appcustomproductpagelocalizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appCustomProductPageLocalizations>
 
      - Parameter requestBody: AppCustomProductPageLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

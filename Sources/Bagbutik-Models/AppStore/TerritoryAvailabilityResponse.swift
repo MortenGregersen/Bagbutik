@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # TerritoryAvailabilityResponse
- A response that contains a single territory availability resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailabilityresponse>
- */
 public struct TerritoryAvailabilityResponse: Codable, Sendable {
     public let data: TerritoryAvailability
     public var included: [Territory]?

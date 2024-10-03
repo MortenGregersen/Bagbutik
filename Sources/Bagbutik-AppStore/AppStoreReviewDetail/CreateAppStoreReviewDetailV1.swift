@@ -7,7 +7,7 @@ public extension Request {
      Add App Store review details to an App Store version, including contact and demo account information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_store_review_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appStoreReviewDetails>
 
      - Parameter requestBody: AppStoreReviewDetail representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

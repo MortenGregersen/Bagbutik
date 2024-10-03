@@ -4,10 +4,10 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Read In-App Purchase Information
-     Get information about an in-app purchase.
+     Get information about a specific in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_in-app_purchase_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-inAppPurchases-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -37,6 +37,8 @@ public enum GetInAppPurchasesV2 {
         case inAppPurchaseAvailabilities([InAppPurchaseAvailabilities])
         /// The fields to include for returned resources of type inAppPurchaseContents
         case inAppPurchaseContents([InAppPurchaseContents])
+        /// The fields to include for returned resources of type inAppPurchaseImages
+        case inAppPurchaseImages([InAppPurchaseImages])
         /// The fields to include for returned resources of type inAppPurchaseLocalizations
         case inAppPurchaseLocalizations([InAppPurchaseLocalizations])
         /// The fields to include for returned resources of type inAppPurchasePricePoints
@@ -75,6 +77,18 @@ public enum GetInAppPurchasesV2 {
             case url
         }
 
+        public enum InAppPurchaseImages: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case assetToken
+            case fileName
+            case fileSize
+            case imageAsset
+            case inAppPurchase
+            case sourceFileChecksum
+            case state
+            case uploadOperations
+            case uploaded
+        }
+
         public enum InAppPurchaseLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case description
             case inAppPurchaseV2
@@ -104,6 +118,7 @@ public enum GetInAppPurchasesV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
@@ -133,6 +148,7 @@ public enum GetInAppPurchasesV2 {
         case appStoreReviewScreenshot
         case content
         case iapPriceSchedule
+        case images
         case inAppPurchaseAvailability
         case inAppPurchaseLocalizations
         case pricePoints
@@ -143,6 +159,8 @@ public enum GetInAppPurchasesV2 {
      Number of included related resources to return.
      */
     public enum Limit: LimitParameter {
+        /// Maximum number of related images returned (when they are included) - maximum 50
+        case images(Int)
         /// Maximum number of related inAppPurchaseLocalizations returned (when they are included) - maximum 50
         case inAppPurchaseLocalizations(Int)
         /// Maximum number of related pricePoints returned (when they are included) - maximum 8000

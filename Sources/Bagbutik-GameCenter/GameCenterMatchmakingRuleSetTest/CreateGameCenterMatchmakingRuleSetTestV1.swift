@@ -7,7 +7,7 @@ public extension Request {
      Apply the given rule set to the given sample match requests.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/test_a_rule_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterMatchmakingRuleSetTests>
 
      - Parameter requestBody: GameCenterMatchmakingRuleSetTest representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Remove a specific analytics report request.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_report_request>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-analyticsReportRequests-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

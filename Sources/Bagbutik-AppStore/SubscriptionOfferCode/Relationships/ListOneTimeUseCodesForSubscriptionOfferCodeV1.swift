@@ -7,7 +7,7 @@ public extension Request {
      Get details about a one-time use code for a specific subscription offer for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_one-time_use_offer_codes_for_an_auto-renewable_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionOfferCodes-_id_-oneTimeUseCodes>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -66,5 +66,6 @@ public enum ListOneTimeUseCodesForSubscriptionOfferCodeV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case offerCode
+        case values
     }
 }

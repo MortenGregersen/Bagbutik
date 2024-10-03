@@ -7,12 +7,13 @@ public extension Request {
      Get the app information from a specific app encryption declaration.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_an_app_encryption_declaration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEncryptionDeclarations-_id_-app>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getAppForAppEncryptionDeclarationV1(id: String,
                                                     fields: [GetAppForAppEncryptionDeclarationV1.Field]? = nil) -> Request<AppWithoutIncludesResponse, ErrorResponse>
     {
@@ -32,6 +33,7 @@ public enum GetAppForAppEncryptionDeclarationV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -66,6 +68,7 @@ public enum GetAppForAppEncryptionDeclarationV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

@@ -1,17 +1,8 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse
- A response that contains the ID of a single related App Store Versions resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkageresponse>
- */
 public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse: Codable, Sendable {
-    /// The object types and IDs of the related resources.
     public let data: Data
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Data,
@@ -33,17 +24,8 @@ public struct AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse:
         try container.encode(links, forKey: "links")
     }
 
-    /**
-     # AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageResponse.Data
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencereleasewithappstoreversionlinkageresponse/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the response.
         public let id: String
-        /// The resource type.
         public var type: String { "appStoreVersions" }
 
         public init(id: String) {

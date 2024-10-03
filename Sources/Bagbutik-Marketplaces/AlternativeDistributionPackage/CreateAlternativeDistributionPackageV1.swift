@@ -7,7 +7,7 @@ public extension Request {
      Create an alternative distribution package for an app store version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_alternative_distribution_package>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativeDistributionPackages>
 
      - Parameter requestBody: AlternativeDistributionPackage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

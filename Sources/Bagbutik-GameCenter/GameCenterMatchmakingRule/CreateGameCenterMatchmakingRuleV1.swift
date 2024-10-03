@@ -7,7 +7,7 @@ public extension Request {
      Add a matchmaking rule to a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_rule>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterMatchmakingRules>
 
      - Parameter requestBody: GameCenterMatchmakingRule representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

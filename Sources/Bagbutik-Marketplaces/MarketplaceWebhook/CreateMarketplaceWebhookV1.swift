@@ -9,7 +9,7 @@ public extension Request {
      Each developer account has a single marketplace webhooks `endpointUrl`, so if you operate mutliple marketplaces all notifications come to a single endpoint. The notification payload contains the `marketplaceAppId.`
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_a_marketplace_webhook_configuration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-marketplaceWebhooks>
 
      - Parameter requestBody: MarketplaceWebhook representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

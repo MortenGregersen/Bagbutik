@@ -7,7 +7,7 @@ public extension Request {
      Modify localized Game Center achievement information for a particular language.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/edit_an_achievement_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievementLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterAchievementLocalization representation

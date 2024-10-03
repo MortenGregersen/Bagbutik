@@ -7,7 +7,7 @@ public extension Request {
      Create a subscription group for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_subscription_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionGroups>
 
      - Parameter requestBody: SubscriptionGroup representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

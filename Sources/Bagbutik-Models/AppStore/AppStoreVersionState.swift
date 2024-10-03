@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionState
- String that represents the state of an app version in the App Store.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate>
- */
 public enum AppStoreVersionState: String, Sendable, ParameterValue, Codable, CaseIterable {
     case accepted = "ACCEPTED"
     case developerRejected = "DEVELOPER_REJECTED"

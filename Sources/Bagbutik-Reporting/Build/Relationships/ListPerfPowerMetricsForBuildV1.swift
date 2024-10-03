@@ -6,10 +6,10 @@ public extension Request {
      # Get Power and Performance Metrics for a Build
      Get the performance and power metrics data for a specific build.
 
-     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_an_app) endpoint.
+     The example below requests iOS animation metrics on all iPads for a specific build. To get the metrics for all of the most-recent app versions instead, use the [Get Power and Performance Metrics for an App](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-perfpowermetrics) endpoint.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_power_and_performance_metrics_for_a_build>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-builds-_id_-perfPowerMetrics>
 
      - Parameter id: The id of the requested resource
      - Parameter filters: Attributes, relationships, and IDs by which to filter

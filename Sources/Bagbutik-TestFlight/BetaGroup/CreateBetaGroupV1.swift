@@ -7,7 +7,7 @@ public extension Request {
      Create a beta group associated with an app, optionally enabling TestFlight public links.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_beta_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaGroups>
 
      - Parameter requestBody: BetaGroup representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

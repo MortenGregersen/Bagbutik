@@ -6,7 +6,7 @@ public extension Request {
      # Replace All Compatible Versions for a Game Center Enabled Version
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/replace_all_compatible_versions_for_a_game_center_enabled_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterEnabledVersions-_id_-relationships-compatibleVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of subscription price points and their equivalent in a specified currency.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_price_point_equalizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionPricePoints-_id_-equalizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -67,6 +67,7 @@ public enum ListEqualizationsForSubscriptionPricePointV1 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case equalizations
         case territory
     }
 }

@@ -7,7 +7,7 @@ public extension Request {
      Create a localized display name and optional custom app name for a subscription group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_subscription_group_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionGroupLocalizations>
 
      - Parameter requestBody: SubscriptionGroupLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

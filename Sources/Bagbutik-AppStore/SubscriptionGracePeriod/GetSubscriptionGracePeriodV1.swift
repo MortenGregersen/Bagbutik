@@ -7,7 +7,7 @@ public extension Request {
      Get the Boolean value that represents the billing grace period opt-in state and the duration of the billing grace period.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_subscription_grace_period_value>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionGracePeriods-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

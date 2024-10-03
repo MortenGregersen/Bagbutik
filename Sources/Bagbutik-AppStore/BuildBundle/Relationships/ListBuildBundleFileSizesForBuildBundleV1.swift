@@ -7,7 +7,7 @@ public extension Request {
      Get all file sizes for a specific build bundle.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_file_sizes_for_a_build_bundle>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-buildBundles-_id_-buildBundleFileSizes>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

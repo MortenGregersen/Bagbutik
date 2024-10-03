@@ -7,7 +7,7 @@ public extension Request {
      Get an app screenshot set including its display target, language, and the screenshot it contains.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_screenshot_set_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appScreenshotSets-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

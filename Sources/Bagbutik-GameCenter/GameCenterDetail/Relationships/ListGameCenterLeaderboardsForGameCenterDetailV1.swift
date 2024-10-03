@@ -7,7 +7,7 @@ public extension Request {
      Get all leaderboards and related information for a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_leaderboard_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

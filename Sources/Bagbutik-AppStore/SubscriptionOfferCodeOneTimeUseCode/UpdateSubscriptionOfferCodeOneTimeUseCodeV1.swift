@@ -7,7 +7,7 @@ public extension Request {
      Deactivate a batch of one-time use offer codes for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/deactivate_one-time_use_offer_codes>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionOfferCodeOneTimeUseCodes-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionOfferCodeOneTimeUseCode representation

@@ -7,7 +7,7 @@ public extension Request {
      Get match requests that don’t use matchmaking rules.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_classic_match_requests>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-metrics-classicMatchmakingRequests>
 
      - Parameter id: The id of the requested resource
      - Parameter filters: Attributes, relationships, and IDs by which to filter

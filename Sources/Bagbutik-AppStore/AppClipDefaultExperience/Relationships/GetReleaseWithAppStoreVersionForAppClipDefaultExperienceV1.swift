@@ -7,7 +7,7 @@ public extension Request {
      Get App Store Version information for a default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_store_version_information_for_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperiences-_id_-releaseWithAppStoreVersion>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -53,6 +53,8 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
         case apps([Apps])
         /// The fields to include for returned resources of type builds
         case builds([Builds])
+        /// The fields to include for returned resources of type gameCenterAppVersions
+        case gameCenterAppVersions([GameCenterAppVersions])
         /// The fields to include for returned resources of type routingAppCoverages
         case routingAppCoverages([RoutingAppCoverages])
 
@@ -65,6 +67,8 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case gamblingSimulated
             case horrorOrFearThemes
             case kidsAgeBand
+            case koreaAgeRatingOverride
+            case lootBox
             case matureOrSuggestiveThemes
             case medicalOrTreatmentInformation
             case profanityOrCrudeHumor
@@ -164,6 +168,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType
@@ -175,6 +180,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -209,6 +215,7 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl
@@ -244,6 +251,12 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
             case version
         }
 
+        public enum GameCenterAppVersions: String, Sendable, ParameterValue, Codable, CaseIterable {
+            case appStoreVersion
+            case compatibilityVersions
+            case enabled
+        }
+
         public enum RoutingAppCoverages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case appStoreVersion
             case assetDeliveryState
@@ -270,6 +283,8 @@ public enum GetReleaseWithAppStoreVersionForAppClipDefaultExperienceV1 {
         case appStoreVersionPhasedRelease
         case appStoreVersionSubmission
         case build
+        case customerReviews
+        case gameCenterAppVersion
         case routingAppCoverage
     }
 

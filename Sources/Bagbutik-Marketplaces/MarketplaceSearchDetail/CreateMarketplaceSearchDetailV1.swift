@@ -7,7 +7,7 @@ public extension Request {
      Add a search detail URL for the alternative marketplace.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_a_marketplace_search_detail_url>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-marketplaceSearchDetails>
 
      - Parameter requestBody: MarketplaceSearchDetail representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

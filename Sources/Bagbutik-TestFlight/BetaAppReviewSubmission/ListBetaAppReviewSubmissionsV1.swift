@@ -7,7 +7,7 @@ public extension Request {
      Find and list beta app review submissions for all builds.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_beta_app_review_submissions>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaAppReviewSubmissions>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

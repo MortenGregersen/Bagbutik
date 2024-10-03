@@ -9,7 +9,7 @@ public extension Request {
      Use this endpoint to modify the primary and secondary categories and subcategories for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_info>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appInfos-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppInfo representation

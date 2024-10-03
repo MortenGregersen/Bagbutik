@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionReleaseRequestCreateRequest
- The request body you use to manually release an App Store approved version of your app.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest>
- */
 public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, RequestBody {
-    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {
@@ -26,13 +18,6 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, Req
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionReleaseRequestCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionReleaseRequests" }
         public let relationships: Relationships
@@ -55,13 +40,6 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, Req
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
@@ -79,13 +57,6 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, Req
                 try container.encode(appStoreVersion, forKey: "appStoreVersion")
             }
 
-            /**
-             # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships.AppStoreVersion
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion>
-             */
             public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
@@ -103,13 +74,6 @@ public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, Req
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionReleaseRequestCreateRequest.Data.Relationships.AppStoreVersion.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest/data/relationships/appstoreversion/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }

@@ -1,19 +1,9 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CiXcodeVersionResponse
- A response that contains a single Xcode Versions resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversionresponse>
- */
 public struct CiXcodeVersionResponse: Codable, Sendable {
-    /// The resource data.
     public let data: CiXcodeVersion
-    /// The requested relationship data.
     public var included: [CiMacOsVersion]?
-    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiXcodeVersion,

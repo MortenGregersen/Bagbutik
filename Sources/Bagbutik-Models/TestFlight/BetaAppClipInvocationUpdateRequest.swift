@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaAppClipInvocationUpdateRequest
- The request body you use to update a Beta App Clip Invocation.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest>
- */
 public struct BetaAppClipInvocationUpdateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -26,19 +18,9 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, Sendable, RequestBody
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # BetaAppClipInvocationUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the request.
         public let id: String
-        /// The resource type.
         public var type: String { "betaAppClipInvocations" }
-        /// The attributes that describe the request that updates a Beta App Clip Invocations resource.
         public var attributes: Attributes?
 
         public init(id: String,
@@ -64,15 +46,7 @@ public struct BetaAppClipInvocationUpdateRequest: Codable, Sendable, RequestBody
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # BetaAppClipInvocationUpdateRequest.Data.Attributes
-         The attributes you set that describe the updated Beta App Clip Invocations resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The invocation URL you configure for testers who use the TestFlight to launch your App Clip.
             public var url: String?
 
             public init(url: String? = nil) {

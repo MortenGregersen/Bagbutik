@@ -7,7 +7,7 @@ public extension Request {
      List all the territories where an app is available.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_territory_availability_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appAvailabilities-_id_-availableTerritories>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Pause or resume a phased release, or immediately release an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_store_version_phased_release>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreVersionPhasedReleases-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppStoreVersionPhasedRelease representation

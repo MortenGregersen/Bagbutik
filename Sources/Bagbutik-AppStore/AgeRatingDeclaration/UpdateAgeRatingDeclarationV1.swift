@@ -12,7 +12,7 @@ public extension Request {
      For example, in an app that has a `FREQUENT_OR_INTENSE` declaration for contests, the age rating for the `AppInfos` is 12+. If you declare a value of true for `gamblingAndContests` instead, the age rating for the `AppInfos` is 17+.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_age_rating_declaration>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-ageRatingDeclarations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AgeRatingDeclaration representation

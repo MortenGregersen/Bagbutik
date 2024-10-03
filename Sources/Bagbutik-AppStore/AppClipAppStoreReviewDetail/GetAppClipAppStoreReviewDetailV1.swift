@@ -7,7 +7,7 @@ public extension Request {
      Get App Store Review details for an App Clip.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_review_details_of_an_app_clip>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipAppStoreReviewDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

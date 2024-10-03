@@ -11,7 +11,7 @@ public extension Request {
      If you change the territories relationship, the new territories replace the original territories.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_end_user_license_agreement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-endUserLicenseAgreements-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: EndUserLicenseAgreement representation

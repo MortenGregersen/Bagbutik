@@ -6,7 +6,7 @@ public extension Request {
      # POST /v1/appEventScreenshots
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appeventscreenshots>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEventScreenshots>
 
      - Parameter requestBody: AppEventScreenshot representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Get the number of match requests that the queue processes using its experimental rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_experimental_queue_size>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues-_id_-metrics-experimentMatchmakingQueueSizes>
 
      - Parameter id: The id of the requested resource
      - Parameter sorts: Attributes by which to sort

@@ -7,7 +7,7 @@ public extension Request {
      Update the release territories for your app pre-order.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_territory_availabilty_for_an_app_pre-order>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-territoryAvailabilities-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: TerritoryAvailability representation

@@ -3,10 +3,10 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # GET /v1/appEventScreenshots/{id}
+     # List the images for an in-app event
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appeventscreenshots_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appEventScreenshots-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

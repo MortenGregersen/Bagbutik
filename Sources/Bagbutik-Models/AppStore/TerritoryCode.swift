@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # TerritoryCode
- The App Store territory codes.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/territorycode>
- */
 public enum TerritoryCode: String, Sendable, ParameterValue, Codable, CaseIterable {
     case abw = "ABW"
     case afg = "AFG"

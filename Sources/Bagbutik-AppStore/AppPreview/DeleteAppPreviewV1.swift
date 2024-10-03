@@ -7,7 +7,7 @@ public extension Request {
      Delete an app preview within a preview set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_preview>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appPreviews-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

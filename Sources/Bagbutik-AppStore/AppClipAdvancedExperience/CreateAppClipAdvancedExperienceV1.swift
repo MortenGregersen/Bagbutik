@@ -7,7 +7,7 @@ public extension Request {
      Configure a new advanced App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_advanced_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appClipAdvancedExperiences>
 
      - Parameter requestBody: AppClipAdvancedExperience representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

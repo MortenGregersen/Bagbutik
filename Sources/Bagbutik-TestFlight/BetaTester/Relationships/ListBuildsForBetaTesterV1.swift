@@ -7,7 +7,7 @@ public extension Request {
      Get a list of builds individually assigned to a specific beta tester.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_individually_assigned_to_a_beta_tester>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

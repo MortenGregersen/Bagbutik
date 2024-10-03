@@ -7,7 +7,7 @@ public extension Request {
      Get the ID of an app’s related default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_the_default_app_clip_experiences_resource_id_for_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-relationships-appClipDefaultExperience>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

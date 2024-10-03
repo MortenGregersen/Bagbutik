@@ -7,7 +7,7 @@ public extension Request {
      Remove a specific beta tester from one or more beta groups, revoking their access to test builds associated with those groups.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/remove_a_beta_tester_from_beta_groups>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaTesters-_id_-relationships-betaGroups>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

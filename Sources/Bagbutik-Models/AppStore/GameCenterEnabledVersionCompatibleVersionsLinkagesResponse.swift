@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterEnabledVersionCompatibleVersionsLinkagesResponse
- A response body that contains a list of related resource IDs.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesresponse>
- */
 public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -36,13 +29,6 @@ public struct GameCenterEnabledVersionCompatibleVersionsLinkagesResponse: Codabl
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    /**
-     # GameCenterEnabledVersionCompatibleVersionsLinkagesResponse.Data
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesresponse/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "gameCenterEnabledVersions" }

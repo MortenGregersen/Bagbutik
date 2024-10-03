@@ -7,7 +7,7 @@ public extension Request {
      Get a list of subscription offer codes for a specific auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_offer_codes_for_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-offerCodes>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -88,6 +88,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -101,6 +102,7 @@ public enum ListOfferCodesForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
         }
     }
 

@@ -7,7 +7,7 @@ public extension Request {
      Add an alternative marketplace domain to your account.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_a_marketplace_domain>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-marketplaceDomains>
 
      - Parameter requestBody: MarketplaceDomain representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

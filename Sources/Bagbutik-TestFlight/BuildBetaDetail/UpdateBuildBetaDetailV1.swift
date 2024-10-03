@@ -7,7 +7,7 @@ public extension Request {
      Update beta test details for a specific build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_build_beta_detail>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-buildBetaDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BuildBetaDetail representation

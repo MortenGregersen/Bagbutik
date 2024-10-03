@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterDetailResponse
- A response that contains a single Game Center detail resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailresponse>
- */
 public struct GameCenterDetailResponse: Codable, Sendable {
     public let data: GameCenterDetail
     public var included: [Included]?

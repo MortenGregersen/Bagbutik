@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageVersionCreateRequest
- The request body you use to create an app custom product page version.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest>
- */
 public struct AppCustomProductPageVersionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -53,13 +46,6 @@ public struct AppCustomProductPageVersionCreateRequest: Codable, Sendable, Reque
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppCustomProductPageVersionCreateRequest.Data.Attributes
-         Attributes that describe an app customer product page version create request resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var deepLink: String?
 

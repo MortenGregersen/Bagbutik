@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all treatments for a specific App Store version experiment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperiments_id_appstoreversionexperimenttreatments>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionExperiments-_id_-appStoreVersionExperimentTreatments>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

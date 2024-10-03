@@ -1,18 +1,9 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppResponse
- A response that contains a single Apps resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appresponse>
- */
 public struct AppResponse: Codable, Sendable {
-    /// The resource data.
     public let data: App
     public var included: [Included]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: App,

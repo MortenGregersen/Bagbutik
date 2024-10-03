@@ -7,7 +7,7 @@ public extension Request {
      Get the ordered app preview IDs in a preview set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_app_preview_ids_for_an_app_preview_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPreviewSets-_id_-relationships-appPreviews>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

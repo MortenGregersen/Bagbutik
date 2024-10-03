@@ -1,21 +1,10 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AgeRatingDeclaration
- The data structure that represents an Age Rating Declarations resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration>
- */
 public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
-    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
-    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "ageRatingDeclarations" }
-    /// Attributes that describe this Age Rating Declarations resource.
     public var attributes: Attributes?
 
     public init(id: String,
@@ -45,50 +34,28 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # AgeRatingDeclaration.Attributes
-     Attributes that describe an Age Rating Declarations resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var ageRatingOverride: AgeRatingOverride?
-        /// Declaration for alcohol, tobacco, or drug use.
         public var alcoholTobaccoOrDrugUseOrReferences: AlcoholTobaccoOrDrugUseOrReferences?
-        /// Declaration for contests.
         public var contests: Contests?
-        /// Declaration for gambling, provided as a Boolean value.
         public var gambling: Bool?
-        /// Declaration for gambling or contests, as a Boolean value.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var gamblingAndContests: Bool? = nil
-        /// Declaration for simulated gambling.
         public var gamblingSimulated: GamblingSimulated?
-        /// Declaration for horror or fear themed content.
         public var horrorOrFearThemes: HorrorOrFearThemes?
-        /// Declaration for the Kids Age Band value.
         public var kidsAgeBand: KidsAgeBand?
-        /// Declaration for mature or suggestive themes.
+        public var koreaAgeRatingOverride: KoreaAgeRatingOverride?
+        public var lootBox: Bool?
         public var matureOrSuggestiveThemes: MatureOrSuggestiveThemes?
-        /// Declaration for medical or treatment-focused content.
         public var medicalOrTreatmentInformation: MedicalOrTreatmentInformation?
-        /// Declaration for profanity or crude humor.
         public var profanityOrCrudeHumor: ProfanityOrCrudeHumor?
-        /// Declaration for a 17+ rating, provided as a Boolean value.
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var seventeenPlus: Bool? = nil
-        /// Declaration for graphic sexual content and nudity.
         public var sexualContentGraphicAndNudity: SexualContentGraphicAndNudity?
-        /// Declaration for sexual content or nudity.
         public var sexualContentOrNudity: SexualContentOrNudity?
-        /// Declaration for unrestricted web access, such as with an embedded browser, provided as a Boolean value.
         public var unrestrictedWebAccess: Bool?
-        /// Declaration for cartoon or fantasy violence.
         public var violenceCartoonOrFantasy: ViolenceCartoonOrFantasy?
-        /// Declaration for realistic violence.
         public var violenceRealistic: ViolenceRealistic?
-        /// Declaration for prolonged realistic or sadistic violence.
         public var violenceRealisticProlongedGraphicOrSadistic: ViolenceRealisticProlongedGraphicOrSadistic?
 
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
@@ -100,6 +67,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
                     gamblingSimulated: GamblingSimulated? = nil,
                     horrorOrFearThemes: HorrorOrFearThemes? = nil,
                     kidsAgeBand: KidsAgeBand? = nil,
+                    koreaAgeRatingOverride: KoreaAgeRatingOverride? = nil,
+                    lootBox: Bool? = nil,
                     matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
                     medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
                     profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
@@ -119,6 +88,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             self.gamblingSimulated = gamblingSimulated
             self.horrorOrFearThemes = horrorOrFearThemes
             self.kidsAgeBand = kidsAgeBand
+            self.koreaAgeRatingOverride = koreaAgeRatingOverride
+            self.lootBox = lootBox
             self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
             self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
             self.profanityOrCrudeHumor = profanityOrCrudeHumor
@@ -138,6 +109,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
                     gamblingSimulated: GamblingSimulated? = nil,
                     horrorOrFearThemes: HorrorOrFearThemes? = nil,
                     kidsAgeBand: KidsAgeBand? = nil,
+                    koreaAgeRatingOverride: KoreaAgeRatingOverride? = nil,
+                    lootBox: Bool? = nil,
                     matureOrSuggestiveThemes: MatureOrSuggestiveThemes? = nil,
                     medicalOrTreatmentInformation: MedicalOrTreatmentInformation? = nil,
                     profanityOrCrudeHumor: ProfanityOrCrudeHumor? = nil,
@@ -155,6 +128,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             self.gamblingSimulated = gamblingSimulated
             self.horrorOrFearThemes = horrorOrFearThemes
             self.kidsAgeBand = kidsAgeBand
+            self.koreaAgeRatingOverride = koreaAgeRatingOverride
+            self.lootBox = lootBox
             self.matureOrSuggestiveThemes = matureOrSuggestiveThemes
             self.medicalOrTreatmentInformation = medicalOrTreatmentInformation
             self.profanityOrCrudeHumor = profanityOrCrudeHumor
@@ -176,6 +151,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             gamblingSimulated = try container.decodeIfPresent(GamblingSimulated.self, forKey: "gamblingSimulated")
             horrorOrFearThemes = try container.decodeIfPresent(HorrorOrFearThemes.self, forKey: "horrorOrFearThemes")
             kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: "kidsAgeBand")
+            koreaAgeRatingOverride = try container.decodeIfPresent(KoreaAgeRatingOverride.self, forKey: "koreaAgeRatingOverride")
+            lootBox = try container.decodeIfPresent(Bool.self, forKey: "lootBox")
             matureOrSuggestiveThemes = try container.decodeIfPresent(MatureOrSuggestiveThemes.self, forKey: "matureOrSuggestiveThemes")
             medicalOrTreatmentInformation = try container.decodeIfPresent(MedicalOrTreatmentInformation.self, forKey: "medicalOrTreatmentInformation")
             profanityOrCrudeHumor = try container.decodeIfPresent(ProfanityOrCrudeHumor.self, forKey: "profanityOrCrudeHumor")
@@ -198,6 +175,8 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(gamblingSimulated, forKey: "gamblingSimulated")
             try container.encodeIfPresent(horrorOrFearThemes, forKey: "horrorOrFearThemes")
             try container.encodeIfPresent(kidsAgeBand, forKey: "kidsAgeBand")
+            try container.encodeIfPresent(koreaAgeRatingOverride, forKey: "koreaAgeRatingOverride")
+            try container.encodeIfPresent(lootBox, forKey: "lootBox")
             try container.encodeIfPresent(matureOrSuggestiveThemes, forKey: "matureOrSuggestiveThemes")
             try container.encodeIfPresent(medicalOrTreatmentInformation, forKey: "medicalOrTreatmentInformation")
             try container.encodeIfPresent(profanityOrCrudeHumor, forKey: "profanityOrCrudeHumor")
@@ -237,6 +216,12 @@ public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
         public enum HorrorOrFearThemes: String, Sendable, Codable, CaseIterable {
             case frequentOrIntense = "FREQUENT_OR_INTENSE"
             case infrequentOrMild = "INFREQUENT_OR_MILD"
+            case none = "NONE"
+        }
+
+        public enum KoreaAgeRatingOverride: String, Sendable, Codable, CaseIterable {
+            case fifteenPlus = "FIFTEEN_PLUS"
+            case nineteenPlus = "NINETEEN_PLUS"
             case none = "NONE"
         }
 

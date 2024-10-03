@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CertificateType
- Literal values that represent types of signing certificates.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/certificatetype>
- */
 public enum CertificateType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case developerIdApplication = "DEVELOPER_ID_APPLICATION"
     case developerIdApplicationG2 = "DEVELOPER_ID_APPLICATION_G2"

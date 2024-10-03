@@ -7,7 +7,7 @@ public extension Request {
      List all App Store subcategories that belong to a specific category.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subcategories_for_an_app_category>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCategories-_id_-subcategories>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

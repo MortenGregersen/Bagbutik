@@ -6,7 +6,7 @@ public extension Request {
      # PATCH /v1/reviewSubmissionItems/{id}
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_reviewsubmissionitems_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-reviewSubmissionItems-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: ReviewSubmissionItem representation

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterGroupResponse
- A response that contains a single group resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupresponse>
- */
 public struct GameCenterGroupResponse: Codable, Sendable {
     public let data: GameCenterGroup
     public var included: [Included]?

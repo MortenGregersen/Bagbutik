@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BuildIcon
- The data structure that represents the Build Icons resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/buildicon>
- */
 public struct BuildIcon: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -41,13 +34,6 @@ public struct BuildIcon: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # BuildIcon.Attributes
-     Attributes that describe a Build Icons resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/buildicon/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var iconAsset: ImageAsset?
         public var iconType: IconAssetType?

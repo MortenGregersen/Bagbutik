@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppInfoLocalizationCreateRequest
- The request body you use to create an App Info Localization.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest>
- */
 public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppInfoLocalizationCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appInfoLocalizations" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppInfoLocalizationCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let locale: String
             public var name: String?
@@ -111,13 +90,6 @@ public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # AppInfoLocalizationCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appInfo: AppInfo
 
@@ -135,13 +107,6 @@ public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
                 try container.encode(appInfo, forKey: "appInfo")
             }
 
-            /**
-             # AppInfoLocalizationCreateRequest.Data.Relationships.AppInfo
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/relationships/appinfo>
-             */
             public struct AppInfo: Codable, Sendable {
                 public let data: Data
 
@@ -159,13 +124,6 @@ public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppInfoLocalizationCreateRequest.Data.Relationships.AppInfo.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest/data/relationships/appinfo/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appInfos" }

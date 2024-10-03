@@ -7,7 +7,7 @@ public extension Request {
      Disable a capability for a bundle ID.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/disable_a_capability>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-bundleIdCapabilities-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

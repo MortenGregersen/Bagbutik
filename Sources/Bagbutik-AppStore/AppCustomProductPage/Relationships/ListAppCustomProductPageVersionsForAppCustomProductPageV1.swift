@@ -7,7 +7,7 @@ public extension Request {
      List the versions for a custom product page version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appcustomproductpages_id_appcustomproductpageversions>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appCustomProductPages-_id_-appCustomProductPageVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Associate builds with a beta group to enable the group to test the builds.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_builds_to_a_beta_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaGroups-_id_-relationships-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

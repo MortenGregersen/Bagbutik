@@ -9,7 +9,7 @@ public extension Request {
      The example request below creates a new workflow that performs the archive action. App Store Connect returns the `201` HTTP status code to indicate the successful creation of the workflow and returns information about the workflow. Use the data to access additional information or to start a new build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_workflow>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-ciWorkflows>
 
      - Parameter requestBody: CiWorkflow representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

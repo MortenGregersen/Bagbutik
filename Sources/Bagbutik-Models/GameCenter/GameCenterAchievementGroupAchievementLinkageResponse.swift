@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAchievementGroupAchievementLinkageResponse
- A response body that contains the ID of a single related resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementgroupachievementlinkageresponse>
- */
 public struct GameCenterAchievementGroupAchievementLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all localized metadata for a specific subscription group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_group_localizations>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionGroups-_id_-subscriptionGroupLocalizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

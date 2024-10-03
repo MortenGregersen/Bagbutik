@@ -7,7 +7,7 @@ public extension Request {
      Get a list of pending invitations to join your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_invited_users>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-userInvitations>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter
@@ -44,6 +44,7 @@ public enum ListUserInvitationsV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -78,6 +79,7 @@ public enum ListUserInvitationsV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

@@ -7,7 +7,7 @@ public extension Request {
      Create an in-app purchase submission for review.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_review_submission_for_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-inAppPurchaseSubmissions>
 
      - Parameter requestBody: InAppPurchaseSubmission representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

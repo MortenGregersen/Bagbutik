@@ -1,23 +1,11 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # ScmPullRequest
- The data structure that represents a Pull Requests resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest>
- */
 public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
-    /// The opaque resource ID that uniquely identifies a Pull Request resource.
     public let id: String
-    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
-    /// The resource type.
     public var type: String { "scmPullRequests" }
-    /// The attributes that describe the Pull Requests resource.
     public var attributes: Attributes?
-    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,
@@ -51,35 +39,17 @@ public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
         try container.encodeIfPresent(relationships, forKey: "relationships")
     }
 
-    /**
-     # ScmPullRequest.Attributes
-     The attributes that describe a Pull Requests resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// The name of the pull request’s destination branch.
         public var destinationBranchName: String?
-        /// The name of the pull request’s destination repository. If the pull request is not for a fork, this is the same value as the source repository name.
         public var destinationRepositoryName: String?
-        /// The owner of the pull request’s destination repository.
         public var destinationRepositoryOwner: String?
-        /// A Boolean value that indicates whether the pull request is open or closed.
         public var isClosed: Bool?
-        /// A Boolean value that indicates whether the pull request is for a Git fork.
         public var isCrossRepository: Bool?
-        /// The pull request number.
         public var number: Int?
-        /// The name of the pull request’s source branch.
         public var sourceBranchName: String?
-        /// The name of the pull request’s source repository.
         public var sourceRepositoryName: String?
-        /// The owner of the pull request’s destination repository.
         public var sourceRepositoryOwner: String?
-        /// The pull request’s title.
         public var title: String?
-        /// The URL of the pull request.
         public var webUrl: String?
 
         public init(destinationBranchName: String? = nil,
@@ -138,15 +108,7 @@ public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
         }
     }
 
-    /**
-     # ScmPullRequest.Relationships
-     The relationships of the Pull Requests resource you included in the request and those on which you can operate.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships>
-     */
     public struct Relationships: Codable, Sendable {
-        /// The related Repositories resource.
         public var repository: Repository?
 
         public init(repository: Repository? = nil) {
@@ -163,49 +125,25 @@ public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
             try container.encodeIfPresent(repository, forKey: "repository")
         }
 
-        /**
-         # ScmPullRequest.Relationships.Repository
-         The data and links that describe the relationship between the Pull Requests and the Repositories resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository>
-         */
         public struct Repository: Codable, Sendable {
-            /// The ID and type of the related Repositories resource.
             @NullCodable public var data: Data?
-            /// The navigational links that include the self-link.
-            public var links: Links?
 
-            public init(data: Data? = nil,
-                        links: Links? = nil)
-            {
+            public init(data: Data? = nil) {
                 self.data = data
-                self.links = links
             }
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
             }
 
-            /**
-             # ScmPullRequest.Relationships.Repository.Data
-             The type and ID of a related Repositories resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/data>
-             */
             public struct Data: Codable, Sendable, Identifiable {
-                /// The opaque resource ID that uniquely identifies the related Repositories resource.
                 public let id: String
-                /// The resource type.
                 public var type: String { "scmRepositories" }
 
                 public init(id: String) {
@@ -224,39 +162,6 @@ public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            /**
-             # ScmPullRequest.Relationships.Repository.Links
-             The links to the related Repositories resource and the relationship’s self-link.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest/relationships/repository/links>
-             */
-            public struct Links: Codable, Sendable {
-                /// The link to related data.
-                public var related: String?
-                /// The link to the resource.
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

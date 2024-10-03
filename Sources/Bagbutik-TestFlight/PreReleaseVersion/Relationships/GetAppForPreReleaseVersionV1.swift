@@ -7,7 +7,7 @@ public extension Request {
      Get the app information for a specific prerelease version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_information_of_a_prerelease_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-preReleaseVersions-_id_-app>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -32,6 +32,7 @@ public enum GetAppForPreReleaseVersionV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -66,6 +67,7 @@ public enum GetAppForPreReleaseVersionV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

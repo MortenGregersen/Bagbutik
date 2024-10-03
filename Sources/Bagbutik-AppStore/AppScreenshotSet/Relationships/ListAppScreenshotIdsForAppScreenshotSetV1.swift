@@ -7,7 +7,7 @@ public extension Request {
      Get the ordered screenshot IDs in a screenshot set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_app_screenshot_ids_for_an_app_screenshot_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appScreenshotSets-_id_-relationships-appScreenshots>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

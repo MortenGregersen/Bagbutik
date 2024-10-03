@@ -7,7 +7,7 @@ public extension Request {
      List all the group leaderboard sets in a leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_group_leaderboard_set_in_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboardSets-_id_-relationships-groupLeaderboardSet>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

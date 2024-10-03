@@ -7,7 +7,7 @@ public extension Request {
      Update a specific team in a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_team>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterMatchmakingTeams-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterMatchmakingTeam representation

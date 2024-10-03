@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageLocalizationResponse
- A response that contains a single app custom product page resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalizationresponse>
- */
 public struct AppCustomProductPageLocalizationResponse: Codable, Sendable {
     public let data: AppCustomProductPageLocalization
     public var included: [Included]?

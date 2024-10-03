@@ -6,7 +6,7 @@ public extension Request {
      # GET /v1/apps/{id}/appEvents
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_appEvents>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-appEvents>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Create a new certificate using a certificate signing request.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_certificate>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-certificates>
 
      - Parameter requestBody: Certificate representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

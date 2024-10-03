@@ -7,7 +7,7 @@ public extension Request {
      Delete localized metadata that you configured for an in-app event.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appeventlocalizations_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appEventLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

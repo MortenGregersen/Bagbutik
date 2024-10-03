@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardImageResponse
- A response that contains a single leaderboard image resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimageresponse>
- */
 public struct GameCenterLeaderboardImageResponse: Codable, Sendable {
     public let data: GameCenterLeaderboardImage
     public var included: [GameCenterLeaderboardLocalization]?

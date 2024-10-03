@@ -4,10 +4,10 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Delete a Beta Tester
-     Remove a beta tester's ability to test all apps.
+     Remove a beta tester’s ability to test all apps.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_a_beta_tester>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaTesters-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

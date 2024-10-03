@@ -7,7 +7,7 @@ public extension Request {
      Get a list of app resource IDs associated with a beta tester.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_app_resource_ids_for_a_beta_tester>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-relationships-apps>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

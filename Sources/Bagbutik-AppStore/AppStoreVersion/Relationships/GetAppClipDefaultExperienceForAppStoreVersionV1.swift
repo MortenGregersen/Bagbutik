@@ -7,7 +7,7 @@ public extension Request {
      Get the default App Clip experience for an App Store version of your app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_the_default_app_clip_experience_for_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appClipDefaultExperience>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -89,6 +89,7 @@ public enum GetAppClipDefaultExperienceForAppStoreVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

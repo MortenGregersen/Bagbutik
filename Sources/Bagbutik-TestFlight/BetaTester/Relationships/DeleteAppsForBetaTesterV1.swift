@@ -4,10 +4,10 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Remove a Beta Tester’s Access to Apps
-     Remove a specific beta tester's access to test any builds of one or more apps.
+     Remove a specific beta tester’s access to test any builds of one or more apps.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/remove_a_beta_tester_s_access_to_apps>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaTesters-_id_-relationships-apps>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

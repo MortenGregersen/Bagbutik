@@ -9,7 +9,7 @@ public extension Request {
      You can use a single alternative distribution key for all alternative distribution apps on your account. You can optionally use an app specific alternative distribution key, by adding a relationship to a specific app in the JSON payload used with this endpoint.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/add_an_alternative_distribution_key>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativeDistributionKeys>
 
      - Parameter requestBody: AlternativeDistributionKey representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

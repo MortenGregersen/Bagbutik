@@ -9,7 +9,7 @@ public extension Request {
      The example request below lists all issues Xcode Cloud encountered when it performed a build. Use the information provided in the response to display issue information on a dashboard, generate reports, automatically create tasks in your issue tracker, and so on.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_issues_for_a_build_action>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildActions-_id_-issues>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

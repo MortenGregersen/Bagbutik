@@ -7,7 +7,7 @@ public extension Request {
      Get information about an app preview and its upload and processing status.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_preview_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPreviews-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

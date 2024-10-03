@@ -7,7 +7,7 @@ public extension Request {
      Delete the custom end user license agreement that is associated with an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_end_user_license_agreement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-endUserLicenseAgreements-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Modify the achievements for a Game center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_associated_achievements>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterDetails-_id_-relationships-gameCenterAchievements>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

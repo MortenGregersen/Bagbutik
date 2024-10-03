@@ -7,7 +7,7 @@ public extension Request {
      Get information for a specific device registered to your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_device_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-devices-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

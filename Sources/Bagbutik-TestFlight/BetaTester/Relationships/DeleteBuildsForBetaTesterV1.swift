@@ -4,10 +4,10 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Individually Unassign a Beta Tester from Builds
-     Remove an individually assigned beta tester's ability to test a build.
+     Remove an individually assigned beta tester’s ability to test a build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/individually_unassign_a_beta_tester_from_builds>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-betaTesters-_id_-relationships-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

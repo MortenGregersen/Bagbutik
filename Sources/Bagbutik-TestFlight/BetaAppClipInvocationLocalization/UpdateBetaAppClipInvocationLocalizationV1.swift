@@ -7,7 +7,7 @@ public extension Request {
      Change the metadata for an App Clip you make available to testers in the TestFlight app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_localized_metadata_of_an_app_clip_invocation_for_testers>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaAppClipInvocationLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BetaAppClipInvocationLocalization representation

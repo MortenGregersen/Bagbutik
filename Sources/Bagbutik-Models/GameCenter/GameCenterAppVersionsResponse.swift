@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAppVersionsResponse
- A response that contains a list of app version resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversionsresponse>
- */
 public struct GameCenterAppVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterAppVersion
 

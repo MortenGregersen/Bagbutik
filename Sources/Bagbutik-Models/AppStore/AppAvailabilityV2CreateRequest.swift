@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppAvailabilityV2CreateRequest
- The request body you use to create an app availability.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2createrequest>
- */
 public struct AppAvailabilityV2CreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [TerritoryAvailabilityInlineCreate]?

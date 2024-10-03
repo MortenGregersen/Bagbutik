@@ -7,7 +7,7 @@ public extension Request {
      Get a list of builds of a specific prerelease version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_builds_of_a_prerelease_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-preReleaseVersions-_id_-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

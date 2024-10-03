@@ -7,7 +7,7 @@ public extension Request {
      Delete the alternative distribution search domain for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_alternative_distribution_domain>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-alternativeDistributionDomains-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

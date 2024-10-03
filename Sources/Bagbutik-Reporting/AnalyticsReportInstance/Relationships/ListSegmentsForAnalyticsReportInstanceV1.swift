@@ -7,7 +7,7 @@ public extension Request {
      Get details for a specific analytics report segment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_segments_for_a_report>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsReportInstances-_id_-segments>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

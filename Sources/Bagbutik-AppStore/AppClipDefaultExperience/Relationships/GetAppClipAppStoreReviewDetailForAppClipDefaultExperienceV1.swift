@@ -7,7 +7,7 @@ public extension Request {
      Get App Store Review details for a specific default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_review_detail_for_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperiences-_id_-appClipAppStoreReviewDetail>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

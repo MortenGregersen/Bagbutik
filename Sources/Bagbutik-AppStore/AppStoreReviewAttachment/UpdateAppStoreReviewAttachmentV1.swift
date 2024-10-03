@@ -7,7 +7,7 @@ public extension Request {
      Commit an app screenshot after uploading it to the App Store.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/commit_an_app_store_review_attachment>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreReviewAttachments-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppStoreReviewAttachment representation

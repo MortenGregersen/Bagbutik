@@ -7,7 +7,7 @@ public extension Request {
      Delete a specific introductory offer for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_introductory_offer_for_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-subscriptionIntroductoryOffers-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

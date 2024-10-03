@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardSetMemberLocalizationsResponse
- A response that contains multiple leaderboard localizations resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationsresponse>
- */
 public struct GameCenterLeaderboardSetMemberLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterLeaderboardSetMemberLocalization
 

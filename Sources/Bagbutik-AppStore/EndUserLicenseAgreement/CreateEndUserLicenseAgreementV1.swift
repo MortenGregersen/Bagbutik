@@ -10,7 +10,7 @@ public extension Request {
      In the following example the request contains a blank value for the `agreementText` attribute. Replace that attribute value with your actual agreement text.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_end_user_license_agreement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-endUserLicenseAgreements>
 
      - Parameter requestBody: EndUserLicenseAgreement representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Get localized beta app information for a specific app and locale.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_beta_app_localization_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaAppLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -37,6 +37,7 @@ public enum GetBetaAppLocalizationV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -71,6 +72,7 @@ public enum GetBetaAppLocalizationV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

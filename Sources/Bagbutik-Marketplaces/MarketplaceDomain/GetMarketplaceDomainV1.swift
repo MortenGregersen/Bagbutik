@@ -7,7 +7,7 @@ public extension Request {
      Read information for a specific alternative marketplace domain.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_marketplace_domain_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplaceDomains-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

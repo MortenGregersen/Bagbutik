@@ -7,7 +7,7 @@ public extension Request {
      Get a list of resource IDs representing promoted purchases for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_promoted_purchase_ids_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-relationships-promotedPurchases>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

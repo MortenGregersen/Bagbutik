@@ -7,7 +7,7 @@ public extension Request {
      Reserve an image asset that appears on the App Clip card of an advanced App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_app_clip_card_image_for_an_advanced_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appClipAdvancedExperienceImages>
 
      - Parameter requestBody: AppClipAdvancedExperienceImage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

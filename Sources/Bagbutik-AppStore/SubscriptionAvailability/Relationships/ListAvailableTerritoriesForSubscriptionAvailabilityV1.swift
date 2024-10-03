@@ -7,7 +7,7 @@ public extension Request {
      List the territory availability and currency of a specific subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_the_territory_availability_of_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptionAvailabilities-_id_-availableTerritories>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

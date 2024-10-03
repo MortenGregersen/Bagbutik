@@ -7,7 +7,7 @@ public extension Request {
      Remove a user on your team’s access to one or more apps.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/remove_visible_apps_from_a_user>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-users-_id_-relationships-visibleApps>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

@@ -46,7 +46,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
         public var eventState: EventState?
         public var primaryLocale: String?
         public var priority: Priority?
-        public var purchaseRequirement: PurchaseRequirement?
+        public var purchaseRequirement: String?
         public var purpose: Purpose?
         public var referenceName: String?
         public var territorySchedules: [TerritorySchedules]?
@@ -57,7 +57,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
                     eventState: EventState? = nil,
                     primaryLocale: String? = nil,
                     priority: Priority? = nil,
-                    purchaseRequirement: PurchaseRequirement? = nil,
+                    purchaseRequirement: String? = nil,
                     purpose: Purpose? = nil,
                     referenceName: String? = nil,
                     territorySchedules: [TerritorySchedules]? = nil)
@@ -82,7 +82,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             eventState = try container.decodeIfPresent(EventState.self, forKey: "eventState")
             primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
             priority = try container.decodeIfPresent(Priority.self, forKey: "priority")
-            purchaseRequirement = try container.decodeIfPresent(PurchaseRequirement.self, forKey: "purchaseRequirement")
+            purchaseRequirement = try container.decodeIfPresent(String.self, forKey: "purchaseRequirement")
             purpose = try container.decodeIfPresent(Purpose.self, forKey: "purpose")
             referenceName = try container.decodeIfPresent(String.self, forKey: "referenceName")
             territorySchedules = try container.decodeIfPresent([TerritorySchedules].self, forKey: "territorySchedules")
@@ -164,14 +164,6 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             case normal = "NORMAL"
         }
 
-        public enum PurchaseRequirement: String, Sendable, Codable, CaseIterable {
-            case inAppPurchase = "IN_APP_PURCHASE"
-            case inAppPurchaseAndSubscription = "IN_APP_PURCHASE_AND_SUBSCRIPTION"
-            case inAppPurchaseOrSubscription = "IN_APP_PURCHASE_OR_SUBSCRIPTION"
-            case noCostAssociated = "NO_COST_ASSOCIATED"
-            case subscription = "SUBSCRIPTION"
-        }
-
         public enum Purpose: String, Sendable, Codable, CaseIterable {
             case appropriateForAllUsers = "APPROPRIATE_FOR_ALL_USERS"
             case attractNewUsers = "ATTRACT_NEW_USERS"
@@ -233,11 +225,11 @@ public struct AppEvent: Codable, Sendable, Identifiable {
 
         public struct Localizations: Codable, Sendable {
             @NullCodable public var data: [Data]?
-            public var links: Links?
+            public var links: RelationshipLinks?
             public var meta: PagingInformation?
 
             public init(data: [Data]? = nil,
-                        links: Links? = nil,
+                        links: RelationshipLinks? = nil,
                         meta: PagingInformation? = nil)
             {
                 self.data = data
@@ -248,7 +240,7 @@ public struct AppEvent: Codable, Sendable, Identifiable {
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
                 data = try container.decodeIfPresent([Data].self, forKey: "data")
-                links = try container.decodeIfPresent(Links.self, forKey: "links")
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
                 meta = try container.decodeIfPresent(PagingInformation.self, forKey: "meta")
             }
 
@@ -279,30 +271,6 @@ public struct AppEvent: Codable, Sendable, Identifiable {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
                     try container.encode(id, forKey: "id")
                     try container.encode(type, forKey: "type")
-                }
-            }
-
-            public struct Links: Codable, Sendable {
-                public var related: String?
-                public var itself: String?
-
-                public init(related: String? = nil,
-                            self itself: String? = nil)
-                {
-                    self.related = related
-                    self.itself = itself
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    related = try container.decodeIfPresent(String.self, forKey: "related")
-                    itself = try container.decodeIfPresent(String.self, forKey: "self")
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encodeIfPresent(related, forKey: "related")
-                    try container.encodeIfPresent(itself, forKey: "self")
                 }
             }
         }

@@ -7,7 +7,7 @@ public extension Request {
      Add Game Center achievement localized information for a new locale.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_achievement_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterAchievementLocalizations>
 
      - Parameter requestBody: GameCenterAchievementLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

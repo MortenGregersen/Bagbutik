@@ -7,7 +7,7 @@ public extension Request {
      Get information about your app’s availalbility.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_availabilty>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-appAvailabilities-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Commit an achievement image after uploading it.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_achievement_image>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievementImages-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterAchievementImage representation

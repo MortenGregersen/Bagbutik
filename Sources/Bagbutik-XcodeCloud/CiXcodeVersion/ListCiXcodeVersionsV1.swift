@@ -9,7 +9,7 @@ public extension Request {
      The example request below lists Xcode versions available to Xcode Cloud workflows and supported test destinations, including information about available simulated devices. Use the data provided in the response to display available Xcode versions and test destinations on a dashboard or to read additional information; for example, macOS version information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_xcode_versions_available_in_xcode_cloud>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciXcodeVersions>
 
      - Parameter fields: Fields to return for included related types
      - Parameter includes: Relationship data to include in the response

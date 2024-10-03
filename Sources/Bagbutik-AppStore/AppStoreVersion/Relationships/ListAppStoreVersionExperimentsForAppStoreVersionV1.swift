@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all experiments for an App Store version of an app across all platforms.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversions_id_appstoreversionexperiments>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreVersionExperiments>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -83,6 +83,7 @@ public enum ListAppStoreVersionExperimentsForAppStoreVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

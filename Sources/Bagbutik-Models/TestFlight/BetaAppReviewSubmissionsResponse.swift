@@ -1,22 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaAppReviewSubmissionsResponse
- A response that contains a list of Beta App Review Submission resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissionsresponse>
- */
 public struct BetaAppReviewSubmissionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaAppReviewSubmission
 
-    /// The resource data.
     public let data: [BetaAppReviewSubmission]
     public var included: [Build]?
-    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaAppReviewSubmission],

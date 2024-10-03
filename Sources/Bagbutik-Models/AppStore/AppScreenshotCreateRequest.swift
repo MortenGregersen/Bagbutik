@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppScreenshotCreateRequest
- The request body you use to create an App Screenshot.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest>
- */
 public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppScreenshotCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appScreenshots" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppScreenshotCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
@@ -91,13 +70,6 @@ public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # AppScreenshotCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appScreenshotSet: AppScreenshotSet
 
@@ -115,13 +87,6 @@ public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
                 try container.encode(appScreenshotSet, forKey: "appScreenshotSet")
             }
 
-            /**
-             # AppScreenshotCreateRequest.Data.Relationships.AppScreenshotSet
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships/appscreenshotset>
-             */
             public struct AppScreenshotSet: Codable, Sendable {
                 public let data: Data
 
@@ -139,13 +104,6 @@ public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppScreenshotCreateRequest.Data.Relationships.AppScreenshotSet.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest/data/relationships/appscreenshotset/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appScreenshotSets" }

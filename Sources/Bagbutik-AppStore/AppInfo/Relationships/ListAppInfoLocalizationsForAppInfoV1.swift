@@ -7,7 +7,7 @@ public extension Request {
      Get a list of localized, app-level information for an app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_info_localizations_for_an_app_info>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-appInfoLocalizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -55,9 +55,11 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case appInfoLocalizations
             case appStoreAgeRating
             case appStoreState
+            case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
             case kidsAgeBand
+            case koreaAgeRating
             case primaryCategory
             case primarySubcategoryOne
             case primarySubcategoryTwo

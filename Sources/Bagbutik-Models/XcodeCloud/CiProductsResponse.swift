@@ -1,23 +1,12 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CiProductsResponse
- A response that contains a list of Products resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/ciproductsresponse>
- */
 public struct CiProductsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiProduct
 
-    /// The resource data.
     public let data: [CiProduct]
-    /// The requested relationship data.
     public var included: [Included]?
-    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
-    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiProduct],

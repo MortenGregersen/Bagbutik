@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionPhasedReleaseUpdateRequest
- The request body you use to update an App Store Version Phased Release.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseupdaterequest>
- */
 public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, Sendable, Requ
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionPhasedReleaseUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersionPhasedReleases" }
@@ -60,13 +46,6 @@ public struct AppStoreVersionPhasedReleaseUpdateRequest: Codable, Sendable, Requ
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # AppStoreVersionPhasedReleaseUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleaseupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var phasedReleaseState: PhasedReleaseState?
 

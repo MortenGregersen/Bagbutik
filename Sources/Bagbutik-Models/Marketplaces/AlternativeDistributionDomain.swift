@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AlternativeDistributionDomain
- The data structure that represents an alternative distribution domain resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain>
- */
 public struct AlternativeDistributionDomain: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -41,13 +34,6 @@ public struct AlternativeDistributionDomain: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # AlternativeDistributionDomain.Attributes
-     Attributes that describe an alternative distribution domain resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain/attributes>
-     */
     public struct Attributes: Codable, Sendable {
         public var createdDate: Date?
         public var domain: String?

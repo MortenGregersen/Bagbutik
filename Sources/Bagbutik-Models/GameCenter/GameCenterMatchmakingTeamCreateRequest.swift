@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingTeamCreateRequest
- The request body you use to create a team.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest>
- */
 public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, Request
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # GameCenterMatchmakingTeamCreateRequest.Data
-     The data structure of the request body you use to create a team.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "gameCenterMatchmakingTeams" }
         public let attributes: Attributes
@@ -60,19 +46,9 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, Request
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # GameCenterMatchmakingTeamCreateRequest.Data.Attributes
-         The attributes for a team that you create.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The maximum number of players on the team.
             public let maxPlayers: Int
-            /// The minimum number of players on the team.
             public let minPlayers: Int
-            /// A name for the team that’s unique within the scope of its rule set.
             public let referenceName: String
 
             public init(maxPlayers: Int,
@@ -99,13 +75,6 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, Request
             }
         }
 
-        /**
-         # GameCenterMatchmakingTeamCreateRequest.Data.Relationships
-         The relationships from the team to other objects.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let ruleSet: RuleSet
 
@@ -123,13 +92,6 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, Request
                 try container.encode(ruleSet, forKey: "ruleSet")
             }
 
-            /**
-             # GameCenterMatchmakingTeamCreateRequest.Data.Relationships.RuleSet
-             The relationship to the rule set that you provide when you create a team.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/relationships/ruleset>
-             */
             public struct RuleSet: Codable, Sendable {
                 public let data: Data
 
@@ -147,17 +109,8 @@ public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, Request
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # GameCenterMatchmakingTeamCreateRequest.Data.Relationships.RuleSet.Data
-                 The type and ID for the rule set that you’re adding the team to.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest/data/relationships/ruleset/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The unique identifier for the rule set.
                     public let id: String
-                    /// The type of resource.
                     public var type: String { "gameCenterMatchmakingRuleSets" }
 
                     public init(id: String) {

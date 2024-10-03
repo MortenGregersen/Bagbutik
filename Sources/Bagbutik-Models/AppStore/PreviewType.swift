@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # PreviewType
- String that represents the display type of an app preview.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/previewtype>
- */
 public enum PreviewType: String, Sendable, ParameterValue, Codable, CaseIterable {
     case appleTV = "APPLE_TV"
     case appleVisionPro = "APPLE_VISION_PRO"

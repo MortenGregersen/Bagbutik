@@ -7,7 +7,7 @@ public extension Request {
      Get details about the promoted purchase of an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_promoted_purchase_information_for_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-inAppPurchases-_id_-promotedPurchase>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -47,6 +47,7 @@ public enum GetPromotedPurchaseForInAppPurchasesV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType
@@ -86,6 +87,7 @@ public enum GetPromotedPurchaseForInAppPurchasesV2 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -99,6 +101,7 @@ public enum GetPromotedPurchaseForInAppPurchasesV2 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
         }
     }
 

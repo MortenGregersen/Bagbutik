@@ -51,7 +51,7 @@ public struct AppEventCreateRequest: Codable, Sendable, RequestBody {
             public var deepLink: String?
             public var primaryLocale: String?
             public var priority: AppEvent.Attributes.Priority?
-            public var purchaseRequirement: AppEvent.Attributes.PurchaseRequirement?
+            public var purchaseRequirement: String?
             public var purpose: AppEvent.Attributes.Purpose?
             public let referenceName: String
             public var territorySchedules: [TerritorySchedules]?
@@ -60,7 +60,7 @@ public struct AppEventCreateRequest: Codable, Sendable, RequestBody {
                         deepLink: String? = nil,
                         primaryLocale: String? = nil,
                         priority: AppEvent.Attributes.Priority? = nil,
-                        purchaseRequirement: AppEvent.Attributes.PurchaseRequirement? = nil,
+                        purchaseRequirement: String? = nil,
                         purpose: AppEvent.Attributes.Purpose? = nil,
                         referenceName: String,
                         territorySchedules: [TerritorySchedules]? = nil)
@@ -81,7 +81,7 @@ public struct AppEventCreateRequest: Codable, Sendable, RequestBody {
                 deepLink = try container.decodeIfPresent(String.self, forKey: "deepLink")
                 primaryLocale = try container.decodeIfPresent(String.self, forKey: "primaryLocale")
                 priority = try container.decodeIfPresent(AppEvent.Attributes.Priority.self, forKey: "priority")
-                purchaseRequirement = try container.decodeIfPresent(AppEvent.Attributes.PurchaseRequirement.self, forKey: "purchaseRequirement")
+                purchaseRequirement = try container.decodeIfPresent(String.self, forKey: "purchaseRequirement")
                 purpose = try container.decodeIfPresent(AppEvent.Attributes.Purpose.self, forKey: "purpose")
                 referenceName = try container.decode(String.self, forKey: "referenceName")
                 territorySchedules = try container.decodeIfPresent([TerritorySchedules].self, forKey: "territorySchedules")

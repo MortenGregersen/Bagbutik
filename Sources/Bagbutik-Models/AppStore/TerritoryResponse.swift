@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # TerritoryResponse
- A response that contains a single Territories resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/territoryresponse>
- */
 public struct TerritoryResponse: Codable, Sendable {
     public let data: Territory
     public let links: DocumentLinks

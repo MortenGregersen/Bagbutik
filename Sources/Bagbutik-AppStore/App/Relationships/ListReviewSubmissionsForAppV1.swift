@@ -7,7 +7,7 @@ public extension Request {
      Get a list of review submissions associated with a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_apps_id_reviewSubmissions>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-reviewSubmissions>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -72,6 +72,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType
@@ -83,6 +84,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -117,6 +119,7 @@ public enum ListReviewSubmissionsForAppV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

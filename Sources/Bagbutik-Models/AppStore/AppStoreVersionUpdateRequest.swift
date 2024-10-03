@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionUpdateRequest
- The request body you use to update an App Store Version.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest>
- */
 public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "appStoreVersions" }
@@ -65,19 +51,11 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreVersionUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var copyright: String?
             public var downloadable: Bool?
             public var earliestReleaseDate: Date?
             public var releaseType: AppStoreVersion.Attributes.ReleaseType?
-            /// `NOTARIZATION` is alternative app marketplace distribution. All eligible app versions default to both `APP_STORE` and `NOTARIZATION. `An app can be distributed on either or both.
             public var reviewType: AppStoreVersion.Attributes.ReviewType?
             public var versionString: String?
 
@@ -117,15 +95,7 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # AppStoreVersionUpdateRequest.Data.Relationships
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
-            /// The related Default App Clip Experiences resource.
             public var appClipDefaultExperience: AppClipDefaultExperience?
             public var build: Build?
 
@@ -148,15 +118,7 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(build, forKey: "build")
             }
 
-            /**
-             # AppStoreVersionUpdateRequest.Data.Relationships.AppClipDefaultExperience
-             The relationship to the Default App Clip Default Experiences resource you set with the request that updates the App Store Versions resource.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience>
-             */
             public struct AppClipDefaultExperience: Codable, Sendable {
-                /// The ID and type of the related Default App Clip Experiences resource.
                 @NullCodable public var data: Data?
 
                 public init(data: Data? = nil) {
@@ -173,17 +135,8 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionUpdateRequest.Data.Relationships.AppClipDefaultExperience.Data
-                 The type and ID of the Default App Clip Experiences resource that you’re relating with the App Store Versions resource you’re updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/appclipdefaultexperience/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the related Default App Clip Experiences resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "appClipDefaultExperiences" }
 
                     public init(id: String) {
@@ -206,13 +159,6 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
                 }
             }
 
-            /**
-             # AppStoreVersionUpdateRequest.Data.Relationships.Build
-             The data and links that describe the relationship between the resources.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build>
-             */
             public struct Build: Codable, Sendable {
                 @NullCodable public var data: Data?
 
@@ -230,13 +176,6 @@ public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionUpdateRequest.Data.Relationships.Build.Data
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest/data/relationships/build/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "builds" }

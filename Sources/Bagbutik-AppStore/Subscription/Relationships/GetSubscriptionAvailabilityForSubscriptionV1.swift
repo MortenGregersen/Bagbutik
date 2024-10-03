@@ -7,7 +7,7 @@ public extension Request {
      Get information about the territory availability for a subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_information_about_the_availability_of_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-subscriptionAvailability>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -49,6 +49,7 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
             case familySharable
             case group
             case groupLevel
+            case images
             case introductoryOffers
             case name
             case offerCodes
@@ -62,6 +63,7 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
             case subscriptionAvailability
             case subscriptionLocalizations
             case subscriptionPeriod
+            case winBackOffers
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all devices for a specific provisioning profile.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_devices_in_a_profile>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-profiles-_id_-devices>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

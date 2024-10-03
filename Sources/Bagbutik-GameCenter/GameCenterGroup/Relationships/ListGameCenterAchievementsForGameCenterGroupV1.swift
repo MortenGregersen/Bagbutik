@@ -7,7 +7,7 @@ public extension Request {
      List achievements information for a specific group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_the_achievements_in_a_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_-gameCenterAchievements>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

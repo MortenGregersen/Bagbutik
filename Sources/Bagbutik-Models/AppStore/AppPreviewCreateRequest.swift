@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppPreviewCreateRequest
- The request body you use to create an App Preview.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest>
- */
 public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppPreviewCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appPreviews" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppPreviewCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let fileName: String
             public let fileSize: Int
@@ -101,13 +80,6 @@ public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # AppPreviewCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appPreviewSet: AppPreviewSet
 
@@ -125,13 +97,6 @@ public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
                 try container.encode(appPreviewSet, forKey: "appPreviewSet")
             }
 
-            /**
-             # AppPreviewCreateRequest.Data.Relationships.AppPreviewSet
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships/apppreviewset>
-             */
             public struct AppPreviewSet: Codable, Sendable {
                 public let data: Data
 
@@ -149,13 +114,6 @@ public struct AppPreviewCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppPreviewCreateRequest.Data.Relationships.AppPreviewSet.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewcreaterequest/data/relationships/apppreviewset/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appPreviewSets" }

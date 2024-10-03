@@ -7,7 +7,7 @@ public extension Request {
      Remove a leaderboard from a leaderboard set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_the_relationship_between_a_leaderboard_and_a_leaderboard_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterLeaderboardSets-_id_-relationships-gameCenterLeaderboards>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

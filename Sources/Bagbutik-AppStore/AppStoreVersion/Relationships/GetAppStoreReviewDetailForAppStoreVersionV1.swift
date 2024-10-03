@@ -7,7 +7,7 @@ public extension Request {
      Get the details you provide to App Review so they can test your app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_app_store_review_details_resource_information_of_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreReviewDetail>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -80,6 +80,7 @@ public enum GetAppStoreReviewDetailForAppStoreVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

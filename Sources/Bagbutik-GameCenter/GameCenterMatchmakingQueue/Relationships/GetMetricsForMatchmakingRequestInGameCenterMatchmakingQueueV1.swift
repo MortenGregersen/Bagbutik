@@ -7,7 +7,7 @@ public extension Request {
      Get the match requests that a specific queue processes.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_match_request_time_in_queue>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues-_id_-metrics-matchmakingRequests>
 
      - Parameter id: The id of the requested resource
      - Parameter filters: Attributes, relationships, and IDs by which to filter

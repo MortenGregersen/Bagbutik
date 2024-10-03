@@ -7,7 +7,7 @@ public extension Request {
      Get a list of the scheduled prices for an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_price_schedule_for_an_in-app_purchase>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v2-inAppPurchases-_id_-iapPriceSchedule>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -63,6 +63,7 @@ public enum GetIapPriceScheduleForInAppPurchasesV2 {
             case contentHosting
             case familySharable
             case iapPriceSchedule
+            case images
             case inAppPurchaseAvailability
             case inAppPurchaseLocalizations
             case inAppPurchaseType

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionResponse
- A response that contains a single App Store Versions resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>
- */
 public struct AppStoreVersionResponse: Codable, Sendable {
     public let data: AppStoreVersion
     public var included: [Included]?
@@ -121,6 +114,13 @@ public struct AppStoreVersionResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.build?.data?.id }
     }
 
+    public func getGameCenterAppVersion() -> GameCenterAppVersion? {
+        included?.compactMap { relationship -> GameCenterAppVersion? in
+            guard case let .gameCenterAppVersion(gameCenterAppVersion) = relationship else { return nil }
+            return gameCenterAppVersion
+        }.first { $0.id == data.relationships?.gameCenterAppVersion?.data?.id }
+    }
+
     public func getRoutingAppCoverage() -> RoutingAppCoverage? {
         included?.compactMap { relationship -> RoutingAppCoverage? in
             guard case let .routingAppCoverage(routingAppCoverage) = relationship else { return nil }
@@ -140,6 +140,7 @@ public struct AppStoreVersionResponse: Codable, Sendable {
         case appStoreVersionPhasedRelease(AppStoreVersionPhasedRelease)
         case appStoreVersionSubmission(AppStoreVersionSubmission)
         case build(Build)
+        case gameCenterAppVersion(GameCenterAppVersion)
         case routingAppCoverage(RoutingAppCoverage)
 
         public init(from decoder: Decoder) throws {
@@ -165,6 +166,8 @@ public struct AppStoreVersionResponse: Codable, Sendable {
                 self = .appStoreVersionSubmission(appStoreVersionSubmission)
             } else if let build = try? Build(from: decoder) {
                 self = .build(build)
+            } else if let gameCenterAppVersion = try? GameCenterAppVersion(from: decoder) {
+                self = .gameCenterAppVersion(gameCenterAppVersion)
             } else if let routingAppCoverage = try? RoutingAppCoverage(from: decoder) {
                 self = .routingAppCoverage(routingAppCoverage)
             } else {
@@ -196,6 +199,8 @@ public struct AppStoreVersionResponse: Codable, Sendable {
             case let .appStoreVersionSubmission(value):
                 try value.encode(to: encoder)
             case let .build(value):
+                try value.encode(to: encoder)
+            case let .gameCenterAppVersion(value):
                 try value.encode(to: encoder)
             case let .routingAppCoverage(value):
                 try value.encode(to: encoder)

@@ -3,11 +3,11 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # Read alternative distribution key information
-     Read the public key information for a specific alternative distribution key.
+     # Remove an alternative distribution key
+     Remove an alternative distribution key from your account.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_alternative_distribution_key_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-alternativeDistributionKeys-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

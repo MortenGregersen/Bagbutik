@@ -3,10 +3,11 @@ import Bagbutik_Models
 
 public extension Request {
     /**
-     # PATCH /v1/appStoreVersionExperimentTreatments/{id}
+     # Modify an App Store version experiement treatment
+     Update the name and app icon name for a specific App Store version experiment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/patch_v1_appstoreversionexperimenttreatments_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appStoreVersionExperimentTreatments-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppStoreVersionExperimentTreatment representation

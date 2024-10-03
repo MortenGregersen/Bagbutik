@@ -7,7 +7,7 @@ public extension Request {
      Edit challenge state, default leaderboards, and groups.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_game_center_detail_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterDetails-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterDetail representation

@@ -9,7 +9,7 @@ public extension Request {
      The example below limits the number of reviews returned in the response.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_customer_reviews_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-apps-_id_-customerReviews>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

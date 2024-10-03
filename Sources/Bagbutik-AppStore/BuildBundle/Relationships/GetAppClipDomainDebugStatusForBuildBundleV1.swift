@@ -7,7 +7,7 @@ public extension Request {
      Get the debug status of the domain you associate with your App Clip for a specific build bundle.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_clip_domain_debug_status_information_for_a_build_bundle>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-buildBundles-_id_-appClipDomainDebugStatus>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

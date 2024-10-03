@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # EndUserLicenseAgreementUpdateRequest
- The request body you use to update an End User License Agreement.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest>
- */
 public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBo
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # EndUserLicenseAgreementUpdateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "endUserLicenseAgreements" }
@@ -65,13 +51,6 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBo
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        /**
-         # EndUserLicenseAgreementUpdateRequest.Data.Attributes
-         Attributes whose values you're changing as part of the update request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var agreementText: String?
 
@@ -90,13 +69,6 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBo
             }
         }
 
-        /**
-         # EndUserLicenseAgreementUpdateRequest.Data.Relationships
-         The data and links that describe the relationship between the resources.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public var territories: Territories?
 
@@ -114,13 +86,6 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBo
                 try container.encodeIfPresent(territories, forKey: "territories")
             }
 
-            /**
-             # EndUserLicenseAgreementUpdateRequest.Data.Relationships.Territories
-             The data and links that describe the relationship between the resources.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships/territories>
-             */
             public struct Territories: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
@@ -138,13 +103,6 @@ public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBo
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # EndUserLicenseAgreementUpdateRequest.Data.Relationships.Territories.Data
-                 The type and ID of a resource that you're relating with the resource you're updating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest/data/relationships/territories/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "territories" }

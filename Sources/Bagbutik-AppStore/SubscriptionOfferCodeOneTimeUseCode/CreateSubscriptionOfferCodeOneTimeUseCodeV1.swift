@@ -7,7 +7,7 @@ public extension Request {
      Create one-time use codes for an auto-renewable subscription offer.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_one-time_use_offer_codes>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionOfferCodeOneTimeUseCodes>
 
      - Parameter requestBody: SubscriptionOfferCodeOneTimeUseCode representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

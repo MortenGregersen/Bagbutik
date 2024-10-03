@@ -7,7 +7,7 @@ public extension Request {
      Update the display name and description for a specific locale of an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_in-app_purchase_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-inAppPurchaseLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: InAppPurchaseLocalization representation

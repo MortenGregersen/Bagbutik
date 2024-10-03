@@ -7,7 +7,7 @@ public extension Request {
      List the alternative distribution key for your account.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_alternative_distribution_keys>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativeDistributionKeys>
 
      - Parameter fields: Fields to return for included related types
      - Parameter exists: Attributes, relationships, and IDs to check for existence

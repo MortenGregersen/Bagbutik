@@ -7,7 +7,7 @@ public extension Request {
      Get the second App Store subcategory within an app’s secondary category.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_secondary_subcategory_two_information_of_an_app_info>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_-secondarySubcategoryTwo>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # CapabilitySetting
- An object that  represents a capability setting for an app.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/capabilitysetting>
- */
 public struct CapabilitySetting: Codable, Sendable {
     public var allowedInstances: AllowedInstances?
     public var description: String?

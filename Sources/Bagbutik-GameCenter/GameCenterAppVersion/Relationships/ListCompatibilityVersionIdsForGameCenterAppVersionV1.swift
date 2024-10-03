@@ -7,7 +7,7 @@ public extension Request {
      List all compatible verisons for an app version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_compatible_app_versions>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterAppVersions-_id_-relationships-compatibilityVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

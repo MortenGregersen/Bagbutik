@@ -7,7 +7,7 @@ public extension Request {
      List information for all groups.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_group_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

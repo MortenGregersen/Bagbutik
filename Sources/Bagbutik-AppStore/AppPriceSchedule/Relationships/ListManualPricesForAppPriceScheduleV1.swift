@@ -7,7 +7,7 @@ public extension Request {
      List the prices you chose for a specific app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_manually_chosen_prices_for_an_app>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPriceSchedules-_id_-manualPrices>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

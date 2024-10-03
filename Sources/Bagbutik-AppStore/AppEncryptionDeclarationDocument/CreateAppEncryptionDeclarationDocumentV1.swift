@@ -7,7 +7,7 @@ public extension Request {
      Add an App Encryption Declaration Document to an existing App Encryption Declaration.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/upload_an_app_encryption_declaration_document>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appEncryptionDeclarationDocuments>
 
      - Parameter requestBody: AppEncryptionDeclarationDocument representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

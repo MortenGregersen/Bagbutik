@@ -10,7 +10,7 @@ public extension Request {
      Responses don’t appear in the App Store instantly. Allow some time for the App Store to publish the response.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_or_update_a_response_to_a_customer_review>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-customerReviewResponses>
 
      - Parameter requestBody: CustomerReviewResponse representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

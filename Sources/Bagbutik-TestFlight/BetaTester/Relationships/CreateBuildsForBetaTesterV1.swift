@@ -7,7 +7,7 @@ public extension Request {
      Individually assign a beta tester to a build.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/individually_assign_a_beta_tester_to_builds>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-betaTesters-_id_-relationships-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

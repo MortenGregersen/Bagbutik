@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaTesterUsagesV1MetricResponse
- A response that contains one or more beta tester usage metric resources.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betatesterusagesv1metricresponse>
- */
 public struct BetaTesterUsagesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks
@@ -135,19 +128,25 @@ public struct BetaTesterUsagesV1MetricResponse: Codable, Sendable, PagedResponse
             }
 
             public struct Apps: Codable, Sendable {
+                public var data: String?
                 public var links: Links?
 
-                public init(links: Links? = nil) {
+                public init(data: String? = nil,
+                            links: Links? = nil)
+                {
+                    self.data = data
                     self.links = links
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decodeIfPresent(String.self, forKey: "data")
                     links = try container.decodeIfPresent(Links.self, forKey: "links")
                 }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encodeIfPresent(data, forKey: "data")
                     try container.encodeIfPresent(links, forKey: "links")
                 }
 

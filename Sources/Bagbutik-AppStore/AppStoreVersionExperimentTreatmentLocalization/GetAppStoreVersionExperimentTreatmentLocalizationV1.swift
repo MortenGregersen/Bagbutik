@@ -6,7 +6,7 @@ public extension Request {
      # GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_v1_appstoreversionexperimenttreatmentlocalizations_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersionExperimentTreatmentLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

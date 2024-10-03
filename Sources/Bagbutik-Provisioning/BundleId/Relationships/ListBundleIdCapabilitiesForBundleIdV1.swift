@@ -7,7 +7,7 @@ public extension Request {
      Get a list of all capabilities for a specific bundle ID.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_capabilities_for_a_bundle_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-bundleIds-_id_-bundleIdCapabilities>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

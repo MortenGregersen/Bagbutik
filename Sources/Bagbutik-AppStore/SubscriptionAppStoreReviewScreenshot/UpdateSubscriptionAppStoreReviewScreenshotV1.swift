@@ -7,7 +7,7 @@ public extension Request {
      Commit an uploaded image asset as a review screenshot for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/commit_a_review_screenshot_for_an_auto-renewable_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-subscriptionAppStoreReviewScreenshots-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: SubscriptionAppStoreReviewScreenshot representation

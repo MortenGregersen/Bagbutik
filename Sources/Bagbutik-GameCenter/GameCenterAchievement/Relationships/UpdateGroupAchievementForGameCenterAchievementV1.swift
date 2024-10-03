@@ -7,7 +7,7 @@ public extension Request {
      Modify the achievement group for a specific achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_group_for_an_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievements-_id_-relationships-groupAchievement>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: Related linkage

@@ -7,7 +7,7 @@ public extension Request {
      Get a list of localized, version-level information about an app, for all locales.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_store_version_localizations_for_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-appStoreVersionLocalizations>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -91,6 +91,7 @@ public enum ListAppStoreVersionLocalizationsForAppStoreVersionV1 {
             case customerReviews
             case downloadable
             case earliestReleaseDate
+            case gameCenterAppVersion
             case platform
             case releaseType
             case reviewType

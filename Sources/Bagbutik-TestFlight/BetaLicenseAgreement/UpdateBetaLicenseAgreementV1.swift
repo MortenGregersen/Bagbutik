@@ -7,7 +7,7 @@ public extension Request {
      Update the text for your beta license agreement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_beta_license_agreement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaLicenseAgreements-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: BetaLicenseAgreement representation

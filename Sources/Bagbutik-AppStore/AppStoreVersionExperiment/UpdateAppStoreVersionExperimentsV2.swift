@@ -7,7 +7,7 @@ public extension Request {
      Update the name, the started state, and the proportion of traffic to send to an App Store experiment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_app_store_experiment>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v2-appStoreVersionExperiments-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppStoreVersionExperiment representation

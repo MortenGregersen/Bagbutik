@@ -7,7 +7,7 @@ public extension Request {
      Get session information on a queue.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_queue_session_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues-_id_-metrics-matchmakingSessions>
 
      - Parameter id: The id of the requested resource
      - Parameter sorts: Attributes by which to sort

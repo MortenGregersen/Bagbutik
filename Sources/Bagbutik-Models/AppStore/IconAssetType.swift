@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # IconAssetType
- String that represents the type of icon contained in the build.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/iconassettype>
- */
 public enum IconAssetType: String, Sendable, Codable, CaseIterable {
     case alternateExperiment = "ALTERNATE_EXPERIMENT"
     case appStore = "APP_STORE"

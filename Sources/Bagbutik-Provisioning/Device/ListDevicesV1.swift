@@ -7,7 +7,7 @@ public extension Request {
      Find and list devices registered to your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_devices>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-devices>
 
      - Parameter fields: Fields to return for included related types
      - Parameter filters: Attributes, relationships, and IDs by which to filter

@@ -7,7 +7,7 @@ public extension Request {
      Update the properties of a specific queue.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_queue>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterMatchmakingQueues-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterMatchmakingQueue representation

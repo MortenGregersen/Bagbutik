@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # DiagnosticLog
- The data structure that represents the Diagnostic Logs resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlog>
- */
 public struct DiagnosticLog: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

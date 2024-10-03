@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AlternativeDistributionDomainCreateRequest
- The request body you use to create an alternative distribution domain.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomaincreaterequest>
- */
 public struct AlternativeDistributionDomainCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -47,13 +40,6 @@ public struct AlternativeDistributionDomainCreateRequest: Codable, Sendable, Req
             try container.encode(attributes, forKey: "attributes")
         }
 
-        /**
-         # AlternativeDistributionDomainCreateRequest.Data.Attributes
-         Attributes that describe an alternative distribution domain create resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomaincreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let domain: String
             public let referenceName: String

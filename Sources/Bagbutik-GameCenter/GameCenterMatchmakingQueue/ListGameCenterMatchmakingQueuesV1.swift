@@ -7,7 +7,7 @@ public extension Request {
      Get information about all queues.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_queues>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues>
 
      - Parameter fields: Fields to return for included related types
      - Parameter includes: Relationship data to include in the response

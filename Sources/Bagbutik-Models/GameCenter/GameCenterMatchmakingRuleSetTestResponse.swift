@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterMatchmakingRuleSetTestResponse
- The response body for testing a rule set.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestresponse>
- */
 public struct GameCenterMatchmakingRuleSetTestResponse: Codable, Sendable {
     public let data: GameCenterMatchmakingRuleSetTest
     public let links: DocumentLinks

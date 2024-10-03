@@ -7,7 +7,7 @@ public extension Request {
      List all artifacts Xcode Cloud created when it performed an action.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_artifacts_for_a_build_action>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-ciBuildActions-_id_-artifacts>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

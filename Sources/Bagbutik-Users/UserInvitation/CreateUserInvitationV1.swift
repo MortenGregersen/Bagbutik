@@ -7,7 +7,7 @@ public extension Request {
      Invite a user with assigned user roles to join your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/invite_a_user>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-userInvitations>
 
      - Parameter requestBody: UserInvitation representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

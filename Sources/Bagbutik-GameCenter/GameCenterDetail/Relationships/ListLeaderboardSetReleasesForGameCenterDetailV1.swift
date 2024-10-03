@@ -7,7 +7,7 @@ public extension Request {
      List all leaderboard set releases for a Game Center detail.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_leaderboard_set_release_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterDetails-_id_-leaderboardSetReleases>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

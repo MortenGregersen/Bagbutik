@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaTesterCreateRequest
- The request body you use to create a BetaTester.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest>
- */
 public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -26,19 +18,9 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # BetaTesterCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
-        /// The resource type.
         public var type: String { "betaTesters" }
-        /// The resource's attributes.
         public let attributes: Attributes
-        /// The types and IDs of the related data to update.
         public var relationships: Relationships?
 
         public init(attributes: Attributes,
@@ -64,19 +46,9 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
-        /**
-         # BetaTesterCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
-            /// The beta tester's email address, used for sending beta testing invitations.
             public let email: String
-            /// The beta tester's first name.
             public var firstName: String?
-            /// The beta tester's last name.
             public var lastName: String?
 
             public init(email: String,
@@ -103,13 +75,6 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
             }
         }
 
-        /**
-         # BetaTesterCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public var betaGroups: BetaGroups?
             public var builds: Builds?
@@ -133,13 +98,6 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
                 try container.encodeIfPresent(builds, forKey: "builds")
             }
 
-            /**
-             # BetaTesterCreateRequest.Data.Relationships.BetaGroups
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/betagroups>
-             */
             public struct BetaGroups: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
@@ -157,17 +115,8 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # BetaTesterCreateRequest.Data.Relationships.BetaGroups.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/betagroups/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "betaGroups" }
 
                     public init(id: String) {
@@ -190,13 +139,6 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
                 }
             }
 
-            /**
-             # BetaTesterCreateRequest.Data.Relationships.Builds
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/builds>
-             */
             public struct Builds: Codable, Sendable {
                 @NullCodable public var data: [Data]?
 
@@ -214,17 +156,8 @@ public struct BetaTesterCreateRequest: Codable, Sendable, RequestBody {
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # BetaTesterCreateRequest.Data.Relationships.Builds.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betatestercreaterequest/data/relationships/builds/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {

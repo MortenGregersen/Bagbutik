@@ -7,7 +7,7 @@ public extension Request {
      Update the attributes of a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_rule_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterMatchmakingRuleSets-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterMatchmakingRuleSet representation

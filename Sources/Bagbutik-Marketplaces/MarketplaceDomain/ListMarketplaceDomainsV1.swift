@@ -7,7 +7,7 @@ public extension Request {
      List all the alternative marketplace domains for your account.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_marketplace_domains>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplaceDomains>
 
      - Parameter fields: Fields to return for included related types
      - Parameter limit: Maximum resources per page - maximum 200

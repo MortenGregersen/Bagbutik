@@ -1,19 +1,9 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaTesterBetaGroupsLinkagesResponse
- A response body that contains a list of related resource IDs.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbetagroupslinkagesresponse>
- */
 public struct BetaTesterBetaGroupsLinkagesResponse: Codable, Sendable, PagedResponse {
-    /// The object types and IDs of the related resources.
     public let data: [Data]
-    /// Navigational links including the self-link and links to the related data.
     public let links: PagedDocumentLinks
-    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [Data],
@@ -39,17 +29,8 @@ public struct BetaTesterBetaGroupsLinkagesResponse: Codable, Sendable, PagedResp
         try container.encodeIfPresent(meta, forKey: "meta")
     }
 
-    /**
-     # BetaTesterBetaGroupsLinkagesResponse.Data
-     The data element of the response body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbetagroupslinkagesresponse/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
-        /// The opaque resource ID that uniquely identifies the resource.
         public let id: String
-        /// The resource type.
         public var type: String { "betaGroups" }
 
         public init(id: String) {

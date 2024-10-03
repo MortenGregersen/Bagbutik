@@ -7,7 +7,7 @@ public extension Request {
      Create a review submission for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_review_submission_for_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionSubmissions>
 
      - Parameter requestBody: SubscriptionSubmission representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

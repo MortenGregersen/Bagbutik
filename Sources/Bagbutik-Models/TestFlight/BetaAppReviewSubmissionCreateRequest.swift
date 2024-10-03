@@ -1,15 +1,7 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaAppReviewSubmissionCreateRequest
- The request body you use to create a Beta App Review Submission.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest>
- */
 public struct BetaAppReviewSubmissionCreateRequest: Codable, Sendable, RequestBody {
-    /// The resource data.
     public let data: Data
 
     public init(data: Data) {
@@ -26,17 +18,8 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, Sendable, RequestBo
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # BetaAppReviewSubmissionCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
-        /// The resource type.
         public var type: String { "betaAppReviewSubmissions" }
-        /// The types and IDs of the related data to update.
         public let relationships: Relationships
 
         public init(relationships: Relationships) {
@@ -57,13 +40,6 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, Sendable, RequestBo
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # BetaAppReviewSubmissionCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let build: Build
 
@@ -81,13 +57,6 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, Sendable, RequestBo
                 try container.encode(build, forKey: "build")
             }
 
-            /**
-             # BetaAppReviewSubmissionCreateRequest.Data.Relationships.Build
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest/data/relationships/build>
-             */
             public struct Build: Codable, Sendable {
                 public let data: Data
 
@@ -105,17 +74,8 @@ public struct BetaAppReviewSubmissionCreateRequest: Codable, Sendable, RequestBo
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # BetaAppReviewSubmissionCreateRequest.Data.Relationships.Build.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest/data/relationships/build/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
-                    /// The opaque resource ID that uniquely identifies the resource.
                     public let id: String
-                    /// The resource type.
                     public var type: String { "builds" }
 
                     public init(id: String) {

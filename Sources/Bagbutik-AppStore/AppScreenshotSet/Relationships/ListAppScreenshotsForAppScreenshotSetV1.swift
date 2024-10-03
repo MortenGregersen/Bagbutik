@@ -7,7 +7,7 @@ public extension Request {
      List all ordered screenshots in a screenshot set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_screenshots_for_an_app_screenshot_set>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appScreenshotSets-_id_-appScreenshots>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

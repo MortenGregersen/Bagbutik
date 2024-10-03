@@ -7,7 +7,7 @@ public extension Request {
      Remove a compatilible version relationship from an app version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/remove_a_compatilibly_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-gameCenterAppVersions-_id_-relationships-compatibilityVersions>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages

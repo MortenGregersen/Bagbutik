@@ -21,10 +21,10 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, Sendable
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionExperimentTreatments" }
         public let attributes: Attributes
-        public let relationships: Relationships
+        public var relationships: Relationships?
 
         public init(attributes: Attributes,
-                    relationships: Relationships)
+                    relationships: Relationships? = nil)
         {
             self.attributes = attributes
             self.relationships = relationships
@@ -33,7 +33,7 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, Sendable
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             attributes = try container.decode(Attributes.self, forKey: "attributes")
-            relationships = try container.decode(Relationships.self, forKey: "relationships")
+            relationships = try container.decodeIfPresent(Relationships.self, forKey: "relationships")
             if try container.decode(String.self, forKey: "type") != type {
                 throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
             }
@@ -43,7 +43,7 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, Sendable
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encode(type, forKey: "type")
             try container.encode(attributes, forKey: "attributes")
-            try container.encode(relationships, forKey: "relationships")
+            try container.encodeIfPresent(relationships, forKey: "relationships")
         }
 
         public struct Attributes: Codable, Sendable {
@@ -71,10 +71,10 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, Sendable
         }
 
         public struct Relationships: Codable, Sendable {
-            public let appStoreVersionExperiment: AppStoreVersionExperiment
+            public var appStoreVersionExperiment: AppStoreVersionExperiment?
             public var appStoreVersionExperimentV2: AppStoreVersionExperimentV2?
 
-            public init(appStoreVersionExperiment: AppStoreVersionExperiment,
+            public init(appStoreVersionExperiment: AppStoreVersionExperiment? = nil,
                         appStoreVersionExperimentV2: AppStoreVersionExperimentV2? = nil)
             {
                 self.appStoreVersionExperiment = appStoreVersionExperiment
@@ -83,26 +83,26 @@ public struct AppStoreVersionExperimentTreatmentCreateRequest: Codable, Sendable
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                appStoreVersionExperiment = try container.decode(AppStoreVersionExperiment.self, forKey: "appStoreVersionExperiment")
+                appStoreVersionExperiment = try container.decodeIfPresent(AppStoreVersionExperiment.self, forKey: "appStoreVersionExperiment")
                 appStoreVersionExperimentV2 = try container.decodeIfPresent(AppStoreVersionExperimentV2.self, forKey: "appStoreVersionExperimentV2")
             }
 
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(appStoreVersionExperiment, forKey: "appStoreVersionExperiment")
+                try container.encodeIfPresent(appStoreVersionExperiment, forKey: "appStoreVersionExperiment")
                 try container.encodeIfPresent(appStoreVersionExperimentV2, forKey: "appStoreVersionExperimentV2")
             }
 
             public struct AppStoreVersionExperiment: Codable, Sendable {
-                public let data: Data
+                @NullCodable public var data: Data?
 
-                public init(data: Data) {
+                public init(data: Data? = nil) {
                     self.data = data
                 }
 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    data = try container.decode(Data.self, forKey: "data")
+                    data = try container.decodeIfPresent(Data.self, forKey: "data")
                 }
 
                 public func encode(to encoder: Encoder) throws {

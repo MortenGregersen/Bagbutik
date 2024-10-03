@@ -7,7 +7,7 @@ public extension Request {
      Reserve a review screenshot for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_review_screenshot_for_an_auto-renewable_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionAppStoreReviewScreenshots>
 
      - Parameter requestBody: SubscriptionAppStoreReviewScreenshot representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

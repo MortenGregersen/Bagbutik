@@ -7,7 +7,7 @@ public extension Request {
      Read Game Center detail information for a specific group.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_game_center_details_for_a_group>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterGroups-_id_-gameCenterDetails>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types
@@ -59,6 +59,7 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case alternativeDistributionKey
             case analyticsReportRequests
             case appAvailability
+            case appAvailabilityV2
             case appClips
             case appCustomProductPages
             case appEncryptionDeclarations
@@ -93,6 +94,7 @@ public enum ListGameCenterDetailsForGameCenterGroupV1 {
             case promotedPurchases
             case reviewSubmissions
             case sku
+            case streamlinedPurchasingEnabled
             case subscriptionGracePeriod
             case subscriptionGroups
             case subscriptionStatusUrl

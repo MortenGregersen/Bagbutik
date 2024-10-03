@@ -7,7 +7,7 @@ public extension Request {
      Get a list of resource IDs representing subscription prices for an auto-renewable subscription.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_subscription_prices_ids_for_an_auto-renewable_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-relationships-prices>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

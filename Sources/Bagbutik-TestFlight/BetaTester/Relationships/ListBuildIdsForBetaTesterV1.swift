@@ -7,7 +7,7 @@ public extension Request {
      Get a list of build resource IDs individually assigned to a specific beta tester.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/get_all_ids_of_builds_individually_assigned_to_a_beta_tester>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-relationships-builds>
 
      - Parameter id: The id of the requested resource
      - Parameter limit: Maximum resources per page - maximum 200

@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppClipAdvancedExperienceLanguage
- The data structure that represents the language you configure for an advanced App Clip experience.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelanguage>
- */
 public enum AppClipAdvancedExperienceLanguage: String, Sendable, Codable, CaseIterable {
     case ar = "AR"
     case ca = "CA"

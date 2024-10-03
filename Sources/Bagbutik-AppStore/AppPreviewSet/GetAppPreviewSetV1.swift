@@ -7,7 +7,7 @@ public extension Request {
      Get an app preview set that includes its display target, language, and the previews it contains.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_app_preview_set_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appPreviewSets-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

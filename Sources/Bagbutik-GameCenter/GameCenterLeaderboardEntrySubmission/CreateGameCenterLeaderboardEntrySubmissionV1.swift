@@ -7,7 +7,7 @@ public extension Request {
      Add a new score for a player to a leaderboard.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_a_game_center_leaderboard_score>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gameCenterLeaderboardEntrySubmissions>
 
      - Parameter requestBody: GameCenterLeaderboardEntrySubmission representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

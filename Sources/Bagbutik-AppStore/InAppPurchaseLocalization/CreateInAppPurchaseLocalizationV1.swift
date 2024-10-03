@@ -7,7 +7,7 @@ public extension Request {
      Create a localized display name and description for an in-app purchase.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_an_in-app_purchase_localization>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-inAppPurchaseLocalizations>
 
      - Parameter requestBody: InAppPurchaseLocalization representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

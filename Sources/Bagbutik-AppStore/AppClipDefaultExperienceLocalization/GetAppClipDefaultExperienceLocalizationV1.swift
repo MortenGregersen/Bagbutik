@@ -7,7 +7,7 @@ public extension Request {
      Get localized metadata that appears on the App Clip card of a specific default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_localization_information_of_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appClipDefaultExperienceLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

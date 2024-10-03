@@ -7,7 +7,7 @@ public extension Request {
      Add a custom product page for your app.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/post_v1_appcustomproductpages>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-appCustomProductPages>
 
      - Parameter requestBody: AppCustomProductPage representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

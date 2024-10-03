@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # MarketplaceWebhookUpdateRequest
- The request body you use to update a marketplace webhook url.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookupdaterequest>
- */
 public struct MarketplaceWebhookUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct MarketplaceWebhookUpdateRequest: Codable, Sendable, RequestBody {
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # MarketplaceWebhookUpdateRequest.Data
-     The data structure that represent a marketplace webhook resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookupdaterequest/data>
-     */
     public struct Data: Codable, Sendable, Identifiable {
         public let id: String
         public var type: String { "marketplaceWebhooks" }
@@ -60,16 +46,8 @@ public struct MarketplaceWebhookUpdateRequest: Codable, Sendable, RequestBody {
             try container.encodeIfPresent(attributes, forKey: "attributes")
         }
 
-        /**
-         # MarketplaceWebhookUpdateRequest.Data.Attributes
-         Attributes that describe a marketplace webhook resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookupdaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var endpointUrl: String?
-            /// An arbitrary string. Alternative marketplaces use this secret string to verify the incoming requests from Apple about changes to apps. For more information about webhook-style validation, see [Github's Validating webhook deliveries](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries#about-validating-webhook-deliveries).For more information about implementing Hash-based Message Authentication Code (HMAC) security in your notifications webhook, see [Processing alternative app marketplace notifications](https://developer.apple.com/documentation/appdistribution/processing-alternative-marketplace-notifications).
             public var secret: String?
 
             public init(endpointUrl: String? = nil,

@@ -7,7 +7,7 @@ public extension Request {
      Remove a user from your team.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/remove_a_user_account>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-users-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

@@ -7,7 +7,7 @@ public extension Request {
      Update a specific matchmaking rule in a rule set.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_a_rule>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterMatchmakingRules-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterMatchmakingRule representation

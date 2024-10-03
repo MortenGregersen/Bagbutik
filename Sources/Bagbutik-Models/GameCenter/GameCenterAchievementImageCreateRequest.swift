@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterAchievementImageCreateRequest
- The request body you use to create an achievement image.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimagecreaterequest>
- */
 public struct GameCenterAchievementImageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

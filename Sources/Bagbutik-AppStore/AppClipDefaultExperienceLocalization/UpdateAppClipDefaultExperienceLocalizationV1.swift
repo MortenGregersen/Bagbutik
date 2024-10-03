@@ -7,7 +7,7 @@ public extension Request {
      Update localized metadata for a specific default App Clip experience.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_the_localization_for_a_default_app_clip_experience>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-appClipDefaultExperienceLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: AppClipDefaultExperienceLocalization representation

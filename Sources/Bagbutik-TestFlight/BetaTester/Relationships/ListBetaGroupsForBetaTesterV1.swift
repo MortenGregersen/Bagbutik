@@ -7,7 +7,7 @@ public extension Request {
      Get a list of beta groups that contain a specific beta tester.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_beta_groups_to_which_a_beta_tester_belongs>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-betaTesters-_id_-betaGroups>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

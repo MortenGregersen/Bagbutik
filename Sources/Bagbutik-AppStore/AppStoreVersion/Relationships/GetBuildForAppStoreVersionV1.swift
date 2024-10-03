@@ -7,7 +7,7 @@ public extension Request {
      Get the build that is attached to a specific App Store version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_build_information_of_an_app_store_version>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appStoreVersions-_id_-build>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

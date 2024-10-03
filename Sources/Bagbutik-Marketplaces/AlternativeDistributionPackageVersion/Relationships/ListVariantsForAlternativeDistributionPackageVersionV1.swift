@@ -7,7 +7,7 @@ public extension Request {
      List variants for specific alternative distribution package version.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_variants_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativeDistributionPackageVersions-_id_-variants>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

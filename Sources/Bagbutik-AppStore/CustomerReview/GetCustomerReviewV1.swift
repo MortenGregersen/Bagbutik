@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific customer review, including the review content.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_customer_review_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-customerReviews-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

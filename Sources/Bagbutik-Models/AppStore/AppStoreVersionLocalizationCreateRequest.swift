@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppStoreVersionLocalizationCreateRequest
- The request body you use to create an App Store Version Localization.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest>
- */
 public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, Reque
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # AppStoreVersionLocalizationCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "appStoreVersionLocalizations" }
         public let attributes: Attributes
@@ -60,13 +46,6 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, Reque
             try container.encode(relationships, forKey: "relationships")
         }
 
-        /**
-         # AppStoreVersionLocalizationCreateRequest.Data.Attributes
-         Attributes that you set that describe the new resource.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public var description: String?
             public var keywords: String?
@@ -116,13 +95,6 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, Reque
             }
         }
 
-        /**
-         # AppStoreVersionLocalizationCreateRequest.Data.Relationships
-         The relationships to other resources that you can set with this request.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/relationships>
-         */
         public struct Relationships: Codable, Sendable {
             public let appStoreVersion: AppStoreVersion
 
@@ -140,13 +112,6 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, Reque
                 try container.encode(appStoreVersion, forKey: "appStoreVersion")
             }
 
-            /**
-             # AppStoreVersionLocalizationCreateRequest.Data.Relationships.AppStoreVersion
-             The relationships to other resources that you can set with this request.
-
-             Full documentation:
-             <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/relationships/appstoreversion>
-             */
             public struct AppStoreVersion: Codable, Sendable {
                 public let data: Data
 
@@ -164,13 +129,6 @@ public struct AppStoreVersionLocalizationCreateRequest: Codable, Sendable, Reque
                     try container.encode(data, forKey: "data")
                 }
 
-                /**
-                 # AppStoreVersionLocalizationCreateRequest.Data.Relationships.AppStoreVersion.Data
-                 The type and ID of the resource that you're relating with the resource you're creating.
-
-                 Full documentation:
-                 <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationcreaterequest/data/relationships/appstoreversion/data>
-                 */
                 public struct Data: Codable, Sendable, Identifiable {
                     public let id: String
                     public var type: String { "appStoreVersions" }

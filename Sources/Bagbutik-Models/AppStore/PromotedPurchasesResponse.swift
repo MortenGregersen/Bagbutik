@@ -43,18 +43,6 @@ public struct PromotedPurchasesResponse: Codable, Sendable, PagedResponse {
         }.first { $0.id == promotedPurchase.relationships?.inAppPurchaseV2?.data?.id }
     }
 
-    public func getPromotionImages(for promotedPurchase: PromotedPurchase) -> [PromotedPurchaseImage] {
-        guard let promotionImageIds = promotedPurchase.relationships?.promotionImages?.data?.map(\.id),
-              let promotionImages = included?.compactMap({ relationship -> PromotedPurchaseImage? in
-                  guard case let .promotedPurchaseImage(promotionImage) = relationship else { return nil }
-                  return promotionImageIds.contains(promotionImage.id) ? promotionImage : nil
-              })
-        else {
-            return []
-        }
-        return promotionImages
-    }
-
     public func getSubscription(for promotedPurchase: PromotedPurchase) -> Subscription? {
         included?.compactMap { relationship -> Subscription? in
             guard case let .subscription(subscription) = relationship else { return nil }

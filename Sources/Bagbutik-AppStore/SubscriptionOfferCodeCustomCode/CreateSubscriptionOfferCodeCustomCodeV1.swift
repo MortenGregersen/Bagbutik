@@ -7,7 +7,7 @@ public extension Request {
      Create custom offer codes for an auto-renewable subscription offer.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/create_custom_offer_codes>
+     <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionOfferCodeCustomCodes>
 
      - Parameter requestBody: SubscriptionOfferCodeCustomCode representation
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

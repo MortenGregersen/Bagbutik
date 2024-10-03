@@ -1,15 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AnalyticsReportSegment
- The data structure that represents an analytics report segment.
-
- To learn more about the response that includes this analytics report segment object, see ``AnalyticsReportSegmentResponse``.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegment>
- */
 public struct AnalyticsReportSegment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
@@ -43,15 +34,7 @@ public struct AnalyticsReportSegment: Codable, Sendable, Identifiable {
         try container.encodeIfPresent(attributes, forKey: "attributes")
     }
 
-    /**
-     # AnalyticsReportSegment.Attributes
-     Attributes that describe an analytics report segment resource.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegment/attributes>
-     */
     public struct Attributes: Codable, Sendable {
-        /// This is a `md5` checksum.
         public var checksum: String?
         public var sizeInBytes: Int?
         public var url: String?

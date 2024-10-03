@@ -7,7 +7,7 @@ public extension Request {
      Modify properties for a specific achievement.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/modify_an_achievement>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-gameCenterAchievements-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: GameCenterAchievement representation

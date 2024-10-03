@@ -1,18 +1,9 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # BetaAppReviewDetailResponse
- A response that contains a single Beta App Review Details resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailresponse>
- */
 public struct BetaAppReviewDetailResponse: Codable, Sendable {
-    /// The resource data.
     public let data: BetaAppReviewDetail
     public var included: [App]?
-    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppReviewDetail,

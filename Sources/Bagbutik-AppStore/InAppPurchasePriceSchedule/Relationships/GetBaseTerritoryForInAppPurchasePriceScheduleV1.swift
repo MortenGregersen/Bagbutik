@@ -7,7 +7,7 @@ public extension Request {
      Get information about the selected base territory for an in-app purchase price schedule.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_the_selected_base_territory_for_an_in-app_purchase_price_schedule>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-inAppPurchasePriceSchedules-_id_-baseTerritory>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

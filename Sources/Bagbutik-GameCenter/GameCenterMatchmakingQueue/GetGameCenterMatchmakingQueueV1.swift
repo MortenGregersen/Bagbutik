@@ -7,7 +7,7 @@ public extension Request {
      Get information about a specific queue and its related objects.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/read_queue_information>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterMatchmakingQueues-_id_>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

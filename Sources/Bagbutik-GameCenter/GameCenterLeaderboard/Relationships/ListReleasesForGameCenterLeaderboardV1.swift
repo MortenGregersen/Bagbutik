@@ -7,7 +7,7 @@ public extension Request {
      Read the state of releases for a leaderboard and related information.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_releases_for_a_leaderboard>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-gameCenterLeaderboards-_id_-releases>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

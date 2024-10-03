@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # AppCustomProductPageVersionResponse
- A response that contains a single app custom product page resource.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionresponse>
- */
 public struct AppCustomProductPageVersionResponse: Codable, Sendable {
     public let data: AppCustomProductPageVersion
     public var included: [Included]?

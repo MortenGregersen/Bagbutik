@@ -7,7 +7,7 @@ public extension Request {
      Cancel a planned app pre-order that has not begun.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_an_app_pre-order>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appPreOrders-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

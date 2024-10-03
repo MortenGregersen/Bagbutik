@@ -1,13 +1,6 @@
 import Bagbutik_Core
 import Foundation
 
-/**
- # GameCenterLeaderboardEntrySubmissionCreateRequest
- The request body you use to create an Game Center leaderboard entry submssion.
-
- Full documentation:
- <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest>
- */
 public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
@@ -25,13 +18,6 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
         try container.encode(data, forKey: "data")
     }
 
-    /**
-     # GameCenterLeaderboardEntrySubmissionCreateRequest.Data
-     The data element of the request body.
-
-     Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest/data>
-     */
     public struct Data: Codable, Sendable {
         public var type: String { "gameCenterLeaderboardEntrySubmissions" }
         public let attributes: Attributes
@@ -54,13 +40,6 @@ public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendab
             try container.encode(attributes, forKey: "attributes")
         }
 
-        /**
-         # GameCenterLeaderboardEntrySubmissionCreateRequest.Data.Attributes
-         Attributes that you set that describe the new leaderboard entry.
-
-         Full documentation:
-         <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest/data/attributes>
-         */
         public struct Attributes: Codable, Sendable {
             public let bundleId: String
             public var challengeIds: [String]?

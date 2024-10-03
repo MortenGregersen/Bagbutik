@@ -7,7 +7,7 @@ public extension Request {
      Get a list of prices for an auto-renewable subscription, by territory.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/list_all_prices_for_a_subscription>
+     <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-subscriptions-_id_-prices>
 
      - Parameter id: The id of the requested resource
      - Parameter fields: Fields to return for included related types

@@ -7,7 +7,7 @@ public extension Request {
      Delete localized metatdata that you configured for an App Store Version experiment treatment.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/delete_v1_appstoreversionexperimenttreatmentlocalizations_id>
+     <https://developer.apple.com/documentation/appstoreconnectapi/delete-v1-appStoreVersionExperimentTreatmentLocalizations-_id_>
 
      - Parameter id: The id of the requested resource
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``

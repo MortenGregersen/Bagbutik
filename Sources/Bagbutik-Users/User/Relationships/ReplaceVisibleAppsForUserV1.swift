@@ -7,7 +7,7 @@ public extension Request {
      Replace the list of apps a user on your team can see.
 
      Full documentation:
-     <https://developer.apple.com/documentation/appstoreconnectapi/replace_the_list_of_visible_apps_for_a_user>
+     <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-users-_id_-relationships-visibleApps>
 
      - Parameter id: The id of the requested resource
      - Parameter requestBody: List of related linkages
