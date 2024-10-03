@@ -15,7 +15,7 @@ internal class PropertyRenderer: Renderer {
         if optional {
             rendered += "?"
         }
-        if deprecated {
+        if deprecated && optional {
             rendered += " = nil"
         }
         return rendered

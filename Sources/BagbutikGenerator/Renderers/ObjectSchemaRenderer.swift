@@ -62,7 +62,9 @@ public class ObjectSchemaRenderer: Renderer {
             if let deprecatedPublicInitParameters = propertiesInfo.deprecatedPublicInitParameters {
                 structContent.append(renderInitializer(parameters: deprecatedPublicInitParameters, deprecated: true, content: { createInitContent(propertiesInfo.deprecatedPublicInitPropertyNames) }))
             }
-            structContent.append(renderInitializer(parameters: propertiesInfo.publicInitParameters, content: { createInitContent(propertiesInfo.publicInitPropertyNames) }))
+            if propertiesInfo.deprecatedPublicInitParameters != propertiesInfo.publicInitParameters {
+                structContent.append(renderInitializer(parameters: propertiesInfo.publicInitParameters, content: { createInitContent(propertiesInfo.publicInitPropertyNames) }))
+            }
             structContent.append(renderInitializer(parameters: [.init(prefix: "from", name: "decoder", type: "Decoder")], throwing: true, content: {
                 var functionContent = "let container = try decoder.container(keyedBy: AnyCodingKey.self)\n"
                 functionContent += propertiesInfo.decodableProperties.map { decodableProperty in
@@ -167,7 +169,7 @@ public class ObjectSchemaRenderer: Renderer {
             deprecatedPublicInitParameters = initParameters.contains(where: \.value.deprecated)
                 ? Self.createFunctionParameters(from: initParameters, requiredProperties: objectSchema.requiredProperties) : nil
             deprecatedPublicInitPropertyNames = initParameters.map { PropertyName(idealName: $0.key) }
-            publicInitParameters = Self.createFunctionParameters(from: initParameters.filter { !$0.value.deprecated }, requiredProperties: objectSchema.requiredProperties)
+            publicInitParameters = Self.createFunctionParameters(from: initParameters.filter { !$0.value.deprecated || objectSchema.requiredProperties.contains($0.key) }, requiredProperties: objectSchema.requiredProperties)
             publicInitPropertyNames = initParameters.filter { !$0.value.deprecated }.map { PropertyName(idealName: $0.key) }
             let hasTypeConstant = sortedProperties.contains { $0.key == "type" && $0.value.type.isConstant }
             self.hasTypeConstant = hasTypeConstant

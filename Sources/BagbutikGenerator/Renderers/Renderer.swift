@@ -143,7 +143,7 @@ public class Renderer {
         return try SwiftFormat.format(source)
     }
     
-    struct FunctionParameter {
+    struct FunctionParameter: Equatable {
         let prefix: String?
         let name: String
         let type: String

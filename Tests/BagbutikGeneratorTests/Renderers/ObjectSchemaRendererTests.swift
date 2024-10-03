@@ -1261,7 +1261,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
         // Given
         let json = """
         {
-            "phoneNumber" : {
+            "PhoneNumber" : {
                 "type" : "object",
                 "properties" : {
                     "number" : {
@@ -1278,7 +1278,7 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
         }
         """
-        let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["phoneNumber"]!
+        let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["PhoneNumber"]!
         let docsLoader = DocsLoader(schemaDocumentationById: [:])
         let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
         // When
@@ -1345,6 +1345,456 @@ final class ObjectSchemaRendererTests: XCTestCase {
             }
         }
         
+        """#)
+    }
+    
+    func testRenderWithDeprecatedRequiredProperty() async throws {
+        // Given
+        let json = """
+        {
+            "Something" : {
+                "type" : "object",
+                "properties" : {
+                    "app" : {
+                        "type" : "object",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "apps" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ],
+                        "deprecated" : true
+                    }
+        
+                },
+                "required" : [ "app" ]
+            }
+        }
+        """
+        let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["Something"]!
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        // When
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct Something: Codable, Sendable {
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var app: App
+
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(app: App) {
+                self.app = app
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                app = try container.decode(App.self, forKey: "app")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(app, forKey: "app")
+            }
+
+            public struct App: Codable, Sendable {
+                public let data: Data
+
+                public init(data: Data) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "apps" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+        }
+
+        """#)
+    }
+    
+    func testRenderWithDeprecatedRequiredAndOtherProperty() async throws {
+        // Given
+        let json = """
+        {
+            "Something" : {
+                "type" : "object",
+                "properties" : {
+                    "app" : {
+                        "type" : "object",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "apps" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ],
+                        "deprecated" : true
+                    },
+                    "user" : {
+                        "type" : "object",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "users" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ],
+                        "deprecated" : false
+                    }
+        
+                },
+                "required" : [ "app", "user" ]
+            }
+        }
+        """
+        let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["Something"]!
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        // When
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct Something: Codable, Sendable {
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var app: App
+            public let user: User
+
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(app: App,
+                        user: User)
+            {
+                self.app = app
+                self.user = user
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                app = try container.decode(App.self, forKey: "app")
+                user = try container.decode(User.self, forKey: "user")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encode(app, forKey: "app")
+                try container.encode(user, forKey: "user")
+            }
+
+            public struct App: Codable, Sendable {
+                public let data: Data
+
+                public init(data: Data) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "apps" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct User: Codable, Sendable {
+                public let data: Data
+
+                public init(data: Data) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "users" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+        }
+
+        """#)
+    }
+    
+    func testRenderWithDeprecatedNonRequiredAndOtherProperty() async throws {
+        // Given
+        let json = """
+        {
+            "Something" : {
+                "type" : "object",
+                "properties" : {
+                    "app" : {
+                        "type" : "object",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "apps" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ],
+                        "deprecated" : true
+                    },
+                    "user" : {
+                        "type" : "object",
+                        "properties" : {
+                            "data" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "type" : {
+                                        "type" : "string",
+                                        "enum" : [ "users" ]
+                                    },
+                                    "id" : {
+                                        "type" : "string"
+                                    }
+                                },
+                                "required" : [ "id", "type" ]
+                            }
+                        },
+                        "required" : [ "data" ],
+                        "deprecated" : false
+                    }
+        
+                },
+                "required" : [ "user" ]
+            }
+        }
+        """
+        let schema = try JSONDecoder().decode([String: ObjectSchema].self, from: json.data(using: .utf8)!)["Something"]!
+        let docsLoader = DocsLoader(schemaDocumentationById: [:])
+        let renderer = ObjectSchemaRenderer(docsLoader: docsLoader, shouldFormat: true)
+        // When
+        let rendered = try await renderer.render(objectSchema: schema, otherSchemas: [:])
+        // Then
+        XCTAssertEqual(rendered, #"""
+        public struct Something: Codable, Sendable {
+            @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+            public var app: App? = nil
+            public let user: User
+
+            @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
+            public init(app: App? = nil,
+                        user: User)
+            {
+                self.app = app
+                self.user = user
+            }
+
+            public init(user: User) {
+                self.user = user
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                app = try container.decodeIfPresent(App.self, forKey: "app")
+                user = try container.decode(User.self, forKey: "user")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(app, forKey: "app")
+                try container.encode(user, forKey: "user")
+            }
+
+            public struct App: Codable, Sendable {
+                public let data: Data
+
+                public init(data: Data) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "apps" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+
+            public struct User: Codable, Sendable {
+                public let data: Data
+
+                public init(data: Data) {
+                    self.data = data
+                }
+
+                public init(from decoder: Decoder) throws {
+                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                    data = try container.decode(Data.self, forKey: "data")
+                }
+
+                public func encode(to encoder: Encoder) throws {
+                    var container = encoder.container(keyedBy: AnyCodingKey.self)
+                    try container.encode(data, forKey: "data")
+                }
+
+                public struct Data: Codable, Sendable, Identifiable {
+                    public let id: String
+                    public var type: String { "users" }
+
+                    public init(id: String) {
+                        self.id = id
+                    }
+
+                    public init(from decoder: Decoder) throws {
+                        let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                        id = try container.decode(String.self, forKey: "id")
+                        if try container.decode(String.self, forKey: "type") != type {
+                            throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
+                        }
+                    }
+
+                    public func encode(to encoder: Encoder) throws {
+                        var container = encoder.container(keyedBy: AnyCodingKey.self)
+                        try container.encode(id, forKey: "id")
+                        try container.encode(type, forKey: "type")
+                    }
+                }
+            }
+        }
+
         """#)
     }
 }
