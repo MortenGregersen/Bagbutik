@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterEnabledVersion
+ The data structure that represents the Game Center Enabled Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversion>
+ */
 public struct GameCenterEnabledVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

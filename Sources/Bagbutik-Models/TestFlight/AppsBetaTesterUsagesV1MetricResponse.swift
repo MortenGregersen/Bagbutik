@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppsBetaTesterUsagesV1MetricResponse
+ A response that contains one or more beta app tester metric resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appsbetatesterusagesv1metricresponse>
+ */
 public struct AppsBetaTesterUsagesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public var included: [BetaTester]?

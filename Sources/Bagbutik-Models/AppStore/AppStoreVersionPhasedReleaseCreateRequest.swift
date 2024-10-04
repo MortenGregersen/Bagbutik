@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionPhasedReleaseCreateRequest
+ The request body you use to create an App Store Version Phased Release.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionphasedreleasecreaterequest>
+ */
 public struct AppStoreVersionPhasedReleaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAppVersionUpdateRequest
+ The request body you use to update an app version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversionupdaterequest>
+ */
 public struct GameCenterAppVersionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

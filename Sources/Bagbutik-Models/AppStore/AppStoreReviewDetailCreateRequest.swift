@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewDetailCreateRequest
+ The request body you use to create an App Store Review Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailcreaterequest>
+ */
 public struct AppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

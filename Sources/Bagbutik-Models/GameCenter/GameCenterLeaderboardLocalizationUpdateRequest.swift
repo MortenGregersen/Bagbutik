@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardLocalizationUpdateRequest
+ The request body you use to update a leaderboard localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardlocalizationupdaterequest>
+ */
 public struct GameCenterLeaderboardLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

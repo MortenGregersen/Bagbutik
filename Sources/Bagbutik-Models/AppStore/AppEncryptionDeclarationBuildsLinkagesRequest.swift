@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEncryptionDeclarationBuildsLinkagesRequest
+ A request body you use to add builds to an app encryption declaration.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationbuildslinkagesrequest>
+ */
 public struct AppEncryptionDeclarationBuildsLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The object types and IDs of the related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

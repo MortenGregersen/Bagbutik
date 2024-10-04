@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreview
+ The data structure that represent an App Previews resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreview>
+ */
 public struct AppPreview: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

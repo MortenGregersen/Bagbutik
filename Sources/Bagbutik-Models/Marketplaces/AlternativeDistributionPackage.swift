@@ -1,7 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionPackage
+ The data structure that represents an alternative distribution package resource.
+
+ To learn more about the response that includes this alternative distribution package object, see [AlternativeDistributionPackageResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageresponse).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackage>
+ */
 public struct AlternativeDistributionPackage: Codable, Sendable, Identifiable {
+    /// An opaque resource ID that uniquely identifies the alternative distribution package.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackages" }

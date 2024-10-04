@@ -1,11 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiTestResultsResponse
+ A response that contains a list of Test Results resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/citestresultsresponse>
+ */
 public struct CiTestResultsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiTestResult
 
+    /// The resource data.
     public let data: [CiTestResult]
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiTestResult],

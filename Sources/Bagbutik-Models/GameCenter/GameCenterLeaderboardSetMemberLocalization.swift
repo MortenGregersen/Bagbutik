@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSetMemberLocalization
+ The data structure that represent a leaderboard set member localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalization>
+ */
 public struct GameCenterLeaderboardSetMemberLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

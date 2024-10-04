@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAdvancedExperienceLocalizationInlineCreate
+ The data structure that represents an Advanced App Clip Experience Localization Inline Creates resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencelocalizationinlinecreate>
+ */
 public struct AppClipAdvancedExperienceLocalizationInlineCreate: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an Advanced App Clip Experience Localization Inline Creates resource.
     public var id: String?
+    /// The resource type.
     public var type: String { "appClipAdvancedExperienceLocalizations" }
+    /// The attributes that describe the Advanced App Clip Experience Localization Inline Creates resource.
     public var attributes: Attributes?
 
     public init(id: String? = nil,

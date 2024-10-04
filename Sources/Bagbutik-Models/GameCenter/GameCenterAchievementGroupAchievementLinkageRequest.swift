@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAchievementGroupAchievementLinkageRequest
+ The request body you use to attach an achievement to an achievement group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementgroupachievementlinkagerequest>
+ */
 public struct GameCenterAchievementGroupAchievementLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 

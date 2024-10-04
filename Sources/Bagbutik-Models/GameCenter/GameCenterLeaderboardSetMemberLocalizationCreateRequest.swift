@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSetMemberLocalizationCreateRequest
+ The request body you use to create a leaderboard set localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationcreaterequest>
+ */
 public struct GameCenterLeaderboardSetMemberLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

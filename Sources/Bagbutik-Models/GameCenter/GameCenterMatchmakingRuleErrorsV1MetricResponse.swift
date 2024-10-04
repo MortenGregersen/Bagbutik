@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingRuleErrorsV1MetricResponse
+ The response body for fetching the rule errors.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleerrorsv1metricresponse>
+ */
 public struct GameCenterMatchmakingRuleErrorsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

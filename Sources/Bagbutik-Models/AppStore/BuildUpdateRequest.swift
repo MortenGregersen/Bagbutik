@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildUpdateRequest
+ The request body you use to update a Build.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildupdaterequest>
+ */
 public struct BuildUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

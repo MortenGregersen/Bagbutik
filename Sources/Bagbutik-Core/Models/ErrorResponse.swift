@@ -1,6 +1,14 @@
 import Foundation
 
+/**
+ # ErrorResponse
+ The error details that an API returns in the response body whenever the API request isn’t successful.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/errorresponse>
+ */
 public struct ErrorResponse: Codable, Sendable, Error {
+    /// An array of one or more errors.
     public var errors: [Errors]?
 
     public init(errors: [Errors]? = nil) {

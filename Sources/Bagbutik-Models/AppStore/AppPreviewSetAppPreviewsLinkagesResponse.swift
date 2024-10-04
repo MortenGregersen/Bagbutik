@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreviewSetAppPreviewsLinkagesResponse
+ A response body that contains a list of related resource IDs.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesresponse>
+ */
 public struct AppPreviewSetAppPreviewsLinkagesResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

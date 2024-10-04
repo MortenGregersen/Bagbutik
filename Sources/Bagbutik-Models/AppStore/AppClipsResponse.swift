@@ -1,12 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipsResponse
+ A response that contains a list of App Clips resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipsresponse>
+ */
 public struct AppClipsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClip
 
+    /// The resource data.
     public let data: [AppClip]
+    /// The requested relationship data.
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClip],

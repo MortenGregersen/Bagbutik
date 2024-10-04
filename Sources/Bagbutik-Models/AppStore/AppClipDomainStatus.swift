@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipDomainStatus
+ The data structure that represents the App Clip Domain Statuses resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdomainstatus>
+ */
 public struct AppClipDomainStatus: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an App Clip Domain Statuses resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "appClipDomainStatuses" }
+    /// The attributes that describe the App Clip Domain Statuses resource.
     public var attributes: Attributes?
 
     public init(id: String,

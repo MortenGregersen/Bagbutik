@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceWebhookResponse
+ A response that contains a single marketplace webhook resource.
+
+ Use this object with [Add a marketplace webhook configuration](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-marketplacewebhooks).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookresponse>
+ */
 public struct MarketplaceWebhookResponse: Codable, Sendable {
     public let data: MarketplaceWebhook
     public let links: DocumentLinks

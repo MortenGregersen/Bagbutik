@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingQueueRequestsV1MetricResponse
+ The response body for match requests in a queue.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuerequestsv1metricresponse>
+ */
 public struct GameCenterMatchmakingQueueRequestsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

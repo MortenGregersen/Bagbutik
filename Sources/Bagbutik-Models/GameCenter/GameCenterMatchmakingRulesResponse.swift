@@ -1,9 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingRulesResponse
+ The response body for endpoints that get multiple rules.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesresponse>
+ */
 public struct GameCenterMatchmakingRulesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterMatchmakingRule
 
+    /// The rules that the endpoint gets.
     public let data: [GameCenterMatchmakingRule]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?

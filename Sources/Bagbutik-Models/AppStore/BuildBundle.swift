@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildBundle
+ The data structure that represents Build Bundles resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbundle>
+ */
 public struct BuildBundle: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Build Bundles resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "buildBundles" }
+    /// The attributes that describe the Build Bundles resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

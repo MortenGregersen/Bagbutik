@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceDomainsResponse
+ A response that contains a list of alternative marketplace domain resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacedomainsresponse>
+ */
 public struct MarketplaceDomainsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = MarketplaceDomain
 

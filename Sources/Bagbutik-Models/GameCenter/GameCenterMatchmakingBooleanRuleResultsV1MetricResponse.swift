@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingBooleanRuleResultsV1MetricResponse
+ The response body for fetching the results of applying Boolean rules.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingbooleanruleresultsv1metricresponse>
+ */
 public struct GameCenterMatchmakingBooleanRuleResultsV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

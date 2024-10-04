@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ScmRepositoryResponse
+ A response that contains a single Repositories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/scmrepositoryresponse>
+ */
 public struct ScmRepositoryResponse: Codable, Sendable {
+    /// The resource data.
     public let data: ScmRepository
+    /// The requested relationship data.
     public var included: [Included]?
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: ScmRepository,

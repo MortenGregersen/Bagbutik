@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewAttachment
+ The data structure that represent an App Store Review Attachments resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachment>
+ */
 public struct AppStoreReviewAttachment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

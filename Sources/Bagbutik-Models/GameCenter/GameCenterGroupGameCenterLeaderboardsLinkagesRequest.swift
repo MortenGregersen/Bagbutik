@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterGroupGameCenterLeaderboardsLinkagesRequest
+ The request body you use to create a relationship between a group and a leaderboard.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupgamecenterleaderboardslinkagesrequest>
+ */
 public struct GameCenterGroupGameCenterLeaderboardsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

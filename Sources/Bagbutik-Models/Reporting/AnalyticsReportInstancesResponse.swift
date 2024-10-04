@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AnalyticsReportInstancesResponse
+ A response that contains a list of analytics report instance resources.
+
+ Use this object with [Read a list of instances of a report](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreports-_id_-instances).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportinstancesresponse>
+ */
 public struct AnalyticsReportInstancesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AnalyticsReportInstance
 

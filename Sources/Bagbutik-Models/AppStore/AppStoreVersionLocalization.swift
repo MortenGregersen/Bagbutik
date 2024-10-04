@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionLocalization
+ The data structure that represent an App Store Version Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization>
+ */
 public struct AppStoreVersionLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

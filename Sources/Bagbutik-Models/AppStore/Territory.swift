@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # Territory
+ The data structure that represents a Territories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territory>
+ */
 public struct Territory: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaTesterAppsLinkagesRequest
+ A request body you use to remove an app from a beta tester.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterappslinkagesrequest>
+ */
 public struct BetaTesterAppsLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The types and IDs of related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

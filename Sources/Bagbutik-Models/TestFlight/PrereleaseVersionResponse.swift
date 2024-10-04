@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # PrereleaseVersionResponse
+ A response that contains a single Prerelease Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionresponse>
+ */
 public struct PrereleaseVersionResponse: Codable, Sendable {
+    /// The resource data.
     public let data: PrereleaseVersion
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: PrereleaseVersion,

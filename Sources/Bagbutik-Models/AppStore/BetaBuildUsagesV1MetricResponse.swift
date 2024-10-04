@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaBuildUsagesV1MetricResponse
+ A response that contains one or more beta build metric resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betabuildusagesv1metricresponse>
+ */
 public struct BetaBuildUsagesV1MetricResponse: Codable, Sendable, PagedResponse {
     public let data: [Data]
     public let links: PagedDocumentLinks

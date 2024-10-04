@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCategoriesResponse
+ A response that contains a list of App Category resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategoriesresponse>
+ */
 public struct AppCategoriesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCategory
 

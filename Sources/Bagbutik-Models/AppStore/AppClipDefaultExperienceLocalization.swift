@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipDefaultExperienceLocalization
+ The data structure that represents a Default App Clip Experience Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencelocalization>
+ */
 public struct AppClipDefaultExperienceLocalization: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Default App Clip Experience Localizations resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "appClipDefaultExperienceLocalizations" }
+    /// The attributes that describe the Default App Clip Experience Localizations resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

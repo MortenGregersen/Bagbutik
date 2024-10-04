@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterDetailCreateRequest
+ The request body you use to create a Game Center detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetailcreaterequest>
+ */
 public struct GameCenterDetailCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

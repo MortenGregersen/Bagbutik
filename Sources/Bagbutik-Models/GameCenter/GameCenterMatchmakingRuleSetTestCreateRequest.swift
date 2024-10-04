@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingRuleSetTestCreateRequest
+ The request body for testing the rules in a rule set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrulesettestcreaterequest>
+ */
 public struct GameCenterMatchmakingRuleSetTestCreateRequest: Codable, Sendable, RequestBody {
+    /// The data structure for the request body.
     public let data: Data
+    /// The resource objects that Game Center uses in the test.
     public var included: [Included]?
 
     public init(data: Data,

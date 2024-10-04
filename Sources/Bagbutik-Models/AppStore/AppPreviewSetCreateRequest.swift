@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreviewSetCreateRequest
+ The request body you use to create an App Preview Set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetcreaterequest>
+ */
 public struct AppPreviewSetCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

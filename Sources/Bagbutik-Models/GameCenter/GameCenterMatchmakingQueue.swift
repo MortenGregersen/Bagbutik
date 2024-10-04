@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingQueue
+ The data structure that represents a queue.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueue>
+ */
 public struct GameCenterMatchmakingQueue: Codable, Sendable, Identifiable {
+    /// The unique identifier for the rule.
     public let id: String
+    /// The link representations of the object.
     public var links: ResourceLinks?
+    /// The type of resource.
     public var type: String { "gameCenterMatchmakingQueues" }
+    /// The attributes of the queue.
     public var attributes: Attributes?
+    /// The relationships of the queue.
     public var relationships: Relationships?
 
     public init(id: String,

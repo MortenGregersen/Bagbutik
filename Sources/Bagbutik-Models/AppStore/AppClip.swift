@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClip
+ The data structure that represents an App Clips resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclip>
+ */
 public struct AppClip: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an App Clips resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "appClips" }
+    /// The attributes that describe the App Clips resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

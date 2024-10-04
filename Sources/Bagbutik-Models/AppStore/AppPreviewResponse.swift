@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreviewResponse
+ A response that contains a single App Previews resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewresponse>
+ */
 public struct AppPreviewResponse: Codable, Sendable {
     public let data: AppPreview
     public var included: [AppPreviewSet]?

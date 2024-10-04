@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewDetailUpdateRequest
+ The request body you use to update an App Store Review Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetailupdaterequest>
+ */
 public struct AppStoreReviewDetailUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

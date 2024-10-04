@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardEntrySubmissionCreateRequest
+ The request body you use to create an Game Center leaderboard entry submssion.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmissioncreaterequest>
+ */
 public struct GameCenterLeaderboardEntrySubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

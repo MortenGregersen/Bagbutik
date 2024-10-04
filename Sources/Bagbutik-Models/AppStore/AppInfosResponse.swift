@@ -1,12 +1,22 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppInfosResponse
+ A response that contains a list of App Info resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfosresponse>
+ */
 public struct AppInfosResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppInfo
 
+    /// The resource data.
     public let data: [AppInfo]
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppInfo],

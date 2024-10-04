@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildBetaDetailUpdateRequest
+ The request body you use to update a Build Data Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailupdaterequest>
+ */
 public struct BuildBetaDetailUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

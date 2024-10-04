@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # WinBackOfferResponse
+ A response that contains a single win-back offer resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferresponse>
+ */
 public struct WinBackOfferResponse: Codable, Sendable {
     public let data: WinBackOffer
     public var included: [WinBackOfferPrice]?

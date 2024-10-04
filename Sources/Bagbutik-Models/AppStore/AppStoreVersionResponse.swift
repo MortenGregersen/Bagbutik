@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionResponse
+ A response that contains a single App Store Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionresponse>
+ */
 public struct AppStoreVersionResponse: Codable, Sendable {
     public let data: AppStoreVersion
     public var included: [Included]?

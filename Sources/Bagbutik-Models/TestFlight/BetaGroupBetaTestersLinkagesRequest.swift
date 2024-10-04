@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaGroupBetaTestersLinkagesRequest
+ A request body you use to add or remove beta testers from a beta group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbetatesterslinkagesrequest>
+ */
 public struct BetaGroupBetaTestersLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The types and IDs of related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

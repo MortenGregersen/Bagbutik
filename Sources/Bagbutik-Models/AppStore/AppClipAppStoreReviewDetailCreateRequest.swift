@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAppStoreReviewDetailCreateRequest
+ The request body you use to create an App Clip App Store Review Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailcreaterequest>
+ */
 public struct AppClipAppStoreReviewDetailCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

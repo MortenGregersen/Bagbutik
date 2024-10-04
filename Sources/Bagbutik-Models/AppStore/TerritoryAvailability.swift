@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # TerritoryAvailability
+ The data structure that represents a territory availability resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territoryavailability>
+ */
 public struct TerritoryAvailability: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

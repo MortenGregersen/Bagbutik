@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiBuildRunCreateRequest
+ The request body you use to start a new Xcode Cloud build.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cibuildruncreaterequest>
+ */
 public struct CiBuildRunCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # RoutingAppCoverage
+ The data structure that represents the Routing App Coverages resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverage>
+ */
 public struct RoutingAppCoverage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewAttachmentCreateRequest
+ The request body you use to create an App Store Review Attachment.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentcreaterequest>
+ */
 public struct AppStoreReviewAttachmentCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

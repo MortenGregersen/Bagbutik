@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterGroupsResponse
+ A response that contains one or more groups.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupsresponse>
+ */
 public struct GameCenterGroupsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterGroup
 

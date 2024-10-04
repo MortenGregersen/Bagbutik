@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAdvancedExperienceResponse
+ A response that contains a single Advanced App Clip Experiences resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceresponse>
+ */
 public struct AppClipAdvancedExperienceResponse: Codable, Sendable {
+    /// The resource data.
     public let data: AppClipAdvancedExperience
+    /// The requested relationship data.
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipAdvancedExperience,

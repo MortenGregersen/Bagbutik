@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipHeaderImage
+ The data structure that represents the image that appears on the App Clip card of a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimage>
+ */
 public struct AppClipHeaderImage: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an App Clip Header Images resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "appClipHeaderImages" }
+    /// The attributes that describe the App Clip Header Images resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppScreenshotSet
+ The data structure that represent an app screenshot set resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotset>
+ */
 public struct AppScreenshotSet: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

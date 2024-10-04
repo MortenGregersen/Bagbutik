@@ -16,7 +16,7 @@ class DocsLoaderTests: XCTestCase {
         let schemaDocumentationById = await docsLoader.schemaDocumentationById
         XCTAssertEqual(operationDocumentationById, [Self.operationDocumentation.id: Self.operationDocumentation])
         XCTAssertEqual(identifierBySchemaName, ["User": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user"])
-        XCTAssertEqual(schemaDocumentationById, [Self.schemaDocumentation.id: Documentation.object(Self.schemaDocumentation)])
+        XCTAssertEqual(schemaDocumentationById, [Self.schemaDocumentation.id.lowercased(): Documentation.object(Self.schemaDocumentation)])
     }
 
     func testLoadDocs_ErrorLoading() async throws {
@@ -204,7 +204,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
         try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withDocsUrl: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user".lowercased())
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }
@@ -234,7 +234,7 @@ class DocsLoaderTests: XCTestCase {
         let docsLoader = DocsLoader(loadFile: { try Self.loadFile($0)} )
         try await docsLoader.loadDocs(documentationDirURL: validDocumentationDirURL)
         // When
-        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user")
+        let documentation = try await docsLoader.resolveDocumentationForSchema(withId: "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/user".lowercased())
         // Then
         XCTAssertEqual(documentation, Documentation.object(Self.schemaDocumentation))
     }

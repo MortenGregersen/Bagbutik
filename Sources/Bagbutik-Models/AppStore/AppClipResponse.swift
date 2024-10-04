@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipResponse
+ A response that contains a single App Clips resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipresponse>
+ */
 public struct AppClipResponse: Codable, Sendable {
+    /// The resource data.
     public let data: AppClip
+    /// The requested relationship data.
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClip,

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionImageResponse
+ A response that contains a single subscription images resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimageresponse>
+ */
 public struct SubscriptionImageResponse: Codable, Sendable {
     public let data: SubscriptionImage
     public var included: [Subscription]?

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse
+ A response that confirms a relationship between a leaderboard set and a group leaderboard set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetgroupleaderboardsetlinkageresponse>
+ */
 public struct GameCenterLeaderboardSetGroupLeaderboardSetLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

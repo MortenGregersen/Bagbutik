@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # EndUserLicenseAgreement
+ The data structure that represents the End User License Agreement resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreement>
+ */
 public struct EndUserLicenseAgreement: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

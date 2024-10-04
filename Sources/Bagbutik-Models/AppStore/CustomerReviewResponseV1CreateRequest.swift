@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CustomerReviewResponseV1CreateRequest
+ The request body to use to create a response to a customer review.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/customerreviewresponsev1createrequest>
+ */
 public struct CustomerReviewResponseV1CreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data for your customer review response.
     public let data: Data
 
     public init(data: Data) {

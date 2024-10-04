@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppClipInvocationLocalizationInlineCreate
+ The data structure that represents a Beta App Clip Invocation Localization Inline Creates resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalizationinlinecreate>
+ */
 public struct BetaAppClipInvocationLocalizationInlineCreate: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization Inline Create resource.
     public var id: String?
+    /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
+    /// The attributes that describe the Beta App Clip Invocation Localization Inline Creates resource.
     public let attributes: Attributes
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String? = nil,

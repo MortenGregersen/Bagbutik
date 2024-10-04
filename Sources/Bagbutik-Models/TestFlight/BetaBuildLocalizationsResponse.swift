@@ -1,12 +1,22 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaBuildLocalizationsResponse
+ A response that contains a list of Beta Build Localization resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalizationsresponse>
+ */
 public struct BetaBuildLocalizationsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaBuildLocalization
 
+    /// The resource data.
     public let data: [BetaBuildLocalization]
     public var included: [Build]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaBuildLocalization],

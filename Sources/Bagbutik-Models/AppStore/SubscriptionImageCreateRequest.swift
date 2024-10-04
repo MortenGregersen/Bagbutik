@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionImageCreateRequest
+ The request body you use to create a subscription purchase image reservation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimagecreaterequest>
+ */
 public struct SubscriptionImageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

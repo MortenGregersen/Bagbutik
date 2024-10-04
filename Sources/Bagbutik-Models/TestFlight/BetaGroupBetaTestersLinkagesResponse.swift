@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaGroupBetaTestersLinkagesResponse
+ A response body that contains a list of related resource IDs.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupbetatesterslinkagesresponse>
+ */
 public struct BetaGroupBetaTestersLinkagesResponse: Codable, Sendable, PagedResponse {
+    /// The object types and IDs of the related resources.
     public let data: [Data]
+    /// Navigational links including the self-link and links to the related data.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [Data],

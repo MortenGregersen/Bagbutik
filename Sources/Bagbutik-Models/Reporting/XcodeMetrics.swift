@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # xcodeMetrics
+ A response that contains power and performance measurements for your app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/xcodemetrics>
+ */
 public struct XcodeMetrics: Codable, Sendable {
+    /// Analysis of data collected about the power and performance of your app that includes regressions and trends.
     public var insights: Insights?
+    /// An array of metrics data containing power and performance measurements for your app, organized by platform.
     public var productData: [ProductData]?
+    /// The current App Store Connect API version.
     public var version: String?
 
     public init(insights: Insights? = nil,

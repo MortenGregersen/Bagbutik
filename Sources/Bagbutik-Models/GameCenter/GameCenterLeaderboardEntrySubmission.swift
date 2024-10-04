@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardEntrySubmission
+ The data structure that represent an Game Center leaderboard entry submission resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardentrysubmission>
+ */
 public struct GameCenterLeaderboardEntrySubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

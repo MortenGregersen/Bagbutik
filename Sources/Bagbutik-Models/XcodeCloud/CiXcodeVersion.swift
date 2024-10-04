@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiXcodeVersion
+ The data structure that represents an Xcode Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cixcodeversion>
+ */
 public struct CiXcodeVersion: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an Xcode Versions resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciXcodeVersions" }
+    /// The attributes that describe the Xcode Versions resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

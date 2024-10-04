@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardImageUpdateRequest
+ The request body you use to update a leaderboard image.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardimageupdaterequest>
+ */
 public struct GameCenterLeaderboardImageUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

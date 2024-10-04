@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AnalyticsReportSegmentsResponse
+ A response that contains a list of analytics report segment resources.
+
+ Use this object with [Read the segments for a report](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportinstances-_id_-segments).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentsresponse>
+ */
 public struct AnalyticsReportSegmentsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AnalyticsReportSegment
 

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionLocalizationUpdateRequest
+ The request body you use to update an App Store Version Localization
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalizationupdaterequest>
+ */
 public struct AppStoreVersionLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

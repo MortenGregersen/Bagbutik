@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppInfoLocalization
+ The data structure that represent an App Info Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalization>
+ */
 public struct AppInfoLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

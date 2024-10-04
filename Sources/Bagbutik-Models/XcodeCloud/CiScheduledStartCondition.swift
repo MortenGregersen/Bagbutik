@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiScheduledStartCondition
+ Settings for a start condition that starts a build based on a schedule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cischeduledstartcondition>
+ */
 public struct CiScheduledStartCondition: Codable, Sendable {
+    /// The schedule information you configure for a workflow that starts a new build based on a schedule.
     public var schedule: Schedule?
+    /// The source branch name and custom patterns you configure for a workflow that starts a new build on a schedule.
     public var source: CiBranchPatterns?
 
     public init(schedule: Schedule? = nil,

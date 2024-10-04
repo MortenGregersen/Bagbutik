@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # WinBackOfferUpdateRequest
+ The request body you use to update a win-back offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferupdaterequest>
+ */
 public struct WinBackOfferUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

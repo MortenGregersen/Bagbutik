@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildBundleFileSize
+ The data structure that represents a Build Bundle File Sizes resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbundlefilesize>
+ */
 public struct BuildBundleFileSize: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Build Bundles File Sizes resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "buildBundleFileSizes" }
+    /// The attributes that describe the Build Bundle File Sizes resource.
     public var attributes: Attributes?
 
     public init(id: String,

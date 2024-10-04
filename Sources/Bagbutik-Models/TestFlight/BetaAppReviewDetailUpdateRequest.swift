@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppReviewDetailUpdateRequest
+ The request body you use to update a Beta App Review Detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewdetailupdaterequest>
+ */
 public struct BetaAppReviewDetailUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

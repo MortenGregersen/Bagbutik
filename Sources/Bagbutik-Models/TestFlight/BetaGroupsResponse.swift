@@ -1,12 +1,22 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaGroupsResponse
+ A response that contains a list of Beta Group resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupsresponse>
+ */
 public struct BetaGroupsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BetaGroup
 
+    /// The resource data.
     public let data: [BetaGroup]
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BetaGroup],

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppScreenshotCreateRequest
+ The request body you use to create an App Screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotcreaterequest>
+ */
 public struct AppScreenshotCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

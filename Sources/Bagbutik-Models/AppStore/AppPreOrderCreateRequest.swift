@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreOrderCreateRequest
+ The request body you use to create an App Pre-Order.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreordercreaterequest>
+ */
 public struct AppPreOrderCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

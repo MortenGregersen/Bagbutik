@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppAvailabilityV2
+ The data structure that represents an app availability resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appavailabilityv2>
+ */
 public struct AppAvailabilityV2: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

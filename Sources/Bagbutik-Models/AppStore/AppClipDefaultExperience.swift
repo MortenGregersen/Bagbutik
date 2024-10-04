@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipDefaultExperience
+ The data structure that represents a Default App Clip Experiences resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperience>
+ */
 public struct AppClipDefaultExperience: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Default App Clip Experiences resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "appClipDefaultExperiences" }
+    /// The attributes that describe the Default App Clip Experiences resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

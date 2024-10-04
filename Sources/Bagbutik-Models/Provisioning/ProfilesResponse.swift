@@ -1,12 +1,22 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ProfilesResponse
+ A response that contains a list of Profiles resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/profilesresponse>
+ */
 public struct ProfilesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Profile
 
+    /// The resource data.
     public let data: [Profile]
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [Profile],

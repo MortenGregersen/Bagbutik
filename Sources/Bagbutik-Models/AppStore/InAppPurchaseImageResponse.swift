@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseImageResponse
+ A response that contains a single in-app purchase images resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimageresponse>
+ */
 public struct InAppPurchaseImageResponse: Codable, Sendable {
     public let data: InAppPurchaseImage
     public var included: [InAppPurchaseV2]?

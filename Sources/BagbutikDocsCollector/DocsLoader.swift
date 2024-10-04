@@ -25,7 +25,11 @@ public actor DocsLoader {
         self.loadFile = loadFile
         self.operationDocumentationById = operationDocumentationById
         self.identifierBySchemaName = identifierBySchemaName
-        self.schemaDocumentationById = schemaDocumentationById
+        self.schemaDocumentationById = schemaDocumentationById.map { schemaDocumentationById in
+            Dictionary(uniqueKeysWithValues: schemaDocumentationById.map { key, value in
+                (key.lowercased(), value)
+            })
+        }
     }
 
     public func loadDocs(documentationDirURL: URL) async throws {
@@ -33,12 +37,15 @@ public actor DocsLoader {
         let identifierBySchemaNameData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaMapping.filename))
         let schemaDocumentationByIdData = try await loadFile(documentationDirURL.appendingPathComponent(DocsFilename.schemaDocumentation.filename))
         let jsonDecoder = JSONDecoder()
-        self.operationDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: operationDocumentationByIdData).mapValues { documentation in
+        operationDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: operationDocumentationByIdData).mapValues { documentation in
             guard case .operation(let operationDocumentation) = documentation else { throw DocsLoaderError.wrongTypeOfDocumentation }
             return operationDocumentation
         }
-        self.identifierBySchemaName = try jsonDecoder.decode([String: String].self, from: identifierBySchemaNameData)
-        self.schemaDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: schemaDocumentationByIdData)
+        identifierBySchemaName = try jsonDecoder.decode([String: String].self, from: identifierBySchemaNameData)
+        let loadedSchemaDocumentationById = try jsonDecoder.decode([String: Documentation].self, from: schemaDocumentationByIdData)
+        schemaDocumentationById = Dictionary(uniqueKeysWithValues: loadedSchemaDocumentationById.map { key, value in
+            (key.lowercased(), value)
+        })
     }
 
     public func applyManualDocumentation() throws {
@@ -89,7 +96,7 @@ public actor DocsLoader {
               let schemaDocumentationById else {
             throw DocsLoaderError.documentationNotLoaded
         }
-        guard let identifier = identifierBySchemaName[schemaName],
+        guard let identifier = identifierBySchemaName[schemaName]?.lowercased(),
               let documentation = schemaDocumentationById[identifier] else {
             return nil
         }
@@ -98,7 +105,7 @@ public actor DocsLoader {
 
     public func resolveDocumentationForSchema(withDocsUrl docsUrl: String) throws -> Documentation? {
         guard let schemaDocumentationById else { throw DocsLoaderError.documentationNotLoaded }
-        let identifier = self.createDocumentationId(fromUrl: docsUrl)
+        let identifier = createDocumentationId(fromUrl: docsUrl)
         guard let documentation = schemaDocumentationById[identifier] else { return nil }
         return documentation
     }

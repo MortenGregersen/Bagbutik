@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # EndAppAvailabilityPreOrderCreateRequest
+ The request body you use to end an app’s preorder availability.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/endappavailabilitypreordercreaterequest>
+ */
 public struct EndAppAvailabilityPreOrderCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

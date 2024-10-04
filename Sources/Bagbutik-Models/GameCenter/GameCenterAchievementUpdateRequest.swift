@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAchievementUpdateRequest
+ The request body you use to update a Game Center achievement.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementupdaterequest>
+ */
 public struct GameCenterAchievementUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

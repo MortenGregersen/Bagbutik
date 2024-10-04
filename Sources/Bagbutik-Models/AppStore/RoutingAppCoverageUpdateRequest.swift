@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # RoutingAppCoverageUpdateRequest
+ The request body you use to update a Routing App Coverage.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoverageupdaterequest>
+ */
 public struct RoutingAppCoverageUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

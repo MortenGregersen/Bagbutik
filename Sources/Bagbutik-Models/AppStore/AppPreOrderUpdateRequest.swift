@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreOrderUpdateRequest
+ The request body you use to update an App Pre-Order.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreorderupdaterequest>
+ */
 public struct AppPreOrderUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

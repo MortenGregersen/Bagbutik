@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AgeRatingDeclarationUpdateRequest
+ The request body you use to update an Age Rating Declaration.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclarationupdaterequest>
+ */
 public struct AgeRatingDeclarationUpdateRequest: Codable, Sendable, RequestBody {
+    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {

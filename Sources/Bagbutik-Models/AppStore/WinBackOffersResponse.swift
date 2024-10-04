@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # WinBackOffersResponse
+ A response that contains a list of win-back offer resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/winbackoffersresponse>
+ */
 public struct WinBackOffersResponse: Codable, Sendable, PagedResponse {
     public typealias Data = WinBackOffer
 

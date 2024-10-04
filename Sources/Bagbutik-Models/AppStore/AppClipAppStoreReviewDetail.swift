@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAppStoreReviewDetail
+ The data structure that represents an App Clip App Store Review Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetail>
+ */
 public struct AppClipAppStoreReviewDetail: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an App Clip App Store Review Details resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "appClipAppStoreReviewDetails" }
+    /// The attributes that describe the App Clip App Store Review Details resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

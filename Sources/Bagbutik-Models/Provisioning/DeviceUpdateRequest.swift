@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # DeviceUpdateRequest
+ The request body you use to update a Device.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/deviceupdaterequest>
+ */
 public struct DeviceUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

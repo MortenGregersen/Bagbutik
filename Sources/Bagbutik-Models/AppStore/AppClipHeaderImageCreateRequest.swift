@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipHeaderImageCreateRequest
+ The request body you use to reserve an image asset that appears on the App Clip card of a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipheaderimagecreaterequest>
+ */
 public struct AppClipHeaderImageCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

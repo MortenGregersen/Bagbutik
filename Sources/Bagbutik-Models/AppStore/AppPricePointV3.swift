@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPricePointV3
+ The data structure that represents an App Price Point V3 resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppricepointv3>
+ */
 public struct AppPricePointV3: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

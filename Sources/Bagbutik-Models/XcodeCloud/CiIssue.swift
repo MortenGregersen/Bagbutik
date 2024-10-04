@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiIssue
+ The data structure that represents an Issues resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciissue>
+ */
 public struct CiIssue: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an Issues resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciIssues" }
+    /// The attributes that describe the Issues resource.
     public var attributes: Attributes?
 
     public init(id: String,

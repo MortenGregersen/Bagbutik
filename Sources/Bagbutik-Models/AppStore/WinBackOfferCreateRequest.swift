@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # WinBackOfferCreateRequest
+ The request body you use to create a winback offer.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/winbackoffercreaterequest>
+ */
 public struct WinBackOfferCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [WinBackOfferPriceInlineCreate]?

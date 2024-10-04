@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildBetaDetailResponse
+ A response that contains a single Build Beta Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetadetailresponse>
+ */
 public struct BuildBetaDetailResponse: Codable, Sendable {
+    /// The resource data.
     public let data: BuildBetaDetail
     public var included: [Build]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BuildBetaDetail,

@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiBuildRunResponse
+ A response that contains a single Build Runs resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cibuildrunresponse>
+ */
 public struct CiBuildRunResponse: Codable, Sendable {
+    /// The resource data.
     public let data: CiBuildRun
+    /// The requested relationship data.
     public var included: [Included]?
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiBuildRun,

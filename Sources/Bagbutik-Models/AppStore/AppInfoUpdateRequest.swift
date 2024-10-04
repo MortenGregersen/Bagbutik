@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppInfoUpdateRequest
+ The request body you use to update an App Info.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfoupdaterequest>
+ */
 public struct AppInfoUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

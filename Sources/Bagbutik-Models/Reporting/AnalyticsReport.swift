@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AnalyticsReport
+ The data structure that represents an analytics report.
+
+ To learn more about the response that includes this analytics report request object, see [AnalyticsReportResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportresponse).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreport>
+ */
 public struct AnalyticsReport: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

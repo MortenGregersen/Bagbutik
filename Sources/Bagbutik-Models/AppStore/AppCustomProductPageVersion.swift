@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersion
+ The data structure that represents an app custom product page version resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversion>
+ */
 public struct AppCustomProductPageVersion: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

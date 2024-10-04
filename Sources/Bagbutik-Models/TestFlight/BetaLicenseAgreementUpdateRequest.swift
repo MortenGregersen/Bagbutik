@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaLicenseAgreementUpdateRequest
+ The request body you use to update a Beta License Agreement.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betalicenseagreementupdaterequest>
+ */
 public struct BetaLicenseAgreementUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

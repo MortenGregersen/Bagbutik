@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterGroup
+ The data structure that represents a group resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroup>
+ */
 public struct GameCenterGroup: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

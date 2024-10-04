@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # WinBackOfferPriceInlineCreate
+ The data structure that represents a win-back offer price inline create resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferpriceinlinecreate>
+ */
 public struct WinBackOfferPriceInlineCreate: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public var id: String?
+    /// The resource type.
     public var type: String { "winBackOfferPrices" }
 
     public init(id: String? = nil) {

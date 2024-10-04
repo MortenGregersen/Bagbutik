@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionUpdateRequest
+ The request body you use to update an App Store Version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionupdaterequest>
+ */
 public struct AppStoreVersionUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

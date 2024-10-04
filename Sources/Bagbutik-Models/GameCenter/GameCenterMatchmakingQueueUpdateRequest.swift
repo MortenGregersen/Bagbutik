@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingQueueUpdateRequest
+ The request body you use to modify a queue.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueueupdaterequest>
+ */
 public struct GameCenterMatchmakingQueueUpdateRequest: Codable, Sendable, RequestBody {
+    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

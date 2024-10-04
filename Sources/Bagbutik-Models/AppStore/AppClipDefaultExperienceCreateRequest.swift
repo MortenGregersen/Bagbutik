@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipDefaultExperienceCreateRequest
+ The request body you use to create a default App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencecreaterequest>
+ */
 public struct AppClipDefaultExperienceCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

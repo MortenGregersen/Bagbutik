@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchase
+ The data structure that represents the In-App Purchases resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchase>
+ */
 public struct InAppPurchase: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

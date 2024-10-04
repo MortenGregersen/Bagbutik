@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # UserInvitationCreateRequest
+ The request body you use to create a User Invitation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/userinvitationcreaterequest>
+ */
 public struct UserInvitationCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceDomain
+ The data structure that represents an alternative marketplace domain resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacedomain>
+ */
 public struct MarketplaceDomain: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

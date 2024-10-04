@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAdvancedExperienceImageUpdateRequest
+ The request body you use to commit the image asset for an advanced App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperienceimageupdaterequest>
+ */
 public struct AppClipAdvancedExperienceImageUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterEnabledVersionCompatibleVersionsLinkagesRequest
+ A request body you use to add or remove compatible versions from a Game Center-enabled version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversioncompatibleversionslinkagesrequest>
+ */
 public struct GameCenterEnabledVersionCompatibleVersionsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

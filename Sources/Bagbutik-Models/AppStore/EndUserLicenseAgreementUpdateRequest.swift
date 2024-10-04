@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # EndUserLicenseAgreementUpdateRequest
+ The request body you use to update an End User License Agreement.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementupdaterequest>
+ */
 public struct EndUserLicenseAgreementUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

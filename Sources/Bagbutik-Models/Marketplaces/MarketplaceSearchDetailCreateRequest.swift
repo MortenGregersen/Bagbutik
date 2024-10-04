@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceSearchDetailCreateRequest
+ The request body you use to create an alternative marketplace search detail.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetailcreaterequest>
+ */
 public struct MarketplaceSearchDetailCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

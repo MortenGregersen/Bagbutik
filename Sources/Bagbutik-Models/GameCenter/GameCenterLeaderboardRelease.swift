@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardRelease
+ The data structure that represents a leaderboard release.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardrelease>
+ */
 public struct GameCenterLeaderboardRelease: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?
