@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # DiagnosticInsight
+ The data structure that represents the Diagnostic Insight resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticinsight>
+ */
 public struct DiagnosticInsight: Codable, Sendable {
     public var direction: DiagnosticInsightDirection?
     public var insightType: DiagnosticInsightType?

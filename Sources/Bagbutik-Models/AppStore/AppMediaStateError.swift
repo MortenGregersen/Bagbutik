@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppMediaStateError
+ An error code and description.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appmediastateerror>
+ */
 public struct AppMediaStateError: Codable, Sendable {
     public var code: String?
     public var description: String?

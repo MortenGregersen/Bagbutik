@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildBetaNotificationCreateRequest
+ The request body you use to create a Build Beta Notification.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetanotificationcreaterequest>
+ */
 public struct BuildBetaNotificationCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

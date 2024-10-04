@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAdvancedExperienceCreateRequest
+ The request body you use to create an advanced App Clip experience.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipadvancedexperiencecreaterequest>
+ */
 public struct AppClipAdvancedExperienceCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
+    /// The relationship data to include in the response.
     public var included: [AppClipAdvancedExperienceLocalizationInlineCreate]?
 
     public init(data: Data,

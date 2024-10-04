@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildResponse
+ A response that contains a single Builds resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildresponse>
+ */
 public struct BuildResponse: Codable, Sendable {
+    /// The resource data.
     public let data: Build
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Build,

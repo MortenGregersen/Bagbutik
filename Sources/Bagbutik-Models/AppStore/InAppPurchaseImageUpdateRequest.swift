@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseImageUpdateRequest
+ The data structure that represents a in-app purchase image resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimageupdaterequest>
+ */
 public struct InAppPurchaseImageUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

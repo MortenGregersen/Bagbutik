@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BundleIdUpdateRequest
+ The request body you use to update a Bundle ID.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidupdaterequest>
+ */
 public struct BundleIdUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

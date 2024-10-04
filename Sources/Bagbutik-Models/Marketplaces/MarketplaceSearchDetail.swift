@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceSearchDetail
+ The data structure that represents an alternative marketplace search detail resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacesearchdetail>
+ */
 public struct MarketplaceSearchDetail: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

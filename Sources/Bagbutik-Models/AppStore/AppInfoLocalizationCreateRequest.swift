@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppInfoLocalizationCreateRequest
+ The request body you use to create an App Info Localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationcreaterequest>
+ */
 public struct AppInfoLocalizationCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

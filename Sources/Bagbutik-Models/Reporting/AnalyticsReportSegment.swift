@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AnalyticsReportSegment
+ The data structure that represents an analytics report segment.
+
+ To learn more about the response that includes this analytics report segment object, see [AnalyticsReportSegmentResponse](https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentresponse).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegment>
+ */
 public struct AnalyticsReportSegment: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

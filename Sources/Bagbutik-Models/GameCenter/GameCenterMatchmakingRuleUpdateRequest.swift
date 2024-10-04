@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingRuleUpdateRequest
+ The request body you use to modify a rule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingruleupdaterequest>
+ */
 public struct GameCenterMatchmakingRuleUpdateRequest: Codable, Sendable, RequestBody {
+    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

@@ -1,12 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipDefaultExperiencesResponse
+ A response that contains a list of Default App Clip Experiences resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipdefaultexperiencesresponse>
+ */
 public struct AppClipDefaultExperiencesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppClipDefaultExperience
 
+    /// The resource data.
     public let data: [AppClipDefaultExperience]
+    /// The requested relationship data.
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [AppClipDefaultExperience],

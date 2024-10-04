@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAchievementReleaseCreateRequest
+ The request body you use to create an achievement release.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementreleasecreaterequest>
+ */
 public struct GameCenterAchievementReleaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

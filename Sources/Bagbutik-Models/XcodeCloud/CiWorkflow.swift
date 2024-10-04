@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiWorkflow
+ The data structure that represents a Workflows resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflow>
+ */
 public struct CiWorkflow: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Workflows resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciWorkflows" }
+    /// The attributes that describe the Workflows resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

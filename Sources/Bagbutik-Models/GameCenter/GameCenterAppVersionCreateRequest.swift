@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAppVersionCreateRequest
+ The request body you use to create an app version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversioncreaterequest>
+ */
 public struct GameCenterAppVersionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

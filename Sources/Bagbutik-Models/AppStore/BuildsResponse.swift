@@ -1,12 +1,22 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildsResponse
+ A response that contains a list of Builds resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildsresponse>
+ */
 public struct BuildsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Build
 
+    /// The resource data.
     public let data: [Build]
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [Build],

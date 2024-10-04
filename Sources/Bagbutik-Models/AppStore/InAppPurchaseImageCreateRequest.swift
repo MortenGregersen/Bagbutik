@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # InAppPurchaseImageCreateRequest
+ The request body you use to create a in-app purchase purchase image reservation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/inapppurchaseimagecreaterequest>
+ */
 public struct InAppPurchaseImageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

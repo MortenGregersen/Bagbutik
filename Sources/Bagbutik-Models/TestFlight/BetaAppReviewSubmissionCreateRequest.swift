@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppReviewSubmissionCreateRequest
+ The request body you use to create a Beta App Review Submission.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappreviewsubmissioncreaterequest>
+ */
 public struct BetaAppReviewSubmissionCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

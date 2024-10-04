@@ -1,6 +1,14 @@
 import Foundation
 
+/**
+ # PagingInformation
+ Paging information for data responses.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/paginginformation>
+ */
 public struct PagingInformation: Codable, Sendable {
+    /// The paging information details.
     public let paging: Paging
 
     public init(paging: Paging) {

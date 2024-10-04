@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppClipInvocationLocalization
+ The data structure that represents a Beta App Clip Invocation Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationlocalization>
+ */
 public struct BetaAppClipInvocationLocalization: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocation Localization.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "betaAppClipInvocationLocalizations" }
+    /// The attributes that describe the Beta App Clip Invocation Localizations resource.
     public var attributes: Attributes?
 
     public init(id: String,

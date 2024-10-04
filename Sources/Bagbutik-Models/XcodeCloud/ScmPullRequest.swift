@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ScmPullRequest
+ The data structure that represents a Pull Requests resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/scmpullrequest>
+ */
 public struct ScmPullRequest: Codable, Sendable, Identifiable, RequestBody {
+    /// The opaque resource ID that uniquely identifies a Pull Request resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "scmPullRequests" }
+    /// The attributes that describe the Pull Requests resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

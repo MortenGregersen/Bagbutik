@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ScmProviderType
+ The source code management provider’s type.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/scmprovidertype>
+ */
 public struct ScmProviderType: Codable, Sendable {
+    /// The source code management provider’s display name; for example, `Bitbucket Server`.
     public var displayName: String?
+    /// A Boolean value that indicates whether it’s a self-hosted source code management provider.
     public var isOnPremise: Bool?
+    /// A string that represents the kind of a Providers resource.
     public var kind: Kind?
 
     public init(displayName: String? = nil,

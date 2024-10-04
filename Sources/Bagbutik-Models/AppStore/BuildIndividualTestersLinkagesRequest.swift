@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildIndividualTestersLinkagesRequest
+ A request body you use to add or remove a build from multiple beta groups.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildindividualtesterslinkagesrequest>
+ */
 public struct BuildIndividualTestersLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The types and IDs of related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

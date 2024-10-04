@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionDomain
+ The data structure that represents an alternative distribution domain resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomain>
+ */
 public struct AlternativeDistributionDomain: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

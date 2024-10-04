@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # PerfPowerMetric
+ Unused.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/perfpowermetric>
+ */
 public struct PerfPowerMetric: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

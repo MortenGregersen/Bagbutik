@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiMacOsVersion
+ The data structure that represents a macOS Versions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cimacosversion>
+ */
 public struct CiMacOsVersion: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a macOS Versions resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciMacOsVersions" }
+    /// The attributes that describe the macOS Versions resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

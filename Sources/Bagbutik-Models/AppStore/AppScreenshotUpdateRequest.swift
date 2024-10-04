@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppScreenshotUpdateRequest
+ The request body you use to update an App Screenshot.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotupdaterequest>
+ */
 public struct AppScreenshotUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

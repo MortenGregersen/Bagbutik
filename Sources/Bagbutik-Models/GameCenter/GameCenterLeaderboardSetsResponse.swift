@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSetsResponse
+ A response that contains multiple leaderboard set resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetsresponse>
+ */
 public struct GameCenterLeaderboardSetsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterLeaderboardSet
 

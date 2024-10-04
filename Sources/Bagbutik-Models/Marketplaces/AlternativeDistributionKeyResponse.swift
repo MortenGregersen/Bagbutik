@@ -1,6 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionKeyResponse
+ A response that contains a single alternative distribution key resource.
+
+ This object is the response from the alternative distribution key endpoints. For more information about alternative distribution keys, see Creating and reading keys.
+ ```
+ {
+ ```
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse>
+ */
 public struct AlternativeDistributionKeyResponse: Codable, Sendable {
     public let data: AlternativeDistributionKey
     public let links: DocumentLinks

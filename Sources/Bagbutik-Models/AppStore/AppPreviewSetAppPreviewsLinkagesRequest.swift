@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreviewSetAppPreviewsLinkagesRequest
+ A request body you use to reorder the app previews in a preview set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewsetapppreviewslinkagesrequest>
+ */
 public struct AppPreviewSetAppPreviewsLinkagesRequest: Codable, Sendable, RequestBody {
     public let data: [Data]
 

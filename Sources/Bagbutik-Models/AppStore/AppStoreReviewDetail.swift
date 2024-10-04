@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewDetail
+ The data structure that represent an App Store Review Details  resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewdetail>
+ */
 public struct AppStoreReviewDetail: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

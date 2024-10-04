@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionDomainsResponse
+ A response that contains a list of alternative distribution domain resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributiondomainsresponse>
+ */
 public struct AlternativeDistributionDomainsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionDomain
 

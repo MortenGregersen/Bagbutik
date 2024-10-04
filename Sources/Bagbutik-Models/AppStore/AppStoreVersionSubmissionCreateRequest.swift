@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionSubmissionCreateRequest
+ The request body you use to create an App Store Version Submission.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmissioncreaterequest>
+ */
 public struct AppStoreVersionSubmissionCreateRequest: Codable, Sendable, RequestBody {
+    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {

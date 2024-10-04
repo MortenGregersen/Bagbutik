@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppClipInvocationUpdateRequest
+ The request body you use to update a Beta App Clip Invocation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationupdaterequest>
+ */
 public struct BetaAppClipInvocationUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # IntegerRange
+ Describe the upper and lower integer bound of the attribute.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/integerrange>
+ */
 public struct IntegerRange: Codable, Sendable {
     public var maximum: Int?
     public var minimum: Int?

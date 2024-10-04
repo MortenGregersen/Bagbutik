@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaTesterBuildsLinkagesRequest
+ A request body you use to add or remove builds from a beta tester.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterbuildslinkagesrequest>
+ */
 public struct BetaTesterBuildsLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The types and IDs of related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

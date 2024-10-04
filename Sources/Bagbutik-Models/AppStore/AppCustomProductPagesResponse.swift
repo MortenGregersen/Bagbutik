@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPagesResponse
+ A response that contains a list of app custom product page resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagesresponse>
+ */
 public struct AppCustomProductPagesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCustomProductPage
 

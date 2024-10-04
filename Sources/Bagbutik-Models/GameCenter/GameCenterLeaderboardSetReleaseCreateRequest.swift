@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSetReleaseCreateRequest
+ The request body you use to create a leaderboard set release.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetreleasecreaterequest>
+ */
 public struct GameCenterLeaderboardSetReleaseCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

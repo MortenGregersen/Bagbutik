@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingQueueCreateRequest
+ The request body you use to create a queue.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingqueuecreaterequest>
+ */
 public struct GameCenterMatchmakingQueueCreateRequest: Codable, Sendable, RequestBody {
+    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

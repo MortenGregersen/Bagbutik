@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ImageAsset
+ An image asset, including its height, width, and template URL.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/imageasset>
+ */
 public struct ImageAsset: Codable, Sendable {
     public var height: Int?
     public var templateUrl: String?

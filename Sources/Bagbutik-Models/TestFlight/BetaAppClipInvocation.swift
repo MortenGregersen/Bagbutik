@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppClipInvocation
+ The data structure that represents a Beta App Clip Invocations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocation>
+ */
 public struct BetaAppClipInvocation: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Beta App Clip Invocations resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "betaAppClipInvocations" }
+    /// The attributes that describe the Beta App Clip Invocations resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionKeysResponse
+ A response that contains a list of alternative distribution keys.
+
+ For more information about the response that includes this alternative distribution key object, see [AlternativeDistributionKeyResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeyresponse).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionkeysresponse>
+ */
 public struct AlternativeDistributionKeysResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AlternativeDistributionKey
 

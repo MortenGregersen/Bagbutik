@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ProfileResponse
+ A response that contains a single Profiles resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/profileresponse>
+ */
 public struct ProfileResponse: Codable, Sendable {
+    /// The resource data.
     public let data: Profile
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Profile,

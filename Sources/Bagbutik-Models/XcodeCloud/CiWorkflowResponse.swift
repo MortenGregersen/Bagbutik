@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiWorkflowResponse
+ A response that contains a single Workflows resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowresponse>
+ */
 public struct CiWorkflowResponse: Codable, Sendable {
+    /// The resource data.
     public let data: CiWorkflow
+    /// The requested relationship data.
     public var included: [Included]?
+    /// The navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: CiWorkflow,

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAppVersionResponse
+ A response that contains a single app version resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterappversionresponse>
+ */
 public struct GameCenterAppVersionResponse: Codable, Sendable {
     public let data: GameCenterAppVersion
     public var included: [Included]?

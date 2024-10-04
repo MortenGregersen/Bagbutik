@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceWebhooksResponse
+ A response that contains a list of a marketplace webhook resources.
+
+ Use this object with [Read marketplace webhook information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-marketplacewebhooks).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhooksresponse>
+ */
 public struct MarketplaceWebhooksResponse: Codable, Sendable, PagedResponse {
     public typealias Data = MarketplaceWebhook
 

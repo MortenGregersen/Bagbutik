@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CustomerReview
+ The data structure that represents a Customer Reviews resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/customerreview>
+ */
 public struct CustomerReview: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies the `CustomerReviews` resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "customerReviews" }
+    /// The attributes of the customer’s review including its content.
     public var attributes: Attributes?
+    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

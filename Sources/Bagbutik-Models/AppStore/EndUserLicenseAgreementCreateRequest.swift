@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # EndUserLicenseAgreementCreateRequest
+ The request body you use to create an End User License Agreement.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/enduserlicenseagreementcreaterequest>
+ */
 public struct EndUserLicenseAgreementCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

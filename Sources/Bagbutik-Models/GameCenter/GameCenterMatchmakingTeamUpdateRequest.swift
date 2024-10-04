@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingTeamUpdateRequest
+ The request body you use to modify a team.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamupdaterequest>
+ */
 public struct GameCenterMatchmakingTeamUpdateRequest: Codable, Sendable, RequestBody {
+    /// The data structure of the request body.
     public let data: Data
 
     public init(data: Data) {

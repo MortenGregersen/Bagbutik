@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildAppEncryptionDeclarationLinkageResponse
+ A response body that contains the ID of a single related resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildappencryptiondeclarationlinkageresponse>
+ */
 public struct BuildAppEncryptionDeclarationLinkageResponse: Codable, Sendable {
+    /// The object types and IDs of the related resources.
     public let data: Data
+    /// Navigational links including the self-link and links to the related data.
     public let links: DocumentLinks
 
     public init(data: Data,

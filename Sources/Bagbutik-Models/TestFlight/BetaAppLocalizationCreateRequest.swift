@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppLocalizationCreateRequest
+ The request body you use to create a Beta App Localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaapplocalizationcreaterequest>
+ */
 public struct BetaAppLocalizationCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

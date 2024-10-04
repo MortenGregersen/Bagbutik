@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaGroupResponse
+ A response that contains a single Beta Groups resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupresponse>
+ */
 public struct BetaGroupResponse: Codable, Sendable {
+    /// The resource data.
     public let data: BetaGroup
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaGroup,

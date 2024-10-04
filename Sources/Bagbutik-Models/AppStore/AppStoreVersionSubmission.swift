@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionSubmission
+ The data structure that represents an App Store Version Submissions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsubmission>
+ */
 public struct AppStoreVersionSubmission: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterPlayerAchievementSubmissionCreateRequest
+ The request body you use to create an Game Center player achievement.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterplayerachievementsubmissioncreaterequest>
+ */
 public struct GameCenterPlayerAchievementSubmissionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

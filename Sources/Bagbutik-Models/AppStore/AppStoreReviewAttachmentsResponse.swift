@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewAttachmentsResponse
+ A response that contains a list of App Store Review Attachment resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentsresponse>
+ */
 public struct AppStoreReviewAttachmentsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppStoreReviewAttachment
 

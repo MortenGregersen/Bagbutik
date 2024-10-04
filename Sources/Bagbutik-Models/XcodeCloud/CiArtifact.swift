@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiArtifact
+ The data structure that represents the output of an Xcode Cloud build action resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciartifact>
+ */
 public struct CiArtifact: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies an Artifacts resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciArtifacts" }
+    /// The attributes that describe the Artifacts resource.
     public var attributes: Attributes?
 
     public init(id: String,

@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionPackageCreateRequest
+ The request body you use to create an alternative distribution package.
+
+ Use this object to create a new alternative distribution package in App Store Connect. For more information about the request that includes this request body, see [Create an alternative distribution package](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-alternativedistributionpackages).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagecreaterequest>
+ */
 public struct AlternativeDistributionPackageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ScmGitReference
+ The data structure that represents a Git References resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/scmgitreference>
+ */
 public struct ScmGitReference: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Git References resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "scmGitReferences" }
+    /// The attributes that describe the Git References resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

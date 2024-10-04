@@ -1,6 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionPackageVersionResponse
+ A response that contains a single alternative distribution package version resource.
+
+ This object is the response that contains a single alternative distribution package version. For more information, see [Read information for an alternative distribution package version](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-alternativedistributionpackageversions-_id_). The schema of the response body is below.
+ ```
+ {
+ ```
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackageversionresponse>
+ */
 public struct AlternativeDistributionPackageVersionResponse: Codable, Sendable {
     public let data: AlternativeDistributionPackageVersion
     public var included: [Included]?

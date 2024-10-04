@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionAppClipDefaultExperienceLinkageResponse
+ A response that contains the ID of a single related Default App Clip Experiences resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkageresponse>
+ */
 public struct AppStoreVersionAppClipDefaultExperienceLinkageResponse: Codable, Sendable {
+    /// The object types and IDs of the related resources.
     public let data: Data
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: Data,

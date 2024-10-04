@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCategory
+ The data structure that represent an App Categories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategory>
+ */
 public struct AppCategory: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

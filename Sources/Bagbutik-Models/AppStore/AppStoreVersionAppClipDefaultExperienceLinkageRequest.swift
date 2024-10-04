@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionAppClipDefaultExperienceLinkageRequest
+ The request body you use to attach a default App Clip experience to an App Store version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionappclipdefaultexperiencelinkagerequest>
+ */
 public struct AppStoreVersionAppClipDefaultExperienceLinkageRequest: Codable, Sendable, RequestBody {
+    /// The types and IDs of related resources.
     @NullCodable public var data: Data?
 
     public init(data: Data? = nil) {

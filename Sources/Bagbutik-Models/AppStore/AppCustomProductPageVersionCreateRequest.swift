@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersionCreateRequest
+ The request body you use to create an app custom product page version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioncreaterequest>
+ */
 public struct AppCustomProductPageVersionCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

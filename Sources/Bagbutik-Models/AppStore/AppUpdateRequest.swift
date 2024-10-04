@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppUpdateRequest
+ The request body you use to update an App Update.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appupdaterequest>
+ */
 public struct AppUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

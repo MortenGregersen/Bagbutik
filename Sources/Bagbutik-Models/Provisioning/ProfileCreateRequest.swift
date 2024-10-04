@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ProfileCreateRequest
+ The request body you use to create a Profile.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/profilecreaterequest>
+ */
 public struct ProfileCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

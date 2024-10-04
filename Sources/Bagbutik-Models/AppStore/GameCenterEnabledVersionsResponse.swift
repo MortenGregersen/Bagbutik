@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterEnabledVersionsResponse
+ A response that contains a list of Game Center Enabled Version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterenabledversionsresponse>
+ */
 public struct GameCenterEnabledVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterEnabledVersion
 

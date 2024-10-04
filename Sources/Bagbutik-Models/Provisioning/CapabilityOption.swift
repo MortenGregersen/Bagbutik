@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CapabilityOption
+ An option within a capability setting.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/capabilityoption>
+ */
 public struct CapabilityOption: Codable, Sendable {
     public var description: String?
     public var enabled: Bool?

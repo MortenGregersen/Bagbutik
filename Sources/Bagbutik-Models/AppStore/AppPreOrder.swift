@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreOrder
+ The data structure that represent an App Pre Orders resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreorder>
+ */
 public struct AppPreOrder: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

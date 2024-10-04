@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaGroupCreateRequest
+ The request body you use to create a Beta Group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betagroupcreaterequest>
+ */
 public struct BetaGroupCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

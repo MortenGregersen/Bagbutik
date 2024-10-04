@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # WinBackOfferPricesResponse
+ A response that contains a list of win-back offer price resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/winbackofferpricesresponse>
+ */
 public struct WinBackOfferPricesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = WinBackOfferPrice
 

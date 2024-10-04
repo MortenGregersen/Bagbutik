@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCategoryResponse
+ A response that contains a single App Categories resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcategoryresponse>
+ */
 public struct AppCategoryResponse: Codable, Sendable {
     public let data: AppCategory
     public var included: [AppCategory]?

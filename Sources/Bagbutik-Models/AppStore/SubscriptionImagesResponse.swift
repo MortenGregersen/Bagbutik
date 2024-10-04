@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionImagesResponse
+ A response that contains a list of subscription image resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimagesresponse>
+ */
 public struct SubscriptionImagesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = SubscriptionImage
 

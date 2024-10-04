@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AnalyticsReportRequestResponse
+ A response that contains a single analytics report request resource.
+
+ Use this object with [Read report request information](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportrequests-_id_).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportrequestresponse>
+ */
 public struct AnalyticsReportRequestResponse: Codable, Sendable {
     public let data: AnalyticsReportRequest
     public var included: [AnalyticsReport]?

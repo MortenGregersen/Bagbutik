@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceWebhookCreateRequest
+ The request body you use to create a marketplace webhook url.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookcreaterequest>
+ */
 public struct MarketplaceWebhookCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

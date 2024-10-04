@@ -1,12 +1,22 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # PreReleaseVersionsResponse
+ A response that contains a list of Pre-Release Version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/prereleaseversionsresponse>
+ */
 public struct PreReleaseVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = PrereleaseVersion
 
+    /// The resource data.
     public let data: [PrereleaseVersion]
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [PrereleaseVersion],

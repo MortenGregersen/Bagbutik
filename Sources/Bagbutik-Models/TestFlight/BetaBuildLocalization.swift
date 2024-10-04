@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaBuildLocalization
+ The data structure that represents a Beta Build Localizations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betabuildlocalization>
+ */
 public struct BetaBuildLocalization: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "betaBuildLocalizations" }
+    /// The resource’s attributes.
     public var attributes: Attributes?
+    /// Navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

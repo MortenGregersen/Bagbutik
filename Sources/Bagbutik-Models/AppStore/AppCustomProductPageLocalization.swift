@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageLocalization
+ The data structure that represents an app custom product page localization resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagelocalization>
+ */
 public struct AppCustomProductPageLocalization: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

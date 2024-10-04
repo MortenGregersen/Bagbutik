@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiProduct
+ The data structure that represents a Products resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciproduct>
+ */
 public struct CiProduct: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Products resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciProducts" }
+    /// The attributes that describe the Products resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

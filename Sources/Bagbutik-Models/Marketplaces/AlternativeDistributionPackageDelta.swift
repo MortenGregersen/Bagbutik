@@ -1,7 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AlternativeDistributionPackageDelta
+ The data structure that represents an alternative distribution package delta resource.
+
+ For more information about the responses that include alternative distribution package delta objects, see [AlternativeDistributionPackageDeltaResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltaresponse) or [AlternativeDistributionPackageDeltasResponse](https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedeltasresponse).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/alternativedistributionpackagedelta>
+ */
 public struct AlternativeDistributionPackageDelta: Codable, Sendable, Identifiable {
+    /// An opaque resource ID that uniquely identifies the alternative distribution package delta.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "alternativeDistributionPackageDeltas" }

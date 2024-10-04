@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSetMemberLocalizationResponse
+ A response that contains a single leaderboard set localization resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardsetmemberlocalizationresponse>
+ */
 public struct GameCenterLeaderboardSetMemberLocalizationResponse: Codable, Sendable {
     public let data: GameCenterLeaderboardSetMemberLocalization
     public var included: [Included]?

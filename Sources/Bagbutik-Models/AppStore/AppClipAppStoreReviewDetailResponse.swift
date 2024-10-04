@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppClipAppStoreReviewDetailResponse
+ A response that contains a single App Clip App Store Review Details resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appclipappstorereviewdetailresponse>
+ */
 public struct AppClipAppStoreReviewDetailResponse: Codable, Sendable {
+    /// The resource data.
     public let data: AppClipAppStoreReviewDetail
+    /// The requested relationship data.
     public var included: [AppClipDefaultExperience]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppClipAppStoreReviewDetail,

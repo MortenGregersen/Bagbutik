@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersionInlineCreate
+ The data structure that represents an app custom product page version inline create resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversioninlinecreate>
+ */
 public struct AppCustomProductPageVersionInlineCreate: Codable, Sendable, Identifiable {
     public var id: String?
     public var type: String { "appCustomProductPageVersions" }

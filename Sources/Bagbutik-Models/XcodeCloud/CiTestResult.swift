@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiTestResult
+ The data structure that represents a Test Results resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/citestresult>
+ */
 public struct CiTestResult: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Test Results resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciTestResults" }
+    /// The attributes that describe the Test Results resource.
     public var attributes: Attributes?
 
     public init(id: String,

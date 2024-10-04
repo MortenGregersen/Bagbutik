@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterLeaderboardSet
+ The data structure that represent a leaderboard set resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterleaderboardset>
+ */
 public struct GameCenterLeaderboardSet: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

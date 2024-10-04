@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # TerritoriesResponse
+ A response that contains a list of Territory resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/territoriesresponse>
+ */
 public struct TerritoriesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = Territory
 

@@ -1,11 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiBuildAction
+ The data structure that represents a Build Actions resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cibuildaction>
+ */
 public struct CiBuildAction: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Build Actions resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ciBuildActions" }
+    /// The attributes that describe the Build Actions resource.
     public var attributes: Attributes?
+    /// The navigational links to related data and included resource types and IDs.
     public var relationships: Relationships?
 
     public init(id: String,

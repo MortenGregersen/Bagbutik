@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterDetail
+ The data structure that represents a Game Center detail resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterdetail>
+ */
 public struct GameCenterDetail: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

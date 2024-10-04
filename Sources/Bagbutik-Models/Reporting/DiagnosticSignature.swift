@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # DiagnosticSignature
+ The data structure that represents the Diagnostic Signatures resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticsignature>
+ */
 public struct DiagnosticSignature: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a diagnostic signature.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "diagnosticSignatures" }
+    /// Attributes that describe the diagnostic signature resource.
     public var attributes: Attributes?
     public var relationships: Relationships?
 

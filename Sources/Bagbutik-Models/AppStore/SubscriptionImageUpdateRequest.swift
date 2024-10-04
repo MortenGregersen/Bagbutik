@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # SubscriptionImageUpdateRequest
+ The data structure that represents a subscription image update request resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/subscriptionimageupdaterequest>
+ */
 public struct SubscriptionImageUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

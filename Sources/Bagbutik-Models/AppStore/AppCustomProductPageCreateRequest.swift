@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageCreateRequest
+ The request body you use to create an app custom product page.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpagecreaterequest>
+ */
 public struct AppCustomProductPageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
     public var included: [Included]?

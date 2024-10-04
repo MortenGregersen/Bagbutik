@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildIconsResponse
+ A response that contains a list of Build Icon resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildiconsresponse>
+ */
 public struct BuildIconsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BuildIcon
 

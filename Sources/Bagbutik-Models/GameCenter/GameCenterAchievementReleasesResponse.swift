@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAchievementReleasesResponse
+ A response that contains a list of achievement release resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementreleasesresponse>
+ */
 public struct GameCenterAchievementReleasesResponse: Codable, Sendable, PagedResponse {
     public typealias Data = GameCenterAchievementRelease
 

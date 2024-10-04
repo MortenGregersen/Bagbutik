@@ -1,6 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AnalyticsReportSegmentResponse
+ A response that contains a single analytics report segment resource.
+
+ Use this object with [Read the details for a report segment](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-analyticsreportsegments-_id_).
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/analyticsreportsegmentresponse>
+ */
 public struct AnalyticsReportSegmentResponse: Codable, Sendable {
     public let data: AnalyticsReportSegment
     public let links: DocumentLinks

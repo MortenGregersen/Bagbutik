@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionBuildLinkageResponse
+ A response body that contains the ID of a single related resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkageresponse>
+ */
 public struct AppStoreVersionBuildLinkageResponse: Codable, Sendable {
     public let data: Data
     public let links: DocumentLinks

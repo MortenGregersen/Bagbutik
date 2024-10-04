@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppPreviewUpdateRequest
+ The request body you use to update an App Preview.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/apppreviewupdaterequest>
+ */
 public struct AppPreviewUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

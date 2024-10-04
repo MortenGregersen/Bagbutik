@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # DeviceCreateRequest
+ The request body you use to create a Device.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/devicecreaterequest>
+ */
 public struct DeviceCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

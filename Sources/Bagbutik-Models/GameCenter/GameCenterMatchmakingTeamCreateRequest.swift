@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingTeamCreateRequest
+ The request body you use to create a team.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingteamcreaterequest>
+ */
 public struct GameCenterMatchmakingTeamCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

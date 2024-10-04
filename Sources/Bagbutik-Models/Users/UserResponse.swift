@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # UserResponse
+ A response that contains a single Users resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/userresponse>
+ */
 public struct UserResponse: Codable, Sendable {
+    /// The resource data.
     public let data: User
     public var included: [App]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: User,

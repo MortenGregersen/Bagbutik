@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterAchievementImage
+ The data structure that represent an achievements image resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecenterachievementimage>
+ */
 public struct GameCenterAchievementImage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

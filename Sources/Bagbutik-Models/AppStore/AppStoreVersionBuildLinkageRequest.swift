@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionBuildLinkageRequest
+ The request body you use to attach a build to an App Store version.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionbuildlinkagerequest>
+ */
 public struct AppStoreVersionBuildLinkageRequest: Codable, Sendable, RequestBody {
     @NullCodable public var data: Data?
 

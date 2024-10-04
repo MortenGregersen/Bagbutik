@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPage
+ The data structure that represents an app custom product page resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpage>
+ */
 public struct AppCustomProductPage: Codable, Sendable, Identifiable {
     public let id: String
     public var links: ResourceLinks?

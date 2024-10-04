@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiWorkflowUpdateRequest
+ The request body you use to update an Xcode Cloud workflow.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowupdaterequest>
+ */
 public struct CiWorkflowUpdateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

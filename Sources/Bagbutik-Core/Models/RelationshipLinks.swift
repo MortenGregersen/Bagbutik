@@ -1,7 +1,16 @@
 import Foundation
 
+/**
+ # RelationshipLinks
+ Links related to the response document, including self links.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/relationshiplinks>
+ */
 public struct RelationshipLinks: Codable, Sendable {
+    /// The link to the related documents.
     public var related: String?
+    /// The link that produced the current document.
     public var itself: String?
 
     public init(related: String? = nil,

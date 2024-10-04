@@ -1,10 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingRule
+ The data structure that represents a matchmaking rule.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingrule>
+ */
 public struct GameCenterMatchmakingRule: Codable, Sendable, Identifiable {
+    /// The unique identifier for the rule.
     public let id: String
     public var links: ResourceLinks?
     public var type: String { "gameCenterMatchmakingRules" }
+    /// The attributes of the rule.
     public var attributes: Attributes?
 
     public init(id: String,

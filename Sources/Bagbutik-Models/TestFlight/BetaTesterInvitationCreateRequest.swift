@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaTesterInvitationCreateRequest
+ The request body you use to create a Beta Tester Invitation.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betatesterinvitationcreaterequest>
+ */
 public struct BetaTesterInvitationCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

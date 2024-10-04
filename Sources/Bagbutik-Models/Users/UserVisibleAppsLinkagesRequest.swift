@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # UserVisibleAppsLinkagesRequest
+ A request body you use to add or remove visible apps from a user.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/uservisibleappslinkagesrequest>
+ */
 public struct UserVisibleAppsLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The object types and IDs of the related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

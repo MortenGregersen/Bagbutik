@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # RoutingAppCoverageCreateRequest
+ The request body you use to create a Routing App Coverage.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/routingappcoveragecreaterequest>
+ */
 public struct RoutingAppCoverageCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

@@ -1,9 +1,18 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppEncryptionDeclarationResponse
+ A response that contains a single App Encryption Declarations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appencryptiondeclarationresponse>
+ */
 public struct AppEncryptionDeclarationResponse: Codable, Sendable {
+    /// The resource data.
     public let data: AppEncryptionDeclaration
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: AppEncryptionDeclaration,

@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AgeRatingDeclaration
+ The data structure that represents an Age Rating Declarations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ageratingdeclaration>
+ */
 public struct AgeRatingDeclaration: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies the resource.
     public let id: String
+    /// Navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "ageRatingDeclarations" }
+    /// Attributes that describe this Age Rating Declarations resource.
     public var attributes: Attributes?
 
     public init(id: String,

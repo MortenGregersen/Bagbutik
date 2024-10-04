@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiWorkflowCreateRequest
+ The request body you use to create a new Xcode Cloud workflow.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/ciworkflowcreaterequest>
+ */
 public struct CiWorkflowCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
 
     public init(data: Data) {

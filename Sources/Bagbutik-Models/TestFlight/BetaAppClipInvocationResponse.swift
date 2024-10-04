@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppClipInvocationResponse
+ A response that contains a single Beta App Clip Invocations resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationresponse>
+ */
 public struct BetaAppClipInvocationResponse: Codable, Sendable {
+    /// The resource data.
     public let data: BetaAppClipInvocation
+    /// The requested relationship data.
     public var included: [BetaAppClipInvocationLocalization]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BetaAppClipInvocation,

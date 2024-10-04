@@ -1,12 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BundleIdsResponse
+ A response that contains a list of Bundle ID resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidsresponse>
+ */
 public struct BundleIdsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = BundleId
 
+    /// The resource data.
     public let data: [BundleId]
+    /// The requested relationship data.
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// Paging information.
     public var meta: PagingInformation?
 
     public init(data: [BundleId],

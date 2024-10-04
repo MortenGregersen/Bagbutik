@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # ScmProvider
+ The data structure that represents a Providers resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/scmprovider>
+ */
 public struct ScmProvider: Codable, Sendable, Identifiable {
+    /// The opaque resource ID that uniquely identifies a Providers resource.
     public let id: String
+    /// The navigational links that include the self-link.
     public var links: ResourceLinks?
+    /// The resource type.
     public var type: String { "scmProviders" }
+    /// The attributes that describe the Providers resource.
     public var attributes: Attributes?
     public var relationships: Relationships?
 

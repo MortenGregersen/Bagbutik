@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionsResponse
+ A response that contains a list of App Store Version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionsresponse>
+ */
 public struct AppStoreVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppStoreVersion
 

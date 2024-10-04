@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppScreenshotResponse
+ A response that contains a single App Screenshots resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appscreenshotresponse>
+ */
 public struct AppScreenshotResponse: Codable, Sendable {
     public let data: AppScreenshot
     public var included: [AppScreenshotSet]?

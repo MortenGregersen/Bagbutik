@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppInfoLocalizationUpdateRequest
+ The request body you use to update an App Info Localization.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appinfolocalizationupdaterequest>
+ */
 public struct AppInfoLocalizationUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

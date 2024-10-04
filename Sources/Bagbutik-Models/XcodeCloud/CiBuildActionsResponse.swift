@@ -1,12 +1,23 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # CiBuildActionsResponse
+ A response that contains a list of Build Actions resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/cibuildactionsresponse>
+ */
 public struct CiBuildActionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = CiBuildAction
 
+    /// The resource data.
     public let data: [CiBuildAction]
+    /// The requested relationship data.
     public var included: [CiBuildRun]?
+    /// The navigational links that include the self-link.
     public let links: PagedDocumentLinks
+    /// The paging information.
     public var meta: PagingInformation?
 
     public init(data: [CiBuildAction],

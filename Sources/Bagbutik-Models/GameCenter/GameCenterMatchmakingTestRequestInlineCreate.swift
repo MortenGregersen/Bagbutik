@@ -1,10 +1,21 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingTestRequestInlineCreate
+ A data structure that represents a sample match request for testing a rule set.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingtestrequestinlinecreate>
+ */
 public struct GameCenterMatchmakingTestRequestInlineCreate: Codable, Sendable, Identifiable {
+    /// A unique identifier for the match request.
     public var id: String?
+    /// The type of resource object.
     public var type: String { "gameCenterMatchmakingTestRequests" }
+    /// The object attributes.
     public let attributes: Attributes
+    /// The object relationships.
     public var relationships: Relationships?
 
     public init(id: String? = nil,

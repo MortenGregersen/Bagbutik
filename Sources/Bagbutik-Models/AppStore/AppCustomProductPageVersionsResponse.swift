@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppCustomProductPageVersionsResponse
+ A response that contains a list of app customer product page version resources.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appcustomproductpageversionsresponse>
+ */
 public struct AppCustomProductPageVersionsResponse: Codable, Sendable, PagedResponse {
     public typealias Data = AppCustomProductPageVersion
 

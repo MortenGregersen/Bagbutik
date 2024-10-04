@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BetaAppClipInvocationCreateRequest
+ The request body you use to create an App Clip invocation for testers.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/betaappclipinvocationcreaterequest>
+ */
 public struct BetaAppClipInvocationCreateRequest: Codable, Sendable, RequestBody {
+    /// The resource data.
     public let data: Data
+    /// The relationship data to include in the response.
     public var included: [BetaAppClipInvocationLocalizationInlineCreate]?
 
     public init(data: Data,

@@ -1,8 +1,17 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # diagnosticLogs
+ A response containing log data for a diagnostic signature.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/diagnosticlogs>
+ */
 public struct DiagnosticLogs: Codable, Sendable {
+    /// An array of log data for a specific diagnostic signature.
     public var productData: [ProductData]?
+    /// The version of the App Store Connect API.
     public var version: String?
 
     public init(productData: [ProductData]? = nil,

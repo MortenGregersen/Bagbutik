@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterGroupCreateRequest
+ The request body you use to create a group.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentergroupcreaterequest>
+ */
 public struct GameCenterGroupCreateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

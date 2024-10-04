@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BuildBetaGroupsLinkagesRequest
+ A request body you use to add or remove beta groups from a build.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/buildbetagroupslinkagesrequest>
+ */
 public struct BuildBetaGroupsLinkagesRequest: Codable, Sendable, RequestBody {
+    /// The types and IDs of related resources.
     public let data: [Data]
 
     public init(data: [Data]) {

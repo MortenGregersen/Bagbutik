@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreVersionReleaseRequestCreateRequest
+ The request body you use to manually release an App Store approved version of your app.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionreleaserequestcreaterequest>
+ */
 public struct AppStoreVersionReleaseRequestCreateRequest: Codable, Sendable, RequestBody {
+    /// The data element of the request body.
     public let data: Data
 
     public init(data: Data) {

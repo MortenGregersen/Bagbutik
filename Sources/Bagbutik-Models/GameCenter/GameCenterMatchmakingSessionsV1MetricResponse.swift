@@ -1,7 +1,15 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # GameCenterMatchmakingSessionsV1MetricResponse
+ The response body for information about a successful matchmaking session.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/gamecentermatchmakingsessionsv1metricresponse>
+ */
 public struct GameCenterMatchmakingSessionsV1MetricResponse: Codable, Sendable, PagedResponse {
+    /// The data structure for the results of a successful matchmaking session.
     public let data: [Data]
     public let links: PagedDocumentLinks
     public var meta: PagingInformation?

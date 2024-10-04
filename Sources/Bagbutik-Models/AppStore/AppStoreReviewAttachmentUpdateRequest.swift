@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # AppStoreReviewAttachmentUpdateRequest
+ The request body you use to update an App Store Review Attachment.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/appstorereviewattachmentupdaterequest>
+ */
 public struct AppStoreReviewAttachmentUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 

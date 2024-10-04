@@ -1,9 +1,19 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # BundleIdResponse
+ A response that contains a single Bundle IDs resource.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/bundleidresponse>
+ */
 public struct BundleIdResponse: Codable, Sendable {
+    /// The resource data.
     public let data: BundleId
+    /// The requested relationship data.
     public var included: [Included]?
+    /// Navigational links that include the self-link.
     public let links: DocumentLinks
 
     public init(data: BundleId,

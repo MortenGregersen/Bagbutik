@@ -1,6 +1,13 @@
 import Bagbutik_Core
 import Foundation
 
+/**
+ # MarketplaceWebhookUpdateRequest
+ The request body you use to update a marketplace webhook url.
+
+ Full documentation:
+ <https://developer.apple.com/documentation/appstoreconnectapi/marketplacewebhookupdaterequest>
+ */
 public struct MarketplaceWebhookUpdateRequest: Codable, Sendable, RequestBody {
     public let data: Data
 
