@@ -174,6 +174,12 @@ In the OpenAPI spec for the App Store Connect API the “CertificateType” sche
 
 When creating certificates on [the developer portal](https://developer.apple.com/account/resources/certificates/add), it is also possible to select the G2 Sub-CA (which corresponds to “DEVELOPER_ID_APPLICATION_G2”.
 
+#### **FB15681740**: App Store Connect API Spec is missing "APPLE_VISION_PRO" type for the Device class type schema
+
+* Submitted: November 4th 2024.
+
+In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” schema is said to not include "APPLE_VISION_PRO”. This is not right as “Devices” endpoints can have a “APPLE_VISION_PRO” type.
+
 ### Closed feedback (removed patches)
 
 * **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
