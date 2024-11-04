@@ -183,6 +183,28 @@ public struct Spec: Decodable {
             components.schemas["Device"] = .object(deviceSchema)
             patchedSchemas.append(.object(deviceSchema))
         }
+        
+        // Add the case `APPLE_VISION_PRO` to DeviceClass
+        // Apple's OpenAPI spec doesn't include the Apple Vision Pro for Device class.
+        if case .object(var deviceSchema) = components.schemas["Device"],
+           var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
+               guard case .objectSchema(let subSchema) = subSchema,
+                     subSchema.name == "Attributes" else {
+                   return nil
+               }
+               return subSchema
+           }).first,
+           var classProperty = deviceAttributesSchema.properties["deviceClass"],
+           case .enumSchema(var classEnum) = classProperty.type {
+            var values = classEnum.cases
+            values.append(EnumCase(id: "appleVisionPro", value: "APPLE_VISION_PRO"))
+            classEnum.cases = values
+            classProperty.type = PropertyType.enumSchema(classEnum)
+            deviceAttributesSchema.properties["deviceClass"] = classProperty
+            deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
+            components.schemas["Device"] = .object(deviceSchema)
+            patchedSchemas.append(.object(deviceSchema))
+        }
 
         // Add the case `DEVELOPER_ID_APPLICATION_G2` to CertificateType
         // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 28/3/24 as FB13701181.

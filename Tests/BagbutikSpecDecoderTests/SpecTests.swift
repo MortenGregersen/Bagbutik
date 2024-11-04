@@ -787,6 +787,10 @@ final class SpecTests: XCTestCase {
                                         "type" : "string",
                                         "enum" : [ "ENABLED", "DISABLED" ]
                                     },
+                                    "deviceClass" : {
+                                        "type" : "string",
+                                        "enum" : [ "APPLE_WATCH", "IPAD", "IPHONE", "IPOD", "APPLE_TV", "MAC" ]
+                                    },
                                 }
                             },
                             "links" : {
@@ -893,13 +897,18 @@ final class SpecTests: XCTestCase {
                   return subSchema
               }).first,
               let statusProperty = deviceAttributesSchema.properties["status"],
-              case .enumSchema(let deviceStatusSchema) = statusProperty.type else {
+              case .enumSchema(let deviceStatusSchema) = statusProperty.type,
+              let classProperty = deviceAttributesSchema.properties["deviceClass"],
+              case .enumSchema(let deviceClassSchema) = classProperty.type else {
             XCTFail(); return
         }
         let deviceStatusCaseValues = deviceStatusSchema.cases.map(\.value)
+        let deviceClassCaseValues = deviceClassSchema.cases.map(\.value)
         XCTAssertEqual(deviceStatusCaseValues.count, 3)
         XCTAssertTrue(deviceStatusCaseValues.contains("PROCESSING"))
-        
+        XCTAssertEqual(deviceClassCaseValues.count, 7)
+        XCTAssertTrue(deviceClassCaseValues.contains("APPLE_VISION_PRO"))
+
         guard case .object(let errorResponse) = spec.components.schemas["ErrorResponse"],
               case .arrayOfSubSchema(let errorSchema) = errorResponse.properties["errors"]?.type,
               case .oneOf(_, let oneOfSchema) = errorSchema.properties["source"]?.type
