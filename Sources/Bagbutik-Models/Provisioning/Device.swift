@@ -95,6 +95,7 @@ public struct Device: Codable, Sendable, Identifiable {
 
         public enum DeviceClass: String, Sendable, Codable, CaseIterable {
             case appleTV = "APPLE_TV"
+            case appleVisionPro = "APPLE_VISION_PRO"
             case appleWatch = "APPLE_WATCH"
             case iPad = "IPAD"
             case iPhone = "IPHONE"

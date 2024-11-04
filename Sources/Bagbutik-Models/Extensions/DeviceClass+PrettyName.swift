@@ -2,12 +2,13 @@ public extension Device.Attributes.DeviceClass {
     /// A pretty name for the case.
     var prettyName: String {
         switch self {
-        case .appleWatch: return "Apple Watch"
-        case .iPad: return "iPad"
-        case .iPhone: return "iPhone"
-        case .iPod: return "iPod"
-        case .appleTV: return "Apple TV"
-        case .mac: return "Mac"
+        case .appleWatch: "Apple Watch"
+        case .appleVisionPro: "Apple Vision Pro"
+        case .iPad: "iPad"
+        case .iPhone: "iPhone"
+        case .iPod: "iPod"
+        case .appleTV: "Apple TV"
+        case .mac: "Mac"
         }
     }
 }
