@@ -29,21 +29,21 @@ public struct Spec: Decodable {
     public mutating func addForgottenIncludeParameters() {
         for (pathKey, path) in paths {
             var path = path
-            path.operations.forEach { operation in
+            for operation in path.operations {
                 let operationIndex = path.operations.firstIndex(of: operation)!
                 var operation = operation
                 let responseSchemaName = operation.successResponseType
-                guard case .object(let responseSchema) = components.schemas[responseSchemaName] else { return }
+                guard case .object(let responseSchema) = components.schemas[responseSchemaName] else { continue }
                 let dataSchemaName: String
-                guard let dataProperty = responseSchema.properties["data"] else { return }
+                guard let dataProperty = responseSchema.properties["data"] else { continue }
                 if case .arrayOfSchemaRef(let theDataSchemaName) = dataProperty.type {
                     dataSchemaName = theDataSchemaName
                 } else if case .schemaRef(let theDataSchemaName) = dataProperty.type {
                     dataSchemaName = theDataSchemaName
-                } else { return }
+                } else { continue }
                 guard case .object(let dataSchema) = components.schemas[dataSchemaName],
                       case .schema(let dataRelationshipsSchema) = dataSchema.properties["relationships"]?.type
-                else { return }
+                else { continue }
                 let includeNamesFromResponse = dataRelationshipsSchema.properties.map(\.key)
                 operation.parameters?.forEach { parameter in
                     guard let parameterIndex = operation.parameters?.firstIndex(of: parameter),
@@ -122,14 +122,14 @@ public struct Spec: Decodable {
                           case .schema(var targetDataSchema) = targetDataProperty.type,
                           case .schema(var targetDataAttributesSchema) = targetDataSchema.properties["attributes"]?.type
                     else { return }
-                    targetDataAttributesSchema.properties.forEach { (targetDataAttributesPropertyName: String, targetDataAttributesProperty: Property) in
+                    for (targetDataAttributesPropertyName, targetDataAttributesProperty) in targetDataAttributesSchema.properties {
                         guard case .enumSchema(let targetDataAttributesPropertySchema) = targetDataAttributesProperty.type,
                               case .objectSchema(let mainAttributesSchema) = mainSchema.subSchemas.filter({ $0.name == "Attributes" }).first,
                               mainAttributesSchema.properties.contains(where: { (_: String, mainAttributesProperty: Property) in
                                   guard case .enumSchema(let mainAttributesPropertySchema) = mainAttributesProperty.type else { return false }
                                   return mainAttributesPropertySchema.name == targetDataAttributesPropertySchema.name
                                       && mainAttributesPropertySchema.cases == targetDataAttributesPropertySchema.cases
-                              }) else { return }
+                              }) else { continue }
                         targetDataAttributesSchema.properties[targetDataAttributesPropertyName] = .init(type: .schemaRef("\(mainSchemaName).Attributes.\(targetDataAttributesPropertySchema.name)"), deprecated: targetDataAttributesProperty.deprecated)
                     }
                     targetDataSchema.properties["attributes"]?.type = .schema(targetDataAttributesSchema)
@@ -146,24 +146,18 @@ public struct Spec: Decodable {
      */
     public mutating func applyManualPatches() throws {
         // Remove all paths with no operations
-        paths = paths.filter { $0.value.operations.count > 0 }
-        
-        // Add the cases `UNIVERSAL` and `SERVICES` to BundleIdPlatform
-        // Apple's OpenAPI spec doesn't include Universal App IDs. Reported to Apple 21/1/21 as FB8977648.
+        paths = paths.filter { !$0.value.operations.isEmpty }
+
+        // Add the case `SERVICES` to BundleIdPlatform
         // Apple's OpenAPI spec doesn't include Service IDs (like "Sign in with Apple"). Reported to Apple 14/10/22 as a later comment on FB8977648.
         if case .enum(var bundleIdPlatformSchema) = components.schemas["BundleIdPlatform"] {
             if !bundleIdPlatformSchema.cases.contains(where: { $0.value == "SERVICES" }) {
                 bundleIdPlatformSchema.cases.append(EnumCase(id: "services", value: "SERVICES", documentation: "A string that represents a service."))
             }
-            if !bundleIdPlatformSchema.cases.contains(where: { $0.value == "UNIVERSAL" }) {
-                bundleIdPlatformSchema.cases.append(EnumCase(id: "universal", value: "UNIVERSAL", documentation: "A string that represents iOS and macOS."))
-            }
             components.schemas["BundleIdPlatform"] = .enum(bundleIdPlatformSchema)
             patchedSchemas.append(.enum(bundleIdPlatformSchema))
         }
 
-        // Add the case `PROCESSING` to Device.Status
-        // Apple's OpenAPI spec doesn't include Processing as status for Device.
         if case .object(var deviceSchema) = components.schemas["Device"],
            var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
                guard case .objectSchema(let subSchema) = subSchema,
@@ -171,49 +165,32 @@ public struct Spec: Decodable {
                    return nil
                }
                return subSchema
-           }).first,
-           var statusProperty = deviceAttributesSchema.properties["status"],
-           case .enumSchema(var statusEnum) = statusProperty.type {
-            var values = statusEnum.cases
-            values.append(EnumCase(id: "processing", value: "PROCESSING"))
-            statusEnum.cases = values
-            statusProperty.type = PropertyType.enumSchema(statusEnum)
-            deviceAttributesSchema.properties["status"] = statusProperty
-            deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
-            components.schemas["Device"] = .object(deviceSchema)
-            patchedSchemas.append(.object(deviceSchema))
-        }
-        
-        // Add the case `APPLE_VISION_PRO` to DeviceClass
-        // Apple's OpenAPI spec doesn't include the Apple Vision Pro for Device class.
-        if case .object(var deviceSchema) = components.schemas["Device"],
-           var deviceAttributesSchema: ObjectSchema = deviceSchema.subSchemas.compactMap({ (subSchema: SubSchema) -> ObjectSchema? in
-               guard case .objectSchema(let subSchema) = subSchema,
-                     subSchema.name == "Attributes" else {
-                   return nil
-               }
-               return subSchema
-           }).first,
-           var classProperty = deviceAttributesSchema.properties["deviceClass"],
-           case .enumSchema(var classEnum) = classProperty.type {
-            var values = classEnum.cases
-            values.append(EnumCase(id: "appleVisionPro", value: "APPLE_VISION_PRO"))
-            classEnum.cases = values
-            classProperty.type = PropertyType.enumSchema(classEnum)
-            deviceAttributesSchema.properties["deviceClass"] = classProperty
-            deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
-            components.schemas["Device"] = .object(deviceSchema)
-            patchedSchemas.append(.object(deviceSchema))
-        }
-
-        // Add the case `DEVELOPER_ID_APPLICATION_G2` to CertificateType
-        // Apple's OpenAPI spec doesn't include the role for generating individual keys. Reported to Apple 28/3/24 as FB13701181.
-        if case .enum(var certificateTypeSchema) = components.schemas["CertificateType"] {
-            if !certificateTypeSchema.cases.contains(where: { $0.value == "DEVELOPER_ID_APPLICATION_G2" }) {
-                certificateTypeSchema.cases.append(EnumCase(id: "developerIdApplicationG2", value: "DEVELOPER_ID_APPLICATION_G2"))
+           }).first {
+            // Add the case `PROCESSING` to Device.Status
+            // Apple's OpenAPI spec doesn't include Processing as status for Device.
+            if var statusProperty = deviceAttributesSchema.properties["status"],
+               case .enumSchema(var statusEnum) = statusProperty.type {
+                var values = statusEnum.cases
+                values.append(EnumCase(id: "processing", value: "PROCESSING"))
+                statusEnum.cases = values
+                statusProperty.type = PropertyType.enumSchema(statusEnum)
+                deviceAttributesSchema.properties["status"] = statusProperty
+                deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
+                components.schemas["Device"] = .object(deviceSchema)
             }
-            components.schemas["CertificateType"] = .enum(certificateTypeSchema)
-            patchedSchemas.append(.enum(certificateTypeSchema))
+            // Add the case `APPLE_VISION_PRO` to DeviceClass
+            // Apple's OpenAPI spec doesn't include the Apple Vision Pro for Device class.
+            if var classProperty = deviceAttributesSchema.properties["deviceClass"],
+               case .enumSchema(var classEnum) = classProperty.type {
+                var values = classEnum.cases
+                values.append(EnumCase(id: "appleVisionPro", value: "APPLE_VISION_PRO"))
+                classEnum.cases = values
+                classProperty.type = PropertyType.enumSchema(classEnum)
+                deviceAttributesSchema.properties["deviceClass"] = classProperty
+                deviceSchema.properties["attributes"]?.type = .schema(deviceAttributesSchema)
+                components.schemas["Device"] = .object(deviceSchema)
+            }
+            patchedSchemas.append(.object(deviceSchema))
         }
 
         // Fix up the names of the sub schemas of ErrorResponse.Errors

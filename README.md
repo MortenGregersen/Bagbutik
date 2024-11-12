@@ -149,6 +149,7 @@ The OpenAPI Spec provided by Apple do not always align with the data received fr
 
 * Submitted: January 21st 2021.
 * Updated: October 14th 2022 - the type "SERVICES" is also missing.
+* Partly resolved: November 12th 2024 (Spec version 3.7) - "UNIVERSAL" added.
 
 **Title:** App Store Connect API is missing the "UNIVERSAL" type for the BundleIdPlatform schema
 
@@ -166,14 +167,6 @@ On 12/1/23 some errors (with status code 409) has been observed, with no `detail
 In Apple's OpenAPI spec and documentation the `associatedErrors` is not mentioned in `meta` property (last checked 12/1/23).
 But it is observed when creating a `ReviewSubmissionItem` with an `AppStoreVersion` fails.
 
-#### **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
-
-* Submitted: March 28th 2024.
-
-In the OpenAPI spec for the App Store Connect API the “CertificateType” schema is said to not include "DEVELOPER_ID_APPLICATION_G2”. This is not right as “Certificates” endpoints can have a “DEVELOPER_ID_APPLICATION_G2” type.
-
-When creating certificates on [the developer portal](https://developer.apple.com/account/resources/certificates/add), it is also possible to select the G2 Sub-CA (which corresponds to “DEVELOPER_ID_APPLICATION_G2”.
-
 #### **FB15681740**: App Store Connect API Spec is missing "APPLE_VISION_PRO" type for the Device class type schema
 
 * Submitted: November 4th 2024.
@@ -181,10 +174,6 @@ When creating certificates on [the developer portal](https://developer.apple.com
 In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” schema is said to not include "APPLE_VISION_PRO”. This is not right as “Devices” endpoints can have a “APPLE_VISION_PRO” type.
 
 ### Closed feedback (removed patches)
-
-* **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
-  * Submitted: January 14th 2024.
-  * Resolved: July 11th 2024 (Spec version 3.5).
 
 * **FB9963088**: The xcodeMetrics schema has no properties or attributes in the OpenAPI spec
   * Submitted: March 21st 2022.
@@ -201,3 +190,11 @@ In the OpenAPI spec for the App Store Connect API the “Device.deviceClass” s
 * **FB13539766**: App Store Connect API Spec is missing "APP_APPLE_VISION_PRO" type for the Screenshot Display Type schema
   * Submitted: January 14th 2024.
   * Resolved: January 25th 2024 (Spec version 3.2).
+  
+* **FB13540097**: Almost all of the schemas ending in “WithoutIncludesResponse” has wrong "data" type
+  * Submitted: January 14th 2024.
+  * Resolved: July 11th 2024 (Spec version 3.5).
+
+* **FB13701181**: App Store Connect API Spec is missing "DEVELOPER_ID_APPLICATION_G2" type for the Certificate Type schema
+  * Submitted: March 28th 2024.
+  * Resolved: November 12th 2024 (Spec version 3.7).
