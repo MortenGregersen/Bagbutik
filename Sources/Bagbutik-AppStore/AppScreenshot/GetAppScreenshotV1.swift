@@ -41,7 +41,6 @@ public enum GetAppScreenshotV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

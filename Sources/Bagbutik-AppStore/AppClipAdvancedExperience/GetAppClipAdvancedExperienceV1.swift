@@ -45,7 +45,6 @@ public enum GetAppClipAdvancedExperienceV1 {
             case localizations
             case place
             case placeStatus
-            case removed
             case status
             case version
         }

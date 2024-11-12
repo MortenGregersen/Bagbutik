@@ -39,7 +39,6 @@ public enum GetAppEventScreenshotV1 {
             case fileSize
             case imageAsset
             case uploadOperations
-            case uploaded
         }
     }
 

@@ -43,7 +43,6 @@ public enum GetBundleIdV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -73,7 +72,6 @@ public enum GetBundleIdV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
@@ -89,7 +87,6 @@ public enum GetBundleIdV1 {
         }
 
         public enum BundleIdCapabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case bundleId
             case capabilityType
             case settings
         }

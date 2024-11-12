@@ -45,7 +45,6 @@ public enum ListImagesForSubscriptionV1 {
             case state
             case subscription
             case uploadOperations
-            case uploaded
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {

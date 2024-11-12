@@ -35,44 +35,21 @@ public enum GetIapPriceScheduleForInAppPurchasesV2 {
         case inAppPurchasePriceSchedules([InAppPurchasePriceSchedules])
         /// The fields to include for returned resources of type inAppPurchasePrices
         case inAppPurchasePrices([InAppPurchasePrices])
-        /// The fields to include for returned resources of type inAppPurchases
-        case inAppPurchases([InAppPurchases])
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
         public enum InAppPurchasePriceSchedules: String, Sendable, ParameterValue, Codable, CaseIterable {
             case automaticPrices
             case baseTerritory
-            case inAppPurchase
             case manualPrices
         }
 
         public enum InAppPurchasePrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case endDate
             case inAppPurchasePricePoint
-            case inAppPurchaseV2
             case manual
             case startDate
             case territory
-        }
-
-        public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case appStoreReviewScreenshot
-            case content
-            case contentHosting
-            case familySharable
-            case iapPriceSchedule
-            case images
-            case inAppPurchaseAvailability
-            case inAppPurchaseLocalizations
-            case inAppPurchaseType
-            case name
-            case pricePoints
-            case productId
-            case promotedPurchase
-            case reviewNote
-            case state
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -86,7 +63,6 @@ public enum GetIapPriceScheduleForInAppPurchasesV2 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case automaticPrices
         case baseTerritory
-        case inAppPurchase
         case manualPrices
     }
 

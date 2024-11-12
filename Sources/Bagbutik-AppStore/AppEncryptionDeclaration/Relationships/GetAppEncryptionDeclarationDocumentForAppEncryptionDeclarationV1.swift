@@ -29,7 +29,6 @@ public enum GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1 {
         case appEncryptionDeclarationDocuments([AppEncryptionDeclarationDocuments])
 
         public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
             case downloadUrl
@@ -37,7 +36,6 @@ public enum GetAppEncryptionDeclarationDocumentForAppEncryptionDeclarationV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 }

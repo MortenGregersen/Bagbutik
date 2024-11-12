@@ -37,7 +37,6 @@ public enum GetAppAvailabilitiesV2 {
         case territoryAvailabilities([TerritoryAvailabilities])
 
         public enum AppAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case availableInNewTerritories
             case territoryAvailabilities
         }

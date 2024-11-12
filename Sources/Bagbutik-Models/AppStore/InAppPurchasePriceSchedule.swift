@@ -37,17 +37,14 @@ public struct InAppPurchasePriceSchedule: Codable, Sendable, Identifiable {
     public struct Relationships: Codable, Sendable {
         public var automaticPrices: AutomaticPrices?
         public var baseTerritory: BaseTerritory?
-        public var inAppPurchase: InAppPurchase?
         public var manualPrices: ManualPrices?
 
         public init(automaticPrices: AutomaticPrices? = nil,
                     baseTerritory: BaseTerritory? = nil,
-                    inAppPurchase: InAppPurchase? = nil,
                     manualPrices: ManualPrices? = nil)
         {
             self.automaticPrices = automaticPrices
             self.baseTerritory = baseTerritory
-            self.inAppPurchase = inAppPurchase
             self.manualPrices = manualPrices
         }
 
@@ -55,7 +52,6 @@ public struct InAppPurchasePriceSchedule: Codable, Sendable, Identifiable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             automaticPrices = try container.decodeIfPresent(AutomaticPrices.self, forKey: "automaticPrices")
             baseTerritory = try container.decodeIfPresent(BaseTerritory.self, forKey: "baseTerritory")
-            inAppPurchase = try container.decodeIfPresent(InAppPurchase.self, forKey: "inAppPurchase")
             manualPrices = try container.decodeIfPresent(ManualPrices.self, forKey: "manualPrices")
         }
 
@@ -63,7 +59,6 @@ public struct InAppPurchasePriceSchedule: Codable, Sendable, Identifiable {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(automaticPrices, forKey: "automaticPrices")
             try container.encodeIfPresent(baseTerritory, forKey: "baseTerritory")
-            try container.encodeIfPresent(inAppPurchase, forKey: "inAppPurchase")
             try container.encodeIfPresent(manualPrices, forKey: "manualPrices")
         }
 
@@ -145,47 +140,6 @@ public struct InAppPurchasePriceSchedule: Codable, Sendable, Identifiable {
             public struct Data: Codable, Sendable, Identifiable {
                 public let id: String
                 public var type: String { "territories" }
-
-                public init(id: String) {
-                    self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    id = try container.decode(String.self, forKey: "id")
-                    if try container.decode(String.self, forKey: "type") != type {
-                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encode(id, forKey: "id")
-                    try container.encode(type, forKey: "type")
-                }
-            }
-        }
-
-        public struct InAppPurchase: Codable, Sendable {
-            @NullCodable public var data: Data?
-
-            public init(data: Data? = nil) {
-                self.data = data
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent(Data.self, forKey: "data")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(data, forKey: "data")
-            }
-
-            public struct Data: Codable, Sendable, Identifiable {
-                public let id: String
-                public var type: String { "inAppPurchases" }
 
                 public init(id: String) {
                     self.id = id

@@ -46,7 +46,6 @@ public enum ListAppClipsForAppV1 {
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
-            case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
         }
 
@@ -60,7 +59,6 @@ public enum ListAppClipsForAppV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -90,7 +88,6 @@ public enum ListAppClipsForAppV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

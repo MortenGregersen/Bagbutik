@@ -66,7 +66,6 @@ public enum ListAppStoreVersionExperimentTreatmentsForAppStoreVersionExperiments
             case platform
             case reviewRequired
             case startDate
-            case started
             case state
             case trafficProportion
         }

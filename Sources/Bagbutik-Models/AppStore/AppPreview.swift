@@ -47,34 +47,64 @@ public struct AppPreview: Codable, Sendable, Identifiable {
     }
 
     public struct Attributes: Codable, Sendable {
-        public var assetDeliveryState: AppMediaAssetState?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var assetDeliveryState: AppMediaAssetState? = nil
         public var fileName: String?
         public var fileSize: Int?
         public var mimeType: String?
+        public var previewFrameImage: PreviewFrameImage?
         public var previewFrameTimeCode: String?
-        public var previewImage: ImageAsset?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var previewImage: ImageAsset? = nil
         public var sourceFileChecksum: String?
         public var uploadOperations: [UploadOperation]?
+        public var videoDeliveryState: AppMediaVideoState?
         public var videoUrl: String?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(assetDeliveryState: AppMediaAssetState? = nil,
                     fileName: String? = nil,
                     fileSize: Int? = nil,
                     mimeType: String? = nil,
+                    previewFrameImage: PreviewFrameImage? = nil,
                     previewFrameTimeCode: String? = nil,
                     previewImage: ImageAsset? = nil,
                     sourceFileChecksum: String? = nil,
                     uploadOperations: [UploadOperation]? = nil,
+                    videoDeliveryState: AppMediaVideoState? = nil,
                     videoUrl: String? = nil)
         {
             self.assetDeliveryState = assetDeliveryState
             self.fileName = fileName
             self.fileSize = fileSize
             self.mimeType = mimeType
+            self.previewFrameImage = previewFrameImage
             self.previewFrameTimeCode = previewFrameTimeCode
             self.previewImage = previewImage
             self.sourceFileChecksum = sourceFileChecksum
             self.uploadOperations = uploadOperations
+            self.videoDeliveryState = videoDeliveryState
+            self.videoUrl = videoUrl
+        }
+
+        public init(fileName: String? = nil,
+                    fileSize: Int? = nil,
+                    mimeType: String? = nil,
+                    previewFrameImage: PreviewFrameImage? = nil,
+                    previewFrameTimeCode: String? = nil,
+                    sourceFileChecksum: String? = nil,
+                    uploadOperations: [UploadOperation]? = nil,
+                    videoDeliveryState: AppMediaVideoState? = nil,
+                    videoUrl: String? = nil)
+        {
+            self.fileName = fileName
+            self.fileSize = fileSize
+            self.mimeType = mimeType
+            self.previewFrameImage = previewFrameImage
+            self.previewFrameTimeCode = previewFrameTimeCode
+            self.sourceFileChecksum = sourceFileChecksum
+            self.uploadOperations = uploadOperations
+            self.videoDeliveryState = videoDeliveryState
             self.videoUrl = videoUrl
         }
 
@@ -84,10 +114,12 @@ public struct AppPreview: Codable, Sendable, Identifiable {
             fileName = try container.decodeIfPresent(String.self, forKey: "fileName")
             fileSize = try container.decodeIfPresent(Int.self, forKey: "fileSize")
             mimeType = try container.decodeIfPresent(String.self, forKey: "mimeType")
+            previewFrameImage = try container.decodeIfPresent(PreviewFrameImage.self, forKey: "previewFrameImage")
             previewFrameTimeCode = try container.decodeIfPresent(String.self, forKey: "previewFrameTimeCode")
             previewImage = try container.decodeIfPresent(ImageAsset.self, forKey: "previewImage")
             sourceFileChecksum = try container.decodeIfPresent(String.self, forKey: "sourceFileChecksum")
             uploadOperations = try container.decodeIfPresent([UploadOperation].self, forKey: "uploadOperations")
+            videoDeliveryState = try container.decodeIfPresent(AppMediaVideoState.self, forKey: "videoDeliveryState")
             videoUrl = try container.decodeIfPresent(String.self, forKey: "videoUrl")
         }
 
@@ -97,10 +129,12 @@ public struct AppPreview: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(fileName, forKey: "fileName")
             try container.encodeIfPresent(fileSize, forKey: "fileSize")
             try container.encodeIfPresent(mimeType, forKey: "mimeType")
+            try container.encodeIfPresent(previewFrameImage, forKey: "previewFrameImage")
             try container.encodeIfPresent(previewFrameTimeCode, forKey: "previewFrameTimeCode")
             try container.encodeIfPresent(previewImage, forKey: "previewImage")
             try container.encodeIfPresent(sourceFileChecksum, forKey: "sourceFileChecksum")
             try container.encodeIfPresent(uploadOperations, forKey: "uploadOperations")
+            try container.encodeIfPresent(videoDeliveryState, forKey: "videoDeliveryState")
             try container.encodeIfPresent(videoUrl, forKey: "videoUrl")
         }
     }

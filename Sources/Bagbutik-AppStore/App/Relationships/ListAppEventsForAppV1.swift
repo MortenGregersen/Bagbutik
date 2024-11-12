@@ -49,7 +49,6 @@ public enum ListAppEventsForAppV1 {
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case archivedTerritorySchedules
             case badge
             case deepLink

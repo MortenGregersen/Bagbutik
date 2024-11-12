@@ -40,7 +40,6 @@ public enum GetAppEncryptionDeclarationV1 {
         case apps([Apps])
 
         public enum AppEncryptionDeclarationDocuments: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appEncryptionDeclaration
             case assetDeliveryState
             case assetToken
             case downloadUrl
@@ -48,7 +47,6 @@ public enum GetAppEncryptionDeclarationV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
 
         public enum AppEncryptionDeclarations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -74,7 +72,6 @@ public enum GetAppEncryptionDeclarationV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -104,7 +101,6 @@ public enum GetAppEncryptionDeclarationV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

@@ -50,7 +50,6 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
 
         public enum AppClipAdvancedExperienceLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -70,7 +69,6 @@ public enum ListAppClipAdvancedExperiencesForAppClipV1 {
             case localizations
             case place
             case placeStatus
-            case removed
             case status
             case version
         }

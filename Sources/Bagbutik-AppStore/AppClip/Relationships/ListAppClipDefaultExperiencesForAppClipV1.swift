@@ -62,7 +62,6 @@ public enum ListAppClipDefaultExperiencesForAppClipV1 {
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
-            case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
         }
 

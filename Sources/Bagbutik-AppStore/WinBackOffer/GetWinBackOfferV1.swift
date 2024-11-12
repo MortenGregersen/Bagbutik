@@ -55,7 +55,6 @@ public enum GetWinBackOfferV1 {
             case promotionIntent
             case referenceName
             case startDate
-            case subscription
         }
     }
 

@@ -35,7 +35,6 @@ public enum GetRoutingAppCoverageForAppStoreVersionV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 }

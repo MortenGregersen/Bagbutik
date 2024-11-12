@@ -55,7 +55,6 @@ public enum ListWinBackOffersForSubscriptionV1 {
             case promotionIntent
             case referenceName
             case startDate
-            case subscription
         }
     }
 

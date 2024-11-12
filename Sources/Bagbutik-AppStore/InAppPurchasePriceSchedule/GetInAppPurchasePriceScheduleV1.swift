@@ -41,14 +41,12 @@ public enum GetInAppPurchasePriceScheduleV1 {
         public enum InAppPurchasePriceSchedules: String, Sendable, ParameterValue, Codable, CaseIterable {
             case automaticPrices
             case baseTerritory
-            case inAppPurchase
             case manualPrices
         }
 
         public enum InAppPurchasePrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case endDate
             case inAppPurchasePricePoint
-            case inAppPurchaseV2
             case manual
             case startDate
             case territory
@@ -65,7 +63,6 @@ public enum GetInAppPurchasePriceScheduleV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case automaticPrices
         case baseTerritory
-        case inAppPurchase
         case manualPrices
     }
 

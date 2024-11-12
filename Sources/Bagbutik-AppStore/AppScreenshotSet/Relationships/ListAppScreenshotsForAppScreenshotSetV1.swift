@@ -54,7 +54,6 @@ public enum ListAppScreenshotsForAppScreenshotSetV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

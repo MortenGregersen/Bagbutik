@@ -40,7 +40,6 @@ public enum GetInAppPurchaseImageV1 {
             case sourceFileChecksum
             case state
             case uploadOperations
-            case uploaded
         }
     }
 

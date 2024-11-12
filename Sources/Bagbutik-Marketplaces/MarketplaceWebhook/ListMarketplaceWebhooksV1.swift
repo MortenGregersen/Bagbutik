@@ -31,7 +31,6 @@ public enum ListMarketplaceWebhooksV1 {
 
         public enum MarketplaceWebhooks: String, Sendable, ParameterValue, Codable, CaseIterable {
             case endpointUrl
-            case secret
         }
     }
 }

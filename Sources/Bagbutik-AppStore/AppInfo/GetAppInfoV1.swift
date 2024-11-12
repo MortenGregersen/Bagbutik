@@ -6,7 +6,7 @@ public extension Request {
      # Read App Info Information
      Read App Store information including your App Store state, age ratings, Brazil age rating, and kids’ age band.
 
-     For request and response examples for reading an age rating declaration, see [GET /v1/appInfos/{id}/ageRatingDeclaration](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appinfos-_id_-ageratingdeclaration).
+     For request and response examples for reading an age rating declaration, see [Read age rating declaration](https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appinfos-_id_-ageratingdeclaration).
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/get-v1-appInfos-_id_>
@@ -90,6 +90,7 @@ public enum GetAppInfoV1 {
             case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
+            case franceAgeRating
             case kidsAgeBand
             case koreaAgeRating
             case primaryCategory

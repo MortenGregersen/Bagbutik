@@ -44,7 +44,6 @@ public enum ListPricePointsForSubscriptionV1 {
             case equalizations
             case proceeds
             case proceedsYear2
-            case subscription
             case territory
         }
 

@@ -58,6 +58,7 @@ public enum ListAppInfoLocalizationsForAppInfoV1 {
             case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
+            case franceAgeRating
             case kidsAgeBand
             case koreaAgeRating
             case primaryCategory

@@ -60,13 +60,11 @@ public enum GetInAppPurchasesV2 {
             case inAppPurchaseV2
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
 
         public enum InAppPurchaseAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
-            case inAppPurchase
         }
 
         public enum InAppPurchaseContents: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -86,7 +84,6 @@ public enum GetInAppPurchasesV2 {
             case sourceFileChecksum
             case state
             case uploadOperations
-            case uploaded
         }
 
         public enum InAppPurchaseLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -99,7 +96,7 @@ public enum GetInAppPurchasesV2 {
 
         public enum InAppPurchasePricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
-            case inAppPurchaseV2
+            case equalizations
             case proceeds
             case territory
         }
@@ -107,12 +104,10 @@ public enum GetInAppPurchasesV2 {
         public enum InAppPurchasePriceSchedules: String, Sendable, ParameterValue, Codable, CaseIterable {
             case automaticPrices
             case baseTerritory
-            case inAppPurchase
             case manualPrices
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case appStoreReviewScreenshot
             case content
             case contentHosting
@@ -131,7 +126,6 @@ public enum GetInAppPurchasesV2 {
         }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case enabled
             case inAppPurchaseV2
             case promotionImages

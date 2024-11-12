@@ -38,7 +38,6 @@ public enum GetAppStoreReviewAttachmentV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

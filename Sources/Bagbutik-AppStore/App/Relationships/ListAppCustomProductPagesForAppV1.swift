@@ -52,8 +52,6 @@ public enum ListAppCustomProductPagesForAppV1 {
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
-            case appStoreVersionTemplate
-            case customProductPageTemplate
             case name
             case url
             case visible
@@ -62,7 +60,6 @@ public enum ListAppCustomProductPagesForAppV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -92,7 +89,6 @@ public enum ListAppCustomProductPagesForAppV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

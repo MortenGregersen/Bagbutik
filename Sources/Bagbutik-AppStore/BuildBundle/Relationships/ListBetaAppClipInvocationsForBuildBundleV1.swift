@@ -37,14 +37,12 @@ public enum ListBetaAppClipInvocationsForBuildBundleV1 {
         case betaAppClipInvocations([BetaAppClipInvocations])
 
         public enum BetaAppClipInvocationLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case betaAppClipInvocation
             case locale
             case title
         }
 
         public enum BetaAppClipInvocations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case betaAppClipInvocationLocalizations
-            case buildBundle
             case url
         }
     }

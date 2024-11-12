@@ -57,13 +57,6 @@ public struct GameCenterAchievementsResponse: Codable, Sendable, PagedResponse {
         }.first { $0.id == gameCenterAchievement.relationships?.gameCenterGroup?.data?.id }
     }
 
-    public func getGroupAchievement(for gameCenterAchievement: GameCenterAchievement) -> GameCenterAchievement? {
-        included?.compactMap { relationship -> GameCenterAchievement? in
-            guard case let .gameCenterAchievement(groupAchievement) = relationship else { return nil }
-            return groupAchievement
-        }.first { $0.id == gameCenterAchievement.relationships?.groupAchievement?.data?.id }
-    }
-
     public func getLocalizations(for gameCenterAchievement: GameCenterAchievement) -> [GameCenterAchievementLocalization] {
         guard let localizationIds = gameCenterAchievement.relationships?.localizations?.data?.map(\.id),
               let localizations = included?.compactMap({ relationship -> GameCenterAchievementLocalization? in

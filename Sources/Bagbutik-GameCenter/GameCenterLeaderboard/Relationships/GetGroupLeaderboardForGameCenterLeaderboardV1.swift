@@ -15,6 +15,7 @@ public extension Request {
      - Parameter limits: Number of resources to return
      - Returns: A ``Request`` to send to an instance of ``BagbutikService``
      */
+    @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
     static func getGroupLeaderboardForGameCenterLeaderboardV1(id: String,
                                                               fields: [GetGroupLeaderboardForGameCenterLeaderboardV1.Field]? = nil,
                                                               includes: [GetGroupLeaderboardForGameCenterLeaderboardV1.Include]? = nil,

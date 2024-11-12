@@ -53,7 +53,6 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
-            case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
         }
 
@@ -65,7 +64,6 @@ public enum ListAppClipDefaultExperienceLocalizationsForAppClipDefaultExperience
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

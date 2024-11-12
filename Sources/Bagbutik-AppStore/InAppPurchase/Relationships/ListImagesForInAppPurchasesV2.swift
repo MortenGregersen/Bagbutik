@@ -45,11 +45,9 @@ public enum ListImagesForInAppPurchasesV2 {
             case sourceFileChecksum
             case state
             case uploadOperations
-            case uploaded
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case appStoreReviewScreenshot
             case content
             case contentHosting

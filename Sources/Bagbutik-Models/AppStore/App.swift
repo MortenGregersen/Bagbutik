@@ -128,7 +128,6 @@ public struct App: Codable, Sendable, Identifiable {
     public struct Relationships: Codable, Sendable {
         public var alternativeDistributionKey: AlternativeDistributionKey?
         public var analyticsReportRequests: AnalyticsReportRequests?
-        public var appAvailability: AppAvailability?
         public var appAvailabilityV2: AppAvailabilityV2?
         public var appClips: AppClips?
         public var appCustomProductPages: AppCustomProductPages?
@@ -155,7 +154,6 @@ public struct App: Codable, Sendable, Identifiable {
         public var inAppPurchasesV2: InAppPurchasesV2?
         public var marketplaceSearchDetail: MarketplaceSearchDetail?
         public var perfPowerMetrics: PerfPowerMetrics?
-        public var preOrder: PreOrder?
         public var preReleaseVersions: PreReleaseVersions?
         public var promotedPurchases: PromotedPurchases?
         public var reviewSubmissions: ReviewSubmissions?
@@ -165,7 +163,6 @@ public struct App: Codable, Sendable, Identifiable {
         @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(alternativeDistributionKey: AlternativeDistributionKey? = nil,
                     analyticsReportRequests: AnalyticsReportRequests? = nil,
-                    appAvailability: AppAvailability? = nil,
                     appAvailabilityV2: AppAvailabilityV2? = nil,
                     appClips: AppClips? = nil,
                     appCustomProductPages: AppCustomProductPages? = nil,
@@ -191,7 +188,6 @@ public struct App: Codable, Sendable, Identifiable {
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     marketplaceSearchDetail: MarketplaceSearchDetail? = nil,
                     perfPowerMetrics: PerfPowerMetrics? = nil,
-                    preOrder: PreOrder? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
@@ -200,7 +196,6 @@ public struct App: Codable, Sendable, Identifiable {
         {
             self.alternativeDistributionKey = alternativeDistributionKey
             self.analyticsReportRequests = analyticsReportRequests
-            self.appAvailability = appAvailability
             self.appAvailabilityV2 = appAvailabilityV2
             self.appClips = appClips
             self.appCustomProductPages = appCustomProductPages
@@ -226,7 +221,6 @@ public struct App: Codable, Sendable, Identifiable {
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.marketplaceSearchDetail = marketplaceSearchDetail
             self.perfPowerMetrics = perfPowerMetrics
-            self.preOrder = preOrder
             self.preReleaseVersions = preReleaseVersions
             self.promotedPurchases = promotedPurchases
             self.reviewSubmissions = reviewSubmissions
@@ -236,7 +230,6 @@ public struct App: Codable, Sendable, Identifiable {
 
         public init(alternativeDistributionKey: AlternativeDistributionKey? = nil,
                     analyticsReportRequests: AnalyticsReportRequests? = nil,
-                    appAvailability: AppAvailability? = nil,
                     appAvailabilityV2: AppAvailabilityV2? = nil,
                     appClips: AppClips? = nil,
                     appCustomProductPages: AppCustomProductPages? = nil,
@@ -261,7 +254,6 @@ public struct App: Codable, Sendable, Identifiable {
                     inAppPurchasesV2: InAppPurchasesV2? = nil,
                     marketplaceSearchDetail: MarketplaceSearchDetail? = nil,
                     perfPowerMetrics: PerfPowerMetrics? = nil,
-                    preOrder: PreOrder? = nil,
                     preReleaseVersions: PreReleaseVersions? = nil,
                     promotedPurchases: PromotedPurchases? = nil,
                     reviewSubmissions: ReviewSubmissions? = nil,
@@ -270,7 +262,6 @@ public struct App: Codable, Sendable, Identifiable {
         {
             self.alternativeDistributionKey = alternativeDistributionKey
             self.analyticsReportRequests = analyticsReportRequests
-            self.appAvailability = appAvailability
             self.appAvailabilityV2 = appAvailabilityV2
             self.appClips = appClips
             self.appCustomProductPages = appCustomProductPages
@@ -295,7 +286,6 @@ public struct App: Codable, Sendable, Identifiable {
             self.inAppPurchasesV2 = inAppPurchasesV2
             self.marketplaceSearchDetail = marketplaceSearchDetail
             self.perfPowerMetrics = perfPowerMetrics
-            self.preOrder = preOrder
             self.preReleaseVersions = preReleaseVersions
             self.promotedPurchases = promotedPurchases
             self.reviewSubmissions = reviewSubmissions
@@ -307,7 +297,6 @@ public struct App: Codable, Sendable, Identifiable {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
             alternativeDistributionKey = try container.decodeIfPresent(AlternativeDistributionKey.self, forKey: "alternativeDistributionKey")
             analyticsReportRequests = try container.decodeIfPresent(AnalyticsReportRequests.self, forKey: "analyticsReportRequests")
-            appAvailability = try container.decodeIfPresent(AppAvailability.self, forKey: "appAvailability")
             appAvailabilityV2 = try container.decodeIfPresent(AppAvailabilityV2.self, forKey: "appAvailabilityV2")
             appClips = try container.decodeIfPresent(AppClips.self, forKey: "appClips")
             appCustomProductPages = try container.decodeIfPresent(AppCustomProductPages.self, forKey: "appCustomProductPages")
@@ -333,7 +322,6 @@ public struct App: Codable, Sendable, Identifiable {
             inAppPurchasesV2 = try container.decodeIfPresent(InAppPurchasesV2.self, forKey: "inAppPurchasesV2")
             marketplaceSearchDetail = try container.decodeIfPresent(MarketplaceSearchDetail.self, forKey: "marketplaceSearchDetail")
             perfPowerMetrics = try container.decodeIfPresent(PerfPowerMetrics.self, forKey: "perfPowerMetrics")
-            preOrder = try container.decodeIfPresent(PreOrder.self, forKey: "preOrder")
             preReleaseVersions = try container.decodeIfPresent(PreReleaseVersions.self, forKey: "preReleaseVersions")
             promotedPurchases = try container.decodeIfPresent(PromotedPurchases.self, forKey: "promotedPurchases")
             reviewSubmissions = try container.decodeIfPresent(ReviewSubmissions.self, forKey: "reviewSubmissions")
@@ -345,7 +333,6 @@ public struct App: Codable, Sendable, Identifiable {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
             try container.encodeIfPresent(alternativeDistributionKey, forKey: "alternativeDistributionKey")
             try container.encodeIfPresent(analyticsReportRequests, forKey: "analyticsReportRequests")
-            try container.encodeIfPresent(appAvailability, forKey: "appAvailability")
             try container.encodeIfPresent(appAvailabilityV2, forKey: "appAvailabilityV2")
             try container.encodeIfPresent(appClips, forKey: "appClips")
             try container.encodeIfPresent(appCustomProductPages, forKey: "appCustomProductPages")
@@ -371,7 +358,6 @@ public struct App: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(inAppPurchasesV2, forKey: "inAppPurchasesV2")
             try container.encodeIfPresent(marketplaceSearchDetail, forKey: "marketplaceSearchDetail")
             try container.encodeIfPresent(perfPowerMetrics, forKey: "perfPowerMetrics")
-            try container.encodeIfPresent(preOrder, forKey: "preOrder")
             try container.encodeIfPresent(preReleaseVersions, forKey: "preReleaseVersions")
             try container.encodeIfPresent(promotedPurchases, forKey: "promotedPurchases")
             try container.encodeIfPresent(reviewSubmissions, forKey: "reviewSubmissions")
@@ -398,24 +384,6 @@ public struct App: Codable, Sendable, Identifiable {
         }
 
         public struct AnalyticsReportRequests: Codable, Sendable {
-            public var links: RelationshipLinks?
-
-            public init(links: RelationshipLinks? = nil) {
-                self.links = links
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encodeIfPresent(links, forKey: "links")
-            }
-        }
-
-        public struct AppAvailability: Codable, Sendable {
             public var links: RelationshipLinks?
 
             public init(links: RelationshipLinks? = nil) {
@@ -1467,53 +1435,6 @@ public struct App: Codable, Sendable, Identifiable {
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: AnyCodingKey.self)
                 try container.encodeIfPresent(links, forKey: "links")
-            }
-        }
-
-        public struct PreOrder: Codable, Sendable {
-            @NullCodable public var data: Data?
-            public var links: RelationshipLinks?
-
-            public init(data: Data? = nil,
-                        links: RelationshipLinks? = nil)
-            {
-                self.data = data
-                self.links = links
-            }
-
-            public init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                data = try container.decodeIfPresent(Data.self, forKey: "data")
-                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
-            }
-
-            public func encode(to encoder: Encoder) throws {
-                var container = encoder.container(keyedBy: AnyCodingKey.self)
-                try container.encode(data, forKey: "data")
-                try container.encodeIfPresent(links, forKey: "links")
-            }
-
-            public struct Data: Codable, Sendable, Identifiable {
-                public let id: String
-                public var type: String { "appPreOrders" }
-
-                public init(id: String) {
-                    self.id = id
-                }
-
-                public init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: AnyCodingKey.self)
-                    id = try container.decode(String.self, forKey: "id")
-                    if try container.decode(String.self, forKey: "type") != type {
-                        throw DecodingError.dataCorruptedError(forKey: "type", in: container, debugDescription: "Not matching \(type)")
-                    }
-                }
-
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: AnyCodingKey.self)
-                    try container.encode(id, forKey: "id")
-                    try container.encode(type, forKey: "type")
-                }
             }
         }
 

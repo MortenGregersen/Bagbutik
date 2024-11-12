@@ -32,7 +32,6 @@ public enum ListBundleIdCapabilitiesForBundleIdV1 {
         case bundleIdCapabilities([BundleIdCapabilities])
 
         public enum BundleIdCapabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case bundleId
             case capabilityType
             case settings
         }

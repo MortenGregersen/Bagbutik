@@ -39,7 +39,6 @@ public enum GetInAppPurchaseAvailabilityV1 {
         public enum InAppPurchaseAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
-            case inAppPurchase
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {

@@ -43,11 +43,9 @@ public enum GetAppStoreReviewScreenshotForInAppPurchasesV2 {
             case inAppPurchaseV2
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case appStoreReviewScreenshot
             case content
             case contentHosting

@@ -38,7 +38,6 @@ public enum GetGameCenterLeaderboardSetImageV1 {
             case gameCenterLeaderboardSetLocalization
             case imageAsset
             case uploadOperations
-            case uploaded
         }
     }
 

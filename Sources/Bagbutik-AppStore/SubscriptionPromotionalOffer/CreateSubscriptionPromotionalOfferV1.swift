@@ -6,6 +6,8 @@ public extension Request {
      # Create a Promotional Offer
      Create a promotional offer for an auto-renewable subscription.
 
+     <<<<<<< HEAD
+
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/post-v1-subscriptionPromotionalOffers>
 

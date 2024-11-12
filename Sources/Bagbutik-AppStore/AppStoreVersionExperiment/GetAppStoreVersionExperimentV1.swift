@@ -54,7 +54,6 @@ public enum GetAppStoreVersionExperimentV1 {
             case name
             case reviewRequired
             case startDate
-            case started
             case state
             case trafficProportion
         }

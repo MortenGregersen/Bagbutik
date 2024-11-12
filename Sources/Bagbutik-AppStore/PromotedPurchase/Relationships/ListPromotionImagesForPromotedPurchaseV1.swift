@@ -47,11 +47,9 @@ public enum ListPromotionImagesForPromotedPurchaseV1 {
             case sourceFileChecksum
             case state
             case uploadOperations
-            case uploaded
         }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case enabled
             case inAppPurchaseV2
             case promotionImages

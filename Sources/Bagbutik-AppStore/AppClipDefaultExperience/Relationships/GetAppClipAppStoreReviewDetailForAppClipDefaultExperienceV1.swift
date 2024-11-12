@@ -43,7 +43,6 @@ public enum GetAppClipAppStoreReviewDetailForAppClipDefaultExperienceV1 {
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
-            case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
         }
     }

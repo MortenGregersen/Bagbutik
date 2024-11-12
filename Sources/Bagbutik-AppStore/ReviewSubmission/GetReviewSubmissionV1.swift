@@ -42,21 +42,16 @@ public enum GetReviewSubmissionV1 {
             case appStoreVersion
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
-            case removed
-            case resolved
-            case reviewSubmission
             case state
         }
 
         public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionForReview
-            case canceled
             case items
             case lastUpdatedByActor
             case platform
             case state
-            case submitted
             case submittedByActor
             case submittedDate
         }

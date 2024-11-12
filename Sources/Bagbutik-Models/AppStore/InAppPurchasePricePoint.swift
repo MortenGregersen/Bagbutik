@@ -64,20 +64,44 @@ public struct InAppPurchasePricePoint: Codable, Sendable, Identifiable {
     }
 
     public struct Relationships: Codable, Sendable {
+        public var equalizations: Equalizations?
         public var territory: Territory?
 
-        public init(territory: Territory? = nil) {
+        public init(equalizations: Equalizations? = nil,
+                    territory: Territory? = nil)
+        {
+            self.equalizations = equalizations
             self.territory = territory
         }
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: AnyCodingKey.self)
+            equalizations = try container.decodeIfPresent(Equalizations.self, forKey: "equalizations")
             territory = try container.decodeIfPresent(Territory.self, forKey: "territory")
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: AnyCodingKey.self)
+            try container.encodeIfPresent(equalizations, forKey: "equalizations")
             try container.encodeIfPresent(territory, forKey: "territory")
+        }
+
+        public struct Equalizations: Codable, Sendable {
+            public var links: RelationshipLinks?
+
+            public init(links: RelationshipLinks? = nil) {
+                self.links = links
+            }
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: AnyCodingKey.self)
+                links = try container.decodeIfPresent(RelationshipLinks.self, forKey: "links")
+            }
+
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: AnyCodingKey.self)
+                try container.encodeIfPresent(links, forKey: "links")
+            }
         }
 
         public struct Territory: Codable, Sendable {

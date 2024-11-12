@@ -38,7 +38,6 @@ public enum GetGameCenterAchievementImageV1 {
             case gameCenterAchievementLocalization
             case imageAsset
             case uploadOperations
-            case uploaded
         }
     }
 

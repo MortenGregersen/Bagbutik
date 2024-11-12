@@ -34,7 +34,6 @@ public enum ListCertificatesForProfileV1 {
         public enum Certificates: String, Sendable, ParameterValue, Codable, CaseIterable {
             case certificateContent
             case certificateType
-            case csrContent
             case displayName
             case expirationDate
             case name

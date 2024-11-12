@@ -35,7 +35,6 @@ public enum ListTeamsForGameCenterMatchmakingRuleSetV1 {
             case maxPlayers
             case minPlayers
             case referenceName
-            case ruleSet
         }
     }
 }

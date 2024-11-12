@@ -41,7 +41,7 @@ public enum ListPricePointsForInAppPurchasesV2 {
 
         public enum InAppPurchasePricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
-            case inAppPurchaseV2
+            case equalizations
             case proceeds
             case territory
         }
@@ -63,6 +63,7 @@ public enum ListPricePointsForInAppPurchasesV2 {
      Relationship data to include in the response.
      */
     public enum Include: String, IncludeParameter, CaseIterable {
+        case equalizations
         case territory
     }
 }

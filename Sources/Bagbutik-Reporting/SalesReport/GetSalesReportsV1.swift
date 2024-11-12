@@ -64,6 +64,7 @@ public enum GetSalesReportsV1 {
             case subscription = "SUBSCRIPTION"
             case subscriptionEvent = "SUBSCRIPTION_EVENT"
             case subscriptionOfferCodeRedemption = "SUBSCRIPTION_OFFER_CODE_REDEMPTION"
+            case winBackEligibility = "WIN_BACK_ELIGIBILITY"
         }
     }
 }
