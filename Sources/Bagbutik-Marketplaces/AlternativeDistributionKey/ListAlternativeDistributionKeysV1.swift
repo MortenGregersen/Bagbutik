@@ -33,7 +33,6 @@ public enum ListAlternativeDistributionKeysV1 {
         case alternativeDistributionKeys([AlternativeDistributionKeys])
 
         public enum AlternativeDistributionKeys: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case publicKey
         }
     }

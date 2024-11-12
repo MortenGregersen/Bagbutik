@@ -48,9 +48,6 @@ public enum ListAppsV1 {
         case appEvents([AppEvents])
         /// The fields to include for returned resources of type appInfos
         case appInfos([AppInfos])
-        /// The fields to include for returned resources of type appPreOrders
-        @available(*, deprecated, message: "Apple has marked it as deprecated and it will be removed sometime in the future.")
-        case appPreOrders([AppPreOrders])
         /// The fields to include for returned resources of type appStoreVersionExperiments
         case appStoreVersionExperiments([AppStoreVersionExperiments])
         /// The fields to include for returned resources of type appStoreVersions
@@ -99,8 +96,6 @@ public enum ListAppsV1 {
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
-            case appStoreVersionTemplate
-            case customProductPageTemplate
             case name
             case url
             case visible
@@ -127,7 +122,6 @@ public enum ListAppsV1 {
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case archivedTerritorySchedules
             case badge
             case deepLink
@@ -150,6 +144,7 @@ public enum ListAppsV1 {
             case australiaAgeRating
             case brazilAgeRating
             case brazilAgeRatingV2
+            case franceAgeRating
             case kidsAgeBand
             case koreaAgeRating
             case primaryCategory
@@ -159,12 +154,6 @@ public enum ListAppsV1 {
             case secondarySubcategoryOne
             case secondarySubcategoryTwo
             case state
-        }
-
-        public enum AppPreOrders: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
-            case appReleaseDate
-            case preOrderAvailableDate
         }
 
         public enum AppStoreVersionExperiments: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -177,7 +166,6 @@ public enum ListAppsV1 {
             case platform
             case reviewRequired
             case startDate
-            case started
             case state
             case trafficProportion
         }
@@ -212,7 +200,6 @@ public enum ListAppsV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -242,7 +229,6 @@ public enum ListAppsV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
@@ -371,7 +357,6 @@ public enum ListAppsV1 {
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case appStoreReviewScreenshot
             case apps
             case content
@@ -399,7 +384,6 @@ public enum ListAppsV1 {
         }
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case enabled
             case inAppPurchaseV2
             case promotionImages
@@ -411,12 +395,10 @@ public enum ListAppsV1 {
         public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionForReview
-            case canceled
             case items
             case lastUpdatedByActor
             case platform
             case state
-            case submitted
             case submittedByActor
             case submittedDate
         }
@@ -429,7 +411,6 @@ public enum ListAppsV1 {
         }
 
         public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
@@ -486,7 +467,6 @@ public enum ListAppsV1 {
     public enum Include: String, IncludeParameter, CaseIterable {
         case alternativeDistributionKey
         case analyticsReportRequests
-        case appAvailability
         case appAvailabilityV2
         case appClips
         case appCustomProductPages
@@ -512,7 +492,6 @@ public enum ListAppsV1 {
         case inAppPurchasesV2
         case marketplaceSearchDetail
         case perfPowerMetrics
-        case preOrder
         case preReleaseVersions
         case promotedPurchases
         case reviewSubmissions

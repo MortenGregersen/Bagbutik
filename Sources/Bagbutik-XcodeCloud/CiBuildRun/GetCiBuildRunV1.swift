@@ -67,10 +67,8 @@ public enum GetCiBuildRunV1 {
 
         public enum CiBuildRuns: String, Sendable, ParameterValue, Codable, CaseIterable {
             case actions
-            case buildRun
             case builds
             case cancelReason
-            case clean
             case completionStatus
             case createdDate
             case destinationBranch

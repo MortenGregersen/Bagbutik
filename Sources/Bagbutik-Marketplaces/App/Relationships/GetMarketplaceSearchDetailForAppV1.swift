@@ -29,7 +29,6 @@ public enum GetMarketplaceSearchDetailForAppV1 {
         case marketplaceSearchDetails([MarketplaceSearchDetails])
 
         public enum MarketplaceSearchDetails: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case catalogUrl
         }
     }

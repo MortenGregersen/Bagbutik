@@ -85,7 +85,6 @@ public enum ListAppStoreVersionsForAppV1 {
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
             case versions
         }
 
@@ -94,7 +93,6 @@ public enum ListAppStoreVersionsForAppV1 {
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
-            case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
         }
 
@@ -122,7 +120,6 @@ public enum ListAppStoreVersionsForAppV1 {
             case platform
             case reviewRequired
             case startDate
-            case started
             case state
             case trafficProportion
         }
@@ -141,7 +138,6 @@ public enum ListAppStoreVersionsForAppV1 {
         }
 
         public enum AppStoreVersionPhasedReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
             case startDate
@@ -182,7 +178,6 @@ public enum ListAppStoreVersionsForAppV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -212,7 +207,6 @@ public enum ListAppStoreVersionsForAppV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
@@ -267,7 +261,6 @@ public enum ListAppStoreVersionsForAppV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

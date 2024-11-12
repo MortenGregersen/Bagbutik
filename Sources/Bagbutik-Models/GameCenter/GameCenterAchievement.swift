@@ -93,10 +93,12 @@ public struct GameCenterAchievement: Codable, Sendable, Identifiable {
     public struct Relationships: Codable, Sendable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
-        public var groupAchievement: GroupAchievement?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var groupAchievement: GroupAchievement? = nil
         public var localizations: Localizations?
         public var releases: Releases?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     groupAchievement: GroupAchievement? = nil,
@@ -106,6 +108,17 @@ public struct GameCenterAchievement: Codable, Sendable, Identifiable {
             self.gameCenterDetail = gameCenterDetail
             self.gameCenterGroup = gameCenterGroup
             self.groupAchievement = groupAchievement
+            self.localizations = localizations
+            self.releases = releases
+        }
+
+        public init(gameCenterDetail: GameCenterDetail? = nil,
+                    gameCenterGroup: GameCenterGroup? = nil,
+                    localizations: Localizations? = nil,
+                    releases: Releases? = nil)
+        {
+            self.gameCenterDetail = gameCenterDetail
+            self.gameCenterGroup = gameCenterGroup
             self.localizations = localizations
             self.releases = releases
         }

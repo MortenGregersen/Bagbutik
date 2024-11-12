@@ -217,13 +217,6 @@ public struct AppResponse: Codable, Sendable {
         return inAppPurchasesV2
     }
 
-    public func getPreOrder() -> AppPreOrder? {
-        included?.compactMap { relationship -> AppPreOrder? in
-            guard case let .appPreOrder(preOrder) = relationship else { return nil }
-            return preOrder
-        }.first { $0.id == data.relationships?.preOrder?.data?.id }
-    }
-
     public func getPreReleaseVersions() -> [PrereleaseVersion] {
         guard let preReleaseVersionIds = data.relationships?.preReleaseVersions?.data?.map(\.id),
               let preReleaseVersions = included?.compactMap({ relationship -> PrereleaseVersion? in
@@ -285,7 +278,6 @@ public struct AppResponse: Codable, Sendable {
         case appEncryptionDeclaration(AppEncryptionDeclaration)
         case appEvent(AppEvent)
         case appInfo(AppInfo)
-        case appPreOrder(AppPreOrder)
         case appStoreVersion(AppStoreVersion)
         case appStoreVersionExperimentV2(AppStoreVersionExperimentV2)
         case betaAppLocalization(BetaAppLocalization)
@@ -316,8 +308,6 @@ public struct AppResponse: Codable, Sendable {
                 self = .appEvent(appEvent)
             } else if let appInfo = try? AppInfo(from: decoder) {
                 self = .appInfo(appInfo)
-            } else if let appPreOrder = try? AppPreOrder(from: decoder) {
-                self = .appPreOrder(appPreOrder)
             } else if let appStoreVersion = try? AppStoreVersion(from: decoder) {
                 self = .appStoreVersion(appStoreVersion)
             } else if let appStoreVersionExperimentV2 = try? AppStoreVersionExperimentV2(from: decoder) {
@@ -371,8 +361,6 @@ public struct AppResponse: Codable, Sendable {
             case let .appEvent(value):
                 try value.encode(to: encoder)
             case let .appInfo(value):
-                try value.encode(to: encoder)
-            case let .appPreOrder(value):
                 try value.encode(to: encoder)
             case let .appStoreVersion(value):
                 try value.encode(to: encoder)

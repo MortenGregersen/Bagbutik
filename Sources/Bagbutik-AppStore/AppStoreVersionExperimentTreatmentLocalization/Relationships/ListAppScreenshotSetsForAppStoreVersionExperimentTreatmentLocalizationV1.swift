@@ -70,7 +70,6 @@ public enum ListAppScreenshotSetsForAppStoreVersionExperimentTreatmentLocalizati
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
 
         public enum AppStoreVersionExperimentTreatmentLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {

@@ -40,7 +40,6 @@ public enum GetSubscriptionImageV1 {
             case state
             case subscription
             case uploadOperations
-            case uploaded
         }
     }
 

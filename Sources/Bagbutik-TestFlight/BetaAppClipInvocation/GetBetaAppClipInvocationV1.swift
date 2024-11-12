@@ -36,7 +36,6 @@ public enum GetBetaAppClipInvocationV1 {
 
         public enum BetaAppClipInvocations: String, Sendable, ParameterValue, Codable, CaseIterable {
             case betaAppClipInvocationLocalizations
-            case buildBundle
             case url
         }
     }

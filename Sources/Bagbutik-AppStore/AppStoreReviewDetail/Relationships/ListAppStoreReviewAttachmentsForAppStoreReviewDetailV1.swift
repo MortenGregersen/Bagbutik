@@ -43,7 +43,6 @@ public enum ListAppStoreReviewAttachmentsForAppStoreReviewDetailV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
 
         public enum AppStoreReviewDetails: String, Sendable, ParameterValue, Codable, CaseIterable {

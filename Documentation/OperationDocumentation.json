@@ -4132,7 +4132,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : " Possible values:",
                     "type" : "text"
                   }
                 ],
@@ -5301,530 +5301,6 @@
           }
         ],
         "kind" : "restResponses"
-      }
-    ]
-  },
-  "appAvailabilities_availableTerritories_getToManyRelated" : {
-    "abstract" : [
-      {
-        "text" : "List all the territories where an app is available."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/apps"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/GET-v1-appAvailabilities-_id_-availableTerritories"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "List territory availability for an app"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the app resource ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-apps) response.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[territories]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "limit"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "query"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "OK",
-            "status" : 200
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          }
-        ],
-        "kind" : "restResponses"
-      },
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "content"
-      }
-    ]
-  },
-  "appAvailabilities_createInstance" : {
-    "abstract" : [
-      {
-        "text" : "Update the territories where an app will be available."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/apps"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/POST-v1-appAvailabilities"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Modify territory availability for an app"
-    },
-    "primaryContentSections" : [
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "restBody"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Created",
-            "status" : 201
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Conflict",
-            "status" : 409
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "status" : 422
-          }
-        ],
-        "kind" : "restResponses"
-      },
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "content"
-      }
-    ]
-  },
-  "appAvailabilities_getInstance" : {
-    "abstract" : [
-      {
-        "text" : "Get a list of availabilities for a specific app."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/apps"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/GET-v1-appAvailabilities-_id_"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Read the availability for an app"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the app resource ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-apps) response.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appAvailabilities]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[territories]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "include"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "limit[availableTerritories]"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "query"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "OK",
-            "status" : 200
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          }
-        ],
-        "kind" : "restResponses"
-      },
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "content"
       }
     ]
   },
@@ -20049,7 +19525,7 @@
     },
     "metadata" : {
       "symbolKind" : "operation",
-      "title" : "GET \/v1\/appInfos\/{id}\/ageRatingDeclaration"
+      "title" : "Read age rating declaration"
     },
     "primaryContentSections" : [
       {
@@ -20618,7 +20094,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "For request and response examples for reading an age rating declaration, see [GET \/v1\/appInfos\/{id}\/ageRatingDeclaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-appinfos-_id_-ageratingdeclaration).",
+                "text" : "For request and response examples for reading an age rating declaration, see [Read age rating declaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-appinfos-_id_-ageratingdeclaration).",
                 "type" : "text"
               }
             ],
@@ -21866,610 +21342,6 @@
           }
         ],
         "kind" : "content"
-      }
-    ]
-  },
-  "appPreOrders_createInstance" : {
-    "abstract" : [
-      {
-        "text" : "Turn on pre-order and set the expected app release date."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-pre-orders"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/POST-v1-appPreOrders"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Create an App Pre-Order V1"
-    },
-    "primaryContentSections" : [
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "restBody"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Created",
-            "status" : 201
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An error occurred with your request.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Request not authorized.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "The provided resource data is not valid.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Conflict",
-            "status" : 409
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "status" : 422
-          }
-        ],
-        "kind" : "restResponses"
-      }
-    ]
-  },
-  "appPreOrders_deleteInstance" : {
-    "abstract" : [
-      {
-        "text" : "Cancel a planned app pre-order that has not begun."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-pre-orders"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/DELETE-v1-appPreOrders-_id_"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Delete an App Pre-Order"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "No Content",
-            "status" : 204
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An error occurred with your request.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Request not authorized.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Resource not found.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "The provided resource data is not valid.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Conflict",
-            "status" : 409
-          }
-        ],
-        "kind" : "restResponses"
-      }
-    ]
-  },
-  "appPreOrders_getInstance" : {
-    "abstract" : [
-      {
-        "text" : "Get information about your app’s pre-order configuration."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-pre-orders"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/GET-v1-appPreOrders-_id_"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Read App Pre-Order Information"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appPreOrders]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "include"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "query"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "OK",
-            "status" : 200
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An error occurred with your request.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Request not authorized.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Resource not found.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          }
-        ],
-        "kind" : "restResponses"
-      }
-    ]
-  },
-  "appPreOrders_updateInstance" : {
-    "abstract" : [
-      {
-        "text" : "Update the release date for your app pre-order."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-pre-orders"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/PATCH-v1-appPreOrders-_id_"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Modify an App Pre-Order V1"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "restBody"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "OK",
-            "status" : 200
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An error occurred with your request.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Request not authorized.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Resource not found.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "The provided resource data is not valid.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Conflict",
-            "status" : 409
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "status" : 422
-          }
-        ],
-        "kind" : "restResponses"
       }
     ]
   },
@@ -37878,7 +36750,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Deprecated. To get age rating declarations, use  [GET \/v1\/appInfos\/{id}\/ageRatingDeclaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-appinfos-_id_-ageratingdeclaration) instead.",
+                    "text" : "Deprecated. To get age rating declarations, use  [Read age rating declaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-appinfos-_id_-ageratingdeclaration) instead.",
                     "type" : "text"
                   }
                 ],
@@ -39081,222 +37953,6 @@
           }
         ],
         "kind" : "restResponses"
-      }
-    ]
-  },
-  "apps_appAvailability_getToOneRelated" : {
-    "abstract" : [
-      {
-        "text" : "Get a list of availabilities for a specific app."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/apps"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/GET-v1-apps-_id_-appAvailability"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "List availability for an app V1"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the app resource ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-apps) response.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appAvailabilities]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[apps]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[territories]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "include"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "limit[availableTerritories]"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "query"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "OK",
-            "status" : 200
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          }
-        ],
-        "kind" : "restResponses"
-      },
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "content"
       }
     ]
   },
@@ -41329,7 +39985,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Deprecated. To get age rating declarations, use [GET \/v1\/appInfos\/{id}\/ageRatingDeclaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-appinfos-_id_-ageratingdeclaration) instead.",
+                    "text" : "Deprecated. To get age rating declarations, use [Read age rating declaration](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-appinfos-_id_-ageratingdeclaration) instead.",
                     "type" : "text"
                   }
                 ],
@@ -44399,20 +43055,6 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "Fields to return for included related types.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appPreOrders]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
                     "text" : "",
                     "type" : "text"
                   }
@@ -44679,7 +43321,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "This filter is deprecated.",
                     "type" : "text"
                   }
                 ],
@@ -45280,20 +43922,6 @@
               }
             ],
             "name" : "fields[appInfos]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appPreOrders]"
           },
           {
             "content" : [
@@ -46877,172 +45505,6 @@
             "inlineContent" : [
               {
                 "text" : "The example below requests iOS app launch metrics on all iPhones for the most-recent app versions. To get metrics for a specific app version instead, use the [Get Power and Performance Metrics for a Build](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-builds-_id_-perfpowermetrics) endpoint.",
-                "type" : "text"
-              }
-            ],
-            "type" : "paragraph"
-          }
-        ],
-        "kind" : "content"
-      }
-    ]
-  },
-  "apps_preOrder_getToOneRelated" : {
-    "abstract" : [
-      {
-        "text" : "Get the available date and release date of an app that’s available for pre-order."
-      }
-    ],
-    "hierarchy" : {
-      "paths" : [
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-pre-orders"
-        ],
-        [
-          "doc:\/\/com.apple.documentation\/documentation\/technologies",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
-          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/apps"
-        ]
-      ]
-    },
-    "identifier" : {
-      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/GET-v1-apps-_id_-preOrder"
-    },
-    "metadata" : {
-      "symbolKind" : "operation",
-      "title" : "Read the Pre-Order Information of an App"
-    },
-    "primaryContentSections" : [
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the app resource ID from the [List Apps](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-apps) response.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "id"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "path"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Fields to return for included related types.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appPreOrders]"
-          }
-        ],
-        "kind" : "restParameters",
-        "source" : "query"
-      },
-      {
-        "items" : [
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "OK",
-            "status" : 200
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "An error occurred with your request.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Bad Request",
-            "status" : 400
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Unauthorized",
-            "status" : 401
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Request not authorized.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Forbidden",
-            "status" : 403
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "Resource not found.",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "reason" : "Not Found",
-            "status" : 404
-          }
-        ],
-        "kind" : "restResponses"
-      },
-      {
-        "content" : [
-          {
-            "inlineContent" : [
-              {
-                "text" : "",
                 "type" : "text"
               }
             ],
@@ -50022,6 +48484,20 @@
           }
         ],
         "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
       }
     ]
   },
@@ -50524,7 +49000,7 @@
   "betaAppLocalizations_updateInstance" : {
     "abstract" : [
       {
-        "text" : "Update the localized What’s New text for a specific app and locale."
+        "text" : "Update the localized information for a specific beta app and locale."
       }
     ],
     "hierarchy" : {
@@ -50552,7 +49028,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "An opaque resource ID that uniquely identifies the resource.",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `betaAppLocalizations` resource ID from the [List Beta App Localizations](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-betaapplocalizations) response.",
                     "type" : "text"
                   }
                 ],
@@ -50687,6 +49163,20 @@
           }
         ],
         "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
       }
     ]
   },
@@ -51343,6 +49833,20 @@
           }
         ],
         "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
       }
     ]
   },
@@ -51623,6 +50127,20 @@
           }
         ],
         "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
       }
     ]
   },
@@ -70739,20 +69257,6 @@
               }
             ],
             "name" : "fields[appInfos]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[appPreOrders]"
           },
           {
             "content" : [
@@ -91985,7 +90489,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "",
+                "text" : "Use leaderboard formatters to specify the unit of measurement for a Game Center leaderboard. There is a new required attribute `defaultFormatter` when you use [Create a leaderboard](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/post-v1-gamecenterleaderboards), which gives all your localizations the same formatter. You can also optionally use `formatterOverride` to override a specific leaderboard localization when calling [Create a leaderboard localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/post-v1-gamecenterleaderboardlocalizations) or [Modify a leaderboard localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/patch-v1-gamecenterleaderboardlocalizations-_id_).\nBefore App Store Connect API version 3.0, formatters were based on localizations and were required for each localization. Legacy leaderboards created before the new addition of the Game Center APIs will not have a `defaultFormatter` value, the value would be `null` in this case. Any localizations created before the new addition of the Game Center APIs will always have a `formatterOverride`.",
                 "type" : "text"
               }
             ],
@@ -92699,7 +91203,7 @@
           {
             "inlineContent" : [
               {
-                "text" : "",
+                "text" : "Use leaderboard formatters to specify the unit of measurement for a Game Center leaderboard. There is a new required attribute `defaultFormatter` when you use [Create a leaderboard](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/post-v1-gamecenterleaderboards), which gives all your localizations the same formatter. You can also optionally use `formatterOverride` to override a specific leaderboard localization when calling [Create a leaderboard localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/post-v1-gamecenterleaderboardlocalizations) or [Modify a leaderboard localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/patch-v1-gamecenterleaderboardlocalizations-_id_).\nBefore App Store Connect API version 3.0, formatters were based on localizations and were required for each localization. Legacy leaderboards created before the new addition of the Game Center APIs will not have a `defaultFormatter` value, the value would be `null` in this case. Any localizations created before the new addition of the Game Center APIs will always have a `formatterOverride`.",
                 "type" : "text"
               }
             ],
@@ -100476,6 +98980,20 @@
           }
         ],
         "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "Use leaderboard formatters to specify the unit of measurement for a Game Center leaderboard. There is a new required attribute `defaultFormatter` when you use [Create a leaderboard](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/post-v1-gamecenterleaderboards), which gives all your localizations the same formatter. You can also optionally use `formatterOverride` to override a specific leaderboard localization when calling [Create a leaderboard localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/post-v1-gamecenterleaderboardlocalizations) or [Modify a leaderboard localization](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/patch-v1-gamecenterleaderboardlocalizations-_id_).\nBefore App Store Connect API version 3.0, formatters were based on localizations and were required for each localization. Legacy leaderboards created before the new addition of the Game Center APIs will not have a `defaultFormatter` value, the value would be `null` in this case. Any localizations created before the new addition of the Game Center APIs will always have a `formatterOverride`.",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
       }
     ]
   },
@@ -107016,7 +105534,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `inAppPurchaseImages` resource ID from the [List in-app purchase images](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v2-inapppurchases-_id_-images) response.",
                     "type" : "text"
                   }
                 ],
@@ -107172,7 +105690,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `inAppPurchaseImages` resource ID from the [List in-app purchase images](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v2-inapppurchases-_id_-images) response.",
                     "type" : "text"
                   }
                 ],
@@ -107333,7 +105851,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `inAppPurchaseImages` resource ID from the [List in-app purchase images](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v2-inapppurchases-_id_-images) response.",
                     "type" : "text"
                   }
                 ],
@@ -108118,6 +106636,238 @@
           }
         ],
         "kind" : "content"
+      }
+    ]
+  },
+  "inAppPurchasePricePoints_equalizations_getToManyRelated" : {
+    "abstract" : [
+      {
+        "text" : "Get a list of in-app purchase price points and their equivalent in a specified currency."
+      }
+    ],
+    "hierarchy" : {
+      "paths" : [
+        [
+          "doc:\/\/com.apple.documentation\/documentation\/technologies",
+          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI",
+          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/app-store",
+          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/in-app-purchase",
+          "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/in-app-purchases"
+        ]
+      ]
+    },
+    "identifier" : {
+      "url" : "doc:\/\/com.apple.appstoreconnectapi\/documentation\/AppStoreConnectAPI\/GET-v1-inAppPurchasePricePoints-_id_-equalizations"
+    },
+    "metadata" : {
+      "symbolKind" : "operation",
+      "title" : "List all in-app purchase price point equalizations"
+    },
+    "primaryContentSections" : [
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the in-app purchase price point resource ID from the [List All Price Points for an In-App Purchase](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v2-inapppurchases-_id_-pricepoints) response.",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "id"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "path"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[inAppPurchasePricePoints]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "fields[territories]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "filter[inAppPurchaseV2]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "filter[territory]"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "include"
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "name" : "limit"
+          }
+        ],
+        "kind" : "restParameters",
+        "source" : "query"
+      },
+      {
+        "items" : [
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "OK",
+            "status" : 200
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Bad Request",
+            "status" : 400
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Unauthorized",
+            "status" : 401
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Forbidden",
+            "status" : 403
+          },
+          {
+            "content" : [
+              {
+                "inlineContent" : [
+                  {
+                    "text" : "",
+                    "type" : "text"
+                  }
+                ],
+                "type" : "paragraph"
+              }
+            ],
+            "reason" : "Not Found",
+            "status" : 404
+          }
+        ],
+        "kind" : "restResponses"
       }
     ]
   },
@@ -110288,20 +109038,6 @@
                 "type" : "paragraph"
               }
             ],
-            "name" : "fields[inAppPurchases]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
             "name" : "fields[territories]"
           },
           {
@@ -110464,7 +109200,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `inAppPurchases` resource ID from the [List All In-App Purchases for an App](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-apps-_id_-inapppurchasesv2) response.",
                     "type" : "text"
                   }
                 ],
@@ -125039,7 +123775,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `subscriptionImages` resource ID from the [List subscription images](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-subscriptions-_id_-images) response.",
                     "type" : "text"
                   }
                 ],
@@ -125195,7 +123931,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `subscriptionImages` resource ID from the [List subscription images](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-subscriptions-_id_-images) response.",
                     "type" : "text"
                   }
                 ],
@@ -125356,7 +124092,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `subscriptionImages` resource ID from the [List subscription images](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-subscriptions-_id_-images) response.",
                     "type" : "text"
                   }
                 ],
@@ -129652,6 +128388,20 @@
           }
         ],
         "kind" : "restResponses"
+      },
+      {
+        "content" : [
+          {
+            "inlineContent" : [
+              {
+                "text" : "<<<<<<< HEAD",
+                "type" : "text"
+              }
+            ],
+            "type" : "paragraph"
+          }
+        ],
+        "kind" : "content"
       }
     ]
   },
@@ -131426,7 +130176,7 @@
               {
                 "inlineContent" : [
                   {
-                    "text" : "",
+                    "text" : "An opaque resource ID that uniquely identifies the resource. Obtain the `subscriptions` resource ID from the [List All Subscriptions for a Subscription Group](https:\/\/developer.apple.com\/documentation\/appstoreconnectapi\/get-v1-subscriptiongroups-_id_-subscriptions) response.",
                     "type" : "text"
                   }
                 ],
@@ -133689,20 +132439,6 @@
               }
             ],
             "name" : "fields[subscriptionAvailabilities]"
-          },
-          {
-            "content" : [
-              {
-                "inlineContent" : [
-                  {
-                    "text" : "",
-                    "type" : "text"
-                  }
-                ],
-                "type" : "paragraph"
-              }
-            ],
-            "name" : "fields[subscriptions]"
           },
           {
             "content" : [

@@ -38,7 +38,6 @@ public enum GetRoutingAppCoverageV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

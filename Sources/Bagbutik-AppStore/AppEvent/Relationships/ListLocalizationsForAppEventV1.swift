@@ -58,7 +58,6 @@ public enum ListLocalizationsForAppEventV1 {
             case fileSize
             case imageAsset
             case uploadOperations
-            case uploaded
         }
 
         public enum AppEventVideoClips: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -67,15 +66,15 @@ public enum ListLocalizationsForAppEventV1 {
             case assetDeliveryState
             case fileName
             case fileSize
+            case previewFrameImage
             case previewFrameTimeCode
             case previewImage
             case uploadOperations
-            case uploaded
+            case videoDeliveryState
             case videoUrl
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case archivedTerritorySchedules
             case badge
             case deepLink

@@ -61,7 +61,6 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case description
             case expression
             case referenceName
-            case ruleSet
             case type
             case weight
         }
@@ -70,7 +69,6 @@ public enum GetGameCenterMatchmakingRuleSetV1 {
             case maxPlayers
             case minPlayers
             case referenceName
-            case ruleSet
         }
     }
 

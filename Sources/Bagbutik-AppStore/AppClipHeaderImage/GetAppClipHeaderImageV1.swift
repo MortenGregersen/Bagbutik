@@ -39,7 +39,6 @@ public enum GetAppClipHeaderImageV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

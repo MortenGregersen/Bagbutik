@@ -63,7 +63,6 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         case winBackOffers([WinBackOffers])
 
         public enum PromotedPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case enabled
             case inAppPurchaseV2
             case promotionImages
@@ -82,17 +81,14 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case sourceFileChecksum
             case subscription
             case uploadOperations
-            case uploaded
         }
 
         public enum SubscriptionAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
-            case subscription
         }
 
         public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions
@@ -107,7 +103,6 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case state
             case subscription
             case uploadOperations
-            case uploaded
         }
 
         public enum SubscriptionIntroductoryOffers: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -145,10 +140,8 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
         }
 
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case preserveCurrentPrice
             case preserved
             case startDate
-            case subscription
             case subscriptionPricePoint
             case territory
         }
@@ -199,7 +192,6 @@ public enum ListSubscriptionsForSubscriptionGroupV1 {
             case promotionIntent
             case referenceName
             case startDate
-            case subscription
         }
     }
 

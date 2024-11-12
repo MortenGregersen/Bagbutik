@@ -69,7 +69,6 @@ public enum ListVersionsForAlternativeDistributionPackageV1 {
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
             case versions
         }
     }

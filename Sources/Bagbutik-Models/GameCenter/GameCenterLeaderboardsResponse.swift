@@ -69,13 +69,6 @@ public struct GameCenterLeaderboardsResponse: Codable, Sendable, PagedResponse {
         return gameCenterLeaderboardSets
     }
 
-    public func getGroupLeaderboard(for gameCenterLeaderboard: GameCenterLeaderboard) -> GameCenterLeaderboard? {
-        included?.compactMap { relationship -> GameCenterLeaderboard? in
-            guard case let .gameCenterLeaderboard(groupLeaderboard) = relationship else { return nil }
-            return groupLeaderboard
-        }.first { $0.id == gameCenterLeaderboard.relationships?.groupLeaderboard?.data?.id }
-    }
-
     public func getLocalizations(for gameCenterLeaderboard: GameCenterLeaderboard) -> [GameCenterLeaderboardLocalization] {
         guard let localizationIds = gameCenterLeaderboard.relationships?.localizations?.data?.map(\.id),
               let localizations = included?.compactMap({ relationship -> GameCenterLeaderboardLocalization? in

@@ -83,7 +83,6 @@ public enum ListReviewSubmissionsForAppV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -113,7 +112,6 @@ public enum ListReviewSubmissionsForAppV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases
@@ -134,21 +132,16 @@ public enum ListReviewSubmissionsForAppV1 {
             case appStoreVersion
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
-            case removed
-            case resolved
-            case reviewSubmission
             case state
         }
 
         public enum ReviewSubmissions: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appStoreVersionForReview
-            case canceled
             case items
             case lastUpdatedByActor
             case platform
             case state
-            case submitted
             case submittedByActor
             case submittedDate
         }

@@ -33,37 +33,12 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
     public enum Field: FieldParameter {
         /// The fields to include for returned resources of type subscriptionAvailabilities
         case subscriptionAvailabilities([SubscriptionAvailabilities])
-        /// The fields to include for returned resources of type subscriptions
-        case subscriptions([Subscriptions])
         /// The fields to include for returned resources of type territories
         case territories([Territories])
 
         public enum SubscriptionAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
-            case subscription
-        }
-
-        public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appStoreReviewScreenshot
-            case familySharable
-            case group
-            case groupLevel
-            case images
-            case introductoryOffers
-            case name
-            case offerCodes
-            case pricePoints
-            case prices
-            case productId
-            case promotedPurchase
-            case promotionalOffers
-            case reviewNote
-            case state
-            case subscriptionAvailability
-            case subscriptionLocalizations
-            case subscriptionPeriod
-            case winBackOffers
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -76,7 +51,6 @@ public enum GetSubscriptionAvailabilityForSubscriptionV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case availableTerritories
-        case subscription
     }
 
     /**

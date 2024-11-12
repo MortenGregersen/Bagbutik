@@ -59,6 +59,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
         @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
         public var brazilAgeRating: BrazilAgeRating? = nil
         public var brazilAgeRatingV2: BrazilAgeRatingV2?
+        public var franceAgeRating: FranceAgeRating?
         public var kidsAgeBand: KidsAgeBand?
         public var koreaAgeRating: KoreaAgeRating?
         public var state: State?
@@ -69,6 +70,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
                     australiaAgeRating: AustraliaAgeRating? = nil,
                     brazilAgeRating: BrazilAgeRating? = nil,
                     brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
+                    franceAgeRating: FranceAgeRating? = nil,
                     kidsAgeBand: KidsAgeBand? = nil,
                     koreaAgeRating: KoreaAgeRating? = nil,
                     state: State? = nil)
@@ -78,6 +80,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             self.australiaAgeRating = australiaAgeRating
             self.brazilAgeRating = brazilAgeRating
             self.brazilAgeRatingV2 = brazilAgeRatingV2
+            self.franceAgeRating = franceAgeRating
             self.kidsAgeBand = kidsAgeBand
             self.koreaAgeRating = koreaAgeRating
             self.state = state
@@ -86,6 +89,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
         public init(appStoreAgeRating: AppStoreAgeRating? = nil,
                     australiaAgeRating: AustraliaAgeRating? = nil,
                     brazilAgeRatingV2: BrazilAgeRatingV2? = nil,
+                    franceAgeRating: FranceAgeRating? = nil,
                     kidsAgeBand: KidsAgeBand? = nil,
                     koreaAgeRating: KoreaAgeRating? = nil,
                     state: State? = nil)
@@ -93,6 +97,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             self.appStoreAgeRating = appStoreAgeRating
             self.australiaAgeRating = australiaAgeRating
             self.brazilAgeRatingV2 = brazilAgeRatingV2
+            self.franceAgeRating = franceAgeRating
             self.kidsAgeBand = kidsAgeBand
             self.koreaAgeRating = koreaAgeRating
             self.state = state
@@ -105,6 +110,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             australiaAgeRating = try container.decodeIfPresent(AustraliaAgeRating.self, forKey: "australiaAgeRating")
             brazilAgeRating = try container.decodeIfPresent(BrazilAgeRating.self, forKey: "brazilAgeRating")
             brazilAgeRatingV2 = try container.decodeIfPresent(BrazilAgeRatingV2.self, forKey: "brazilAgeRatingV2")
+            franceAgeRating = try container.decodeIfPresent(FranceAgeRating.self, forKey: "franceAgeRating")
             kidsAgeBand = try container.decodeIfPresent(KidsAgeBand.self, forKey: "kidsAgeBand")
             koreaAgeRating = try container.decodeIfPresent(KoreaAgeRating.self, forKey: "koreaAgeRating")
             state = try container.decodeIfPresent(State.self, forKey: "state")
@@ -117,6 +123,7 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             try container.encodeIfPresent(australiaAgeRating, forKey: "australiaAgeRating")
             try container.encodeIfPresent(brazilAgeRating, forKey: "brazilAgeRating")
             try container.encodeIfPresent(brazilAgeRatingV2, forKey: "brazilAgeRatingV2")
+            try container.encodeIfPresent(franceAgeRating, forKey: "franceAgeRating")
             try container.encodeIfPresent(kidsAgeBand, forKey: "kidsAgeBand")
             try container.encodeIfPresent(koreaAgeRating, forKey: "koreaAgeRating")
             try container.encodeIfPresent(state, forKey: "state")
@@ -140,6 +147,10 @@ public struct AppInfo: Codable, Sendable, Identifiable {
             case selfRatedSixteen = "SELF_RATED_SIXTEEN"
             case selfRatedTen = "SELF_RATED_TEN"
             case selfRatedTwelve = "SELF_RATED_TWELVE"
+        }
+
+        public enum FranceAgeRating: String, Sendable, Codable, CaseIterable {
+            case eighteen = "EIGHTEEN"
         }
 
         public enum KoreaAgeRating: String, Sendable, Codable, CaseIterable {

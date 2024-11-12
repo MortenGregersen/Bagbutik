@@ -35,7 +35,6 @@ public enum ListRulesForGameCenterMatchmakingRuleSetV1 {
             case description
             case expression
             case referenceName
-            case ruleSet
             case type
             case weight
         }

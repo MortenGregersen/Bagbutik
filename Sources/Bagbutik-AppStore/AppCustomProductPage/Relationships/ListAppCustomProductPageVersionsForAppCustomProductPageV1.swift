@@ -60,8 +60,6 @@ public enum ListAppCustomProductPageVersionsForAppCustomProductPageV1 {
         public enum AppCustomProductPages: String, Sendable, ParameterValue, Codable, CaseIterable {
             case app
             case appCustomProductPageVersions
-            case appStoreVersionTemplate
-            case customProductPageTemplate
             case name
             case url
             case visible

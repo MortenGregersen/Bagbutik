@@ -41,7 +41,6 @@ public enum GetSubscriptionAppStoreReviewScreenshotV1 {
             case sourceFileChecksum
             case subscription
             case uploadOperations
-            case uploaded
         }
     }
 

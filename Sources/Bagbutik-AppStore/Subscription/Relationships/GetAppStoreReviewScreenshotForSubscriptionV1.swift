@@ -43,7 +43,6 @@ public enum GetAppStoreReviewScreenshotForSubscriptionV1 {
             case sourceFileChecksum
             case subscription
             case uploadOperations
-            case uploaded
         }
 
         public enum Subscriptions: String, Sendable, ParameterValue, Codable, CaseIterable {

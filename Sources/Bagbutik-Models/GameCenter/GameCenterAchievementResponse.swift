@@ -50,13 +50,6 @@ public struct GameCenterAchievementResponse: Codable, Sendable {
         }.first { $0.id == data.relationships?.gameCenterGroup?.data?.id }
     }
 
-    public func getGroupAchievement() -> GameCenterAchievement? {
-        included?.compactMap { relationship -> GameCenterAchievement? in
-            guard case let .gameCenterAchievement(groupAchievement) = relationship else { return nil }
-            return groupAchievement
-        }.first { $0.id == data.relationships?.groupAchievement?.data?.id }
-    }
-
     public func getLocalizations() -> [GameCenterAchievementLocalization] {
         guard let localizationIds = data.relationships?.localizations?.data?.map(\.id),
               let localizations = included?.compactMap({ relationship -> GameCenterAchievementLocalization? in

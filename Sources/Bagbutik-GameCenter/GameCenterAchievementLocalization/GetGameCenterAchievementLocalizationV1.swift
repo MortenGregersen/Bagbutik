@@ -42,7 +42,6 @@ public enum GetGameCenterAchievementLocalizationV1 {
             case gameCenterAchievementLocalization
             case imageAsset
             case uploadOperations
-            case uploaded
         }
 
         public enum GameCenterAchievementLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {

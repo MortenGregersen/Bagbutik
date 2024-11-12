@@ -45,7 +45,6 @@ public enum ListInAppPurchaseLocalizationsForInAppPurchasesV2 {
         }
 
         public enum InAppPurchases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case appStoreReviewScreenshot
             case content
             case contentHosting

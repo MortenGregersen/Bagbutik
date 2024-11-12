@@ -51,10 +51,11 @@ public enum ListAppEventVideoClipsForAppEventLocalizationV1 {
             case assetDeliveryState
             case fileName
             case fileSize
+            case previewFrameImage
             case previewFrameTimeCode
             case previewImage
             case uploadOperations
-            case uploaded
+            case videoDeliveryState
             case videoUrl
         }
     }

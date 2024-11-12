@@ -82,7 +82,6 @@ public enum GetAppStoreVersionV1 {
         }
 
         public enum AlternativeDistributionPackages: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
             case versions
         }
 
@@ -91,7 +90,6 @@ public enum GetAppStoreVersionV1 {
             case appClip
             case appClipAppStoreReviewDetail
             case appClipDefaultExperienceLocalizations
-            case appClipDefaultExperienceTemplate
             case releaseWithAppStoreVersion
         }
 
@@ -119,7 +117,6 @@ public enum GetAppStoreVersionV1 {
             case platform
             case reviewRequired
             case startDate
-            case started
             case state
             case trafficProportion
         }
@@ -138,7 +135,6 @@ public enum GetAppStoreVersionV1 {
         }
 
         public enum AppStoreVersionPhasedReleases: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case appStoreVersion
             case currentDayNumber
             case phasedReleaseState
             case startDate
@@ -216,7 +212,6 @@ public enum GetAppStoreVersionV1 {
             case fileSize
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

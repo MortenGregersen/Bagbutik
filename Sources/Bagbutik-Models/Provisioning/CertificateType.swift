@@ -5,6 +5,7 @@ public enum CertificateType: String, Sendable, ParameterValue, Codable, CaseIter
     case developerIdApplication = "DEVELOPER_ID_APPLICATION"
     case developerIdApplicationG2 = "DEVELOPER_ID_APPLICATION_G2"
     case developerIdKext = "DEVELOPER_ID_KEXT"
+    case developerIdKextG2 = "DEVELOPER_ID_KEXT_G2"
     case development = "DEVELOPMENT"
     case distribution = "DISTRIBUTION"
     case iOSDevelopment = "IOS_DEVELOPMENT"

@@ -102,7 +102,6 @@ public enum GetBuildV1 {
         public enum Apps: String, Sendable, ParameterValue, Codable, CaseIterable {
             case alternativeDistributionKey
             case analyticsReportRequests
-            case appAvailability
             case appAvailabilityV2
             case appClips
             case appCustomProductPages
@@ -132,7 +131,6 @@ public enum GetBuildV1 {
             case marketplaceSearchDetail
             case name
             case perfPowerMetrics
-            case preOrder
             case preReleaseVersions
             case primaryLocale
             case promotedPurchases

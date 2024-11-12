@@ -4,7 +4,7 @@ import Bagbutik_Models
 public extension Request {
     /**
      # Modify a Beta App Localization
-     Update the localized What’s New text for a specific app and locale.
+     Update the localized information for a specific beta app and locale.
 
      Full documentation:
      <https://developer.apple.com/documentation/appstoreconnectapi/patch-v1-betaAppLocalizations-_id_>

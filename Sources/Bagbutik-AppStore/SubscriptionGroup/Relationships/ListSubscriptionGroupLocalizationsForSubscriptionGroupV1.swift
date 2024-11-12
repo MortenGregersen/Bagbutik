@@ -45,7 +45,6 @@ public enum ListSubscriptionGroupLocalizationsForSubscriptionGroupV1 {
         }
 
         public enum SubscriptionGroups: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case referenceName
             case subscriptionGroupLocalizations
             case subscriptions

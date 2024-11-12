@@ -40,7 +40,6 @@ public enum GetGameCenterLeaderboardSetImageForGameCenterLeaderboardSetLocalizat
             case gameCenterLeaderboardSetLocalization
             case imageAsset
             case uploadOperations
-            case uploaded
         }
 
         public enum GameCenterLeaderboardSetLocalizations: String, Sendable, ParameterValue, Codable, CaseIterable {

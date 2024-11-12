@@ -48,7 +48,6 @@ public enum GetAppClipDefaultExperienceLocalizationV1 {
             case imageAsset
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

@@ -54,7 +54,6 @@ public enum ListAppEventScreenshotsForAppEventLocalizationV1 {
             case fileSize
             case imageAsset
             case uploadOperations
-            case uploaded
         }
     }
 

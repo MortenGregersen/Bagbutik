@@ -42,7 +42,6 @@ public enum GetPromotedPurchaseImageV1 {
             case sourceFileChecksum
             case state
             case uploadOperations
-            case uploaded
         }
     }
 

@@ -38,7 +38,6 @@ public enum GetAnalyticsReportRequestV1 {
 
         public enum AnalyticsReportRequests: String, Sendable, ParameterValue, Codable, CaseIterable {
             case accessType
-            case app
             case reports
             case stoppedDueToInactivity
         }

@@ -41,7 +41,6 @@ public enum GetInAppPurchaseAppStoreReviewScreenshotV1 {
             case inAppPurchaseV2
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
         }
     }
 

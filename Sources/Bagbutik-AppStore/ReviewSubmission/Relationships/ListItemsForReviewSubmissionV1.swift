@@ -51,7 +51,6 @@ public enum ListItemsForReviewSubmissionV1 {
         }
 
         public enum AppEvents: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case app
             case archivedTerritorySchedules
             case badge
             case deepLink
@@ -76,7 +75,6 @@ public enum ListItemsForReviewSubmissionV1 {
             case platform
             case reviewRequired
             case startDate
-            case started
             case state
             case trafficProportion
         }
@@ -114,9 +112,6 @@ public enum ListItemsForReviewSubmissionV1 {
             case appStoreVersion
             case appStoreVersionExperiment
             case appStoreVersionExperimentV2
-            case removed
-            case resolved
-            case reviewSubmission
             case state
         }
     }

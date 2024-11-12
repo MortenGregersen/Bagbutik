@@ -129,10 +129,12 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
         public var gameCenterDetail: GameCenterDetail?
         public var gameCenterGroup: GameCenterGroup?
         public var gameCenterLeaderboardSets: GameCenterLeaderboardSets?
-        public var groupLeaderboard: GroupLeaderboard?
+        @available(*, deprecated, message: "Apple has marked this property deprecated and it will be removed sometime in the future.")
+        public var groupLeaderboard: GroupLeaderboard? = nil
         public var localizations: Localizations?
         public var releases: Releases?
 
+        @available(*, deprecated, message: "This uses a property Apple has marked as deprecated.")
         public init(gameCenterDetail: GameCenterDetail? = nil,
                     gameCenterGroup: GameCenterGroup? = nil,
                     gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil,
@@ -144,6 +146,19 @@ public struct GameCenterLeaderboard: Codable, Sendable, Identifiable {
             self.gameCenterGroup = gameCenterGroup
             self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
             self.groupLeaderboard = groupLeaderboard
+            self.localizations = localizations
+            self.releases = releases
+        }
+
+        public init(gameCenterDetail: GameCenterDetail? = nil,
+                    gameCenterGroup: GameCenterGroup? = nil,
+                    gameCenterLeaderboardSets: GameCenterLeaderboardSets? = nil,
+                    localizations: Localizations? = nil,
+                    releases: Releases? = nil)
+        {
+            self.gameCenterDetail = gameCenterDetail
+            self.gameCenterGroup = gameCenterGroup
+            self.gameCenterLeaderboardSets = gameCenterLeaderboardSets
             self.localizations = localizations
             self.releases = releases
         }

@@ -66,11 +66,12 @@ public enum ListAppPreviewSetsForAppStoreVersionExperimentTreatmentLocalizationV
             case fileName
             case fileSize
             case mimeType
+            case previewFrameImage
             case previewFrameTimeCode
             case previewImage
             case sourceFileChecksum
             case uploadOperations
-            case uploaded
+            case videoDeliveryState
             case videoUrl
         }
 

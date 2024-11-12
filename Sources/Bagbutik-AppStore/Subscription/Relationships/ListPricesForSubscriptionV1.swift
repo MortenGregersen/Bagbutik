@@ -46,15 +46,12 @@ public enum ListPricesForSubscriptionV1 {
             case equalizations
             case proceeds
             case proceedsYear2
-            case subscription
             case territory
         }
 
         public enum SubscriptionPrices: String, Sendable, ParameterValue, Codable, CaseIterable {
-            case preserveCurrentPrice
             case preserved
             case startDate
-            case subscription
             case subscriptionPricePoint
             case territory
         }

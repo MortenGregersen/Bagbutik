@@ -43,7 +43,7 @@ public enum ListManualPricesForInAppPurchasePriceScheduleV1 {
 
         public enum InAppPurchasePricePoints: String, Sendable, ParameterValue, Codable, CaseIterable {
             case customerPrice
-            case inAppPurchaseV2
+            case equalizations
             case proceeds
             case territory
         }
@@ -51,7 +51,6 @@ public enum ListManualPricesForInAppPurchasePriceScheduleV1 {
         public enum InAppPurchasePrices: String, Sendable, ParameterValue, Codable, CaseIterable {
             case endDate
             case inAppPurchasePricePoint
-            case inAppPurchaseV2
             case manual
             case startDate
             case territory

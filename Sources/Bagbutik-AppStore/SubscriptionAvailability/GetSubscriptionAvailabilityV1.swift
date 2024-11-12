@@ -39,7 +39,6 @@ public enum GetSubscriptionAvailabilityV1 {
         public enum SubscriptionAvailabilities: String, Sendable, ParameterValue, Codable, CaseIterable {
             case availableInNewTerritories
             case availableTerritories
-            case subscription
         }
 
         public enum Territories: String, Sendable, ParameterValue, Codable, CaseIterable {
@@ -52,7 +51,6 @@ public enum GetSubscriptionAvailabilityV1 {
      */
     public enum Include: String, IncludeParameter, CaseIterable {
         case availableTerritories
-        case subscription
     }
 
     /**
