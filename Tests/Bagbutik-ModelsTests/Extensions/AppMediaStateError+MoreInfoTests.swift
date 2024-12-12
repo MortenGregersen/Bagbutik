@@ -37,7 +37,7 @@ final class AppMediaStateErrorMoreInfoTests: XCTestCase {
         XCTAssertNotNil(error.learnMoreUrl)
     }
     
-    func testLearnMoreUrl_MovieResaveStereo() {
+    func testLearnMoreUrl_MovieResaveFormat() {
         let error = AppMediaStateError(code: "MOV_RESAVE_FORMAT", description: "MOV_RESAVE_FORMAT")
         XCTAssertNotNil(error.learnMoreUrl)
     }
