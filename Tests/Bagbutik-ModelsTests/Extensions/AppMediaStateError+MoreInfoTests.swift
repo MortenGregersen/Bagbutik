@@ -7,6 +7,11 @@ final class AppMediaStateErrorMoreInfoTests: XCTestCase {
         XCTAssertNotEqual(error.betterDescription, error.description)
     }
     
+    func testBetterDescription_MovieResaveFormat() {
+        let error = AppMediaStateError(code: "MOV_RESAVE_FORMAT", description: "MOV_RESAVE_FORMAT")
+        XCTAssertNotEqual(error.betterDescription, error.description)
+    }
+    
     func testBetterDescription_MovieResaveStereo() {
         let error = AppMediaStateError(code: "MOV_RESAVE_STEREO", description: "MOV_RESAVE_STEREO")
         XCTAssertNotEqual(error.betterDescription, error.description)
@@ -29,6 +34,11 @@ final class AppMediaStateErrorMoreInfoTests: XCTestCase {
     
     func testLearnMoreUrl_ImageIncorrectDimensions() {
         let error = AppMediaStateError(code: "IMAGE_INCORRECT_DIMENSIONS", description: "IMAGE_INCORRECT_DIMENSIONS")
+        XCTAssertNotNil(error.learnMoreUrl)
+    }
+    
+    func testLearnMoreUrl_MovieResaveStereo() {
+        let error = AppMediaStateError(code: "MOV_RESAVE_FORMAT", description: "MOV_RESAVE_FORMAT")
         XCTAssertNotNil(error.learnMoreUrl)
     }
     
