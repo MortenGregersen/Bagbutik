@@ -15,6 +15,7 @@ public struct EnumCase: Equatable, Sendable {
      - Parameters:
         - id: The name of the case
         - value: The value of the case
+        - deprecated: Tells if the case is deprecated
         - documentation: The documentation for the case
      */
     public init(id: String, value: String, deprecated: Bool = false, documentation: String? = nil) {

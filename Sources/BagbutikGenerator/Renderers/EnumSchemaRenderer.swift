@@ -8,7 +8,6 @@ public class EnumSchemaRenderer: Renderer {
 
      - Parameters:
         - enumSchema: The enum schema to render
-        - additionalProtocol: Any additional protocol the enum should conform to
      - Returns: The rendered enum schema
      */
     public func render(enumSchema: EnumSchema) async throws -> String {
