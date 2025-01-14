@@ -56,6 +56,7 @@ public struct Operation: Decodable, Equatable, Sendable {
         - id: The id of the operation
         - name: The name of the operation
         - method: The HTTP method used when executing the operation
+        - deprecated: Tells if the operation is deprecated
         - parameters: The different kind of parameters that can be sent with the operation
         - requestBody: Information about the object that can be sent as request body
         - successResponseType: The name of the type returned on a successful request

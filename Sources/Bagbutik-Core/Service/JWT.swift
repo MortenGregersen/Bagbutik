@@ -33,7 +33,7 @@ public struct JWT: Sendable {
      <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
      
      - Parameters:
-        - keyID: Your private key ID from App Store Connect; for example 2X9R4HXF34.
+        - keyId: Your private key ID from App Store Connect; for example 2X9R4HXF34.
         - issuerId: Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.
         - privateKey: The contents of your private key from App Store Connect. Starting with `-----BEGIN PRIVATE KEY-----`.
       */
@@ -48,7 +48,7 @@ public struct JWT: Sendable {
      <https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api>
      
      - Parameters:
-        - keyID: Your private key ID from App Store Connect; for example 2X9R4HXF34.
+        - keyId: Your private key ID from App Store Connect; for example 2X9R4HXF34.
         - issuerId: Your issuer ID from the API Keys page in App Store Connect; for example, 57246542-96fe-1a63-e053-0824d011072a.
         - privateKeyPath: The file path to your private key from App Store Connect.
       */
