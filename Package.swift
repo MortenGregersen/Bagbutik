@@ -66,6 +66,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.5.0"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.5"),
         .package(url: "https://github.com/apple/swift-crypto", from: "3.8.0"),
+        .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.1.0"),
     ],
     targets: [
         .target(name: "Bagbutik-Core", dependencies: [

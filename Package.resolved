@@ -20,6 +20,24 @@
         }
       },
       {
+        "package": "SwiftDocCPlugin",
+        "repositoryURL": "https://github.com/swiftlang/swift-docc-plugin",
+        "state": {
+          "branch": null,
+          "revision": "85e4bb4e1cd62cec64a4b8e769dcefdf0c5b9d64",
+          "version": "1.4.3"
+        }
+      },
+      {
+        "package": "SymbolKit",
+        "repositoryURL": "https://github.com/swiftlang/swift-docc-symbolkit",
+        "state": {
+          "branch": null,
+          "revision": "b45d1f2ed151d057b54504d653e0da5552844e34",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "SwiftFormat",
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
