@@ -14,4 +14,4 @@ jobs:
     - name: Check for new spec
       run: ./check-spec-version.sh
       env:
-        GH_TOKEN: ${{ secrets.BAGBUTIK_ACTIONS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
