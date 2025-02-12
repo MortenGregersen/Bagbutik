@@ -48,6 +48,9 @@ final class GeneratorTests: XCTestCase {
         XCTAssertEqual(fileManager.itemsRemoved, [
             "/Users/steve/output/Bagbutik-AppStore",
             "/Users/steve/output/Bagbutik-Models/AppStore",
+            "/Users/steve/output/Bagbutik-Core/Endpoints",
+            "/Users/steve/output/Bagbutik-Core/Models",
+            "/Users/steve/output/Bagbutik-Models/Core",
             "/Users/steve/output/Bagbutik-GameCenter",
             "/Users/steve/output/Bagbutik-Models/GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
@@ -61,22 +64,22 @@ final class GeneratorTests: XCTestCase {
             "/Users/steve/output/Bagbutik-Users",
             "/Users/steve/output/Bagbutik-Models/Users",
             "/Users/steve/output/Bagbutik-XcodeCloud",
-            "/Users/steve/output/Bagbutik-Models/XcodeCloud",
-            "/Users/steve/output/Bagbutik-Core/Models"
+            "/Users/steve/output/Bagbutik-Models/XcodeCloud"
         ])
         XCTAssertEqual(Set(fileManager.directoriesCreated).sorted(), [
             "/Users/steve/output/Bagbutik-AppStore",
+            "/Users/steve/output/Bagbutik-Core/Endpoints",
             "/Users/steve/output/Bagbutik-Core/Models",
             "/Users/steve/output/Bagbutik-GameCenter",
             "/Users/steve/output/Bagbutik-Marketplaces",
-            "/Users/steve/output/Bagbutik-Models/AppStore",
-            "/Users/steve/output/Bagbutik-Models/Users",
+            "/Users/steve/output/Bagbutik-Models",
             "/Users/steve/output/Bagbutik-Provisioning",
             "/Users/steve/output/Bagbutik-Reporting",
             "/Users/steve/output/Bagbutik-TestFlight",
             "/Users/steve/output/Bagbutik-Users",
-            "/Users/steve/output/Bagbutik-Users/Users",
-            "/Users/steve/output/Bagbutik-Users/Users/Relationships",
+            "/Users/steve/output/Bagbutik-Users/Endpoints/Users",
+            "/Users/steve/output/Bagbutik-Users/Endpoints/Users/Relationships",
+            "/Users/steve/output/Bagbutik-Users/Models",
             "/Users/steve/output/Bagbutik-XcodeCloud"
         ])
         XCTAssertEqual(fileManager.filesCreated.map(\.name).sorted(), [
@@ -156,11 +159,11 @@ final class GeneratorTests: XCTestCase {
             // Then
             let nsError = $0 as NSError
             #if os(Linux) && compiler(<6.0)
-                XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
-                XCTAssertEqual(nsError.code, 2)
+            XCTAssertEqual(nsError.domain, "NSPOSIXErrorDomain")
+            XCTAssertEqual(nsError.code, 2)
             #else
-                XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
-                XCTAssertEqual(nsError.code, 260)
+            XCTAssertEqual(nsError.domain, "NSCocoaErrorDomain")
+            XCTAssertEqual(nsError.code, 260)
             #endif
         }
     }
@@ -178,7 +181,7 @@ final class GeneratorTests: XCTestCase {
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Users/ListUsersV1.swift"))
+            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Endpoints/Users/ListUsersV1.swift"))
         }
     }
     
@@ -199,7 +202,7 @@ final class GeneratorTests: XCTestCase {
         // When
         await XCTAssertAsyncThrowsError(try await generator.generateAll(specFileURL: validSpecFileURL, outputDirURL: validOutputDirURL, documentationDirURL: validDocumentationDirURL)) {
             // Then
-            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Models/Users/UsersResponse.swift"))
+            XCTAssertEqual($0 as? GeneratorError, .couldNotCreateFile("/Users/steve/output/Bagbutik-Users/Models/UsersResponse.swift"))
         }
     }
     
@@ -261,7 +264,7 @@ final class GeneratorTests: XCTestCase {
         var fileNameToFailCreating: String?
         
         func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey: Any]?) throws {
-            self.directoriesCreated.append(url.path)
+            directoriesCreated.append(url.path)
         }
         
         func createFile(atPath path: String, contents data: Data?, attributes attr: [FileAttributeKey: Any]?) -> Bool {

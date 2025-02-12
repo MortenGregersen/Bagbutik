@@ -26,6 +26,29 @@ public extension StringProtocol {
             }
             .joined()
     }
+    
+    /**
+     Splits a camelCase or PascalCase string into its constituent words.
+     
+     - Returns: An array of words extracted from the camelCase string.
+     */
+    func splitCamelCase() -> [String] {
+        guard !self.isEmpty else { return [] }
+        var words: [String] = []
+        var currentWord = ""
+        for character in self {
+            if character.isUppercase, !currentWord.isEmpty {
+                words.append(currentWord)
+                currentWord = "\(character)"
+            } else {
+                currentWord.append(character)
+            }
+        }
+        if !currentWord.isEmpty {
+            words.append(currentWord)
+        }
+        return words
+    }
 
     /// Returns a copy of the string where the first letter is capitalized
     func capitalizingFirstLetter() -> String {
