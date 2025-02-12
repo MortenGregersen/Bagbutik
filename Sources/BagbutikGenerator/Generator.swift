@@ -78,18 +78,24 @@ public class Generator {
         try await docsLoader.loadDocs(documentationDirURL: documentationDirURL)
         try await docsLoader.applyManualDocumentation()
 
-        let modelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
-        try PackageName.allCases.filter { $0 != .core }.forEach { packageName in
+        let generalModelsDirURL = outputDirURL.appendingPathComponent("Bagbutik-Models")
+        for packageName in PackageName.allCases {
             let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
-            try removeChildren(at: packageDirURL)
-            try fileManager.createDirectory(at: packageDirURL, withIntermediateDirectories: true, attributes: nil)
-            let modelsPackageDirURL = modelsDirURL.appendingPathComponent(packageName.docsSectionName)
-            try removeChildren(at: modelsPackageDirURL)
+            if packageName != .core {
+                try removeChildren(at: packageDirURL)
+                try fileManager.createDirectory(at: packageDirURL, withIntermediateDirectories: true, attributes: nil)
+            } else {
+                let endpointsDirURL = packageDirURL.appendingPathComponent("Endpoints")
+                try removeChildren(at: endpointsDirURL)
+                try fileManager.createDirectory(at: endpointsDirURL, withIntermediateDirectories: true, attributes: nil)
+                let modelsDirURL = packageDirURL.appendingPathComponent("Models")
+                try removeChildren(at: modelsDirURL)
+                try fileManager.createDirectory(at: modelsDirURL, withIntermediateDirectories: true, attributes: nil)
+            }
+
+            try removeChildren(at: generalModelsDirURL.appendingPathComponent(packageName.docsSectionName))
+            try fileManager.createDirectory(at: generalModelsDirURL, withIntermediateDirectories: true, attributes: nil)
         }
-        let coreModelsDirURL = outputDirURL
-            .appendingPathComponent(PackageName.core.name)
-            .appendingPathComponent("Models")
-        try removeChildren(at: coreModelsDirURL)
 
         try await withThrowingTaskGroup(of: [RenderResult].self) { taskGroup in
             for path in spec.paths.values {
@@ -104,7 +110,7 @@ public class Generator {
                         }
                         let renderedOperation = try await operationRenderer.render(operation: operation, in: path)
                         let packageName = try DocsLoader.resolvePackageName(for: Documentation.operation(documentation))
-                        let packageDirURL = outputDirURL.appendingPathComponent(packageName.name)
+                        let packageDirURL = outputDirURL.appendingPathComponent(packageName.name).appendingPathComponent("Endpoints")
                         let operationDirURL = Self.getOperationsDirURL(for: path, in: packageDirURL)
                         renderResults.append(.init(dirURL: operationDirURL, name: name, fileName: fileName, contents: renderedOperation))
                     }
@@ -131,10 +137,9 @@ public class Generator {
                         throw GeneratorError.noDocumentationForSchema(schema.name)
                     }
                     let packageName = try DocsLoader.resolvePackageName(for: documentation)
-                    
                     let model = try await Generator.generateModel(for: schema, packageName: packageName, otherSchemas: schemas, docsLoader: docsLoader)
                     let fileName = model.name + ".swift"
-                    let modelsDirURL: URL = if packageName == .core {
+                    let modelsDirURL: URL = if packageName == .core || schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
                         outputDirURL
                             .appendingPathComponent(packageName.name)
                             .appendingPathComponent("Models")
@@ -199,6 +204,9 @@ public class Generator {
         var imports = ["import Foundation"]
         if packageName != .core {
             imports.append("import Bagbutik_Core")
+            if schema.name.hasSuffix("Request") || schema.name.hasSuffix("Response") {
+                imports.append("import Bagbutik_Models")
+            }
         }
         let contents = """
         \(imports.sorted().joined(separator: "\n"))

@@ -7,8 +7,6 @@ public enum DocsLoaderError: Error, Equatable {
     case documentationNotLoaded
     /// The type of the documentation is wrong
     case wrongTypeOfDocumentation
-    /// The package name could not be resolved
-    case couldNotResolvePackageName(id: String, paths: [[String]])
 }
 
 public actor DocsLoader {
@@ -74,20 +72,7 @@ public actor DocsLoader {
     }
 
     public static func resolvePackageName(for documentation: Documentation) throws -> PackageName {
-        let packageNames = documentation.hierarchy.paths.compactMap { $0.compactMap(PackageName.resolvePackageName(from:)).first }
-        guard let packageName = packageNames.first else {
-            let paths = documentation.hierarchy.paths.flatMap { $0 }
-            guard let longestPath = paths.sorted(by: { $0.lengthOfBytes(using: .utf8) > $1.lengthOfBytes(using: .utf8) }).first,
-                  longestPath == "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI" else {
-                throw DocsLoaderError.couldNotResolvePackageName(id: documentation.id, paths: documentation.hierarchy.paths)
-            }
-            if documentation.id.hasSuffix("ageratingdeclarationwithoutincludesresponse")
-                || documentation.id.hasSuffix("apppreorderwithoutincludesresponse")
-                || documentation.id.hasSuffix("territorieswithoutincludesresponse") {
-                return .appStore
-            }
-            return .core
-        }
+        let packageName = PackageName.resolvePackageName(from: documentation.id) ?? .core
         return packageName
     }
 
