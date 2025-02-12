@@ -80,6 +80,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("kidsAge")
             || (resource.hasPrefix("localization") && !identifier.contains("gameCenter"))
             || resource.hasPrefix("manualPrices")
+            || resource.hasPrefix("nomination")
             || resource.hasPrefix("oneTimeUseCode")
             || resource.hasPrefix("offerCode")
             || resource.hasPrefix("parent")
@@ -124,6 +125,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
             || resource.hasPrefix("capability")
             || resource.hasPrefix("certificate")
             || resource.hasPrefix("device")
+            || resource.hasPrefix("merchant")
             || resource.hasPrefix("profile") {
             return .provisioning
         } else if resource.hasPrefix("analytic")
@@ -141,6 +143,7 @@ public enum PackageName: CaseIterable, Codable, Equatable {
         } else if resource.lowercased().contains("beta")
             || resource.hasPrefix("individualTester")
             || resource.lowercased().hasPrefix("prerelease")
+            || resource.lowercased().hasPrefix("publiclink")
             || resource.hasPrefix("sandbox") {
             return .testFlight
         } else if resource.hasPrefix("user") {
